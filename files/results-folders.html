@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Results folders and figures — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=eb13bdaf5f">
-<link rel="stylesheet" href="../assets/pygments.css?v=eb13bdaf5f">
-<link rel="stylesheet" href="../assets/print.css?v=eb13bdaf5f" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=7432480971">
+<link rel="stylesheet" href="../assets/pygments.css?v=7432480971">
+<link rel="stylesheet" href="../assets/print.css?v=7432480971" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -85,7 +85,7 @@ prob = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.se
 <tr>
 <td><code>fit.txt</code>, <code>.mat</code></td>
 <td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.save_fit"><code>sbtk.io.save_fit</code></a></td>
-<td>Densities with 1σ, <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> test, every residual (<a class="xref xref-st" href="../reference/data-structures.html#fit"><code>fit</code></a>).</td>
+<td>Densities with 1σ, <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> test, every residual (<a class="xref xref-st" href="../reference/data-structures.html#fit"><code>fit</code></a>).</td>
 <td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.load_fit"><code>sbtk.io.load_fit</code></a></td>
 </tr>
 <tr>
@@ -97,7 +97,7 @@ prob = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.se
 <tr>
 <td><code>comparison.txt</code>, <code>.mat</code></td>
 <td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.save_comparison"><code>sbtk.io.save_comparison</code></a></td>
-<td><span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow></math>,</span> <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msubsup><mi>R</mi><mtext>max</mtext><mn>2</mn></msubsup></mrow></math>,</span> RMS error, per-component comparison (<a class="xref xref-st" href="../reference/data-structures.html#cmp"><code>cmp</code></a>).</td>
+<td><span class="nobr"><math alttext="R^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow></math>,</span> <span class="nobr"><math alttext="R^2_max" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msubsup><mi>R</mi><mtext>max</mtext><mn>2</mn></msubsup></mrow></math>,</span> RMS error, per-component comparison (<a class="xref xref-st" href="../reference/data-structures.html#cmp"><code>cmp</code></a>).</td>
 <td><code>load</code></td>
 </tr>
 <tr>
@@ -133,7 +133,7 @@ prob = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.se
 </table>
 <h2 id="text-formats">Text formats<a class="headerlink" href="#text-formats" title="Link to this section">#</a></h2>
 <p><strong>Measurements</strong> (<a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.write_measurements"><code>sbtk.io.write_measurements</code></a>, <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.read_measurements"><code>sbtk.io.read_measurements</code></a>): one keyword per line, values separated
-by spaces, <code>#</code> lines are comments. <code>coef</code> lines hold <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>l</mi></mrow></math>,</span> <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>m</mi></mrow></math>,</span> <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mi>l</mi><mi>m</mi></mrow></msub></mrow></math>,</span> <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mi>l</mi><mi>m</mi></mrow></msub></mrow></math></span> and their 1σ; <code>inertia</code> lines
+by spaces, <code>#</code> lines are comments. <code>coef</code> lines hold <span class="nobr"><math alttext="l" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>l</mi></mrow></math>,</span> <span class="nobr"><math alttext="m" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>m</mi></mrow></math>,</span> <span class="nobr"><math alttext="C_lm" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mi>l</mi><mi>m</mi></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="S_lm" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mi>l</mi><mi>m</mi></mrow></msub></mrow></math></span> and their 1σ; <code>inertia</code> lines
 hold the label, value, 1σ and the six weights. The first lines of a file:</p>
 <div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text"># Didymos measurements: didymos_example (SBTK 1.0.0)
 # Simulated by SBTK from interior didymos_example. Values include simulated measurement noise (seed 1).
@@ -197,8 +197,8 @@ sequential color map (dark blue to yellow); signed differences with blue for low
 (+450 kg/m³), an equatorial ridge (−500), a 12 m regolith layer (−900), a boulder of radius 40 m (+900) and a random
 field of 40 kg/m³ with a 60 m correlation length; measurements to degree 4 with the uncertainties of the
 <a href="../getting-started/first-script.html">first script</a>; an inversion for core, ridge and regolith (the boulder and the field
-are not in the inversion model). The fit has <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup><mo>&#x0002F;</mo><mi>&#x003BD;</mi><mo>&#x0003D;</mo><mn>1.09</mn></mrow></math></span> (<span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>p</mi><mo>&#x0003D;</mo><mn>0.35</mn></mrow></math>)</span>, the homogeneous body <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup><mo>&#x0002F;</mo><mi>&#x003BD;</mi><mo>&#x0003D;</mo><mn>37.5</mn></mrow></math>;</span>
-<span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mn>0.88</mn></mrow></math></span> with <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msubsup><mi>R</mi><mtext>max</mtext><mn>2</mn></msubsup><mo>&#x0003D;</mo><mn>0.98</mn></mrow></math>.</span></p>
+are not in the inversion model). The fit has <span class="nobr"><math alttext="χ^2/ν = 1.09" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup><mo>&#x0002F;</mo><mi>&#x003BD;</mi><mo>&#x0003D;</mo><mn>1.09</mn></mrow></math></span> (<span class="nobr"><math alttext="p = 0.35" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>p</mi><mo>&#x0003D;</mo><mn>0.35</mn></mrow></math>)</span>, the homogeneous body <span class="nobr"><math alttext="χ^2/ν = 37.5" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup><mo>&#x0002F;</mo><mi>&#x003BD;</mi><mo>&#x0003D;</mo><mn>37.5</mn></mrow></math>;</span>
+<span class="nobr"><math alttext="R^2 = 0.88" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mn>0.88</mn></mrow></math></span> with <span class="nobr"><math alttext="R^2_max = 0.98" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msubsup><mi>R</mi><mtext>max</mtext><mn>2</mn></msubsup><mo>&#x0003D;</mo><mn>0.98</mn></mrow></math>.</span></p>
 <h3 id="shape-model">Shape model<a class="headerlink" href="#shape-model" title="Link to this section">#</a></h3>
 <p><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.shape"><code>sbtk.plot.shape</code></a><code>(body)</code>: the mesh with its center of figure and axes.</p>
 <figure class="figure"><img src="../images/shape.png" alt="Didymos shape model (DART v003, 9.3 m sampling)." loading="lazy"><figcaption>Didymos shape model (DART v003, 9.3 m sampling).</figcaption></figure>
@@ -208,7 +208,7 @@ they lie inside the body, layers by their lower boundary; color is the relative 
 slices). Saved as <code>truth_3d.png</code> and <code>estimate_3d.png</code> by the report functions.</p>
 <figure class="figure"><img src="../images/truth_3d.png" alt="True model: core, ridge, lower boundary of the regolith layer, boulder." loading="lazy"><figcaption>True model: core, ridge, lower boundary of the regolith layer, boulder.</figcaption></figure>
 <h3 id="density-slices">Density slices<a class="headerlink" href="#density-slices" title="Link to this section">#</a></h3>
-<p><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.slices"><code>sbtk.plot.slices</code></a><code>(body, {models}, {titles})</code>: the density on the plane <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math></span> (left) and the plane <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>y</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math></span> (right), both
+<p><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.slices"><code>sbtk.plot.slices</code></a><code>(body, {models}, {titles})</code>: the density on the plane <span class="nobr"><math alttext="z = 0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math></span> (left) and the plane <span class="nobr"><math alttext="y = 0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>y</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math></span> (right), both
 through the first model's origin, one row per model with a common color scale. Saved as <code>truth_slices.png</code> and
 <code>estimate_slices.png</code>.</p>
 <figure class="figure"><img src="../images/truth_slices.png" alt="True density; the random field appears as small-scale variation." loading="lazy"><figcaption>True density; the random field appears as small-scale variation.</figcaption></figure>
@@ -227,7 +227,7 @@ is close to zero about the center of mass. Right, each inertia measurement with 
 the background. Components whose relative density is smaller than its 1σ are drawn in gray. Saved as <code>densities.png</code>.</p>
 <figure class="figure"><img src="../images/densities.png" alt="Estimated densities of the example." loading="lazy"><figcaption>Estimated densities of the example.</figcaption></figure>
 <h3 id="comparison-with-the-true-model">Comparison with the true model<a class="headerlink" href="#comparison-with-the-true-model" title="Link to this section">#</a></h3>
-<p><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.comparison"><code>sbtk.plot.comparison</code></a><code>(cmp)</code>: left, <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow></math></span> of the estimate and <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msubsup><mi>R</mi><mtext>max</mtext><mn>2</mn></msubsup></mrow></math>;</span> right, each component's estimate with ±1σ
+<p><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.comparison"><code>sbtk.plot.comparison</code></a><code>(cmp)</code>: left, <span class="nobr"><math alttext="R^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow></math></span> of the estimate and <span class="nobr"><math alttext="R^2_max" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msubsup><mi>R</mi><mtext>max</mtext><mn>2</mn></msubsup></mrow></math>;</span> right, each component's estimate with ±1σ
 and its true density (cross). Saved as <code>comparison.png</code>.</p>
 <figure class="figure"><img src="../images/comparison.png" alt="Comparison of the example fit with the true model." loading="lazy"><figcaption>Comparison of the example fit with the true model.</figcaption></figure>
 <p><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.truth_vs_estimate"><code>sbtk.plot.truth_vs_estimate</code></a><code>(body, truth, fit)</code>: rows for the true density, the estimate (same color scale) and their
@@ -239,7 +239,7 @@ difference, on the two planes through the true center of mass. Saved as <code>tr
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#run-folders">Run folders</a></li><li class="lvl2"><a href="#files">Files</a></li><li class="lvl2"><a href="#text-formats">Text formats</a></li><li class="lvl2"><a href="#figures">Figures</a></li><li class="lvl3"><a href="#shape-model">Shape model</a></li><li class="lvl3"><a href="#interior-in-three-dimensions">Interior in three dimensions</a></li><li class="lvl3"><a href="#density-slices">Density slices</a></li><li class="lvl3"><a href="#measurements">Measurements</a></li><li class="lvl3"><a href="#normalized-residuals">Normalized residuals</a></li><li class="lvl3"><a href="#estimated-densities">Estimated densities</a></li><li class="lvl3"><a href="#comparison-with-the-true-model">Comparison with the true model</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=eb13bdaf5f"></script>
-<script src="../assets/site.js?v=eb13bdaf5f"></script>
+<script src="../assets/search-index.js?v=7432480971"></script>
+<script src="../assets/site.js?v=7432480971"></script>
 </body>
 </html>

@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hera blind test — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=eb13bdaf5f">
-<link rel="stylesheet" href="../assets/pygments.css?v=eb13bdaf5f">
-<link rel="stylesheet" href="../assets/print.css?v=eb13bdaf5f" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=7432480971">
+<link rel="stylesheet" href="../assets/pygments.css?v=7432480971">
+<link rel="stylesheet" href="../assets/print.css?v=7432480971" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -119,7 +119,7 @@ runners need them in <code>data/hera_rse/</code>.</p>
 <h2 id="simulation-runs">Simulation runs<a class="headerlink" href="#simulation-runs" title="Link to this section">#</a></h2>
 <p>A simulation runner has five sections:</p>
 <ol>
-<li><strong>NAME AND DELIVERY</strong>: the run name, the package number <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>n</mi></mrow></math>,</span> and the inertia quantities the package contains
+<li><strong>NAME AND DELIVERY</strong>: the run name, the package number <span class="nobr"><math alttext="n" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>n</mi></mrow></math>,</span> and the inertia quantities the package contains
    (any of <code>Ixx</code> … <code>Iyz</code>, <code>libration</code>, or none; <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.select_moi"><code>sbtk.data.select_moi</code></a>).</li>
 <li><strong>INTERIOR</strong>: components and random field (<a href="../models/density-distributions.html">Density distributions</a>).</li>
 <li><strong>MEASUREMENT UNCERTAINTIES</strong>: the uncertainty files of the end-to-end simulation (gravity coefficients and inertia
@@ -127,7 +127,7 @@ runners need them in <code>data/hera_rse/</code>.</p>
 <li><strong>NOISE</strong>: the seed.</li>
 <li><strong>RUN</strong>: <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a>; <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.use_uncertainties"><code>sbtk.data.use_uncertainties</code></a> with the gravity file read by
    <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_shadr"><code>sbtk.exchange.read_shadr</code></a>; <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_moi_sigma"><code>sbtk.data.set_moi_sigma</code></a> with the inertia uncertainties (given in kg km², divided by
-   <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi><msubsup><mi>R</mi><mtext>ref</mtext><mn>2</mn></msubsup></mrow></math>)</span>; <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.select_moi"><code>sbtk.data.select_moi</code></a>; <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise"><code>sbtk.data.add_noise</code></a>; then <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.report_simulation"><code>sbtk.io.report_simulation</code></a>,
+   <span class="nobr"><math alttext="M R_ref^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi><msubsup><mi>R</mi><mtext>ref</mtext><mn>2</mn></msubsup></mrow></math>)</span>; <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.select_moi"><code>sbtk.data.select_moi</code></a>; <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise"><code>sbtk.data.add_noise</code></a>; then <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.report_simulation"><code>sbtk.io.report_simulation</code></a>,
    <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_data"><code>sbtk.exchange.write_data</code></a> and <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_model"><code>sbtk.exchange.write_model</code></a>.</li>
 </ol>
 <p>The run folder separates what may be shared from what may not:</p>
@@ -150,9 +150,9 @@ gravity file, for which the shape model and the point the coefficients are about
 (<a class="xref xref-fn" href="../reference/api/compare.html#sbtk.compare.grids"><code>sbtk.compare.grids</code></a>), which is the comparison every team's solution receives.</p>
 <h2 id="example-runs">Example runs<a class="headerlink" href="#example-runs" title="Link to this section">#</a></h2>
 <p>The delivered interiors (named T1) include a boulder and a random density field that the delivered inversion models do
-not contain. With the uncertainties of the end-to-end simulation, the <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> test rejects the inversion models of
+not contain. With the uncertainties of the end-to-end simulation, the <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> test rejects the inversion models of
 both bodies, and the estimated densities are biased accordingly. For Didymos, the same three-component model fits an
-interior that consists of those components alone (reduced <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> 0.98). At this precision an inversion model has to
+interior that consists of those components alone (reduced <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> 0.98). At this precision an inversion model has to
 include structure down to the scale of such features to pass the test (<a href="../inversion/statistics.html">Goodness of fit</a>).</p>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../projects/bennu.html" rel="prev"><span>Previous</span>Bennu</a><a class="next" href="../reference/api.html" rel="next"><span>Next</span>API reference</a></nav>
@@ -160,7 +160,7 @@ include structure down to the scale of such features to pass the test (<a href="
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#files">Files</a></li><li class="lvl2"><a href="#settings">Settings</a></li><li class="lvl2"><a href="#simulation-runs">Simulation runs</a></li><li class="lvl2"><a href="#inversion-runs">Inversion runs</a></li><li class="lvl2"><a href="#comparison-runs">Comparison runs</a></li><li class="lvl2"><a href="#example-runs">Example runs</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=eb13bdaf5f"></script>
-<script src="../assets/site.js?v=eb13bdaf5f"></script>
+<script src="../assets/search-index.js?v=7432480971"></script>
+<script src="../assets/site.js?v=7432480971"></script>
 </body>
 </html>

@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SBTK: Small Body Toolkit — SBTK documentation</title>
-<link rel="stylesheet" href="./assets/site.css?v=eb13bdaf5f">
-<link rel="stylesheet" href="./assets/pygments.css?v=eb13bdaf5f">
-<link rel="stylesheet" href="./assets/print.css?v=eb13bdaf5f" media="print">
+<link rel="stylesheet" href="./assets/site.css?v=7432480971">
+<link rel="stylesheet" href="./assets/pygments.css?v=7432480971">
+<link rel="stylesheet" href="./assets/print.css?v=7432480971" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -37,7 +37,7 @@ version 1.0.0.</p>
 <p>The following are implemented and covered by the test suite (<a href="./validation/tests.html">Validation</a>).</p>
 <dl>
 <dt>Density models</dt>
-<dd>A background density, uniform components (spheres, triaxial ellipsoids, tori about the <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis, layers below the
+<dd>A background density, uniform components (spheres, triaxial ellipsoids, tori about the <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis, layers below the
 surface, latitude–longitude–radius sectors) and an optional Gaussian random density field, clipped to a closed
 polyhedral shape model that is star-shaped about the expansion origin
 (<a href="./models/density-distributions.html">Density distributions</a>).</dd>
@@ -47,15 +47,15 @@ model, from exact polyhedral integrals over the cones between the expansion orig
 (<a href="./models/forward-model.html">Gravity and moment calculations</a>).</dd>
 <dt>Measurement sets</dt>
 <dd>Gravity coefficients with a full covariance, moment-of-inertia elements, linear combinations of them, the libration
-ratio <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>B</mi><mo>&#x02212;</mo><mi>A</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002F;</mo><mi>C</mi></mrow></math></span> and the center of mass, either simulated with Gaussian noise or read from files
+ratio <span class="nobr"><math alttext="(B-A)/C" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>B</mi><mo>&#x02212;</mo><mi>A</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002F;</mo><mi>C</mi></mrow></math></span> and the center of mass, either simulated with Gaussian noise or read from files
 (<a href="./inversion/measurements.html">Measurement sets</a>).</dd>
 <dt>Density estimation</dt>
 <dd>Weighted least squares for the background density and the relative density of each component, with the total mass
 as an equality constraint, bounds on the densities, optional Tikhonov regularization, optional estimation of sphere
-centers, linearized 1σ uncertainties, and a <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> test of the fit
+centers, linearized 1σ uncertainties, and a <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> test of the fit
 (<a href="./inversion/density-estimation.html">Density estimation</a>).</dd>
 <dt>Comparison with a true model</dt>
-<dd>For synthetic tests: the fraction of the variance of the true density explained by the estimate (<span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow></math>)</span>, the
+<dd>For synthetic tests: the fraction of the variance of the true density explained by the estimate (<span class="nobr"><math alttext="R^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow></math>)</span>, the
 largest value the chosen components allow, and a cell-by-cell comparison of density grids
 (<a href="./inversion/statistics.html">Goodness of fit and model comparison</a>).</dd>
 <dt>Exchange packages</dt>
@@ -91,7 +91,7 @@ other platforms (<a href="./getting-started/installation.html">Installation</a>)
 </tr>
 <tr>
 <td>Measurements and inversion</td>
-<td>Measurement sets, the estimation problem, <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> testing and comparison statistics.</td>
+<td>Measurement sets, the estimation problem, <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> testing and comparison statistics.</td>
 </tr>
 <tr>
 <td>Files</td>
@@ -128,7 +128,7 @@ shape model of Bennu.</p>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#capabilities">Capabilities</a></li><li class="lvl2"><a href="#status-and-requirements">Status and requirements</a></li><li class="lvl2"><a href="#organization-of-this-documentation">Organization of this documentation</a></li><li class="lvl2"><a href="#credits">Credits</a></li></ul></nav>
 </div>
-<script src="./assets/search-index.js?v=eb13bdaf5f"></script>
-<script src="./assets/site.js?v=eb13bdaf5f"></script>
+<script src="./assets/search-index.js?v=7432480971"></script>
+<script src="./assets/site.js?v=7432480971"></script>
 </body>
 </html>

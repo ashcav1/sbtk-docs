@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Validation and tests — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=eb13bdaf5f">
-<link rel="stylesheet" href="../assets/pygments.css?v=eb13bdaf5f">
-<link rel="stylesheet" href="../assets/print.css?v=eb13bdaf5f" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=7432480971">
+<link rel="stylesheet" href="../assets/pygments.css?v=7432480971">
+<link rel="stylesheet" href="../assets/print.css?v=7432480971" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -34,7 +34,7 @@
 <p>This page states what the tests check and with what tolerance, as written in the test files. It makes no claims
 beyond them. Unit tests use a small ellipsoid body (<code>tests/unit/small_body.m</code>); validation tests use an ellipsoid with
 semi-axes 0.5 × 0.4 × 0.3 km (20,480 facets) and the 9.3 m Didymos model with a bulk density of 2600 kg/m³ and
-<span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>R</mi><mtext>ref</mtext></msub></mrow></math></span> = 0.40 km.</p>
+<span class="nobr"><math alttext="R_ref" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>R</mi><mtext>ref</mtext></msub></mrow></math></span> = 0.40 km.</p>
 <h2 id="comparison-with-independent-results">Comparison with independent results<a class="headerlink" href="#comparison-with-independent-results" title="Link to this section">#</a></h2>
 <p>From <code>tests/integration/test_validation.m</code>:</p>
 <table>
@@ -53,12 +53,12 @@ semi-axes 0.5 × 0.4 × 0.3 km (20,480 facets) and the 9.3 m Didymos model with 
 </tr>
 <tr>
 <td><code>testEllipsoidClosedForm</code></td>
-<td><span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>20</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub></mrow></math></span> and the principal moments of a homogeneous triaxial ellipsoid against the closed forms <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>C</mi><mrow><mn>20</mn></mrow></msub><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><mn>2</mn><msup><mi>c</mi><mn>2</mn></msup><mo>&#x02212;</mo><msup><mi>a</mi><mn>2</mn></msup><mo>&#x02212;</mo><msup><mi>b</mi><mn>2</mn></msup><mo stretchy="false">&#x00029;</mo><mo>&#x0002F;</mo><mo stretchy="false">&#x00028;</mo><mn>10</mn><msup><mi>R</mi><mn>2</mn></msup><mo stretchy="false">&#x00029;</mo></mrow></math>,</span> <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>C</mi><mrow><mn>22</mn></mrow></msub><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><msup><mi>a</mi><mn>2</mn></msup><mo>&#x02212;</mo><msup><mi>b</mi><mn>2</mn></msup><mo stretchy="false">&#x00029;</mo><mo>&#x0002F;</mo><mo stretchy="false">&#x00028;</mo><mn>20</mn><msup><mi>R</mi><mn>2</mn></msup><mo stretchy="false">&#x00029;</mo></mrow></math>,</span> <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>I</mi><mo>&#x0003D;</mo><mi>M</mi><mo stretchy="false">&#x00028;</mo><msup><mi>b</mi><mn>2</mn></msup><mo>&#x0002B;</mo><msup><mi>c</mi><mn>2</mn></msup><mo stretchy="false">&#x00029;</mo><mo>&#x0002F;</mo><mn>5</mn></mrow></math>,</span> …</td>
+<td><span class="nobr"><math alttext="C_20" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>20</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="C_22" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub></mrow></math></span> and the principal moments of a homogeneous triaxial ellipsoid against the closed forms <span class="nobr"><math alttext="C_20 = (2c^2-a^2-b^2)/(10R^2)" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>C</mi><mrow><mn>20</mn></mrow></msub><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><mn>2</mn><msup><mi>c</mi><mn>2</mn></msup><mo>&#x02212;</mo><msup><mi>a</mi><mn>2</mn></msup><mo>&#x02212;</mo><msup><mi>b</mi><mn>2</mn></msup><mo stretchy="false">&#x00029;</mo><mo>&#x0002F;</mo><mo stretchy="false">&#x00028;</mo><mn>10</mn><msup><mi>R</mi><mn>2</mn></msup><mo stretchy="false">&#x00029;</mo></mrow></math>,</span> <span class="nobr"><math alttext="C_22 = (a^2-b^2)/(20R^2)" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>C</mi><mrow><mn>22</mn></mrow></msub><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><msup><mi>a</mi><mn>2</mn></msup><mo>&#x02212;</mo><msup><mi>b</mi><mn>2</mn></msup><mo stretchy="false">&#x00029;</mo><mo>&#x0002F;</mo><mo stretchy="false">&#x00028;</mo><mn>20</mn><msup><mi>R</mi><mn>2</mn></msup><mo stretchy="false">&#x00029;</mo></mrow></math>,</span> <span class="nobr"><math alttext="I = M(b^2+c^2)/5" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>I</mi><mo>&#x0003D;</mo><mi>M</mi><mo stretchy="false">&#x00028;</mo><msup><mi>b</mi><mn>2</mn></msup><mo>&#x0002B;</mo><msup><mi>c</mi><mn>2</mn></msup><mo stretchy="false">&#x00029;</mo><mo>&#x0002F;</mo><mn>5</mn></mrow></math>,</span> …</td>
 <td>relative 2 × 10⁻³ (20,480-facet mesh)</td>
 </tr>
 <tr>
 <td><code>testConeScaling</code></td>
-<td>Kernel output for a cone scaled by <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>s</mi><mo>&#x0003D;</mo><mn>0.37</mn></mrow></math></span> against <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>s</mi><mrow><mi>l</mi><mo>&#x0002B;</mo><mn>3</mn></mrow></msup></mrow></math></span> times the unscaled integrals.</td>
+<td>Kernel output for a cone scaled by <span class="nobr"><math alttext="s = 0.37" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>s</mi><mo>&#x0003D;</mo><mn>0.37</mn></mrow></math></span> against <span class="nobr"><math alttext="s^l+3" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>s</mi><mrow><mi>l</mi><mo>&#x0002B;</mo><mn>3</mn></mrow></msup></mrow></math></span> times the unscaled integrals.</td>
 <td>relative 10⁻¹³</td>
 </tr>
 <tr>
@@ -68,12 +68,12 @@ semi-axes 0.5 × 0.4 × 0.3 km (20,480 facets) and the 9.3 m Didymos model with 
 </tr>
 <tr>
 <td><code>testTorus</code></td>
-<td>Volume and <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub></mrow></math></span> of a buried torus against <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>2</mn><msup><mi>&#x003C0;</mi><mn>2</mn></msup><mi>R</mi><msup><mi>a</mi><mn>2</mn></msup></mrow></math></span> and <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>V</mi><mo stretchy="false">&#x00028;</mo><msup><mi>R</mi><mn>2</mn></msup><mo>&#x0002B;</mo><mn>3</mn><msup><mi>a</mi><mn>2</mn></msup><mo>&#x0002F;</mo><mn>4</mn><mo stretchy="false">&#x00029;</mo></mrow></math>.</span></td>
-<td>relative 10⁻⁴ (volume), 10⁻³ (<span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub></mrow></math>)</span></td>
+<td>Volume and <span class="nobr"><math alttext="I_zz" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub></mrow></math></span> of a buried torus against <span class="nobr"><math alttext="2π^2 R a^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>2</mn><msup><mi>&#x003C0;</mi><mn>2</mn></msup><mi>R</mi><msup><mi>a</mi><mn>2</mn></msup></mrow></math></span> and <span class="nobr"><math alttext="V(R^2 + 3a^2/4)" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>V</mi><mo stretchy="false">&#x00028;</mo><msup><mi>R</mi><mn>2</mn></msup><mo>&#x0002B;</mo><mn>3</mn><msup><mi>a</mi><mn>2</mn></msup><mo>&#x0002F;</mo><mn>4</mn><mo stretchy="false">&#x00029;</mo></mrow></math>.</span></td>
+<td>relative 10⁻⁴ (volume), 10⁻³ (<span class="nobr"><math alttext="I_zz" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub></mrow></math>)</span></td>
 </tr>
 <tr>
 <td><code>testShellSector</code></td>
-<td>A full-sphere sector between radial fractions 0.5 and 0.75 has volume <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><msup><mn>0.75</mn><mn>3</mn></msup><mo>&#x02212;</mo><msup><mn>0.5</mn><mn>3</mn></msup><mo stretchy="false">&#x00029;</mo><mi>V</mi></mrow></math>.</span></td>
+<td>A full-sphere sector between radial fractions 0.5 and 0.75 has volume <span class="nobr"><math alttext="(0.75^3 - 0.5^3)V" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><msup><mn>0.75</mn><mn>3</mn></msup><mo>&#x02212;</mo><msup><mn>0.5</mn><mn>3</mn></msup><mo stretchy="false">&#x00029;</mo><mi>V</mi></mrow></math>.</span></td>
 <td>relative 10⁻¹²</td>
 </tr>
 <tr>
@@ -83,18 +83,18 @@ semi-axes 0.5 × 0.4 × 0.3 km (20,480 facets) and the 9.3 m Didymos model with 
 </tr>
 <tr>
 <td><code>testRandomFieldMonteCarlo</code></td>
-<td>Mass and degree-2 integrals of a random field (σ = 120 kg/m³, <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>L</mi></mrow></math></span> = 100 m) on Didymos against Monte Carlo integration with 4 × 10⁶ points.</td>
+<td>Mass and degree-2 integrals of a random field (σ = 120 kg/m³, <span class="nobr"><math alttext="L" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>L</mi></mrow></math></span> = 100 m) on Didymos against Monte Carlo integration with 4 × 10⁶ points.</td>
 <td>2% of the largest value</td>
 </tr>
 <tr>
 <td><code>testExactRecovery</code></td>
 <td>Exact Didymos data of a core (off-center), ridge and regolith: densities and the core center are recovered, starting with the core at the origin.</td>
-<td>10⁻⁶ kg/m³, 10⁻⁷ km, <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> &lt; 10⁻¹⁰</td>
+<td>10⁻⁶ kg/m³, 10⁻⁷ km, <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> &lt; 10⁻¹⁰</td>
 </tr>
 <tr>
 <td><code>testExactRecoverySectors</code></td>
 <td>Exact data of a 24-sector interior with random densities are fitted by the same sectors.</td>
-<td><span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> &lt; 10⁻⁶, densities within 20 kg/m³</td>
+<td><span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> &lt; 10⁻⁶, densities within 20 kg/m³</td>
 </tr>
 <tr>
 <td><code>testCalibration</code></td>
@@ -108,7 +108,7 @@ semi-axes 0.5 × 0.4 × 0.3 km (20,480 facets) and the 9.3 m Didymos model with 
 </tr>
 <tr>
 <td><code>testInertiaHelps</code></td>
-<td>Adding <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>x</mi><mi>x</mi></mrow></msub></mrow></math>,</span> <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>y</mi><mi>y</mi></mrow></msub></mrow></math>,</span> <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub></mrow></math></span> to the gravity coefficients reduces every density uncertainty.</td>
+<td>Adding <span class="nobr"><math alttext="I_xx" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>x</mi><mi>x</mi></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="I_yy" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>y</mi><mi>y</mi></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="I_zz" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub></mrow></math></span> to the gravity coefficients reduces every density uncertainty.</td>
 <td>strict</td>
 </tr>
 <tr>
@@ -141,12 +141,12 @@ semi-axes 0.5 × 0.4 × 0.3 km (20,480 facets) and the 9.3 m Didymos model with 
 <tbody>
 <tr>
 <td><code>testDegreeTwoAndInertia</code></td>
-<td>The relations between <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>20</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub></mrow></math></span> and the inertia elements (<a href="../conventions/moments-of-inertia.html#relation-to-the-degree-2-coefficients">Moments of inertia</a>).</td>
+<td>The relations between <span class="nobr"><math alttext="C_20" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>20</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="C_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="S_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="C_22" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="S_22" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub></mrow></math></span> and the inertia elements (<a href="../conventions/moments-of-inertia.html#relation-to-the-degree-2-coefficients">Moments of inertia</a>).</td>
 <td>10⁻¹²</td>
 </tr>
 <tr>
 <td><code>testNormalizationCode</code></td>
-<td>The normalization function printed in <code>conventions.txt</code> gives <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>N</mi><mrow><mn>20</mn></mrow></msub><mo>&#x0002C;</mo><msub><mi>N</mi><mrow><mn>21</mn></mrow></msub><mo>&#x0002C;</mo><msub><mi>N</mi><mrow><mn>22</mn></mrow></msub><mo>&#x0002C;</mo><msub><mi>N</mi><mrow><mn>30</mn></mrow></msub><mo>&#x0003D;</mo><msqrt><mn>5</mn></msqrt><mo>&#x0002C;</mo><msqrt><mrow><mn>5</mn><mo>&#x0002F;</mo><mn>3</mn></mrow></msqrt><mo>&#x0002C;</mo><msqrt><mrow><mn>5</mn><mo>&#x0002F;</mo><mn>12</mn></mrow></msqrt><mo>&#x0002C;</mo><msqrt><mn>7</mn></msqrt></mrow></math>.</span></td>
+<td>The normalization function printed in <code>conventions.txt</code> gives <span class="nobr"><math alttext="N_20, N_21, N_22, N_30 = sqrt5, sqrt5/3, sqrt5/12, sqrt7" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>N</mi><mrow><mn>20</mn></mrow></msub><mo>&#x0002C;</mo><msub><mi>N</mi><mrow><mn>21</mn></mrow></msub><mo>&#x0002C;</mo><msub><mi>N</mi><mrow><mn>22</mn></mrow></msub><mo>&#x0002C;</mo><msub><mi>N</mi><mrow><mn>30</mn></mrow></msub><mo>&#x0003D;</mo><msqrt><mn>5</mn></msqrt><mo>&#x0002C;</mo><msqrt><mrow><mn>5</mn><mo>&#x0002F;</mo><mn>3</mn></mrow></msqrt><mo>&#x0002C;</mo><msqrt><mrow><mn>5</mn><mo>&#x0002F;</mo><mn>12</mn></mrow></msqrt><mo>&#x0002C;</mo><msqrt><mn>7</mn></msqrt></mrow></math>.</span></td>
 <td>relative 10⁻¹⁵</td>
 </tr>
 <tr>
@@ -162,7 +162,7 @@ semi-axes 0.5 × 0.4 × 0.3 km (20,480 facets) and the 9.3 m Didymos model with 
 <tr>
 <td><code>testCenterOfMassFrameMatchesTheTrueFrame</code></td>
 <td>Inverting a measurement package (expansion about the model's center of mass) gives the densities of an inversion about the true center of mass.</td>
-<td>0.2σ; <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> within 10%</td>
+<td>0.2σ; <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> within 10%</td>
 </tr>
 <tr>
 <td><code>testFrameIterationWithSectors</code></td>
@@ -181,20 +181,20 @@ semi-axes 0.5 × 0.4 × 0.3 km (20,480 facets) and the 9.3 m Didymos model with 
 </tr>
 <tr>
 <td><code>testLibrationRatioUsesPrincipalMoments</code></td>
-<td>The simulated libration ratio equals <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>B</mi><mo>&#x02212;</mo><mi>A</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002F;</mo><mi>C</mi></mrow></math></span> from the eigenvalues of the tensor, and the true tensor satisfies the libration row.</td>
+<td>The simulated libration ratio equals <span class="nobr"><math alttext="(B-A)/C" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>B</mi><mo>&#x02212;</mo><mi>A</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002F;</mo><mi>C</mi></mrow></math></span> from the eigenvalues of the tensor, and the true tensor satisfies the libration row.</td>
 <td>relative 10⁻¹², 10⁻¹⁴</td>
 </tr>
 <tr>
 <td><code>testLibrationAmplitudeFormula</code></td>
-<td><span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>G</mi><mo>&#x0003D;</mo><mn>2</mn><mi>e</mi><mo>&#x0002F;</mo><mo stretchy="false">&#x00028;</mo><mn>3</mn><mi>k</mi><mo>&#x02212;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo></mrow></math></span> against numerical integration of planar libration in a Keplerian orbit (<span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>e</mi></mrow></math></span> = 0.01; <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>k</mi></mrow></math></span> = 0.07, 0.25, 0.5), and the inverse formula.</td>
+<td><span class="nobr"><math alttext="G = 2e/(3k-1)" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>G</mi><mo>&#x0003D;</mo><mn>2</mn><mi>e</mi><mo>&#x0002F;</mo><mo stretchy="false">&#x00028;</mo><mn>3</mn><mi>k</mi><mo>&#x02212;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo></mrow></math></span> against numerical integration of planar libration in a Keplerian orbit (<span class="nobr"><math alttext="e" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>e</mi></mrow></math></span> = 0.01; <span class="nobr"><math alttext="k" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>k</mi></mrow></math></span> = 0.07, 0.25, 0.5), and the inverse formula.</td>
 <td>3%; relative 10⁻¹²</td>
 </tr>
 </tbody>
 </table>
 <h2 id="inversion-behavior">Inversion behavior<a class="headerlink" href="#inversion-behavior" title="Link to this section">#</a></h2>
-<p>From <code>tests/unit/test_invert.m</code>: exact recovery with <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BD;</mi><mo>&#x0003D;</mo><mi>n</mi><mo>&#x02212;</mo><mi>p</mi></mrow></math>;</span> the mass constraint (relative 10⁻¹⁰); the
-homogeneous fit has the bulk density and <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BD;</mi><mo>&#x0003D;</mo><mi>n</mi></mrow></math>;</span> regularization reduces the norm of the relative densities and
-increases the degrees of freedom; the p-value of <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mn>10</mn></mrow></math></span> with <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BD;</mi><mo>&#x0003D;</mo><mn>10</mn></mrow></math></span> equals 0.44049; density bounds hold and are
+<p>From <code>tests/unit/test_invert.m</code>: exact recovery with <span class="nobr"><math alttext="ν = n - p" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BD;</mi><mo>&#x0003D;</mo><mi>n</mi><mo>&#x02212;</mo><mi>p</mi></mrow></math>;</span> the mass constraint (relative 10⁻¹⁰); the
+homogeneous fit has the bulk density and <span class="nobr"><math alttext="ν = n" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BD;</mi><mo>&#x0003D;</mo><mi>n</mi></mrow></math>;</span> regularization reduces the norm of the relative densities and
+increases the degrees of freedom; the p-value of <span class="nobr"><math alttext="χ^2 = 10" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mn>10</mn></mrow></math></span> with <span class="nobr"><math alttext="ν = 10" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BD;</mi><mo>&#x0003D;</mo><mn>10</mn></mrow></math></span> equals 0.44049; density bounds hold and are
 flagged; settings by name and value; starting values of the relative densities are not used; unknown inertia labels and
 inconsistent replacement data are rejected.</p>
 <h2 id="reproduction-of-published-and-earlier-results">Reproduction of published and earlier results<a class="headerlink" href="#reproduction-of-published-and-earlier-results" title="Link to this section">#</a></h2>
@@ -230,7 +230,7 @@ inconsistent replacement data are rejected.</p>
 <tbody>
 <tr>
 <td><code>tests/unit/test_units.m</code></td>
-<td><span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>G</mi></mrow></math>,</span> length scales, inertia conversions, degree-1 conversion.</td>
+<td><span class="nobr"><math alttext="G" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>G</mi></mrow></math>,</span> length scales, inertia conversions, degree-1 conversion.</td>
 </tr>
 <tr>
 <td><code>tests/unit/test_shape.m</code></td>
@@ -254,7 +254,7 @@ inconsistent replacement data are rejected.</p>
 </tr>
 <tr>
 <td><code>tests/unit/test_compare.m</code></td>
-<td><span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mn>1</mn></mrow></math></span> for the true model; <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mn>0</mn></mrow></math></span> (within 0.01) for a homogeneous estimate.</td>
+<td><span class="nobr"><math alttext="R^2 = 1" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mn>1</mn></mrow></math></span> for the true model; <span class="nobr"><math alttext="R^2 = 0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mn>0</mn></mrow></math></span> (within 0.01) for a homogeneous estimate.</td>
 </tr>
 <tr>
 <td><code>tests/unit/test_io.m</code></td>
@@ -282,7 +282,7 @@ brute-force integration, uncertainty calibration) are run separately and are not
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#comparison-with-independent-results">Comparison with independent results</a></li><li class="lvl2"><a href="#conventions-and-frames">Conventions and frames</a></li><li class="lvl2"><a href="#inversion-behavior">Inversion behavior</a></li><li class="lvl2"><a href="#reproduction-of-published-and-earlier-results">Reproduction of published and earlier results</a></li><li class="lvl2"><a href="#other-tests">Other tests</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=eb13bdaf5f"></script>
-<script src="../assets/site.js?v=eb13bdaf5f"></script>
+<script src="../assets/search-index.js?v=7432480971"></script>
+<script src="../assets/site.js?v=7432480971"></script>
 </body>
 </html>

@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Assumptions and limitations — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=eb13bdaf5f">
-<link rel="stylesheet" href="../assets/pygments.css?v=eb13bdaf5f">
-<link rel="stylesheet" href="../assets/print.css?v=eb13bdaf5f" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=7432480971">
+<link rel="stylesheet" href="../assets/pygments.css?v=7432480971">
+<link rel="stylesheet" href="../assets/print.css?v=7432480971" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -49,7 +49,7 @@ item links to the page where the behavior is described.</p>
   integrated.</li>
 <li>Layers and sectors are defined along rays from the expansion origin (the center of mass), not along the local surface
   normal (<a href="../conventions/coordinates.html">Coordinate systems</a>).</li>
-<li>The <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis of the shape-model frame is taken as the spin axis and as a principal axis in the definition of the
+<li>The <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis of the shape-model frame is taken as the spin axis and as a principal axis in the definition of the
   libration ratio (<a href="../conventions/moments-of-inertia.html">Moments of inertia</a>).</li>
 <li>SBTK has no function that rotates coefficients or inertia tensors between frames. Data given in another frame (for
   example a principal-axis frame) must be rotated into the shape-model frame before use.</li>
@@ -72,7 +72,7 @@ item links to the page where the behavior is described.</p>
   with a trust region; the geometry of all other components is fixed.</li>
 <li>The uncertainties are the linearized covariance with the mass constraint and fixed parameters eliminated. The
   inequality bounds on the densities are not reflected in the covariance; <code>fit.at_bound</code> flags densities at a bound.</li>
-<li>The <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> test assumes Gaussian measurement errors with the stated covariance.</li>
+<li>The <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> test assumes Gaussian measurement errors with the stated covariance.</li>
 <li>Simulated noise is Gaussian, drawn from the stated covariance of the coefficients and from the σ of each inertia row
   independently (<a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise"><code>sbtk.data.add_noise</code></a>).</li>
 <li>The libration ratio obtained from a libration amplitude (<a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.libration_ratio_from_amplitude"><code>sbtk.data.libration_ratio_from_amplitude</code></a>) uses planar
@@ -101,7 +101,7 @@ item links to the page where the behavior is described.</p>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#physical-model">Physical model</a></li><li class="lvl2"><a href="#geometry">Geometry</a></li><li class="lvl2"><a href="#numerical-integration">Numerical integration</a></li><li class="lvl2"><a href="#estimation">Estimation</a></li><li class="lvl2"><a href="#data-formats">Data formats</a></li><li class="lvl2"><a href="#software">Software</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=eb13bdaf5f"></script>
-<script src="../assets/site.js?v=eb13bdaf5f"></script>
+<script src="../assets/search-index.js?v=7432480971"></script>
+<script src="../assets/site.js?v=7432480971"></script>
 </body>
 </html>

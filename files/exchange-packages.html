@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Exchange packages — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=eb13bdaf5f">
-<link rel="stylesheet" href="../assets/pygments.css?v=eb13bdaf5f">
-<link rel="stylesheet" href="../assets/print.css?v=eb13bdaf5f" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=7432480971">
+<link rel="stylesheet" href="../assets/pygments.css?v=7432480971">
+<link rel="stylesheet" href="../assets/print.css?v=7432480971" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -124,7 +124,7 @@ Every column and key with a unit ends with it; NaN marks a value that is not pro
 </tr>
 <tr>
 <td><code>moments_of_inertia.txt</code></td>
-<td><code>quantity,value,sigma,unit</code>: inertia elements as <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>I</mi><mo>&#x0002F;</mo><mo stretchy="false">&#x00028;</mo><mi>M</mi><msubsup><mi>R</mi><mtext>ref</mtext><mn>2</mn></msubsup><mo stretchy="false">&#x00029;</mo></mrow></math></span> about the center of mass and/or the libration ratio.</td>
+<td><code>quantity,value,sigma,unit</code>: inertia elements as <span class="nobr"><math alttext="I/(M R_ref^2)" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>I</mi><mo>&#x0002F;</mo><mo stretchy="false">&#x00028;</mo><mi>M</mi><msubsup><mi>R</mi><mtext>ref</mtext><mn>2</mn></msubsup><mo stretchy="false">&#x00029;</mo></mrow></math></span> about the center of mass and/or the libration ratio.</td>
 </tr>
 <tr>
 <td><code>conventions.txt</code></td>
@@ -143,7 +143,7 @@ name or any component; <code>testNothingAboutTheInterior</code> checks this (<a 
 <p><a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a> returns the measurement set with <code>coef_about = 'center_of_mass'</code>: the coefficients of
 degree ≥ 2 with their covariance, degree-1 coefficients 0 ± σ that carry the uncertainty of the center of mass, the
 inertia rows, and the body built from the package's shape model and GM. A libration ratio becomes the row
-<span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>B</mi><mo>&#x02212;</mo><mi>A</mi><mo stretchy="false">&#x00029;</mo><mo>&#x02212;</mo><mi>k</mi><mspace width="0.167em" /><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math></span> with σ = <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003C3;</mi><mi>k</mi></msub><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub></mrow></math>,</span> using the measured <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub></mrow></math></span> if the package has one and that of a
+<span class="nobr"><math alttext="(B-A) - k I_zz = 0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>B</mi><mo>&#x02212;</mo><mi>A</mi><mo stretchy="false">&#x00029;</mo><mo>&#x02212;</mo><mi>k</mi><mspace width="0.167em" /><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math></span> with σ = <span class="nobr"><math alttext="σ_k I_zz" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003C3;</mi><mi>k</mi></msub><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub></mrow></math>,</span> using the measured <span class="nobr"><math alttext="I_zz" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub></mrow></math></span> if the package has one and that of a
 homogeneous body otherwise.</p>
 <p>The files of a measurement package made by <code>documentation/tools/make_samples.m</code>:</p>
 <div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text">DOC-DATA1-Didymos: measurements of Didymos
@@ -291,7 +291,7 @@ boulder,sphere,900.000,3566.212,"center [113.3 196.2 105.7] m; radius 40.0 m"</c
 <tbody>
 <tr>
 <td><code>README.txt</code></td>
-<td>Method, the <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> test of the fit and of a homogeneous body, the measurements used.</td>
+<td>Method, the <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> test of the fit and of a homogeneous body, the measurements used.</td>
 </tr>
 <tr>
 <td><code>solution.txt</code></td>
@@ -454,7 +454,7 @@ DENSITY GRID (interior model and solution packages)
 <tr>
 <td>JPL SSD gravity file</td>
 <td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.read_jpl_gravity"><code>sbtk.io.read_jpl_gravity</code></a></td>
-<td>Full covariance; <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mi>l</mi></msub></mrow></math></span> converted.</td>
+<td>Full covariance; <span class="nobr"><math alttext="J_l" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mi>l</mi></msub></mrow></math></span> converted.</td>
 </tr>
 <tr>
 <td>Coefficient matrices</td>
@@ -464,7 +464,7 @@ DENSITY GRID (interior model and solution packages)
 <tr>
 <td>Uncertainties of another data set</td>
 <td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.use_uncertainties"><code>sbtk.data.use_uncertainties</code></a></td>
-<td>Converted to the target reference radius by <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>R</mi><mo>&#x0002F;</mo><msup><mi>R</mi><mi>&#x02032;</mi></msup><msup><mo stretchy="false">&#x00029;</mo><mi>l</mi></msup></mrow></math>.</span></td>
+<td>Converted to the target reference radius by <span class="nobr"><math alttext="(R/R&#x27;)^l" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>R</mi><mo>&#x0002F;</mo><msup><mi>R</mi><mi>&#x02032;</mi></msup><msup><mo stretchy="false">&#x00029;</mo><mi>l</mi></msup></mrow></math>.</span></td>
 </tr>
 </tbody>
 </table>
@@ -474,7 +474,7 @@ DENSITY GRID (interior model and solution packages)
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#file-layout">File layout</a></li><li class="lvl2"><a href="#measurement-package">Measurement package</a></li><li class="lvl2"><a href="#interior-model-package">Interior-model package</a></li><li class="lvl2"><a href="#solution-package">Solution package</a></li><li class="lvl2"><a href="#density-grid">Density grid</a></li><li class="lvl2"><a href="#conventions.txt">conventions.txt</a></li><li class="lvl2"><a href="#other-formats">Other formats</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=eb13bdaf5f"></script>
-<script src="../assets/site.js?v=eb13bdaf5f"></script>
+<script src="../assets/search-index.js?v=7432480971"></script>
+<script src="../assets/site.js?v=7432480971"></script>
 </body>
 </html>

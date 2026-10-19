@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>First script — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=eb13bdaf5f">
-<link rel="stylesheet" href="../assets/pygments.css?v=eb13bdaf5f">
-<link rel="stylesheet" href="../assets/print.css?v=eb13bdaf5f" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=7432480971">
+<link rel="stylesheet" href="../assets/pygments.css?v=7432480971">
+<link rel="stylesheet" href="../assets/print.css?v=7432480971" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -98,19 +98,19 @@ Didymos: estimate compared with the true model
   component         estimate [kg/m^3]       true    deviation
   core                 2969 +-    94       3083       1.2 sigma
   regolith             1293 +-   271       1733       1.6 sigma</code></pre></div>
-<p>The figure shows the true density, the estimated density and their difference on the planes <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math></span> and <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>y</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math></span>
+<p>The figure shows the true density, the estimated density and their difference on the planes <span class="nobr"><math alttext="z = 0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math></span> and <span class="nobr"><math alttext="y = 0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>y</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math></span>
 through the center of mass (<a href="../files/results-folders.html#figures">Figures</a>).</p>
 <h2 id="what-each-step-does">What each step does<a class="headerlink" href="#what-each-step-does" title="Link to this section">#</a></h2>
 <ol>
 <li><strong>Body.</strong> <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.bundled"><code>sbtk.shape.bundled</code></a> reads the DART shape model of Didymos (version 3, 9.3 m sampling, 49,152 facets)
-   in km. <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.from_mass"><code>sbtk.body.from_mass</code></a> attaches the total mass <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi><mo>&#x0003D;</mo><mn>5.273</mn><mi>&#x000D7;</mi><msup><mn>10</mn><mrow><mn>11</mn></mrow></msup></mrow></math></span> kg and the reference radius
-   <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>R</mi><mtext>ref</mtext></msub><mo>&#x0003D;</mo><mn>0.43</mn></mrow></math></span> km of the coefficients; the bulk density <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi><mo>&#x0002F;</mo><mi>V</mi></mrow></math></span> follows from the shape volume. The center of
+   in km. <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.from_mass"><code>sbtk.body.from_mass</code></a> attaches the total mass <span class="nobr"><math alttext="M = 5.273×10^11" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi><mo>&#x0003D;</mo><mn>5.273</mn><mi>&#x000D7;</mi><msup><mn>10</mn><mrow><mn>11</mn></mrow></msup></mrow></math></span> kg and the reference radius
+   <span class="nobr"><math alttext="R_ref = 0.43" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>R</mi><mtext>ref</mtext></msub><mo>&#x0003D;</mo><mn>0.43</mn></mrow></math></span> km of the coefficients; the bulk density <span class="nobr"><math alttext="M/V" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi><mo>&#x0002F;</mo><mi>V</mi></mrow></math></span> follows from the shape volume. The center of
    figure is 57 m from the origin of the shape-model file, which is not the body's center
    (<a href="../conventions/coordinates.html">Coordinate systems and origins</a>).</li>
 <li><strong>Interior.</strong> The core is a sphere of radius 170 m centered at the shape-model origin, 450 kg/m³ denser than the
    background. The regolith is everything within 12 m of the surface, measured along rays from the center of mass, 900
    kg/m³ lighter than the background. The background density is not given: it is set so that the total mass equals
-   <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi></mrow></math></span> (<a href="../models/density-distributions.html">Density distributions</a>).</li>
+   <span class="nobr"><math alttext="M" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi></mrow></math></span> (<a href="../models/density-distributions.html">Density distributions</a>).</li>
 <li><strong>Measurements.</strong> <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a> computes the fully normalized gravity coefficients of degree 1 to 4, the
    six inertia elements and the libration ratio of this interior, about its center of mass
    (<a href="../models/forward-model.html">Gravity and moment calculations</a>). The uncertainties are stored with the values;
@@ -118,11 +118,11 @@ through the center of mass (<a href="../files/results-folders.html#figures">Figu
    (<a href="../conventions/gravity-coefficients.html#degree-1-and-the-center-of-mass">Gravity coefficients</a>).</li>
 <li><strong>Estimation.</strong> <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.solve"><code>sbtk.invert.solve</code></a> fits the background density and the relative density of each component to the
    24 coefficients and, with the standard settings of <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.options"><code>sbtk.invert.options</code></a>, to <code>Ixx</code>, <code>Iyy</code> and <code>Izz</code>, with the
-   total mass as a constraint (<a href="../inversion/density-estimation.html">Density estimation</a>). The reduced <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> of 1.19
-   with <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>p</mi><mo>&#x0003D;</mo><mn>0.23</mn></mrow></math></span> means that the model fits the data within their uncertainties
+   total mass as a constraint (<a href="../inversion/density-estimation.html">Density estimation</a>). The reduced <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> of 1.19
+   with <span class="nobr"><math alttext="p = 0.23" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>p</mi><mo>&#x0003D;</mo><mn>0.23</mn></mrow></math></span> means that the model fits the data within their uncertainties
    (<a href="../inversion/statistics.html">Goodness of fit</a>).</li>
-<li><strong>Comparison.</strong> <a class="xref xref-fn" href="../reference/api/compare.html#sbtk.compare.with_truth"><code>sbtk.compare.with_truth</code></a> evaluates both densities throughout the body. <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mn>0.76</mn></mrow></math></span> is the fraction
-   of the variance of the true density that the estimate explains; <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msubsup><mi>R</mi><mtext>max</mtext><mn>2</mn></msubsup><mo>&#x0003D;</mo><mn>1</mn></mrow></math></span> because the estimate uses the
+<li><strong>Comparison.</strong> <a class="xref xref-fn" href="../reference/api/compare.html#sbtk.compare.with_truth"><code>sbtk.compare.with_truth</code></a> evaluates both densities throughout the body. <span class="nobr"><math alttext="R^2 = 0.76" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mn>0.76</mn></mrow></math></span> is the fraction
+   of the variance of the true density that the estimate explains; <span class="nobr"><math alttext="R^2_max = 1" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msubsup><mi>R</mi><mtext>max</mtext><mn>2</mn></msubsup><mo>&#x0003D;</mo><mn>1</mn></mrow></math></span> because the estimate uses the
    true geometry. Each component's estimate is within 1.6σ of its true density.</li>
 </ol>
 <h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Link to this section">#</a></h2>
@@ -138,7 +138,7 @@ through the center of mass (<a href="../files/results-folders.html#figures">Figu
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#script">Script</a></li><li class="lvl2"><a href="#output">Output</a></li><li class="lvl2"><a href="#what-each-step-does">What each step does</a></li><li class="lvl2"><a href="#next-steps">Next steps</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=eb13bdaf5f"></script>
-<script src="../assets/site.js?v=eb13bdaf5f"></script>
+<script src="../assets/search-index.js?v=7432480971"></script>
+<script src="../assets/site.js?v=7432480971"></script>
 </body>
 </html>

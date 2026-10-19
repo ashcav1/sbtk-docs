@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Goodness of fit and model comparison — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=eb13bdaf5f">
-<link rel="stylesheet" href="../assets/pygments.css?v=eb13bdaf5f">
-<link rel="stylesheet" href="../assets/print.css?v=eb13bdaf5f" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=7432480971">
+<link rel="stylesheet" href="../assets/pygments.css?v=7432480971">
+<link rel="stylesheet" href="../assets/print.css?v=7432480971" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -30,7 +30,7 @@
 <article>
 <h1 id="top" id="goodness-of-fit-and-model-comparison">Goodness of fit and model comparison<a class="headerlink" href="#goodness-of-fit-and-model-comparison" title="Link to this section">#</a></h1>
 <h2 id="chi-square-test">Chi-square test<a class="headerlink" href="#chi-square-test" title="Link to this section">#</a></h2>
-<p>For a fit with residuals <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D42B;</mi><mo>&#x0003D;</mo><msub><mi>&#x1D432;</mi><mtext>pred</mtext></msub><mo>&#x02212;</mo><mi>&#x1D432;</mi></mrow></math></span> and measurement covariance <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003A3;</mi></mrow></math>:</span></p>
+<p>For a fit with residuals <span class="nobr"><math alttext="r = y_pred - y" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D42B;</mi><mo>&#x0003D;</mo><msub><mi>&#x1D432;</mi><mtext>pred</mtext></msub><mo>&#x02212;</mo><mi>&#x1D432;</mi></mrow></math></span> and measurement covariance <span class="nobr"><math alttext="" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003A3;</mi></mrow></math>:</span></p>
 <table>
 <thead>
 <tr>
@@ -41,66 +41,66 @@
 </thead>
 <tbody>
 <tr>
-<td><span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span></td>
-<td><span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x1D42B;</mi><mi>&#x1D5B3;</mi></msup><msup><mi>&#x003A3;</mi><mrow><mo>&#x02212;</mo><mn>1</mn></mrow></msup><mi>&#x1D42B;</mi></mrow></math>,</span> with the full covariance</td>
+<td><span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span></td>
+<td><span class="nobr"><math alttext="r^T^-1r" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x1D42B;</mi><mi>&#x1D5B3;</mi></msup><msup><mi>&#x003A3;</mi><mrow><mo>&#x02212;</mo><mn>1</mn></mrow></msup><mi>&#x1D42B;</mi></mrow></math>,</span> with the full covariance</td>
 <td><a class="xref xref-field" href="../reference/data-structures.html#fit.chi2"><code>fit.chi2</code></a></td>
 </tr>
 <tr>
 <td>Effective number of parameters</td>
-<td><span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>p</mi><mtext>eff</mtext></msub><mo>&#x0003D;</mo><mo>tr</mo><mo stretchy="false">&#x00028;</mo><msub><mi>J</mi><mi>d</mi></msub><mi>P</mi><msubsup><mi>J</mi><mi>d</mi><mi>&#x1D5B3;</mi></msubsup><mo stretchy="false">&#x00029;</mo></mrow></math>,</span> the trace of the data resolution matrix (<span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mi>d</mi></msub></mrow></math></span> whitened measurement Jacobian, <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>P</mi></mrow></math></span> parameter covariance); it accounts for fixed parameters and regularization</td>
+<td><span class="nobr"><math alttext="p_eff = tr(J_d P J_d^T)" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>p</mi><mtext>eff</mtext></msub><mo>&#x0003D;</mo><mo>tr</mo><mo stretchy="false">&#x00028;</mo><msub><mi>J</mi><mi>d</mi></msub><mi>P</mi><msubsup><mi>J</mi><mi>d</mi><mi>&#x1D5B3;</mi></msubsup><mo stretchy="false">&#x00029;</mo></mrow></math>,</span> the trace of the data resolution matrix (<span class="nobr"><math alttext="J_d" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mi>d</mi></msub></mrow></math></span> whitened measurement Jacobian, <span class="nobr"><math alttext="P" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>P</mi></mrow></math></span> parameter covariance); it accounts for fixed parameters and regularization</td>
 <td></td>
 </tr>
 <tr>
 <td>Degrees of freedom</td>
-<td><span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BD;</mi><mo>&#x0003D;</mo><mi>n</mi><mo>&#x02212;</mo><msub><mi>p</mi><mtext>eff</mtext></msub></mrow></math></span></td>
+<td><span class="nobr"><math alttext="ν = n - p_eff" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BD;</mi><mo>&#x0003D;</mo><mi>n</mi><mo>&#x02212;</mo><msub><mi>p</mi><mtext>eff</mtext></msub></mrow></math></span></td>
 <td><a class="xref xref-field" href="../reference/data-structures.html#fit.dof"><code>fit.dof</code></a></td>
 </tr>
 <tr>
-<td>Reduced <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span></td>
-<td><span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup><mo>&#x0002F;</mo><mi>&#x003BD;</mi></mrow></math>;</span> close to 1 when the model and the stated uncertainties are correct</td>
+<td>Reduced <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span></td>
+<td><span class="nobr"><math alttext="χ^2/ν" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup><mo>&#x0002F;</mo><mi>&#x003BD;</mi></mrow></math>;</span> close to 1 when the model and the stated uncertainties are correct</td>
 <td><a class="xref xref-field" href="../reference/data-structures.html#fit.chi2_reduced"><code>fit.chi2_reduced</code></a></td>
 </tr>
 <tr>
 <td>p-value</td>
-<td><span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>P</mi><mo stretchy="false">&#x00028;</mo><msubsup><mi>&#x003C7;</mi><mi>&#x003BD;</mi><mn>2</mn></msubsup><mo>&#x02265;</mo><msup><mi>&#x003C7;</mi><mn>2</mn></msup><mo stretchy="false">&#x00029;</mo></mrow></math>,</span> the probability that a correct model gives a <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> at least as large, computed as the upper regularized incomplete gamma function <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>Q</mi><mo stretchy="false">&#x00028;</mo><mi>&#x003BD;</mi><mo>&#x0002F;</mo><mn>2</mn><mo>&#x0002C;</mo><msup><mi>&#x003C7;</mi><mn>2</mn></msup><mo>&#x0002F;</mo><mn>2</mn><mo stretchy="false">&#x00029;</mo></mrow></math></span></td>
+<td><span class="nobr"><math alttext="P(χ^2_ν ≥ χ^2)" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>P</mi><mo stretchy="false">&#x00028;</mo><msubsup><mi>&#x003C7;</mi><mi>&#x003BD;</mi><mn>2</mn></msubsup><mo>&#x02265;</mo><msup><mi>&#x003C7;</mi><mn>2</mn></msup><mo stretchy="false">&#x00029;</mo></mrow></math>,</span> the probability that a correct model gives a <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> at least as large, computed as the upper regularized incomplete gamma function <span class="nobr"><math alttext="Q(ν/2, χ^2/2)" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>Q</mi><mo stretchy="false">&#x00028;</mo><mi>&#x003BD;</mi><mo>&#x0002F;</mo><mn>2</mn><mo>&#x0002C;</mo><msup><mi>&#x003C7;</mi><mn>2</mn></msup><mo>&#x0002F;</mo><mn>2</mn><mo stretchy="false">&#x00029;</mo></mrow></math></span></td>
 <td><a class="xref xref-field" href="../reference/data-structures.html#fit.p_value"><code>fit.p_value</code></a></td>
 </tr>
 <tr>
 <td>Consistent</td>
-<td><span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>p</mi><mo>&#x02265;</mo><mn>0.05</mn></mrow></math>:</span> the model is consistent with the measurements at the 5% significance level</td>
+<td><span class="nobr"><math alttext="p ≥ 0.05" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>p</mi><mo>&#x02265;</mo><mn>0.05</mn></mrow></math>:</span> the model is consistent with the measurements at the 5% significance level</td>
 <td><a class="xref xref-field" href="../reference/data-structures.html#fit.consistent"><code>fit.consistent</code></a></td>
 </tr>
 </tbody>
 </table>
-<p><a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.goodness_of_fit"><code>sbtk.invert.goodness_of_fit</code></a> computes the last three from <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> and <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BD;</mi></mrow></math>.</span> When <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BD;</mi><mo>&#x02264;</mo><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>6</mn></mrow></msup></mrow></math></span> (at least as many
-parameters as measurements) the test is undefined: the reduced <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> and the p-value are NaN and <code>consistent</code> is
+<p><a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.goodness_of_fit"><code>sbtk.invert.goodness_of_fit</code></a> computes the last three from <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> and <span class="nobr"><math alttext="ν" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BD;</mi></mrow></math>.</span> When <span class="nobr"><math alttext="ν ≤ 10^-6" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BD;</mi><mo>&#x02264;</mo><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>6</mn></mrow></msup></mrow></math></span> (at least as many
+parameters as measurements) the test is undefined: the reduced <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> and the p-value are NaN and <code>consistent</code> is
 false.</p>
 <h2 id="homogeneous-body">Homogeneous body<a class="headerlink" href="#homogeneous-body" title="Link to this section">#</a></h2>
-<p><a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.homogeneous"><code>sbtk.invert.homogeneous</code></a> fits a body of uniform density <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi><mo>&#x0002F;</mo><mi>V</mi></mrow></math></span> to the same measurements; it has no free parameters
-(<span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BD;</mi><mo>&#x0003D;</mo><mi>n</mi></mrow></math>)</span>. If this fit is already consistent with the measurements, the data do not require internal structure at
+<p><a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.homogeneous"><code>sbtk.invert.homogeneous</code></a> fits a body of uniform density <span class="nobr"><math alttext="M/V" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi><mo>&#x0002F;</mo><mi>V</mi></mrow></math></span> to the same measurements; it has no free parameters
+(<span class="nobr"><math alttext="ν = n" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BD;</mi><mo>&#x0003D;</mo><mi>n</mi></mrow></math>)</span>. If this fit is already consistent with the measurements, the data do not require internal structure at
 their precision.</p>
 <h2 id="normalized-residuals">Normalized residuals<a class="headerlink" href="#normalized-residuals" title="Link to this section">#</a></h2>
-<p><span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><msub><mi>y</mi><mtext>pred</mtext></msub><mo>&#x02212;</mo><mi>y</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002F;</mo><mi>&#x003C3;</mi></mrow></math></span> for every measurement (<a class="xref xref-field" href="../reference/data-structures.html#fit.normalized_residual"><code>fit.normalized_residual</code></a>, <a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.residuals"><code>sbtk.plot.residuals</code></a>). For a correct
+<p><span class="nobr"><math alttext="(y_pred - y)/σ" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><msub><mi>y</mi><mtext>pred</mtext></msub><mo>&#x02212;</mo><mi>y</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002F;</mo><mi>&#x003C3;</mi></mrow></math></span> for every measurement (<a class="xref xref-field" href="../reference/data-structures.html#fit.normalized_residual"><code>fit.normalized_residual</code></a>, <a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.residuals"><code>sbtk.plot.residuals</code></a>). For a correct
 model about 68% lie within ±1. Large residuals concentrated in one group indicate structure that the model lacks: in the
 degree-1 rows, a model that cannot place the center of mass; at one degree, structure at the corresponding scale.</p>
-<p>When a fit is rejected (<span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>p</mi><mo>&#x0003C;</mo><mn>0.05</mn></mrow></math>)</span>, its densities and uncertainties describe the best model of the chosen form, not
+<p>When a fit is rejected (<span class="nobr"><math alttext="p &lt; 0.05" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>p</mi><mo>&#x0003C;</mo><mn>0.05</mn></mrow></math>)</span>, its densities and uncertainties describe the best model of the chosen form, not
 the body. At high measurement precision, small structures that a component model omits, such as a random density field
 of a few percent of the bulk density or a boulder tens of meters across, can be enough to reject an otherwise correct
 model (<a href="../projects/hera-blind-test.html#example-runs">Hera blind test</a>).</p>
 <h2 id="comparison-with-a-true-model">Comparison with a true model<a class="headerlink" href="#comparison-with-a-true-model" title="Link to this section">#</a></h2>
 <p>In synthetic tests the true model is known. <a class="xref xref-fn" href="../reference/api/compare.html#sbtk.compare.with_truth"><code>sbtk.compare.with_truth</code></a><code>(body, truth, fit)</code> evaluates both densities at
 the centroids of 24 radial shells of every facet cone (1,179,648 points for the 49,152-facet Didymos model), each
-weighted by the shell volume <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>w</mi><mi>i</mi></msub></mrow></math>,</span> with each model's layers and sectors measured from its own origin. It returns
+weighted by the shell volume <span class="nobr"><math alttext="w_i" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>w</mi><mi>i</mi></msub></mrow></math>,</span> with each model's layers and sectors measured from its own origin. It returns
 (<a class="xref xref-st" href="../reference/data-structures.html#cmp"><code>cmp</code></a>):</p>
-<math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msup><mi>R</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mn>1</mn><mo>&#x02212;</mo><mfrac><mrow><munder><mo>&#x02211;</mo><mi>i</mi></munder><msub><mi>w</mi><mi>i</mi></msub><mo stretchy="false">&#x00028;</mo><msub><mi>&#x003C1;</mi><mrow><mtext>est</mtext><mo>&#x0002C;</mo><mi>i</mi></mrow></msub><mo>&#x02212;</mo><msub><mi>&#x003C1;</mi><mrow><mtext>true</mtext><mo>&#x0002C;</mo><mi>i</mi></mrow></msub><msup><mo stretchy="false">&#x00029;</mo><mn>2</mn></msup></mrow><mrow><munder><mo>&#x02211;</mo><mi>i</mi></munder><msub><mi>w</mi><mi>i</mi></msub><mo stretchy="false">&#x00028;</mo><msub><mi>&#x003C1;</mi><mrow><mtext>true</mtext><mo>&#x0002C;</mo><mi>i</mi></mrow></msub><mo>&#x02212;</mo><msub><mover><mi>&#x003C1;</mi><mo stretchy="true">&#x000AF;</mo></mover><mtext>true</mtext></msub><msup><mo stretchy="false">&#x00029;</mo><mn>2</mn></msup></mrow></mfrac><mo>&#x0002C;</mo></mrow></math>
+<math alttext="R^2 = 1 - Σ_i w_i(ρ_est,i - ρ_true,i)^2Σ_i w_i(ρ_true,i - ρ_true)^2," xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msup><mi>R</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mn>1</mn><mo>&#x02212;</mo><mfrac><mrow><munder><mo>&#x02211;</mo><mi>i</mi></munder><msub><mi>w</mi><mi>i</mi></msub><mo stretchy="false">&#x00028;</mo><msub><mi>&#x003C1;</mi><mrow><mtext>est</mtext><mo>&#x0002C;</mo><mi>i</mi></mrow></msub><mo>&#x02212;</mo><msub><mi>&#x003C1;</mi><mrow><mtext>true</mtext><mo>&#x0002C;</mo><mi>i</mi></mrow></msub><msup><mo stretchy="false">&#x00029;</mo><mn>2</mn></msup></mrow><mrow><munder><mo>&#x02211;</mo><mi>i</mi></munder><msub><mi>w</mi><mi>i</mi></msub><mo stretchy="false">&#x00028;</mo><msub><mi>&#x003C1;</mi><mrow><mtext>true</mtext><mo>&#x0002C;</mo><mi>i</mi></mrow></msub><mo>&#x02212;</mo><msub><mover><mi>&#x003C1;</mi><mo stretchy="true">&#x000AF;</mo></mover><mtext>true</mtext></msub><msup><mo stretchy="false">&#x00029;</mo><mn>2</mn></msup></mrow></mfrac><mo>&#x0002C;</mo></mrow></math>
 <p>the fraction of the volume-weighted variance of the true density about its mean that the estimate explains: 1 for an
 exact estimate, 0 for one no better than a uniform density, negative for a worse one.</p>
 <ul>
-<li><span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msubsup><mi>R</mi><mtext>max</mtext><mn>2</mn></msubsup></mrow></math>:</span> the largest <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow></math></span> attainable with the same components, from a weighted least-squares fit of the true
-  density by the background and the components. It measures the limit set by the choice of components; <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow></math></span> close to
-  <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msubsup><mi>R</mi><mtext>max</mtext><mn>2</mn></msubsup></mrow></math></span> means the measurements determined the densities as well as that geometry allows.</li>
+<li><span class="nobr"><math alttext="R^2_max" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msubsup><mi>R</mi><mtext>max</mtext><mn>2</mn></msubsup></mrow></math>:</span> the largest <span class="nobr"><math alttext="R^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow></math></span> attainable with the same components, from a weighted least-squares fit of the true
+  density by the background and the components. It measures the limit set by the choice of components; <span class="nobr"><math alttext="R^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow></math></span> close to
+  <span class="nobr"><math alttext="R^2_max" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msubsup><mi>R</mi><mtext>max</mtext><mn>2</mn></msubsup></mrow></math></span> means the measurements determined the densities as well as that geometry allows.</li>
 <li>The volume-weighted RMS error and the standard deviation of the true density.</li>
-<li>For each component present in both models: estimate, 1σ, true density and <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x0007C;</mo><mtext>estimate</mtext><mo>&#x02212;</mo><mtext>true</mtext><mo stretchy="false">&#x0007C;</mo><mo>&#x0002F;</mo><mi>&#x003C3;</mi></mrow></math>.</span></li>
+<li>For each component present in both models: estimate, 1σ, true density and <span class="nobr"><math alttext="|estimate - true|/σ" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x0007C;</mo><mtext>estimate</mtext><mo>&#x02212;</mo><mtext>true</mtext><mo stretchy="false">&#x0007C;</mo><mo>&#x0002F;</mo><mi>&#x003C3;</mi></mrow></math>.</span></li>
 </ul>
 <p>For many fits of the same components against one true model, <a class="xref xref-fn" href="../reference/api/compare.html#sbtk.compare.reference"><code>sbtk.compare.reference</code></a> samples the true model once and
 <a class="xref xref-fn" href="../reference/api/compare.html#sbtk.compare.evaluate"><code>sbtk.compare.evaluate</code></a> compares each fit in milliseconds. <a class="xref xref-fn" href="../reference/api/compare.html#sbtk.compare.summary"><code>sbtk.compare.summary</code></a> prints a comparison and
@@ -110,13 +110,13 @@ exact estimate, 0 for one no better than a uniform density, negative for a worse
 <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.density_grid"><code>sbtk.exchange.density_grid</code></a><code>(body, model, spacing_km)</code> evaluates a model at cell centers that lie at integer multiples
 of the spacing along the axes of the shape-model frame; cells whose center is inside the shape model (tested along rays
 from the center of figure) are kept, so all models of a body have the same cells (<a class="xref xref-st" href="../reference/data-structures.html#grid"><code>grid</code></a>).
-<a class="xref xref-fn" href="../reference/api/compare.html#sbtk.compare.grids"><code>sbtk.compare.grids</code></a><code>(truth, estimate)</code> compares the cells present in both grids (<a class="xref xref-st" href="../reference/data-structures.html#gridcmp"><code>gridcmp</code></a>): <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow></math></span> with equal weights,
+<a class="xref xref-fn" href="../reference/api/compare.html#sbtk.compare.grids"><code>sbtk.compare.grids</code></a><code>(truth, estimate)</code> compares the cells present in both grids (<a class="xref xref-st" href="../reference/data-structures.html#gridcmp"><code>gridcmp</code></a>): <span class="nobr"><math alttext="R^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow></math></span> with equal weights,
 RMS and mean error, and the fraction of cells whose error is at most twice the 1σ of the estimate. Both grids must have
 the same spacing (<a class="xref xref-err" href="../reference/errors.html#sbtk:compare:gridSpacing"><code>sbtk:compare:gridSpacing</code></a>). This is how solutions in <a href="../files/exchange-packages.html">exchange packages</a>
 are compared with interior-model packages.</p>
 <h2 id="calibration-of-the-uncertainties">Calibration of the uncertainties<a class="headerlink" href="#calibration-of-the-uncertainties" title="Link to this section">#</a></h2>
 <p>The uncertainties of a fit can be checked with repeated noise realizations: if they are correct, the standard deviation
-of <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mover><mi>&#x003C1;</mi><mo stretchy="false">&#x0005E;</mo></mover><mo>&#x02212;</mo><msub><mi>&#x003C1;</mi><mtext>true</mtext></msub><mo stretchy="false">&#x00029;</mo><mo>&#x0002F;</mo><mi>&#x003C3;</mi></mrow></math></span> over many realizations is close to 1.</p>
+of <span class="nobr"><math alttext="(ρ - ρ_true)/σ" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mover><mi>&#x003C1;</mi><mo stretchy="false">&#x0005E;</mo></mover><mo>&#x02212;</mo><msub><mi>&#x003C1;</mi><mtext>true</mtext></msub><mo stretchy="false">&#x00029;</mo><mo>&#x0002F;</mo><mi>&#x003C3;</mi></mrow></math></span> over many realizations is close to 1.</p>
 <div class="codeblock codeblock-code" id="calibration-example"><div class="codehead"><span>MATLAB script: Calibration over noise realizations</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><span class="nb">run</span><span class="p">(</span><span class="s">&quot;/path/to/SBTK/sbtk_setup.m&quot;</span><span class="p">)</span>
 body = <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.from_mass">sbtk.body.from_mass</a>(&quot;Didymos&quot;, <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.bundled">sbtk.shape.bundled</a>(&quot;didymos&quot;), 5.273e11, 0.43);
 unc  = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.uncertainties">sbtk.data.uncertainties</a>([<a class="xref xref-fn" href="../reference/api/units.html#sbtk.units.offset_to_degree1">sbtk.units.offset_to_degree1</a>(0.002, 0.43), 1e-4, 2e-4, 4e-4], 2e-3, 0.02);
@@ -137,7 +137,7 @@ prob = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.se
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#chi-square-test">Chi-square test</a></li><li class="lvl2"><a href="#homogeneous-body">Homogeneous body</a></li><li class="lvl2"><a href="#normalized-residuals">Normalized residuals</a></li><li class="lvl2"><a href="#comparison-with-a-true-model">Comparison with a true model</a></li><li class="lvl2"><a href="#comparison-of-density-grids">Comparison of density grids</a></li><li class="lvl2"><a href="#calibration-of-the-uncertainties">Calibration of the uncertainties</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=eb13bdaf5f"></script>
-<script src="../assets/site.js?v=eb13bdaf5f"></script>
+<script src="../assets/search-index.js?v=7432480971"></script>
+<script src="../assets/site.js?v=7432480971"></script>
 </body>
 </html>

@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Shape models — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=eb13bdaf5f">
-<link rel="stylesheet" href="../assets/pygments.css?v=eb13bdaf5f">
-<link rel="stylesheet" href="../assets/print.css?v=eb13bdaf5f" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=7432480971">
+<link rel="stylesheet" href="../assets/pygments.css?v=7432480971">
+<link rel="stylesheet" href="../assets/print.css?v=7432480971" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -77,7 +77,7 @@ shape = <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.bun
 p = <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.properties">sbtk.shape.properties</a>(shape)
 <span class="nb">fprintf</span><span class="p">(</span><span class="s">&quot;volume %.5f km^3, centroid [%.1f %.1f %.1f] m\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">.</span><span class="n">volume_km3</span><span class="p">,</span><span class="w"> </span><span class="mf">1e3</span><span class="o">*</span><span class="n">p</span><span class="p">.</span><span class="n">centroid_km</span><span class="p">)</span></code></pre></div>
 <h2 id="shape-models-in-the-repository">Shape models in the repository<a class="headerlink" href="#shape-models-in-the-repository" title="Link to this section">#</a></h2>
-<p>Files in <code>data/shapes/</code>, lengths in km, in the body-fixed frame of each model (<span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span> along the spin axis).</p>
+<p>Files in <code>data/shapes/</code>, lengths in km, in the body-fixed frame of each model (<span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span> along the spin axis).</p>
 <table>
 <thead>
 <tr>
@@ -157,7 +157,7 @@ p = <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.propert
 </tbody>
 </table>
 <p>The 9.3 m Didymos file is distributed separately by the DART team and is not a subsample of the 1.165 m model. For a
-homogeneous body with <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>R</mi><mtext>ref</mtext></msub><mo>&#x0003D;</mo><mn>0.43</mn></mrow></math></span> km, <code>tools/make_reduced_shapes.m</code> gives these differences from the
+homogeneous body with <span class="nobr"><math alttext="R_ref = 0.43" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>R</mi><mtext>ref</mtext></msub><mo>&#x0003D;</mo><mn>0.43</mn></mrow></math></span> km, <code>tools/make_reduced_shapes.m</code> gives these differences from the
 full-resolution models:</p>
 <table>
 <thead>
@@ -182,7 +182,7 @@ full-resolution models:</p>
 <td>3.1e-4 / 1.7e-4 / 4.2e-5</td>
 </tr>
 <tr>
-<td><code>dimorphos</code> (every 8th point, <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>R</mi><mtext>ref</mtext></msub><mo>&#x0003D;</mo><mn>0.10</mn></mrow></math></span> km)</td>
+<td><code>dimorphos</code> (every 8th point, <span class="nobr"><math alttext="R_ref = 0.10" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>R</mi><mtext>ref</mtext></msub><mo>&#x0003D;</mo><mn>0.10</mn></mrow></math></span> km)</td>
 <td>−0.031%</td>
 <td>0.00 m</td>
 <td>1.5e-5 / 1.3e-6 / 5.1e-6</td>
@@ -196,7 +196,7 @@ error in the coefficients. Measurement packages therefore include the shape mode
 <p>High-resolution shape models have more facets than coefficients to degree 4 or 5 require. Two functions reduce them:</p>
 <ul>
 <li><a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.reduce_spc"><code>sbtk.shape.reduce_spc</code></a> keeps every <code>step</code>-th grid point of an SPC model stored in its grid order (6 cube faces of
-  <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>q</mi><mo>&#x0002B;</mo><mn>1</mn><msup><mo stretchy="false">&#x00029;</mo><mn>2</mn></msup></mrow></math></span> vertices, <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>12</mn><msup><mi>q</mi><mn>2</mn></msup></mrow></math></span> facets), triangulated as the original. The grid is radial, so the result stays
+  <span class="nobr"><math alttext="(q+1)^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>q</mi><mo>&#x0002B;</mo><mn>1</mn><msup><mo stretchy="false">&#x00029;</mo><mn>2</mn></msup></mrow></math></span> vertices, <span class="nobr"><math alttext="12q^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>12</mn><msup><mi>q</mi><mn>2</mn></msup></mrow></math></span> facets), triangulated as the original. The grid is radial, so the result stays
   star-shaped about the body's center; a cell whose triangles would face the center is split along its other diagonal.</li>
 <li><a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.reduce"><code>sbtk.shape.reduce</code></a> applies MATLAB's <code>reducepatch</code> to any mesh and checks that the result is closed, outward and
   star-shaped about its centroid; a general reduction can fold facets, in which case it stops with
@@ -208,7 +208,7 @@ small = <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.red
 <h2 id="bodies">Bodies<a class="headerlink" href="#bodies" title="Link to this section">#</a></h2>
 <p>A body (<a class="xref xref-st" href="../reference/data-structures.html#body"><code>body</code></a>) is a shape model with its total mass and the reference radius of its gravity coefficients.
 <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.from_mass"><code>sbtk.body.from_mass</code></a> takes the mass; <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.create"><code>sbtk.body.create</code></a> takes the bulk density and computes the mass from the
-volume. The bulk density is <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi><mo>&#x0002F;</mo><mi>V</mi></mrow></math>;</span> the background density of a model with components differs from it
+volume. The bulk density is <span class="nobr"><math alttext="M/V" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi><mo>&#x0002F;</mo><mi>V</mi></mrow></math>;</span> the background density of a model with components differs from it
 (<a href="../models/density-distributions.html">Density distributions</a>).</p>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment. Requires the variables defined in <a href="../models/shape-models.html#shape-check">Checking a shape model</a>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">body = <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.from_mass">sbtk.body.from_mass</a>(&quot;Didymos&quot;, shape, 5.273e11, 0.43);    <span class="c">% mass [kg], reference radius [km]</span>
 <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.summary">sbtk.body.summary</a>(body)
@@ -220,7 +220,7 @@ volume. The bulk density is <span class="nobr"><math xmlns="http://www.w3.org/19
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#reading-and-creating-shape-models">Reading and creating shape models</a></li><li class="lvl2"><a href="#requirements">Requirements</a></li><li class="lvl2"><a href="#shape-models-in-the-repository">Shape models in the repository</a></li><li class="lvl2"><a href="#reducing-high-resolution-models">Reducing high-resolution models</a></li><li class="lvl2"><a href="#bodies">Bodies</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=eb13bdaf5f"></script>
-<script src="../assets/site.js?v=eb13bdaf5f"></script>
+<script src="../assets/search-index.js?v=7432480971"></script>
+<script src="../assets/site.js?v=7432480971"></script>
 </body>
 </html>
