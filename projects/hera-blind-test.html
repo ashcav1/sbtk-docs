@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hera blind test — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=7432480971">
-<link rel="stylesheet" href="../assets/pygments.css?v=7432480971">
-<link rel="stylesheet" href="../assets/print.css?v=7432480971" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=f4bdda99ec">
+<link rel="stylesheet" href="../assets/pygments.css?v=f4bdda99ec">
+<link rel="stylesheet" href="../assets/print.css?v=f4bdda99ec" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -125,9 +125,10 @@ runners need them in <code>data/hera_rse/</code>.</p>
 <li><strong>MEASUREMENT UNCERTAINTIES</strong>: the uncertainty files of the end-to-end simulation (gravity coefficients and inertia
    elements) and the 1σ of the libration ratio.</li>
 <li><strong>NOISE</strong>: the seed.</li>
-<li><strong>RUN</strong>: <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a>; <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.use_uncertainties"><code>sbtk.data.use_uncertainties</code></a> with the gravity file read by
-   <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_shadr"><code>sbtk.exchange.read_shadr</code></a>; <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_moi_sigma"><code>sbtk.data.set_moi_sigma</code></a> with the inertia uncertainties (given in kg km², divided by
-   <span class="nobr"><math alttext="M R_ref^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi><msubsup><mi>R</mi><mtext>ref</mtext><mn>2</mn></msubsup></mrow></math>)</span>; <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.select_moi"><code>sbtk.data.select_moi</code></a>; <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise"><code>sbtk.data.add_noise</code></a>; then <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.report_simulation"><code>sbtk.io.report_simulation</code></a>,
+<li><strong>RUN</strong>: <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a> (the true model and its exact values, without uncertainties);
+   <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.use_uncertainties"><code>sbtk.data.use_uncertainties</code></a> with the gravity file read by <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_shadr"><code>sbtk.exchange.read_shadr</code></a>;
+   <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_moi_sigma"><code>sbtk.data.set_moi_sigma</code></a> with the inertia uncertainties (given in kg km², divided by <span class="nobr"><math alttext="M R_ref^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi><msubsup><mi>R</mi><mtext>ref</mtext><mn>2</mn></msubsup></mrow></math>)</span> and the
+   libration σ; <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.select_moi"><code>sbtk.data.select_moi</code></a>; <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise"><code>sbtk.data.add_noise</code></a>; then <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.report_simulation"><code>sbtk.io.report_simulation</code></a>,
    <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_data"><code>sbtk.exchange.write_data</code></a> and <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_model"><code>sbtk.exchange.write_model</code></a>.</li>
 </ol>
 <p>The run folder separates what may be shared from what may not:</p>
@@ -160,7 +161,7 @@ include structure down to the scale of such features to pass the test (<a href="
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#files">Files</a></li><li class="lvl2"><a href="#settings">Settings</a></li><li class="lvl2"><a href="#simulation-runs">Simulation runs</a></li><li class="lvl2"><a href="#inversion-runs">Inversion runs</a></li><li class="lvl2"><a href="#comparison-runs">Comparison runs</a></li><li class="lvl2"><a href="#example-runs">Example runs</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=7432480971"></script>
-<script src="../assets/site.js?v=7432480971"></script>
+<script src="../assets/search-index.js?v=f4bdda99ec"></script>
+<script src="../assets/site.js?v=f4bdda99ec"></script>
 </body>
 </html>

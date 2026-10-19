@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Results folders and figures — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=7432480971">
-<link rel="stylesheet" href="../assets/pygments.css?v=7432480971">
-<link rel="stylesheet" href="../assets/print.css?v=7432480971" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=f4bdda99ec">
+<link rel="stylesheet" href="../assets/pygments.css?v=f4bdda99ec">
+<link rel="stylesheet" href="../assets/print.css?v=f4bdda99ec" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -233,13 +233,22 @@ and its true density (cross). Saved as <code>comparison.png</code>.</p>
 <p><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.truth_vs_estimate"><code>sbtk.plot.truth_vs_estimate</code></a><code>(body, truth, fit)</code>: rows for the true density, the estimate (same color scale) and their
 difference, on the two planes through the true center of mass. Saved as <code>truth_vs_estimate.png</code>.</p>
 <figure class="figure"><img src="../images/truth_vs_estimate.png" alt="True density, estimate and difference." loading="lazy"><figcaption>True density, estimate and difference.</figcaption></figure>
+<h3 id="difference-from-the-homogeneous-body">Difference from the homogeneous body<a class="headerlink" href="#difference-from-the-homogeneous-body" title="Link to this section">#</a></h3>
+<p><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.difference_from_homogeneous"><code>sbtk.plot.difference_from_homogeneous</code></a><code>(body, sets, names, scale)</code>: for each set of gravity coefficients (a measurement
+set, a true model or an inversion result), the coefficients minus those of the homogeneous body (density <span class="nobr"><math alttext="M/V" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi><mo>&#x0002F;</mo><mi>V</mi></mrow></math>)</span>,
+expanded about the same point, for every coefficient of degree 1 and higher. Zonal coefficients are shown as
+<span class="nobr"><math alttext="J_l = - C_l0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mi>l</mi></msub><mo>&#x0003D;</mo><mo>&#x02212;</mo><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mi>l</mi><mn>0</mn></mrow></msub></mrow></math>.</span> With <code>scale = "linear"</code> the signed difference has ±3σ bars for sets with uncertainties; with
+<code>"log"</code> the absolute difference is drawn with 3σ as a separate line, which shows which departures from a uniform
+density the measurements resolve. Not saved by the report functions; save it with <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.save_figure"><code>sbtk.io.save_figure</code></a>.</p>
+<figure class="figure"><img src="../images/difference_from_homogeneous.png" alt="Measured coefficients (±3σ) and those of the true model, minus the homogeneous body." loading="lazy"><figcaption>Measured coefficients (±3σ) and those of the true model, minus the homogeneous body.</figcaption></figure>
+<figure class="figure"><img src="../images/difference_from_homogeneous_log.png" alt="The same on a logarithmic scale, with the 3σ level of the measurements." loading="lazy"><figcaption>The same on a logarithmic scale, with the 3σ level of the measurements.</figcaption></figure>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../inversion/statistics.html" rel="prev"><span>Previous</span>Goodness of fit and model comparison</a><a class="next" href="../files/exchange-packages.html" rel="next"><span>Next</span>Exchange packages</a></nav>
 <footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-19.</footer>
 </main>
-<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#run-folders">Run folders</a></li><li class="lvl2"><a href="#files">Files</a></li><li class="lvl2"><a href="#text-formats">Text formats</a></li><li class="lvl2"><a href="#figures">Figures</a></li><li class="lvl3"><a href="#shape-model">Shape model</a></li><li class="lvl3"><a href="#interior-in-three-dimensions">Interior in three dimensions</a></li><li class="lvl3"><a href="#density-slices">Density slices</a></li><li class="lvl3"><a href="#measurements">Measurements</a></li><li class="lvl3"><a href="#normalized-residuals">Normalized residuals</a></li><li class="lvl3"><a href="#estimated-densities">Estimated densities</a></li><li class="lvl3"><a href="#comparison-with-the-true-model">Comparison with the true model</a></li></ul></nav>
+<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#run-folders">Run folders</a></li><li class="lvl2"><a href="#files">Files</a></li><li class="lvl2"><a href="#text-formats">Text formats</a></li><li class="lvl2"><a href="#figures">Figures</a></li><li class="lvl3"><a href="#shape-model">Shape model</a></li><li class="lvl3"><a href="#interior-in-three-dimensions">Interior in three dimensions</a></li><li class="lvl3"><a href="#density-slices">Density slices</a></li><li class="lvl3"><a href="#measurements">Measurements</a></li><li class="lvl3"><a href="#normalized-residuals">Normalized residuals</a></li><li class="lvl3"><a href="#estimated-densities">Estimated densities</a></li><li class="lvl3"><a href="#comparison-with-the-true-model">Comparison with the true model</a></li><li class="lvl3"><a href="#difference-from-the-homogeneous-body">Difference from the homogeneous body</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=7432480971"></script>
-<script src="../assets/site.js?v=7432480971"></script>
+<script src="../assets/search-index.js?v=f4bdda99ec"></script>
+<script src="../assets/site.js?v=f4bdda99ec"></script>
 </body>
 </html>

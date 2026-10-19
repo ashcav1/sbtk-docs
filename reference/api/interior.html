@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>sbtk.interior — SBTK documentation</title>
-<link rel="stylesheet" href="../../assets/site.css?v=7432480971">
-<link rel="stylesheet" href="../../assets/pygments.css?v=7432480971">
-<link rel="stylesheet" href="../../assets/print.css?v=7432480971" media="print">
+<link rel="stylesheet" href="../../assets/site.css?v=f4bdda99ec">
+<link rel="stylesheet" href="../../assets/pygments.css?v=f4bdda99ec">
+<link rel="stylesheet" href="../../assets/print.css?v=f4bdda99ec" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -63,7 +63,7 @@
               <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;, 0, 0.012, -900)];
 interior = <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>(components);                                   <span class="c">% no random field</span>
 interior = <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>(components, <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.random_field">sbtk.interior.random_field</a>(40, 0.06, 7));</code></pre></div>
-<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a>, <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.layer"><code>sbtk.interior.layer</code></a>, <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.no_components"><code>sbtk.interior.no_components</code></a>, <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.no_random_field"><code>sbtk.interior.no_random_field</code></a>, <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.random_field"><code>sbtk.interior.random_field</code></a>, <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.sphere"><code>sbtk.interior.sphere</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.no_random_field"><code>sbtk.interior.no_random_field</code></a></dd></dl>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a>, <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.layer"><code>sbtk.interior.layer</code></a>, <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.no_components"><code>sbtk.interior.no_components</code></a>, <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.no_random_field"><code>sbtk.interior.no_random_field</code></a>, <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.random_field"><code>sbtk.interior.random_field</code></a>, <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.sphere"><code>sbtk.interior.sphere</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.no_random_field"><code>sbtk.interior.no_random_field</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.difference_from_homogeneous"><code>sbtk.plot.difference_from_homogeneous</code></a></dd></dl>
 <p class="impl">Implementation: <code>toolbox/+sbtk/+interior/create.m</code>, line 1.</p>
 </section>
 <section class="api-entry" id="sbtk.interior.density_at">
@@ -152,7 +152,7 @@ rho = <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.inter
 </tbody></table>
 <h3 class="api-sub">Example</h3>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">interior = <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>(<a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.no_components">sbtk.interior.no_components</a>());      <span class="c">% a homogeneous body</span></code></pre></div>
-<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.create"><code>sbtk.interior.create</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.sector_grid"><code>sbtk.interior.sector_grid</code></a></dd></dl>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.create"><code>sbtk.interior.create</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.sector_grid"><code>sbtk.interior.sector_grid</code></a>, <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.difference_from_homogeneous"><code>sbtk.plot.difference_from_homogeneous</code></a></dd></dl>
 <p class="impl">Implementation: <code>toolbox/+sbtk/+interior/no_components.m</code>, line 1.</p>
 </section>
 <section class="api-entry" id="sbtk.interior.no_random_field">
@@ -296,7 +296,7 @@ fit = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#sbtk.interior.create">sbtk.interior.create</a></li><li class="lvl2"><a href="#sbtk.interior.density_at">sbtk.interior.density_at</a></li><li class="lvl2"><a href="#sbtk.interior.ellipsoid">sbtk.interior.ellipsoid</a></li><li class="lvl2"><a href="#sbtk.interior.latlon">sbtk.interior.latlon</a></li><li class="lvl2"><a href="#sbtk.interior.layer">sbtk.interior.layer</a></li><li class="lvl2"><a href="#sbtk.interior.no_components">sbtk.interior.no_components</a></li><li class="lvl2"><a href="#sbtk.interior.no_random_field">sbtk.interior.no_random_field</a></li><li class="lvl2"><a href="#sbtk.interior.random_field">sbtk.interior.random_field</a></li><li class="lvl2"><a href="#sbtk.interior.sector">sbtk.interior.sector</a></li><li class="lvl2"><a href="#sbtk.interior.sector_grid">sbtk.interior.sector_grid</a></li><li class="lvl2"><a href="#sbtk.interior.sphere">sbtk.interior.sphere</a></li><li class="lvl2"><a href="#sbtk.interior.summary">sbtk.interior.summary</a></li><li class="lvl2"><a href="#sbtk.interior.torus">sbtk.interior.torus</a></li></ul></nav>
 </div>
-<script src="../../assets/search-index.js?v=7432480971"></script>
-<script src="../../assets/site.js?v=7432480971"></script>
+<script src="../../assets/search-index.js?v=f4bdda99ec"></script>
+<script src="../../assets/site.js?v=f4bdda99ec"></script>
 </body>
 </html>

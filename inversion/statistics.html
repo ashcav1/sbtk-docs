@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Goodness of fit and model comparison — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=7432480971">
-<link rel="stylesheet" href="../assets/pygments.css?v=7432480971">
-<link rel="stylesheet" href="../assets/print.css?v=7432480971" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=f4bdda99ec">
+<link rel="stylesheet" href="../assets/pygments.css?v=f4bdda99ec">
+<link rel="stylesheet" href="../assets/print.css?v=f4bdda99ec" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -121,7 +121,8 @@ of <span class="nobr"><math alttext="(ρ - ρ_true)/σ" xmlns="http://www.w3.org
 body = <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.from_mass">sbtk.body.from_mass</a>(&quot;Didymos&quot;, <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.bundled">sbtk.shape.bundled</a>(&quot;didymos&quot;), 5.273e11, 0.43);
 unc  = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.uncertainties">sbtk.data.uncertainties</a>([<a class="xref xref-fn" href="../reference/api/units.html#sbtk.units.offset_to_degree1">sbtk.units.offset_to_degree1</a>(0.002, 0.43), 1e-4, 2e-4, 4e-4], 2e-3, 0.02);
 components = [<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, [0 0 0], 0.17, +450), <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;, 0, 0.012, -900)];
-[exact, truth] = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>(components), 4, unc, &quot;calibration&quot;);
+[exact, truth] = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>(components), 4, &quot;calibration&quot;);
+exact = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_uncertainties">sbtk.data.set_uncertainties</a>(exact, unc);
 
 prob = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.setup">sbtk.invert.setup</a>(body, components, <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise">sbtk.data.add_noise</a>(exact, 1), <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.options">sbtk.invert.options</a>());
 <span class="n">z</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">zeros</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
@@ -137,7 +138,7 @@ prob = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.se
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#chi-square-test">Chi-square test</a></li><li class="lvl2"><a href="#homogeneous-body">Homogeneous body</a></li><li class="lvl2"><a href="#normalized-residuals">Normalized residuals</a></li><li class="lvl2"><a href="#comparison-with-a-true-model">Comparison with a true model</a></li><li class="lvl2"><a href="#comparison-of-density-grids">Comparison of density grids</a></li><li class="lvl2"><a href="#calibration-of-the-uncertainties">Calibration of the uncertainties</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=7432480971"></script>
-<script src="../assets/site.js?v=7432480971"></script>
+<script src="../assets/search-index.js?v=f4bdda99ec"></script>
+<script src="../assets/site.js?v=f4bdda99ec"></script>
 </body>
 </html>

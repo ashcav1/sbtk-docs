@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>API reference — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=7432480971">
-<link rel="stylesheet" href="../assets/pygments.css?v=7432480971">
-<link rel="stylesheet" href="../assets/print.css?v=7432480971" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=f4bdda99ec">
+<link rel="stylesheet" href="../assets/pygments.css?v=f4bdda99ec">
+<link rel="stylesheet" href="../assets/print.css?v=f4bdda99ec" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -37,12 +37,12 @@
 <tr><td><a class="xref" href="../reference/api/body.html"><code>sbtk.body</code></a></td><td>Bodies</td><td>3</td></tr>
 <tr><td><a class="xref" href="../reference/api/interior.html"><code>sbtk.interior</code></a></td><td>Density distributions</td><td>13</td></tr>
 <tr><td><a class="xref" href="../reference/api/gravity.html"><code>sbtk.gravity</code></a></td><td>Gravity and moment calculations</td><td>5</td></tr>
-<tr><td><a class="xref" href="../reference/api/data.html"><code>sbtk.data</code></a></td><td>Measurement sets</td><td>17</td></tr>
+<tr><td><a class="xref" href="../reference/api/data.html"><code>sbtk.data</code></a></td><td>Measurement sets</td><td>18</td></tr>
 <tr><td><a class="xref" href="../reference/api/invert.html"><code>sbtk.invert</code></a></td><td>Density estimation</td><td>9</td></tr>
 <tr><td><a class="xref" href="../reference/api/compare.html"><code>sbtk.compare</code></a></td><td>Comparison with a true model</td><td>6</td></tr>
 <tr><td><a class="xref" href="../reference/api/exchange.html"><code>sbtk.exchange</code></a></td><td>Exchange packages</td><td>9</td></tr>
 <tr><td><a class="xref" href="../reference/api/io.html"><code>sbtk.io</code></a></td><td>Results folders and text files</td><td>22</td></tr>
-<tr><td><a class="xref" href="../reference/api/plot.html"><code>sbtk.plot</code></a></td><td>Figures</td><td>8</td></tr>
+<tr><td><a class="xref" href="../reference/api/plot.html"><code>sbtk.plot</code></a></td><td>Figures</td><td>9</td></tr>
 </tbody></table>
 <h2 id="all-functions">All supported functions<a class="headerlink" href="#all-functions" title="Link to this section">#</a></h2>
 <table class="overview"><thead><tr><th>Function</th><th>Purpose</th></tr></thead><tbody>
@@ -68,9 +68,10 @@
 <tr><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.select_moi"><code>sbtk.data.select_moi</code></a></td><td>Keep only the listed moment-of-inertia measurements.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_covariance"><code>sbtk.data.set_covariance</code></a></td><td>Replace the coefficient covariance with a full matrix.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_moi_sigma"><code>sbtk.data.set_moi_sigma</code></a></td><td>Set the 1-sigma of moment-of-inertia measurements by label.</td></tr>
-<tr><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a></td><td>Synthetic measurements of an interior model (gravity coefficients and moments of inertia).</td></tr>
+<tr><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_uncertainties"><code>sbtk.data.set_uncertainties</code></a></td><td>Give measurements a 1-sigma uncertainty per degree and per inertia quantity.</td></tr>
+<tr><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a></td><td>True model of an interior and its exact gravity coefficients and moments of inertia.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.summary"><code>sbtk.data.summary</code></a></td><td>Print what is in a measurement set.</td></tr>
-<tr><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.uncertainties"><code>sbtk.data.uncertainties</code></a></td><td>1-sigma measurement uncertainties for simulated data.</td></tr>
+<tr><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.uncertainties"><code>sbtk.data.uncertainties</code></a></td><td>1-sigma measurement uncertainties by degree and by inertia quantity, for <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_uncertainties">sbtk.data.set_uncertainties</a>.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.use_uncertainties"><code>sbtk.data.use_uncertainties</code></a></td><td>Give measurements the coefficient uncertainties of another data set (e.g. a precision file).</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.density_grid"><code>sbtk.exchange.density_grid</code></a></td><td>Density of a model at the centers of a cubic grid inside the body.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.locate"><code>sbtk.exchange.locate</code></a></td><td>The exchange package of a given kind in a run folder.</td></tr>
@@ -132,6 +133,7 @@
 <tr><td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.write_truth"><code>sbtk.io.write_truth</code></a></td><td>Plain-text description of a true model (keep private in blind tests).</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.comparison"><code>sbtk.plot.comparison</code></a></td><td>Estimate compared with the true model: R2 and each component's density.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.densities"><code>sbtk.plot.densities</code></a></td><td>Estimated density of the background and each component with its 1-sigma uncertainty.</td></tr>
+<tr><td><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.difference_from_homogeneous"><code>sbtk.plot.difference_from_homogeneous</code></a></td><td>Gravity coefficients minus those of the homogeneous body, coefficient by coefficient.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.interior3d"><code>sbtk.plot.interior3d</code></a></td><td>See-through 3D view of the body and the components of a model.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.measurements"><code>sbtk.plot.measurements</code></a></td><td>What the data contain: gravity signal and noise per degree, and the inertia rows.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.residuals"><code>sbtk.plot.residuals</code></a></td><td>Normalized residuals of a fit, (predicted - measured)/sigma, per measurement.</td></tr>
@@ -161,7 +163,7 @@
 </main>
 
 </div>
-<script src="../assets/search-index.js?v=7432480971"></script>
-<script src="../assets/site.js?v=7432480971"></script>
+<script src="../assets/search-index.js?v=f4bdda99ec"></script>
+<script src="../assets/site.js?v=f4bdda99ec"></script>
 </body>
 </html>

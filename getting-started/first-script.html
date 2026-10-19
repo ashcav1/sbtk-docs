@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>First script — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=7432480971">
-<link rel="stylesheet" href="../assets/pygments.css?v=7432480971">
-<link rel="stylesheet" href="../assets/print.css?v=7432480971" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=f4bdda99ec">
+<link rel="stylesheet" href="../assets/pygments.css?v=f4bdda99ec">
+<link rel="stylesheet" href="../assets/print.css?v=f4bdda99ec" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,9 +29,10 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Getting started › <span aria-current="page">First script</span></nav>
 <article>
 <h1 id="top" id="first-script">First script<a class="headerlink" href="#first-script" title="Link to this section">#</a></h1>
-<p>The script below runs the complete SBTK sequence on the shape model of the asteroid Didymos: it defines a body,
-simulates gravity coefficients and moments of inertia of a known interior with noise, estimates the densities of the
-interior from those measurements, and compares the estimate with the known interior. It takes about 15 s.</p>
+<p>The script below runs the complete SBTK sequence on the shape model of the asteroid Didymos: it defines a body and a
+known interior (the true model), computes the exact gravity coefficients and moments of inertia of that interior, turns
+them into measurements by giving them uncertainties and adding noise, estimates the densities of the interior from those
+measurements, and compares the estimate with the true model. It takes about 15 s.</p>
 <h2 id="script">Script<a class="headerlink" href="#script" title="Link to this section">#</a></h2>
 <p>Replace <code>/path/to/SBTK</code> with the location of the repository and run the script.</p>
 <div class="codeblock codeblock-code" id="first-script"><div class="codehead"><span>MATLAB script: first_script.m</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><span class="nb">run</span><span class="p">(</span><span class="s">&quot;/path/to/SBTK/sbtk_setup.m&quot;</span><span class="p">)</span>
@@ -45,20 +46,22 @@ components = [<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.
               <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;, 0, 0.012, -900)];        <span class="c">% from 0 to 12 m below the surface</span>
 interior = <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>(components);
 
-<span class="c">% 3. Measurement uncertainties (1-sigma) and simulated measurements with noise</span>
+<span class="c">% 3. The true model and its exact gravity coefficients (degrees 1-4) and moments of inertia</span>
+[exact, truth] = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, interior, 4, &quot;first_script&quot;);
+
+<span class="c">% 4. Measurements: 1-sigma uncertainties, then one realization of noise drawn from them</span>
 unc = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.uncertainties">sbtk.data.uncertainties</a>([<a class="xref xref-fn" href="../reference/api/units.html#sbtk.units.offset_to_degree1">sbtk.units.offset_to_degree1</a>(0.002, 0.43), ...<span class="c">   % degree 1: 2 m in the center of mass</span>
 <span class="w">                               </span><span class="mf">1e-4</span><span class="p">,</span><span class="w"> </span><span class="mf">2e-4</span><span class="p">,</span><span class="w"> </span><span class="mf">4e-4</span><span class="p">],</span><span class="w"> </span><span class="k">...</span><span class="c">                           % degrees 2, 3, 4</span>
 <span class="w">                              </span><span class="mf">2e-3</span><span class="p">,</span><span class="w"> </span><span class="k">...</span><span class="c">                                         % each inertia element / (M R_ref^2)</span>
 <span class="w">                              </span><span class="mf">0.02</span><span class="p">);</span><span class="w">                                            </span><span class="c">% libration ratio</span>
-[exact, truth] = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, interior, 4, unc, &quot;first_script&quot;);
-obs = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise">sbtk.data.add_noise</a>(exact, 1);
+obs = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise">sbtk.data.add_noise</a>(<a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_uncertainties">sbtk.data.set_uncertainties</a>(exact, unc), 1);
 <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.summary">sbtk.data.summary</a>(obs)
 
-<span class="c">% 4. Estimate the relative densities of the same components (the values given above are not used)</span>
+<span class="c">% 5. Estimate the relative densities of the same components (the values given above are not used)</span>
 fit = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.solve">sbtk.invert.solve</a>(body, components, obs);
 <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.summary">sbtk.invert.summary</a>(fit)
 
-<span class="c">% 5. Compare the estimate with the known interior</span>
+<span class="c">% 6. Compare the estimate with the true model</span>
 cmp = <a class="xref xref-fn" href="../reference/api/compare.html#sbtk.compare.with_truth">sbtk.compare.with_truth</a>(body, truth, fit);
 <a class="xref xref-fn" href="../reference/api/compare.html#sbtk.compare.summary">sbtk.compare.summary</a>(cmp)
 <a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.truth_vs_estimate">sbtk.plot.truth_vs_estimate</a>(body, truth, fit);</code></pre></div>
@@ -111,11 +114,14 @@ through the center of mass (<a href="../files/results-folders.html#figures">Figu
    background. The regolith is everything within 12 m of the surface, measured along rays from the center of mass, 900
    kg/m³ lighter than the background. The background density is not given: it is set so that the total mass equals
    <span class="nobr"><math alttext="M" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi></mrow></math></span> (<a href="../models/density-distributions.html">Density distributions</a>).</li>
-<li><strong>Measurements.</strong> <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a> computes the fully normalized gravity coefficients of degree 1 to 4, the
+<li><strong>True model.</strong> <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a> computes the fully normalized gravity coefficients of degree 1 to 4, the
    six inertia elements and the libration ratio of this interior, about its center of mass
-   (<a href="../models/forward-model.html">Gravity and moment calculations</a>). The uncertainties are stored with the values;
-   <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise"><code>sbtk.data.add_noise</code></a> adds one Gaussian realization with seed 1. Degree-1 coefficients measure the center of mass
-   (<a href="../conventions/gravity-coefficients.html#degree-1-and-the-center-of-mass">Gravity coefficients</a>).</li>
+   (<a href="../models/forward-model.html">Gravity and moment calculations</a>). It returns the true model (<code>truth</code>) and its exact
+   values (<code>exact</code>), with no uncertainties: none are involved in the forward model. Degree-1 coefficients give the center
+   of mass (<a href="../conventions/gravity-coefficients.html#degree-1-and-the-center-of-mass">Gravity coefficients</a>).</li>
+<li><strong>Measurements.</strong> <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_uncertainties"><code>sbtk.data.set_uncertainties</code></a> gives every coefficient the 1σ of its degree and every inertia
+   quantity its 1σ; <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise"><code>sbtk.data.add_noise</code></a> adds one Gaussian realization drawn from them with seed 1
+   (<a href="../inversion/measurements.html">Measurement sets</a>).</li>
 <li><strong>Estimation.</strong> <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.solve"><code>sbtk.invert.solve</code></a> fits the background density and the relative density of each component to the
    24 coefficients and, with the standard settings of <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.options"><code>sbtk.invert.options</code></a>, to <code>Ixx</code>, <code>Iyy</code> and <code>Izz</code>, with the
    total mass as a constraint (<a href="../inversion/density-estimation.html">Density estimation</a>). The reduced <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> of 1.19
@@ -138,7 +144,7 @@ through the center of mass (<a href="../files/results-folders.html#figures">Figu
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#script">Script</a></li><li class="lvl2"><a href="#output">Output</a></li><li class="lvl2"><a href="#what-each-step-does">What each step does</a></li><li class="lvl2"><a href="#next-steps">Next steps</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=7432480971"></script>
-<script src="../assets/site.js?v=7432480971"></script>
+<script src="../assets/search-index.js?v=f4bdda99ec"></script>
+<script src="../assets/site.js?v=f4bdda99ec"></script>
 </body>
 </html>

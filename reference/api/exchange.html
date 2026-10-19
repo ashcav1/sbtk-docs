@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>sbtk.exchange — SBTK documentation</title>
-<link rel="stylesheet" href="../../assets/site.css?v=7432480971">
-<link rel="stylesheet" href="../../assets/pygments.css?v=7432480971">
-<link rel="stylesheet" href="../../assets/print.css?v=7432480971" media="print">
+<link rel="stylesheet" href="../../assets/site.css?v=f4bdda99ec">
+<link rel="stylesheet" href="../../assets/pygments.css?v=f4bdda99ec">
+<link rel="stylesheet" href="../../assets/print.css?v=f4bdda99ec" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -190,7 +190,7 @@ fit = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.
 <p>Nothing else of obs is written: not the expansion origin of the simulation (the true center of mass), the noise seed or the notes. Format: docs/exchange_format.md; read back with <a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.read_data">sbtk.exchange.read_data</a>.</p>
 <h3 class="api-sub">Example</h3>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>out</code>, <code>body</code>, <code>obs</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.write_data">sbtk.exchange.write_data</a>(fullfile(out.folder, &quot;redacted&quot;), &quot;CUB-DATA1-Didymos&quot;, body, obs, &quot;CU Boulder&quot;);</code></pre></div>
-<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.create"><code>sbtk.body.create</code></a>, <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.add_noise"><code>sbtk.data.add_noise</code></a>, <a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a>, <a class="xref xref-fn" href="../../reference/api/shape.html#sbtk.shape.properties"><code>sbtk.shape.properties</code></a></dd></dl>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.create"><code>sbtk.body.create</code></a>, <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.add_noise"><code>sbtk.data.add_noise</code></a>, <a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.set_covariance"><code>sbtk.data.set_covariance</code></a>, <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.set_moi_sigma"><code>sbtk.data.set_moi_sigma</code></a>, <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.set_uncertainties"><code>sbtk.data.set_uncertainties</code></a>, <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.use_uncertainties"><code>sbtk.data.use_uncertainties</code></a>, <a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a>, <a class="xref xref-fn" href="../../reference/api/shape.html#sbtk.shape.properties"><code>sbtk.shape.properties</code></a></dd></dl>
 <p class="impl">Implementation: <code>toolbox/+sbtk/+exchange/write_data.m</code>, line 1.</p>
 </section>
 <section class="api-entry" id="sbtk.exchange.write_model">
@@ -204,7 +204,7 @@ fit = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.
 <tr id="sbtk.exchange.write_model.data_set"><td data-label="Name"><code>data_set</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">name of the measurement package made from this model, e.g. "CUB-DATA1-Didymos" </td></tr>
 <tr id="sbtk.exchange.write_model.body"><td data-label="Name"><code>body</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">from <a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.create">sbtk.body.create</a> Fields: <a class="xref xref-st" href="../../reference/data-structures.html#body"><code>body</code></a>. </td></tr>
 <tr id="sbtk.exchange.write_model.truth"><td data-label="Name"><code>truth</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">the true model (<a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>) Fields: <a class="xref xref-st" href="../../reference/data-structures.html#truth"><code>truth</code></a>. </td></tr>
-<tr id="sbtk.exchange.write_model.obs_exact"><td data-label="Name"><code>obs_exact</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">the measurements without noise (<a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>, before <code>add_noise</code>) </td></tr>
+<tr id="sbtk.exchange.write_model.obs_exact"><td data-label="Name"><code>obs_exact</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">the measurements without noise: the exact values of <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>, with or without uncertainties (without, their 1-sigma are written as NaN) </td></tr>
 <tr id="sbtk.exchange.write_model.spacing_km"><td data-label="Name"><code>spacing_km</code></td><td data-label="Size">scalar</td><td data-label="Class">double</td><td data-label="Unit">km</td><td data-label="Default">required</td><td data-label="Description">cell edge of the density grid [km] <span class="valid">Validation: <code>mustBePositive</code>.</span></td></tr>
 <tr id="sbtk.exchange.write_model.prepared_by"><td data-label="Name"><code>prepared_by</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">who made the package </td></tr>
 </tbody></table>
@@ -269,7 +269,7 @@ fit  = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#sbtk.exchange.density_grid">sbtk.exchange.density_grid</a></li><li class="lvl2"><a href="#sbtk.exchange.locate">sbtk.exchange.locate</a></li><li class="lvl2"><a href="#sbtk.exchange.read_data">sbtk.exchange.read_data</a></li><li class="lvl2"><a href="#sbtk.exchange.read_grid">sbtk.exchange.read_grid</a></li><li class="lvl2"><a href="#sbtk.exchange.read_shadr">sbtk.exchange.read_shadr</a></li><li class="lvl2"><a href="#sbtk.exchange.solution_name">sbtk.exchange.solution_name</a></li><li class="lvl2"><a href="#sbtk.exchange.write_data">sbtk.exchange.write_data</a></li><li class="lvl2"><a href="#sbtk.exchange.write_model">sbtk.exchange.write_model</a></li><li class="lvl2"><a href="#sbtk.exchange.write_solution">sbtk.exchange.write_solution</a></li></ul></nav>
 </div>
-<script src="../../assets/search-index.js?v=7432480971"></script>
-<script src="../../assets/site.js?v=7432480971"></script>
+<script src="../../assets/search-index.js?v=f4bdda99ec"></script>
+<script src="../../assets/site.js?v=f4bdda99ec"></script>
 </body>
 </html>

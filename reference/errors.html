@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Error identifiers — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=7432480971">
-<link rel="stylesheet" href="../assets/pygments.css?v=7432480971">
-<link rel="stylesheet" href="../assets/print.css?v=7432480971" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=f4bdda99ec">
+<link rel="stylesheet" href="../assets/pygments.css?v=f4bdda99ec">
+<link rel="stylesheet" href="../assets/print.css?v=f4bdda99ec" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -47,7 +47,13 @@
 <tr id="sbtk:data:negativeDensity"><td><code>sbtk:data:negativeDensity</code></td><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a></td><td>The interior has negative density (minimum %.0f kg/m^3): make the light components less light.</td></tr>
 <tr id="sbtk:data:noC22"><td><code>sbtk:data:noC22</code></td><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_libration"><code>sbtk.data.add_libration</code></a></td><td>The libration ratio needs the measured C22 and S22 (they give the direction of the principal axes).</td></tr>
 <tr id="sbtk:data:noCommonCoefficients"><td><code>sbtk:data:noCommonCoefficients</code></td><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.use_uncertainties"><code>sbtk.data.use_uncertainties</code></a></td><td>The two data sets have no gravity coefficient in common.</td></tr>
-<tr id="sbtk:data:uncertainties"><td><code>sbtk:data:uncertainties</code></td><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a></td><td>unc.coef_sigma_by_degree has %d values; degree %d needs one per degree.</td></tr>
+<tr id="sbtk:data:noIzz"><td><code>sbtk:data:noIzz</code></td><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_moi_sigma"><code>sbtk.data.set_moi_sigma</code></a></td><td>The 1-sigma of the libration row is the ratio's 1-sigma times Izz / (M R_ref^2) of the Izz row, which these data do not have: set it before sbtk.data.select_moi.</td></tr>
+<tr id="sbtk:data:noIzz-sbtk.data.set_uncertainties"><td><code>sbtk:data:noIzz</code></td><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_uncertainties"><code>sbtk.data.set_uncertainties</code></a></td><td>The 1-sigma of the libration row is the ratio's 1-sigma times Izz / (M R_ref^2) of the Izz row, which these data do not have: set the uncertainties before sbtk.data.select_moi.</td></tr>
+<tr id="sbtk:data:noUncertainties"><td><code>sbtk:data:noUncertainties</code></td><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise"><code>sbtk.data.add_noise</code></a></td><td>The measurements have no uncertainties to draw noise from: give them with sbtk.data.set_uncertainties, sbtk.data.use_uncertainties, sbtk.data.set_covariance or sbtk.data.set_moi_sigma.</td></tr>
+<tr id="sbtk:data:noUncertainties-sbtk.exchange.write_data"><td><code>sbtk:data:noUncertainties</code></td><td><a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_data"><code>sbtk.exchange.write_data</code></a></td><td>The measurements have no uncertainties, which a measurement package states with every value: give them with sbtk.data.set_uncertainties, sbtk.data.use_uncertainties, sbtk.data.set_covariance or sbtk.data.set_moi_sigma.</td></tr>
+<tr id="sbtk:data:noUncertainties-sbtk.invert.replace_data"><td><code>sbtk:data:noUncertainties</code></td><td><a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.replace_data"><code>sbtk.invert.replace_data</code></a></td><td>The measurements have no uncertainties, which the inversion needs as weights: give them with sbtk.data.set_uncertainties, sbtk.data.use_uncertainties, sbtk.data.set_covariance or sbtk.data.set_moi_sigma.</td></tr>
+<tr id="sbtk:data:noUncertainties-sbtk.invert.setup"><td><code>sbtk:data:noUncertainties</code></td><td><a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.setup"><code>sbtk.invert.setup</code></a></td><td>The measurements have no uncertainties, which the inversion needs as weights: give them with sbtk.data.set_uncertainties, sbtk.data.use_uncertainties, sbtk.data.set_covariance or sbtk.data.set_moi_sigma.</td></tr>
+<tr id="sbtk:data:uncertainties"><td><code>sbtk:data:uncertainties</code></td><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_uncertainties"><code>sbtk.data.set_uncertainties</code></a></td><td>unc.coef_sigma_by_degree has %d values; degree %d needs one per degree.</td></tr>
 <tr id="sbtk:data:zeroSigma"><td><code>sbtk:data:zeroSigma</code></td><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.from_coefficients"><code>sbtk.data.from_coefficients</code></a></td><td>Uncertainty of %s is zero; every used coefficient needs sigma &gt; 0.</td></tr>
 <tr id="sbtk:exchange:correlatedCenterOfMass"><td><code>sbtk:exchange:correlatedCenterOfMass</code></td><td><a class="xref xref-fn" href="../reference/internal.html#sbtk.internal.exchange_data_files"><code>sbtk.internal.exchange_data_files</code></a></td><td>The center of mass is correlated with the other coefficients; the exchange format gives them separately.</td></tr>
 <tr id="sbtk:exchange:covariance"><td><code>sbtk:exchange:covariance</code></td><td><a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a></td><td>gravity_covariance.txt has no row for %s.</td></tr>
@@ -78,6 +84,7 @@
 <tr id="sbtk:io:noRun"><td><code>sbtk:io:noRun</code></td><td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.latest_run"><code>sbtk.io.latest_run</code></a></td><td>No run named %s in results/%s.</td></tr>
 <tr id="sbtk:io:notNormalized"><td><code>sbtk:io:notNormalized</code></td><td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.read_jpl_gravity"><code>sbtk.io.read_jpl_gravity</code></a></td><td>The coefficients in %s are not normalized.</td></tr>
 <tr id="sbtk:io:referenceRadius"><td><code>sbtk:io:referenceRadius</code></td><td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.read_jpl_gravity"><code>sbtk.io.read_jpl_gravity</code></a></td><td>The file's reference radius is %g km; body.R_ref_km is %g km.</td></tr>
+<tr id="sbtk:plot:names"><td><code>sbtk:plot:names</code></td><td><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.difference_from_homogeneous"><code>sbtk.plot.difference_from_homogeneous</code></a></td><td>Give one name per set: %d sets, %d names.</td></tr>
 <tr id="sbtk:shape:notDownloaded"><td><code>sbtk:shape:notDownloaded</code></td><td><a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.bundled"><code>sbtk.shape.bundled</code></a></td><td>%s is not in data/shapes/: the high-resolution models are not in git; copy it from the Hera server (End-to-End Test/Shape/).</td></tr>
 <tr id="sbtk:shape:notSpc"><td><code>sbtk:shape:notSpc</code></td><td><a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.reduce_spc"><code>sbtk.shape.reduce_spc</code></a></td><td>%d vertices and %d facets: not an SPC grid model (6 (q+1)^2 vertices, 12 q^2 facets).</td></tr>
 <tr id="sbtk:shape:reduce"><td><code>sbtk:shape:reduce</code></td><td><a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.reduce"><code>sbtk.shape.reduce</code></a></td><td>The reduced shape (%d facets) is closed %d, outward %d, star-shaped %d: try another number of facets.</td></tr>
@@ -90,7 +97,7 @@
 </main>
 
 </div>
-<script src="../assets/search-index.js?v=7432480971"></script>
-<script src="../assets/site.js?v=7432480971"></script>
+<script src="../assets/search-index.js?v=f4bdda99ec"></script>
+<script src="../assets/site.js?v=f4bdda99ec"></script>
 </body>
 </html>

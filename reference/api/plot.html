@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>sbtk.plot — SBTK documentation</title>
-<link rel="stylesheet" href="../../assets/site.css?v=7432480971">
-<link rel="stylesheet" href="../../assets/pygments.css?v=7432480971">
-<link rel="stylesheet" href="../../assets/print.css?v=7432480971" media="print">
+<link rel="stylesheet" href="../../assets/site.css?v=f4bdda99ec">
+<link rel="stylesheet" href="../../assets/pygments.css?v=f4bdda99ec">
+<link rel="stylesheet" href="../../assets/print.css?v=f4bdda99ec" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -32,6 +32,7 @@
 <table class="overview"><thead><tr><th>Function</th><th>Purpose</th></tr></thead><tbody>
 <tr><td><a class="xref xref-fn" href="#sbtk.plot.comparison"><code>comparison</code></a></td><td>Estimate compared with the true model: R2 and each component's density.</td></tr>
 <tr><td><a class="xref xref-fn" href="#sbtk.plot.densities"><code>densities</code></a></td><td>Estimated density of the background and each component with its 1-sigma uncertainty.</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.plot.difference_from_homogeneous"><code>difference_from_homogeneous</code></a></td><td>Gravity coefficients minus those of the homogeneous body, coefficient by coefficient.</td></tr>
 <tr><td><a class="xref xref-fn" href="#sbtk.plot.interior3d"><code>interior3d</code></a></td><td>See-through 3D view of the body and the components of a model.</td></tr>
 <tr><td><a class="xref xref-fn" href="#sbtk.plot.measurements"><code>measurements</code></a></td><td>What the data contain: gravity signal and noise per degree, and the inertia rows.</td></tr>
 <tr><td><a class="xref xref-fn" href="#sbtk.plot.residuals"><code>residuals</code></a></td><td>Normalized residuals of a fit, (predicted - measured)/sigma, per measurement.</td></tr>
@@ -75,6 +76,33 @@
 <h3 class="api-sub">Related functions</h3><dl class="related"><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.write_solution"><code>sbtk.exchange.write_solution</code></a>, <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.report_inversion"><code>sbtk.io.report_inversion</code></a></dd></dl>
 <p class="impl">Implementation: <code>toolbox/+sbtk/+plot/densities.m</code>, line 1.</p>
 </section>
+<section class="api-entry" id="sbtk.plot.difference_from_homogeneous">
+<h2 class="api-name" id="sbtk.plot.difference_from_homogeneous-h"><code>sbtk.plot.difference_from_homogeneous</code><a class="headerlink" href="#sbtk.plot.difference_from_homogeneous" title="Link to sbtk.plot.difference_from_homogeneous">#</a></h2>
+<p class="api-summary">Gravity coefficients minus those of the homogeneous body, coefficient by coefficient.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">[fig, differences] = <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.difference_from_homogeneous">sbtk.plot.difference_from_homogeneous</a>(body, sets, names, scale)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.plot.difference_from_homogeneous.body"><td data-label="Name"><code>body</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">the body: its shape model gives the coefficients of the homogeneous body (density M/V everywhere) Fields: <a class="xref xref-st" href="../../reference/data-structures.html#body"><code>body</code></a>. </td></tr>
+<tr id="sbtk.plot.difference_from_homogeneous.sets"><td data-label="Name"><code>sets</code></td><td data-label="Size">1 × any</td><td data-label="Class">cell</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">cell array of coefficient sets, each one of a measurement set   exact values (<a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>), measurements (<a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.add_noise">sbtk.data.add_noise</a>), a package (<a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.read_data">sbtk.exchange.read_data</a>), ... a true model        truth from <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a> an inversion result fit from <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.run">sbtk.invert.run</a>: its predicted coefficients </td></tr>
+<tr id="sbtk.plot.difference_from_homogeneous.names"><td data-label="Name"><code>names</code></td><td data-label="Size"></td><td data-label="Class"></td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">one legend entry per set, e.g. ["true model" "estimate"] <span class="valid">Validation: <code>mustBeText</code>.</span></td></tr>
+<tr id="sbtk.plot.difference_from_homogeneous.scale"><td data-label="Name"><code>scale</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">"linear": the signed difference, with +-3 sigma bars for sets that have uncertainties (measurement sets with <code>coef_cov</code>); "log": the absolute difference, with 3 sigma drawn as a separate line <span class="valid">Validation: <code>mustBeMember(scale, ["linear", "log"])</code>.</span></td></tr>
+</tbody></table>
+<h3 class="api-sub">Outputs</h3><table class="params outputs"><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.plot.difference_from_homogeneous.out.fig"><td data-label="Name"><code>fig</code></td><td data-label="Description">the figure</td></tr>
+<tr id="sbtk.plot.difference_from_homogeneous.out.differences"><td data-label="Name"><code>differences</code></td><td data-label="Description">struct array, one per set: name, labels (as plotted: C10, C11, S11, J2, ...), difference, sigma (1-sigma; NaN where the set has none)</td></tr>
+</tbody></table>
+<h3 class="api-sub">Description</h3>
+<p>Each set is compared with the homogeneous body expanded in the same way: about the set's <code>origin_km</code> (coefficients about the origin), or, for data about the center of mass (<code>coef_about</code> '<code>center_of_mass</code>'), degree 1 about <code>origin_km</code> and degrees &gt;= 2 about the homogeneous body's own center of mass (the center of figure). Differences are set minus homogeneous body, fully normalized, for every coefficient of degree 1 and higher in the set, in SBTK order. Zonal coefficients are shown as <code>J_l</code> = -<code>C_l0</code> (fully normalized), so their difference has the opposite sign of the <code>C_l0</code> difference. The reference radius is the set's (<code>body.R_ref_km</code> for truth and fit). One geometry is built per set and per expansion point (about 1 s for 49,152 facets at degree 4, about a minute for 3 million facets).</p>
+<p>The plot shows how far the gravity field of an interior departs from that of a uniform density, and, against 3 sigma, which departures measurements resolve.</p>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>body</code>, <code>interior</code>, <code>unc</code>, <code>components</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">[exact, truth] = <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, interior, 4, &quot;T1&quot;);
+<a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.difference_from_homogeneous">sbtk.plot.difference_from_homogeneous</a>(body, {truth}, &quot;true model&quot;, &quot;linear&quot;);
+obs = <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.add_noise">sbtk.data.add_noise</a>(<a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.set_uncertainties">sbtk.data.set_uncertainties</a>(exact, unc), 1);
+fit = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.solve">sbtk.invert.solve</a>(body, components, obs);
+<a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.difference_from_homogeneous">sbtk.plot.difference_from_homogeneous</a>(body, {obs, fit}, [&quot;measured&quot; &quot;estimate&quot;], &quot;log&quot;);</code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.add_noise"><code>sbtk.data.add_noise</code></a>, <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.set_uncertainties"><code>sbtk.data.set_uncertainties</code></a>, <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a>, <a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a>, <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.run"><code>sbtk.invert.run</code></a>, <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.solve"><code>sbtk.invert.solve</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.forward"><code>sbtk.gravity.forward</code></a>, <a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.geometry"><code>sbtk.gravity.geometry</code></a>, <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.create"><code>sbtk.interior.create</code></a>, <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.no_components"><code>sbtk.interior.no_components</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+plot/difference_from_homogeneous.m</code>, line 1.</p>
+</section>
 <section class="api-entry" id="sbtk.plot.interior3d">
 <h2 class="api-name" id="sbtk.plot.interior3d-h"><code>sbtk.plot.interior3d</code><a class="headerlink" href="#sbtk.plot.interior3d" title="Link to sbtk.plot.interior3d">#</a></h2>
 <p class="api-summary">See-through 3D view of the body and the components of a model.</p>
@@ -89,7 +117,7 @@
 <tr id="sbtk.plot.interior3d.out.fig"><td data-label="Name"><code>fig</code></td><td data-label="Description">Handle of the new figure.</td></tr>
 </tbody></table>
 <h3 class="api-sub">Description</h3>
-<p>The surface is drawn translucent; spheres, ellipsoids and tori are drawn where they lie inside the body, layers by their lower boundary. Color is the density difference (blue lighter, red denser than the background). Sectors are not drawn (see <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.slices">sbtk.plot.slices</a>).</p>
+<p>The surface is drawn translucent; spheres, ellipsoids and tori are drawn where they lie inside the body, layers by their lower boundary. Color is the relative density (blue lighter, red denser than the background). Sectors are not drawn (see <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.slices">sbtk.plot.slices</a>).</p>
 <h3 class="api-sub">Example</h3>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>body</code>, <code>truth</code>, <code>fit</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">fig = <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.interior3d">sbtk.plot.interior3d</a>(body, truth, &quot;true model&quot;);
 fig = <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.interior3d">sbtk.plot.interior3d</a>(body, fit, &quot;estimate&quot;);</code></pre></div>
@@ -192,9 +220,9 @@ fig = <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.inte
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../../reference/api/io.html" rel="prev"><span>Previous</span>sbtk.io</a><a class="next" href="../../reference/data-structures.html" rel="next"><span>Next</span>Data structures</a></nav>
 <footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-19.</footer>
 </main>
-<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#sbtk.plot.comparison">sbtk.plot.comparison</a></li><li class="lvl2"><a href="#sbtk.plot.densities">sbtk.plot.densities</a></li><li class="lvl2"><a href="#sbtk.plot.interior3d">sbtk.plot.interior3d</a></li><li class="lvl2"><a href="#sbtk.plot.measurements">sbtk.plot.measurements</a></li><li class="lvl2"><a href="#sbtk.plot.residuals">sbtk.plot.residuals</a></li><li class="lvl2"><a href="#sbtk.plot.shape">sbtk.plot.shape</a></li><li class="lvl2"><a href="#sbtk.plot.slices">sbtk.plot.slices</a></li><li class="lvl2"><a href="#sbtk.plot.truth_vs_estimate">sbtk.plot.truth_vs_estimate</a></li></ul></nav>
+<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#sbtk.plot.comparison">sbtk.plot.comparison</a></li><li class="lvl2"><a href="#sbtk.plot.densities">sbtk.plot.densities</a></li><li class="lvl2"><a href="#sbtk.plot.difference_from_homogeneous">sbtk.plot.difference_from_homogeneous</a></li><li class="lvl2"><a href="#sbtk.plot.interior3d">sbtk.plot.interior3d</a></li><li class="lvl2"><a href="#sbtk.plot.measurements">sbtk.plot.measurements</a></li><li class="lvl2"><a href="#sbtk.plot.residuals">sbtk.plot.residuals</a></li><li class="lvl2"><a href="#sbtk.plot.shape">sbtk.plot.shape</a></li><li class="lvl2"><a href="#sbtk.plot.slices">sbtk.plot.slices</a></li><li class="lvl2"><a href="#sbtk.plot.truth_vs_estimate">sbtk.plot.truth_vs_estimate</a></li></ul></nav>
 </div>
-<script src="../../assets/search-index.js?v=7432480971"></script>
-<script src="../../assets/site.js?v=7432480971"></script>
+<script src="../../assets/search-index.js?v=f4bdda99ec"></script>
+<script src="../../assets/site.js?v=f4bdda99ec"></script>
 </body>
 </html>

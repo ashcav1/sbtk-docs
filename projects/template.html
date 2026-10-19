@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Project template — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=7432480971">
-<link rel="stylesheet" href="../assets/pygments.css?v=7432480971">
-<link rel="stylesheet" href="../assets/print.css?v=7432480971" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=f4bdda99ec">
+<link rel="stylesheet" href="../assets/pygments.css?v=f4bdda99ec">
+<link rel="stylesheet" href="../assets/print.css?v=f4bdda99ec" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -140,7 +140,8 @@ unc = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.uncerta
 
 <span class="c">%% RUN</span>
 out = <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.new_run">sbtk.io.new_run</a>(project, name);
-[exact, truth] = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>(components, field), degree, unc, name);
+[exact, truth] = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>(components, field), degree, name);   <span class="c">% the true model</span>
+exact = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_uncertainties">sbtk.data.set_uncertainties</a>(exact, unc);
 obs = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise">sbtk.data.add_noise</a>(exact, noise_seed);
 <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.report_simulation">sbtk.io.report_simulation</a>(<a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.subfolder">sbtk.io.subfolder</a>(out, &quot;unredacted&quot;), body, obs, truth);
 <span class="n">data_set</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">sprintf</span><span class="p">(</span><span class="s">&quot;%s-DATA%d-%s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">team</span><span class="p">,</span><span class="w"> </span><span class="n">number</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">);</span>
@@ -223,7 +224,7 @@ writelines(<a class="xref xref-fn" href="../reference/api/compare.html#sbtk.comp
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#files">Files</a></li><li class="lvl2"><a href="#use">Use</a></li><li class="lvl2"><a href="#code">Code</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=7432480971"></script>
-<script src="../assets/site.js?v=7432480971"></script>
+<script src="../assets/search-index.js?v=f4bdda99ec"></script>
+<script src="../assets/site.js?v=f4bdda99ec"></script>
 </body>
 </html>

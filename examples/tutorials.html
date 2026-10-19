@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tutorial scripts — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=7432480971">
-<link rel="stylesheet" href="../assets/pygments.css?v=7432480971">
-<link rel="stylesheet" href="../assets/print.css?v=7432480971" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=f4bdda99ec">
+<link rel="stylesheet" href="../assets/pygments.css?v=f4bdda99ec">
+<link rel="stylesheet" href="../assets/print.css?v=f4bdda99ec" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -105,12 +105,14 @@ body = <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.from_m
 <span class="c">%% 2. Forward model: a dense core and a low-density surface layer</span>
 components = [<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, [0 0 0], 0.170, +450), ...<span class="c">      % center [km], radius [km], relative density [kg/m^3]</span>
               <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;, 0, 0.012, -900)];           <span class="c">% from 0 to 12 m below the surface</span>
+[exact, truth] = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>(components), 4, &quot;quick_start&quot;);   <span class="c">% exact values</span>
+
+<span class="c">% measurements: 1-sigma uncertainties, then one noise realization</span>
 unc = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.uncertainties">sbtk.data.uncertainties</a>([<a class="xref xref-fn" href="../reference/api/units.html#sbtk.units.offset_to_degree1">sbtk.units.offset_to_degree1</a>(0.002, 0.43), ...<span class="c">  % degree 1: 2 m center of mass</span>
 <span class="w">                               </span><span class="mf">1e-4</span><span class="p">,</span><span class="w"> </span><span class="mf">2e-4</span><span class="p">,</span><span class="w"> </span><span class="mf">4e-4</span><span class="p">],</span><span class="w"> </span><span class="k">...</span><span class="c">                          % degrees 2, 3, 4</span>
 <span class="w">                              </span><span class="mf">2e-3</span><span class="p">,</span><span class="w"> </span><span class="k">...</span><span class="c">                                        % each MOI / (M R_ref^2)</span>
 <span class="w">                              </span><span class="mf">0.02</span><span class="p">);</span><span class="w">                                           </span><span class="c">% libration ratio</span>
-[obs, truth] = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>(components), 4, unc, &quot;quick_start&quot;);
-obs = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise">sbtk.data.add_noise</a>(obs, 1);
+obs = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise">sbtk.data.add_noise</a>(<a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_uncertainties">sbtk.data.set_uncertainties</a>(exact, unc), 1);
 <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.summary">sbtk.data.summary</a>(obs)
 
 <span class="c">%% 3. Inversion: the same components, relative densities unknown</span>
@@ -184,10 +186,12 @@ body = <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.from_m
 <span class="c">%% Gaussian random density field (standard deviation 40 kg/m^3, correlation length 60 m, seed 7)</span>
 interior = <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>(components, <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.random_field">sbtk.interior.random_field</a>(40, 0.06, 7));
 
-<span class="c">%% Forward model</span>
+<span class="c">%% Forward model: the true model and its exact gravity coefficients and moments of inertia</span>
+[exact, truth, geo] = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, interior, 4, &quot;example_interior&quot;);
+
+<span class="c">%% Measurements of it: uncertainties, then noise drawn from them</span>
 unc = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.uncertainties">sbtk.data.uncertainties</a>([<a class="xref xref-fn" href="../reference/api/units.html#sbtk.units.offset_to_degree1">sbtk.units.offset_to_degree1</a>(0.002, 0.43), 1e-4, 2e-4, 4e-4], 2e-3, 0.02);
-[exact, truth, geo] = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, interior, 4, unc, &quot;example_interior&quot;);
-obs = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise">sbtk.data.add_noise</a>(exact, 1);
+obs = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise">sbtk.data.add_noise</a>(<a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_uncertainties">sbtk.data.set_uncertainties</a>(exact, unc), 1);
 <span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;background density %.0f kg/m^3, center of mass %.1f m from the center of figure\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
 <span class="w">        </span><span class="n">truth</span><span class="p">.</span><span class="n">rho_bg_kgm3</span><span class="p">,</span><span class="w"> </span><span class="mf">1e3</span><span class="o">*</span><span class="nb">norm</span><span class="p">(</span><span class="n">obs</span><span class="p">.</span><span class="n">com_minus_cof_km</span><span class="p">));</span>
 
@@ -218,7 +222,8 @@ body  = <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.from_
 unc   = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.uncertainties">sbtk.data.uncertainties</a>([<a class="xref xref-fn" href="../reference/api/units.html#sbtk.units.offset_to_degree1">sbtk.units.offset_to_degree1</a>(0.002, 0.43), 1e-4, 2e-4, 4e-4], 2e-3, 0.02);
 truth_components = [<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, [0.03 -0.02 0.01], 0.17, +500), ...
                <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.torus">sbtk.interior.torus</a>(&quot;ridge&quot;, 0.37, 0.055, 0, -500), <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;, 0, 0.012, -900)];
-[exact, truth] = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>(truth_components), 4, unc, &quot;ex04&quot;);
+[exact, truth] = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>(truth_components), 4, &quot;ex04&quot;);
+exact = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_uncertainties">sbtk.data.set_uncertainties</a>(exact, unc);
 obs = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise">sbtk.data.add_noise</a>(exact, 1);
 
 <span class="c">%% Set up once</span>
@@ -321,8 +326,8 @@ unc   = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.uncer
 <span class="c">%% Simulation</span>
 components = [<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, [0.03 0 0], 0.15, +600), <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;, 0, 0.02, -700)];
 out = <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.new_run">sbtk.io.new_run</a>(&quot;examples&quot;, &quot;ellipsoid_T1&quot;);
-[obs, truth] = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>(components), 3, unc, &quot;ellipsoid_T1&quot;);
-obs = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise">sbtk.data.add_noise</a>(obs, 1);
+[exact, truth] = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>(components), 3, &quot;ellipsoid_T1&quot;);
+obs = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise">sbtk.data.add_noise</a>(<a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_uncertainties">sbtk.data.set_uncertainties</a>(exact, unc), 1);
 <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.report_simulation">sbtk.io.report_simulation</a>(out, body, obs, truth);
 <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.finish_run">sbtk.io.finish_run</a>(out);
 
@@ -360,7 +365,8 @@ unc  = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.uncert
 
 <span class="c">%% The team that makes the data</span>
 hidden = [<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, [0.03 0 0], 0.25, +500), <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;, 0, 0.02, -800)];
-[exact, truth] = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>(hidden), 4, unc, &quot;hidden_model&quot;);
+[exact, truth] = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>(hidden), 4, &quot;hidden_model&quot;);
+exact = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_uncertainties">sbtk.data.set_uncertainties</a>(exact, unc);      <span class="c">% noise-free values with their uncertainties</span>
 obs = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise">sbtk.data.add_noise</a>(exact, 1);
 data = <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_data">sbtk.exchange.write_data</a>(folder, &quot;TEAM-DATA1-example&quot;, body, obs, &quot;Team, contact&quot;);         <span class="c">% send now</span>
 model = <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_model">sbtk.exchange.write_model</a>(folder, &quot;TEAM-MOD1-example&quot;, &quot;TEAM-DATA1-example&quot;, body, truth, ...
@@ -404,10 +410,11 @@ body = <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.from_m
 <span class="c">%% Simulated measurements: every inertia quantity is available</span>
 truth_components = [<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, [0 0 0], 0.170, +450), ...
                     <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;, 0, 0.012, -900)];
+[exact, truth] = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>(truth_components), 4, &quot;ex08&quot;);
 unc = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.uncertainties">sbtk.data.uncertainties</a>([<a class="xref xref-fn" href="../reference/api/units.html#sbtk.units.offset_to_degree1">sbtk.units.offset_to_degree1</a>(0.002, 0.43), 1e-4, 2e-4, 4e-4], ...
 <span class="w">                              </span><span class="mf">2e-3</span><span class="p">,</span><span class="w"> </span><span class="k">...</span><span class="c">        % 1-sigma of each inertia element, as a fraction of M R_ref^2</span>
 <span class="w">                              </span><span class="mf">0.02</span><span class="p">);</span><span class="w">           </span><span class="c">% 1-sigma of the libration ratio</span>
-[exact, truth] = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>(truth_components), 4, unc, &quot;ex08&quot;);
+exact = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_uncertainties">sbtk.data.set_uncertainties</a>(exact, unc);
 obs = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise">sbtk.data.add_noise</a>(exact, 1);
 <span class="nb">disp</span><span class="p">(</span><span class="nb">struct2table</span><span class="p">(</span><span class="nb">rmfield</span><span class="p">(</span><span class="n">obs</span><span class="p">.</span><span class="n">moi</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;weights&#39;</span><span class="p">)))</span><span class="w">    </span><span class="c">% Ixx Iyy Izz Ixy Ixz Iyz libration, as I/(M R_ref^2)</span>
 
@@ -462,7 +469,7 @@ fit = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.sol
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#ex01-quick-start">ex01: quick start</a></li><li class="lvl2"><a href="#ex02-shapes-and-bodies">ex02: shapes and bodies</a></li><li class="lvl2"><a href="#ex03-forward-model">ex03: forward model</a></li><li class="lvl2"><a href="#ex04-inversion-options">ex04: inversion options</a></li><li class="lvl2"><a href="#ex05-importing-data">ex05: importing data</a></li><li class="lvl2"><a href="#ex06-results-folders">ex06: results folders</a></li><li class="lvl2"><a href="#ex07-exchange-packages">ex07: exchange packages</a></li><li class="lvl2"><a href="#ex08-moments-of-inertia-and-the-libration-ratio">ex08: moments of inertia and the libration ratio</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=7432480971"></script>
-<script src="../assets/site.js?v=7432480971"></script>
+<script src="../assets/search-index.js?v=f4bdda99ec"></script>
+<script src="../assets/site.js?v=f4bdda99ec"></script>
 </body>
 </html>

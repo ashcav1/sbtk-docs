@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Density estimation — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=7432480971">
-<link rel="stylesheet" href="../assets/pygments.css?v=7432480971">
-<link rel="stylesheet" href="../assets/print.css?v=7432480971" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=f4bdda99ec">
+<link rel="stylesheet" href="../assets/pygments.css?v=f4bdda99ec">
+<link rel="stylesheet" href="../assets/print.css?v=f4bdda99ec" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -164,8 +164,8 @@ unc  = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.uncert
 true_components = [<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, [0.03 -0.02 0.01], 0.17, +500), ...
                    <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.torus">sbtk.interior.torus</a>(&quot;ridge&quot;, 0.37, 0.055, 0, -500), ...
                    <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;, 0, 0.012, -900)];
-[exact, truth] = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>(true_components), 4, unc, &quot;estimation&quot;);
-obs = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise">sbtk.data.add_noise</a>(exact, 1);
+[exact, truth] = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>(true_components), 4, &quot;estimation&quot;);
+obs = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise">sbtk.data.add_noise</a>(<a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_uncertainties">sbtk.data.set_uncertainties</a>(exact, unc), 1);
 
 components = [<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, [0 0 0], 0.17, 0), ...<span class="c">    % geometry fixed, densities estimated</span>
               <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.torus">sbtk.interior.torus</a>(&quot;ridge&quot;, 0.37, 0.055, 0, 0), ...
@@ -186,7 +186,7 @@ examples: <a href="../examples/calculations.html">Calculations</a>.</p>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#procedure">Procedure</a></li><li class="lvl2"><a href="#estimation-problem">Estimation problem</a></li><li class="lvl2"><a href="#sphere-positions">Sphere positions</a></li><li class="lvl2"><a href="#uncertainties">Uncertainties</a></li><li class="lvl2"><a href="#regularization">Regularization</a></li><li class="lvl2"><a href="#data-about-the-center-of-mass">Data about the center of mass</a></li><li class="lvl2"><a href="#settings">Settings</a></li><li class="lvl2"><a href="#example">Example</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=7432480971"></script>
-<script src="../assets/site.js?v=7432480971"></script>
+<script src="../assets/search-index.js?v=f4bdda99ec"></script>
+<script src="../assets/site.js?v=f4bdda99ec"></script>
 </body>
 </html>

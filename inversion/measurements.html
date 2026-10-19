@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Measurement sets — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=7432480971">
-<link rel="stylesheet" href="../assets/pygments.css?v=7432480971">
-<link rel="stylesheet" href="../assets/print.css?v=7432480971" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=f4bdda99ec">
+<link rel="stylesheet" href="../assets/pygments.css?v=f4bdda99ec">
+<link rel="stylesheet" href="../assets/print.css?v=f4bdda99ec" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -44,7 +44,7 @@ measurement rows, the total mass, the reference radius and the expansion origin.
 <tr>
 <td>A simulated interior</td>
 <td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a></td>
-<td>Exact values about the true center of mass; uncertainties from <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.uncertainties"><code>sbtk.data.uncertainties</code></a>; <code>coef_about = 'origin'</code>.</td>
+<td>Exact values about the true center of mass, without uncertainties (they are NaN until set, below); <code>coef_about = 'origin'</code>.</td>
 </tr>
 <tr>
 <td>An SBTK measurement package</td>
@@ -75,15 +75,18 @@ measurement rows, the total mass, the reference radius and the expansion origin.
 </table>
 <h2 id="uncertainties-and-covariance">Uncertainties and covariance<a class="headerlink" href="#uncertainties-and-covariance" title="Link to this section">#</a></h2>
 <ul>
-<li><strong>Simulation.</strong> <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.uncertainties"><code>sbtk.data.uncertainties</code></a> gives one 1σ per degree for the coefficients, one for every inertia
-  element (as a fraction of <span class="nobr"><math alttext="M R_ref^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi><msubsup><mi>R</mi><mtext>ref</mtext><mn>2</mn></msubsup></mrow></math>)</span> and one for the libration ratio. <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a> stores them as a
-  diagonal covariance and as the σ of each inertia row.</li>
+<li><strong>Exact values have none.</strong> <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a> returns the true model's exact values without uncertainties:
+  <code>coef_cov</code> and every inertia σ are NaN. Measurements need them: <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise"><code>sbtk.data.add_noise</code></a>, <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.setup"><code>sbtk.invert.setup</code></a> and
+  <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_data"><code>sbtk.exchange.write_data</code></a> stop with <a class="xref xref-err" href="../reference/errors.html#sbtk:data:noUncertainties"><code>sbtk:data:noUncertainties</code></a> otherwise.</li>
+<li><strong>By degree.</strong> <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_uncertainties"><code>sbtk.data.set_uncertainties</code></a><code>(obs, unc)</code> gives every coefficient of degree <span class="nobr"><math alttext="l" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>l</mi></mrow></math></span> the 1σ of
+  <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.uncertainties"><code>sbtk.data.uncertainties</code></a> for that degree (a diagonal covariance), every inertia element its 1σ (as a fraction of
+  <span class="nobr"><math alttext="M R_ref^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi><msubsup><mi>R</mi><mtext>ref</mtext><mn>2</mn></msubsup></mrow></math>)</span>, and the libration row the 1σ of the ratio times <span class="nobr"><math alttext="I_zz/(M R_ref^2)" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub><mo>&#x0002F;</mo><mo stretchy="false">&#x00028;</mo><mi>M</mi><msubsup><mi>R</mi><mtext>ref</mtext><mn>2</mn></msubsup><mo stretchy="false">&#x00029;</mo></mrow></math>.</span></li>
 <li><strong>From another data set.</strong> <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.use_uncertainties"><code>sbtk.data.use_uncertainties</code></a> gives every coefficient that a reference data set also
   contains the reference's variances and covariances, converted to the reference radius of the target by
   <span class="nobr"><math alttext="(R/R&#x27;)^l" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>R</mi><mo>&#x0002F;</mo><msup><mi>R</mi><mi>&#x02032;</mi></msup><msup><mo stretchy="false">&#x00029;</mo><mi>l</mi></msup></mrow></math>.</span> Coefficients the reference lacks keep their variances and become uncorrelated with the others.</li>
 <li><strong>Full covariance.</strong> <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_covariance"><code>sbtk.data.set_covariance</code></a> replaces the coefficient covariance with any symmetric positive
   definite matrix in the order of <a class="xref xref-field" href="../reference/data-structures.html#obs.coef_labels"><code>obs.coef_labels</code></a>.</li>
-<li><strong>Inertia rows.</strong> <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_moi_sigma"><code>sbtk.data.set_moi_sigma</code></a> sets the σ of named rows.</li>
+<li><strong>Inertia rows.</strong> <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_moi_sigma"><code>sbtk.data.set_moi_sigma</code></a> sets the σ of named rows; the field <code>libration</code> gives the 1σ of the ratio.</li>
 </ul>
 <h2 id="noise">Noise<a class="headerlink" href="#noise" title="Link to this section">#</a></h2>
 <p><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise"><code>sbtk.data.add_noise</code></a><code>(obs, seed)</code> returns one realization: the coefficients plus <span class="nobr"><math alttext="Lz" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>L</mi><mi>&#x1D433;</mi></mrow></math>,</span> with <span class="nobr"><math alttext="L" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>L</mi></mrow></math></span> the lower
@@ -153,7 +156,7 @@ set, selection of inertia rows, and reading files.</p>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#sources">Sources</a></li><li class="lvl2"><a href="#uncertainties-and-covariance">Uncertainties and covariance</a></li><li class="lvl2"><a href="#noise">Noise</a></li><li class="lvl2"><a href="#inertia-measurements-and-the-center-of-mass">Inertia measurements and the center of mass</a></li><li class="lvl2"><a href="#selecting-measurements">Selecting measurements</a></li><li class="lvl2"><a href="#example">Example</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=7432480971"></script>
-<script src="../assets/site.js?v=7432480971"></script>
+<script src="../assets/search-index.js?v=f4bdda99ec"></script>
+<script src="../assets/site.js?v=f4bdda99ec"></script>
 </body>
 </html>
