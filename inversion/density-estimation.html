@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en" data-root="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Density estimation — SBTK documentation</title>
+<link rel="stylesheet" href="../assets/site.css?v=eb13bdaf5f">
+<link rel="stylesheet" href="../assets/pygments.css?v=eb13bdaf5f">
+<link rel="stylesheet" href="../assets/print.css?v=eb13bdaf5f" media="print">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="topbar">
+  <button class="navtoggle" type="button" aria-controls="sidebar" aria-expanded="false">Contents</button>
+  <a class="sitename" href="../index.html">SBTK documentation</a>
+  <span class="version">version 1.0.0</span>
+  <div class="search" role="search">
+    <label for="search-input" class="visually-hidden">Search the documentation</label>
+    <input id="search-input" type="search" placeholder="Search (press /)" autocomplete="off"
+           aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+    <ul id="search-results" role="listbox" hidden></ul>
+  </div>
+  <a class="toplink" href="../print.html">Single-page version</a>
+  <a class="toplink" href="../SBTK_handbook.pdf">PDF handbook</a>
+</header>
+<div class="frame">
+<nav id="sidebar" class="sidebar" aria-label="Documentation pages"><ul><li class="navcat"><span class="navcat-title">Overview</span><ul><li><a href="../index.html">SBTK: Small Body Toolkit</a></li><li><a href="../overview/limitations.html">Assumptions and limitations</a></li></ul></li><li class="navcat"><span class="navcat-title">Getting started</span><ul><li><a href="../getting-started/installation.html">Installation</a></li><li><a href="../getting-started/first-script.html">First script</a></li></ul></li><li class="navcat"><span class="navcat-title">Conventions</span><ul><li><a href="../conventions/units.html">Units</a></li><li><a href="../conventions/coordinates.html">Coordinate systems and origins</a></li><li><a href="../conventions/gravity-coefficients.html">Gravity coefficients</a></li><li><a href="../conventions/moments-of-inertia.html">Moments of inertia</a></li></ul></li><li class="navcat"><span class="navcat-title">Models and calculations</span><ul><li><a href="../models/shape-models.html">Shape models</a></li><li><a href="../models/density-distributions.html">Density distributions</a></li><li><a href="../models/forward-model.html">Gravity and moment calculations</a></li></ul></li><li class="navcat"><span class="navcat-title">Measurements and inversion</span><ul><li><a href="../inversion/measurements.html">Measurement sets</a></li><li><a href="../inversion/density-estimation.html" aria-current="page" class="current">Density estimation</a></li><li><a href="../inversion/statistics.html">Goodness of fit and model comparison</a></li></ul></li><li class="navcat"><span class="navcat-title">Files</span><ul><li><a href="../files/results-folders.html">Results folders and figures</a></li><li><a href="../files/exchange-packages.html">Exchange packages</a></li></ul></li><li class="navcat"><span class="navcat-title">Examples</span><ul><li><a href="../examples/density-models.html">Density models by component type</a></li><li><a href="../examples/calculations.html">Calculations</a></li><li><a href="../examples/tutorials.html">Tutorial scripts</a></li></ul></li><li class="navcat"><span class="navcat-title">Projects</span><ul><li><a href="../projects/template.html">Project template</a></li><li><a href="../projects/bennu.html">Bennu</a></li><li><a href="../projects/hera-blind-test.html">Hera blind test</a></li></ul></li><li class="navcat"><span class="navcat-title">Reference</span><ul><li><a href="../reference/api.html">API reference</a></li><li><a href="../reference/api/sbtk.html">sbtk</a></li><li><a href="../reference/api/units.html">sbtk.units</a></li><li><a href="../reference/api/shape.html">sbtk.shape</a></li><li><a href="../reference/api/body.html">sbtk.body</a></li><li><a href="../reference/api/interior.html">sbtk.interior</a></li><li><a href="../reference/api/gravity.html">sbtk.gravity</a></li><li><a href="../reference/api/data.html">sbtk.data</a></li><li><a href="../reference/api/invert.html">sbtk.invert</a></li><li><a href="../reference/api/compare.html">sbtk.compare</a></li><li><a href="../reference/api/exchange.html">sbtk.exchange</a></li><li><a href="../reference/api/io.html">sbtk.io</a></li><li><a href="../reference/api/plot.html">sbtk.plot</a></li><li><a href="../reference/data-structures.html">Data structures</a></li><li><a href="../reference/errors.html">Error identifiers</a></li><li><a href="../reference/internal.html">Internal functions</a></li></ul></li><li class="navcat"><span class="navcat-title">Validation</span><ul><li><a href="../validation/tests.html">Validation and tests</a></li></ul></li></ul></nav>
+<main id="content" tabindex="-1">
+<nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Measurements and inversion › <span aria-current="page">Density estimation</span></nav>
+<article>
+<h1 id="top" id="density-estimation">Density estimation<a class="headerlink" href="#density-estimation" title="Link to this section">#</a></h1>
+<p>The inversion estimates the background density and the relative densities of a set of components of fixed geometry
+(and optionally sphere centers) from a measurement set.</p>
+<h2 id="procedure">Procedure<a class="headerlink" href="#procedure" title="Link to this section">#</a></h2>
+<p><a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.setup"><code>sbtk.invert.setup</code></a><code>(body, components, obs, opts)</code> builds the geometry about <a class="xref xref-field" href="../reference/data-structures.html#obs.origin_km"><code>obs.origin_km</code></a> and the design matrix
+once (<a class="xref xref-st" href="../reference/data-structures.html#prob"><code>prob</code></a>); <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.run"><code>sbtk.invert.run</code></a><code>(prob)</code> solves. <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.solve"><code>sbtk.invert.solve</code></a> does both. Reusing <code>prob</code> is faster when the
+same problem is solved more than once:</p>
+<ul>
+<li>with other settings that do not select measurements (<code>prob.opts.regularization</code>, bounds, positions);</li>
+<li>for a homogeneous body (<a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.homogeneous"><code>sbtk.invert.homogeneous</code></a>);</li>
+<li>for other realizations of the same measurements (<a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.replace_data"><code>sbtk.invert.replace_data</code></a>).</li>
+</ul>
+<h2 id="estimation-problem">Estimation problem<a class="headerlink" href="#estimation-problem" title="Link to this section">#</a></h2>
+<p>Let <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D432;</mi></mrow></math></span> be the <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>n</mi></mrow></math></span> measurements (the selected coefficients followed by the inertia rows named in
+<a class="xref xref-field" href="../reference/data-structures.html#opts.moi_labels"><code>opts.moi_labels</code></a>) with covariance <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003A3;</mi><mo>&#x0003D;</mo><mi>L</mi><msup><mi>L</mi><mi>&#x1D5B3;</mi></msup></mrow></math>.</span> The predictions are linear in the densities:</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>&#x1D432;</mi><mtext>pred</mtext></msub><mo>&#x0003D;</mo><msub><mi>&#x003C1;</mi><mtext>bg</mtext></msub><mspace width="0.167em" /><msub><mi>&#x1D420;</mi><mtext>body</mtext></msub><mo>&#x0002B;</mo><munderover><mo>&#x02211;</mo><mrow><mi>c</mi><mo>&#x0003D;</mo><mn>1</mn></mrow><mrow><msub><mi>n</mi><mi>c</mi></msub></mrow></munderover><mi>&#x00394;</mi><msub><mi>&#x003C1;</mi><mi>c</mi></msub><mspace width="0.167em" /><msub><mi>&#x1D420;</mi><mi>c</mi></msub><mo>&#x0002C;</mo></mrow></math>
+<p>where <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x1D420;</mi><mtext>body</mtext></msub></mrow></math></span> and <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x1D420;</mi><mi>c</mi></msub></mrow></math></span> are the measurements of a unit density in the whole body and in component
+<span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>c</mi></mrow></math></span> (<a class="xref xref-field" href="../reference/data-structures.html#prob.gbody"><code>prob.gbody</code></a>, <a class="xref xref-field" href="../reference/data-structures.html#prob.G"><code>prob.G</code></a>). The unknowns <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D431;</mi><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><msub><mi>&#x003C1;</mi><mtext>bg</mtext></msub><mo>&#x0002C;</mo><mi>&#x00394;</mi><msub><mi>&#x003C1;</mi><mn>1</mn></msub><mo>&#x0002C;</mo><mi>&#x02026;</mi><mo>&#x0002C;</mo><mi>&#x00394;</mi><msub><mi>&#x003C1;</mi><mrow><msub><mi>n</mi><mi>c</mi></msub></mrow></msub><mo stretchy="false">&#x00029;</mo></mrow></math></span> minimize</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mo minsize="1.2em" maxsize="1.2em">\lVert</mo><msup><mi>L</mi><mrow><mo>&#x02212;</mo><mn>1</mn></mrow></msup><mo stretchy="false">&#x00028;</mo><msub><mi>&#x1D432;</mi><mtext>pred</mtext></msub><mo>&#x02212;</mo><mi>&#x1D432;</mi><mo stretchy="false">&#x00029;</mo><msup><mo minsize="1.2em" maxsize="1.2em">\rVert</mo><mn>2</mn></msup><mo>&#x0002B;</mo><mi>&#x003BB;</mi><munder><mo>&#x02211;</mo><mi>c</mi></munder><msup><mrow><mo stretchy="true" fence="true" form="prefix">&#x00028;</mo><mfrac><mrow><mi>&#x00394;</mi><msub><mi>&#x003C1;</mi><mi>c</mi></msub></mrow><mrow><mover><mi>&#x003C1;</mi><mo stretchy="true">&#x000AF;</mo></mover></mrow></mfrac><mo stretchy="true" fence="true" form="postfix">&#x00029;</mo></mrow><mn>2</mn></msup></mrow></math>
+<p>subject to</p>
+<ul>
+<li>the <strong>mass constraint</strong> <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003C1;</mi><mtext>bg</mtext></msub><mi>V</mi><mo>&#x0002B;</mo><msub><mo>&#x02211;</mo><mi>c</mi></msub><mi>&#x00394;</mi><msub><mi>&#x003C1;</mi><mi>c</mi></msub><msub><mi>V</mi><mi>c</mi></msub><mo>&#x0003D;</mo><mi>M</mi></mrow></math>,</span> with <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>V</mi><mi>c</mi></msub></mrow></math></span> the volume of component <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>c</mi></mrow></math></span> inside the
+  body and <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi></mrow></math></span> = <a class="xref xref-field" href="../reference/data-structures.html#obs.mass_kg"><code>obs.mass_kg</code></a>;</li>
+<li>the <strong>bounds</strong> <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>0</mn><mo>&#x02264;</mo><msub><mi>&#x003C1;</mi><mtext>bg</mtext></msub><mo>&#x02264;</mo><msub><mi>&#x003C1;</mi><mtext>max</mtext></msub></mrow></math></span> and <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>0</mn><mo>&#x02264;</mo><msub><mi>&#x003C1;</mi><mtext>bg</mtext></msub><mo>&#x0002B;</mo><mi>&#x00394;</mi><msub><mi>&#x003C1;</mi><mi>c</mi></msub><mo>&#x02264;</mo><msub><mi>&#x003C1;</mi><mtext>max</mtext></msub></mrow></math></span> for every
+  component, with <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003C1;</mi><mtext>max</mtext></msub></mrow></math></span> = <a class="xref xref-field" href="../reference/data-structures.html#opts.rho_max_kgm3"><code>opts.rho_max_kgm3</code></a>;</li>
+<li><strong>fixed parameters</strong>: with <code>opts.background = "bulk"</code> the background is held at the bulk density <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mover><mi>&#x003C1;</mi><mo stretchy="true">&#x000AF;</mo></mover><mo>&#x0003D;</mo><mi>M</mi><mo>&#x0002F;</mo><mi>V</mi></mrow></math>;</span>
+  components with <a class="xref xref-field" href="../reference/data-structures.html#component.estimate_density"><code>component.estimate_density</code></a> false keep their relative density.</li>
+</ul>
+<p><span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BB;</mi></mrow></math></span> is the Tikhonov parameter <a class="xref xref-field" href="../reference/data-structures.html#opts.regularization"><code>opts.regularization</code></a>. The problem is solved with <code>lsqlin</code>, first with the
+active-set algorithm and, if that does not converge, with the interior-point algorithm; if neither converges the run
+stops with <a class="xref xref-err" href="../reference/errors.html#sbtk:invert:solver"><code>sbtk:invert:solver</code></a>.</p>
+<h2 id="sphere-positions">Sphere positions<a class="headerlink" href="#sphere-positions" title="Link to this section">#</a></h2>
+<p>Spheres with <a class="xref xref-field" href="../reference/data-structures.html#component.estimate_position"><code>component.estimate_position</code></a> true have their centers estimated as well, by Gauss–Newton iteration:</p>
+<ul>
+<li>each step linearizes the measurements in the three center coordinates and solves the bounded problem with the
+  position steps limited to <a class="xref xref-field" href="../reference/data-structures.html#opts.step_km"><code>opts.step_km</code></a> (trust region);</li>
+<li>a step that does not lower the objective is undone and the step limit halved; a successful step restores it;</li>
+<li>spheres are kept inside the body;</li>
+<li>with <a class="xref xref-field" href="../reference/data-structures.html#opts.position_sigma_km"><code>opts.position_sigma_km</code></a> finite, each coordinate has an a priori constraint of that 1σ about its starting
+  value, which is needed when the measurements do not determine all estimated centers;</li>
+<li>iteration stops when the objective changes by less than 10⁻¹⁰ relative, or after <a class="xref xref-field" href="../reference/data-structures.html#opts.max_iter"><code>opts.max_iter</code></a> iterations.</li>
+</ul>
+<h2 id="uncertainties">Uncertainties<a class="headerlink" href="#uncertainties" title="Link to this section">#</a></h2>
+<p>The covariance of the parameters is the linearized one at the solution, with the mass constraint and the fixed
+parameters eliminated:</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>P</mi><mo>&#x0003D;</mo><mi>Z</mi><mspace width="0.167em" /><mo stretchy="false">&#x00028;</mo><msup><mi>Z</mi><mi>&#x1D5B3;</mi></msup><msup><mi>J</mi><mi>&#x1D5B3;</mi></msup><mi>J</mi><mi>Z</mi><msup><mo stretchy="false">&#x00029;</mo><mrow><mo>&#x02212;</mo><mn>1</mn></mrow></msup><msup><mi>Z</mi><mi>&#x1D5B3;</mi></msup><mo>&#x0002C;</mo></mrow></math>
+<p>where <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>J</mi></mrow></math></span> is the whitened Jacobian of the measurements with the regularization and a priori rows appended, and the
+columns of <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>Z</mi></mrow></math></span> span the null space of the mass constraint and the fixed parameters. If <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>Z</mi><mi>&#x1D5B3;</mi></msup><msup><mi>J</mi><mi>&#x1D5B3;</mi></msup><mi>J</mi><mi>Z</mi></mrow></math></span> is
+singular (the measurements do not determine every free parameter), the pseudo-inverse is used and
+<a class="xref xref-field" href="../reference/data-structures.html#fit.determined"><code>fit.determined</code></a> is false. The bounds are not included in <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>P</mi></mrow></math>;</span> <a class="xref xref-field" href="../reference/data-structures.html#fit.at_bound"><code>fit.at_bound</code></a> marks densities at a bound.</p>
+<p>The density of a component and its 1σ are <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003C1;</mi><mtext>bg</mtext></msub><mo>&#x0002B;</mo><mi>&#x00394;</mi><msub><mi>&#x003C1;</mi><mi>c</mi></msub></mrow></math></span> and
+<span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msqrt><mrow><msub><mi>P</mi><mrow><mtext>bg</mtext><mo>&#x0002C;</mo><mtext>bg</mtext></mrow></msub><mo>&#x0002B;</mo><msub><mi>P</mi><mrow><mi>c</mi><mi>c</mi></mrow></msub><mo>&#x0002B;</mo><mn>2</mn><msub><mi>P</mi><mrow><mtext>bg</mtext><mo>&#x0002C;</mo><mi>c</mi></mrow></msub></mrow></msqrt></mrow></math></span> (<a class="xref xref-field" href="../reference/data-structures.html#fit.rho_kgm3"><code>fit.rho_kgm3</code></a>, <a class="xref xref-field" href="../reference/data-structures.html#fit.rho_sigma_kgm3"><code>fit.rho_sigma_kgm3</code></a>).
+<a class="xref xref-field" href="../reference/data-structures.html#fit.resolved"><code>fit.resolved</code></a> marks components whose relative density exceeds its 1σ. The validation tests check over 40 noise
+realizations that the standard deviation of (estimate − truth)/σ is within 0.25 of 1, with diagonal and with strongly
+correlated covariances (<a href="../validation/tests.html">Validation</a>).</p>
+<h2 id="regularization">Regularization<a class="headerlink" href="#regularization" title="Link to this section">#</a></h2>
+<p>Models with many components, such as a <a href="../models/density-distributions.html#sector-grids">sector grid</a>, or weak data
+need Tikhonov regularization to keep noise from producing large alternating densities.
+<a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.choose_regularization"><code>sbtk.invert.choose_regularization</code></a> returns the largest <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BB;</mi></mrow></math></span> for which</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup><mo>&#x02264;</mo><mo>max</mo><mspace width="negativethinmathspace" /><mrow><mo stretchy="true" fence="true" form="prefix">&#x00028;</mo><mi>n</mi><mo>&#x0002C;</mo><mtext>&#x000A0;</mtext><msubsup><mi>&#x003C7;</mi><mtext>min</mtext><mn>2</mn></msubsup><mo>&#x0002B;</mo><msqrt><mrow><mn>2</mn><mi>n</mi></mrow></msqrt><mo stretchy="true" fence="true" form="postfix">&#x00029;</mo></mrow><mo>&#x0002C;</mo></mrow></math>
+<p>with <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>n</mi></mrow></math></span> the number of measurements and <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msubsup><mi>&#x003C7;</mi><mtext>min</mtext><mn>2</mn></msubsup></mrow></math></span> the value at <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BB;</mi><mo>&#x0003D;</mo><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>2</mn></mrow></msup></mrow></math></span> (the discrepancy principle):
+<span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> may rise by about one standard deviation of its distribution. It searches <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>log</mi><mrow><mn>10</mn></mrow></msub><mi>&#x003BB;</mi><mo>&#x02208;</mo><mo stretchy="false">[</mo><mo>&#x02212;</mo><mn>2</mn><mo>&#x0002C;</mo><mn>8</mn><mo stretchy="false">]</mo></mrow></math></span> by
+bisection with 9 solves; the result is returned, not stored, so set <code>prob.opts.regularization</code> before the final run.</p>
+<h2 id="data-about-the-center-of-mass">Data about the center of mass<a class="headerlink" href="#data-about-the-center-of-mass" title="Link to this section">#</a></h2>
+<p>When <a class="xref xref-field" href="../reference/data-structures.html#obs.coef_about"><code>obs.coef_about</code></a> is <code>'center_of_mass'</code>, the coefficients of degree 2 and higher are about the body's center of
+mass, which is known only through its measurement (the degree-1 rows). Expanding the model about the <em>measured</em>
+center of mass would carry the error of that measurement into the predictions: a translation of the expansion point
+changes the coefficients of degree <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>l</mi></mrow></math></span> by terms proportional to those of lower degrees. <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.run"><code>sbtk.invert.run</code></a> therefore</p>
+<ol>
+<li>keeps the model where it is: its geometry is built about the measured center of mass (<a class="xref xref-field" href="../reference/data-structures.html#fit.origin_km"><code>fit.origin_km</code></a>), from which
+   layers and sectors are measured;</li>
+<li>moves its predicted coefficients of degree ≥ 2 and inertia to the model's own center of mass, by the exact
+   translation of solid harmonics (<a class="xref xref-fn" href="../reference/internal.html#sbtk.internal.sh_translation"><code>sbtk.internal.sh_translation</code></a>) and the parallel-axis theorem;</li>
+<li>iterates (Gauss–Newton, including the dependence of the center of mass on the densities, <a class="xref xref-field" href="../reference/data-structures.html#prob.D"><code>prob.D</code></a>) until that
+   center moves by less than 1 mm (<a class="xref xref-field" href="../reference/data-structures.html#fit.frame_iterations"><code>fit.frame_iterations</code></a>, <a class="xref xref-field" href="../reference/data-structures.html#fit.frame_offset_km"><code>fit.frame_offset_km</code></a>);</li>
+<li>compares the model's center of mass with the measured one through the degree-1 rows.</li>
+</ol>
+<p><a class="xref xref-field" href="../reference/data-structures.html#fit.com_shift_km"><code>fit.com_shift_km</code></a> is the model's center of mass minus <a class="xref xref-field" href="../reference/data-structures.html#fit.origin_km"><code>fit.origin_km</code></a>. The tests <code>testCenterOfMassFrameMatchesTheTrueFrame</code>
+and <code>testPredictionsAboutTheModelCenterOfMass</code> check that the densities agree with an inversion about the true center
+of mass to within 0.2σ and that the predictions equal a forward model computed from scratch about the fitted center
+of mass (<a href="../validation/tests.html">Validation</a>).</p>
+<h2 id="settings">Settings<a class="headerlink" href="#settings" title="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Setting (<a class="xref xref-st" href="../reference/data-structures.html#opts"><code>opts</code></a>)</th>
+<th>Standard value</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref xref-field" href="../reference/data-structures.html#opts.moi_labels"><code>opts.moi_labels</code></a></td>
+<td><code>{'Ixx','Iyy','Izz'}</code></td>
+<td>Inertia rows fitted; <code>{}</code> for gravity coefficients only.</td>
+</tr>
+<tr>
+<td><a class="xref xref-field" href="../reference/data-structures.html#opts.regularization"><code>opts.regularization</code></a></td>
+<td>0</td>
+<td>Tikhonov parameter <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BB;</mi></mrow></math>.</span></td>
+</tr>
+<tr>
+<td><a class="xref xref-field" href="../reference/data-structures.html#opts.background"><code>opts.background</code></a></td>
+<td><code>"estimate"</code></td>
+<td><code>"bulk"</code> holds the background at <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi><mo>&#x0002F;</mo><mi>V</mi></mrow></math>.</span></td>
+</tr>
+<tr>
+<td><a class="xref xref-field" href="../reference/data-structures.html#opts.rho_max_kgm3"><code>opts.rho_max_kgm3</code></a></td>
+<td>4500</td>
+<td>Upper bound on every density, kg/m³.</td>
+</tr>
+<tr>
+<td><a class="xref xref-field" href="../reference/data-structures.html#opts.max_iter"><code>opts.max_iter</code></a></td>
+<td>20</td>
+<td>Gauss–Newton iterations for sphere positions.</td>
+</tr>
+<tr>
+<td><a class="xref xref-field" href="../reference/data-structures.html#opts.step_km"><code>opts.step_km</code></a></td>
+<td>0.010</td>
+<td>Trust-region radius, km.</td>
+</tr>
+<tr>
+<td><a class="xref xref-field" href="../reference/data-structures.html#opts.position_sigma_km"><code>opts.position_sigma_km</code></a></td>
+<td><code>Inf</code></td>
+<td>A priori 1σ of center coordinates, km.</td>
+</tr>
+</tbody>
+</table>
+<p><a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.options"><code>sbtk.invert.options</code></a><code>(Name=Value)</code> changes any of them; the fields can also be set afterwards.</p>
+<h2 id="example">Example<a class="headerlink" href="#example" title="Link to this section">#</a></h2>
+<div class="codeblock codeblock-code" id="estimation-example"><div class="codehead"><span>MATLAB script: Estimation with several settings</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><span class="nb">run</span><span class="p">(</span><span class="s">&quot;/path/to/SBTK/sbtk_setup.m&quot;</span><span class="p">)</span>
+body = <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.from_mass">sbtk.body.from_mass</a>(&quot;Didymos&quot;, <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.bundled">sbtk.shape.bundled</a>(&quot;didymos&quot;), 5.273e11, 0.43);
+unc  = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.uncertainties">sbtk.data.uncertainties</a>([<a class="xref xref-fn" href="../reference/api/units.html#sbtk.units.offset_to_degree1">sbtk.units.offset_to_degree1</a>(0.002, 0.43), 1e-4, 2e-4, 4e-4], 2e-3, 0.02);
+true_components = [<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, [0.03 -0.02 0.01], 0.17, +500), ...
+                   <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.torus">sbtk.interior.torus</a>(&quot;ridge&quot;, 0.37, 0.055, 0, -500), ...
+                   <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;, 0, 0.012, -900)];
+[exact, truth] = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>(true_components), 4, unc, &quot;estimation&quot;);
+obs = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise">sbtk.data.add_noise</a>(exact, 1);
+
+components = [<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, [0 0 0], 0.17, 0), ...<span class="c">    % geometry fixed, densities estimated</span>
+              <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.torus">sbtk.interior.torus</a>(&quot;ridge&quot;, 0.37, 0.055, 0, 0), ...
+              <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;, 0, 0.012, 0)];
+prob = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.setup">sbtk.invert.setup</a>(body, components, obs, <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.options">sbtk.invert.options</a>());
+hom  = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.homogeneous">sbtk.invert.homogeneous</a>(prob);                                  <span class="c">% is structure required?</span>
+fit  = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.run">sbtk.invert.run</a>(prob);
+<a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.summary">sbtk.invert.summary</a>(fit)
+
+<span class="n">moving</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">components</span><span class="p">;</span><span class="w">  </span><span class="n">moving</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">estimate_position</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w">              </span><span class="c">% estimate the core center as well</span>
+fit_p  = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.solve">sbtk.invert.solve</a>(body, moving, obs);
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&quot;core center [%.0f %.0f %.0f] m +- [%.0f %.0f %.0f] m\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">1e3</span><span class="o">*</span><span class="n">fit_p</span><span class="p">.</span><span class="n">components</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">center_km</span><span class="p">,</span><span class="w"> </span><span class="mf">1e3</span><span class="o">*</span><span class="n">fit_p</span><span class="p">.</span><span class="n">center_sigma_km</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="p">:))</span></code></pre></div>
+<p>The true core is at (30, −20, 10) m from the shape-model origin; the fixed-geometry fit places it at the origin. More
+examples: <a href="../examples/calculations.html">Calculations</a>.</p>
+</article>
+<nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../inversion/measurements.html" rel="prev"><span>Previous</span>Measurement sets</a><a class="next" href="../inversion/statistics.html" rel="next"><span>Next</span>Goodness of fit and model comparison</a></nav>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-19.</footer>
+</main>
+<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#procedure">Procedure</a></li><li class="lvl2"><a href="#estimation-problem">Estimation problem</a></li><li class="lvl2"><a href="#sphere-positions">Sphere positions</a></li><li class="lvl2"><a href="#uncertainties">Uncertainties</a></li><li class="lvl2"><a href="#regularization">Regularization</a></li><li class="lvl2"><a href="#data-about-the-center-of-mass">Data about the center of mass</a></li><li class="lvl2"><a href="#settings">Settings</a></li><li class="lvl2"><a href="#example">Example</a></li></ul></nav>
+</div>
+<script src="../assets/search-index.js?v=eb13bdaf5f"></script>
+<script src="../assets/site.js?v=eb13bdaf5f"></script>
+</body>
+</html>

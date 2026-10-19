@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="en" data-root="../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>sbtk.io — SBTK documentation</title>
+<link rel="stylesheet" href="../../assets/site.css?v=eb13bdaf5f">
+<link rel="stylesheet" href="../../assets/pygments.css?v=eb13bdaf5f">
+<link rel="stylesheet" href="../../assets/print.css?v=eb13bdaf5f" media="print">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="topbar">
+  <button class="navtoggle" type="button" aria-controls="sidebar" aria-expanded="false">Contents</button>
+  <a class="sitename" href="../../index.html">SBTK documentation</a>
+  <span class="version">version 1.0.0</span>
+  <div class="search" role="search">
+    <label for="search-input" class="visually-hidden">Search the documentation</label>
+    <input id="search-input" type="search" placeholder="Search (press /)" autocomplete="off"
+           aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+    <ul id="search-results" role="listbox" hidden></ul>
+  </div>
+  <a class="toplink" href="../../print.html">Single-page version</a>
+  <a class="toplink" href="../../SBTK_handbook.pdf">PDF handbook</a>
+</header>
+<div class="frame">
+<nav id="sidebar" class="sidebar" aria-label="Documentation pages"><ul><li class="navcat"><span class="navcat-title">Overview</span><ul><li><a href="../../index.html">SBTK: Small Body Toolkit</a></li><li><a href="../../overview/limitations.html">Assumptions and limitations</a></li></ul></li><li class="navcat"><span class="navcat-title">Getting started</span><ul><li><a href="../../getting-started/installation.html">Installation</a></li><li><a href="../../getting-started/first-script.html">First script</a></li></ul></li><li class="navcat"><span class="navcat-title">Conventions</span><ul><li><a href="../../conventions/units.html">Units</a></li><li><a href="../../conventions/coordinates.html">Coordinate systems and origins</a></li><li><a href="../../conventions/gravity-coefficients.html">Gravity coefficients</a></li><li><a href="../../conventions/moments-of-inertia.html">Moments of inertia</a></li></ul></li><li class="navcat"><span class="navcat-title">Models and calculations</span><ul><li><a href="../../models/shape-models.html">Shape models</a></li><li><a href="../../models/density-distributions.html">Density distributions</a></li><li><a href="../../models/forward-model.html">Gravity and moment calculations</a></li></ul></li><li class="navcat"><span class="navcat-title">Measurements and inversion</span><ul><li><a href="../../inversion/measurements.html">Measurement sets</a></li><li><a href="../../inversion/density-estimation.html">Density estimation</a></li><li><a href="../../inversion/statistics.html">Goodness of fit and model comparison</a></li></ul></li><li class="navcat"><span class="navcat-title">Files</span><ul><li><a href="../../files/results-folders.html">Results folders and figures</a></li><li><a href="../../files/exchange-packages.html">Exchange packages</a></li></ul></li><li class="navcat"><span class="navcat-title">Examples</span><ul><li><a href="../../examples/density-models.html">Density models by component type</a></li><li><a href="../../examples/calculations.html">Calculations</a></li><li><a href="../../examples/tutorials.html">Tutorial scripts</a></li></ul></li><li class="navcat"><span class="navcat-title">Projects</span><ul><li><a href="../../projects/template.html">Project template</a></li><li><a href="../../projects/bennu.html">Bennu</a></li><li><a href="../../projects/hera-blind-test.html">Hera blind test</a></li></ul></li><li class="navcat"><span class="navcat-title">Reference</span><ul><li><a href="../../reference/api.html">API reference</a></li><li><a href="../../reference/api/sbtk.html">sbtk</a></li><li><a href="../../reference/api/units.html">sbtk.units</a></li><li><a href="../../reference/api/shape.html">sbtk.shape</a></li><li><a href="../../reference/api/body.html">sbtk.body</a></li><li><a href="../../reference/api/interior.html">sbtk.interior</a></li><li><a href="../../reference/api/gravity.html">sbtk.gravity</a></li><li><a href="../../reference/api/data.html">sbtk.data</a></li><li><a href="../../reference/api/invert.html">sbtk.invert</a></li><li><a href="../../reference/api/compare.html">sbtk.compare</a></li><li><a href="../../reference/api/exchange.html">sbtk.exchange</a></li><li><a href="../../reference/api/io.html" aria-current="page" class="current">sbtk.io</a></li><li><a href="../../reference/api/plot.html">sbtk.plot</a></li><li><a href="../../reference/data-structures.html">Data structures</a></li><li><a href="../../reference/errors.html">Error identifiers</a></li><li><a href="../../reference/internal.html">Internal functions</a></li></ul></li><li class="navcat"><span class="navcat-title">Validation</span><ul><li><a href="../../validation/tests.html">Validation and tests</a></li></ul></li></ul></nav>
+<main id="content" tabindex="-1">
+<nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../../index.html">Documentation</a> › Reference › <span aria-current="page">sbtk.io</span></nav>
+<article>
+<h1 id="top"><code>sbtk.io</code>: Results folders and text files</h1>
+<table class="overview"><thead><tr><th>Function</th><th>Purpose</th></tr></thead><tbody>
+<tr><td><a class="xref xref-fn" href="#sbtk.io.finish_run"><code>finish_run</code></a></td><td>Stop the run's log and say where the results are.</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.io.latest_run"><code>latest_run</code></a></td><td>Folder of the most recent run with a given name.</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.io.load_fit"><code>load_fit</code></a></td><td>Inversion result from a run folder (<code>fit.mat</code>) or a .mat file holding the variable fit.</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.io.load_measurements"><code>load_measurements</code></a></td><td>Measurements from a run folder, a .mat file or a text file.</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.io.load_truth"><code>load_truth</code></a></td><td>True model from a run folder or a .mat file.</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.io.new_run"><code>new_run</code></a></td><td>Create a results folder for one run and start its log.</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.io.read_jpl_gravity"><code>read_jpl_gravity</code></a></td><td>Measurements from a JPL SSD gravity-field file (normalized coefficients + covariance).</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.io.read_measurements"><code>read_measurements</code></a></td><td>Measurement set from the SBTK text format.</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.io.report_comparison"><code>report_comparison</code></a></td><td>Save, print and plot a comparison with the true model.</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.io.report_inversion"><code>report_inversion</code></a></td><td>Save, print and plot an inversion result.</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.io.report_simulation"><code>report_simulation</code></a></td><td>Save, print and plot synthetic measurements and their true model.</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.io.save_comparison"><code>save_comparison</code></a></td><td>comparison.mat and comparison.txt in the run folder.</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.io.save_figure"><code>save_figure</code></a></td><td>Save a figure as figures/&lt;name&gt;.png (200 dpi) in the run folder.</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.io.save_fit"><code>save_fit</code></a></td><td><code>fit.mat</code> and <code>fit.txt</code> in the run folder.</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.io.save_measurements"><code>save_measurements</code></a></td><td>measurements.mat and measurements.txt in the run folder.</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.io.save_settings"><code>save_settings</code></a></td><td>Write the settings of a run to <code>settings.json</code> (readable, reproducible).</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.io.save_truth"><code>save_truth</code></a></td><td><code>truth.mat</code> and <code>truth.txt</code> in the run folder.</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.io.subfolder"><code>subfolder</code></a></td><td>A subfolder of a run folder that the save and report functions write to.</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.io.write_comparison"><code>write_comparison</code></a></td><td>Plain-text copy of a comparison with the true model.</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.io.write_fit"><code>write_fit</code></a></td><td>Plain-text summary of an inversion result.</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.io.write_measurements"><code>write_measurements</code></a></td><td>Plain-text copy of a measurement set (read back by <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.read_measurements">sbtk.io.read_measurements</a>).</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.io.write_truth"><code>write_truth</code></a></td><td>Plain-text description of a true model (keep private in blind tests).</td></tr>
+</tbody></table>
+<section class="api-entry" id="sbtk.io.finish_run">
+<h2 class="api-name" id="sbtk.io.finish_run-h"><code>sbtk.io.finish_run</code><a class="headerlink" href="#sbtk.io.finish_run" title="Link to sbtk.io.finish_run">#</a></h2>
+<p class="api-summary">Stop the run's log and say where the results are.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.finish_run">sbtk.io.finish_run</a>(out)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.io.finish_run.out"><td data-label="Name"><code>out</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">Results folder whose log to close. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#out"><code>out</code></a>. </td></tr>
+</tbody></table>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">out = <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.new_run">sbtk.io.new_run</a>(&quot;my_project&quot;, &quot;T1&quot;);
+<span class="c">% ... everything printed until here goes to out.folder/log.txt</span>
+<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.finish_run">sbtk.io.finish_run</a>(out);</code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.new_run"><code>sbtk.io.new_run</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+io/finish_run.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="sbtk.io.latest_run">
+<h2 class="api-name" id="sbtk.io.latest_run-h"><code>sbtk.io.latest_run</code><a class="headerlink" href="#sbtk.io.latest_run" title="Link to sbtk.io.latest_run">#</a></h2>
+<p class="api-summary">Folder of the most recent run with a given name.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">folder = <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.latest_run">sbtk.io.latest_run</a>(project, name)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.io.latest_run.project"><td data-label="Name"><code>project</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">Project name. </td></tr>
+<tr id="sbtk.io.latest_run.name"><td data-label="Name"><code>name</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">Run name; only folders whose name after the time stamp equals it match. </td></tr>
+</tbody></table>
+<h3 class="api-sub">Outputs</h3><table class="params outputs"><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.io.latest_run.out.folder"><td data-label="Name"><code>folder</code></td><td data-label="Description">Path of the newest matching run folder.</td></tr>
+</tbody></table>
+<h3 class="api-sub">Example</h3><p>an inversion reads the newest simulation run</p>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">obs = <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.load_measurements">sbtk.io.load_measurements</a>(<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.latest_run">sbtk.io.latest_run</a>(&quot;hera_hlp6&quot;, &quot;didymos_T1&quot;));</code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.load_measurements"><code>sbtk.io.load_measurements</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="../../reference/api/sbtk.html#sbtk.root"><code>sbtk.root</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+io/latest_run.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="sbtk.io.load_fit">
+<h2 class="api-name" id="sbtk.io.load_fit-h"><code>sbtk.io.load_fit</code><a class="headerlink" href="#sbtk.io.load_fit" title="Link to sbtk.io.load_fit">#</a></h2>
+<p class="api-summary">Inversion result from a run folder (<code>fit.mat</code>) or a .mat file holding the variable fit.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">fit = <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.load_fit">sbtk.io.load_fit</a>(source)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.io.load_fit.source"><td data-label="Name"><code>source</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">A run folder (reads <code>fit.mat</code>) or a .mat file holding the variable fit. </td></tr>
+</tbody></table>
+<h3 class="api-sub">Outputs</h3><table class="params outputs"><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.io.load_fit.out.fit"><td data-label="Name"><code>fit</code></td><td data-label="Description">Inversion result. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#fit"><code>fit</code></a>.</td></tr>
+</tbody></table>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">fit = <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.load_fit">sbtk.io.load_fit</a>(<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.latest_run">sbtk.io.latest_run</a>(&quot;hera_hlp6&quot;, &quot;didymos_T1_inversion&quot;));</code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.latest_run"><code>sbtk.io.latest_run</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+io/load_fit.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="sbtk.io.load_measurements">
+<h2 class="api-name" id="sbtk.io.load_measurements-h"><code>sbtk.io.load_measurements</code><a class="headerlink" href="#sbtk.io.load_measurements" title="Link to sbtk.io.load_measurements">#</a></h2>
+<p class="api-summary">Measurements from a run folder, a .mat file or a text file.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">obs = <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.load_measurements">sbtk.io.load_measurements</a>(source)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.io.load_measurements.source"><td data-label="Name"><code>source</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">a run folder (reads its measurements.mat, or unredacted/measurements.mat for a simulation run that splits its output), a .mat file holding the variable obs, or a text file in the SBTK format (<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.read_measurements">sbtk.io.read_measurements</a>). Measurement packages for other teams: <a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.read_data">sbtk.exchange.read_data</a>. </td></tr>
+</tbody></table>
+<h3 class="api-sub">Outputs</h3><table class="params outputs"><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.io.load_measurements.out.obs"><td data-label="Name"><code>obs</code></td><td data-label="Description">The measurement set. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#obs"><code>obs</code></a>.</td></tr>
+</tbody></table>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">obs = <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.load_measurements">sbtk.io.load_measurements</a>(<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.latest_run">sbtk.io.latest_run</a>(&quot;hera_hlp6&quot;, &quot;didymos_T1&quot;));
+obs = <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.load_measurements">sbtk.io.load_measurements</a>(&quot;their_data.txt&quot;);</code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a>, <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.latest_run"><code>sbtk.io.latest_run</code></a>, <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.read_measurements"><code>sbtk.io.read_measurements</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.read_measurements"><code>sbtk.io.read_measurements</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+io/load_measurements.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="sbtk.io.load_truth">
+<h2 class="api-name" id="sbtk.io.load_truth-h"><code>sbtk.io.load_truth</code><a class="headerlink" href="#sbtk.io.load_truth" title="Link to sbtk.io.load_truth">#</a></h2>
+<p class="api-summary">True model from a run folder or a .mat file.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">truth = <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.load_truth">sbtk.io.load_truth</a>(source)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.io.load_truth.source"><td data-label="Name"><code>source</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">a run folder (reads its <code>truth.mat</code>, or unredacted/truth.mat for a simulation run that splits its output) or a .mat file holding the variable truth </td></tr>
+</tbody></table>
+<h3 class="api-sub">Outputs</h3><table class="params outputs"><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.io.load_truth.out.truth"><td data-label="Name"><code>truth</code></td><td data-label="Description">The true model. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#truth"><code>truth</code></a>.</td></tr>
+</tbody></table>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">truth = <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.load_truth">sbtk.io.load_truth</a>(<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.latest_run">sbtk.io.latest_run</a>(&quot;hera_hlp6&quot;, &quot;didymos_T1&quot;));</code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.latest_run"><code>sbtk.io.latest_run</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+io/load_truth.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="sbtk.io.new_run">
+<h2 class="api-name" id="sbtk.io.new_run-h"><code>sbtk.io.new_run</code><a class="headerlink" href="#sbtk.io.new_run" title="Link to sbtk.io.new_run">#</a></h2>
+<p class="api-summary">Create a results folder for one run and start its log.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">out = <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.new_run">sbtk.io.new_run</a>(project, name)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.io.new_run.project"><td data-label="Name"><code>project</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">Project name: the folder results/&lt;project&gt;/. </td></tr>
+<tr id="sbtk.io.new_run.name"><td data-label="Name"><code>name</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">Run name; the folder is results/&lt;project&gt;/&lt;yyyy-mm-<code>dd_HHMMSS</code>&gt;_&lt;name&gt;/. </td></tr>
+</tbody></table>
+<h3 class="api-sub">Outputs</h3><table class="params outputs"><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.io.new_run.out.out"><td data-label="Name"><code>out</code></td><td data-label="Description">The results folder. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#out"><code>out</code></a>.</td></tr>
+</tbody></table>
+<h3 class="api-sub">Description</h3>
+<p>Creates  &lt;SBTK&gt;/results/&lt;project&gt;/&lt;yyyy-mm-<code>dd_HHMMSS</code>&gt;_&lt;name&gt;/  (figures go to its figures/ subfolder) and records everything printed in the command window to log.txt in it until <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.finish_run">sbtk.io.finish_run</a>(out). Standard file names inside:</p>
+<pre class="helppre">  measurements.txt / .mat   truth.txt / .mat   fit.txt / .mat   homogeneous.txt
+  comparison.txt / .mat
+  settings.json             figures/&lt;name&gt;.png  log.txt</pre>
+<p><code>out.project</code>, <code>out.name</code>, <code>out.stamp</code>, <code>out.folder</code>, <code>out.figures</code></p>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">out = <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.new_run">sbtk.io.new_run</a>(&quot;hera_hlp6&quot;, &quot;didymos_T1&quot;);</code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.finish_run"><code>sbtk.io.finish_run</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="../../reference/api/sbtk.html#sbtk.root"><code>sbtk.root</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+io/new_run.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="sbtk.io.read_jpl_gravity">
+<h2 class="api-name" id="sbtk.io.read_jpl_gravity-h"><code>sbtk.io.read_jpl_gravity</code><a class="headerlink" href="#sbtk.io.read_jpl_gravity" title="Link to sbtk.io.read_jpl_gravity">#</a></h2>
+<p class="api-summary">Measurements from a JPL SSD gravity-field file (normalized coefficients + covariance).</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">obs = <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.read_jpl_gravity">sbtk.io.read_jpl_gravity</a>(file, body, name, origin_km, degree)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.io.read_jpl_gravity.file"><td data-label="Name"><code>file</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">JPL SSD gravity file in MATLAB-assignment form (<code>REF_RADIUS</code>, NORMALIZED, NAMES = {...}, VALS = [...], COV = [...]), e.g. the OSIRIS-REx Bennu field <span class="valid">Validation: <code>mustBeFile</code>.</span></td></tr>
+<tr id="sbtk.io.read_jpl_gravity.body"><td data-label="Name"><code>body</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">from <a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.create">sbtk.body.create</a>; <code>body.R_ref_km</code> must equal the file's <code>REF_RADIUS</code> Fields: <a class="xref xref-st" href="../../reference/data-structures.html#body"><code>body</code></a>. </td></tr>
+<tr id="sbtk.io.read_jpl_gravity.name"><td data-label="Name"><code>name</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">name of the data set </td></tr>
+<tr id="sbtk.io.read_jpl_gravity.origin_km"><td data-label="Name"><code>origin_km</code></td><td data-label="Size">1 × 3</td><td data-label="Class">double</td><td data-label="Unit">km</td><td data-label="Default">required</td><td data-label="Description">point the field is expanded about, in shape-model coordinates [km] (the center of mass of the gravity solution) <span class="valid">Validation: <code>mustBeFinite</code>.</span></td></tr>
+<tr id="sbtk.io.read_jpl_gravity.degree"><td data-label="Name"><code>degree</code></td><td data-label="Size">scalar</td><td data-label="Class">double</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">highest degree to keep (2 .. the file's DEGREE) <span class="valid">Validation: <code>mustBeInteger, mustBeGreaterThanOrEqual(degree, 2)</code>.</span></td></tr>
+</tbody></table>
+<h3 class="api-sub">Outputs</h3><table class="params outputs"><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.io.read_jpl_gravity.out.obs"><td data-label="Name"><code>obs</code></td><td data-label="Description">The measurement set: coefficients of degree 2 … degree with their covariance, <code>coef_about</code> = 'origin'. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#obs"><code>obs</code></a>.</td></tr>
+</tbody></table>
+<h3 class="api-sub">Description</h3>
+<p>The file is parsed as text (not executed). Zonal terms <code>J_l</code> are converted to <code>C_l0</code> = -<code>J_l</code> (with the matching sign changes in the covariance); <code>C_lm</code>, <code>S_lm</code> are kept. The covariance of the kept coefficients is the full submatrix of the file's covariance (GM row and column removed). The mass is GM / G. Degree-1 terms are absent in such files (the expansion is about the center of mass); add them with <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.add_center_of_mass">sbtk.data.add_center_of_mass</a>.</p>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">body = <a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.create">sbtk.body.create</a>(&quot;Bennu&quot;, <a class="xref xref-fn" href="../../reference/api/shape.html#sbtk.shape.bundled">sbtk.shape.bundled</a>(&quot;bennu&quot;), 1190, 0.290);
+file = fullfile(<a class="xref xref-fn" href="../../reference/api/sbtk.html#sbtk.root">sbtk.root</a>, &quot;data&quot;, &quot;gravity&quot;, &quot;bennu_osirisrex_jpl_2019.txt&quot;);
+obs  = <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.read_jpl_gravity">sbtk.io.read_jpl_gravity</a>(file, body, &quot;bennu_jpl2019&quot;, [0 0 0], 4);
+obs  = <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.add_center_of_mass">sbtk.data.add_center_of_mass</a>(obs, [0 0 0], 0.001);</code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.create"><code>sbtk.body.create</code></a>, <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.add_center_of_mass"><code>sbtk.data.add_center_of_mass</code></a>, <a class="xref xref-fn" href="../../reference/api/sbtk.html#sbtk.root"><code>sbtk.root</code></a>, <a class="xref xref-fn" href="../../reference/api/shape.html#sbtk.shape.bundled"><code>sbtk.shape.bundled</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="../../reference/api/units.html#sbtk.units.G"><code>sbtk.units.G</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+io/read_jpl_gravity.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="sbtk.io.read_measurements">
+<h2 class="api-name" id="sbtk.io.read_measurements-h"><code>sbtk.io.read_measurements</code><a class="headerlink" href="#sbtk.io.read_measurements" title="Link to sbtk.io.read_measurements">#</a></h2>
+<p class="api-summary">Measurement set from the SBTK text format.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">obs = <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.read_measurements">sbtk.io.read_measurements</a>(file)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.io.read_measurements.file"><td data-label="Name"><code>file</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">Path of a text file in the SBTK measurement format. <span class="valid">Validation: <code>mustBeFile</code>.</span></td></tr>
+</tbody></table>
+<h3 class="api-sub">Outputs</h3><table class="params outputs"><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.io.read_measurements.out.obs"><td data-label="Name"><code>obs</code></td><td data-label="Description">The measurement set (diagonal covariance). Fields: <a class="xref xref-st" href="../../reference/data-structures.html#obs"><code>obs</code></a>.</td></tr>
+</tbody></table>
+<h3 class="api-sub">Description</h3>
+<p>Keywords (see <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.write_measurements">sbtk.io.write_measurements</a> and docs/data_formats.md):</p>
+<pre class="helppre">  body, name, mass_kg, GM_km3_s2, R_ref_km, degree
+  origin_km          expansion origin, shape-model coordinates [km]
+  com_minus_cof_km   center-of-mass offset from the center of figure [km]
+  coef l m C S sigma_C sigma_S        one line per degree and order
+  inertia label value sigma w(1..6)   one line per moment-of-inertia measurement</pre>
+<p>Other keywords are ignored. This is the entry point for data from other teams: convert their files to this format, or build the measurements from arrays with <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.from_coefficients">sbtk.data.from_coefficients</a>.</p>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">obs = <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.read_measurements">sbtk.io.read_measurements</a>(&quot;measurements.txt&quot;);</code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.from_coefficients"><code>sbtk.data.from_coefficients</code></a>, <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.write_measurements"><code>sbtk.io.write_measurements</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.load_measurements"><code>sbtk.io.load_measurements</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+io/read_measurements.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="sbtk.io.report_comparison">
+<h2 class="api-name" id="sbtk.io.report_comparison-h"><code>sbtk.io.report_comparison</code><a class="headerlink" href="#sbtk.io.report_comparison" title="Link to sbtk.io.report_comparison">#</a></h2>
+<p class="api-summary">Save, print and plot a comparison with the true model.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.report_comparison">sbtk.io.report_comparison</a>(out, body, truth, fit, cmp)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.io.report_comparison.out"><td data-label="Name"><code>out</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">Results folder. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#out"><code>out</code></a>. </td></tr>
+<tr id="sbtk.io.report_comparison.body"><td data-label="Name"><code>body</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">The body. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#body"><code>body</code></a>. </td></tr>
+<tr id="sbtk.io.report_comparison.truth"><td data-label="Name"><code>truth</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">The true model. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#truth"><code>truth</code></a>. </td></tr>
+<tr id="sbtk.io.report_comparison.fit"><td data-label="Name"><code>fit</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">The inversion result. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#fit"><code>fit</code></a>. </td></tr>
+<tr id="sbtk.io.report_comparison.cmp"><td data-label="Name"><code>cmp</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">Their comparison from <a class="xref xref-fn" href="../../reference/api/compare.html#sbtk.compare.with_truth"><code>sbtk.compare.with_truth</code></a>. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#cmp"><code>cmp</code></a>. </td></tr>
+</tbody></table>
+<h3 class="api-sub">Description</h3>
+<p>Writes to <code>out.folder</code>: comparison.txt/.mat, <code>settings.json</code>, figures/comparison.png and figures/truth_vs_estimate.png.</p>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>body</code>, <code>truth</code>, <code>fit</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">out = <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.new_run">sbtk.io.new_run</a>(&quot;my_project&quot;, &quot;T1_comparison&quot;);
+<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.report_comparison">sbtk.io.report_comparison</a>(out, body, truth, fit, <a class="xref xref-fn" href="../../reference/api/compare.html#sbtk.compare.with_truth">sbtk.compare.with_truth</a>(body, truth, fit));
+<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.finish_run">sbtk.io.finish_run</a>(out);</code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/compare.html#sbtk.compare.with_truth"><code>sbtk.compare.with_truth</code></a>, <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.finish_run"><code>sbtk.io.finish_run</code></a>, <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.new_run"><code>sbtk.io.new_run</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="../../reference/api/compare.html#sbtk.compare.summary"><code>sbtk.compare.summary</code></a>, <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.save_comparison"><code>sbtk.io.save_comparison</code></a>, <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.save_figure"><code>sbtk.io.save_figure</code></a>, <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.save_settings"><code>sbtk.io.save_settings</code></a>, <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.comparison"><code>sbtk.plot.comparison</code></a>, <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.truth_vs_estimate"><code>sbtk.plot.truth_vs_estimate</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+io/report_comparison.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="sbtk.io.report_inversion">
+<h2 class="api-name" id="sbtk.io.report_inversion-h"><code>sbtk.io.report_inversion</code><a class="headerlink" href="#sbtk.io.report_inversion" title="Link to sbtk.io.report_inversion">#</a></h2>
+<p class="api-summary">Save, print and plot an inversion result.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.report_inversion">sbtk.io.report_inversion</a>(out, body, fit, homogeneous)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.io.report_inversion.out"><td data-label="Name"><code>out</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">Results folder. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#out"><code>out</code></a>. </td></tr>
+<tr id="sbtk.io.report_inversion.body"><td data-label="Name"><code>body</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">The body. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#body"><code>body</code></a>. </td></tr>
+<tr id="sbtk.io.report_inversion.fit"><td data-label="Name"><code>fit</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">from <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.run">sbtk.invert.run</a> Fields: <a class="xref xref-st" href="../../reference/data-structures.html#fit"><code>fit</code></a>. </td></tr>
+<tr id="sbtk.io.report_inversion.homogeneous"><td data-label="Name"><code>homogeneous</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">from <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.homogeneous">sbtk.invert.homogeneous</a> (the same data fitted by a homogeneous body) Fields: <a class="xref xref-st" href="../../reference/data-structures.html#fit"><code>fit</code></a>. </td></tr>
+</tbody></table>
+<h3 class="api-sub">Description</h3>
+<p>Writes to <code>out.folder</code>:</p>
+<table class="defs"><tbody>
+<tr><td><code>fit.txt/.mat</code></td><td>densities with 1-sigma uncertainties and normalized residuals</td></tr>
+<tr><td><code>homogeneous.txt</code></td><td>the homogeneous fit</td></tr>
+<tr><td><code>settings.json</code></td><td>body, data, components, options</td></tr>
+<tr><td><code>figures/residuals.png, densities.png, estimate_3d.png, estimate_slices.png</code></td><td></td></tr>
+</tbody></table>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>body</code>, <code>components</code>, <code>obs</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">out  = <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.new_run">sbtk.io.new_run</a>(&quot;my_project&quot;, &quot;T1_inversion&quot;);
+prob = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.setup">sbtk.invert.setup</a>(body, components, obs, <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.options">sbtk.invert.options</a>());
+<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.report_inversion">sbtk.io.report_inversion</a>(out, body, <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.run">sbtk.invert.run</a>(prob), <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.homogeneous">sbtk.invert.homogeneous</a>(prob));
+<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.finish_run">sbtk.io.finish_run</a>(out);</code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.homogeneous"><code>sbtk.invert.homogeneous</code></a>, <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.options"><code>sbtk.invert.options</code></a>, <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.run"><code>sbtk.invert.run</code></a>, <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.setup"><code>sbtk.invert.setup</code></a>, <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.finish_run"><code>sbtk.io.finish_run</code></a>, <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.new_run"><code>sbtk.io.new_run</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.summary"><code>sbtk.invert.summary</code></a>, <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.save_figure"><code>sbtk.io.save_figure</code></a>, <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.save_fit"><code>sbtk.io.save_fit</code></a>, <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.save_settings"><code>sbtk.io.save_settings</code></a>, <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.write_fit"><code>sbtk.io.write_fit</code></a>, <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.densities"><code>sbtk.plot.densities</code></a>, <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.interior3d"><code>sbtk.plot.interior3d</code></a>, <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.residuals"><code>sbtk.plot.residuals</code></a>, <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.slices"><code>sbtk.plot.slices</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+io/report_inversion.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="sbtk.io.report_simulation">
+<h2 class="api-name" id="sbtk.io.report_simulation-h"><code>sbtk.io.report_simulation</code><a class="headerlink" href="#sbtk.io.report_simulation" title="Link to sbtk.io.report_simulation">#</a></h2>
+<p class="api-summary">Save, print and plot synthetic measurements and their true model.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.report_simulation">sbtk.io.report_simulation</a>(out, body, obs, truth)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.io.report_simulation.out"><td data-label="Name"><code>out</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">Results folder (or a subfolder from <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.subfolder"><code>sbtk.io.subfolder</code></a>). Fields: <a class="xref xref-st" href="../../reference/data-structures.html#out"><code>out</code></a>. </td></tr>
+<tr id="sbtk.io.report_simulation.body"><td data-label="Name"><code>body</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">The body. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#body"><code>body</code></a>. </td></tr>
+<tr id="sbtk.io.report_simulation.obs"><td data-label="Name"><code>obs</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">The simulated measurements. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#obs"><code>obs</code></a>. </td></tr>
+<tr id="sbtk.io.report_simulation.truth"><td data-label="Name"><code>truth</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">The true model. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#truth"><code>truth</code></a>. </td></tr>
+</tbody></table>
+<h3 class="api-sub">Description</h3>
+<p>Writes to <code>out.folder</code>:</p>
+<table class="defs"><tbody>
+<tr><td><code>measurements.txt/.mat</code></td><td>the measurements (the .txt is the exchange format)</td></tr>
+<tr><td><code>truth.txt/.mat</code></td><td>the true model (keep private in blind tests)</td></tr>
+<tr><td><code>settings.json</code></td><td>body, degree, uncertainties, components, random field, noise seed</td></tr>
+<tr><td><code>figures/truth_3d.png, truth_slices.png, measurements.png</code></td><td></td></tr>
+</tbody></table>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>body</code>, <code>obs</code>, <code>truth</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">out = <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.new_run">sbtk.io.new_run</a>(&quot;my_project&quot;, &quot;T1&quot;);
+<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.report_simulation">sbtk.io.report_simulation</a>(<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.subfolder">sbtk.io.subfolder</a>(out, &quot;unredacted&quot;), body, obs, truth);   <span class="c">% or out itself</span>
+<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.finish_run">sbtk.io.finish_run</a>(out);</code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.finish_run"><code>sbtk.io.finish_run</code></a>, <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.new_run"><code>sbtk.io.new_run</code></a>, <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.subfolder"><code>sbtk.io.subfolder</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.summary"><code>sbtk.data.summary</code></a>, <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.summary"><code>sbtk.interior.summary</code></a>, <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.save_figure"><code>sbtk.io.save_figure</code></a>, <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.save_measurements"><code>sbtk.io.save_measurements</code></a>, <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.save_settings"><code>sbtk.io.save_settings</code></a>, <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.save_truth"><code>sbtk.io.save_truth</code></a>, <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.interior3d"><code>sbtk.plot.interior3d</code></a>, <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.measurements"><code>sbtk.plot.measurements</code></a>, <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.slices"><code>sbtk.plot.slices</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+io/report_simulation.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="sbtk.io.save_comparison">
+<h2 class="api-name" id="sbtk.io.save_comparison-h"><code>sbtk.io.save_comparison</code><a class="headerlink" href="#sbtk.io.save_comparison" title="Link to sbtk.io.save_comparison">#</a></h2>
+<p class="api-summary">comparison.mat and comparison.txt in the run folder.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.save_comparison">sbtk.io.save_comparison</a>(out, cmp)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.io.save_comparison.out"><td data-label="Name"><code>out</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">Results folder. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#out"><code>out</code></a>. </td></tr>
+<tr id="sbtk.io.save_comparison.cmp"><td data-label="Name"><code>cmp</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">Comparison from <a class="xref xref-fn" href="../../reference/api/compare.html#sbtk.compare.with_truth"><code>sbtk.compare.with_truth</code></a>. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#cmp"><code>cmp</code></a>. </td></tr>
+</tbody></table>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>out</code>, <code>cmp</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.save_comparison">sbtk.io.save_comparison</a>(out, cmp);          <span class="c">% comparison.mat and comparison.txt in out.folder</span></code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Calls</dt><dd><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.write_comparison"><code>sbtk.io.write_comparison</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.report_comparison"><code>sbtk.io.report_comparison</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+io/save_comparison.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="sbtk.io.save_figure">
+<h2 class="api-name" id="sbtk.io.save_figure-h"><code>sbtk.io.save_figure</code><a class="headerlink" href="#sbtk.io.save_figure" title="Link to sbtk.io.save_figure">#</a></h2>
+<p class="api-summary">Save a figure as figures/&lt;name&gt;.png (200 dpi) in the run folder.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">file = <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.save_figure">sbtk.io.save_figure</a>(out, fig, name)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.io.save_figure.out"><td data-label="Name"><code>out</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">Results folder; the file goes to <code>out.figures</code>. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#out"><code>out</code></a>. </td></tr>
+<tr id="sbtk.io.save_figure.fig"><td data-label="Name"><code>fig</code></td><td data-label="Size">1 × 1</td><td data-label="Class">matlab.ui.Figure</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">Figure handle. </td></tr>
+<tr id="sbtk.io.save_figure.name"><td data-label="Name"><code>name</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">File name without extension. </td></tr>
+</tbody></table>
+<h3 class="api-sub">Outputs</h3><table class="params outputs"><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.io.save_figure.out.file"><td data-label="Name"><code>file</code></td><td data-label="Description">Path of the PNG file written.</td></tr>
+</tbody></table>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>out</code>, <code>fit</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.save_figure">sbtk.io.save_figure</a>(out, <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.residuals">sbtk.plot.residuals</a>(fit), &quot;residuals&quot;);   <span class="c">% out.folder/figures/residuals.png</span></code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.residuals"><code>sbtk.plot.residuals</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.report_comparison"><code>sbtk.io.report_comparison</code></a>, <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.report_inversion"><code>sbtk.io.report_inversion</code></a>, <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.report_simulation"><code>sbtk.io.report_simulation</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+io/save_figure.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="sbtk.io.save_fit">
+<h2 class="api-name" id="sbtk.io.save_fit-h"><code>sbtk.io.save_fit</code><a class="headerlink" href="#sbtk.io.save_fit" title="Link to sbtk.io.save_fit">#</a></h2>
+<p class="api-summary"><code>fit.mat</code> and <code>fit.txt</code> in the run folder.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.save_fit">sbtk.io.save_fit</a>(out, fit)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.io.save_fit.out"><td data-label="Name"><code>out</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">Results folder. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#out"><code>out</code></a>. </td></tr>
+<tr id="sbtk.io.save_fit.fit"><td data-label="Name"><code>fit</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">Inversion result. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#fit"><code>fit</code></a>. </td></tr>
+</tbody></table>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>out</code>, <code>fit</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.save_fit">sbtk.io.save_fit</a>(out, fit);                 <span class="c">% fit.mat and fit.txt in out.folder</span></code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Calls</dt><dd><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.write_fit"><code>sbtk.io.write_fit</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.report_inversion"><code>sbtk.io.report_inversion</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+io/save_fit.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="sbtk.io.save_measurements">
+<h2 class="api-name" id="sbtk.io.save_measurements-h"><code>sbtk.io.save_measurements</code><a class="headerlink" href="#sbtk.io.save_measurements" title="Link to sbtk.io.save_measurements">#</a></h2>
+<p class="api-summary">measurements.mat and measurements.txt in the run folder.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.save_measurements">sbtk.io.save_measurements</a>(out, obs)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.io.save_measurements.out"><td data-label="Name"><code>out</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">Results folder. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#out"><code>out</code></a>. </td></tr>
+<tr id="sbtk.io.save_measurements.obs"><td data-label="Name"><code>obs</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">The measurement set. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#obs"><code>obs</code></a>. </td></tr>
+</tbody></table>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>out</code>, <code>obs</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.save_measurements">sbtk.io.save_measurements</a>(out, obs);        <span class="c">% measurements.mat and measurements.txt in out.folder</span></code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Calls</dt><dd><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.write_measurements"><code>sbtk.io.write_measurements</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.report_simulation"><code>sbtk.io.report_simulation</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+io/save_measurements.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="sbtk.io.save_settings">
+<h2 class="api-name" id="sbtk.io.save_settings-h"><code>sbtk.io.save_settings</code><a class="headerlink" href="#sbtk.io.save_settings" title="Link to sbtk.io.save_settings">#</a></h2>
+<p class="api-summary">Write the settings of a run to <code>settings.json</code> (readable, reproducible).</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.save_settings">sbtk.io.save_settings</a>(out, settings)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.io.save_settings.out"><td data-label="Name"><code>out</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">Results folder. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#out"><code>out</code></a>. </td></tr>
+<tr id="sbtk.io.save_settings.settings"><td data-label="Name"><code>settings</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">any struct: body name, shape file, components, uncertainties, seeds, inversion options... Matrices and struct arrays are written as JSON. </td></tr>
+</tbody></table>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>out</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.save_settings">sbtk.io.save_settings</a>(out, struct(&#39;noise_seed&#39;, 1, &#39;note&#39;, &quot;first try&quot;));</code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Calls</dt><dd><a class="xref xref-fn" href="../../reference/api/sbtk.html#sbtk.version"><code>sbtk.version</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.report_comparison"><code>sbtk.io.report_comparison</code></a>, <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.report_inversion"><code>sbtk.io.report_inversion</code></a>, <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.report_simulation"><code>sbtk.io.report_simulation</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+io/save_settings.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="sbtk.io.save_truth">
+<h2 class="api-name" id="sbtk.io.save_truth-h"><code>sbtk.io.save_truth</code><a class="headerlink" href="#sbtk.io.save_truth" title="Link to sbtk.io.save_truth">#</a></h2>
+<p class="api-summary"><code>truth.mat</code> and <code>truth.txt</code> in the run folder.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.save_truth">sbtk.io.save_truth</a>(out, truth)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.io.save_truth.out"><td data-label="Name"><code>out</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">Results folder. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#out"><code>out</code></a>. </td></tr>
+<tr id="sbtk.io.save_truth.truth"><td data-label="Name"><code>truth</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">The true model. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#truth"><code>truth</code></a>. </td></tr>
+</tbody></table>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>out</code>, <code>truth</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.save_truth">sbtk.io.save_truth</a>(out, truth);             <span class="c">% truth.mat and truth.txt in out.folder</span></code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Calls</dt><dd><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.write_truth"><code>sbtk.io.write_truth</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.report_simulation"><code>sbtk.io.report_simulation</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+io/save_truth.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="sbtk.io.subfolder">
+<h2 class="api-name" id="sbtk.io.subfolder-h"><code>sbtk.io.subfolder</code><a class="headerlink" href="#sbtk.io.subfolder" title="Link to sbtk.io.subfolder">#</a></h2>
+<p class="api-summary">A subfolder of a run folder that the save and report functions write to.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">sub = <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.subfolder">sbtk.io.subfolder</a>(out, name)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.io.subfolder.out"><td data-label="Name"><code>out</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">from <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.new_run">sbtk.io.new_run</a> Fields: <a class="xref xref-st" href="../../reference/data-structures.html#out"><code>out</code></a>. </td></tr>
+<tr id="sbtk.io.subfolder.name"><td data-label="Name"><code>name</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">Name of the subfolder. </td></tr>
+</tbody></table>
+<h3 class="api-sub">Outputs</h3><table class="params outputs"><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.io.subfolder.out.sub"><td data-label="Name"><code>sub</code></td><td data-label="Description">the same run with <code>sub.folder</code> = &lt;run&gt;/&lt;name&gt; and <code>sub.figures</code> = &lt;run&gt;/&lt;name&gt;/figures; the log stays in &lt;run&gt;/log.txt Fields: <a class="xref xref-st" href="../../reference/data-structures.html#out"><code>out</code></a>.</td></tr>
+</tbody></table>
+<h3 class="api-sub">Example</h3><p>keep the true model apart from the data package to send</p>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>body</code>, <code>obs</code>, <code>truth</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">out = <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.new_run">sbtk.io.new_run</a>(&quot;hera_hlp6&quot;, &quot;didymos_T1&quot;);
+<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.report_simulation">sbtk.io.report_simulation</a>(<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.subfolder">sbtk.io.subfolder</a>(out, &quot;unredacted&quot;), body, obs, truth);</code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.new_run"><code>sbtk.io.new_run</code></a>, <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.report_simulation"><code>sbtk.io.report_simulation</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+io/subfolder.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="sbtk.io.write_comparison">
+<h2 class="api-name" id="sbtk.io.write_comparison-h"><code>sbtk.io.write_comparison</code><a class="headerlink" href="#sbtk.io.write_comparison" title="Link to sbtk.io.write_comparison">#</a></h2>
+<p class="api-summary">Plain-text copy of a comparison with the true model.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.write_comparison">sbtk.io.write_comparison</a>(cmp, file)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.io.write_comparison.cmp"><td data-label="Name"><code>cmp</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">Comparison from <a class="xref xref-fn" href="../../reference/api/compare.html#sbtk.compare.with_truth"><code>sbtk.compare.with_truth</code></a>. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#cmp"><code>cmp</code></a>. </td></tr>
+<tr id="sbtk.io.write_comparison.file"><td data-label="Name"><code>file</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">Path of the text file to write. </td></tr>
+</tbody></table>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>cmp</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.write_comparison">sbtk.io.write_comparison</a>(cmp, &quot;comparison.txt&quot;);</code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.save_comparison"><code>sbtk.io.save_comparison</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+io/write_comparison.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="sbtk.io.write_fit">
+<h2 class="api-name" id="sbtk.io.write_fit-h"><code>sbtk.io.write_fit</code><a class="headerlink" href="#sbtk.io.write_fit" title="Link to sbtk.io.write_fit">#</a></h2>
+<p class="api-summary">Plain-text summary of an inversion result.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.write_fit">sbtk.io.write_fit</a>(fit, file)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.io.write_fit.fit"><td data-label="Name"><code>fit</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">Inversion result. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#fit"><code>fit</code></a>. </td></tr>
+<tr id="sbtk.io.write_fit.file"><td data-label="Name"><code>file</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">Path of the text file to write. </td></tr>
+</tbody></table>
+<h3 class="api-sub">Description</h3>
+<p>Lines starting with '#' describe the lines below them. Example:</p>
+<pre class="helppre">  chi2 26.742   dof 24.0   chi2_reduced 1.114   p_value 0.316
+  density core 453.423 268.160 3161.834 205.147
+  residual C20 -3.822967e-02 -3.823088e-02 1.000000e-04 -0.012</pre>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.report_inversion"><code>sbtk.io.report_inversion</code></a>, <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.save_fit"><code>sbtk.io.save_fit</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+io/write_fit.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="sbtk.io.write_measurements">
+<h2 class="api-name" id="sbtk.io.write_measurements-h"><code>sbtk.io.write_measurements</code><a class="headerlink" href="#sbtk.io.write_measurements" title="Link to sbtk.io.write_measurements">#</a></h2>
+<p class="api-summary">Plain-text copy of a measurement set (read back by <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.read_measurements">sbtk.io.read_measurements</a>).</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.write_measurements">sbtk.io.write_measurements</a>(obs, file)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.io.write_measurements.obs"><td data-label="Name"><code>obs</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">The measurement set. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#obs"><code>obs</code></a>. </td></tr>
+<tr id="sbtk.io.write_measurements.file"><td data-label="Name"><code>file</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">Path of the text file to write. </td></tr>
+</tbody></table>
+<h3 class="api-sub">Description</h3>
+<p>One keyword per line, values separated by spaces, '#' lines are comments, so every block can be pasted into a spreadsheet or another code. Only the diagonal of the coefficient covariance is written (the .mat keeps it all). Keywords: body, name, <code>mass_kg</code>, <code>GM_km3_s2</code>, <code>R_ref_km</code>, degree, <code>origin_km</code>, <code>com_minus_cof_km</code>, coef (l m C S <code>sigma_C</code> <code>sigma_S</code>), inertia (label value sigma <code>w_Ixx</code> <code>w_Iyy</code> <code>w_Izz</code> <code>w_Ixy</code> <code>w_Ixz</code> <code>w_Iyz</code>), plus informational lines.</p>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>obs</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.write_measurements">sbtk.io.write_measurements</a>(obs, &quot;measurements.txt&quot;);</code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Calls</dt><dd><a class="xref xref-fn" href="../../reference/api/units.html#sbtk.units.norm_to_moi"><code>sbtk.units.norm_to_moi</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.save_measurements"><code>sbtk.io.save_measurements</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+io/write_measurements.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="sbtk.io.write_truth">
+<h2 class="api-name" id="sbtk.io.write_truth-h"><code>sbtk.io.write_truth</code><a class="headerlink" href="#sbtk.io.write_truth" title="Link to sbtk.io.write_truth">#</a></h2>
+<p class="api-summary">Plain-text description of a true model (keep private in blind tests).</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.write_truth">sbtk.io.write_truth</a>(truth, file)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.io.write_truth.truth"><td data-label="Name"><code>truth</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">The true model. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#truth"><code>truth</code></a>. </td></tr>
+<tr id="sbtk.io.write_truth.file"><td data-label="Name"><code>file</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">Path of the text file to write. </td></tr>
+</tbody></table>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>truth</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.write_truth">sbtk.io.write_truth</a>(truth, &quot;truth.txt&quot;);</code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Calls</dt><dd><a class="xref xref-fn" href="../../reference/api/sbtk.html#sbtk.version"><code>sbtk.version</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.save_truth"><code>sbtk.io.save_truth</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+io/write_truth.m</code>, line 1.</p>
+</section>
+</article>
+<nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../../reference/api/exchange.html" rel="prev"><span>Previous</span>sbtk.exchange</a><a class="next" href="../../reference/api/plot.html" rel="next"><span>Next</span>sbtk.plot</a></nav>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-19.</footer>
+</main>
+<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#sbtk.io.finish_run">sbtk.io.finish_run</a></li><li class="lvl2"><a href="#sbtk.io.latest_run">sbtk.io.latest_run</a></li><li class="lvl2"><a href="#sbtk.io.load_fit">sbtk.io.load_fit</a></li><li class="lvl2"><a href="#sbtk.io.load_measurements">sbtk.io.load_measurements</a></li><li class="lvl2"><a href="#sbtk.io.load_truth">sbtk.io.load_truth</a></li><li class="lvl2"><a href="#sbtk.io.new_run">sbtk.io.new_run</a></li><li class="lvl2"><a href="#sbtk.io.read_jpl_gravity">sbtk.io.read_jpl_gravity</a></li><li class="lvl2"><a href="#sbtk.io.read_measurements">sbtk.io.read_measurements</a></li><li class="lvl2"><a href="#sbtk.io.report_comparison">sbtk.io.report_comparison</a></li><li class="lvl2"><a href="#sbtk.io.report_inversion">sbtk.io.report_inversion</a></li><li class="lvl2"><a href="#sbtk.io.report_simulation">sbtk.io.report_simulation</a></li><li class="lvl2"><a href="#sbtk.io.save_comparison">sbtk.io.save_comparison</a></li><li class="lvl2"><a href="#sbtk.io.save_figure">sbtk.io.save_figure</a></li><li class="lvl2"><a href="#sbtk.io.save_fit">sbtk.io.save_fit</a></li><li class="lvl2"><a href="#sbtk.io.save_measurements">sbtk.io.save_measurements</a></li><li class="lvl2"><a href="#sbtk.io.save_settings">sbtk.io.save_settings</a></li><li class="lvl2"><a href="#sbtk.io.save_truth">sbtk.io.save_truth</a></li><li class="lvl2"><a href="#sbtk.io.subfolder">sbtk.io.subfolder</a></li><li class="lvl2"><a href="#sbtk.io.write_comparison">sbtk.io.write_comparison</a></li><li class="lvl2"><a href="#sbtk.io.write_fit">sbtk.io.write_fit</a></li><li class="lvl2"><a href="#sbtk.io.write_measurements">sbtk.io.write_measurements</a></li><li class="lvl2"><a href="#sbtk.io.write_truth">sbtk.io.write_truth</a></li></ul></nav>
+</div>
+<script src="../../assets/search-index.js?v=eb13bdaf5f"></script>
+<script src="../../assets/site.js?v=eb13bdaf5f"></script>
+</body>
+</html>

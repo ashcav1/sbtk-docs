@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en" data-root="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Results folders and figures — SBTK documentation</title>
+<link rel="stylesheet" href="../assets/site.css?v=eb13bdaf5f">
+<link rel="stylesheet" href="../assets/pygments.css?v=eb13bdaf5f">
+<link rel="stylesheet" href="../assets/print.css?v=eb13bdaf5f" media="print">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="topbar">
+  <button class="navtoggle" type="button" aria-controls="sidebar" aria-expanded="false">Contents</button>
+  <a class="sitename" href="../index.html">SBTK documentation</a>
+  <span class="version">version 1.0.0</span>
+  <div class="search" role="search">
+    <label for="search-input" class="visually-hidden">Search the documentation</label>
+    <input id="search-input" type="search" placeholder="Search (press /)" autocomplete="off"
+           aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+    <ul id="search-results" role="listbox" hidden></ul>
+  </div>
+  <a class="toplink" href="../print.html">Single-page version</a>
+  <a class="toplink" href="../SBTK_handbook.pdf">PDF handbook</a>
+</header>
+<div class="frame">
+<nav id="sidebar" class="sidebar" aria-label="Documentation pages"><ul><li class="navcat"><span class="navcat-title">Overview</span><ul><li><a href="../index.html">SBTK: Small Body Toolkit</a></li><li><a href="../overview/limitations.html">Assumptions and limitations</a></li></ul></li><li class="navcat"><span class="navcat-title">Getting started</span><ul><li><a href="../getting-started/installation.html">Installation</a></li><li><a href="../getting-started/first-script.html">First script</a></li></ul></li><li class="navcat"><span class="navcat-title">Conventions</span><ul><li><a href="../conventions/units.html">Units</a></li><li><a href="../conventions/coordinates.html">Coordinate systems and origins</a></li><li><a href="../conventions/gravity-coefficients.html">Gravity coefficients</a></li><li><a href="../conventions/moments-of-inertia.html">Moments of inertia</a></li></ul></li><li class="navcat"><span class="navcat-title">Models and calculations</span><ul><li><a href="../models/shape-models.html">Shape models</a></li><li><a href="../models/density-distributions.html">Density distributions</a></li><li><a href="../models/forward-model.html">Gravity and moment calculations</a></li></ul></li><li class="navcat"><span class="navcat-title">Measurements and inversion</span><ul><li><a href="../inversion/measurements.html">Measurement sets</a></li><li><a href="../inversion/density-estimation.html">Density estimation</a></li><li><a href="../inversion/statistics.html">Goodness of fit and model comparison</a></li></ul></li><li class="navcat"><span class="navcat-title">Files</span><ul><li><a href="../files/results-folders.html" aria-current="page" class="current">Results folders and figures</a></li><li><a href="../files/exchange-packages.html">Exchange packages</a></li></ul></li><li class="navcat"><span class="navcat-title">Examples</span><ul><li><a href="../examples/density-models.html">Density models by component type</a></li><li><a href="../examples/calculations.html">Calculations</a></li><li><a href="../examples/tutorials.html">Tutorial scripts</a></li></ul></li><li class="navcat"><span class="navcat-title">Projects</span><ul><li><a href="../projects/template.html">Project template</a></li><li><a href="../projects/bennu.html">Bennu</a></li><li><a href="../projects/hera-blind-test.html">Hera blind test</a></li></ul></li><li class="navcat"><span class="navcat-title">Reference</span><ul><li><a href="../reference/api.html">API reference</a></li><li><a href="../reference/api/sbtk.html">sbtk</a></li><li><a href="../reference/api/units.html">sbtk.units</a></li><li><a href="../reference/api/shape.html">sbtk.shape</a></li><li><a href="../reference/api/body.html">sbtk.body</a></li><li><a href="../reference/api/interior.html">sbtk.interior</a></li><li><a href="../reference/api/gravity.html">sbtk.gravity</a></li><li><a href="../reference/api/data.html">sbtk.data</a></li><li><a href="../reference/api/invert.html">sbtk.invert</a></li><li><a href="../reference/api/compare.html">sbtk.compare</a></li><li><a href="../reference/api/exchange.html">sbtk.exchange</a></li><li><a href="../reference/api/io.html">sbtk.io</a></li><li><a href="../reference/api/plot.html">sbtk.plot</a></li><li><a href="../reference/data-structures.html">Data structures</a></li><li><a href="../reference/errors.html">Error identifiers</a></li><li><a href="../reference/internal.html">Internal functions</a></li></ul></li><li class="navcat"><span class="navcat-title">Validation</span><ul><li><a href="../validation/tests.html">Validation and tests</a></li></ul></li></ul></nav>
+<main id="content" tabindex="-1">
+<nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Files › <span aria-current="page">Results folders and figures</span></nav>
+<article>
+<h1 id="top" id="results-folders-and-figures">Results folders and figures<a class="headerlink" href="#results-folders-and-figures" title="Link to this section">#</a></h1>
+<h2 id="run-folders">Run folders<a class="headerlink" href="#run-folders" title="Link to this section">#</a></h2>
+<p><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.new_run"><code>sbtk.io.new_run</code></a><code>(project, name)</code> creates the folder <code>results/&lt;project&gt;/&lt;yyyy-mm-dd_HHMMSS&gt;_&lt;name&gt;/</code> in the
+repository and starts recording everything printed in the Command Window to <code>log.txt</code> in it, until
+<a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.finish_run"><code>sbtk.io.finish_run</code></a> closes the log. It returns an <a class="xref xref-st" href="../reference/data-structures.html#out"><code>out</code></a> structure, which every save and report function takes.
+A new run never overwrites an earlier one.</p>
+<ul>
+<li><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.latest_run"><code>sbtk.io.latest_run</code></a><code>(project, name)</code> returns the newest folder whose name after the time stamp equals <code>name</code>
+  exactly: <code>"didymos_T1"</code> does not match <code>didymos_T1_inversion</code>. Inversion scripts use it to find the newest
+  simulation.</li>
+<li><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.subfolder"><code>sbtk.io.subfolder</code></a><code>(out, name)</code> makes the save and report functions write into a subfolder while the log stays in
+  the run folder. The Hera simulation runners use it to keep the true model apart from the data package
+  (<a href="../projects/hera-blind-test.html">Hera blind test</a>).</li>
+</ul>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">out = <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.new_run">sbtk.io.new_run</a>(&quot;my_project&quot;, &quot;T1_inversion&quot;);     <span class="c">% results/my_project/&lt;date_time&gt;_T1_inversion/</span>
+prob = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.setup">sbtk.invert.setup</a>(body, components, obs, <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.options">sbtk.invert.options</a>());
+<a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.report_inversion">sbtk.io.report_inversion</a>(out, body, <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.run">sbtk.invert.run</a>(prob), <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.homogeneous">sbtk.invert.homogeneous</a>(prob));
+<a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.finish_run">sbtk.io.finish_run</a>(out);</code></pre></div>
+<p>This fragment requires <code>body</code>, <code>components</code> and <code>obs</code> as defined in the <a href="../getting-started/first-script.html">first script</a>.</p>
+<h2 id="files">Files<a class="headerlink" href="#files" title="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Written by</th>
+<th>Contents</th>
+<th>Read with</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>log.txt</code></td>
+<td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.new_run"><code>sbtk.io.new_run</code></a></td>
+<td>Everything printed during the run.</td>
+<td>a text editor</td>
+</tr>
+<tr>
+<td><code>settings.json</code></td>
+<td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.save_settings"><code>sbtk.io.save_settings</code></a>, called by the report functions</td>
+<td>Body, degree, uncertainties, components, random field, noise seed and inversion settings of the run.</td>
+<td><code>jsondecode(fileread(file))</code></td>
+</tr>
+<tr>
+<td><code>measurements.txt</code>, <code>.mat</code></td>
+<td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.save_measurements"><code>sbtk.io.save_measurements</code></a></td>
+<td>The measurement set (<a class="xref xref-st" href="../reference/data-structures.html#obs"><code>obs</code></a>); the text has only the diagonal of the coefficient covariance.</td>
+<td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.load_measurements"><code>sbtk.io.load_measurements</code></a></td>
+</tr>
+<tr>
+<td><code>truth.txt</code>, <code>.mat</code></td>
+<td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.save_truth"><code>sbtk.io.save_truth</code></a></td>
+<td>The true model of a simulation (<a class="xref xref-st" href="../reference/data-structures.html#truth"><code>truth</code></a>).</td>
+<td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.load_truth"><code>sbtk.io.load_truth</code></a></td>
+</tr>
+<tr>
+<td><code>fit.txt</code>, <code>.mat</code></td>
+<td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.save_fit"><code>sbtk.io.save_fit</code></a></td>
+<td>Densities with 1σ, <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> test, every residual (<a class="xref xref-st" href="../reference/data-structures.html#fit"><code>fit</code></a>).</td>
+<td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.load_fit"><code>sbtk.io.load_fit</code></a></td>
+</tr>
+<tr>
+<td><code>homogeneous.txt</code></td>
+<td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.report_inversion"><code>sbtk.io.report_inversion</code></a></td>
+<td>The same data fitted by a homogeneous body.</td>
+<td></td>
+</tr>
+<tr>
+<td><code>comparison.txt</code>, <code>.mat</code></td>
+<td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.save_comparison"><code>sbtk.io.save_comparison</code></a></td>
+<td><span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow></math>,</span> <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msubsup><mi>R</mi><mtext>max</mtext><mn>2</mn></msubsup></mrow></math>,</span> RMS error, per-component comparison (<a class="xref xref-st" href="../reference/data-structures.html#cmp"><code>cmp</code></a>).</td>
+<td><code>load</code></td>
+</tr>
+<tr>
+<td><code>figures/*.png</code></td>
+<td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.save_figure"><code>sbtk.io.save_figure</code></a> (200 dpi)</td>
+<td>The figures below.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>The report functions write a standard set in one call:</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Writes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.report_simulation"><code>sbtk.io.report_simulation</code></a><code>(out, body, obs, truth)</code></td>
+<td><code>measurements.*</code>, <code>truth.*</code>, <code>settings.json</code>, <code>figures/truth_3d.png</code>, <code>truth_slices.png</code>, <code>measurements.png</code></td>
+</tr>
+<tr>
+<td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.report_inversion"><code>sbtk.io.report_inversion</code></a><code>(out, body, fit, homogeneous)</code></td>
+<td><code>fit.*</code>, <code>homogeneous.txt</code>, <code>settings.json</code>, <code>figures/residuals.png</code>, <code>densities.png</code>, <code>estimate_3d.png</code>, <code>estimate_slices.png</code></td>
+</tr>
+<tr>
+<td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.report_comparison"><code>sbtk.io.report_comparison</code></a><code>(out, body, truth, fit, cmp)</code></td>
+<td><code>comparison.*</code>, <code>settings.json</code>, <code>figures/comparison.png</code>, <code>truth_vs_estimate.png</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="text-formats">Text formats<a class="headerlink" href="#text-formats" title="Link to this section">#</a></h2>
+<p><strong>Measurements</strong> (<a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.write_measurements"><code>sbtk.io.write_measurements</code></a>, <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.read_measurements"><code>sbtk.io.read_measurements</code></a>): one keyword per line, values separated
+by spaces, <code>#</code> lines are comments. <code>coef</code> lines hold <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>l</mi></mrow></math>,</span> <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>m</mi></mrow></math>,</span> <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mi>l</mi><mi>m</mi></mrow></msub></mrow></math>,</span> <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mi>l</mi><mi>m</mi></mrow></msub></mrow></math></span> and their 1σ; <code>inertia</code> lines
+hold the label, value, 1σ and the six weights. The first lines of a file:</p>
+<div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text"># Didymos measurements: didymos_example (SBTK 1.0.0)
+# Simulated by SBTK from interior didymos_example. Values include simulated measurement noise (seed 1).
+# Lines: keyword then values. coef = gravity coefficient: degree l, order m, C, S and their
+# 1-sigma uncertainties (fully normalized, Kaula, no Condon-Shortley phase; dimensionless).
+# inertia = one moment-of-inertia measurement on I/(M R_ref^2): label, value, 1-sigma, then
+# its weights on Ixx Iyy Izz Ixy Ixz Iyz. Lengths in km, mass in kg.
+body Didymos
+name didymos_example
+mass_kg 5.272999999999999e+11
+GM_km3_s2 3.519358390000000e-08
+R_ref_km 4.300000000000000e-01
+degree 4
+origin_km 1.453440773342489e-02 4.112035414216061e-02 -3.392607730328611e-02
+coef_about origin   (origin: coefficients about origin_km; center_of_mass: degree &gt;= 2 about the center of mass)
+com_minus_cof_km -1.395126389221634e-03 -1.193499005917274e-03 5.245541816286531e-05
+noise_seed 1   (NaN = exact values or real data)
+libration_sigma 2.000000000000000e-02   (1-sigma of the libration ratio; NaN = none)
+# gravity field about origin_km: l m C S sigma_C sigma_S
+coef 1 0 -1.743145135706865e-03  0.000000000000000e+00 2.685350089254074e-03 0.000000000000000e+00
+coef 1 1  3.171858563801359e-03 -2.036659386678798e-03 2.685350089254074e-03 2.685350089254074e-03
+coef 2 0 -3.308870416819257e-02  0.000000000000000e+00 1.000000000000000e-04 0.000000000000000e+00
+coef 2 1  3.443836268814033e-03  6.765896193352993e-04 1.000000000000000e-04 1.000000000000000e-04
+coef 2 2  2.368486854293218e-03 -6.394968330691455e-03 1.000000000000000e-04 1.000000000000000e-04
+coef 3 0  1.253824937493145e-03  0.000000000000000e+00 2.000000000000000e-04 0.000000000000000e+00
+coef 3 1 -2.135893293678847e-03  1.326773998541520e-03 2.000000000000000e-04 2.000000000000000e-04
+coef 3 2 -1.776780802220330e-04  1.129245977979117e-03 2.000000000000000e-04 2.000000000000000e-04
+coef 3 3 -5.987943415043902e-04 -1.678056521335140e-03 2.000000000000000e-04 2.000000000000000e-04
+coef 4 0  3.285705624694989e-03  0.000000000000000e+00 4.000000000000000e-04 0.000000000000000e+00
+coef 4 1 -1.040835984882483e-03 -9.051510788629604e-04 4.000000000000000e-04 4.000000000000000e-04
+coef 4 2  5.810724700841951e-04  1.489082606584673e-03 4.000000000000000e-04 4.000000000000000e-04</code></pre></div>
+<p><strong>Inversion results</strong> (<a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.write_fit"><code>sbtk.io.write_fit</code></a>): lines beginning with <code>#</code> describe the lines below them.</p>
+<div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text"># Didymos inversion of didymos_example (SBTK 1.0.0)
+# chi-square, degrees of freedom, reduced chi-square, p-value (consistent at 5%: true)
+chi2 26.0562   dof 24.000   chi2_reduced 1.0857   p_value 0.3503
+n_measurements 27
+regularization 0
+moi_used Ixx Iyy Izz
+origin_km 1.453440773342489e-02 4.112035414216061e-02 -3.392607730328611e-02
+coef_about origin   com_shift_km 0.000000000 0.000000000 0.000000000   (degree &gt;= 2 and inertia predicted about origin_km + com_shift_km)
+# density &lt;component&gt; &lt;relative density&gt; &lt;its 1-sigma&gt; &lt;density&gt; &lt;its 1-sigma&gt;   [kg/m^3]
+#   (+ center x y z and their 1-sigma in km, for spheres whose position was estimated)
+density background 0 0 2698.366 76.036
+density core 482.581 314.730 3180.948 240.993
+density ridge -441.574 91.943 2256.792 50.909
+density regolith -1271.940 426.435 1426.427 353.374
+# component &lt;name&gt; &lt;type&gt; &lt;geometry&gt;
+component core sphere center [0.0 0.0 0.0] m, radius 170.0 m
+component ridge torus ring 370.0 m, tube 55.0 m, at z = 0.0 m
+component regolith layer 0.0 to 12.0 m below the surface
+# residual &lt;label&gt; &lt;measured&gt; &lt;predicted&gt; &lt;sigma&gt; &lt;(predicted - measured)/sigma&gt;
+residual C10 -1.743145135707e-03  1.994753512469e-04 2.685350e-03  0.723
+residual C11  3.171858563801e-03  8.016627734306e-04 2.685350e-03 -0.883
+residual S11 -2.036659386679e-03 -5.259591366322e-04 2.685350e-03  0.563</code></pre></div>
+<p><strong>True models</strong> (<a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.write_truth"><code>sbtk.io.write_truth</code></a>) and <strong>comparisons</strong> (<a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.write_comparison"><code>sbtk.io.write_comparison</code></a>) use the same layout.</p>
+<h2 id="figures">Figures<a class="headerlink" href="#figures" title="Link to this section">#</a></h2>
+<p>Every plot function returns a figure handle. <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.save_figure"><code>sbtk.io.save_figure</code></a><code>(out, fig, name)</code> saves it as
+<code>figures/&lt;name&gt;.png</code> at 200 dpi in a run folder; <code>exportgraphics</code> saves it anywhere. Densities are drawn with a
+sequential color map (dark blue to yellow); signed differences with blue for lower and red for higher density.</p>
+<p>The figures below come from one synthetic Didymos run, made by <code>documentation/tools/make_samples.m</code>: a core
+(+450 kg/m³), an equatorial ridge (−500), a 12 m regolith layer (−900), a boulder of radius 40 m (+900) and a random
+field of 40 kg/m³ with a 60 m correlation length; measurements to degree 4 with the uncertainties of the
+<a href="../getting-started/first-script.html">first script</a>; an inversion for core, ridge and regolith (the boulder and the field
+are not in the inversion model). The fit has <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup><mo>&#x0002F;</mo><mi>&#x003BD;</mi><mo>&#x0003D;</mo><mn>1.09</mn></mrow></math></span> (<span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>p</mi><mo>&#x0003D;</mo><mn>0.35</mn></mrow></math>)</span>, the homogeneous body <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup><mo>&#x0002F;</mo><mi>&#x003BD;</mi><mo>&#x0003D;</mo><mn>37.5</mn></mrow></math>;</span>
+<span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mn>0.88</mn></mrow></math></span> with <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msubsup><mi>R</mi><mtext>max</mtext><mn>2</mn></msubsup><mo>&#x0003D;</mo><mn>0.98</mn></mrow></math>.</span></p>
+<h3 id="shape-model">Shape model<a class="headerlink" href="#shape-model" title="Link to this section">#</a></h3>
+<p><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.shape"><code>sbtk.plot.shape</code></a><code>(body)</code>: the mesh with its center of figure and axes.</p>
+<figure class="figure"><img src="../images/shape.png" alt="Didymos shape model (DART v003, 9.3 m sampling)." loading="lazy"><figcaption>Didymos shape model (DART v003, 9.3 m sampling).</figcaption></figure>
+<h3 id="interior-in-three-dimensions">Interior in three dimensions<a class="headerlink" href="#interior-in-three-dimensions" title="Link to this section">#</a></h3>
+<p><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.interior3d"><code>sbtk.plot.interior3d</code></a><code>(body, model, title)</code>: the surface drawn translucent; spheres, ellipsoids and tori drawn where
+they lie inside the body, layers by their lower boundary; color is the relative density. Sectors are not drawn (use
+slices). Saved as <code>truth_3d.png</code> and <code>estimate_3d.png</code> by the report functions.</p>
+<figure class="figure"><img src="../images/truth_3d.png" alt="True model: core, ridge, lower boundary of the regolith layer, boulder." loading="lazy"><figcaption>True model: core, ridge, lower boundary of the regolith layer, boulder.</figcaption></figure>
+<h3 id="density-slices">Density slices<a class="headerlink" href="#density-slices" title="Link to this section">#</a></h3>
+<p><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.slices"><code>sbtk.plot.slices</code></a><code>(body, {models}, {titles})</code>: the density on the plane <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math></span> (left) and the plane <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>y</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math></span> (right), both
+through the first model's origin, one row per model with a common color scale. Saved as <code>truth_slices.png</code> and
+<code>estimate_slices.png</code>.</p>
+<figure class="figure"><img src="../images/truth_slices.png" alt="True density; the random field appears as small-scale variation." loading="lazy"><figcaption>True density; the random field appears as small-scale variation.</figcaption></figure>
+<figure class="figure"><img src="../images/estimate_slices.png" alt="Estimated density of the three-component model on the same planes." loading="lazy"><figcaption>Estimated density of the three-component model on the same planes.</figcaption></figure>
+<h3 id="measurements">Measurements<a class="headerlink" href="#measurements" title="Link to this section">#</a></h3>
+<p><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.measurements"><code>sbtk.plot.measurements</code></a><code>(obs)</code>: left, the root-mean-square size of the coefficients of each degree (points) and of their
+1σ uncertainties (line); degrees where the points lie well above the line carry information about the interior. Degree 1
+is close to zero about the center of mass. Right, each inertia measurement with its 1σ. Saved as <code>measurements.png</code>.</p>
+<figure class="figure"><img src="../images/measurements.png" alt="Coefficients of degrees 1 to 4 and the seven inertia rows of the example." loading="lazy"><figcaption>Coefficients of degrees 1 to 4 and the seven inertia rows of the example.</figcaption></figure>
+<h3 id="normalized-residuals">Normalized residuals<a class="headerlink" href="#normalized-residuals" title="Link to this section">#</a></h3>
+<p><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.residuals"><code>sbtk.plot.residuals</code></a><code>(fit)</code>: (predicted − measured)/σ for every measurement; gray band ±1σ, dashed lines ±2σ. Saved as
+<code>residuals.png</code>.</p>
+<figure class="figure"><img src="../images/residuals.png" alt="Residuals of the three-component fit." loading="lazy"><figcaption>Residuals of the three-component fit.</figcaption></figure>
+<h3 id="estimated-densities">Estimated densities<a class="headerlink" href="#estimated-densities" title="Link to this section">#</a></h3>
+<p><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.densities"><code>sbtk.plot.densities</code></a><code>(fit)</code>: the density of the background and each component with its ±1σ interval; the dashed line is
+the background. Components whose relative density is smaller than its 1σ are drawn in gray. Saved as <code>densities.png</code>.</p>
+<figure class="figure"><img src="../images/densities.png" alt="Estimated densities of the example." loading="lazy"><figcaption>Estimated densities of the example.</figcaption></figure>
+<h3 id="comparison-with-the-true-model">Comparison with the true model<a class="headerlink" href="#comparison-with-the-true-model" title="Link to this section">#</a></h3>
+<p><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.comparison"><code>sbtk.plot.comparison</code></a><code>(cmp)</code>: left, <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow></math></span> of the estimate and <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msubsup><mi>R</mi><mtext>max</mtext><mn>2</mn></msubsup></mrow></math>;</span> right, each component's estimate with ±1σ
+and its true density (cross). Saved as <code>comparison.png</code>.</p>
+<figure class="figure"><img src="../images/comparison.png" alt="Comparison of the example fit with the true model." loading="lazy"><figcaption>Comparison of the example fit with the true model.</figcaption></figure>
+<p><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.truth_vs_estimate"><code>sbtk.plot.truth_vs_estimate</code></a><code>(body, truth, fit)</code>: rows for the true density, the estimate (same color scale) and their
+difference, on the two planes through the true center of mass. Saved as <code>truth_vs_estimate.png</code>.</p>
+<figure class="figure"><img src="../images/truth_vs_estimate.png" alt="True density, estimate and difference." loading="lazy"><figcaption>True density, estimate and difference.</figcaption></figure>
+</article>
+<nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../inversion/statistics.html" rel="prev"><span>Previous</span>Goodness of fit and model comparison</a><a class="next" href="../files/exchange-packages.html" rel="next"><span>Next</span>Exchange packages</a></nav>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-19.</footer>
+</main>
+<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#run-folders">Run folders</a></li><li class="lvl2"><a href="#files">Files</a></li><li class="lvl2"><a href="#text-formats">Text formats</a></li><li class="lvl2"><a href="#figures">Figures</a></li><li class="lvl3"><a href="#shape-model">Shape model</a></li><li class="lvl3"><a href="#interior-in-three-dimensions">Interior in three dimensions</a></li><li class="lvl3"><a href="#density-slices">Density slices</a></li><li class="lvl3"><a href="#measurements">Measurements</a></li><li class="lvl3"><a href="#normalized-residuals">Normalized residuals</a></li><li class="lvl3"><a href="#estimated-densities">Estimated densities</a></li><li class="lvl3"><a href="#comparison-with-the-true-model">Comparison with the true model</a></li></ul></nav>
+</div>
+<script src="../assets/search-index.js?v=eb13bdaf5f"></script>
+<script src="../assets/site.js?v=eb13bdaf5f"></script>
+</body>
+</html>

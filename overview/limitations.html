@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en" data-root="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Assumptions and limitations — SBTK documentation</title>
+<link rel="stylesheet" href="../assets/site.css?v=eb13bdaf5f">
+<link rel="stylesheet" href="../assets/pygments.css?v=eb13bdaf5f">
+<link rel="stylesheet" href="../assets/print.css?v=eb13bdaf5f" media="print">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="topbar">
+  <button class="navtoggle" type="button" aria-controls="sidebar" aria-expanded="false">Contents</button>
+  <a class="sitename" href="../index.html">SBTK documentation</a>
+  <span class="version">version 1.0.0</span>
+  <div class="search" role="search">
+    <label for="search-input" class="visually-hidden">Search the documentation</label>
+    <input id="search-input" type="search" placeholder="Search (press /)" autocomplete="off"
+           aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+    <ul id="search-results" role="listbox" hidden></ul>
+  </div>
+  <a class="toplink" href="../print.html">Single-page version</a>
+  <a class="toplink" href="../SBTK_handbook.pdf">PDF handbook</a>
+</header>
+<div class="frame">
+<nav id="sidebar" class="sidebar" aria-label="Documentation pages"><ul><li class="navcat"><span class="navcat-title">Overview</span><ul><li><a href="../index.html">SBTK: Small Body Toolkit</a></li><li><a href="../overview/limitations.html" aria-current="page" class="current">Assumptions and limitations</a></li></ul></li><li class="navcat"><span class="navcat-title">Getting started</span><ul><li><a href="../getting-started/installation.html">Installation</a></li><li><a href="../getting-started/first-script.html">First script</a></li></ul></li><li class="navcat"><span class="navcat-title">Conventions</span><ul><li><a href="../conventions/units.html">Units</a></li><li><a href="../conventions/coordinates.html">Coordinate systems and origins</a></li><li><a href="../conventions/gravity-coefficients.html">Gravity coefficients</a></li><li><a href="../conventions/moments-of-inertia.html">Moments of inertia</a></li></ul></li><li class="navcat"><span class="navcat-title">Models and calculations</span><ul><li><a href="../models/shape-models.html">Shape models</a></li><li><a href="../models/density-distributions.html">Density distributions</a></li><li><a href="../models/forward-model.html">Gravity and moment calculations</a></li></ul></li><li class="navcat"><span class="navcat-title">Measurements and inversion</span><ul><li><a href="../inversion/measurements.html">Measurement sets</a></li><li><a href="../inversion/density-estimation.html">Density estimation</a></li><li><a href="../inversion/statistics.html">Goodness of fit and model comparison</a></li></ul></li><li class="navcat"><span class="navcat-title">Files</span><ul><li><a href="../files/results-folders.html">Results folders and figures</a></li><li><a href="../files/exchange-packages.html">Exchange packages</a></li></ul></li><li class="navcat"><span class="navcat-title">Examples</span><ul><li><a href="../examples/density-models.html">Density models by component type</a></li><li><a href="../examples/calculations.html">Calculations</a></li><li><a href="../examples/tutorials.html">Tutorial scripts</a></li></ul></li><li class="navcat"><span class="navcat-title">Projects</span><ul><li><a href="../projects/template.html">Project template</a></li><li><a href="../projects/bennu.html">Bennu</a></li><li><a href="../projects/hera-blind-test.html">Hera blind test</a></li></ul></li><li class="navcat"><span class="navcat-title">Reference</span><ul><li><a href="../reference/api.html">API reference</a></li><li><a href="../reference/api/sbtk.html">sbtk</a></li><li><a href="../reference/api/units.html">sbtk.units</a></li><li><a href="../reference/api/shape.html">sbtk.shape</a></li><li><a href="../reference/api/body.html">sbtk.body</a></li><li><a href="../reference/api/interior.html">sbtk.interior</a></li><li><a href="../reference/api/gravity.html">sbtk.gravity</a></li><li><a href="../reference/api/data.html">sbtk.data</a></li><li><a href="../reference/api/invert.html">sbtk.invert</a></li><li><a href="../reference/api/compare.html">sbtk.compare</a></li><li><a href="../reference/api/exchange.html">sbtk.exchange</a></li><li><a href="../reference/api/io.html">sbtk.io</a></li><li><a href="../reference/api/plot.html">sbtk.plot</a></li><li><a href="../reference/data-structures.html">Data structures</a></li><li><a href="../reference/errors.html">Error identifiers</a></li><li><a href="../reference/internal.html">Internal functions</a></li></ul></li><li class="navcat"><span class="navcat-title">Validation</span><ul><li><a href="../validation/tests.html">Validation and tests</a></li></ul></li></ul></nav>
+<main id="content" tabindex="-1">
+<nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Overview › <span aria-current="page">Assumptions and limitations</span></nav>
+<article>
+<h1 id="top" id="assumptions-and-limitations">Assumptions and limitations<a class="headerlink" href="#assumptions-and-limitations" title="Link to this section">#</a></h1>
+<p>This page lists the physical and numerical assumptions of SBTK 1.0.0 and the calculations it does not perform. Each
+item links to the page where the behavior is described.</p>
+<h2 id="physical-model">Physical model<a class="headerlink" href="#physical-model" title="Link to this section">#</a></h2>
+<ul>
+<li>The body is rigid and its density does not change with time. The gravity field is described by spherical-harmonic
+  coefficients only; SBTK does not evaluate the potential or the gravitational acceleration at field points.</li>
+<li>The density is a background density plus uniform components plus an optional Gaussian random field
+  (<a href="../models/density-distributions.html">Density distributions</a>). Gradients within a component, other than through the
+  random field, are not modeled.</li>
+<li>The shape model is fixed and exact: its uncertainty is not propagated into the coefficients or the estimates.</li>
+<li>The total mass is treated as exact. A measured GM enters only as the mass of the model; its uncertainty is not used
+  (<a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_shadr"><code>sbtk.exchange.read_shadr</code></a> reads it and states that it is not used).</li>
+</ul>
+<h2 id="geometry">Geometry<a class="headerlink" href="#geometry" title="Link to this section">#</a></h2>
+<ul>
+<li>The shape model must be closed, ordered outward and star-shaped about the expansion origin: every facet must face
+  away from it (<a href="../models/shape-models.html">Shape models</a>). Bodies with overhangs that violate this cannot be
+  integrated.</li>
+<li>Layers and sectors are defined along rays from the expansion origin (the center of mass), not along the local surface
+  normal (<a href="../conventions/coordinates.html">Coordinate systems</a>).</li>
+<li>The <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis of the shape-model frame is taken as the spin axis and as a principal axis in the definition of the
+  libration ratio (<a href="../conventions/moments-of-inertia.html">Moments of inertia</a>).</li>
+<li>SBTK has no function that rotates coefficients or inertia tensors between frames. Data given in another frame (for
+  example a principal-axis frame) must be rotated into the shape-model frame before use.</li>
+</ul>
+<h2 id="numerical-integration">Numerical integration<a class="headerlink" href="#numerical-integration" title="Link to this section">#</a></h2>
+<ul>
+<li>Facet-cone integrals of the whole body are exact up to rounding (<a href="../models/forward-model.html">Gravity and moment calculations</a>).</li>
+<li>A sphere entirely inside the body is integrated as a point mass, which is exact.</li>
+<li>Other components are integrated by sampling their radial extent along 9 sub-rays per facet and averaging the exact
+  cone integrals over them. The result is exact when the radial interval is the same along every sub-ray of a cone and
+  otherwise converges with the mesh resolution. Sector boundaries in latitude and longitude are resolved at the
+  sub-ray spacing. The validation tests bound the errors for particular cases (<a href="../validation/tests.html">Validation</a>).</li>
+<li>Boundaries of spheres, ellipsoids and tori along a ray are located from 256 samples per chord through the component's
+  bounding sphere and refined by bisection; a component thinner than the sample spacing along a ray can be missed.</li>
+<li>The random density field is integrated with one value per radial shell (24 shells per facet cone).</li>
+</ul>
+<h2 id="estimation">Estimation<a class="headerlink" href="#estimation" title="Link to this section">#</a></h2>
+<ul>
+<li>The measurements are linear in the densities. Sphere centers, when estimated, are found by Gauss–Newton iteration
+  with a trust region; the geometry of all other components is fixed.</li>
+<li>The uncertainties are the linearized covariance with the mass constraint and fixed parameters eliminated. The
+  inequality bounds on the densities are not reflected in the covariance; <code>fit.at_bound</code> flags densities at a bound.</li>
+<li>The <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> test assumes Gaussian measurement errors with the stated covariance.</li>
+<li>Simulated noise is Gaussian, drawn from the stated covariance of the coefficients and from the σ of each inertia row
+  independently (<a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise"><code>sbtk.data.add_noise</code></a>).</li>
+<li>The libration ratio obtained from a libration amplitude (<a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.libration_ratio_from_amplitude"><code>sbtk.data.libration_ratio_from_amplitude</code></a>) uses planar
+  forced libration to first order in the eccentricity, about a point-mass primary; free libration, the primary's
+  oblateness and the mutual dynamics of a binary are not included.</li>
+</ul>
+<h2 id="data-formats">Data formats<a class="headerlink" href="#data-formats" title="Link to this section">#</a></h2>
+<ul>
+<li>Coefficients must be fully normalized without the Condon–Shortley phase (<a href="../conventions/gravity-coefficients.html">Gravity coefficients</a>).
+  <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_shadr"><code>sbtk.exchange.read_shadr</code></a> rejects files whose header does not state full normalization; other conversions are
+  the user's responsibility.</li>
+<li>The exchange format gives the center of mass separately from the gravity coefficients, so a covariance between the
+  center of mass and the other coefficients cannot be written (<a class="xref xref-err" href="../reference/errors.html#sbtk:exchange:correlatedCenterOfMass"><code>sbtk:exchange:correlatedCenterOfMass</code></a>).</li>
+<li>The SBTK measurement text format stores only the diagonal of the coefficient covariance; the <code>.mat</code> file keeps the
+  full matrix (<a href="../files/results-folders.html">Results folders and figures</a>).</li>
+</ul>
+<h2 id="software">Software<a class="headerlink" href="#software" title="Link to this section">#</a></h2>
+<ul>
+<li>MATLAB R2024b or newer with the Optimization Toolbox (<code>lsqlin</code>). The compiled kernel is provided for macOS (Apple
+  silicon and Intel) and must be compiled once on other platforms (<a href="../getting-started/installation.html">Installation</a>).</li>
+<li>Version 1.0.0 is not publicly released.</li>
+</ul>
+</article>
+<nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../index.html" rel="prev"><span>Previous</span>SBTK: Small Body Toolkit</a><a class="next" href="../getting-started/installation.html" rel="next"><span>Next</span>Installation</a></nav>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-19.</footer>
+</main>
+<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#physical-model">Physical model</a></li><li class="lvl2"><a href="#geometry">Geometry</a></li><li class="lvl2"><a href="#numerical-integration">Numerical integration</a></li><li class="lvl2"><a href="#estimation">Estimation</a></li><li class="lvl2"><a href="#data-formats">Data formats</a></li><li class="lvl2"><a href="#software">Software</a></li></ul></nav>
+</div>
+<script src="../assets/search-index.js?v=eb13bdaf5f"></script>
+<script src="../assets/site.js?v=eb13bdaf5f"></script>
+</body>
+</html>

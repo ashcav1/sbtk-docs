@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en" data-root="../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>sbtk.units — SBTK documentation</title>
+<link rel="stylesheet" href="../../assets/site.css?v=eb13bdaf5f">
+<link rel="stylesheet" href="../../assets/pygments.css?v=eb13bdaf5f">
+<link rel="stylesheet" href="../../assets/print.css?v=eb13bdaf5f" media="print">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="topbar">
+  <button class="navtoggle" type="button" aria-controls="sidebar" aria-expanded="false">Contents</button>
+  <a class="sitename" href="../../index.html">SBTK documentation</a>
+  <span class="version">version 1.0.0</span>
+  <div class="search" role="search">
+    <label for="search-input" class="visually-hidden">Search the documentation</label>
+    <input id="search-input" type="search" placeholder="Search (press /)" autocomplete="off"
+           aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+    <ul id="search-results" role="listbox" hidden></ul>
+  </div>
+  <a class="toplink" href="../../print.html">Single-page version</a>
+  <a class="toplink" href="../../SBTK_handbook.pdf">PDF handbook</a>
+</header>
+<div class="frame">
+<nav id="sidebar" class="sidebar" aria-label="Documentation pages"><ul><li class="navcat"><span class="navcat-title">Overview</span><ul><li><a href="../../index.html">SBTK: Small Body Toolkit</a></li><li><a href="../../overview/limitations.html">Assumptions and limitations</a></li></ul></li><li class="navcat"><span class="navcat-title">Getting started</span><ul><li><a href="../../getting-started/installation.html">Installation</a></li><li><a href="../../getting-started/first-script.html">First script</a></li></ul></li><li class="navcat"><span class="navcat-title">Conventions</span><ul><li><a href="../../conventions/units.html">Units</a></li><li><a href="../../conventions/coordinates.html">Coordinate systems and origins</a></li><li><a href="../../conventions/gravity-coefficients.html">Gravity coefficients</a></li><li><a href="../../conventions/moments-of-inertia.html">Moments of inertia</a></li></ul></li><li class="navcat"><span class="navcat-title">Models and calculations</span><ul><li><a href="../../models/shape-models.html">Shape models</a></li><li><a href="../../models/density-distributions.html">Density distributions</a></li><li><a href="../../models/forward-model.html">Gravity and moment calculations</a></li></ul></li><li class="navcat"><span class="navcat-title">Measurements and inversion</span><ul><li><a href="../../inversion/measurements.html">Measurement sets</a></li><li><a href="../../inversion/density-estimation.html">Density estimation</a></li><li><a href="../../inversion/statistics.html">Goodness of fit and model comparison</a></li></ul></li><li class="navcat"><span class="navcat-title">Files</span><ul><li><a href="../../files/results-folders.html">Results folders and figures</a></li><li><a href="../../files/exchange-packages.html">Exchange packages</a></li></ul></li><li class="navcat"><span class="navcat-title">Examples</span><ul><li><a href="../../examples/density-models.html">Density models by component type</a></li><li><a href="../../examples/calculations.html">Calculations</a></li><li><a href="../../examples/tutorials.html">Tutorial scripts</a></li></ul></li><li class="navcat"><span class="navcat-title">Projects</span><ul><li><a href="../../projects/template.html">Project template</a></li><li><a href="../../projects/bennu.html">Bennu</a></li><li><a href="../../projects/hera-blind-test.html">Hera blind test</a></li></ul></li><li class="navcat"><span class="navcat-title">Reference</span><ul><li><a href="../../reference/api.html">API reference</a></li><li><a href="../../reference/api/sbtk.html">sbtk</a></li><li><a href="../../reference/api/units.html" aria-current="page" class="current">sbtk.units</a></li><li><a href="../../reference/api/shape.html">sbtk.shape</a></li><li><a href="../../reference/api/body.html">sbtk.body</a></li><li><a href="../../reference/api/interior.html">sbtk.interior</a></li><li><a href="../../reference/api/gravity.html">sbtk.gravity</a></li><li><a href="../../reference/api/data.html">sbtk.data</a></li><li><a href="../../reference/api/invert.html">sbtk.invert</a></li><li><a href="../../reference/api/compare.html">sbtk.compare</a></li><li><a href="../../reference/api/exchange.html">sbtk.exchange</a></li><li><a href="../../reference/api/io.html">sbtk.io</a></li><li><a href="../../reference/api/plot.html">sbtk.plot</a></li><li><a href="../../reference/data-structures.html">Data structures</a></li><li><a href="../../reference/errors.html">Error identifiers</a></li><li><a href="../../reference/internal.html">Internal functions</a></li></ul></li><li class="navcat"><span class="navcat-title">Validation</span><ul><li><a href="../../validation/tests.html">Validation and tests</a></li></ul></li></ul></nav>
+<main id="content" tabindex="-1">
+<nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../../index.html">Documentation</a> › Reference › <span aria-current="page">sbtk.units</span></nav>
+<article>
+<h1 id="top"><code>sbtk.units</code>: Constants and unit conversions</h1>
+<table class="overview"><thead><tr><th>Function</th><th>Purpose</th></tr></thead><tbody>
+<tr><td><a class="xref xref-fn" href="#sbtk.units.G"><code>G</code></a></td><td>Gravitational constant in SBTK units [km^3 kg^-1 s^-2].</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.units.length_scale"><code>length_scale</code></a></td><td>Factor that converts a length in UNIT to km.</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.units.moi_to_norm"><code>moi_to_norm</code></a></td><td>Moment of inertia in kg m^2 -&gt; I / (M <code>R_ref</code>^2) (dimensionless).</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.units.norm_to_moi"><code>norm_to_moi</code></a></td><td>I / (M <code>R_ref</code>^2) (dimensionless) -&gt; moment of inertia in kg m^2.</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.units.offset_to_degree1"><code>offset_to_degree1</code></a></td><td>Fully normalized degree-1 coefficient of a center-of-mass offset.</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.units.table"><code>table</code></a></td><td>Print the SBTK unit convention.</td></tr>
+</tbody></table>
+<section class="api-entry" id="sbtk.units.G">
+<h2 class="api-name" id="sbtk.units.G-h"><code>sbtk.units.G</code><a class="headerlink" href="#sbtk.units.G" title="Link to sbtk.units.G">#</a></h2>
+<p class="api-summary">Gravitational constant in SBTK units [km^3 kg^-1 s^-2].</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">g = <a class="xref xref-fn" href="../../reference/api/units.html#sbtk.units.G">sbtk.units.G</a>()      <span class="c">% 6.67430e-20 km^3/(kg s^2)  (CODATA 2018)</span></code></pre></div>
+<h3 class="api-sub">Outputs</h3><table class="params outputs"><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.units.G.out.g"><td data-label="Name"><code>g</code></td><td data-label="Description">6.67430e-20 km³ kg⁻¹ s⁻² (CODATA 2018).</td></tr>
+</tbody></table>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>body</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">GM_km3_s2 = <a class="xref xref-fn" href="../../reference/api/units.html#sbtk.units.G">sbtk.units.G</a>()*body.mass_kg;</code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.create"><code>sbtk.body.create</code></a>, <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.from_coefficients"><code>sbtk.data.from_coefficients</code></a>, <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a>, <a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a>, <a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.read_shadr"><code>sbtk.exchange.read_shadr</code></a>, <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.read_jpl_gravity"><code>sbtk.io.read_jpl_gravity</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+units/G.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="sbtk.units.length_scale">
+<h2 class="api-name" id="sbtk.units.length_scale-h"><code>sbtk.units.length_scale</code><a class="headerlink" href="#sbtk.units.length_scale" title="Link to sbtk.units.length_scale">#</a></h2>
+<p class="api-summary">Factor that converts a length in UNIT to km.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">f = <a class="xref xref-fn" href="../../reference/api/units.html#sbtk.units.length_scale">sbtk.units.length_scale</a>(unit)      <span class="c">% unit: &quot;km&quot;, &quot;m&quot; or &quot;cm&quot;</span></code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.units.length_scale.unit"><td data-label="Name"><code>unit</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">Length unit: "km", "m" or "cm". <span class="valid">Validation: <code>mustBeMember(unit, ["km", "m", "cm"])</code>.</span></td></tr>
+</tbody></table>
+<h3 class="api-sub">Outputs</h3><table class="params outputs"><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.units.length_scale.out.f"><td data-label="Name"><code>f</code></td><td data-label="Description">Factor that converts a length in that unit to km (1, 1e-3 or 1e-5).</td></tr>
+</tbody></table>
+<h3 class="api-sub">Example</h3><p><a class="xref xref-fn" href="../../reference/api/units.html#sbtk.units.length_scale">sbtk.units.length_scale</a>("m") returns 1e-3.</p>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/shape.html#sbtk.shape.from_arrays"><code>sbtk.shape.from_arrays</code></a>, <a class="xref xref-fn" href="../../reference/api/shape.html#sbtk.shape.load"><code>sbtk.shape.load</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+units/length_scale.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="sbtk.units.moi_to_norm">
+<h2 class="api-name" id="sbtk.units.moi_to_norm-h"><code>sbtk.units.moi_to_norm</code><a class="headerlink" href="#sbtk.units.moi_to_norm" title="Link to sbtk.units.moi_to_norm">#</a></h2>
+<p class="api-summary">Moment of inertia in kg m^2 -&gt; I / (M <code>R_ref</code>^2) (dimensionless).</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">I_norm = <a class="xref xref-fn" href="../../reference/api/units.html#sbtk.units.moi_to_norm">sbtk.units.moi_to_norm</a>(I_kgm2, mass_kg, R_ref_km)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.units.moi_to_norm.I_kgm2"><td data-label="Name"><code>I_kgm2</code></td><td data-label="Size"></td><td data-label="Class">double</td><td data-label="Unit">kg m²</td><td data-label="Default">required</td><td data-label="Description">Moment of inertia, or an array of them. <span class="valid">Validation: <code>mustBeFinite</code>.</span></td></tr>
+<tr id="sbtk.units.moi_to_norm.mass_kg"><td data-label="Name"><code>mass_kg</code></td><td data-label="Size">scalar</td><td data-label="Class">double</td><td data-label="Unit">kg</td><td data-label="Default">required</td><td data-label="Description">Total mass <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi></mrow></math>.</span> <span class="valid">Validation: <code>mustBePositive</code>.</span></td></tr>
+<tr id="sbtk.units.moi_to_norm.R_ref_km"><td data-label="Name"><code>R_ref_km</code></td><td data-label="Size">scalar</td><td data-label="Class">double</td><td data-label="Unit">km</td><td data-label="Default">required</td><td data-label="Description">Reference radius <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>R</mi><mtext>ref</mtext></msub></mrow></math>.</span> <span class="valid">Validation: <code>mustBePositive</code>.</span></td></tr>
+</tbody></table>
+<h3 class="api-sub">Outputs</h3><table class="params outputs"><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.units.moi_to_norm.out.I_norm"><td data-label="Name"><code>I_norm</code></td><td data-label="Description"><span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>I</mi><mo>&#x0002F;</mo><mo stretchy="false">&#x00028;</mo><mi>M</mi><msubsup><mi>R</mi><mtext>ref</mtext><mn>2</mn></msubsup><mo stretchy="false">&#x00029;</mo></mrow></math>,</span> same size as the input.</td></tr>
+</tbody></table>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>body</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">Izz = <a class="xref xref-fn" href="../../reference/api/units.html#sbtk.units.moi_to_norm">sbtk.units.moi_to_norm</a>(1.6e14, body.mass_kg, body.R_ref_km);    <span class="c">% kg m^2 -&gt; I/(M R_ref^2)</span></code></pre></div>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+units/moi_to_norm.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="sbtk.units.norm_to_moi">
+<h2 class="api-name" id="sbtk.units.norm_to_moi-h"><code>sbtk.units.norm_to_moi</code><a class="headerlink" href="#sbtk.units.norm_to_moi" title="Link to sbtk.units.norm_to_moi">#</a></h2>
+<p class="api-summary">I / (M <code>R_ref</code>^2) (dimensionless) -&gt; moment of inertia in kg m^2.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">I_kgm2 = <a class="xref xref-fn" href="../../reference/api/units.html#sbtk.units.norm_to_moi">sbtk.units.norm_to_moi</a>(I_norm, mass_kg, R_ref_km)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.units.norm_to_moi.I_norm"><td data-label="Name"><code>I_norm</code></td><td data-label="Size"></td><td data-label="Class">double</td><td data-label="Unit">M R_ref²</td><td data-label="Default">required</td><td data-label="Description"><span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>I</mi><mo>&#x0002F;</mo><mo stretchy="false">&#x00028;</mo><mi>M</mi><msubsup><mi>R</mi><mtext>ref</mtext><mn>2</mn></msubsup><mo stretchy="false">&#x00029;</mo></mrow></math>,</span> or an array of such values. <span class="valid">Validation: <code>mustBeFinite</code>.</span></td></tr>
+<tr id="sbtk.units.norm_to_moi.mass_kg"><td data-label="Name"><code>mass_kg</code></td><td data-label="Size">scalar</td><td data-label="Class">double</td><td data-label="Unit">kg</td><td data-label="Default">required</td><td data-label="Description">Total mass <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi></mrow></math>.</span> <span class="valid">Validation: <code>mustBePositive</code>.</span></td></tr>
+<tr id="sbtk.units.norm_to_moi.R_ref_km"><td data-label="Name"><code>R_ref_km</code></td><td data-label="Size">scalar</td><td data-label="Class">double</td><td data-label="Unit">km</td><td data-label="Default">required</td><td data-label="Description">Reference radius <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>R</mi><mtext>ref</mtext></msub></mrow></math>.</span> <span class="valid">Validation: <code>mustBePositive</code>.</span></td></tr>
+</tbody></table>
+<h3 class="api-sub">Outputs</h3><table class="params outputs"><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.units.norm_to_moi.out.I_kgm2"><td data-label="Name"><code>I_kgm2</code></td><td data-label="Description">Moment of inertia in kg m², same size as the input.</td></tr>
+</tbody></table>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>obs</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">I_kgm2 = <a class="xref xref-fn" href="../../reference/api/units.html#sbtk.units.norm_to_moi">sbtk.units.norm_to_moi</a>(obs.moi_tensor_norm, obs.mass_kg, obs.R_ref_km);</code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.write_measurements"><code>sbtk.io.write_measurements</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+units/norm_to_moi.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="sbtk.units.offset_to_degree1">
+<h2 class="api-name" id="sbtk.units.offset_to_degree1-h"><code>sbtk.units.offset_to_degree1</code><a class="headerlink" href="#sbtk.units.offset_to_degree1" title="Link to sbtk.units.offset_to_degree1">#</a></h2>
+<p class="api-summary">Fully normalized degree-1 coefficient of a center-of-mass offset.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">c = <a class="xref xref-fn" href="../../reference/api/units.html#sbtk.units.offset_to_degree1">sbtk.units.offset_to_degree1</a>(offset_km, R_ref_km)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.units.offset_to_degree1.offset_km"><td data-label="Name"><code>offset_km</code></td><td data-label="Size"></td><td data-label="Class">double</td><td data-label="Unit">km</td><td data-label="Default">required</td><td data-label="Description">offset of the center of mass from the expansion origin along one axis, or its 1-sigma uncertainty [km] <span class="valid">Validation: <code>mustBeFinite</code>.</span></td></tr>
+<tr id="sbtk.units.offset_to_degree1.R_ref_km"><td data-label="Name"><code>R_ref_km</code></td><td data-label="Size">scalar</td><td data-label="Class">double</td><td data-label="Unit">km</td><td data-label="Default">required</td><td data-label="Description">reference radius of the gravity coefficients [km] <span class="valid">Validation: <code>mustBePositive</code>.</span></td></tr>
+</tbody></table>
+<h3 class="api-sub">Outputs</h3><table class="params outputs"><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.units.offset_to_degree1.out.c"><td data-label="Name"><code>c</code></td><td data-label="Description">Fully normalized degree-1 coefficient, <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>d</mi><mo>&#x0002F;</mo><mo stretchy="false">&#x00028;</mo><msqrt><mrow><mn>3</mn></mrow></msqrt><mspace width="0.167em" /><msub><mi>R</mi><mtext>ref</mtext></msub><mo stretchy="false">&#x00029;</mo></mrow></math>.</span> Fields: <a class="xref xref-st" href="../../reference/data-structures.html#component"><code>component</code></a>.</td></tr>
+</tbody></table>
+<h3 class="api-sub">Description</h3>
+<p>c = <code>offset_km</code> / (sqrt(3) <code>R_ref_km</code>): C10 for z, C11 for x, S11 for y. Use it to give the degree-1 entry of <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.uncertainties">sbtk.data.uncertainties</a> as a center-of-mass uncertainty.</p>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><span class="c">% 2 m center of mass, 1e-4, 2e-4, 4e-4 for degrees 2-4</span>
+unc = <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.uncertainties">sbtk.data.uncertainties</a>([<a class="xref xref-fn" href="../../reference/api/units.html#sbtk.units.offset_to_degree1">sbtk.units.offset_to_degree1</a>(0.002, 0.43), 1e-4, 2e-4, 4e-4], 2e-3, 0.02);</code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.uncertainties"><code>sbtk.data.uncertainties</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+units/offset_to_degree1.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="sbtk.units.table">
+<h2 class="api-name" id="sbtk.units.table-h"><code>sbtk.units.table</code><a class="headerlink" href="#sbtk.units.table" title="Link to sbtk.units.table">#</a></h2>
+<p class="api-summary">Print the SBTK unit convention.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><a class="xref xref-fn" href="../../reference/api/units.html#sbtk.units.table">sbtk.units.table</a>()</code></pre></div>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><a class="xref xref-fn" href="../../reference/api/units.html#sbtk.units.table">sbtk.units.table</a>()                           <span class="c">% prints the unit conventions</span></code></pre></div>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+units/table.m</code>, line 1.</p>
+</section>
+</article>
+<nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../../reference/api/sbtk.html" rel="prev"><span>Previous</span>sbtk</a><a class="next" href="../../reference/api/shape.html" rel="next"><span>Next</span>sbtk.shape</a></nav>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-19.</footer>
+</main>
+<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#sbtk.units.G">sbtk.units.G</a></li><li class="lvl2"><a href="#sbtk.units.length_scale">sbtk.units.length_scale</a></li><li class="lvl2"><a href="#sbtk.units.moi_to_norm">sbtk.units.moi_to_norm</a></li><li class="lvl2"><a href="#sbtk.units.norm_to_moi">sbtk.units.norm_to_moi</a></li><li class="lvl2"><a href="#sbtk.units.offset_to_degree1">sbtk.units.offset_to_degree1</a></li><li class="lvl2"><a href="#sbtk.units.table">sbtk.units.table</a></li></ul></nav>
+</div>
+<script src="../../assets/search-index.js?v=eb13bdaf5f"></script>
+<script src="../../assets/site.js?v=eb13bdaf5f"></script>
+</body>
+</html>

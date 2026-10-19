@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en" data-root="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bennu — SBTK documentation</title>
+<link rel="stylesheet" href="../assets/site.css?v=eb13bdaf5f">
+<link rel="stylesheet" href="../assets/pygments.css?v=eb13bdaf5f">
+<link rel="stylesheet" href="../assets/print.css?v=eb13bdaf5f" media="print">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="topbar">
+  <button class="navtoggle" type="button" aria-controls="sidebar" aria-expanded="false">Contents</button>
+  <a class="sitename" href="../index.html">SBTK documentation</a>
+  <span class="version">version 1.0.0</span>
+  <div class="search" role="search">
+    <label for="search-input" class="visually-hidden">Search the documentation</label>
+    <input id="search-input" type="search" placeholder="Search (press /)" autocomplete="off"
+           aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+    <ul id="search-results" role="listbox" hidden></ul>
+  </div>
+  <a class="toplink" href="../print.html">Single-page version</a>
+  <a class="toplink" href="../SBTK_handbook.pdf">PDF handbook</a>
+</header>
+<div class="frame">
+<nav id="sidebar" class="sidebar" aria-label="Documentation pages"><ul><li class="navcat"><span class="navcat-title">Overview</span><ul><li><a href="../index.html">SBTK: Small Body Toolkit</a></li><li><a href="../overview/limitations.html">Assumptions and limitations</a></li></ul></li><li class="navcat"><span class="navcat-title">Getting started</span><ul><li><a href="../getting-started/installation.html">Installation</a></li><li><a href="../getting-started/first-script.html">First script</a></li></ul></li><li class="navcat"><span class="navcat-title">Conventions</span><ul><li><a href="../conventions/units.html">Units</a></li><li><a href="../conventions/coordinates.html">Coordinate systems and origins</a></li><li><a href="../conventions/gravity-coefficients.html">Gravity coefficients</a></li><li><a href="../conventions/moments-of-inertia.html">Moments of inertia</a></li></ul></li><li class="navcat"><span class="navcat-title">Models and calculations</span><ul><li><a href="../models/shape-models.html">Shape models</a></li><li><a href="../models/density-distributions.html">Density distributions</a></li><li><a href="../models/forward-model.html">Gravity and moment calculations</a></li></ul></li><li class="navcat"><span class="navcat-title">Measurements and inversion</span><ul><li><a href="../inversion/measurements.html">Measurement sets</a></li><li><a href="../inversion/density-estimation.html">Density estimation</a></li><li><a href="../inversion/statistics.html">Goodness of fit and model comparison</a></li></ul></li><li class="navcat"><span class="navcat-title">Files</span><ul><li><a href="../files/results-folders.html">Results folders and figures</a></li><li><a href="../files/exchange-packages.html">Exchange packages</a></li></ul></li><li class="navcat"><span class="navcat-title">Examples</span><ul><li><a href="../examples/density-models.html">Density models by component type</a></li><li><a href="../examples/calculations.html">Calculations</a></li><li><a href="../examples/tutorials.html">Tutorial scripts</a></li></ul></li><li class="navcat"><span class="navcat-title">Projects</span><ul><li><a href="../projects/template.html">Project template</a></li><li><a href="../projects/bennu.html" aria-current="page" class="current">Bennu</a></li><li><a href="../projects/hera-blind-test.html">Hera blind test</a></li></ul></li><li class="navcat"><span class="navcat-title">Reference</span><ul><li><a href="../reference/api.html">API reference</a></li><li><a href="../reference/api/sbtk.html">sbtk</a></li><li><a href="../reference/api/units.html">sbtk.units</a></li><li><a href="../reference/api/shape.html">sbtk.shape</a></li><li><a href="../reference/api/body.html">sbtk.body</a></li><li><a href="../reference/api/interior.html">sbtk.interior</a></li><li><a href="../reference/api/gravity.html">sbtk.gravity</a></li><li><a href="../reference/api/data.html">sbtk.data</a></li><li><a href="../reference/api/invert.html">sbtk.invert</a></li><li><a href="../reference/api/compare.html">sbtk.compare</a></li><li><a href="../reference/api/exchange.html">sbtk.exchange</a></li><li><a href="../reference/api/io.html">sbtk.io</a></li><li><a href="../reference/api/plot.html">sbtk.plot</a></li><li><a href="../reference/data-structures.html">Data structures</a></li><li><a href="../reference/errors.html">Error identifiers</a></li><li><a href="../reference/internal.html">Internal functions</a></li></ul></li><li class="navcat"><span class="navcat-title">Validation</span><ul><li><a href="../validation/tests.html">Validation and tests</a></li></ul></li></ul></nav>
+<main id="content" tabindex="-1">
+<nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Projects › <span aria-current="page">Bennu</span></nav>
+<article>
+<h1 id="top" id="bennu">Bennu<a class="headerlink" href="#bennu" title="Link to this section">#</a></h1>
+<p><code>projects/bennu/</code> estimates the interior of the asteroid Bennu from the OSIRIS-REx gravity field (JPL, 2019; degree 10,
+<span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>R</mi><mtext>ref</mtext></msub></mrow></math></span> = 0.290 km) following Cavale et al., "Constraints on the Internal Density Distribution of Bennu Using
+OSIRIS-REx Mission Data" (Icarus), and reproduces that paper's inversion.</p>
+<h2 id="files">Files<a class="headerlink" href="#files" title="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bennu_body.m</code></td>
+<td>Shape model <code>bennu_higher_qual.obj</code> (196,608 facets, body-fixed frame with origin at the center of mass), bulk density 1190 kg/m³, <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>R</mi><mtext>ref</mtext></msub></mrow></math></span> = 0.290 km.</td>
+</tr>
+<tr>
+<td><code>bennu_measurements.m</code></td>
+<td>The field as a measurement set, with the paper's weighting (C10 = C11 = S11 = 0, <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mn>2</mn></msub></mrow></math>,</span> C21, S21, C22, S22, <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mn>3</mn></msub></mrow></math>,</span> <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mn>4</mn></msub></mrow></math></span> with equal weights) or with all coefficients of degrees 2–4 and the full JPL covariance. Reads the file with <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.read_jpl_gravity"><code>sbtk.io.read_jpl_gravity</code></a>.</td>
+</tr>
+<tr>
+<td><code>bennu_paper_components.m</code></td>
+<td>The paper's nominal model: prescribed surface (0–10 m, −297.5 kg/m³) and subsurface (10–20 m, +1190 kg/m³) layers, a core of radius 170 m with estimated center, an equatorial torus and four boulders.</td>
+</tr>
+<tr>
+<td><code>invert_bennu_paper.m</code></td>
+<td>Reproduces the paper's inversion with the background held at the bulk density and compares the result with the paper's values (<code>tests/reference/bennu_paper_nominal.json</code>).</td>
+</tr>
+<tr>
+<td><code>invert_bennu_boulder_positions.m</code></td>
+<td>The same with the centers of the two boulders that target C21/S21 and C22/S22 also estimated, with an a priori 1σ of 10 m per coordinate.</td>
+</tr>
+<tr>
+<td><code>check_bennu_full_field.m</code></td>
+<td>Compares the reproduced interior's coefficients of degrees 2–4 with the full field and covariance.</td>
+</tr>
+<tr>
+<td><code>bennu_compare_with_paper.m</code></td>
+<td>Prints a fit next to the paper's values.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="reproduction-of-the-paper">Reproduction of the paper<a class="headerlink" href="#reproduction-of-the-paper" title="Link to this section">#</a></h2>
+<p>Relative densities from <code>tools/make_readme_examples.m</code>, which runs the paper configuration:</p>
+<table>
+<thead>
+<tr>
+<th>Relative density (kg/m³)</th>
+<th>Paper</th>
+<th>SBTK</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>core</td>
+<td>−241.9</td>
+<td>−242.1</td>
+</tr>
+<tr>
+<td>torus</td>
+<td>−239.4</td>
+<td>−234.6</td>
+</tr>
+<tr>
+<td>boulder C21</td>
+<td>+664.5</td>
+<td>+660.8</td>
+</tr>
+<tr>
+<td>boulder C22</td>
+<td>−1049.3</td>
+<td>−1037.3</td>
+</tr>
+<tr>
+<td>boulder north</td>
+<td>−148.0</td>
+<td>−146.4</td>
+</tr>
+<tr>
+<td>boulder south</td>
+<td>−251.5</td>
+<td>−250.9</td>
+</tr>
+<tr>
+<td>core center (m)</td>
+<td>(1.86, −7.89, 12.59)</td>
+<td>(2.06, −7.91, 12.56)</td>
+</tr>
+</tbody>
+</table>
+<p>The paper's code counted a surface facet as part of the torus only when all three of its vertices were inside the tube;
+SBTK integrates the exact intersection, whose volume is 2.4% larger, which accounts for most of the torus difference.
+<code>tests/integration/test_bennu_paper.m</code> checks the reproduction: the core relative density within 1 kg/m³, the boulders
+within 2%, the torus mass contrast within 1%, the core center within 0.5 m, and the coefficients the paper did not fit
+(C31 … S44) within 0.15 of the JPL 1σ (<a href="../validation/tests.html">Validation</a>).</p>
+<figure class="figure"><img src="../images/bennu_interior.png" alt="Estimated interior of Bennu in the paper configuration (  sbtk.plot.interior3d  )." loading="lazy"><figcaption>Estimated interior of Bennu in the paper configuration (<a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.interior3d"><code>sbtk.plot.interior3d</code></a>).</figcaption></figure>
+</article>
+<nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../projects/template.html" rel="prev"><span>Previous</span>Project template</a><a class="next" href="../projects/hera-blind-test.html" rel="next"><span>Next</span>Hera blind test</a></nav>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-19.</footer>
+</main>
+<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#files">Files</a></li><li class="lvl2"><a href="#reproduction-of-the-paper">Reproduction of the paper</a></li></ul></nav>
+</div>
+<script src="../assets/search-index.js?v=eb13bdaf5f"></script>
+<script src="../assets/site.js?v=eb13bdaf5f"></script>
+</body>
+</html>

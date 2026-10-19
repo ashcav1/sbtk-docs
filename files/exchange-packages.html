@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="en" data-root="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exchange packages — SBTK documentation</title>
+<link rel="stylesheet" href="../assets/site.css?v=eb13bdaf5f">
+<link rel="stylesheet" href="../assets/pygments.css?v=eb13bdaf5f">
+<link rel="stylesheet" href="../assets/print.css?v=eb13bdaf5f" media="print">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="topbar">
+  <button class="navtoggle" type="button" aria-controls="sidebar" aria-expanded="false">Contents</button>
+  <a class="sitename" href="../index.html">SBTK documentation</a>
+  <span class="version">version 1.0.0</span>
+  <div class="search" role="search">
+    <label for="search-input" class="visually-hidden">Search the documentation</label>
+    <input id="search-input" type="search" placeholder="Search (press /)" autocomplete="off"
+           aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+    <ul id="search-results" role="listbox" hidden></ul>
+  </div>
+  <a class="toplink" href="../print.html">Single-page version</a>
+  <a class="toplink" href="../SBTK_handbook.pdf">PDF handbook</a>
+</header>
+<div class="frame">
+<nav id="sidebar" class="sidebar" aria-label="Documentation pages"><ul><li class="navcat"><span class="navcat-title">Overview</span><ul><li><a href="../index.html">SBTK: Small Body Toolkit</a></li><li><a href="../overview/limitations.html">Assumptions and limitations</a></li></ul></li><li class="navcat"><span class="navcat-title">Getting started</span><ul><li><a href="../getting-started/installation.html">Installation</a></li><li><a href="../getting-started/first-script.html">First script</a></li></ul></li><li class="navcat"><span class="navcat-title">Conventions</span><ul><li><a href="../conventions/units.html">Units</a></li><li><a href="../conventions/coordinates.html">Coordinate systems and origins</a></li><li><a href="../conventions/gravity-coefficients.html">Gravity coefficients</a></li><li><a href="../conventions/moments-of-inertia.html">Moments of inertia</a></li></ul></li><li class="navcat"><span class="navcat-title">Models and calculations</span><ul><li><a href="../models/shape-models.html">Shape models</a></li><li><a href="../models/density-distributions.html">Density distributions</a></li><li><a href="../models/forward-model.html">Gravity and moment calculations</a></li></ul></li><li class="navcat"><span class="navcat-title">Measurements and inversion</span><ul><li><a href="../inversion/measurements.html">Measurement sets</a></li><li><a href="../inversion/density-estimation.html">Density estimation</a></li><li><a href="../inversion/statistics.html">Goodness of fit and model comparison</a></li></ul></li><li class="navcat"><span class="navcat-title">Files</span><ul><li><a href="../files/results-folders.html">Results folders and figures</a></li><li><a href="../files/exchange-packages.html" aria-current="page" class="current">Exchange packages</a></li></ul></li><li class="navcat"><span class="navcat-title">Examples</span><ul><li><a href="../examples/density-models.html">Density models by component type</a></li><li><a href="../examples/calculations.html">Calculations</a></li><li><a href="../examples/tutorials.html">Tutorial scripts</a></li></ul></li><li class="navcat"><span class="navcat-title">Projects</span><ul><li><a href="../projects/template.html">Project template</a></li><li><a href="../projects/bennu.html">Bennu</a></li><li><a href="../projects/hera-blind-test.html">Hera blind test</a></li></ul></li><li class="navcat"><span class="navcat-title">Reference</span><ul><li><a href="../reference/api.html">API reference</a></li><li><a href="../reference/api/sbtk.html">sbtk</a></li><li><a href="../reference/api/units.html">sbtk.units</a></li><li><a href="../reference/api/shape.html">sbtk.shape</a></li><li><a href="../reference/api/body.html">sbtk.body</a></li><li><a href="../reference/api/interior.html">sbtk.interior</a></li><li><a href="../reference/api/gravity.html">sbtk.gravity</a></li><li><a href="../reference/api/data.html">sbtk.data</a></li><li><a href="../reference/api/invert.html">sbtk.invert</a></li><li><a href="../reference/api/compare.html">sbtk.compare</a></li><li><a href="../reference/api/exchange.html">sbtk.exchange</a></li><li><a href="../reference/api/io.html">sbtk.io</a></li><li><a href="../reference/api/plot.html">sbtk.plot</a></li><li><a href="../reference/data-structures.html">Data structures</a></li><li><a href="../reference/errors.html">Error identifiers</a></li><li><a href="../reference/internal.html">Internal functions</a></li></ul></li><li class="navcat"><span class="navcat-title">Validation</span><ul><li><a href="../validation/tests.html">Validation and tests</a></li></ul></li></ul></nav>
+<main id="content" tabindex="-1">
+<nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Files › <span aria-current="page">Exchange packages</span></nav>
+<article>
+<h1 id="top" id="exchange-packages">Exchange packages<a class="headerlink" href="#exchange-packages" title="Link to this section">#</a></h1>
+<p>Exchange packages carry measurements, interior models and solutions between teams, for example in a blind test where
+one team simulates measurements of an interior it keeps hidden and other teams invert them. They are plain text with
+the units, frame and normalization written in them, and can be read without SBTK.</p>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Name</th>
+<th>Written by</th>
+<th>Contents</th>
+<th>Released</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Measurements</td>
+<td><code>&lt;team&gt;-DATA&lt;n&gt;-&lt;comment&gt;</code></td>
+<td><a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_data"><code>sbtk.exchange.write_data</code></a></td>
+<td>Gravity field, covariance, center of mass, moments of inertia, shape model</td>
+<td>with the data set</td>
+</tr>
+<tr>
+<td>Interior model</td>
+<td><code>&lt;team&gt;-MOD&lt;n&gt;-&lt;comment&gt;</code></td>
+<td><a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_model"><code>sbtk.exchange.write_model</code></a></td>
+<td>True model, density grid, noise-free measurements, figures</td>
+<td>after the solutions</td>
+</tr>
+<tr>
+<td>Solution</td>
+<td><code>&lt;team&gt;-SOL_&lt;data team&gt;&lt;n&gt;</code></td>
+<td><a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_solution"><code>sbtk.exchange.write_solution</code></a></td>
+<td>Estimated densities, covariance, fitted measurements, density grid, figures</td>
+<td>with the solution</td>
+</tr>
+</tbody>
+</table>
+<p><a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.solution_name"><code>sbtk.exchange.solution_name</code></a> forms solution names; <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.locate"><code>sbtk.exchange.locate</code></a> finds the package of a given kind in a run
+folder and its <code>redacted/</code> and <code>unredacted/</code> subfolders.</p>
+<h2 id="file-layout">File layout<a class="headerlink" href="#file-layout" title="Link to this section">#</a></h2>
+<p>Each file starts with metadata lines <code># key: value</code>, followed by one line of column names and comma-separated rows.
+Every column and key with a unit ends with it; NaN marks a value that is not provided.</p>
+<table>
+<thead>
+<tr>
+<th>Reader</th>
+<th>Statement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MATLAB</td>
+<td><code>T = readtable('gravity_field.txt', 'FileType', 'text', 'CommentStyle', '#');</code></td>
+</tr>
+<tr>
+<td>Python with pandas</td>
+<td><code>T = pandas.read_csv('gravity_field.txt', comment='#')</code></td>
+</tr>
+<tr>
+<td>Python, standard library</td>
+<td><code>rows = list(csv.DictReader(l for l in open('gravity_field.txt') if not l.startswith('#')))</code></td>
+</tr>
+<tr>
+<td>SBTK</td>
+<td><a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a><code>(folder)</code>, <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_grid"><code>sbtk.exchange.read_grid</code></a><code>(file)</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="measurement-package">Measurement package<a class="headerlink" href="#measurement-package" title="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>README.txt</code></td>
+<td>Summary: GM, bulk density, degree, reference radius, inertia quantities, noise.</td>
+</tr>
+<tr>
+<td><code>gravity_field.txt</code></td>
+<td><code>l,m,C,S,sigma_C,sigma_S</code> for degrees 2 and higher, fully normalized, about the center of mass.</td>
+</tr>
+<tr>
+<td><code>gravity_covariance.txt</code></td>
+<td>Full covariance of those coefficients; rows and columns labeled.</td>
+</tr>
+<tr>
+<td><code>center_of_mass.txt</code></td>
+<td>Measured center of mass in the shape-model frame with its 3 × 3 covariance, and the center of figure.</td>
+</tr>
+<tr>
+<td><code>moments_of_inertia.txt</code></td>
+<td><code>quantity,value,sigma,unit</code>: inertia elements as <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>I</mi><mo>&#x0002F;</mo><mo stretchy="false">&#x00028;</mo><mi>M</mi><msubsup><mi>R</mi><mtext>ref</mtext><mn>2</mn></msubsup><mo stretchy="false">&#x00029;</mo></mrow></math></span> about the center of mass and/or the libration ratio.</td>
+</tr>
+<tr>
+<td><code>conventions.txt</code></td>
+<td>Units, frame, normalization (with MATLAB and Python code), relations between the quantities.</td>
+</tr>
+<tr>
+<td><code>&lt;shape&gt;.obj</code></td>
+<td>The shape model the data were made with, in km.</td>
+</tr>
+</tbody>
+</table>
+<p>The gravity field is expanded about the center of mass, as a radio-science solution is, so it has no degree-1 terms;
+the position of the center of mass is a separate measurement in <code>center_of_mass.txt</code>. The package contains nothing
+about the interior: not the expansion origin of the simulation (the true center of mass), the noise seed, the model
+name or any component; <code>testNothingAboutTheInterior</code> checks this (<a href="../validation/tests.html">Validation</a>).</p>
+<p><a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a> returns the measurement set with <code>coef_about = 'center_of_mass'</code>: the coefficients of
+degree ≥ 2 with their covariance, degree-1 coefficients 0 ± σ that carry the uncertainty of the center of mass, the
+inertia rows, and the body built from the package's shape model and GM. A libration ratio becomes the row
+<span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>B</mi><mo>&#x02212;</mo><mi>A</mi><mo stretchy="false">&#x00029;</mo><mo>&#x02212;</mo><mi>k</mi><mspace width="0.167em" /><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math></span> with σ = <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003C3;</mi><mi>k</mi></msub><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub></mrow></math>,</span> using the measured <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub></mrow></math></span> if the package has one and that of a
+homogeneous body otherwise.</p>
+<p>The files of a measurement package made by <code>documentation/tools/make_samples.m</code>:</p>
+<div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text">DOC-DATA1-Didymos: measurements of Didymos
+Prepared by Documentation example with SBTK 1.0.0 on 2026-10-19.
+
+Simulated measurements of an interior model that is not included in this package.
+
+SUMMARY
+  GM                3.5193583900e-08 km^3/s^2 (exact); mass 5.273000e+11 kg
+  bulk density      2592.98 kg/m^3 (mass / shape-model volume 0.203356 km^3)
+  gravity field     degree 2 to 4, reference radius 0.4300 km, about the center of mass
+  center of mass    measured position in the shape-model frame
+  inertia           Ixx, Iyy, Izz, Ixy, Ixz, Iyz, libration ratio
+  noise             the values include Gaussian noise drawn from the stated uncertainties
+
+FILES
+  gravity_field.txt          gravity coefficients of degree 2 and above, about the center of mass, 1-sigma
+  gravity_covariance.txt     full covariance of those coefficients
+  center_of_mass.txt         measured center of mass in the shape-model frame, covariance; center of figure
+  moments_of_inertia.txt     inertia tensor elements (I / (M R_ref^2)) and/or libration ratio, 1-sigma
+  conventions.txt            units, frame, normalization (MATLAB and Python code), relations
+  didymos_g_9309mm_spc_obj_0000n00000_v003.obj shape model (lengths in km), exact
+
+All files are plain text: '# key: value' metadata lines, one line of column names, then
+comma-separated rows. Units, frame, normalization (with MATLAB and Python code) and the
+relations between the quantities are in conventions.txt.
+    MATLAB   T = readtable('gravity_field.txt', 'FileType', 'text', 'CommentStyle', '#');
+    Python   T = pandas.read_csv('gravity_field.txt', comment='#')
+    SBTK     [obs, body] = sbtk.exchange.read_data('&lt;this folder&gt;');</code></pre></div>
+<div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text"># product: gravity field: fully normalized spherical-harmonic coefficients
+# data_set: DOC-DATA1-Didymos
+# body: Didymos
+# shape_model: didymos_g_9309mm_spc_obj_0000n00000_v003.obj (24578 vertices, 49152 facets, lengths in km)
+# frame: axes of the shape-model frame
+# expansion_origin: center of mass (center_of_mass.txt); degree-1 coefficients are zero by definition and not listed
+# normalization: fully normalized (4-pi), without the Condon-Shortley phase (conventions.txt)
+# reference_radius_km: 4.300000000000000e-01
+# GM_km3_s2: 3.519358390000000e-08
+# GM_sigma_km3_s2: 0 (GM is exact in this data set)
+# mass_kg: 5.272999999999999e+11   (GM / G)
+# G_km3_kg_s2: 6.67430e-20
+# max_degree: 4
+# C00: 1 (exact)
+# uncertainties: 1-sigma; full covariance in gravity_covariance.txt
+# noise: the values include Gaussian noise drawn from the stated uncertainties
+# missing_values: NaN = not provided
+l,m,C,S,sigma_C,sigma_S
+2,0,-3.308870416819257e-02,0.000000000000000e+00,1.000000000000000e-04,0.000000000000000e+00
+2,1,3.443836268814033e-03,6.765896193352993e-04,1.000000000000000e-04,1.000000000000000e-04
+2,2,2.368486854293218e-03,-6.394968330691455e-03,1.000000000000000e-04,1.000000000000000e-04
+3,0,1.253824937493145e-03,0.000000000000000e+00,2.000000000000000e-04,0.000000000000000e+00
+3,1,-2.135893293678847e-03,1.326773998541520e-03,2.000000000000000e-04,2.000000000000000e-04
+3,2,-1.776780802220330e-04,1.129245977979117e-03,2.000000000000000e-04,2.000000000000000e-04</code></pre></div>
+<div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text"># product: center of mass in the shape-model frame
+# data_set: DOC-DATA1-Didymos
+# body: Didymos
+# shape_model: didymos_g_9309mm_spc_obj_0000n00000_v003.obj (24578 vertices, 49152 facets, lengths in km)
+# center_of_figure: centroid of the shape-model volume (exact)
+# center_of_mass_minus_center_of_figure_km: 9.672163e-04 -2.710366e-03 -1.245807e-03
+# uncertainties: 1-sigma; full 3 x 3 covariance in the cov columns
+# noise: the values include Gaussian noise drawn from the stated uncertainties
+axis,center_of_mass_km,sigma_km,center_of_figure_km,cov_x_km2,cov_y_km2,cov_z_km2
+x,1.689675041380324e-02,2.000000000000000e-03,1.592953412264642e-02,4.000000000000001e-06,0.000000000000000e+00,0.000000000000000e+00
+y,3.960348720192151e-02,2.000000000000000e-03,4.231385314807785e-02,0.000000000000000e+00,4.000000000000001e-06,0.000000000000000e+00
+z,-3.522434015749077e-02,2.000000000000000e-03,-3.397853272144903e-02,0.000000000000000e+00,0.000000000000000e+00,4.000000000000001e-06</code></pre></div>
+<div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text"># product: moments of inertia about the center of mass
+# data_set: DOC-DATA1-Didymos
+# body: Didymos
+# shape_model: didymos_g_9309mm_spc_obj_0000n00000_v003.obj (24578 vertices, 49152 facets, lengths in km)
+# axes: axes of the shape-model frame
+# definition: I_ij = integral rho (r^2 delta_ij - x_i x_j) dV: products of inertia carry the minus sign
+# unit: tensor elements as I / (M R_ref^2) (unit column "M R_ref^2"); the libration ratio is dimensionless
+# reference_radius_km: 4.300000000000000e-01
+# mass_kg: 5.272999999999999e+11
+# MR2_kg_m2: 9.749776999999998e+16   (M R_ref^2: multiply by it for kg m^2)
+# libration_ratio: (B - A) / C: principal moments A &lt;= B about axes in the xy-plane, C = Izz (conventions.txt)
+# uncertainties: 1-sigma, uncorrelated
+# noise: the values include Gaussian noise drawn from the stated uncertainties
+quantity,value,sigma,unit
+Ixx,2.564201614453858e-01,2.000000000000000e-03,M R_ref^2
+Iyy,2.643078499906686e-01,2.000000000000000e-03,M R_ref^2
+Izz,3.361859460449831e-01,2.000000000000000e-03,M R_ref^2
+Ixy,1.108322197557322e-02,2.000000000000000e-03,M R_ref^2
+Ixz,-7.290627683043371e-03,2.000000000000000e-03,M R_ref^2
+Iyz,-1.532474157296232e-03,2.000000000000000e-03,M R_ref^2
+libration_ratio,7.794051238592851e-02,2.000000000000000e-02,1</code></pre></div>
+<h2 id="interior-model-package">Interior-model package<a class="headerlink" href="#interior-model-package" title="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>README.txt</code></td>
+<td>What the package contains.</td>
+</tr>
+<tr>
+<td><code>interior_model.txt</code></td>
+<td><code>name,type,relative_density_kgm3,density_kgm3,geometry</code> for the background and every component; metadata: mass, bulk and background density, the point layers and sectors are measured from, the random field.</td>
+</tr>
+<tr>
+<td><code>density_grid.txt</code></td>
+<td><code>x_km,y_km,z_km,density_kgm3,density_sigma_kgm3</code>: the true density at the cell centers (σ = 0), random field included.</td>
+</tr>
+<tr>
+<td><code>noise_free_data/</code></td>
+<td>The measurement files without noise.</td>
+</tr>
+<tr>
+<td><code>figures/</code></td>
+<td><code>true_density_3d.png</code>, <code>true_density_slices.png</code>.</td>
+</tr>
+</tbody>
+</table>
+<div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text"># product: true interior model
+# model: DOC-MOD1-Didymos
+# data_set: DOC-DATA1-Didymos
+# body: Didymos
+# shape_model: didymos_g_9309mm_spc_obj_0000n00000_v003.obj (24578 vertices, 49152 facets, lengths in km)
+# mass_kg: 5.272999999999999e+11
+# bulk_density_kgm3: 2592.984
+# background_density_kgm3: 2666.212
+# center_of_mass_km: 0.014534 0.041120 -0.033926
+# layers_and_sectors_from_km: 0.014534 0.041120 -0.033926 (the center of mass: depths and angles are measured along rays from this point)
+# overlaps: relative densities of overlapping components add; components are clipped to the shape model
+# random_field: Gaussian, standard deviation 40.0 kg/m^3, correlation exp(-d^2/(2 L^2)) with L = 0.0600 km, seed 7 (SBTK sbtk.interior.random_field); included in density_grid.txt
+# relative_density: density minus background density
+name,type,relative_density_kgm3,density_kgm3,geometry
+background,background,0.000,2666.212,"everything not in a component"
+core,sphere,450.000,3116.212,"center [0.0 0.0 0.0] m; radius 170.0 m"
+ridge,torus,-500.000,2166.212,"ring 370.0 m; tube 55.0 m; at z = 0.0 m"
+regolith,layer,-900.000,1766.212,"0.0 to 12.0 m below the surface"
+boulder,sphere,900.000,3566.212,"center [113.3 196.2 105.7] m; radius 40.0 m"</code></pre></div>
+<h2 id="solution-package">Solution package<a class="headerlink" href="#solution-package" title="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>README.txt</code></td>
+<td>Method, the <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> test of the fit and of a homogeneous body, the measurements used.</td>
+</tr>
+<tr>
+<td><code>solution.txt</code></td>
+<td>Background and each component: density and relative density with 1σ, estimated or prescribed, geometry.</td>
+</tr>
+<tr>
+<td><code>solution_covariance.txt</code></td>
+<td>Covariance of the estimated parameters.</td>
+</tr>
+<tr>
+<td><code>fitted_measurements.txt</code></td>
+<td><code>label,measured,predicted,sigma,normalized_residual</code>; degree-1 rows are the center of mass.</td>
+</tr>
+<tr>
+<td><code>density_grid.txt</code></td>
+<td>Estimated density and its 1σ at the cell centers, propagated from the parameter covariance.</td>
+</tr>
+<tr>
+<td><code>figures/</code></td>
+<td>Residuals, densities, 3-D view, slices.</td>
+</tr>
+</tbody>
+</table>
+<div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text"># product: estimated interior
+# solution: DOC-SOL_DOC1
+# data_set: DOC-DATA1-Didymos
+# body: Didymos
+# shape_model: didymos_g_9309mm_spc_obj_0000n00000_v003.obj (24578 vertices, 49152 facets, lengths in km)
+# fit: chi2 24.84, degrees of freedom 24.0, reduced chi2 1.04, p-value 0.414 (consistent with the measurements at the 5% level)
+# homogeneous_body: reduced chi2 37.29, p-value 8.58e-195
+# measurements_used: C10 C11 S11 C20 C21 S21 C22 S22 C30 C31 S31 C32 S32 C33 S33 C40 C41 S41 C42 S42 C43 S43 C44 S44 Ixx Iyy Izz
+# regularization: 0 (Tikhonov parameter)
+# layers_and_sectors_from_km: 0.016897 0.039603 -0.035224 (depths and angles are measured along rays from this point)
+# relative_density: density minus background density
+# uncertainties: 1-sigma; covariance in solution_covariance.txt
+name,type,density_kgm3,density_sigma_kgm3,relative_density_kgm3,relative_density_sigma_kgm3,density,geometry
+background,background,2713.700,71.917,0.000,0.000,estimated (total mass as a constraint),"everything not in a component"
+core,sphere,3128.867,231.254,415.167,300.728,estimated,"center [0.0 0.0 0.0] m; radius 170.0 m"
+ridge,torus,2254.236,52.302,-459.464,91.824,estimated,"ring 370.0 m; tube 55.0 m; at z = 0.0 m"
+regolith,layer,1366.252,332.244,-1347.448,400.835,estimated,"0.0 to 12.0 m below the surface"</code></pre></div>
+<h2 id="density-grid">Density grid<a class="headerlink" href="#density-grid" title="Link to this section">#</a></h2>
+<p>Cell centers lie at integer multiples of <code>spacing_km</code> along each axis of the shape-model frame, so grids of the same
+spacing coincide regardless of who made them. A cell is listed when its center is inside the shape model, tested along
+rays from the center of figure, so all models of a body have the same cells. Each cell stands for the volume
+<code>spacing_km</code>³ and carries the density at its center. <a class="xref xref-fn" href="../reference/api/compare.html#sbtk.compare.grids"><code>sbtk.compare.grids</code></a> compares two grids
+(<a href="../inversion/statistics.html#comparison-of-density-grids">Comparison of density grids</a>); the comparison of the
+example solution with its model:</p>
+<div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text">density grids: 3179 common cells (3179 true, 3179 estimated)
+  R2 = 0.839 (fraction of the variance of the true density explained)
+  RMS error 139.1 kg/m^3, mean error +1.1 kg/m^3, standard deviation of the true density 346.6 kg/m^3
+  97.1% of the common cells have abs(estimate - true) &lt;= 2 sigma of the estimate</code></pre></div>
+<h2 id="conventions.txt">conventions.txt<a class="headerlink" href="#conventions.txt" title="Link to this section">#</a></h2>
+<p>Every measurement package includes this file, written by <a class="xref xref-fn" href="../reference/internal.html#sbtk.internal.exchange_conventions"><code>sbtk.internal.exchange_conventions</code></a>. The tests check the
+relations it states and the normalization code it prints.</p>
+<div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text">SBTK exchange format: conventions
+=================================
+
+UNITS
+  Lengths and positions in km, mass in kg, time in s, GM in km^3/s^2, densities in kg/m^3,
+  angles in degrees. Every column and key name that has a unit ends with it (x_km,
+  density_kgm3, GM_km3_s2); names without a unit are dimensionless. All uncertainties are
+  1-sigma. NaN marks a value that is not provided.
+
+FILES
+  Lines that start with '# ' are metadata ('# key: value'). The first other line names the
+  columns; every following line is one row of comma-separated values.
+    MATLAB   T = readtable('gravity_field.txt', 'FileType', 'text', 'CommentStyle', '#');
+    Python   T = pandas.read_csv('gravity_field.txt', comment='#')
+    Python, standard library only
+      rows = list(csv.DictReader(l for l in open('gravity_field.txt') if not l.startswith('#')))
+
+FRAME
+  Every position is in the frame of the shape-model file of the data package: its origin
+  and its axes, lengths in km. The origin of a shape-model file is in general neither the
+  center of mass nor the center of figure; both are given in center_of_mass.txt.
+  Latitude is measured from the xy-plane toward +z; longitude from +x toward +y.
+  Center of figure = centroid of the shape model's volume (the center of mass of a
+  homogeneous body).
+
+GRAVITY FIELD
+  U(r, lat, lon) = GM/r * sum_{l=0..L} (R/r)^l * sum_{m=0..l} Pbar_lm(sin lat) *
+                   [ Cbar_lm cos(m lon) + Sbar_lm sin(m lon) ]
+  U &gt; 0 and the gravitational acceleration is +grad U. R = reference_radius_km. r, lat and
+  lon are measured from the expansion origin, which is the center of mass, with axes
+  parallel to the shape-model axes. Cbar_00 = 1.
+  For a density rho(x) with total mass M, the unnormalized coefficients are
+    C_lm = (2 - delta_m0)/M * (l-m)!/(l+m)! * integral rho (r/R)^l P_lm(sin lat) cos(m lon) dV
+    S_lm = (2 - delta_m0)/M * (l-m)!/(l+m)! * integral rho (r/R)^l P_lm(sin lat) sin(m lon) dV
+
+NORMALIZATION
+  The files give fully normalized coefficients (the 4-pi normalization of geodesy):
+    Cbar_lm = C_lm / N_lm,   Sbar_lm = S_lm / N_lm,   Pbar_lm = N_lm P_lm,
+    N_lm = sqrt( (2 - delta_m0) (2l + 1) (l - m)! / (l + m)! )
+  so that the mean of [Pbar_lm(sin lat) cos(m lon)]^2 over the sphere is 1.
+  P_lm(x) = (1 - x^2)^(m/2) d^m/dx^m P_l(x), without the Condon-Shortley phase (-1)^m.
+  N_20 = sqrt(5), N_21 = sqrt(5/3), N_22 = sqrt(5/12), N_30 = sqrt(7).
+  Zonal coefficients: J_l = -C_l0 = -sqrt(2l + 1) Cbar_l0.
+
+  MATLAB
+    function N = sh_normalization(l, m)
+    % Unnormalized = N .* normalized (the same factor for C and S); l, m may be arrays.
+    N = sqrt((2 - (m == 0)) .* (2*l + 1) .* factorial(l - m) ./ factorial(l + m));
+    end
+    % C_unnormalized = sh_normalization(l, m) .* C_normalized
+    % C_normalized   = C_unnormalized ./ sh_normalization(l, m)
+
+  Python
+    from math import factorial, sqrt
+    def sh_normalization(l, m):
+        # unnormalized = N * normalized (the same factor for C and S)
+        return sqrt((2 - (m == 0)) * (2*l + 1) * factorial(l - m) / factorial(l + m))
+
+  Changing the reference radius from R to R': Cbar'_lm = Cbar_lm (R/R')^l.
+
+DEGREE 1 AND THE CENTER OF MASS
+  For coefficients expanded about a point O, with (xc, yc, zc) = center of mass - O,
+    Cbar_10 = zc / (sqrt(3) R),   Cbar_11 = xc / (sqrt(3) R),   Sbar_11 = yc / (sqrt(3) R).
+  The gravity fields here are expanded about the center of mass, so these are zero and are
+  not listed. The position of the center of mass in the shape-model frame is a separate
+  measurement (center_of_mass.txt).
+
+MOMENTS OF INERTIA
+  Inertia tensor about the center of mass, shape-model axes:
+    I_ij = integral rho (r^2 delta_ij - x_i x_j) dV
+  so the off-diagonal elements carry the minus sign (Ixy = -integral rho x y dV).
+  Values are given as I / (M R^2), dimensionless; multiply by MR2_kg_m2 for kg m^2.
+  Libration ratio = (B - A) / C: A &lt;= B are the principal moments about the axes in the
+  xy-plane, C = Izz (z, the spin axis, taken as a principal axis). The principal axes need
+  not be the shape-model axes: B - A = sqrt((Iyy - Ixx)^2 + 4 Ixy^2) = 4 M R^2 sqrt(C_22^2 + S_22^2).
+  Relation to the degree-2 coefficients (both about the center of mass, same axes, same R):
+    C_20 = (Ixx + Iyy - 2 Izz) / (2 M R^2)     Cbar_20 = C_20 / sqrt(5)
+    C_21 = -Ixz / (M R^2)                       Cbar_21 = C_21 / sqrt(5/3)
+    S_21 = -Iyz / (M R^2)                       Sbar_21 = S_21 / sqrt(5/3)
+    C_22 = (Iyy - Ixx) / (4 M R^2)              Cbar_22 = C_22 / sqrt(5/12)
+    S_22 = -Ixy / (2 M R^2)                     Sbar_22 = S_22 / sqrt(5/12)
+  The degree-2 field fixes five combinations of the six tensor elements. The trace (for
+  example through the polar moment Izz) is the information the moments of inertia add.
+
+DENSITY GRID (interior model and solution packages)
+  Density at the centers of cubic cells with edge spacing_km. Cell centers lie at integer
+  multiples of spacing_km along each axis of the shape-model frame, so grids with the same
+  spacing coincide; only cells whose center is inside the shape model are listed. Each
+  cell stands for a volume spacing_km^3. density_sigma_kgm3 is the 1-sigma uncertainty of
+  the density (0 for a true model).</code></pre></div>
+<h2 id="other-formats">Other formats<a class="headerlink" href="#other-formats" title="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Format</th>
+<th>Function</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PDS SHADR layout</td>
+<td><a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_shadr"><code>sbtk.exchange.read_shadr</code></a></td>
+<td>Header row then <code>l, m, C, S, sigma_C, sigma_S</code>; commas or spaces; <code>#</code> comments. The caller gives the shape model and the point the coefficients are about.</td>
+</tr>
+<tr>
+<td>JPL SSD gravity file</td>
+<td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.read_jpl_gravity"><code>sbtk.io.read_jpl_gravity</code></a></td>
+<td>Full covariance; <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mi>l</mi></msub></mrow></math></span> converted.</td>
+</tr>
+<tr>
+<td>Coefficient matrices</td>
+<td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.from_coefficients"><code>sbtk.data.from_coefficients</code></a></td>
+<td></td>
+</tr>
+<tr>
+<td>Uncertainties of another data set</td>
+<td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.use_uncertainties"><code>sbtk.data.use_uncertainties</code></a></td>
+<td>Converted to the target reference radius by <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>R</mi><mo>&#x0002F;</mo><msup><mi>R</mi><mi>&#x02032;</mi></msup><msup><mo stretchy="false">&#x00029;</mo><mi>l</mi></msup></mrow></math>.</span></td>
+</tr>
+</tbody>
+</table>
+</article>
+<nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../files/results-folders.html" rel="prev"><span>Previous</span>Results folders and figures</a><a class="next" href="../examples/density-models.html" rel="next"><span>Next</span>Density models by component type</a></nav>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-19.</footer>
+</main>
+<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#file-layout">File layout</a></li><li class="lvl2"><a href="#measurement-package">Measurement package</a></li><li class="lvl2"><a href="#interior-model-package">Interior-model package</a></li><li class="lvl2"><a href="#solution-package">Solution package</a></li><li class="lvl2"><a href="#density-grid">Density grid</a></li><li class="lvl2"><a href="#conventions.txt">conventions.txt</a></li><li class="lvl2"><a href="#other-formats">Other formats</a></li></ul></nav>
+</div>
+<script src="../assets/search-index.js?v=eb13bdaf5f"></script>
+<script src="../assets/site.js?v=eb13bdaf5f"></script>
+</body>
+</html>

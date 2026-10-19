@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en" data-root="../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>sbtk.plot — SBTK documentation</title>
+<link rel="stylesheet" href="../../assets/site.css?v=eb13bdaf5f">
+<link rel="stylesheet" href="../../assets/pygments.css?v=eb13bdaf5f">
+<link rel="stylesheet" href="../../assets/print.css?v=eb13bdaf5f" media="print">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="topbar">
+  <button class="navtoggle" type="button" aria-controls="sidebar" aria-expanded="false">Contents</button>
+  <a class="sitename" href="../../index.html">SBTK documentation</a>
+  <span class="version">version 1.0.0</span>
+  <div class="search" role="search">
+    <label for="search-input" class="visually-hidden">Search the documentation</label>
+    <input id="search-input" type="search" placeholder="Search (press /)" autocomplete="off"
+           aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+    <ul id="search-results" role="listbox" hidden></ul>
+  </div>
+  <a class="toplink" href="../../print.html">Single-page version</a>
+  <a class="toplink" href="../../SBTK_handbook.pdf">PDF handbook</a>
+</header>
+<div class="frame">
+<nav id="sidebar" class="sidebar" aria-label="Documentation pages"><ul><li class="navcat"><span class="navcat-title">Overview</span><ul><li><a href="../../index.html">SBTK: Small Body Toolkit</a></li><li><a href="../../overview/limitations.html">Assumptions and limitations</a></li></ul></li><li class="navcat"><span class="navcat-title">Getting started</span><ul><li><a href="../../getting-started/installation.html">Installation</a></li><li><a href="../../getting-started/first-script.html">First script</a></li></ul></li><li class="navcat"><span class="navcat-title">Conventions</span><ul><li><a href="../../conventions/units.html">Units</a></li><li><a href="../../conventions/coordinates.html">Coordinate systems and origins</a></li><li><a href="../../conventions/gravity-coefficients.html">Gravity coefficients</a></li><li><a href="../../conventions/moments-of-inertia.html">Moments of inertia</a></li></ul></li><li class="navcat"><span class="navcat-title">Models and calculations</span><ul><li><a href="../../models/shape-models.html">Shape models</a></li><li><a href="../../models/density-distributions.html">Density distributions</a></li><li><a href="../../models/forward-model.html">Gravity and moment calculations</a></li></ul></li><li class="navcat"><span class="navcat-title">Measurements and inversion</span><ul><li><a href="../../inversion/measurements.html">Measurement sets</a></li><li><a href="../../inversion/density-estimation.html">Density estimation</a></li><li><a href="../../inversion/statistics.html">Goodness of fit and model comparison</a></li></ul></li><li class="navcat"><span class="navcat-title">Files</span><ul><li><a href="../../files/results-folders.html">Results folders and figures</a></li><li><a href="../../files/exchange-packages.html">Exchange packages</a></li></ul></li><li class="navcat"><span class="navcat-title">Examples</span><ul><li><a href="../../examples/density-models.html">Density models by component type</a></li><li><a href="../../examples/calculations.html">Calculations</a></li><li><a href="../../examples/tutorials.html">Tutorial scripts</a></li></ul></li><li class="navcat"><span class="navcat-title">Projects</span><ul><li><a href="../../projects/template.html">Project template</a></li><li><a href="../../projects/bennu.html">Bennu</a></li><li><a href="../../projects/hera-blind-test.html">Hera blind test</a></li></ul></li><li class="navcat"><span class="navcat-title">Reference</span><ul><li><a href="../../reference/api.html">API reference</a></li><li><a href="../../reference/api/sbtk.html">sbtk</a></li><li><a href="../../reference/api/units.html">sbtk.units</a></li><li><a href="../../reference/api/shape.html">sbtk.shape</a></li><li><a href="../../reference/api/body.html">sbtk.body</a></li><li><a href="../../reference/api/interior.html">sbtk.interior</a></li><li><a href="../../reference/api/gravity.html">sbtk.gravity</a></li><li><a href="../../reference/api/data.html">sbtk.data</a></li><li><a href="../../reference/api/invert.html">sbtk.invert</a></li><li><a href="../../reference/api/compare.html">sbtk.compare</a></li><li><a href="../../reference/api/exchange.html">sbtk.exchange</a></li><li><a href="../../reference/api/io.html">sbtk.io</a></li><li><a href="../../reference/api/plot.html" aria-current="page" class="current">sbtk.plot</a></li><li><a href="../../reference/data-structures.html">Data structures</a></li><li><a href="../../reference/errors.html">Error identifiers</a></li><li><a href="../../reference/internal.html">Internal functions</a></li></ul></li><li class="navcat"><span class="navcat-title">Validation</span><ul><li><a href="../../validation/tests.html">Validation and tests</a></li></ul></li></ul></nav>
+<main id="content" tabindex="-1">
+<nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../../index.html">Documentation</a> › Reference › <span aria-current="page">sbtk.plot</span></nav>
+<article>
+<h1 id="top"><code>sbtk.plot</code>: Figures</h1>
+<table class="overview"><thead><tr><th>Function</th><th>Purpose</th></tr></thead><tbody>
+<tr><td><a class="xref xref-fn" href="#sbtk.plot.comparison"><code>comparison</code></a></td><td>Estimate compared with the true model: R2 and each component's density.</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.plot.densities"><code>densities</code></a></td><td>Estimated density of the background and each component with its 1-sigma uncertainty.</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.plot.interior3d"><code>interior3d</code></a></td><td>See-through 3D view of the body and the components of a model.</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.plot.measurements"><code>measurements</code></a></td><td>What the data contain: gravity signal and noise per degree, and the inertia rows.</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.plot.residuals"><code>residuals</code></a></td><td>Normalized residuals of a fit, (predicted - measured)/sigma, per measurement.</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.plot.shape"><code>shape</code></a></td><td>The body's shape model with its center of figure and axes.</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.plot.slices"><code>slices</code></a></td><td>Absolute density on the equatorial plane and a meridional plane.</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.plot.truth_vs_estimate"><code>truth_vs_estimate</code></a></td><td>Truth, estimate and their difference on two planes.</td></tr>
+</tbody></table>
+<section class="api-entry" id="sbtk.plot.comparison">
+<h2 class="api-name" id="sbtk.plot.comparison-h"><code>sbtk.plot.comparison</code><a class="headerlink" href="#sbtk.plot.comparison" title="Link to sbtk.plot.comparison">#</a></h2>
+<p class="api-summary">Estimate compared with the true model: R2 and each component's density.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">fig = <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.comparison">sbtk.plot.comparison</a>(cmp)          <span class="c">% cmp from sbtk.compare.with_truth</span></code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.plot.comparison.cmp"><td data-label="Name"><code>cmp</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">Comparison from <a class="xref xref-fn" href="../../reference/api/compare.html#sbtk.compare.with_truth"><code>sbtk.compare.with_truth</code></a>. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#cmp"><code>cmp</code></a>. </td></tr>
+</tbody></table>
+<h3 class="api-sub">Outputs</h3><table class="params outputs"><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.plot.comparison.out.fig"><td data-label="Name"><code>fig</code></td><td data-label="Description">Handle of the new figure.</td></tr>
+</tbody></table>
+<h3 class="api-sub">Description</h3>
+<p>Left: R2 of the estimated density (fraction of the variance of the true density explained) next to <code>R2_max</code>, the largest R2 the same components can reach. Right: each component's estimated density with +-1 sigma (bar) and the true density (cross).</p>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>body</code>, <code>truth</code>, <code>fit</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">fig = <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.comparison">sbtk.plot.comparison</a>(<a class="xref xref-fn" href="../../reference/api/compare.html#sbtk.compare.with_truth">sbtk.compare.with_truth</a>(body, truth, fit));</code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/compare.html#sbtk.compare.with_truth"><code>sbtk.compare.with_truth</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.report_comparison"><code>sbtk.io.report_comparison</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+plot/comparison.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="sbtk.plot.densities">
+<h2 class="api-name" id="sbtk.plot.densities-h"><code>sbtk.plot.densities</code><a class="headerlink" href="#sbtk.plot.densities" title="Link to sbtk.plot.densities">#</a></h2>
+<p class="api-summary">Estimated density of the background and each component with its 1-sigma uncertainty.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">fig = <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.densities">sbtk.plot.densities</a>(fit)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.plot.densities.fit"><td data-label="Name"><code>fit</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">Inversion result. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#fit"><code>fit</code></a>. </td></tr>
+</tbody></table>
+<h3 class="api-sub">Outputs</h3><table class="params outputs"><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.plot.densities.out.fig"><td data-label="Name"><code>fig</code></td><td data-label="Description">Handle of the new figure.</td></tr>
+</tbody></table>
+<h3 class="api-sub">Description</h3>
+<p>One row per component (background first): the density [kg/m^3] and a +-1 sigma bar. The dashed line is the background density. Gray: components whose relative density is not resolved (|relative density| &lt; 1 sigma).</p>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>fit</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">fig = <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.densities">sbtk.plot.densities</a>(fit);</code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.write_solution"><code>sbtk.exchange.write_solution</code></a>, <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.report_inversion"><code>sbtk.io.report_inversion</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+plot/densities.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="sbtk.plot.interior3d">
+<h2 class="api-name" id="sbtk.plot.interior3d-h"><code>sbtk.plot.interior3d</code><a class="headerlink" href="#sbtk.plot.interior3d" title="Link to sbtk.plot.interior3d">#</a></h2>
+<p class="api-summary">See-through 3D view of the body and the components of a model.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">fig = <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.interior3d">sbtk.plot.interior3d</a>(body, model, title_str)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.plot.interior3d.body"><td data-label="Name"><code>body</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">The body. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#body"><code>body</code></a>. </td></tr>
+<tr id="sbtk.plot.interior3d.model"><td data-label="Name"><code>model</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">a truth or a fit (anything with components and <code>origin_km</code>) </td></tr>
+<tr id="sbtk.plot.interior3d.title_str"><td data-label="Name"><code>title_str</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">Title of the figure. </td></tr>
+</tbody></table>
+<h3 class="api-sub">Outputs</h3><table class="params outputs"><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.plot.interior3d.out.fig"><td data-label="Name"><code>fig</code></td><td data-label="Description">Handle of the new figure.</td></tr>
+</tbody></table>
+<h3 class="api-sub">Description</h3>
+<p>The surface is drawn translucent; spheres, ellipsoids and tori are drawn where they lie inside the body, layers by their lower boundary. Color is the density difference (blue lighter, red denser than the background). Sectors are not drawn (see <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.slices">sbtk.plot.slices</a>).</p>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>body</code>, <code>truth</code>, <code>fit</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">fig = <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.interior3d">sbtk.plot.interior3d</a>(body, truth, &quot;true model&quot;);
+fig = <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.interior3d">sbtk.plot.interior3d</a>(body, fit, &quot;estimate&quot;);</code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.slices"><code>sbtk.plot.slices</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.geometry"><code>sbtk.gravity.geometry</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.write_model"><code>sbtk.exchange.write_model</code></a>, <a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.write_solution"><code>sbtk.exchange.write_solution</code></a>, <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.report_inversion"><code>sbtk.io.report_inversion</code></a>, <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.report_simulation"><code>sbtk.io.report_simulation</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+plot/interior3d.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="sbtk.plot.measurements">
+<h2 class="api-name" id="sbtk.plot.measurements-h"><code>sbtk.plot.measurements</code><a class="headerlink" href="#sbtk.plot.measurements" title="Link to sbtk.plot.measurements">#</a></h2>
+<p class="api-summary">What the data contain: gravity signal and noise per degree, and the inertia rows.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">fig = <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.measurements">sbtk.plot.measurements</a>(obs)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.plot.measurements.obs"><td data-label="Name"><code>obs</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">The measurement set. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#obs"><code>obs</code></a>. </td></tr>
+</tbody></table>
+<h3 class="api-sub">Outputs</h3><table class="params outputs"><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.plot.measurements.out.fig"><td data-label="Name"><code>fig</code></td><td data-label="Description">Handle of the new figure.</td></tr>
+</tbody></table>
+<h3 class="api-sub">Description</h3>
+<p>Left: root-mean-square size of the coefficients of each degree (dots) and of their 1-sigma uncertainties (line). Degrees where the dots sit well above the line carry information about the interior; where they meet, the data are noise (degree 1 is near zero about the center of mass). Right: each moment-of-inertia measurement with its 1-sigma ('libration' is the row (B - A) - ratio*Izz, measured as 0).</p>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>obs</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">fig = <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.measurements">sbtk.plot.measurements</a>(obs);</code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.report_simulation"><code>sbtk.io.report_simulation</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+plot/measurements.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="sbtk.plot.residuals">
+<h2 class="api-name" id="sbtk.plot.residuals-h"><code>sbtk.plot.residuals</code><a class="headerlink" href="#sbtk.plot.residuals" title="Link to sbtk.plot.residuals">#</a></h2>
+<p class="api-summary">Normalized residuals of a fit, (predicted - measured)/sigma, per measurement.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">fig = <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.residuals">sbtk.plot.residuals</a>(fit)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.plot.residuals.fit"><td data-label="Name"><code>fit</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">Inversion result. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#fit"><code>fit</code></a>. </td></tr>
+</tbody></table>
+<h3 class="api-sub">Outputs</h3><table class="params outputs"><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.plot.residuals.out.fig"><td data-label="Name"><code>fig</code></td><td data-label="Description">Handle of the new figure.</td></tr>
+</tbody></table>
+<h3 class="api-sub">Description</h3>
+<p>Gray band: +-1 sigma; dashed: +-2 sigma. Blue within 1 sigma, amber 1-2, red beyond 2. For a correct model about 68% of the residuals fall within +-1 sigma; systematic residuals in one group of coefficients (e.g. all of degree 3) indicate structure the model does not contain.</p>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>fit</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">fig = <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.residuals">sbtk.plot.residuals</a>(fit);</code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.write_solution"><code>sbtk.exchange.write_solution</code></a>, <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.report_inversion"><code>sbtk.io.report_inversion</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+plot/residuals.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="sbtk.plot.shape">
+<h2 class="api-name" id="sbtk.plot.shape-h"><code>sbtk.plot.shape</code><a class="headerlink" href="#sbtk.plot.shape" title="Link to sbtk.plot.shape">#</a></h2>
+<p class="api-summary">The body's shape model with its center of figure and axes.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">fig = <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.shape">sbtk.plot.shape</a>(body)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.plot.shape.body"><td data-label="Name"><code>body</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">The body. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#body"><code>body</code></a>. </td></tr>
+</tbody></table>
+<h3 class="api-sub">Outputs</h3><table class="params outputs"><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.plot.shape.out.fig"><td data-label="Name"><code>fig</code></td><td data-label="Description">Handle of the new figure.</td></tr>
+</tbody></table>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">fig = <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.shape">sbtk.plot.shape</a>(<a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.from_mass">sbtk.body.from_mass</a>(&quot;Didymos&quot;, <a class="xref xref-fn" href="../../reference/api/shape.html#sbtk.shape.bundled">sbtk.shape.bundled</a>(&quot;didymos&quot;), 5.273e11, 0.43));</code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.from_mass"><code>sbtk.body.from_mass</code></a>, <a class="xref xref-fn" href="../../reference/api/shape.html#sbtk.shape.bundled"><code>sbtk.shape.bundled</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+plot/shape.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="sbtk.plot.slices">
+<h2 class="api-name" id="sbtk.plot.slices-h"><code>sbtk.plot.slices</code><a class="headerlink" href="#sbtk.plot.slices" title="Link to sbtk.plot.slices">#</a></h2>
+<p class="api-summary">Absolute density on the equatorial plane and a meridional plane.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">fig = <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.slices">sbtk.plot.slices</a>(body, models, titles)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.plot.slices.body"><td data-label="Name"><code>body</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">The body. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#body"><code>body</code></a>. </td></tr>
+<tr id="sbtk.plot.slices.models"><td data-label="Name"><code>models</code></td><td data-label="Size">1 × any</td><td data-label="Class">cell</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">cell array of models (truth from <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>, fit from <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.run">sbtk.invert.run</a>): one row of panels each, one shared color scale </td></tr>
+<tr id="sbtk.plot.slices.titles"><td data-label="Name"><code>titles</code></td><td data-label="Size">1 × any</td><td data-label="Class">cell</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">cell array, one label per model </td></tr>
+</tbody></table>
+<h3 class="api-sub">Outputs</h3><table class="params outputs"><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.plot.slices.out.fig"><td data-label="Name"><code>fig</code></td><td data-label="Description">Handle of the new figure.</td></tr>
+</tbody></table>
+<h3 class="api-sub">Description</h3>
+<p>Left: the plane z = 0 (looking down the spin axis). Right: the plane y = 0. Both pass through the first model's <code>origin_km</code> (its center of mass).</p>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>body</code>, <code>truth</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">fig = <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.slices">sbtk.plot.slices</a>(body, {truth}, {&#39;truth&#39;});</code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a>, <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.run"><code>sbtk.invert.run</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.geometry"><code>sbtk.gravity.geometry</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.write_model"><code>sbtk.exchange.write_model</code></a>, <a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.write_solution"><code>sbtk.exchange.write_solution</code></a>, <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.report_inversion"><code>sbtk.io.report_inversion</code></a>, <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.report_simulation"><code>sbtk.io.report_simulation</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+plot/slices.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="sbtk.plot.truth_vs_estimate">
+<h2 class="api-name" id="sbtk.plot.truth_vs_estimate-h"><code>sbtk.plot.truth_vs_estimate</code><a class="headerlink" href="#sbtk.plot.truth_vs_estimate" title="Link to sbtk.plot.truth_vs_estimate">#</a></h2>
+<p class="api-summary">Truth, estimate and their difference on two planes.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">fig = <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.truth_vs_estimate">sbtk.plot.truth_vs_estimate</a>(body, truth, fit)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.plot.truth_vs_estimate.body"><td data-label="Name"><code>body</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">The body. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#body"><code>body</code></a>. </td></tr>
+<tr id="sbtk.plot.truth_vs_estimate.truth"><td data-label="Name"><code>truth</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">The true model. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#truth"><code>truth</code></a>. </td></tr>
+<tr id="sbtk.plot.truth_vs_estimate.fit"><td data-label="Name"><code>fit</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">The inversion result. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#fit"><code>fit</code></a>. </td></tr>
+</tbody></table>
+<h3 class="api-sub">Outputs</h3><table class="params outputs"><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.plot.truth_vs_estimate.out.fig"><td data-label="Name"><code>fig</code></td><td data-label="Description">Handle of the new figure.</td></tr>
+</tbody></table>
+<h3 class="api-sub">Description</h3>
+<p>Rows: truth, estimate (same density color scale), and estimate minus truth (blue = estimate too light, red = too dense). Left: plane z = 0; right: plane y = 0, both through the truth's center of mass.</p>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>body</code>, <code>truth</code>, <code>fit</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">fig = <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.truth_vs_estimate">sbtk.plot.truth_vs_estimate</a>(body, truth, fit);</code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Calls</dt><dd><a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.geometry"><code>sbtk.gravity.geometry</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.report_comparison"><code>sbtk.io.report_comparison</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+plot/truth_vs_estimate.m</code>, line 1.</p>
+</section>
+</article>
+<nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../../reference/api/io.html" rel="prev"><span>Previous</span>sbtk.io</a><a class="next" href="../../reference/data-structures.html" rel="next"><span>Next</span>Data structures</a></nav>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-19.</footer>
+</main>
+<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#sbtk.plot.comparison">sbtk.plot.comparison</a></li><li class="lvl2"><a href="#sbtk.plot.densities">sbtk.plot.densities</a></li><li class="lvl2"><a href="#sbtk.plot.interior3d">sbtk.plot.interior3d</a></li><li class="lvl2"><a href="#sbtk.plot.measurements">sbtk.plot.measurements</a></li><li class="lvl2"><a href="#sbtk.plot.residuals">sbtk.plot.residuals</a></li><li class="lvl2"><a href="#sbtk.plot.shape">sbtk.plot.shape</a></li><li class="lvl2"><a href="#sbtk.plot.slices">sbtk.plot.slices</a></li><li class="lvl2"><a href="#sbtk.plot.truth_vs_estimate">sbtk.plot.truth_vs_estimate</a></li></ul></nav>
+</div>
+<script src="../../assets/search-index.js?v=eb13bdaf5f"></script>
+<script src="../../assets/site.js?v=eb13bdaf5f"></script>
+</body>
+</html>

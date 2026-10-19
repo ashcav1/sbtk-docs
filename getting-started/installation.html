@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en" data-root="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Installation — SBTK documentation</title>
+<link rel="stylesheet" href="../assets/site.css?v=eb13bdaf5f">
+<link rel="stylesheet" href="../assets/pygments.css?v=eb13bdaf5f">
+<link rel="stylesheet" href="../assets/print.css?v=eb13bdaf5f" media="print">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="topbar">
+  <button class="navtoggle" type="button" aria-controls="sidebar" aria-expanded="false">Contents</button>
+  <a class="sitename" href="../index.html">SBTK documentation</a>
+  <span class="version">version 1.0.0</span>
+  <div class="search" role="search">
+    <label for="search-input" class="visually-hidden">Search the documentation</label>
+    <input id="search-input" type="search" placeholder="Search (press /)" autocomplete="off"
+           aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+    <ul id="search-results" role="listbox" hidden></ul>
+  </div>
+  <a class="toplink" href="../print.html">Single-page version</a>
+  <a class="toplink" href="../SBTK_handbook.pdf">PDF handbook</a>
+</header>
+<div class="frame">
+<nav id="sidebar" class="sidebar" aria-label="Documentation pages"><ul><li class="navcat"><span class="navcat-title">Overview</span><ul><li><a href="../index.html">SBTK: Small Body Toolkit</a></li><li><a href="../overview/limitations.html">Assumptions and limitations</a></li></ul></li><li class="navcat"><span class="navcat-title">Getting started</span><ul><li><a href="../getting-started/installation.html" aria-current="page" class="current">Installation</a></li><li><a href="../getting-started/first-script.html">First script</a></li></ul></li><li class="navcat"><span class="navcat-title">Conventions</span><ul><li><a href="../conventions/units.html">Units</a></li><li><a href="../conventions/coordinates.html">Coordinate systems and origins</a></li><li><a href="../conventions/gravity-coefficients.html">Gravity coefficients</a></li><li><a href="../conventions/moments-of-inertia.html">Moments of inertia</a></li></ul></li><li class="navcat"><span class="navcat-title">Models and calculations</span><ul><li><a href="../models/shape-models.html">Shape models</a></li><li><a href="../models/density-distributions.html">Density distributions</a></li><li><a href="../models/forward-model.html">Gravity and moment calculations</a></li></ul></li><li class="navcat"><span class="navcat-title">Measurements and inversion</span><ul><li><a href="../inversion/measurements.html">Measurement sets</a></li><li><a href="../inversion/density-estimation.html">Density estimation</a></li><li><a href="../inversion/statistics.html">Goodness of fit and model comparison</a></li></ul></li><li class="navcat"><span class="navcat-title">Files</span><ul><li><a href="../files/results-folders.html">Results folders and figures</a></li><li><a href="../files/exchange-packages.html">Exchange packages</a></li></ul></li><li class="navcat"><span class="navcat-title">Examples</span><ul><li><a href="../examples/density-models.html">Density models by component type</a></li><li><a href="../examples/calculations.html">Calculations</a></li><li><a href="../examples/tutorials.html">Tutorial scripts</a></li></ul></li><li class="navcat"><span class="navcat-title">Projects</span><ul><li><a href="../projects/template.html">Project template</a></li><li><a href="../projects/bennu.html">Bennu</a></li><li><a href="../projects/hera-blind-test.html">Hera blind test</a></li></ul></li><li class="navcat"><span class="navcat-title">Reference</span><ul><li><a href="../reference/api.html">API reference</a></li><li><a href="../reference/api/sbtk.html">sbtk</a></li><li><a href="../reference/api/units.html">sbtk.units</a></li><li><a href="../reference/api/shape.html">sbtk.shape</a></li><li><a href="../reference/api/body.html">sbtk.body</a></li><li><a href="../reference/api/interior.html">sbtk.interior</a></li><li><a href="../reference/api/gravity.html">sbtk.gravity</a></li><li><a href="../reference/api/data.html">sbtk.data</a></li><li><a href="../reference/api/invert.html">sbtk.invert</a></li><li><a href="../reference/api/compare.html">sbtk.compare</a></li><li><a href="../reference/api/exchange.html">sbtk.exchange</a></li><li><a href="../reference/api/io.html">sbtk.io</a></li><li><a href="../reference/api/plot.html">sbtk.plot</a></li><li><a href="../reference/data-structures.html">Data structures</a></li><li><a href="../reference/errors.html">Error identifiers</a></li><li><a href="../reference/internal.html">Internal functions</a></li></ul></li><li class="navcat"><span class="navcat-title">Validation</span><ul><li><a href="../validation/tests.html">Validation and tests</a></li></ul></li></ul></nav>
+<main id="content" tabindex="-1">
+<nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Getting started › <span aria-current="page">Installation</span></nav>
+<article>
+<h1 id="top" id="installation">Installation<a class="headerlink" href="#installation" title="Link to this section">#</a></h1>
+<h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Link to this section">#</a></h2>
+<ul>
+<li>MATLAB R2024b or newer. SBTK 1.0.0 is tested with R2025a.</li>
+<li>Optimization Toolbox, for <code>lsqlin</code> in the inversion.</li>
+<li>A compiled copy of the polyhedral gravity kernel <code>ComputePolyhedralCSBar_mex</code> for the platform. Binaries for macOS on
+  Apple silicon (<code>.mexmaca64</code>) and Intel (<code>.mexmaci64</code>) are included; on other platforms it must be compiled once
+  (<a href="#compiling-the-gravity-kernel">below</a>).</li>
+</ul>
+<p>No other toolboxes or external libraries are used.</p>
+<h2 id="repository-layout">Repository layout<a class="headerlink" href="#repository-layout" title="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Folder</th>
+<th>Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>toolbox/+sbtk/</code></td>
+<td>The toolkit: one function per file, one folder per package (<code>+units</code>, <code>+shape</code>, …).</td>
+</tr>
+<tr>
+<td><code>sbtk_setup.m</code></td>
+<td>Adds <code>toolbox/</code> to the MATLAB path for the current session.</td>
+</tr>
+<tr>
+<td><code>data/shapes/</code></td>
+<td>Shape models in OBJ format, lengths in km.</td>
+</tr>
+<tr>
+<td><code>data/gravity/</code></td>
+<td>The OSIRIS-REx gravity field of Bennu (JPL, 2019).</td>
+</tr>
+<tr>
+<td><code>examples/</code></td>
+<td>Eight tutorial scripts, <code>ex01_quick_start.m</code> … <code>ex08_moments_of_inertia.m</code> (<a href="../examples/tutorials.html">Tutorial scripts</a>).</td>
+</tr>
+<tr>
+<td><code>projects/</code></td>
+<td>Runner scripts for the project template, Bennu and the Hera blind test (<a href="../projects/template.html">Projects</a>).</td>
+</tr>
+<tr>
+<td><code>results/</code></td>
+<td>Output of every run, created on demand (<a href="../files/results-folders.html">Results folders</a>).</td>
+</tr>
+<tr>
+<td><code>tests/</code></td>
+<td>Unit and integration tests, longer studies and test reports (<a href="../validation/tests.html">Validation</a>).</td>
+</tr>
+<tr>
+<td><code>tools/</code></td>
+<td>Maintenance scripts (reduced shape models, benchmark, README figures).</td>
+</tr>
+<tr>
+<td><code>docs/</code></td>
+<td>Notes in Markdown and earlier documents.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="setting-the-path">Setting the path<a class="headerlink" href="#setting-the-path" title="Link to this section">#</a></h2>
+<p>Scripts in <code>examples/</code> and <code>projects/</code> add <code>toolbox/</code> to the path themselves, so they can be run directly, also section
+by section. For the Command Window or other scripts, run <code>sbtk_setup.m</code> once per MATLAB session:</p>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><span class="nb">run</span><span class="p">(</span><span class="s">&quot;/path/to/SBTK/sbtk_setup.m&quot;</span><span class="p">)</span><span class="w">     </span><span class="c">% replace /path/to/SBTK with the location of the repository</span></code></pre></div>
+<p>It prints the version and the repository folder. <a class="xref xref-fn" href="../reference/api/sbtk.html#sbtk.version"><code>sbtk.version</code></a> and <a class="xref xref-fn" href="../reference/api/sbtk.html#sbtk.root"><code>sbtk.root</code></a> return them.</p>
+<p>Runner scripts locate themselves with <code>fileparts(which('&lt;script name&gt;'))</code> rather than <code>mfilename</code>, because under
+<strong>Run Section</strong> MATLAB executes a temporary copy of the script. A copied runner must have the name inside <code>which</code> changed
+to its own file name.</p>
+<h2 id="compiling-the-gravity-kernel">Compiling the gravity kernel<a class="headerlink" href="#compiling-the-gravity-kernel" title="Link to this section">#</a></h2>
+<p>On platforms without a compiled kernel, with a C compiler configured for MATLAB (<code>mex -setup C</code>):</p>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">cd(fullfile(<a class="xref xref-fn" href="../reference/api/sbtk.html#sbtk.root">sbtk.root</a>, &quot;toolbox&quot;, &quot;+sbtk&quot;, &quot;+internal&quot;))
+<span class="nb">mex</span><span class="w"> </span><span class="o">-</span><span class="n">O</span><span class="w"> </span><span class="n">ComputePolyhedralCSBar_mex</span><span class="p">.</span><span class="n">c</span></code></pre></div>
+<p>Then run the tests; the regression test compares the kernel output with stored values.</p>
+<h2 id="files-that-are-not-in-the-repository">Files that are not in the repository<a class="headerlink" href="#files-that-are-not-in-the-repository" title="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Needed by</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>data/shapes/g_01165mm_spc_obj_didy_0000n00000_v003.obj</code> (Didymos, 1.165 m sampling, about 160 MB)</td>
+<td><code>sbtk.shape.bundled("didymos_highres")</code>, <code>tools/make_reduced_shapes.m</code>, <code>examples/ex01_quick_start.m</code></td>
+<td>DART shape models on ESA's SPICE server, <code>spiftp.esac.esa.int/data/SPICE/HERA/kernels/dsk/</code></td>
+</tr>
+<tr>
+<td><code>data/shapes/g_00243mm_spc_obj_dimo_0000n00000_v004.obj</code> (Dimorphos, 0.243 m, about 160 MB)</td>
+<td><code>sbtk.shape.bundled("dimorphos_highres")</code>, <code>tools/make_reduced_shapes.m</code></td>
+<td>same</td>
+</tr>
+<tr>
+<td>Uncertainty files of the Hera end-to-end test</td>
+<td>the simulation runners of <code>projects/hera_hlp6</code></td>
+<td>Hera working group; not distributed (<a href="../projects/hera-blind-test.html">Hera blind test</a>)</td>
+</tr>
+</tbody>
+</table>
+<p>All other shape models used in the examples and tests are in <code>data/shapes/</code>.</p>
+<h2 id="checking-the-installation">Checking the installation<a class="headerlink" href="#checking-the-installation" title="Link to this section">#</a></h2>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">run(fullfile(<a class="xref xref-fn" href="../reference/api/sbtk.html#sbtk.root">sbtk.root</a>, &quot;tests&quot;, &quot;run_tests.m&quot;))</code></pre></div>
+<p>This runs 129 unit and integration tests in about three minutes and writes <code>tests/reports/test_report.txt</code>. Every test
+should pass (<a href="../validation/tests.html">Validation</a>).</p>
+</article>
+<nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../overview/limitations.html" rel="prev"><span>Previous</span>Assumptions and limitations</a><a class="next" href="../getting-started/first-script.html" rel="next"><span>Next</span>First script</a></nav>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-19.</footer>
+</main>
+<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#requirements">Requirements</a></li><li class="lvl2"><a href="#repository-layout">Repository layout</a></li><li class="lvl2"><a href="#setting-the-path">Setting the path</a></li><li class="lvl2"><a href="#compiling-the-gravity-kernel">Compiling the gravity kernel</a></li><li class="lvl2"><a href="#files-that-are-not-in-the-repository">Files that are not in the repository</a></li><li class="lvl2"><a href="#checking-the-installation">Checking the installation</a></li></ul></nav>
+</div>
+<script src="../assets/search-index.js?v=eb13bdaf5f"></script>
+<script src="../assets/site.js?v=eb13bdaf5f"></script>
+</body>
+</html>

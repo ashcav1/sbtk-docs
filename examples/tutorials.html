@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="en" data-root="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tutorial scripts — SBTK documentation</title>
+<link rel="stylesheet" href="../assets/site.css?v=eb13bdaf5f">
+<link rel="stylesheet" href="../assets/pygments.css?v=eb13bdaf5f">
+<link rel="stylesheet" href="../assets/print.css?v=eb13bdaf5f" media="print">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="topbar">
+  <button class="navtoggle" type="button" aria-controls="sidebar" aria-expanded="false">Contents</button>
+  <a class="sitename" href="../index.html">SBTK documentation</a>
+  <span class="version">version 1.0.0</span>
+  <div class="search" role="search">
+    <label for="search-input" class="visually-hidden">Search the documentation</label>
+    <input id="search-input" type="search" placeholder="Search (press /)" autocomplete="off"
+           aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+    <ul id="search-results" role="listbox" hidden></ul>
+  </div>
+  <a class="toplink" href="../print.html">Single-page version</a>
+  <a class="toplink" href="../SBTK_handbook.pdf">PDF handbook</a>
+</header>
+<div class="frame">
+<nav id="sidebar" class="sidebar" aria-label="Documentation pages"><ul><li class="navcat"><span class="navcat-title">Overview</span><ul><li><a href="../index.html">SBTK: Small Body Toolkit</a></li><li><a href="../overview/limitations.html">Assumptions and limitations</a></li></ul></li><li class="navcat"><span class="navcat-title">Getting started</span><ul><li><a href="../getting-started/installation.html">Installation</a></li><li><a href="../getting-started/first-script.html">First script</a></li></ul></li><li class="navcat"><span class="navcat-title">Conventions</span><ul><li><a href="../conventions/units.html">Units</a></li><li><a href="../conventions/coordinates.html">Coordinate systems and origins</a></li><li><a href="../conventions/gravity-coefficients.html">Gravity coefficients</a></li><li><a href="../conventions/moments-of-inertia.html">Moments of inertia</a></li></ul></li><li class="navcat"><span class="navcat-title">Models and calculations</span><ul><li><a href="../models/shape-models.html">Shape models</a></li><li><a href="../models/density-distributions.html">Density distributions</a></li><li><a href="../models/forward-model.html">Gravity and moment calculations</a></li></ul></li><li class="navcat"><span class="navcat-title">Measurements and inversion</span><ul><li><a href="../inversion/measurements.html">Measurement sets</a></li><li><a href="../inversion/density-estimation.html">Density estimation</a></li><li><a href="../inversion/statistics.html">Goodness of fit and model comparison</a></li></ul></li><li class="navcat"><span class="navcat-title">Files</span><ul><li><a href="../files/results-folders.html">Results folders and figures</a></li><li><a href="../files/exchange-packages.html">Exchange packages</a></li></ul></li><li class="navcat"><span class="navcat-title">Examples</span><ul><li><a href="../examples/density-models.html">Density models by component type</a></li><li><a href="../examples/calculations.html">Calculations</a></li><li><a href="../examples/tutorials.html" aria-current="page" class="current">Tutorial scripts</a></li></ul></li><li class="navcat"><span class="navcat-title">Projects</span><ul><li><a href="../projects/template.html">Project template</a></li><li><a href="../projects/bennu.html">Bennu</a></li><li><a href="../projects/hera-blind-test.html">Hera blind test</a></li></ul></li><li class="navcat"><span class="navcat-title">Reference</span><ul><li><a href="../reference/api.html">API reference</a></li><li><a href="../reference/api/sbtk.html">sbtk</a></li><li><a href="../reference/api/units.html">sbtk.units</a></li><li><a href="../reference/api/shape.html">sbtk.shape</a></li><li><a href="../reference/api/body.html">sbtk.body</a></li><li><a href="../reference/api/interior.html">sbtk.interior</a></li><li><a href="../reference/api/gravity.html">sbtk.gravity</a></li><li><a href="../reference/api/data.html">sbtk.data</a></li><li><a href="../reference/api/invert.html">sbtk.invert</a></li><li><a href="../reference/api/compare.html">sbtk.compare</a></li><li><a href="../reference/api/exchange.html">sbtk.exchange</a></li><li><a href="../reference/api/io.html">sbtk.io</a></li><li><a href="../reference/api/plot.html">sbtk.plot</a></li><li><a href="../reference/data-structures.html">Data structures</a></li><li><a href="../reference/errors.html">Error identifiers</a></li><li><a href="../reference/internal.html">Internal functions</a></li></ul></li><li class="navcat"><span class="navcat-title">Validation</span><ul><li><a href="../validation/tests.html">Validation and tests</a></li></ul></li></ul></nav>
+<main id="content" tabindex="-1">
+<nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Examples › <span aria-current="page">Tutorial scripts</span></nav>
+<article>
+<h1 id="top" id="tutorial-scripts">Tutorial scripts<a class="headerlink" href="#tutorial-scripts" title="Link to this section">#</a></h1>
+<p>The repository folder <code>examples/</code> contains eight tutorial scripts with sections. Each adds <code>toolbox/</code> to the path
+itself and can be run whole or section by section. All eight run in the test suite
+(<code>tests/integration/test_examples.m</code>, also section by section for ex01). The code below is included from the
+repository files.</p>
+<table>
+<thead>
+<tr>
+<th>Script</th>
+<th>Topic</th>
+<th>Run time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ex01_quick_start.m</code></td>
+<td>Body, interior, simulation, inversion, comparison on the 1.165 m Didymos model</td>
+<td>about 90 s</td>
+</tr>
+<tr>
+<td><code>ex02_shapes_and_bodies.m</code></td>
+<td>Shape models from files, arrays and ellipsoids; checks; bodies</td>
+<td>about 5 s</td>
+</tr>
+<tr>
+<td><code>ex03_forward_model.m</code></td>
+<td>Every component type, a random field, the simulated measurements, plots</td>
+<td>about 20 s</td>
+</tr>
+<tr>
+<td><code>ex04_inversion.m</code></td>
+<td>Homogeneous test, inertia data, sphere positions, regularization, calibration</td>
+<td>about 30 s</td>
+</tr>
+<tr>
+<td><code>ex05_import_data.m</code></td>
+<td>Measurements from matrices, kg m², a full covariance, the text format</td>
+<td>about 5 s</td>
+</tr>
+<tr>
+<td><code>ex06_results_folders.m</code></td>
+<td>Run folders, reports, logs, settings</td>
+<td>about 30 s</td>
+</tr>
+<tr>
+<td><code>ex07_exchange_packages.m</code></td>
+<td>Measurement, interior-model and solution packages</td>
+<td>about 40 s</td>
+</tr>
+<tr>
+<td><code>ex08_moments_of_inertia.m</code></td>
+<td>What inertia data and the libration ratio add to the gravity field</td>
+<td>about 20 s</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ex01-quick-start">ex01: quick start<a class="headerlink" href="#ex01-quick-start" title="Link to this section">#</a></h2>
+<p>The sequence of the <a href="../getting-started/first-script.html">first script</a> on the full-resolution Didymos model (3,145,728
+facets), which is not in the repository (<a href="../getting-started/installation.html#files-that-are-not-in-the-repository">Installation</a>).
+With <code>"didymos"</code> instead of <code>"didymos_highres"</code> it runs in about 15 s.</p>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB script: examples/ex01_quick_start.m</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><span class="c">%% EX01_QUICK_START  Simulate measurements of an interior, invert them, compare with the true model. (~90 s with the 1.165 m shape model)</span>
+<span class="c">%</span>
+<span class="c">% The SBTK workflow on the Didymos shape model:</span>
+<span class="c">%   1. a body: shape model, bulk density, reference radius</span>
+<span class="c">%   2. forward model: components -&gt; gravity coefficients and moments of inertia</span>
+<span class="c">%   3. inversion: measurements + component geometry -&gt; densities with 1-sigma uncertainties</span>
+<span class="c">%   4. comparison with the true model</span>
+
+<span class="nb">addpath</span><span class="p">(</span><span class="nb">fullfile</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">which</span><span class="p">(</span><span class="s">&#39;ex01_quick_start&#39;</span><span class="p">))),</span><span class="w"> </span><span class="s">&#39;toolbox&#39;</span><span class="p">));</span>
+
+<span class="c">%% 1. Body</span>
+body = <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.from_mass">sbtk.body.from_mass</a>(&quot;Didymos&quot;, <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.bundled">sbtk.shape.bundled</a>(&quot;didymos_highres&quot;), 5.273e11, 0.43);   <span class="c">% mass [kg], R_ref [km] (Hera end-to-end test)</span>
+<a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.summary">sbtk.body.summary</a>(body)
+
+<span class="c">%% 2. Forward model: a dense core and a low-density surface layer</span>
+components = [<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, [0 0 0], 0.170, +450), ...<span class="c">      % center [km], radius [km], relative density [kg/m^3]</span>
+              <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;, 0, 0.012, -900)];           <span class="c">% from 0 to 12 m below the surface</span>
+unc = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.uncertainties">sbtk.data.uncertainties</a>([<a class="xref xref-fn" href="../reference/api/units.html#sbtk.units.offset_to_degree1">sbtk.units.offset_to_degree1</a>(0.002, 0.43), ...<span class="c">  % degree 1: 2 m center of mass</span>
+<span class="w">                               </span><span class="mf">1e-4</span><span class="p">,</span><span class="w"> </span><span class="mf">2e-4</span><span class="p">,</span><span class="w"> </span><span class="mf">4e-4</span><span class="p">],</span><span class="w"> </span><span class="k">...</span><span class="c">                          % degrees 2, 3, 4</span>
+<span class="w">                              </span><span class="mf">2e-3</span><span class="p">,</span><span class="w"> </span><span class="k">...</span><span class="c">                                        % each MOI / (M R_ref^2)</span>
+<span class="w">                              </span><span class="mf">0.02</span><span class="p">);</span><span class="w">                                           </span><span class="c">% libration ratio</span>
+[obs, truth] = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>(components), 4, unc, &quot;quick_start&quot;);
+obs = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise">sbtk.data.add_noise</a>(obs, 1);
+<a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.summary">sbtk.data.summary</a>(obs)
+
+<span class="c">%% 3. Inversion: the same components, relative densities unknown</span>
+<span class="c">% (the relative densities given with the components are not used: they are estimated)</span>
+fit = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.solve">sbtk.invert.solve</a>(body, components, obs);
+<a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.summary">sbtk.invert.summary</a>(fit)
+
+<span class="c">%% 4. Comparison with the true model</span>
+cmp = <a class="xref xref-fn" href="../reference/api/compare.html#sbtk.compare.with_truth">sbtk.compare.with_truth</a>(body, truth, fit);
+<a class="xref xref-fn" href="../reference/api/compare.html#sbtk.compare.summary">sbtk.compare.summary</a>(cmp)
+<a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.densities">sbtk.plot.densities</a>(fit);
+<a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.truth_vs_estimate">sbtk.plot.truth_vs_estimate</a>(body, truth, fit);</code></pre></div>
+<h2 id="ex02-shapes-and-bodies">ex02: shapes and bodies<a class="headerlink" href="#ex02-shapes-and-bodies" title="Link to this section">#</a></h2>
+<p>Shape models from an OBJ file with a stated unit, from arrays (a tetrahedron in meters) and as an ellipsoid; the checks
+of <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.properties"><code>sbtk.shape.properties</code></a>; writing OBJ; a body; the unit table.</p>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB script: examples/ex02_shapes_and_bodies.m</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><span class="c">%% EX02_SHAPES_AND_BODIES  Shape models from files or arrays, units, checks. (~5 s)</span>
+<span class="c">%</span>
+<span class="c">% Any closed polyhedral shape works if it is star-shaped about its center of</span>
+<span class="c">% mass (every facet visible from it). Lengths are converted to km on input:</span>
+<span class="c">% the unit of the file must be given.</span>
+
+<span class="nb">addpath</span><span class="p">(</span><span class="nb">fullfile</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">which</span><span class="p">(</span><span class="s">&#39;ex02_shapes_and_bodies&#39;</span><span class="p">))),</span><span class="w"> </span><span class="s">&#39;toolbox&#39;</span><span class="p">));</span>
+
+<span class="c">%% From an OBJ file (unit stated explicitly)</span>
+didymos = <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.load">sbtk.shape.load</a>(fullfile(<a class="xref xref-fn" href="../reference/api/sbtk.html#sbtk.root">sbtk.root</a>, &quot;data&quot;, &quot;shapes&quot;, &quot;didymos_g_9309mm_spc_obj_0000n00000_v003.obj&quot;), &quot;km&quot;);
+<span class="c">% the shape models that ship with SBTK also load by name:</span>
+<span class="c">%   sbtk.shape.bundled(&quot;didymos&quot;), (&quot;bennu&quot;), (&quot;dimorphos_placeholder&quot;), (&quot;example_asteroid&quot;)</span>
+props = <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.properties">sbtk.shape.properties</a>(didymos);
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;%s: %d facets, volume %.5f km^3, centroid [%.1f %.1f %.1f] m, star-shaped: %d\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">didymos</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">        </span><span class="n">props</span><span class="p">.</span><span class="n">n_facets</span><span class="p">,</span><span class="w"> </span><span class="n">props</span><span class="p">.</span><span class="n">volume_km3</span><span class="p">,</span><span class="w"> </span><span class="mf">1e3</span><span class="o">*</span><span class="n">props</span><span class="p">.</span><span class="n">centroid_km</span><span class="p">,</span><span class="w"> </span><span class="n">props</span><span class="p">.</span><span class="n">star_shaped_about_centroid</span><span class="p">);</span>
+
+<span class="c">%% From arrays (here a tetrahedron given in meters)</span>
+<span class="n">V</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">100</span><span class="w"> </span><span class="s">0</span><span class="w"> </span><span class="s">0</span><span class="p">;</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="s">100</span><span class="w"> </span><span class="s">0</span><span class="p">;</span><span class="w"> </span><span class="n">0</span><span class="w"> </span><span class="s">0</span><span class="w"> </span><span class="s">100]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">25</span><span class="p">;</span><span class="w">          </span><span class="c">% vertices [m]</span>
+<span class="n">F</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="n">1</span><span class="w"> </span><span class="s">2</span><span class="w"> </span><span class="s">4</span><span class="p">;</span><span class="w"> </span><span class="n">1</span><span class="w"> </span><span class="s">4</span><span class="w"> </span><span class="s">3</span><span class="p">;</span><span class="w"> </span><span class="n">2</span><span class="w"> </span><span class="s">3</span><span class="w"> </span><span class="s">4]</span><span class="p">;</span><span class="w">                      </span><span class="c">% facets, outward</span>
+tetra = <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.from_arrays">sbtk.shape.from_arrays</a>(&quot;tetra&quot;, F, V, &quot;m&quot;);
+disp(<a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.properties">sbtk.shape.properties</a>(tetra))
+
+<span class="c">%% A triaxial ellipsoid (exact test shape), saved to OBJ</span>
+ell = <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.ellipsoid">sbtk.shape.ellipsoid</a>(&quot;test_ellipsoid&quot;, [0.40 0.35 0.30], 4);     <span class="c">% 5,120 facets</span>
+<span class="n">file</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">fullfile</span><span class="p">(</span><span class="nb">tempdir</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;test_ellipsoid.obj&#39;</span><span class="p">);</span>
+<a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.write_obj">sbtk.shape.write_obj</a>(ell, file);
+ell2 = <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.load">sbtk.shape.load</a>(file, &quot;km&quot;);
+
+<span class="c">%% Bodies: shape + bulk density + reference radius of the gravity field</span>
+body = <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.create">sbtk.body.create</a>(&quot;Ellipsoid&quot;, ell2, 2200, 0.40);
+<a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.summary">sbtk.body.summary</a>(body)
+<a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.shape">sbtk.plot.shape</a>(body);
+<a class="xref xref-fn" href="../reference/api/units.html#sbtk.units.table">sbtk.units.table</a>()</code></pre></div>
+<h2 id="ex03-forward-model">ex03: forward model<a class="headerlink" href="#ex03-forward-model" title="Link to this section">#</a></h2>
+<p>Every component type and a random field, the simulated measurements as a table, the density at given points, and the
+three-dimensional, slice and measurement figures.</p>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB script: examples/ex03_forward_model.m</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><span class="c">%% EX03_FORWARD_MODEL  Every component type, a random density field, and the simulated measurements. (~20 s)</span>
+<span class="c">%</span>
+<span class="c">% Components are regions of uniform relative density (density minus the</span>
+<span class="c">% background density). Overlapping relative densities add and components are</span>
+<span class="c">% clipped to the body. The background density follows from the total mass.</span>
+
+<span class="nb">addpath</span><span class="p">(</span><span class="nb">fullfile</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">which</span><span class="p">(</span><span class="s">&#39;ex03_forward_model&#39;</span><span class="p">))),</span><span class="w"> </span><span class="s">&#39;toolbox&#39;</span><span class="p">));</span>
+body = <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.from_mass">sbtk.body.from_mass</a>(&quot;Didymos&quot;, <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.bundled">sbtk.shape.bundled</a>(&quot;didymos&quot;), 5.273e11, 0.43);
+
+<span class="c">%% Components</span>
+<span class="n">components</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="k">...</span>
+  <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, [0 0 0], 0.170, +250), ...<span class="c">                                 % center, radius</span>
+  <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.ellipsoid">sbtk.interior.ellipsoid</a>(&quot;lens&quot;, [0.05 0.10 0.12], [0.20 0.08 0.05], [40 -30 15], +300), ...<span class="c"> % center, semi-axes, yaw/pitch/roll</span>
+  <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.torus">sbtk.interior.torus</a>(&quot;ridge&quot;, 0.370, 0.055, 0.000, -500), ...<span class="c">                            % ring radius, tube radius, height</span>
+  <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;, 0.000, 0.012, -900), ...<span class="c">                                % top, bottom depth</span>
+  <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sector">sbtk.interior.sector</a>(&quot;block&quot;, [0.3 0.9], [40 90], [150 240], +200), ...<span class="c">                 % radial fraction, lat, lon</span>
+  <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;boulder&quot;, <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.latlon">sbtk.interior.latlon</a>(25, 60, 0.250), 0.040, +900)];     <span class="c">% position from lat/lon/distance</span>
+<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.summary">sbtk.interior.summary</a>(components)
+
+<span class="c">%% Gaussian random density field (standard deviation 40 kg/m^3, correlation length 60 m, seed 7)</span>
+interior = <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>(components, <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.random_field">sbtk.interior.random_field</a>(40, 0.06, 7));
+
+<span class="c">%% Forward model</span>
+unc = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.uncertainties">sbtk.data.uncertainties</a>([<a class="xref xref-fn" href="../reference/api/units.html#sbtk.units.offset_to_degree1">sbtk.units.offset_to_degree1</a>(0.002, 0.43), 1e-4, 2e-4, 4e-4], 2e-3, 0.02);
+[exact, truth, geo] = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, interior, 4, unc, &quot;example_interior&quot;);
+obs = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise">sbtk.data.add_noise</a>(exact, 1);
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;background density %.0f kg/m^3, center of mass %.1f m from the center of figure\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">        </span><span class="n">truth</span><span class="p">.</span><span class="n">rho_bg_kgm3</span><span class="p">,</span><span class="w"> </span><span class="mf">1e3</span><span class="o">*</span><span class="nb">norm</span><span class="p">(</span><span class="n">obs</span><span class="p">.</span><span class="n">com_minus_cof_km</span><span class="p">));</span>
+
+<span class="c">% What the measurements look like</span>
+<span class="nb">disp</span><span class="p">(</span><span class="nb">table</span><span class="p">(</span><span class="n">obs</span><span class="p">.</span><span class="n">coef_labels</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">8</span><span class="p">),</span><span class="w"> </span><span class="n">obs</span><span class="p">.</span><span class="n">coef</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">8</span><span class="p">),</span><span class="w"> </span><span class="nb">sqrt</span><span class="p">(</span><span class="nb">diag</span><span class="p">(</span><span class="n">obs</span><span class="p">.</span><span class="n">coef_cov</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="mi">8</span><span class="p">))),</span><span class="w"> </span><span class="k">...</span>
+<span class="w">           </span><span class="s">&#39;VariableNames&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="s">&#39;label&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;value&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;sigma&#39;</span><span class="p">}))</span>
+<span class="nb">disp</span><span class="p">(</span><span class="nb">struct2table</span><span class="p">(</span><span class="n">obs</span><span class="p">.</span><span class="n">moi</span><span class="p">))</span>
+
+<span class="c">%% Density anywhere inside (truth frame = center of mass)</span>
+rho = <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.density_at">sbtk.interior.density_at</a>(truth, [0 0 0; 0.3 0 0] + truth.origin_km, geo);
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;density at the center %.0f, 300 m out along x %.0f kg/m^3\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">rho</span><span class="p">);</span>
+
+<span class="c">%% Plots</span>
+<a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.interior3d">sbtk.plot.interior3d</a>(body, truth, &quot;example interior&quot;);
+<a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.slices">sbtk.plot.slices</a>(body, {truth}, {&#39;truth&#39;});
+<a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.measurements">sbtk.plot.measurements</a>(obs);</code></pre></div>
+<h2 id="ex04-inversion-options">ex04: inversion options<a class="headerlink" href="#ex04-inversion-options" title="Link to this section">#</a></h2>
+<p>The homogeneous test; fits with and without inertia data; estimation of a sphere center; a 36-sector grid with Tikhonov
+regularization chosen by the discrepancy principle; and the standard deviation of (estimate − truth)/σ over 50 noise
+realizations using <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.replace_data"><code>sbtk.invert.replace_data</code></a>.</p>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB script: examples/ex04_inversion.m</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><span class="c">%% EX04_INVERSION  Inversion options: homogeneous model, MOI, sphere positions, regularization. (~30 s)</span>
+<span class="c">%</span>
+<span class="c">% setup does the slow part once (geometry and each component&#39;s effect on every</span>
+<span class="c">% measurement); run solves in milliseconds, so trying options is cheap.</span>
+
+<span class="nb">addpath</span><span class="p">(</span><span class="nb">fullfile</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">which</span><span class="p">(</span><span class="s">&#39;ex04_inversion&#39;</span><span class="p">))),</span><span class="w"> </span><span class="s">&#39;toolbox&#39;</span><span class="p">));</span>
+body  = <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.from_mass">sbtk.body.from_mass</a>(&quot;Didymos&quot;, <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.bundled">sbtk.shape.bundled</a>(&quot;didymos&quot;), 5.273e11, 0.43);
+unc   = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.uncertainties">sbtk.data.uncertainties</a>([<a class="xref xref-fn" href="../reference/api/units.html#sbtk.units.offset_to_degree1">sbtk.units.offset_to_degree1</a>(0.002, 0.43), 1e-4, 2e-4, 4e-4], 2e-3, 0.02);
+truth_components = [<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, [0.03 -0.02 0.01], 0.17, +500), ...
+               <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.torus">sbtk.interior.torus</a>(&quot;ridge&quot;, 0.37, 0.055, 0, -500), <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;, 0, 0.012, -900)];
+[exact, truth] = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>(truth_components), 4, unc, &quot;ex04&quot;);
+obs = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise">sbtk.data.add_noise</a>(exact, 1);
+
+<span class="c">%% Set up once</span>
+<span class="c">% Component geometry is fixed (the core is placed at the origin, off the true center);</span>
+<span class="c">% relative densities are estimated, so their values here are not used.</span>
+components = [<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, [0 0 0], 0.17, 0), <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.torus">sbtk.interior.torus</a>(&quot;ridge&quot;, 0.37, 0.055, 0, 0), ...
+              <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;, 0, 0.012, 0)];
+opts = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.options">sbtk.invert.options</a>();             <span class="c">% every setting and its standard value</span>
+<span class="nb">disp</span><span class="p">(</span><span class="n">opts</span><span class="p">)</span>
+prob = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.setup">sbtk.invert.setup</a>(body, components, obs, opts);
+
+<span class="c">%% Is a homogeneous body consistent with the measurements?</span>
+u = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.homogeneous">sbtk.invert.homogeneous</a>(prob);
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;homogeneous body: reduced chi2 %.2f, p = %.2g\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">chi2_reduced</span><span class="p">,</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="n">p_value</span><span class="p">);</span>
+
+<span class="c">%% Fit, and the same with gravity only (no MOI): MOI shrink the uncertainties</span>
+fit = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.run">sbtk.invert.run</a>(prob);
+<a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.summary">sbtk.invert.summary</a>(fit)
+fit_g = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.solve">sbtk.invert.solve</a>(body, components, obs, <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.options">sbtk.invert.options</a>(moi_labels={}));
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;core 1-sigma: %.0f kg/m^3 with MOI, %.0f without\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">fit</span><span class="p">.</span><span class="n">rho_sigma_kgm3</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">fit_g</span><span class="p">.</span><span class="n">rho_sigma_kgm3</span><span class="p">(</span><span class="mi">1</span><span class="p">));</span>
+
+<span class="c">%% Estimate the core position as well</span>
+<span class="n">moving</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">components</span><span class="p">;</span><span class="w">  </span><span class="n">moving</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">estimate_position</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+fit_p = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.solve">sbtk.invert.solve</a>(body, moving, obs);
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;core center [%.0f %.0f %.0f] m +- [%.0f %.0f %.0f] m (truth [30 -20 10] m from the shape origin)\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">        </span><span class="mf">1e3</span><span class="o">*</span><span class="n">fit_p</span><span class="p">.</span><span class="n">components</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">center_km</span><span class="p">,</span><span class="w"> </span><span class="mf">1e3</span><span class="o">*</span><span class="n">fit_p</span><span class="p">.</span><span class="n">center_sigma_km</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="p">:));</span>
+
+<span class="c">%% Tikhonov regularization for many components (36-sector grid), parameter by the discrepancy principle</span>
+<span class="c">% The sectors fill the body, so the background is held at the bulk density.</span>
+sectors = <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sector_grid">sbtk.interior.sector_grid</a>([0 0.5 0.85 1], [-90 -30 30 90], [-180 -90 0 90 180]);
+probc = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.setup">sbtk.invert.setup</a>(body, sectors, obs, <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.options">sbtk.invert.options</a>(background=&quot;bulk&quot;));
+probc.opts.regularization = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.choose_regularization">sbtk.invert.choose_regularization</a>(probc);
+fitc = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.run">sbtk.invert.run</a>(probc);
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;sector grid: lambda %.3g, reduced chi2 %.2f (dof %.1f)\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">fitc</span><span class="p">.</span><span class="n">regularization</span><span class="p">,</span><span class="w"> </span><span class="n">fitc</span><span class="p">.</span><span class="n">chi2_reduced</span><span class="p">,</span><span class="w"> </span><span class="n">fitc</span><span class="p">.</span><span class="n">dof</span><span class="p">);</span>
+
+<span class="c">%% Calibration of the uncertainties: 50 noise realizations</span>
+<span class="n">z</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">zeros</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">);</span>
+<span class="k">for</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="mi">50</span>
+    f = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.run">sbtk.invert.run</a>(<a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.replace_data">sbtk.invert.replace_data</a>(prob, <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise">sbtk.data.add_noise</a>(exact, 100 + k)));
+<span class="w">    </span><span class="n">z</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="p">:)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">([</span><span class="n">f</span><span class="p">.</span><span class="n">rho_bg_kgm3</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="n">f</span><span class="p">.</span><span class="n">components</span><span class="p">.</span><span class="n">drho_kgm3</span><span class="p">]]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">[</span><span class="n">truth</span><span class="p">.</span><span class="n">rho_bg_kgm3</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="n">truth_components</span><span class="p">.</span><span class="n">drho_kgm3</span><span class="p">]])</span><span class="w"> </span><span class="k">...</span>
+<span class="w">              </span><span class="o">./</span><span class="p">[</span><span class="n">f</span><span class="p">.</span><span class="n">rho_bg_sigma_kgm3</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">.</span><span class="n">drho_sigma_kgm3</span><span class="p">];</span>
+<span class="k">end</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;standard deviation of (estimate - truth)/sigma: %.2f (1 for calibrated uncertainties)\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">std</span><span class="p">(</span><span class="n">z</span><span class="p">(:)));</span>
+<a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.residuals">sbtk.plot.residuals</a>(fit);</code></pre></div>
+<h2 id="ex05-importing-data">ex05: importing data<a class="headerlink" href="#ex05-importing-data" title="Link to this section">#</a></h2>
+<p>A measurement set from coefficient matrices; inertia given in kg m²; a libration ratio; a full covariance; the text
+format written and read back; selection of degrees.</p>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB script: examples/ex05_import_data.m</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><span class="c">%% EX05_IMPORT_DATA  Measurements from arrays, kg m^2, a full covariance, and text files. (~5 s)</span>
+<span class="c">%</span>
+<span class="c">% Real data arrive as coefficient matrices with uncertainties (and maybe a full</span>
+<span class="c">% covariance) and as moments of inertia. This builds an SBTK measurement set</span>
+<span class="c">% from them, in the units SBTK uses.</span>
+
+<span class="nb">addpath</span><span class="p">(</span><span class="nb">fullfile</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">which</span><span class="p">(</span><span class="s">&#39;ex05_import_data&#39;</span><span class="p">))),</span><span class="w"> </span><span class="s">&#39;toolbox&#39;</span><span class="p">));</span>
+body = <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.from_mass">sbtk.body.from_mass</a>(&quot;Dimorphos&quot;, <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.bundled">sbtk.shape.bundled</a>(&quot;dimorphos&quot;), 2.700e9, 0.10);
+
+<span class="c">%% Coefficient matrices: C(l+1, m+1) = C_lm, fully normalized about origin_km</span>
+<span class="n">L</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="n">C</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">zeros</span><span class="p">(</span><span class="n">L</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w">  </span><span class="n">S</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">zeros</span><span class="p">(</span><span class="n">L</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="n">C</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">  </span><span class="n">C</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="o">-</span><span class="mf">0.08</span><span class="p">;</span><span class="w">  </span><span class="n">C</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">0.03</span><span class="p">;</span><span class="w">  </span><span class="n">S</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">0.002</span><span class="p">;</span><span class="w">     </span><span class="c">% C00, C20, C22, S22</span>
+<span class="n">Cs</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">1e-3</span><span class="o">*</span><span class="nb">ones</span><span class="p">(</span><span class="n">L</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w">  </span><span class="n">Ss</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">1e-3</span><span class="o">*</span><span class="nb">ones</span><span class="p">(</span><span class="n">L</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w">                     </span><span class="c">% 1-sigma of each</span>
+obs = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.from_coefficients">sbtk.data.from_coefficients</a>(body, &quot;example_import&quot;, [0 0 0], C, S, Cs, Ss);
+
+<span class="c">%% Moments of inertia, given in kg m^2 -&gt; I/(M R_ref^2)</span>
+<span class="n">Izz_kgm2</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">1.6e14</span><span class="p">;</span>
+Izz = <a class="xref xref-fn" href="../reference/api/units.html#sbtk.units.moi_to_norm">sbtk.units.moi_to_norm</a>(Izz_kgm2, body.mass_kg, body.R_ref_km);
+obs = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_moi">sbtk.data.add_moi</a>(obs, &quot;Izz&quot;, Izz, 0.01*Izz);
+obs = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_libration">sbtk.data.add_libration</a>(obs, 0.20, 0.03, Izz);                <span class="c">% (B-A)/C and its 1-sigma</span>
+
+<span class="c">%% A full covariance (here: 30% correlation between all coefficients)</span>
+<span class="n">sig</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">sqrt</span><span class="p">(</span><span class="nb">diag</span><span class="p">(</span><span class="n">obs</span><span class="p">.</span><span class="n">coef_cov</span><span class="p">));</span>
+<span class="n">corr</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">0.3</span><span class="o">*</span><span class="nb">ones</span><span class="p">(</span><span class="nb">numel</span><span class="p">(</span><span class="n">sig</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.7</span><span class="o">*</span><span class="nb">eye</span><span class="p">(</span><span class="nb">numel</span><span class="p">(</span><span class="n">sig</span><span class="p">));</span>
+obs = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_covariance">sbtk.data.set_covariance</a>(obs, corr.*(sig*sig&#39;));
+<a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.summary">sbtk.data.summary</a>(obs)
+
+<span class="c">%% The SBTK text format: write it, read it back</span>
+<span class="c">% (for data to send to other teams see ex07_exchange_packages.m)</span>
+<span class="n">file</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">fullfile</span><span class="p">(</span><span class="nb">tempdir</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;example_measurements.txt&#39;</span><span class="p">);</span>
+<a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.write_measurements">sbtk.io.write_measurements</a>(obs, file);
+<span class="nb">type</span><span class="p">(</span><span class="n">file</span><span class="p">)</span>
+back = <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.load_measurements">sbtk.io.load_measurements</a>(file);     <span class="c">% (the text keeps only the diagonal of the covariance)</span>
+
+<span class="c">%% Use fewer degrees</span>
+obs1 = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.select_degree">sbtk.data.select_degree</a>(obs, 1);
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;%d coefficients up to degree 1\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">numel</span><span class="p">(</span><span class="n">obs1</span><span class="p">.</span><span class="n">coef</span><span class="p">));</span></code></pre></div>
+<h2 id="ex06-results-folders">ex06: results folders<a class="headerlink" href="#ex06-results-folders" title="Link to this section">#</a></h2>
+<p>A simulation, an inversion of the newest simulation found with <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.latest_run"><code>sbtk.io.latest_run</code></a>, and a comparison, each in its own
+run folder with log, settings and figures (<a href="../files/results-folders.html">Results folders</a>).</p>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB script: examples/ex06_results_folders.m</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><span class="c">%% EX06_RESULTS_FOLDERS  Standard outputs: run folders, reports, logs, settings. (~30 s)</span>
+<span class="c">%</span>
+<span class="c">% Every run gets results/&lt;project&gt;/&lt;date_time&gt;_&lt;name&gt;/ with standard file names,</span>
+<span class="c">% settings.json (every number used) and log.txt (everything printed). The</span>
+<span class="c">% report_* functions save, print and plot the standard set in one call.</span>
+
+<span class="nb">addpath</span><span class="p">(</span><span class="nb">fullfile</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">which</span><span class="p">(</span><span class="s">&#39;ex06_results_folders&#39;</span><span class="p">))),</span><span class="w"> </span><span class="s">&#39;toolbox&#39;</span><span class="p">));</span>
+shape = <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.ellipsoid">sbtk.shape.ellipsoid</a>(&quot;ellipsoid&quot;, [0.40 0.35 0.30], 4);
+body  = <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.create">sbtk.body.create</a>(&quot;Ellipsoid&quot;, shape, 2200, 0.40);
+unc   = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.uncertainties">sbtk.data.uncertainties</a>([<a class="xref xref-fn" href="../reference/api/units.html#sbtk.units.offset_to_degree1">sbtk.units.offset_to_degree1</a>(0.002, 0.40), 1e-4, 2e-4], 2e-3, 0.02);
+
+<span class="c">%% Simulation</span>
+components = [<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, [0.03 0 0], 0.15, +600), <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;, 0, 0.02, -700)];
+out = <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.new_run">sbtk.io.new_run</a>(&quot;examples&quot;, &quot;ellipsoid_T1&quot;);
+[obs, truth] = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>(components), 3, unc, &quot;ellipsoid_T1&quot;);
+obs = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise">sbtk.data.add_noise</a>(obs, 1);
+<a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.report_simulation">sbtk.io.report_simulation</a>(out, body, obs, truth);
+<a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.finish_run">sbtk.io.finish_run</a>(out);
+
+<span class="c">%% Inversion of the newest simulation</span>
+obs = <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.load_measurements">sbtk.io.load_measurements</a>(<a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.latest_run">sbtk.io.latest_run</a>(&quot;examples&quot;, &quot;ellipsoid_T1&quot;));
+out = <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.new_run">sbtk.io.new_run</a>(&quot;examples&quot;, &quot;ellipsoid_T1_inversion&quot;);
+prob = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.setup">sbtk.invert.setup</a>(body, components, obs, <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.options">sbtk.invert.options</a>());
+fit = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.run">sbtk.invert.run</a>(prob);
+<a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.report_inversion">sbtk.io.report_inversion</a>(out, body, fit, <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.homogeneous">sbtk.invert.homogeneous</a>(prob));
+<a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.finish_run">sbtk.io.finish_run</a>(out);
+
+<span class="c">%% Comparison with the true model</span>
+truth = <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.load_truth">sbtk.io.load_truth</a>(<a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.latest_run">sbtk.io.latest_run</a>(&quot;examples&quot;, &quot;ellipsoid_T1&quot;));
+out = <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.new_run">sbtk.io.new_run</a>(&quot;examples&quot;, &quot;ellipsoid_T1_comparison&quot;);
+<a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.report_comparison">sbtk.io.report_comparison</a>(out, body, truth, fit, <a class="xref xref-fn" href="../reference/api/compare.html#sbtk.compare.with_truth">sbtk.compare.with_truth</a>(body, truth, fit));
+<a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.finish_run">sbtk.io.finish_run</a>(out);
+<span class="nb">dir</span><span class="p">(</span><span class="n">out</span><span class="p">.</span><span class="n">folder</span><span class="p">)</span></code></pre></div>
+<h2 id="ex07-exchange-packages">ex07: exchange packages<a class="headerlink" href="#ex07-exchange-packages" title="Link to this section">#</a></h2>
+<p>A blind test in miniature: one team writes a measurement package and an interior-model package; another reads the
+measurement package, inverts it and writes a solution package; the solution is compared with the hidden model on the
+density grid (<a href="../files/exchange-packages.html">Exchange packages</a>).</p>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB script: examples/ex07_exchange_packages.m</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><span class="c">%% EX07_EXCHANGE_PACKAGES  Data for other teams: measurement, interior-model and solution packages. (~40 s)</span>
+<span class="c">%</span>
+<span class="c">% A blind test: one team simulates measurements of an interior it keeps hidden and</span>
+<span class="c">% sends only the measurement package; another team inverts the package and sends a</span>
+<span class="c">% solution package; at the end both are compared with the hidden model on a common</span>
+<span class="c">% density grid. Every package is plain text with its units, frame and normalization</span>
+<span class="c">% written in it (docs/exchange_format.md). projects/hera_hlp6 does the same with</span>
+<span class="c">% results folders.</span>
+
+<span class="nb">addpath</span><span class="p">(</span><span class="nb">fullfile</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">which</span><span class="p">(</span><span class="s">&#39;ex07_exchange_packages&#39;</span><span class="p">))),</span><span class="w"> </span><span class="s">&#39;toolbox&#39;</span><span class="p">));</span>
+body = <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.create">sbtk.body.create</a>(&quot;Example asteroid&quot;, <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.bundled">sbtk.shape.bundled</a>(&quot;example_asteroid&quot;), 2000, 0.60);
+unc  = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.uncertainties">sbtk.data.uncertainties</a>([<a class="xref xref-fn" href="../reference/api/units.html#sbtk.units.offset_to_degree1">sbtk.units.offset_to_degree1</a>(0.005, 0.60), 1e-4, 2e-4, 4e-4], 2e-3, 0.02);
+<span class="n">folder</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">tempname</span><span class="p">;</span><span class="w">                         </span><span class="c">% where the packages go (normally a results folder)</span>
+
+<span class="c">%% The team that makes the data</span>
+hidden = [<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, [0.03 0 0], 0.25, +500), <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;, 0, 0.02, -800)];
+[exact, truth] = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>(hidden), 4, unc, &quot;hidden_model&quot;);
+obs = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise">sbtk.data.add_noise</a>(exact, 1);
+data = <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_data">sbtk.exchange.write_data</a>(folder, &quot;TEAM-DATA1-example&quot;, body, obs, &quot;Team, contact&quot;);         <span class="c">% send now</span>
+model = <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_model">sbtk.exchange.write_model</a>(folder, &quot;TEAM-MOD1-example&quot;, &quot;TEAM-DATA1-example&quot;, body, truth, ...
+<span class="w">                                  </span><span class="n">exact</span><span class="p">,</span><span class="w"> </span><span class="mf">0.04</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Team, contact&quot;</span><span class="p">);</span><span class="w">                                     </span><span class="c">% send at the end</span>
+<span class="nb">type</span><span class="p">(</span><span class="nb">fullfile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;README.txt&#39;</span><span class="p">))</span>
+
+<span class="c">%% The team that inverts it: everything comes from the package</span>
+[obs2, body2] = <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_data">sbtk.exchange.read_data</a>(data);          <span class="c">% shape model, GM and reference radius included</span>
+components = [<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, [0 0 0], 0.25, 0), <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;, 0, 0.02, 0)];
+prob = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.setup">sbtk.invert.setup</a>(body2, components, obs2, <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.options">sbtk.invert.options</a>());
+fit  = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.run">sbtk.invert.run</a>(prob);
+<a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.summary">sbtk.invert.summary</a>(fit)
+solution = <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_solution">sbtk.exchange.write_solution</a>(folder, <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.solution_name">sbtk.exchange.solution_name</a>(&quot;OTHER&quot;, obs2.name), body2, fit, ...
+                                        <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.homogeneous">sbtk.invert.homogeneous</a>(prob), 0.04, &quot;Other team, contact&quot;);
+
+<span class="c">%% At the end: the solution against the hidden model, cell by cell</span>
+cmp = <a class="xref xref-fn" href="../reference/api/compare.html#sbtk.compare.grids">sbtk.compare.grids</a>(<a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_grid">sbtk.exchange.read_grid</a>(fullfile(model, &#39;density_grid.txt&#39;)), ...
+                         <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_grid">sbtk.exchange.read_grid</a>(fullfile(solution, &#39;density_grid.txt&#39;)));
+<a class="xref xref-fn" href="../reference/api/compare.html#sbtk.compare.grid_summary">sbtk.compare.grid_summary</a>(cmp);</code></pre></div>
+<h2 id="ex08-moments-of-inertia-and-the-libration-ratio">ex08: moments of inertia and the libration ratio<a class="headerlink" href="#ex08-moments-of-inertia-and-the-libration-ratio" title="Link to this section">#</a></h2>
+<p>The same inversion with no inertia data, <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub></mrow></math>,</span> the libration ratio at two precisions, and <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>x</mi><mi>x</mi></mrow></msub></mrow></math>,</span> <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>y</mi><mi>y</mi></mrow></msub></mrow></math>,</span> <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub></mrow></math>;</span> the
+libration ratio from an observed libration amplitude; adding measured inertia values
+(<a href="../conventions/moments-of-inertia.html">Moments of inertia</a>).</p>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB script: examples/ex08_moments_of_inertia.m</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><span class="c">%% EX08_MOMENTS_OF_INERTIA  What moments of inertia and the libration ratio add to the gravity field. (~20 s)</span>
+<span class="c">%</span>
+<span class="c">% The degree-2 gravity coefficients fix five combinations of the inertia tensor</span>
+<span class="c">% (C20 ~ (Ixx + Iyy - 2 Izz), C22 ~ (Iyy - Ixx), C21, S21, S22 ~ products of inertia),</span>
+<span class="c">% but not its trace. A dense core and a light surface layer can therefore give the</span>
+<span class="c">% same gravity field, and the inversion cannot separate them. A moment of inertia</span>
+<span class="c">% such as the polar moment Izz (from the spin state) adds the missing combination:</span>
+<span class="c">% it measures how concentrated the mass is toward the center.</span>
+<span class="c">%</span>
+<span class="c">% The libration ratio (B - A)/C (principal moments: A &lt;= B about the axes in the</span>
+<span class="c">% xy-plane, C = Izz) comes from the libration amplitude of a synchronously rotating body</span>
+<span class="c">% (e.g. Dimorphos). The degree-2 field gives B - A, so the ratio gives C: it carries the</span>
+<span class="c">% same information as a polar moment, with a relative precision of sigma/ratio.</span>
+
+<span class="nb">addpath</span><span class="p">(</span><span class="nb">fullfile</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">which</span><span class="p">(</span><span class="s">&#39;ex08_moments_of_inertia&#39;</span><span class="p">))),</span><span class="w"> </span><span class="s">&#39;toolbox&#39;</span><span class="p">));</span>
+body = <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.from_mass">sbtk.body.from_mass</a>(&quot;Didymos&quot;, <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.bundled">sbtk.shape.bundled</a>(&quot;didymos&quot;), 5.273e11, 0.43);
+
+<span class="c">%% Simulated measurements: every inertia quantity is available</span>
+truth_components = [<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, [0 0 0], 0.170, +450), ...
+                    <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;, 0, 0.012, -900)];
+unc = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.uncertainties">sbtk.data.uncertainties</a>([<a class="xref xref-fn" href="../reference/api/units.html#sbtk.units.offset_to_degree1">sbtk.units.offset_to_degree1</a>(0.002, 0.43), 1e-4, 2e-4, 4e-4], ...
+<span class="w">                              </span><span class="mf">2e-3</span><span class="p">,</span><span class="w"> </span><span class="k">...</span><span class="c">        % 1-sigma of each inertia element, as a fraction of M R_ref^2</span>
+<span class="w">                              </span><span class="mf">0.02</span><span class="p">);</span><span class="w">           </span><span class="c">% 1-sigma of the libration ratio</span>
+[exact, truth] = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>(truth_components), 4, unc, &quot;ex08&quot;);
+obs = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise">sbtk.data.add_noise</a>(exact, 1);
+<span class="nb">disp</span><span class="p">(</span><span class="nb">struct2table</span><span class="p">(</span><span class="nb">rmfield</span><span class="p">(</span><span class="n">obs</span><span class="p">.</span><span class="n">moi</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;weights&#39;</span><span class="p">)))</span><span class="w">    </span><span class="c">% Ixx Iyy Izz Ixy Ixz Iyz libration, as I/(M R_ref^2)</span>
+
+<span class="c">%% The same inversion with different inertia measurements</span>
+<span class="c">% opts.moi_labels chooses which of the data&#39;s inertia rows are fitted. The libration</span>
+<span class="c">% ratio of this body is about 0.056, so the simulated 1-sigma of 0.02 (36%) says little;</span>
+<span class="c">% a ratio measured to 0.001 (1.8%) is added as a separate data set (sbtk.data.add_libration).</span>
+gravity  = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.select_moi">sbtk.data.select_moi</a>(obs, {});                                <span class="c">% gravity coefficients only</span>
+precise  = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_libration">sbtk.data.add_libration</a>(gravity, exact.libration_ratio, 0.001, obs.moi(3).value);
+<span class="n">cases</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">{</span><span class="s">&#39;none (gravity only)&#39;</span><span class="p">,</span><span class="w">    </span><span class="n">obs</span><span class="p">,</span><span class="w">     </span><span class="p">{}</span>
+<span class="w">         </span><span class="s">&#39;Izz&#39;</span><span class="p">,</span><span class="w">                    </span><span class="n">obs</span><span class="p">,</span><span class="w">     </span><span class="p">{</span><span class="s">&#39;Izz&#39;</span><span class="p">}</span>
+<span class="w">         </span><span class="s">&#39;libration +- 0.02&#39;</span><span class="p">,</span><span class="w">      </span><span class="n">obs</span><span class="p">,</span><span class="w">     </span><span class="p">{</span><span class="s">&#39;libration&#39;</span><span class="p">}</span>
+<span class="w">         </span><span class="s">&#39;libration +- 0.001&#39;</span><span class="p">,</span><span class="w">     </span><span class="n">precise</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="s">&#39;libration&#39;</span><span class="p">}</span>
+<span class="w">         </span><span class="s">&#39;Ixx Iyy Izz&#39;</span><span class="p">,</span><span class="w">            </span><span class="n">obs</span><span class="p">,</span><span class="w">     </span><span class="p">{</span><span class="s">&#39;Ixx&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;Iyy&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;Izz&#39;</span><span class="p">}};</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;\n%-22s %18s %18s %12s %8s\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;inertia used&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;core [kg/m^3]&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;regolith [kg/m^3]&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;correlation&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;chi2/nu&#39;</span><span class="p">);</span>
+<span class="k">for</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="nb">size</span><span class="p">(</span><span class="n">cases</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+    fit = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.solve">sbtk.invert.solve</a>(body, truth_components, cases{k, 2}, <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.options">sbtk.invert.options</a>(moi_labels=cases{k, 3}));
+<span class="w">    </span><span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;%-22s %10.0f +- %4.0f %10.0f +- %4.0f %12.2f %8.2f\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">cases</span><span class="p">{</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">},</span><span class="w"> </span><span class="n">fit</span><span class="p">.</span><span class="n">rho_kgm3</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="k">...</span>
+<span class="w">            </span><span class="n">fit</span><span class="p">.</span><span class="n">rho_sigma_kgm3</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">fit</span><span class="p">.</span><span class="n">rho_kgm3</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="n">fit</span><span class="p">.</span><span class="n">rho_sigma_kgm3</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="n">fit</span><span class="p">.</span><span class="n">corr</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="n">fit</span><span class="p">.</span><span class="n">chi2_reduced</span><span class="p">);</span>
+<span class="k">end</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;%-22s %10.0f %20.0f\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;true&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">truth</span><span class="p">.</span><span class="n">rho_bg_kgm3</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">truth_components</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">drho_kgm3</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">        </span><span class="n">truth</span><span class="p">.</span><span class="n">rho_bg_kgm3</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">truth_components</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="n">drho_kgm3</span><span class="p">);</span>
+<span class="c">% correlation: between the core and regolith relative densities (near 1 = the data</span>
+<span class="c">% cannot tell them apart).</span>
+<span class="c">% Izz halves the regolith uncertainty. The libration ratio gives C = (B - A)/ratio, so it</span>
+<span class="c">% constrains C as well as the ratio is known relative to its value: +-0.001 is 1.8% of</span>
+<span class="c">% C and helps, Izz +-0.002 is 0.5% and helps more.</span>
+
+<span class="c">%% A libration ratio from the observed libration amplitude</span>
+<span class="c">% A synchronous satellite in an orbit of eccentricity e librates with amplitude</span>
+<span class="c">% 2e/(3 ratio - 1) (forced libration, first order in e). Near ratio = 1/3 (elongation</span>
+<span class="c">% about 1.4 : 1) the amplitude is large and fixes the ratio precisely; a nearly</span>
+<span class="c">% axisymmetric body librates little and the ratio stays uncertain.</span>
+<span class="k">for</span><span class="w"> </span><span class="n">amp</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="w"> </span><span class="o">-</span><span class="mi">12</span><span class="p">]</span>
+    [k, sk] = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.libration_ratio_from_amplitude">sbtk.data.libration_ratio_from_amplitude</a>(amp, 0.2, 0.027, 0.001);   <span class="c">% deg, deg, e, sigma e</span>
+<span class="w">    </span><span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;amplitude %5.1f +- 0.2 deg, e = 0.027 +- 0.001: (B - A)/C = %.3f +- %.4f (%.0f%%)\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">            </span><span class="n">amp</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">sk</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="o">*</span><span class="n">sk</span><span class="o">/</span><span class="n">k</span><span class="p">);</span>
+<span class="k">end</span>
+
+<span class="c">%% Your own inertia measurements</span>
+<span class="c">% Start from the gravity coefficients (a package, a SHADR file, coefficient matrices,</span>
+<span class="c">% ...) and add each measured quantity. Values given in kg m^2 convert with</span>
+<span class="c">% sbtk.units.moi_to_norm; inertia is about the center of mass, shape-model axes.</span>
+Izz_kgm2 = <a class="xref xref-fn" href="../reference/api/units.html#sbtk.units.norm_to_moi">sbtk.units.norm_to_moi</a>(obs.moi(3).value, body.mass_kg, body.R_ref_km);   <span class="c">% e.g. a measured polar moment</span>
+mine = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_moi">sbtk.data.add_moi</a>(gravity, &quot;Izz&quot;, <a class="xref xref-fn" href="../reference/api/units.html#sbtk.units.moi_to_norm">sbtk.units.moi_to_norm</a>(Izz_kgm2, body.mass_kg, body.R_ref_km), 2e-3);
+mine = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_libration">sbtk.data.add_libration</a>(mine, exact.libration_ratio, 0.001, mine.moi(1).value);  <span class="c">% (B - A)/C, 1-sigma, Izz</span>
+fit = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.solve">sbtk.invert.solve</a>(body, truth_components, mine, <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.options">sbtk.invert.options</a>(moi_labels={&#39;Izz&#39;, &#39;libration&#39;}));
+<a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.summary">sbtk.invert.summary</a>(fit)</code></pre></div>
+</article>
+<nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../examples/calculations.html" rel="prev"><span>Previous</span>Calculations</a><a class="next" href="../projects/template.html" rel="next"><span>Next</span>Project template</a></nav>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-19.</footer>
+</main>
+<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#ex01-quick-start">ex01: quick start</a></li><li class="lvl2"><a href="#ex02-shapes-and-bodies">ex02: shapes and bodies</a></li><li class="lvl2"><a href="#ex03-forward-model">ex03: forward model</a></li><li class="lvl2"><a href="#ex04-inversion-options">ex04: inversion options</a></li><li class="lvl2"><a href="#ex05-importing-data">ex05: importing data</a></li><li class="lvl2"><a href="#ex06-results-folders">ex06: results folders</a></li><li class="lvl2"><a href="#ex07-exchange-packages">ex07: exchange packages</a></li><li class="lvl2"><a href="#ex08-moments-of-inertia-and-the-libration-ratio">ex08: moments of inertia and the libration ratio</a></li></ul></nav>
+</div>
+<script src="../assets/search-index.js?v=eb13bdaf5f"></script>
+<script src="../assets/site.js?v=eb13bdaf5f"></script>
+</body>
+</html>

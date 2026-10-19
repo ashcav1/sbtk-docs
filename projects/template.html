@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en" data-root="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project template — SBTK documentation</title>
+<link rel="stylesheet" href="../assets/site.css?v=eb13bdaf5f">
+<link rel="stylesheet" href="../assets/pygments.css?v=eb13bdaf5f">
+<link rel="stylesheet" href="../assets/print.css?v=eb13bdaf5f" media="print">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="topbar">
+  <button class="navtoggle" type="button" aria-controls="sidebar" aria-expanded="false">Contents</button>
+  <a class="sitename" href="../index.html">SBTK documentation</a>
+  <span class="version">version 1.0.0</span>
+  <div class="search" role="search">
+    <label for="search-input" class="visually-hidden">Search the documentation</label>
+    <input id="search-input" type="search" placeholder="Search (press /)" autocomplete="off"
+           aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+    <ul id="search-results" role="listbox" hidden></ul>
+  </div>
+  <a class="toplink" href="../print.html">Single-page version</a>
+  <a class="toplink" href="../SBTK_handbook.pdf">PDF handbook</a>
+</header>
+<div class="frame">
+<nav id="sidebar" class="sidebar" aria-label="Documentation pages"><ul><li class="navcat"><span class="navcat-title">Overview</span><ul><li><a href="../index.html">SBTK: Small Body Toolkit</a></li><li><a href="../overview/limitations.html">Assumptions and limitations</a></li></ul></li><li class="navcat"><span class="navcat-title">Getting started</span><ul><li><a href="../getting-started/installation.html">Installation</a></li><li><a href="../getting-started/first-script.html">First script</a></li></ul></li><li class="navcat"><span class="navcat-title">Conventions</span><ul><li><a href="../conventions/units.html">Units</a></li><li><a href="../conventions/coordinates.html">Coordinate systems and origins</a></li><li><a href="../conventions/gravity-coefficients.html">Gravity coefficients</a></li><li><a href="../conventions/moments-of-inertia.html">Moments of inertia</a></li></ul></li><li class="navcat"><span class="navcat-title">Models and calculations</span><ul><li><a href="../models/shape-models.html">Shape models</a></li><li><a href="../models/density-distributions.html">Density distributions</a></li><li><a href="../models/forward-model.html">Gravity and moment calculations</a></li></ul></li><li class="navcat"><span class="navcat-title">Measurements and inversion</span><ul><li><a href="../inversion/measurements.html">Measurement sets</a></li><li><a href="../inversion/density-estimation.html">Density estimation</a></li><li><a href="../inversion/statistics.html">Goodness of fit and model comparison</a></li></ul></li><li class="navcat"><span class="navcat-title">Files</span><ul><li><a href="../files/results-folders.html">Results folders and figures</a></li><li><a href="../files/exchange-packages.html">Exchange packages</a></li></ul></li><li class="navcat"><span class="navcat-title">Examples</span><ul><li><a href="../examples/density-models.html">Density models by component type</a></li><li><a href="../examples/calculations.html">Calculations</a></li><li><a href="../examples/tutorials.html">Tutorial scripts</a></li></ul></li><li class="navcat"><span class="navcat-title">Projects</span><ul><li><a href="../projects/template.html" aria-current="page" class="current">Project template</a></li><li><a href="../projects/bennu.html">Bennu</a></li><li><a href="../projects/hera-blind-test.html">Hera blind test</a></li></ul></li><li class="navcat"><span class="navcat-title">Reference</span><ul><li><a href="../reference/api.html">API reference</a></li><li><a href="../reference/api/sbtk.html">sbtk</a></li><li><a href="../reference/api/units.html">sbtk.units</a></li><li><a href="../reference/api/shape.html">sbtk.shape</a></li><li><a href="../reference/api/body.html">sbtk.body</a></li><li><a href="../reference/api/interior.html">sbtk.interior</a></li><li><a href="../reference/api/gravity.html">sbtk.gravity</a></li><li><a href="../reference/api/data.html">sbtk.data</a></li><li><a href="../reference/api/invert.html">sbtk.invert</a></li><li><a href="../reference/api/compare.html">sbtk.compare</a></li><li><a href="../reference/api/exchange.html">sbtk.exchange</a></li><li><a href="../reference/api/io.html">sbtk.io</a></li><li><a href="../reference/api/plot.html">sbtk.plot</a></li><li><a href="../reference/data-structures.html">Data structures</a></li><li><a href="../reference/errors.html">Error identifiers</a></li><li><a href="../reference/internal.html">Internal functions</a></li></ul></li><li class="navcat"><span class="navcat-title">Validation</span><ul><li><a href="../validation/tests.html">Validation and tests</a></li></ul></li></ul></nav>
+<main id="content" tabindex="-1">
+<nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Projects › <span aria-current="page">Project template</span></nav>
+<article>
+<h1 id="top" id="project-template">Project template<a class="headerlink" href="#project-template" title="Link to this section">#</a></h1>
+<p>A project is a folder of runner scripts for one body that write to <code>results/&lt;project&gt;/</code>. The folder
+<code>projects/template/</code> is the starting point for a new body. Body-specific numbers are kept in one settings function,
+<code>my_body.m</code>; nothing body-specific is in the toolbox.</p>
+<h2 id="files">Files<a class="headerlink" href="#files" title="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>my_body.m</code></td>
+<td>Returns the body (shape model and its length unit, bulk density, reference radius), the gravity degree and the density-grid spacing.</td>
+</tr>
+<tr>
+<td><code>simulate_measurements.m</code></td>
+<td>Simulates measurements of a prescribed interior and writes a measurement package and an interior-model package.</td>
+</tr>
+<tr>
+<td><code>invert_measurements.m</code></td>
+<td>Estimates component densities from a measurement package and writes a solution package.</td>
+</tr>
+<tr>
+<td><code>compare_with_truth.m</code></td>
+<td>Compares an inversion with the true model of a simulation, by component and on the density grid.</td>
+</tr>
+</tbody>
+</table>
+<p>As delivered, the template runs on <code>data/shapes/example_asteroid.obj</code>, a synthetic body of about 1.2 km.
+<code>tests/integration/test_template_project.m</code> runs the three scripts.</p>
+<h2 id="use">Use<a class="headerlink" href="#use" title="Link to this section">#</a></h2>
+<ol>
+<li>Copy <code>projects/template/</code> to <code>projects/&lt;body&gt;/</code>.</li>
+<li>In <code>my_body.m</code>, replace the shape file, its length unit, the bulk density (or use <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.from_mass"><code>sbtk.body.from_mass</code></a>), the
+   reference radius, the degree and the grid spacing. The shape must be closed and star-shaped about its center of mass
+   (<a href="../models/shape-models.html">Shape models</a>).</li>
+<li>Set <code>project</code> at the top of each script.</li>
+<li>In <code>simulate_measurements.m</code>, edit the sections NAME AND DELIVERY, INTERIOR, MEASUREMENT UNCERTAINTIES and NOISE.</li>
+<li>Run the scripts in order. Each run writes its own folder (<a href="../files/results-folders.html">Results folders</a>); the
+   inversion finds the newest simulation of the given name with <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.latest_run"><code>sbtk.io.latest_run</code></a>.</li>
+</ol>
+<p>A simulation run writes</p>
+<div class="codeblock codeblock-tree"><div class="codehead"><span>Simulation run folder</span></div><pre><code class="language-tree">results/&lt;project&gt;/&lt;date_time&gt;_&lt;name&gt;/
+  log.txt                               everything printed (includes the true model)
+  redacted/&lt;team&gt;-DATA&lt;n&gt;-&lt;name&gt;/       measurement package: nothing about the interior
+  unredacted/&lt;team&gt;-MOD&lt;n&gt;-&lt;name&gt;/      interior-model package: true model, density grid, noise-free data
+  unredacted/                           measurements.*, truth.*, settings.json, figures/</code></pre></div>
+<h2 id="code">Code<a class="headerlink" href="#code" title="Link to this section">#</a></h2>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB: projects/template/my_body.m</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><span class="k">function</span><span class="w"> </span><span class="nf">[body, degree, grid_km] = my_body</span><span class="p">()</span>
+<span class="c">%MY_BODY  Everything specific to your asteroid, used by every runner in this project.</span>
+<span class="c">%</span>
+<span class="c">%   [body, degree, grid_km] = my_body()</span>
+<span class="c">%</span>
+<span class="c">%   Replace the shape file (and its length unit), the bulk density, the reference</span>
+<span class="c">%   radius, the degree and the grid spacing with your own. The measurement</span>
+<span class="c">%   uncertainties are set in each simulation run (simulate_measurements.m).</span>
+
+shape = <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.load">sbtk.shape.load</a>(fullfile(<a class="xref xref-fn" href="../reference/api/sbtk.html#sbtk.root">sbtk.root</a>, &#39;data&#39;, &#39;shapes&#39;, &#39;example_asteroid.obj&#39;), ...<span class="c">   % your shape model</span>
+<span class="w">                        </span><span class="s">&quot;km&quot;</span><span class="p">);</span><span class="w">                                                               </span><span class="c">% its length unit: &quot;km&quot;, &quot;m&quot; or &quot;cm&quot;</span>
+body  = <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.create">sbtk.body.create</a>(&quot;Example asteroid&quot;, shape, ...
+<span class="w">            </span><span class="mi">2000</span><span class="p">,</span><span class="w"> </span><span class="k">...</span><span class="c">       % bulk density [kg/m^3]</span>
+<span class="w">            </span><span class="mf">0.60</span><span class="p">);</span><span class="w">          </span><span class="c">% reference radius of the gravity coefficients [km]</span>
+<span class="nb">degree</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w">                 </span><span class="c">% highest degree of the gravity field</span>
+<span class="n">grid_km</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">0.040</span><span class="p">;</span><span class="w">            </span><span class="c">% cell edge of the density grids in model and solution packages [km]</span>
+<span class="k">end</span></code></pre></div>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB script: projects/template/simulate_measurements.m</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><span class="c">%% SIMULATE_MEASUREMENTS  Synthetic measurements of a prescribed interior, for any body.</span>
+<span class="c">%</span>
+<span class="c">% Edit NAME, INTERIOR, MEASUREMENT UNCERTAINTIES and NOISE; the body is defined in my_body.m. Writes</span>
+<span class="c">% results/&lt;project&gt;/&lt;date_time&gt;_&lt;name&gt;/:</span>
+<span class="c">%   redacted/&lt;team&gt;-DATA&lt;n&gt;-&lt;name&gt;/    measurement package to send (nothing about the interior)</span>
+<span class="c">%   unredacted/&lt;team&gt;-MOD&lt;n&gt;-&lt;name&gt;/   interior-model package (true model, density grid,</span>
+<span class="c">%                                      noise-free data, figures)</span>
+<span class="c">%   unredacted/                        measurements.*, truth.*, settings.json, figures/</span>
+<span class="c">%   log.txt</span>
+<span class="c">% Package format: docs/exchange_format.md.</span>
+
+<span class="nb">clear</span><span class="p">;</span><span class="w"> </span><span class="n">close</span><span class="w"> </span><span class="s">all</span><span class="p">;</span>
+<span class="n">here</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">which</span><span class="p">(</span><span class="s">&#39;simulate_measurements&#39;</span><span class="p">));</span>
+<span class="nb">addpath</span><span class="p">(</span><span class="n">here</span><span class="p">,</span><span class="w"> </span><span class="nb">fullfile</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="n">here</span><span class="p">)),</span><span class="w"> </span><span class="s">&#39;toolbox&#39;</span><span class="p">));</span>
+<span class="p">[</span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="nb">degree</span><span class="p">,</span><span class="w"> </span><span class="n">grid_km</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">my_body</span><span class="p">();</span>
+
+<span class="c">%% PROJECT, NAME AND DELIVERY</span>
+<span class="n">project</span><span class="w">     </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;my_asteroid&quot;</span><span class="p">;</span>
+<span class="n">name</span><span class="w">        </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;T1&quot;</span><span class="p">;</span>
+<span class="n">team</span><span class="w">        </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;TEAM&quot;</span><span class="p">;</span><span class="w">                 </span><span class="c">% team identifier in package names</span>
+<span class="n">number</span><span class="w">      </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">                      </span><span class="c">% package numbers: &lt;team&gt;-DATA&lt;number&gt;, &lt;team&gt;-MOD&lt;number&gt;</span>
+<span class="n">prepared_by</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;Team name, contact&quot;</span><span class="p">;</span>
+
+<span class="c">%% INTERIOR</span>
+<span class="c">% Components with their relative density (density minus background, kg/m^3);</span>
+<span class="c">% lengths in km. See sbtk.interior: sphere, ellipsoid, torus, layer, sector.</span>
+<span class="n">components</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="k">...</span>
+    <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;,     [0 0 0],                               0.250, +500), ...
+    <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;,  0.000, 0.020,                                 -800), ...
+    <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;boulder&quot;,  <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.latlon">sbtk.interior.latlon</a>(10, -40, 0.35),   0.060, +900)];
+field = <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.no_random_field">sbtk.interior.no_random_field</a>();     <span class="c">% or sbtk.interior.random_field(sigma kg/m^3, correlation length km, seed)</span>
+
+<span class="c">%% MEASUREMENT UNCERTAINTIES (1-sigma)</span>
+unc = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.uncertainties">sbtk.data.uncertainties</a>( ...
+    [<a class="xref xref-fn" href="../reference/api/units.html#sbtk.units.offset_to_degree1">sbtk.units.offset_to_degree1</a>(0.005, body.R_ref_km), ...<span class="c"> % degree 1: 5 m center of mass</span>
+<span class="w">     </span><span class="mf">1e-4</span><span class="p">,</span><span class="w"> </span><span class="mf">2e-4</span><span class="p">,</span><span class="w"> </span><span class="mf">4e-4</span><span class="p">],</span><span class="w"> </span><span class="k">...</span><span class="c">                                 % degrees 2..degree (fully normalized)</span>
+<span class="w">    </span><span class="mf">2e-3</span><span class="p">,</span><span class="w"> </span><span class="k">...</span><span class="c">                                               % each moment of inertia, as a fraction of M R_ref^2</span>
+<span class="w">    </span><span class="mf">0.02</span><span class="p">);</span><span class="w">                                                  </span><span class="c">% libration ratio (B-A)/C</span>
+
+<span class="c">%% NOISE</span>
+<span class="n">noise_seed</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+
+<span class="c">%% RUN</span>
+out = <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.new_run">sbtk.io.new_run</a>(project, name);
+[exact, truth] = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>(components, field), degree, unc, name);
+obs = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise">sbtk.data.add_noise</a>(exact, noise_seed);
+<a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.report_simulation">sbtk.io.report_simulation</a>(<a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.subfolder">sbtk.io.subfolder</a>(out, &quot;unredacted&quot;), body, obs, truth);
+<span class="n">data_set</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">sprintf</span><span class="p">(</span><span class="s">&quot;%s-DATA%d-%s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">team</span><span class="p">,</span><span class="w"> </span><span class="n">number</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">);</span>
+<a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_data">sbtk.exchange.write_data</a>(fullfile(out.folder, &quot;redacted&quot;), data_set, body, obs, prepared_by);
+<a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_model">sbtk.exchange.write_model</a>(fullfile(out.folder, &quot;unredacted&quot;), sprintf(&quot;%s-MOD%d-%s&quot;, team, number, name), ...
+<span class="w">                          </span><span class="n">data_set</span><span class="p">,</span><span class="w"> </span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="n">truth</span><span class="p">,</span><span class="w"> </span><span class="n">exact</span><span class="p">,</span><span class="w"> </span><span class="n">grid_km</span><span class="p">,</span><span class="w"> </span><span class="n">prepared_by</span><span class="p">);</span>
+<a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.finish_run">sbtk.io.finish_run</a>(out);</code></pre></div>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB script: projects/template/invert_measurements.m</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><span class="c">%% INVERT_MEASUREMENTS  Component densities from gravity coefficients and moments of inertia, for any body.</span>
+<span class="c">%</span>
+<span class="c">% Edit DATA, MODEL and OPTIONS. Writes results/&lt;project&gt;/&lt;date_time&gt;_&lt;name&gt;_inversion/:</span>
+<span class="c">% fit.txt / .mat, homogeneous.txt, settings.json, log.txt, figures/.</span>
+
+<span class="nb">clear</span><span class="p">;</span><span class="w"> </span><span class="n">close</span><span class="w"> </span><span class="s">all</span><span class="p">;</span>
+<span class="n">here</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">which</span><span class="p">(</span><span class="s">&#39;invert_measurements&#39;</span><span class="p">));</span>
+<span class="nb">addpath</span><span class="p">(</span><span class="n">here</span><span class="p">,</span><span class="w"> </span><span class="nb">fullfile</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="n">here</span><span class="p">)),</span><span class="w"> </span><span class="s">&#39;toolbox&#39;</span><span class="p">));</span>
+<span class="p">[</span><span class="o">~</span><span class="p">,</span><span class="w"> </span><span class="o">~</span><span class="p">,</span><span class="w"> </span><span class="n">grid_km</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">my_body</span><span class="p">();</span>
+<span class="n">team</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;TEAM&quot;</span><span class="p">;</span><span class="w">  </span><span class="n">prepared_by</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;Team name, contact&quot;</span><span class="p">;</span>
+
+<span class="c">%% DATA</span>
+<span class="n">project</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;my_asteroid&quot;</span><span class="p">;</span>
+<span class="n">name</span><span class="w">    </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;T1&quot;</span><span class="p">;</span>
+data_folder = <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.locate">sbtk.exchange.locate</a>(<a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.latest_run">sbtk.io.latest_run</a>(project, name), &quot;DATA&quot;);   <span class="c">% or any package folder</span>
+[obs, body] = <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_data">sbtk.exchange.read_data</a>(data_folder);
+
+<span class="c">%% MODEL (geometry fixed; relative densities estimated)</span>
+<span class="n">components</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="k">...</span>
+    <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;,     [0 0 0],      0.250, 0), ...
+    <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;,  0.000, 0.020,        0)];
+<span class="c">% Without assumed structure:</span>
+<span class="c">% components = sbtk.interior.sector_grid([0 0.45 0.8 1], [-90 0 90], [-180 -90 0 90 180]);</span>
+
+<span class="c">%% OPTIONS</span>
+opts = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.options">sbtk.invert.options</a>();
+<span class="n">opts</span><span class="p">.</span><span class="n">moi_labels</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">{</span><span class="s">&#39;Ixx&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;Iyy&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;Izz&#39;</span><span class="p">};</span><span class="w">   </span><span class="c">% moment-of-inertia measurements used ({} = gravity only)</span>
+
+<span class="c">%% RUN</span>
+out  = <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.new_run">sbtk.io.new_run</a>(project, name + &quot;_inversion&quot;);
+prob = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.setup">sbtk.invert.setup</a>(body, components, obs, opts);
+<span class="k">if</span><span class="w"> </span><span class="nb">numel</span><span class="p">(</span><span class="n">components</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">6</span>
+    prob.opts.regularization = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.choose_regularization">sbtk.invert.choose_regularization</a>(prob);    <span class="c">% many components</span>
+<span class="k">end</span>
+fit = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.run">sbtk.invert.run</a>(prob);
+hom = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.homogeneous">sbtk.invert.homogeneous</a>(prob);
+<a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.report_inversion">sbtk.io.report_inversion</a>(out, body, fit, hom);
+<a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_solution">sbtk.exchange.write_solution</a>(out.folder, <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.solution_name">sbtk.exchange.solution_name</a>(team, obs.name), body, fit, hom, grid_km, prepared_by);
+<a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.finish_run">sbtk.io.finish_run</a>(out);</code></pre></div>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB script: projects/template/compare_with_truth.m</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><span class="c">%% COMPARE_WITH_TRUTH  Compare an inversion with the true model of a simulation, for any body.</span>
+<span class="c">%</span>
+<span class="c">% Reports R2 (fraction of the variance of the true density explained by the</span>
+<span class="c">% estimate), R2_max for the same components, the RMS density error and each</span>
+<span class="c">% component&#39;s estimated and true density; then compares the density grids of the</span>
+<span class="c">% solution package and the interior-model package cell by cell. Writes</span>
+<span class="c">% results/&lt;project&gt;/&lt;date_time&gt;_&lt;inversion&gt;_comparison/: comparison.txt / .mat,</span>
+<span class="c">% grid_comparison.txt, figures/comparison.png, figures/truth_vs_estimate.png.</span>
+
+<span class="nb">clear</span><span class="p">;</span><span class="w"> </span><span class="n">close</span><span class="w"> </span><span class="s">all</span><span class="p">;</span>
+<span class="n">here</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">which</span><span class="p">(</span><span class="s">&#39;compare_with_truth&#39;</span><span class="p">));</span>
+<span class="nb">addpath</span><span class="p">(</span><span class="n">here</span><span class="p">,</span><span class="w"> </span><span class="nb">fullfile</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="n">here</span><span class="p">)),</span><span class="w"> </span><span class="s">&#39;toolbox&#39;</span><span class="p">));</span>
+<span class="n">body</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">my_body</span><span class="p">();</span>
+
+<span class="n">project</span><span class="w">       </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;my_asteroid&quot;</span><span class="p">;</span>
+<span class="n">truth_run</span><span class="w">     </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;T1&quot;</span><span class="p">;</span><span class="w">              </span><span class="c">% simulation</span>
+<span class="n">inversion_run</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;T1_inversion&quot;</span><span class="p">;</span><span class="w">    </span><span class="c">% inversion</span>
+
+simulation = <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.latest_run">sbtk.io.latest_run</a>(project, truth_run);
+inversion  = <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.latest_run">sbtk.io.latest_run</a>(project, inversion_run);
+truth = <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.load_truth">sbtk.io.load_truth</a>(simulation);
+fit   = <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.load_fit">sbtk.io.load_fit</a>(inversion);
+out   = <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.new_run">sbtk.io.new_run</a>(project, inversion_run + &quot;_comparison&quot;);
+<a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.report_comparison">sbtk.io.report_comparison</a>(out, body, truth, fit, <a class="xref xref-fn" href="../reference/api/compare.html#sbtk.compare.with_truth">sbtk.compare.with_truth</a>(body, truth, fit));
+
+<span class="c">% the solution package against the interior-model package, cell by cell</span>
+cmp = <a class="xref xref-fn" href="../reference/api/compare.html#sbtk.compare.grids">sbtk.compare.grids</a>(<a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_grid">sbtk.exchange.read_grid</a>(fullfile(<a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.locate">sbtk.exchange.locate</a>(simulation, &quot;MOD&quot;), &quot;density_grid.txt&quot;)), ...
+                         <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_grid">sbtk.exchange.read_grid</a>(fullfile(<a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.locate">sbtk.exchange.locate</a>(inversion, &quot;SOL&quot;), &quot;density_grid.txt&quot;)));
+writelines(<a class="xref xref-fn" href="../reference/api/compare.html#sbtk.compare.grid_summary">sbtk.compare.grid_summary</a>(cmp), fullfile(out.folder, &quot;grid_comparison.txt&quot;));
+<a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.finish_run">sbtk.io.finish_run</a>(out);</code></pre></div>
+</article>
+<nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../examples/tutorials.html" rel="prev"><span>Previous</span>Tutorial scripts</a><a class="next" href="../projects/bennu.html" rel="next"><span>Next</span>Bennu</a></nav>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-19.</footer>
+</main>
+<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#files">Files</a></li><li class="lvl2"><a href="#use">Use</a></li><li class="lvl2"><a href="#code">Code</a></li></ul></nav>
+</div>
+<script src="../assets/search-index.js?v=eb13bdaf5f"></script>
+<script src="../assets/site.js?v=eb13bdaf5f"></script>
+</body>
+</html>

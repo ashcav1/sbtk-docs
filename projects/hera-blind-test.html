@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en" data-root="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hera blind test — SBTK documentation</title>
+<link rel="stylesheet" href="../assets/site.css?v=eb13bdaf5f">
+<link rel="stylesheet" href="../assets/pygments.css?v=eb13bdaf5f">
+<link rel="stylesheet" href="../assets/print.css?v=eb13bdaf5f" media="print">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="topbar">
+  <button class="navtoggle" type="button" aria-controls="sidebar" aria-expanded="false">Contents</button>
+  <a class="sitename" href="../index.html">SBTK documentation</a>
+  <span class="version">version 1.0.0</span>
+  <div class="search" role="search">
+    <label for="search-input" class="visually-hidden">Search the documentation</label>
+    <input id="search-input" type="search" placeholder="Search (press /)" autocomplete="off"
+           aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+    <ul id="search-results" role="listbox" hidden></ul>
+  </div>
+  <a class="toplink" href="../print.html">Single-page version</a>
+  <a class="toplink" href="../SBTK_handbook.pdf">PDF handbook</a>
+</header>
+<div class="frame">
+<nav id="sidebar" class="sidebar" aria-label="Documentation pages"><ul><li class="navcat"><span class="navcat-title">Overview</span><ul><li><a href="../index.html">SBTK: Small Body Toolkit</a></li><li><a href="../overview/limitations.html">Assumptions and limitations</a></li></ul></li><li class="navcat"><span class="navcat-title">Getting started</span><ul><li><a href="../getting-started/installation.html">Installation</a></li><li><a href="../getting-started/first-script.html">First script</a></li></ul></li><li class="navcat"><span class="navcat-title">Conventions</span><ul><li><a href="../conventions/units.html">Units</a></li><li><a href="../conventions/coordinates.html">Coordinate systems and origins</a></li><li><a href="../conventions/gravity-coefficients.html">Gravity coefficients</a></li><li><a href="../conventions/moments-of-inertia.html">Moments of inertia</a></li></ul></li><li class="navcat"><span class="navcat-title">Models and calculations</span><ul><li><a href="../models/shape-models.html">Shape models</a></li><li><a href="../models/density-distributions.html">Density distributions</a></li><li><a href="../models/forward-model.html">Gravity and moment calculations</a></li></ul></li><li class="navcat"><span class="navcat-title">Measurements and inversion</span><ul><li><a href="../inversion/measurements.html">Measurement sets</a></li><li><a href="../inversion/density-estimation.html">Density estimation</a></li><li><a href="../inversion/statistics.html">Goodness of fit and model comparison</a></li></ul></li><li class="navcat"><span class="navcat-title">Files</span><ul><li><a href="../files/results-folders.html">Results folders and figures</a></li><li><a href="../files/exchange-packages.html">Exchange packages</a></li></ul></li><li class="navcat"><span class="navcat-title">Examples</span><ul><li><a href="../examples/density-models.html">Density models by component type</a></li><li><a href="../examples/calculations.html">Calculations</a></li><li><a href="../examples/tutorials.html">Tutorial scripts</a></li></ul></li><li class="navcat"><span class="navcat-title">Projects</span><ul><li><a href="../projects/template.html">Project template</a></li><li><a href="../projects/bennu.html">Bennu</a></li><li><a href="../projects/hera-blind-test.html" aria-current="page" class="current">Hera blind test</a></li></ul></li><li class="navcat"><span class="navcat-title">Reference</span><ul><li><a href="../reference/api.html">API reference</a></li><li><a href="../reference/api/sbtk.html">sbtk</a></li><li><a href="../reference/api/units.html">sbtk.units</a></li><li><a href="../reference/api/shape.html">sbtk.shape</a></li><li><a href="../reference/api/body.html">sbtk.body</a></li><li><a href="../reference/api/interior.html">sbtk.interior</a></li><li><a href="../reference/api/gravity.html">sbtk.gravity</a></li><li><a href="../reference/api/data.html">sbtk.data</a></li><li><a href="../reference/api/invert.html">sbtk.invert</a></li><li><a href="../reference/api/compare.html">sbtk.compare</a></li><li><a href="../reference/api/exchange.html">sbtk.exchange</a></li><li><a href="../reference/api/io.html">sbtk.io</a></li><li><a href="../reference/api/plot.html">sbtk.plot</a></li><li><a href="../reference/data-structures.html">Data structures</a></li><li><a href="../reference/errors.html">Error identifiers</a></li><li><a href="../reference/internal.html">Internal functions</a></li></ul></li><li class="navcat"><span class="navcat-title">Validation</span><ul><li><a href="../validation/tests.html">Validation and tests</a></li></ul></li></ul></nav>
+<main id="content" tabindex="-1">
+<nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Projects › <span aria-current="page">Hera blind test</span></nav>
+<article>
+<h1 id="top" id="hera-blind-test">Hera blind test<a class="headerlink" href="#hera-blind-test" title="Link to this section">#</a></h1>
+<p><code>projects/hera_hlp6/</code> contains the runner scripts SBTK uses in a blind test of interior-modeling methods for the binary
+asteroid Didymos–Dimorphos, the target of ESA's Hera mission. In such a test one team simulates measurements of an
+interior it keeps hidden and shares only the measurements; other teams estimate the interior; the hidden models are
+released afterwards and compared with the estimates on a common density grid. The measurement uncertainties are those
+of the Hera end-to-end simulation, read from files of the Hera working group that are not distributed with SBTK; the
+runners need them in <code>data/hera_rse/</code>.</p>
+<h2 id="files">Files<a class="headerlink" href="#files" title="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hlp6_didymos.m</code>, <code>hlp6_dimorphos.m</code></td>
+<td>Settings shared by every run of one body: shape model, mass, reference radius, degree, density-grid spacing.</td>
+</tr>
+<tr>
+<td><code>hlp6_team.m</code></td>
+<td>Team identifier and contact written into package names and files.</td>
+</tr>
+<tr>
+<td><code>simulate_didymos.m</code>, <code>simulate_dimorphos.m</code></td>
+<td>Simulate measurements of a hidden interior; write the measurement package and the interior-model package.</td>
+</tr>
+<tr>
+<td><code>invert_didymos.m</code>, <code>invert_dimorphos.m</code></td>
+<td>Invert a measurement package (by default the redacted package of the newest simulation); write a solution package.</td>
+</tr>
+<tr>
+<td><code>invert_didymos_sectors.m</code></td>
+<td>The same with a 36-sector grid, the background held at the bulk density and regularization by the discrepancy principle.</td>
+</tr>
+<tr>
+<td><code>invert_received_data.m</code></td>
+<td>Invert another team's package (SBTK format) or a gravity file in the PDS SHADR layout.</td>
+</tr>
+<tr>
+<td><code>compare_didymos.m</code>, <code>compare_dimorphos.m</code></td>
+<td>Compare an inversion with the hidden model, by component and on the density grid.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="settings">Settings<a class="headerlink" href="#settings" title="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Didymos</th>
+<th>Dimorphos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shape model</td>
+<td>DART v003, 9.3 m sampling, 49,152 facets</td>
+<td>DART v004 (before the impact), every 8th point of the 0.243 m model, 49,152 facets</td>
+</tr>
+<tr>
+<td>Mass</td>
+<td>5.273 × 10¹¹ kg</td>
+<td>2.700 × 10⁹ kg</td>
+</tr>
+<tr>
+<td>Reference radius</td>
+<td>0.43 km</td>
+<td>0.10 km</td>
+</tr>
+<tr>
+<td>Degree</td>
+<td>5</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Density-grid spacing</td>
+<td>0.020 km</td>
+<td>0.005 km</td>
+</tr>
+<tr>
+<td>Bulk density</td>
+<td>2593 kg/m³</td>
+<td>1534 kg/m³</td>
+</tr>
+</tbody>
+</table>
+<h2 id="simulation-runs">Simulation runs<a class="headerlink" href="#simulation-runs" title="Link to this section">#</a></h2>
+<p>A simulation runner has five sections:</p>
+<ol>
+<li><strong>NAME AND DELIVERY</strong>: the run name, the package number <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>n</mi></mrow></math>,</span> and the inertia quantities the package contains
+   (any of <code>Ixx</code> … <code>Iyz</code>, <code>libration</code>, or none; <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.select_moi"><code>sbtk.data.select_moi</code></a>).</li>
+<li><strong>INTERIOR</strong>: components and random field (<a href="../models/density-distributions.html">Density distributions</a>).</li>
+<li><strong>MEASUREMENT UNCERTAINTIES</strong>: the uncertainty files of the end-to-end simulation (gravity coefficients and inertia
+   elements) and the 1σ of the libration ratio.</li>
+<li><strong>NOISE</strong>: the seed.</li>
+<li><strong>RUN</strong>: <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a>; <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.use_uncertainties"><code>sbtk.data.use_uncertainties</code></a> with the gravity file read by
+   <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_shadr"><code>sbtk.exchange.read_shadr</code></a>; <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_moi_sigma"><code>sbtk.data.set_moi_sigma</code></a> with the inertia uncertainties (given in kg km², divided by
+   <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi><msubsup><mi>R</mi><mtext>ref</mtext><mn>2</mn></msubsup></mrow></math>)</span>; <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.select_moi"><code>sbtk.data.select_moi</code></a>; <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise"><code>sbtk.data.add_noise</code></a>; then <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.report_simulation"><code>sbtk.io.report_simulation</code></a>,
+   <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_data"><code>sbtk.exchange.write_data</code></a> and <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_model"><code>sbtk.exchange.write_model</code></a>.</li>
+</ol>
+<p>The run folder separates what may be shared from what may not:</p>
+<div class="codeblock codeblock-tree"><div class="codehead"><span>Simulation run folder of projects/hera_hlp6</span></div><pre><code class="language-tree">results/hera_hlp6/&lt;date_time&gt;_&lt;name&gt;/
+  log.txt                          everything printed, including the true model
+  redacted/&lt;team&gt;-DATA&lt;n&gt;-&lt;body&gt;/  the measurement package to share
+  unredacted/&lt;team&gt;-MOD&lt;n&gt;-&lt;body&gt;/ the interior-model package, shared after the estimates
+  unredacted/                      measurements.*, truth.*, settings.json, figures/</code></pre></div>
+<p>Only the package folder in <code>redacted/</code> is shared: <code>log.txt</code> and everything in <code>unredacted/</code> contain the true model.</p>
+<h2 id="inversion-runs">Inversion runs<a class="headerlink" href="#inversion-runs" title="Link to this section">#</a></h2>
+<p><code>invert_didymos.m</code> reads the redacted package of the newest simulation of the given name with
+<a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.locate"><code>sbtk.exchange.locate</code></a> and <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a>, exactly as another team receives it, so the inversion expands
+about the measured center of mass (<a href="../inversion/density-estimation.html#data-about-the-center-of-mass">Density estimation</a>).
+It writes <code>fit.*</code>, <code>homogeneous.txt</code>, figures and the solution package <code>&lt;team&gt;-SOL_&lt;data team&gt;&lt;n&gt;/</code>.
+<code>invert_received_data.m</code> does the same for a package from another team, or, with the commented lines, for a SHADR-layout
+gravity file, for which the shape model and the point the coefficients are about must be given.</p>
+<h2 id="comparison-runs">Comparison runs<a class="headerlink" href="#comparison-runs" title="Link to this section">#</a></h2>
+<p><code>compare_didymos.m</code> loads the newest simulation and inversion of the given names, compares the fit with the true model
+(<a class="xref xref-fn" href="../reference/api/compare.html#sbtk.compare.with_truth"><code>sbtk.compare.with_truth</code></a>) and compares the solution package's density grid with the interior-model package's
+(<a class="xref xref-fn" href="../reference/api/compare.html#sbtk.compare.grids"><code>sbtk.compare.grids</code></a>), which is the comparison every team's solution receives.</p>
+<h2 id="example-runs">Example runs<a class="headerlink" href="#example-runs" title="Link to this section">#</a></h2>
+<p>The delivered interiors (named T1) include a boulder and a random density field that the delivered inversion models do
+not contain. With the uncertainties of the end-to-end simulation, the <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> test rejects the inversion models of
+both bodies, and the estimated densities are biased accordingly. For Didymos, the same three-component model fits an
+interior that consists of those components alone (reduced <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> 0.98). At this precision an inversion model has to
+include structure down to the scale of such features to pass the test (<a href="../inversion/statistics.html">Goodness of fit</a>).</p>
+</article>
+<nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../projects/bennu.html" rel="prev"><span>Previous</span>Bennu</a><a class="next" href="../reference/api.html" rel="next"><span>Next</span>API reference</a></nav>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-19.</footer>
+</main>
+<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#files">Files</a></li><li class="lvl2"><a href="#settings">Settings</a></li><li class="lvl2"><a href="#simulation-runs">Simulation runs</a></li><li class="lvl2"><a href="#inversion-runs">Inversion runs</a></li><li class="lvl2"><a href="#comparison-runs">Comparison runs</a></li><li class="lvl2"><a href="#example-runs">Example runs</a></li></ul></nav>
+</div>
+<script src="../assets/search-index.js?v=eb13bdaf5f"></script>
+<script src="../assets/site.js?v=eb13bdaf5f"></script>
+</body>
+</html>

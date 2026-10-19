@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en" data-root="../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>sbtk.body — SBTK documentation</title>
+<link rel="stylesheet" href="../../assets/site.css?v=eb13bdaf5f">
+<link rel="stylesheet" href="../../assets/pygments.css?v=eb13bdaf5f">
+<link rel="stylesheet" href="../../assets/print.css?v=eb13bdaf5f" media="print">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="topbar">
+  <button class="navtoggle" type="button" aria-controls="sidebar" aria-expanded="false">Contents</button>
+  <a class="sitename" href="../../index.html">SBTK documentation</a>
+  <span class="version">version 1.0.0</span>
+  <div class="search" role="search">
+    <label for="search-input" class="visually-hidden">Search the documentation</label>
+    <input id="search-input" type="search" placeholder="Search (press /)" autocomplete="off"
+           aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+    <ul id="search-results" role="listbox" hidden></ul>
+  </div>
+  <a class="toplink" href="../../print.html">Single-page version</a>
+  <a class="toplink" href="../../SBTK_handbook.pdf">PDF handbook</a>
+</header>
+<div class="frame">
+<nav id="sidebar" class="sidebar" aria-label="Documentation pages"><ul><li class="navcat"><span class="navcat-title">Overview</span><ul><li><a href="../../index.html">SBTK: Small Body Toolkit</a></li><li><a href="../../overview/limitations.html">Assumptions and limitations</a></li></ul></li><li class="navcat"><span class="navcat-title">Getting started</span><ul><li><a href="../../getting-started/installation.html">Installation</a></li><li><a href="../../getting-started/first-script.html">First script</a></li></ul></li><li class="navcat"><span class="navcat-title">Conventions</span><ul><li><a href="../../conventions/units.html">Units</a></li><li><a href="../../conventions/coordinates.html">Coordinate systems and origins</a></li><li><a href="../../conventions/gravity-coefficients.html">Gravity coefficients</a></li><li><a href="../../conventions/moments-of-inertia.html">Moments of inertia</a></li></ul></li><li class="navcat"><span class="navcat-title">Models and calculations</span><ul><li><a href="../../models/shape-models.html">Shape models</a></li><li><a href="../../models/density-distributions.html">Density distributions</a></li><li><a href="../../models/forward-model.html">Gravity and moment calculations</a></li></ul></li><li class="navcat"><span class="navcat-title">Measurements and inversion</span><ul><li><a href="../../inversion/measurements.html">Measurement sets</a></li><li><a href="../../inversion/density-estimation.html">Density estimation</a></li><li><a href="../../inversion/statistics.html">Goodness of fit and model comparison</a></li></ul></li><li class="navcat"><span class="navcat-title">Files</span><ul><li><a href="../../files/results-folders.html">Results folders and figures</a></li><li><a href="../../files/exchange-packages.html">Exchange packages</a></li></ul></li><li class="navcat"><span class="navcat-title">Examples</span><ul><li><a href="../../examples/density-models.html">Density models by component type</a></li><li><a href="../../examples/calculations.html">Calculations</a></li><li><a href="../../examples/tutorials.html">Tutorial scripts</a></li></ul></li><li class="navcat"><span class="navcat-title">Projects</span><ul><li><a href="../../projects/template.html">Project template</a></li><li><a href="../../projects/bennu.html">Bennu</a></li><li><a href="../../projects/hera-blind-test.html">Hera blind test</a></li></ul></li><li class="navcat"><span class="navcat-title">Reference</span><ul><li><a href="../../reference/api.html">API reference</a></li><li><a href="../../reference/api/sbtk.html">sbtk</a></li><li><a href="../../reference/api/units.html">sbtk.units</a></li><li><a href="../../reference/api/shape.html">sbtk.shape</a></li><li><a href="../../reference/api/body.html" aria-current="page" class="current">sbtk.body</a></li><li><a href="../../reference/api/interior.html">sbtk.interior</a></li><li><a href="../../reference/api/gravity.html">sbtk.gravity</a></li><li><a href="../../reference/api/data.html">sbtk.data</a></li><li><a href="../../reference/api/invert.html">sbtk.invert</a></li><li><a href="../../reference/api/compare.html">sbtk.compare</a></li><li><a href="../../reference/api/exchange.html">sbtk.exchange</a></li><li><a href="../../reference/api/io.html">sbtk.io</a></li><li><a href="../../reference/api/plot.html">sbtk.plot</a></li><li><a href="../../reference/data-structures.html">Data structures</a></li><li><a href="../../reference/errors.html">Error identifiers</a></li><li><a href="../../reference/internal.html">Internal functions</a></li></ul></li><li class="navcat"><span class="navcat-title">Validation</span><ul><li><a href="../../validation/tests.html">Validation and tests</a></li></ul></li></ul></nav>
+<main id="content" tabindex="-1">
+<nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../../index.html">Documentation</a> › Reference › <span aria-current="page">sbtk.body</span></nav>
+<article>
+<h1 id="top"><code>sbtk.body</code>: Bodies</h1>
+<table class="overview"><thead><tr><th>Function</th><th>Purpose</th></tr></thead><tbody>
+<tr><td><a class="xref xref-fn" href="#sbtk.body.create"><code>create</code></a></td><td>A small body: shape model, bulk density and reference radius.</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.body.from_mass"><code>from_mass</code></a></td><td>A small body defined by its mass instead of its bulk density.</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.body.summary"><code>summary</code></a></td><td>Print a body's main numbers.</td></tr>
+</tbody></table>
+<section class="api-entry" id="sbtk.body.create">
+<h2 class="api-name" id="sbtk.body.create-h"><code>sbtk.body.create</code><a class="headerlink" href="#sbtk.body.create" title="Link to sbtk.body.create">#</a></h2>
+<p class="api-summary">A small body: shape model, bulk density and reference radius.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">body = <a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.create">sbtk.body.create</a>(name, shape, bulk_density_kgm3, R_ref_km)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.body.create.name"><td data-label="Name"><code>name</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description"> </td></tr>
+<tr id="sbtk.body.create.shape"><td data-label="Name"><code>shape</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">from <a class="xref xref-fn" href="../../reference/api/shape.html#sbtk.shape.load">sbtk.shape.load</a> / <code>from_arrays</code> / ellipsoid Fields: <a class="xref xref-st" href="../../reference/data-structures.html#shape"><code>shape</code></a>. </td></tr>
+<tr id="sbtk.body.create.bulk_density_kgm3"><td data-label="Name"><code>bulk_density_kgm3</code></td><td data-label="Size">scalar</td><td data-label="Class">double</td><td data-label="Unit">kg/m³</td><td data-label="Default">required</td><td data-label="Description">mean density [kg/m^3]; sets the total mass <span class="valid">Validation: <code>mustBePositive</code>.</span></td></tr>
+<tr id="sbtk.body.create.R_ref_km"><td data-label="Name"><code>R_ref_km</code></td><td data-label="Size">scalar</td><td data-label="Class">double</td><td data-label="Unit">km</td><td data-label="Default">required</td><td data-label="Description">reference radius of the gravity coefficients [km] <span class="valid">Validation: <code>mustBePositive</code>.</span></td></tr>
+</tbody></table>
+<h3 class="api-sub">Outputs</h3><table class="params outputs"><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.body.create.out.body"><td data-label="Name"><code>body</code></td><td data-label="Description">struct Fields: <a class="xref xref-st" href="../../reference/data-structures.html#body"><code>body</code></a>.</td></tr>
+</tbody></table>
+<h3 class="api-sub">Description</h3>
+<table class="defs"><tbody>
+<tr><td><code>.volume_km3</code></td><td>enclosed volume [km^3]</td></tr>
+<tr><td><code>.mass_kg</code></td><td><code>bulk_density_kgm3</code> * volume  [kg]</td></tr>
+<tr><td><code>.GM_km3_s2</code></td><td>G * mass [km^3/s^2]</td></tr>
+<tr><td><code>.centroid_km</code></td><td>center of figure [km]</td></tr>
+</tbody></table>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">shape = <a class="xref xref-fn" href="../../reference/api/shape.html#sbtk.shape.ellipsoid">sbtk.shape.ellipsoid</a>(&quot;test&quot;, [0.4 0.35 0.3], 4);
+body  = <a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.create">sbtk.body.create</a>(&quot;Test&quot;, shape, 2600, 0.4);</code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/shape.html#sbtk.shape.ellipsoid"><code>sbtk.shape.ellipsoid</code></a>, <a class="xref xref-fn" href="../../reference/api/shape.html#sbtk.shape.load"><code>sbtk.shape.load</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="../../reference/api/shape.html#sbtk.shape.properties"><code>sbtk.shape.properties</code></a>, <a class="xref xref-fn" href="../../reference/api/units.html#sbtk.units.G"><code>sbtk.units.G</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.from_mass"><code>sbtk.body.from_mass</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+body/create.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="sbtk.body.from_mass">
+<h2 class="api-name" id="sbtk.body.from_mass-h"><code>sbtk.body.from_mass</code><a class="headerlink" href="#sbtk.body.from_mass" title="Link to sbtk.body.from_mass">#</a></h2>
+<p class="api-summary">A small body defined by its mass instead of its bulk density.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">body = <a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.from_mass">sbtk.body.from_mass</a>(name, shape, mass_kg, R_ref_km)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.body.from_mass.name"><td data-label="Name"><code>name</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">Name of the body. </td></tr>
+<tr id="sbtk.body.from_mass.shape"><td data-label="Name"><code>shape</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">The shape model. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#shape"><code>shape</code></a>. </td></tr>
+<tr id="sbtk.body.from_mass.mass_kg"><td data-label="Name"><code>mass_kg</code></td><td data-label="Size">scalar</td><td data-label="Class">double</td><td data-label="Unit">kg</td><td data-label="Default">required</td><td data-label="Description">Total mass <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi></mrow></math>.</span> <span class="valid">Validation: <code>mustBePositive</code>.</span></td></tr>
+<tr id="sbtk.body.from_mass.R_ref_km"><td data-label="Name"><code>R_ref_km</code></td><td data-label="Size">scalar</td><td data-label="Class">double</td><td data-label="Unit">km</td><td data-label="Default">required</td><td data-label="Description">Reference radius of the gravity coefficients. <span class="valid">Validation: <code>mustBePositive</code>.</span></td></tr>
+</tbody></table>
+<h3 class="api-sub">Outputs</h3><table class="params outputs"><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.body.from_mass.out.body"><td data-label="Name"><code>body</code></td><td data-label="Description">The body, with bulk density = mass / shape volume. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#body"><code>body</code></a>.</td></tr>
+</tbody></table>
+<h3 class="api-sub">Description</h3>
+<p>Same as <a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.create">sbtk.body.create</a> with bulk density = mass / shape volume. Use it when the mass (or GM / G) is what was measured.</p>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>shape</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">body = <a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.from_mass">sbtk.body.from_mass</a>(&quot;Didymos&quot;, shape, 5.273e11, 0.43);</code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.create"><code>sbtk.body.create</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.create"><code>sbtk.body.create</code></a>, <a class="xref xref-fn" href="../../reference/api/shape.html#sbtk.shape.properties"><code>sbtk.shape.properties</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a>, <a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.read_shadr"><code>sbtk.exchange.read_shadr</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+body/from_mass.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="sbtk.body.summary">
+<h2 class="api-name" id="sbtk.body.summary-h"><code>sbtk.body.summary</code><a class="headerlink" href="#sbtk.body.summary" title="Link to sbtk.body.summary">#</a></h2>
+<p class="api-summary">Print a body's main numbers.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.summary">sbtk.body.summary</a>(body)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.body.summary.body"><td data-label="Name"><code>body</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">The body to describe. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#body"><code>body</code></a>. </td></tr>
+</tbody></table>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">body = <a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.from_mass">sbtk.body.from_mass</a>(&quot;Didymos&quot;, <a class="xref xref-fn" href="../../reference/api/shape.html#sbtk.shape.bundled">sbtk.shape.bundled</a>(&quot;didymos&quot;), 5.273e11, 0.43);
+<a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.summary">sbtk.body.summary</a>(body)</code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.from_mass"><code>sbtk.body.from_mass</code></a>, <a class="xref xref-fn" href="../../reference/api/shape.html#sbtk.shape.bundled"><code>sbtk.shape.bundled</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+body/summary.m</code>, line 1.</p>
+</section>
+</article>
+<nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../../reference/api/shape.html" rel="prev"><span>Previous</span>sbtk.shape</a><a class="next" href="../../reference/api/interior.html" rel="next"><span>Next</span>sbtk.interior</a></nav>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-19.</footer>
+</main>
+<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#sbtk.body.create">sbtk.body.create</a></li><li class="lvl2"><a href="#sbtk.body.from_mass">sbtk.body.from_mass</a></li><li class="lvl2"><a href="#sbtk.body.summary">sbtk.body.summary</a></li></ul></nav>
+</div>
+<script src="../../assets/search-index.js?v=eb13bdaf5f"></script>
+<script src="../../assets/site.js?v=eb13bdaf5f"></script>
+</body>
+</html>

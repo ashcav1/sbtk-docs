@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en" data-root="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Measurement sets — SBTK documentation</title>
+<link rel="stylesheet" href="../assets/site.css?v=eb13bdaf5f">
+<link rel="stylesheet" href="../assets/pygments.css?v=eb13bdaf5f">
+<link rel="stylesheet" href="../assets/print.css?v=eb13bdaf5f" media="print">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="topbar">
+  <button class="navtoggle" type="button" aria-controls="sidebar" aria-expanded="false">Contents</button>
+  <a class="sitename" href="../index.html">SBTK documentation</a>
+  <span class="version">version 1.0.0</span>
+  <div class="search" role="search">
+    <label for="search-input" class="visually-hidden">Search the documentation</label>
+    <input id="search-input" type="search" placeholder="Search (press /)" autocomplete="off"
+           aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+    <ul id="search-results" role="listbox" hidden></ul>
+  </div>
+  <a class="toplink" href="../print.html">Single-page version</a>
+  <a class="toplink" href="../SBTK_handbook.pdf">PDF handbook</a>
+</header>
+<div class="frame">
+<nav id="sidebar" class="sidebar" aria-label="Documentation pages"><ul><li class="navcat"><span class="navcat-title">Overview</span><ul><li><a href="../index.html">SBTK: Small Body Toolkit</a></li><li><a href="../overview/limitations.html">Assumptions and limitations</a></li></ul></li><li class="navcat"><span class="navcat-title">Getting started</span><ul><li><a href="../getting-started/installation.html">Installation</a></li><li><a href="../getting-started/first-script.html">First script</a></li></ul></li><li class="navcat"><span class="navcat-title">Conventions</span><ul><li><a href="../conventions/units.html">Units</a></li><li><a href="../conventions/coordinates.html">Coordinate systems and origins</a></li><li><a href="../conventions/gravity-coefficients.html">Gravity coefficients</a></li><li><a href="../conventions/moments-of-inertia.html">Moments of inertia</a></li></ul></li><li class="navcat"><span class="navcat-title">Models and calculations</span><ul><li><a href="../models/shape-models.html">Shape models</a></li><li><a href="../models/density-distributions.html">Density distributions</a></li><li><a href="../models/forward-model.html">Gravity and moment calculations</a></li></ul></li><li class="navcat"><span class="navcat-title">Measurements and inversion</span><ul><li><a href="../inversion/measurements.html" aria-current="page" class="current">Measurement sets</a></li><li><a href="../inversion/density-estimation.html">Density estimation</a></li><li><a href="../inversion/statistics.html">Goodness of fit and model comparison</a></li></ul></li><li class="navcat"><span class="navcat-title">Files</span><ul><li><a href="../files/results-folders.html">Results folders and figures</a></li><li><a href="../files/exchange-packages.html">Exchange packages</a></li></ul></li><li class="navcat"><span class="navcat-title">Examples</span><ul><li><a href="../examples/density-models.html">Density models by component type</a></li><li><a href="../examples/calculations.html">Calculations</a></li><li><a href="../examples/tutorials.html">Tutorial scripts</a></li></ul></li><li class="navcat"><span class="navcat-title">Projects</span><ul><li><a href="../projects/template.html">Project template</a></li><li><a href="../projects/bennu.html">Bennu</a></li><li><a href="../projects/hera-blind-test.html">Hera blind test</a></li></ul></li><li class="navcat"><span class="navcat-title">Reference</span><ul><li><a href="../reference/api.html">API reference</a></li><li><a href="../reference/api/sbtk.html">sbtk</a></li><li><a href="../reference/api/units.html">sbtk.units</a></li><li><a href="../reference/api/shape.html">sbtk.shape</a></li><li><a href="../reference/api/body.html">sbtk.body</a></li><li><a href="../reference/api/interior.html">sbtk.interior</a></li><li><a href="../reference/api/gravity.html">sbtk.gravity</a></li><li><a href="../reference/api/data.html">sbtk.data</a></li><li><a href="../reference/api/invert.html">sbtk.invert</a></li><li><a href="../reference/api/compare.html">sbtk.compare</a></li><li><a href="../reference/api/exchange.html">sbtk.exchange</a></li><li><a href="../reference/api/io.html">sbtk.io</a></li><li><a href="../reference/api/plot.html">sbtk.plot</a></li><li><a href="../reference/data-structures.html">Data structures</a></li><li><a href="../reference/errors.html">Error identifiers</a></li><li><a href="../reference/internal.html">Internal functions</a></li></ul></li><li class="navcat"><span class="navcat-title">Validation</span><ul><li><a href="../validation/tests.html">Validation and tests</a></li></ul></li></ul></nav>
+<main id="content" tabindex="-1">
+<nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Measurements and inversion › <span aria-current="page">Measurement sets</span></nav>
+<article>
+<h1 id="top" id="measurement-sets">Measurement sets<a class="headerlink" href="#measurement-sets" title="Link to this section">#</a></h1>
+<p>A measurement set (<a class="xref xref-st" href="../reference/data-structures.html#obs"><code>obs</code></a>) holds fully normalized gravity coefficients with their covariance, moment-of-inertia
+measurement rows, the total mass, the reference radius and the expansion origin.</p>
+<h2 id="sources">Sources<a class="headerlink" href="#sources" title="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Function</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A simulated interior</td>
+<td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a></td>
+<td>Exact values about the true center of mass; uncertainties from <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.uncertainties"><code>sbtk.data.uncertainties</code></a>; <code>coef_about = 'origin'</code>.</td>
+</tr>
+<tr>
+<td>An SBTK measurement package</td>
+<td><a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a></td>
+<td>Coefficients about the measured center of mass with their full covariance; returns the body as well (<a href="../files/exchange-packages.html">Exchange packages</a>).</td>
+</tr>
+<tr>
+<td>A gravity file in the PDS SHADR layout</td>
+<td><a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_shadr"><code>sbtk.exchange.read_shadr</code></a></td>
+<td>Header row (R, GM, σGM, degree, order, normalization state, …) then rows <code>l, m, C, S, sigma_C, sigma_S</code>; diagonal covariance. The caller gives the shape model and the point the coefficients are about.</td>
+</tr>
+<tr>
+<td>A JPL SSD gravity file</td>
+<td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.read_jpl_gravity"><code>sbtk.io.read_jpl_gravity</code></a></td>
+<td>MATLAB-assignment form with <code>NAMES</code>, <code>VALS</code>, <code>COV</code>; parsed as text; full covariance; <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mi>l</mi></msub></mrow></math></span> converted to <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mi>l</mi><mn>0</mn></mrow></msub></mrow></math>.</span></td>
+</tr>
+<tr>
+<td>Coefficient matrices</td>
+<td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.from_coefficients"><code>sbtk.data.from_coefficients</code></a></td>
+<td><code>C(l+1, m+1)</code>, <code>S(l+1, m+1)</code> and their 1σ; diagonal covariance.</td>
+</tr>
+<tr>
+<td>The SBTK text format</td>
+<td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.read_measurements"><code>sbtk.io.read_measurements</code></a>, <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.load_measurements"><code>sbtk.io.load_measurements</code></a></td>
+<td>One keyword per line; diagonal covariance only (<a href="../files/results-folders.html#files">Results folders</a>).</td>
+</tr>
+</tbody>
+</table>
+<h2 id="uncertainties-and-covariance">Uncertainties and covariance<a class="headerlink" href="#uncertainties-and-covariance" title="Link to this section">#</a></h2>
+<ul>
+<li><strong>Simulation.</strong> <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.uncertainties"><code>sbtk.data.uncertainties</code></a> gives one 1σ per degree for the coefficients, one for every inertia
+  element (as a fraction of <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi><msubsup><mi>R</mi><mtext>ref</mtext><mn>2</mn></msubsup></mrow></math>)</span> and one for the libration ratio. <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a> stores them as a
+  diagonal covariance and as the σ of each inertia row.</li>
+<li><strong>From another data set.</strong> <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.use_uncertainties"><code>sbtk.data.use_uncertainties</code></a> gives every coefficient that a reference data set also
+  contains the reference's variances and covariances, converted to the reference radius of the target by
+  <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>R</mi><mo>&#x0002F;</mo><msup><mi>R</mi><mi>&#x02032;</mi></msup><msup><mo stretchy="false">&#x00029;</mo><mi>l</mi></msup></mrow></math>.</span> Coefficients the reference lacks keep their variances and become uncorrelated with the others.</li>
+<li><strong>Full covariance.</strong> <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_covariance"><code>sbtk.data.set_covariance</code></a> replaces the coefficient covariance with any symmetric positive
+  definite matrix in the order of <a class="xref xref-field" href="../reference/data-structures.html#obs.coef_labels"><code>obs.coef_labels</code></a>.</li>
+<li><strong>Inertia rows.</strong> <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_moi_sigma"><code>sbtk.data.set_moi_sigma</code></a> sets the σ of named rows.</li>
+</ul>
+<h2 id="noise">Noise<a class="headerlink" href="#noise" title="Link to this section">#</a></h2>
+<p><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise"><code>sbtk.data.add_noise</code></a><code>(obs, seed)</code> returns one realization: the coefficients plus <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>L</mi><mi>&#x1D433;</mi></mrow></math>,</span> with <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>L</mi></mrow></math></span> the lower
+Cholesky factor of the coefficient covariance and <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D433;</mi></mrow></math></span> standard normal; each inertia row plus its σ times a
+standard normal variable. The same seed gives the same noise; <a class="xref xref-field" href="../reference/data-structures.html#obs.noise_seed"><code>obs.noise_seed</code></a> records it.</p>
+<h2 id="inertia-measurements-and-the-center-of-mass">Inertia measurements and the center of mass<a class="headerlink" href="#inertia-measurements-and-the-center-of-mass" title="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>Adds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_moi"><code>sbtk.data.add_moi</code></a></td>
+<td>One element <code>Ixx</code> … <code>Iyz</code> as <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>I</mi><mo>&#x0002F;</mo><mo stretchy="false">&#x00028;</mo><mi>M</mi><msubsup><mi>R</mi><mtext>ref</mtext><mn>2</mn></msubsup><mo stretchy="false">&#x00029;</mo></mrow></math></span> (<a class="xref xref-fn" href="../reference/api/units.html#sbtk.units.moi_to_norm"><code>sbtk.units.moi_to_norm</code></a> converts from kg m²).</td>
+</tr>
+<tr>
+<td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_moi_row"><code>sbtk.data.add_moi_row</code></a></td>
+<td>Any linear combination of the six elements.</td>
+</tr>
+<tr>
+<td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_libration"><code>sbtk.data.add_libration</code></a></td>
+<td>The libration ratio <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>B</mi><mo>&#x02212;</mo><mi>A</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002F;</mo><mi>C</mi></mrow></math></span> as a linear row (<a href="../conventions/moments-of-inertia.html#libration-ratio">Moments of inertia</a>). Requires <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub></mrow></math></span> and <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub></mrow></math>.</span></td>
+</tr>
+<tr>
+<td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.libration_ratio_from_amplitude"><code>sbtk.data.libration_ratio_from_amplitude</code></a></td>
+<td>Computes the ratio and its 1σ from a forced libration amplitude.</td>
+</tr>
+<tr>
+<td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_center_of_mass"><code>sbtk.data.add_center_of_mass</code></a></td>
+<td>The measured center of mass as degree-1 coefficients; sets <code>coef_about</code> to <code>'center_of_mass'</code>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="selecting-measurements">Selecting measurements<a class="headerlink" href="#selecting-measurements" title="Link to this section">#</a></h2>
+<p><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.select_degree"><code>sbtk.data.select_degree</code></a> keeps the coefficients up to a degree, <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.select_coefficients"><code>sbtk.data.select_coefficients</code></a> a list of
+coefficients, and <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.select_moi"><code>sbtk.data.select_moi</code></a> a list of inertia rows; the covariance keeps the matching rows and
+columns. <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.move_origin"><code>sbtk.data.move_origin</code></a> changes the expansion origin of data about the center of mass. <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.summary"><code>sbtk.data.summary</code></a>
+prints the contents of a measurement set.</p>
+<h2 id="example">Example<a class="headerlink" href="#example" title="Link to this section">#</a></h2>
+<div class="codeblock codeblock-code" id="measurements-example"><div class="codehead"><span>MATLAB script: Measurements from coefficient matrices</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><span class="nb">run</span><span class="p">(</span><span class="s">&quot;/path/to/SBTK/sbtk_setup.m&quot;</span><span class="p">)</span>
+body = <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.from_mass">sbtk.body.from_mass</a>(&quot;Dimorphos&quot;, <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.bundled">sbtk.shape.bundled</a>(&quot;dimorphos&quot;), 2.700e9, 0.10);
+
+<span class="c">% coefficient matrices, C(l+1, m+1) = C_lm, fully normalized, about the shape-model origin</span>
+<span class="n">L</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="n">C</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">zeros</span><span class="p">(</span><span class="n">L</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w">  </span><span class="n">S</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">zeros</span><span class="p">(</span><span class="n">L</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="n">C</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">  </span><span class="n">C</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="o">-</span><span class="mf">0.08</span><span class="p">;</span><span class="w">  </span><span class="n">C</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">0.03</span><span class="p">;</span><span class="w">  </span><span class="n">S</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">0.002</span><span class="p">;</span><span class="w">     </span><span class="c">% C00, C20, C22, S22</span>
+<span class="n">Cs</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">1e-3</span><span class="o">*</span><span class="nb">ones</span><span class="p">(</span><span class="n">L</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w">  </span><span class="n">Ss</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">1e-3</span><span class="o">*</span><span class="nb">ones</span><span class="p">(</span><span class="n">L</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w">                     </span><span class="c">% 1-sigma of each</span>
+obs = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.from_coefficients">sbtk.data.from_coefficients</a>(body, &quot;example&quot;, [0 0 0], C, S, Cs, Ss);
+
+<span class="c">% a polar moment given in kg m^2, and a libration ratio</span>
+Izz = <a class="xref xref-fn" href="../reference/api/units.html#sbtk.units.moi_to_norm">sbtk.units.moi_to_norm</a>(1.6e14, body.mass_kg, body.R_ref_km);
+obs = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_moi">sbtk.data.add_moi</a>(obs, &quot;Izz&quot;, Izz, 0.01*Izz);
+obs = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_libration">sbtk.data.add_libration</a>(obs, 0.20, 0.03, Izz);
+
+<span class="c">% 30% correlation between all coefficients</span>
+<span class="n">sig</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">sqrt</span><span class="p">(</span><span class="nb">diag</span><span class="p">(</span><span class="n">obs</span><span class="p">.</span><span class="n">coef_cov</span><span class="p">));</span>
+obs = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_covariance">sbtk.data.set_covariance</a>(obs, (0.3 + 0.7*eye(numel(sig))).*(sig*sig&#39;));
+<a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.summary">sbtk.data.summary</a>(obs)</code></pre></div>
+<p><a href="../examples/calculations.html">Calculations</a> has further examples: simulated data with uncertainties from another data
+set, selection of inertia rows, and reading files.</p>
+</article>
+<nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../models/forward-model.html" rel="prev"><span>Previous</span>Gravity and moment calculations</a><a class="next" href="../inversion/density-estimation.html" rel="next"><span>Next</span>Density estimation</a></nav>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-19.</footer>
+</main>
+<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#sources">Sources</a></li><li class="lvl2"><a href="#uncertainties-and-covariance">Uncertainties and covariance</a></li><li class="lvl2"><a href="#noise">Noise</a></li><li class="lvl2"><a href="#inertia-measurements-and-the-center-of-mass">Inertia measurements and the center of mass</a></li><li class="lvl2"><a href="#selecting-measurements">Selecting measurements</a></li><li class="lvl2"><a href="#example">Example</a></li></ul></nav>
+</div>
+<script src="../assets/search-index.js?v=eb13bdaf5f"></script>
+<script src="../assets/site.js?v=eb13bdaf5f"></script>
+</body>
+</html>

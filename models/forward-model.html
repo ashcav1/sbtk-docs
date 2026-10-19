@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en" data-root="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gravity and moment calculations — SBTK documentation</title>
+<link rel="stylesheet" href="../assets/site.css?v=eb13bdaf5f">
+<link rel="stylesheet" href="../assets/pygments.css?v=eb13bdaf5f">
+<link rel="stylesheet" href="../assets/print.css?v=eb13bdaf5f" media="print">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="topbar">
+  <button class="navtoggle" type="button" aria-controls="sidebar" aria-expanded="false">Contents</button>
+  <a class="sitename" href="../index.html">SBTK documentation</a>
+  <span class="version">version 1.0.0</span>
+  <div class="search" role="search">
+    <label for="search-input" class="visually-hidden">Search the documentation</label>
+    <input id="search-input" type="search" placeholder="Search (press /)" autocomplete="off"
+           aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+    <ul id="search-results" role="listbox" hidden></ul>
+  </div>
+  <a class="toplink" href="../print.html">Single-page version</a>
+  <a class="toplink" href="../SBTK_handbook.pdf">PDF handbook</a>
+</header>
+<div class="frame">
+<nav id="sidebar" class="sidebar" aria-label="Documentation pages"><ul><li class="navcat"><span class="navcat-title">Overview</span><ul><li><a href="../index.html">SBTK: Small Body Toolkit</a></li><li><a href="../overview/limitations.html">Assumptions and limitations</a></li></ul></li><li class="navcat"><span class="navcat-title">Getting started</span><ul><li><a href="../getting-started/installation.html">Installation</a></li><li><a href="../getting-started/first-script.html">First script</a></li></ul></li><li class="navcat"><span class="navcat-title">Conventions</span><ul><li><a href="../conventions/units.html">Units</a></li><li><a href="../conventions/coordinates.html">Coordinate systems and origins</a></li><li><a href="../conventions/gravity-coefficients.html">Gravity coefficients</a></li><li><a href="../conventions/moments-of-inertia.html">Moments of inertia</a></li></ul></li><li class="navcat"><span class="navcat-title">Models and calculations</span><ul><li><a href="../models/shape-models.html">Shape models</a></li><li><a href="../models/density-distributions.html">Density distributions</a></li><li><a href="../models/forward-model.html" aria-current="page" class="current">Gravity and moment calculations</a></li></ul></li><li class="navcat"><span class="navcat-title">Measurements and inversion</span><ul><li><a href="../inversion/measurements.html">Measurement sets</a></li><li><a href="../inversion/density-estimation.html">Density estimation</a></li><li><a href="../inversion/statistics.html">Goodness of fit and model comparison</a></li></ul></li><li class="navcat"><span class="navcat-title">Files</span><ul><li><a href="../files/results-folders.html">Results folders and figures</a></li><li><a href="../files/exchange-packages.html">Exchange packages</a></li></ul></li><li class="navcat"><span class="navcat-title">Examples</span><ul><li><a href="../examples/density-models.html">Density models by component type</a></li><li><a href="../examples/calculations.html">Calculations</a></li><li><a href="../examples/tutorials.html">Tutorial scripts</a></li></ul></li><li class="navcat"><span class="navcat-title">Projects</span><ul><li><a href="../projects/template.html">Project template</a></li><li><a href="../projects/bennu.html">Bennu</a></li><li><a href="../projects/hera-blind-test.html">Hera blind test</a></li></ul></li><li class="navcat"><span class="navcat-title">Reference</span><ul><li><a href="../reference/api.html">API reference</a></li><li><a href="../reference/api/sbtk.html">sbtk</a></li><li><a href="../reference/api/units.html">sbtk.units</a></li><li><a href="../reference/api/shape.html">sbtk.shape</a></li><li><a href="../reference/api/body.html">sbtk.body</a></li><li><a href="../reference/api/interior.html">sbtk.interior</a></li><li><a href="../reference/api/gravity.html">sbtk.gravity</a></li><li><a href="../reference/api/data.html">sbtk.data</a></li><li><a href="../reference/api/invert.html">sbtk.invert</a></li><li><a href="../reference/api/compare.html">sbtk.compare</a></li><li><a href="../reference/api/exchange.html">sbtk.exchange</a></li><li><a href="../reference/api/io.html">sbtk.io</a></li><li><a href="../reference/api/plot.html">sbtk.plot</a></li><li><a href="../reference/data-structures.html">Data structures</a></li><li><a href="../reference/errors.html">Error identifiers</a></li><li><a href="../reference/internal.html">Internal functions</a></li></ul></li><li class="navcat"><span class="navcat-title">Validation</span><ul><li><a href="../validation/tests.html">Validation and tests</a></li></ul></li></ul></nav>
+<main id="content" tabindex="-1">
+<nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Models and calculations › <span aria-current="page">Gravity and moment calculations</span></nav>
+<article>
+<h1 id="top" id="gravity-and-moment-calculations">Gravity and moment calculations<a class="headerlink" href="#gravity-and-moment-calculations" title="Link to this section">#</a></h1>
+<p>The forward model computes, for a density model inside a shape model, the gravity coefficients
+(<a href="../conventions/gravity-coefficients.html">Gravity coefficients</a>), the center of mass and the inertia tensor
+(<a href="../conventions/moments-of-inertia.html">Moments of inertia</a>) about an expansion origin <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D428;</mi></mrow></math>.</span></p>
+<h2 id="facet-cones">Facet cones<a class="headerlink" href="#facet-cones" title="Link to this section">#</a></h2>
+<p><a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.geometry"><code>sbtk.gravity.geometry</code></a><code>(body, origin_km, degree)</code> divides the body into tetrahedral cones, one per surface facet, with
+apex at <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D428;</mi></mrow></math></span> and the facet as base. This partition is exact when the shape is star-shaped about <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D428;</mi></mrow></math>.</span>
+For every cone <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>f</mi></mrow></math></span> it stores, per unit density (<a class="xref xref-st" href="../reference/data-structures.html#geo"><code>geo</code></a>):</p>
+<table>
+<thead>
+<tr>
+<th>Quantity</th>
+<th>Definition</th>
+<th>Field</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Spherical-harmonic integrals</td>
+<td><span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>T</mi><mrow><mi>f</mi><mo>&#x0002C;</mo><mi>l</mi><mi>m</mi></mrow></msub><mo>&#x0003D;</mo><msub><mo>&#x0222B;</mo><mi>f</mi></msub><mo stretchy="false">&#x00028;</mo><mi>r</mi><mo>&#x0002F;</mo><msub><mi>R</mi><mtext>ref</mtext></msub><msup><mo stretchy="false">&#x00029;</mo><mi>l</mi></msup><mspace width="0.167em" /><msub><mover><mi>Y</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mi>l</mi><mi>m</mi></mrow></msub><mspace width="0.167em" /><mi>d</mi><mi>V</mi></mrow></math>,</span> with <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>Y</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mi>l</mi><mi>m</mi></mrow></msub><mo>&#x0003D;</mo><msub><mover><mi>P</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mi>l</mi><mi>m</mi></mrow></msub><mo stretchy="false">&#x00028;</mo><mi>sin</mi><mi>&#x003D5;</mi><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x0007B;</mo><mi>cos</mi><mo>&#x0002C;</mo><mi>sin</mi><mo stretchy="false">&#x0007D;</mo><mo stretchy="false">&#x00028;</mo><mi>m</mi><mi>&#x003BB;</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002F;</mo><mo stretchy="false">&#x00028;</mo><mn>2</mn><mi>l</mi><mo>&#x0002B;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo></mrow></math></span></td>
+<td><a class="xref xref-field" href="../reference/data-structures.html#geo.T"><code>geo.T</code></a></td>
+</tr>
+<tr>
+<td>Volume</td>
+<td><span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>V</mi><mi>f</mi></msub></mrow></math></span></td>
+<td><a class="xref xref-field" href="../reference/data-structures.html#geo.V"><code>geo.V</code></a></td>
+</tr>
+<tr>
+<td>First moments</td>
+<td><span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mo>&#x0222B;</mo><mi>f</mi></msub><mi>&#x1D431;</mi><mspace width="0.167em" /><mi>d</mi><mi>V</mi></mrow></math></span></td>
+<td><a class="xref xref-field" href="../reference/data-structures.html#geo.m1"><code>geo.m1</code></a></td>
+</tr>
+<tr>
+<td>Second moments</td>
+<td><span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mo>&#x0222B;</mo><mi>f</mi></msub><mo stretchy="false">[</mo><msup><mi>x</mi><mn>2</mn></msup><mo>&#x0002C;</mo><msup><mi>y</mi><mn>2</mn></msup><mo>&#x0002C;</mo><msup><mi>z</mi><mn>2</mn></msup><mo>&#x0002C;</mo><mi>x</mi><mi>y</mi><mo>&#x0002C;</mo><mi>x</mi><mi>z</mi><mo>&#x0002C;</mo><mi>y</mi><mi>z</mi><mo stretchy="false">]</mo><mspace width="0.167em" /><mi>d</mi><mi>V</mi></mrow></math></span></td>
+<td><a class="xref xref-field" href="../reference/data-structures.html#geo.Q"><code>geo.Q</code></a></td>
+</tr>
+</tbody>
+</table>
+<p><span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>T</mi><mrow><mi>f</mi><mo>&#x0002C;</mo><mi>l</mi><mi>m</mi></mrow></msub></mrow></math></span> comes from the polyhedral kernel <a class="xref xref-fn" href="../reference/internal.html#sbtk.internal.ComputePolyhedralCSBar_mex"><code>sbtk.internal.ComputePolyhedralCSBar_mex</code></a> applied to the tetrahedron of
+each cone. With this definition a body of uniform density <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003C1;</mi></mrow></math></span> has <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mi>l</mi><mi>m</mi></mrow></msub><mo>&#x0003D;</mo><mi>&#x003C1;</mi><msub><mo>&#x02211;</mo><mi>f</mi></msub><msub><mi>T</mi><mrow><mi>f</mi><mo>&#x0002C;</mo><mi>l</mi><mi>m</mi></mrow></msub><mo>&#x0002F;</mo><mi>M</mi></mrow></math></span>
+(with the unit factor of <a href="../conventions/units.html#conversions-inside-the-toolkit">Units</a>).</p>
+<h2 id="scaling-within-a-cone">Scaling within a cone<a class="headerlink" href="#scaling-within-a-cone" title="Link to this section">#</a></h2>
+<p>Shrinking a cone about its apex by a factor <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>s</mi></mrow></math></span> multiplies <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>r</mi><mi>l</mi></msup><mspace width="0.167em" /><mi>d</mi><mi>V</mi></mrow></math></span> by <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>s</mi><mrow><mi>l</mi><mo>&#x0002B;</mo><mn>3</mn></mrow></msup></mrow></math>.</span> The part of cone <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>f</mi></mrow></math></span> between the scaled
+facets <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>s</mi><mi>a</mi></msub></mrow></math></span> and <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>s</mi><mi>b</mi></msub></mrow></math></span> (<span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>0</mn><mo>&#x02264;</mo><msub><mi>s</mi><mi>a</mi></msub><mo>&#x0003C;</mo><msub><mi>s</mi><mi>b</mi></msub><mo>&#x02264;</mo><mn>1</mn></mrow></math>)</span> therefore contributes exactly</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>T</mi><mrow><mi>f</mi><mo>&#x0002C;</mo><mi>l</mi><mi>m</mi></mrow></msub><mspace width="0.167em" /><mo stretchy="false">&#x00028;</mo><msubsup><mi>s</mi><mi>b</mi><mrow><mi>l</mi><mo>&#x0002B;</mo><mn>3</mn></mrow></msubsup><mo>&#x02212;</mo><msubsup><mi>s</mi><mi>a</mi><mrow><mi>l</mi><mo>&#x0002B;</mo><mn>3</mn></mrow></msubsup><mo stretchy="false">&#x00029;</mo><mo>&#x0002C;</mo><mspace width="2em" /><msub><mi>V</mi><mi>f</mi></msub><mspace width="0.167em" /><mo stretchy="false">&#x00028;</mo><msubsup><mi>s</mi><mi>b</mi><mn>3</mn></msubsup><mo>&#x02212;</mo><msubsup><mi>s</mi><mi>a</mi><mn>3</mn></msubsup><mo stretchy="false">&#x00029;</mo><mo>&#x0002C;</mo><mspace width="2em" /><msub><mi>&#x1D426;</mi><mrow><mn>1</mn><mo>&#x0002C;</mo><mi>f</mi></mrow></msub><mspace width="0.167em" /><mo stretchy="false">&#x00028;</mo><msubsup><mi>s</mi><mi>b</mi><mn>4</mn></msubsup><mo>&#x02212;</mo><msubsup><mi>s</mi><mi>a</mi><mn>4</mn></msubsup><mo stretchy="false">&#x00029;</mo><mo>&#x0002C;</mo><mspace width="2em" /><msub><mi>Q</mi><mi>f</mi></msub><mspace width="0.167em" /><mo stretchy="false">&#x00028;</mo><msubsup><mi>s</mi><mi>b</mi><mn>5</mn></msubsup><mo>&#x02212;</mo><msubsup><mi>s</mi><mi>a</mi><mn>5</mn></msubsup><mo stretchy="false">&#x00029;</mo><mo>&#x0002E;</mo></mrow></math>
+<p>The validation test <code>testConeScaling</code> checks this law against the kernel to a relative error below 10⁻¹³.</p>
+<h2 id="integrals-of-components">Integrals of components<a class="headerlink" href="#integrals-of-components" title="Link to this section">#</a></h2>
+<p><a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.component_integrals"><code>sbtk.gravity.component_integrals</code></a><code>(geo, c)</code> returns the integrals of the part of a component inside the body per unit
+density (<a class="xref xref-st" href="../reference/data-structures.html#integrals"><code>integrals</code></a>):</p>
+<ul>
+<li><strong>Sphere entirely inside the body:</strong> exact point-mass integrals.</li>
+<li><strong>Layer:</strong> along each of 9 sub-rays per facet, the radial interval between the two depths gives <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>s</mi><mi>a</mi></msub></mrow></math></span> and <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>s</mi><mi>b</mi></msub></mrow></math></span>
+  directly.</li>
+<li><strong>Sector:</strong> the radial fractions give <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>s</mi><mi>a</mi></msub></mrow></math></span> and <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>s</mi><mi>b</mi></msub></mrow></math>;</span> whether a sub-ray lies within the latitude and longitude range is
+  tested at the middle of the interval.</li>
+<li><strong>Sphere crossing the surface, ellipsoid, torus:</strong> each sub-ray is sampled at 256 points over its chord through the
+  component's bounding sphere; every change between inside and outside is refined by bisection (50 steps), so a ray
+  may enter and leave the component several times. Each interval contributes <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msubsup><mi>s</mi><mi>b</mi><mi>p</mi></msubsup><mo>&#x02212;</mo><msubsup><mi>s</mi><mi>a</mi><mi>p</mi></msubsup></mrow></math>.</span></li>
+</ul>
+<p>For each facet the contributions are averaged over its 9 sub-rays and multiplied by the cone's integrals. The result is
+exact when the radial interval is the same along every sub-ray of a cone, and converges with mesh resolution
+otherwise (<a href="../overview/limitations.html#numerical-integration">Assumptions and limitations</a>).</p>
+<p><a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.random_field_integrals"><code>sbtk.gravity.random_field_integrals</code></a> evaluates the random field at the centroid of each of 24 radial shells of every
+cone (<a class="xref xref-st" href="../reference/data-structures.html#samples"><code>samples</code></a>) and integrates each shell exactly with that value.</p>
+<h2 id="coefficients-center-of-mass-and-inertia">Coefficients, center of mass and inertia<a class="headerlink" href="#coefficients-center-of-mass-and-inertia" title="Link to this section">#</a></h2>
+<p><a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.forward"><code>sbtk.gravity.forward</code></a><code>(geo, interior, mass_kg)</code> combines the integrals of the body (<span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>U</mi></mrow></math>,</span> <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>V</mi></mrow></math>,</span> <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x1D426;</mi><mn>1</mn></msub></mrow></math>,</span> <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>Q</mi></mrow></math>)</span>, of the
+components (<span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>U</mi><mi>c</mi></msub></mrow></math>,</span> <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>V</mi><mi>c</mi></msub></mrow></math>,</span> …) and of the random field (<span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>U</mi><mi>&#x003B4;</mi></msub></mrow></math>,</span> …):</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>U</mi><mo>&#x0003D;</mo><msub><mi>&#x003C1;</mi><mtext>bg</mtext></msub><msub><mi>U</mi><mtext>body</mtext></msub><mo>&#x0002B;</mo><munder><mo>&#x02211;</mo><mi>c</mi></munder><mi>&#x00394;</mi><msub><mi>&#x003C1;</mi><mi>c</mi></msub><msub><mi>U</mi><mi>c</mi></msub><mo>&#x0002B;</mo><msub><mi>U</mi><mi>&#x003B4;</mi></msub><mo>&#x0002C;</mo><mspace width="2em" /><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mi>l</mi><mi>m</mi></mrow></msub><mo>&#x0002C;</mo><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mi>l</mi><mi>m</mi></mrow></msub><mo>&#x0003D;</mo><mfrac><mrow><msub><mi>U</mi><mrow><mi>l</mi><mi>m</mi></mrow></msub></mrow><mrow><mi>M</mi></mrow></mfrac><mo>&#x0002C;</mo></mrow></math>
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mi>&#x1D431;</mi><mtext>cm</mtext></msub><mo>&#x0003D;</mo><mi>&#x1D428;</mi><mo>&#x0002B;</mo><mfrac><mrow><msub><mi>&#x003C1;</mi><mtext>bg</mtext></msub><msub><mi>&#x1D426;</mi><mrow><mn>1</mn><mo>&#x0002C;</mo><mtext>body</mtext></mrow></msub><mo>&#x0002B;</mo><munder><mo>&#x02211;</mo><mi>c</mi></munder><mi>&#x00394;</mi><msub><mi>&#x003C1;</mi><mi>c</mi></msub><msub><mi>&#x1D426;</mi><mrow><mn>1</mn><mo>&#x0002C;</mo><mi>c</mi></mrow></msub><mo>&#x0002B;</mo><msub><mi>&#x1D426;</mi><mrow><mn>1</mn><mo>&#x0002C;</mo><mi>&#x003B4;</mi></mrow></msub></mrow><mrow><mi>M</mi></mrow></mfrac><mo>&#x0002C;</mo><mspace width="2em" /><msub><mi>I</mi><mrow><mi>x</mi><mi>x</mi></mrow></msub><mo>&#x0003D;</mo><msub><mi>Q</mi><mrow><mi>y</mi><mi>y</mi></mrow></msub><mo>&#x0002B;</mo><msub><mi>Q</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub><mo>&#x0002C;</mo><mtext>&#x000A0;</mtext><msub><mi>I</mi><mrow><mi>x</mi><mi>y</mi></mrow></msub><mo>&#x0003D;</mo><mo>&#x02212;</mo><msub><mi>Q</mi><mrow><mi>x</mi><mi>y</mi></mrow></msub><mo>&#x0002C;</mo><mtext>&#x000A0;</mtext><mi>&#x02026;</mi></mrow></math>
+<p>with <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003C1;</mi><mtext>bg</mtext></msub></mrow></math></span> chosen so that the mass is <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi></mrow></math></span> (<a href="../models/density-distributions.html#density-model">Density distributions</a>). It returns
+the coefficients to degree <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>L</mi></mrow></math>,</span> the center of mass and <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">[</mo><msub><mi>I</mi><mrow><mi>x</mi><mi>x</mi></mrow></msub><mo>&#x0002C;</mo><msub><mi>I</mi><mrow><mi>y</mi><mi>y</mi></mrow></msub><mo>&#x0002C;</mo><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub><mo>&#x0002C;</mo><msub><mi>I</mi><mrow><mi>x</mi><mi>y</mi></mrow></msub><mo>&#x0002C;</mo><msub><mi>I</mi><mrow><mi>x</mi><mi>z</mi></mrow></msub><mo>&#x0002C;</mo><msub><mi>I</mi><mrow><mi>y</mi><mi>z</mi></mrow></msub><mo stretchy="false">]</mo><mo>&#x0002F;</mo><mo stretchy="false">&#x00028;</mo><mi>M</mi><msubsup><mi>R</mi><mtext>ref</mtext><mn>2</mn></msubsup><mo stretchy="false">&#x00029;</mo></mrow></math></span>
+(<a class="xref xref-st" href="../reference/data-structures.html#fm"><code>fm</code></a>).</p>
+<h2 id="simulated-measurements">Simulated measurements<a class="headerlink" href="#simulated-measurements" title="Link to this section">#</a></h2>
+<p><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a><code>(body, interior, degree, unc, name)</code> runs the forward model about the center of mass:</p>
+<ol>
+<li>geometry and forward model about the shape-model origin;</li>
+<li>geometry and forward model about the resulting center of mass, repeated until the center of mass and the expansion
+   origin differ by less than 1 mm (layers and sectors depend on the origin);</li>
+<li>a check that the density is not negative at the sample points of <a class="xref xref-fn" href="../reference/internal.html#sbtk.internal.body_samples"><code>sbtk.internal.body_samples</code></a> (24 radial shells per
+   cone), otherwise <a class="xref xref-err" href="../reference/errors.html#sbtk:data:negativeDensity"><code>sbtk:data:negativeDensity</code></a>;</li>
+<li>the coefficients of degree 1 to <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>L</mi></mrow></math></span> with a diagonal covariance from <code>unc</code>, the six inertia elements and the
+   libration row, with the ratio <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>k</mi><mo>&#x0003D;</mo><msqrt><mrow><mo stretchy="false">&#x00028;</mo><msub><mi>I</mi><mrow><mi>y</mi><mi>y</mi></mrow></msub><mo>&#x02212;</mo><msub><mi>I</mi><mrow><mi>x</mi><mi>x</mi></mrow></msub><msup><mo stretchy="false">&#x00029;</mo><mn>2</mn></msup><mo>&#x0002B;</mo><mn>4</mn><msubsup><mi>I</mi><mrow><mi>x</mi><mi>y</mi></mrow><mn>2</mn></msubsup></mrow></msqrt><mo>&#x0002F;</mo><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub></mrow></math></span> of the principal moments, as a
+   measurement set (<a class="xref xref-st" href="../reference/data-structures.html#obs"><code>obs</code></a>), and the true model (<a class="xref xref-st" href="../reference/data-structures.html#truth"><code>truth</code></a>).</li>
+</ol>
+<p>The values are exact; <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise"><code>sbtk.data.add_noise</code></a> draws one noisy realization. Selecting which inertia quantities a data
+set contains: <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.select_moi"><code>sbtk.data.select_moi</code></a>.</p>
+<h2 id="computation-time">Computation time<a class="headerlink" href="#computation-time" title="Link to this section">#</a></h2>
+<p>Times measured by <code>tools/benchmark.m</code> on Didymos (49,152 facets, degree 4), MATLAB R2025a on an Apple-silicon laptop:</p>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Time</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Geometry, degree 4</td>
+<td>0.22 s</td>
+</tr>
+<tr>
+<td>Simulation: 4 components and a random field, center-of-mass frame</td>
+<td>3.6 s</td>
+</tr>
+<tr>
+<td>Inversion setup: 3 components</td>
+<td>1.3 s</td>
+</tr>
+<tr>
+<td>Inversion run</td>
+<td>0.25 s</td>
+</tr>
+<tr>
+<td>Comparison with the true model</td>
+<td>0.53 s</td>
+</tr>
+</tbody>
+</table>
+<p>The geometry scales with the number of facets; a 3,145,728-facet model takes about a minute to read and integrate.</p>
+<h2 id="example">Example<a class="headerlink" href="#example" title="Link to this section">#</a></h2>
+<div class="codeblock codeblock-code" id="forward-example"><div class="codehead"><span>MATLAB script: Coefficients, center of mass and inertia of a model</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><span class="nb">run</span><span class="p">(</span><span class="s">&quot;/path/to/SBTK/sbtk_setup.m&quot;</span><span class="p">)</span>
+body = <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.from_mass">sbtk.body.from_mass</a>(&quot;Didymos&quot;, <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.bundled">sbtk.shape.bundled</a>(&quot;didymos&quot;), 5.273e11, 0.43);
+interior = <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>(<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, [0 0 0], 0.170, +450));
+
+geo = <a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.geometry">sbtk.gravity.geometry</a>(body, body.centroid_km, 4);       <span class="c">% about the center of figure, to degree 4</span>
+fm  = <a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.forward">sbtk.gravity.forward</a>(geo, interior, body.mass_kg);
+lab = <a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.labels">sbtk.gravity.labels</a>(4);
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&quot;C20 = %.5e, C22 = %.5e\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fm</span><span class="p">.</span><span class="n">coef</span><span class="p">(</span><span class="nb">strcmp</span><span class="p">(</span><span class="n">lab</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;C20&quot;</span><span class="p">)),</span><span class="w"> </span><span class="n">fm</span><span class="p">.</span><span class="n">coef</span><span class="p">(</span><span class="nb">strcmp</span><span class="p">(</span><span class="n">lab</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;C22&quot;</span><span class="p">)))</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&quot;center of mass - center of figure = [%.2f %.2f %.2f] m\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">1e3</span><span class="o">*</span><span class="p">(</span><span class="n">fm</span><span class="p">.</span><span class="n">com_km</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">body</span><span class="p">.</span><span class="n">centroid_km</span><span class="p">))</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&quot;Izz / (M R_ref^2) = %.4f\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fm</span><span class="p">.</span><span class="n">inertia_norm</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span></code></pre></div>
+<p>The core is centered at the shape-model origin, 57 m from the center of figure, so the center of mass moves toward it
+and the degree-1 coefficients about the center of figure are not zero.</p>
+</article>
+<nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../models/density-distributions.html" rel="prev"><span>Previous</span>Density distributions</a><a class="next" href="../inversion/measurements.html" rel="next"><span>Next</span>Measurement sets</a></nav>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-19.</footer>
+</main>
+<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#facet-cones">Facet cones</a></li><li class="lvl2"><a href="#scaling-within-a-cone">Scaling within a cone</a></li><li class="lvl2"><a href="#integrals-of-components">Integrals of components</a></li><li class="lvl2"><a href="#coefficients-center-of-mass-and-inertia">Coefficients, center of mass and inertia</a></li><li class="lvl2"><a href="#simulated-measurements">Simulated measurements</a></li><li class="lvl2"><a href="#computation-time">Computation time</a></li><li class="lvl2"><a href="#example">Example</a></li></ul></nav>
+</div>
+<script src="../assets/search-index.js?v=eb13bdaf5f"></script>
+<script src="../assets/site.js?v=eb13bdaf5f"></script>
+</body>
+</html>

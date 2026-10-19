@@ -1,0 +1,27 @@
+/* Printing: one column, no navigation, every collapsed section open (site.js), page numbers. */
+@page { size: A4; margin: 18mm 16mm 20mm 16mm;
+  @bottom-center { content: counter(page); font: 9pt -apple-system, "Segoe UI", Arial, sans-serif; color: #555; } }
+body { font-size: 10.5pt; line-height: 1.45; background: #fff; color: #000; }
+.topbar, .sidebar, .pagetoc, .prevnext, .breadcrumbs, .skip, .copy, .headerlink, .rowlink, .navtoggle { display: none !important; }
+.frame { display: block; }
+main { padding: 0; }
+article, .pagefoot { max-width: none; }
+a { color: #0b57b8; }
+h1 { font-size: 20pt; break-after: avoid; }
+h2 { font-size: 14pt; break-after: avoid; margin-top: 1.4em; }
+h3, h4 { break-after: avoid; }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+.codeblock, figure, tr { break-inside: avoid; }
+table { display: table; font-size: 8.5pt; width: 100%; }
+td code { white-space: normal; overflow-wrap: anywhere; }
+figure.figure img { max-height: 120mm; width: auto; }
+.printpage { break-before: page; }
+.printcat { color: #555; font-size: 9pt; margin: 0; }
+.titlepage { break-after: page; }
+.titlepage h1 { font-size: 26pt; margin-top: 30mm; }
+.printtoc { columns: 2; font-size: 10pt; }
+details > summary { list-style: none; }
+.api-entry { break-inside: auto; }
+:root { color-scheme: light; --bg: #fff; --bg-alt: #f3f4f6; --bg-code: #f6f7f9; --fg: #000; --muted: #444; --line: #ccc;
+  --link: #0b57b8; --fig: #bbb; --hl: transparent; }
+@media (prefers-color-scheme: dark) { .codeblock pre * { color: #000 !important; } }

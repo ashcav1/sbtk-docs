@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en" data-root="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coordinate systems and origins — SBTK documentation</title>
+<link rel="stylesheet" href="../assets/site.css?v=eb13bdaf5f">
+<link rel="stylesheet" href="../assets/pygments.css?v=eb13bdaf5f">
+<link rel="stylesheet" href="../assets/print.css?v=eb13bdaf5f" media="print">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="topbar">
+  <button class="navtoggle" type="button" aria-controls="sidebar" aria-expanded="false">Contents</button>
+  <a class="sitename" href="../index.html">SBTK documentation</a>
+  <span class="version">version 1.0.0</span>
+  <div class="search" role="search">
+    <label for="search-input" class="visually-hidden">Search the documentation</label>
+    <input id="search-input" type="search" placeholder="Search (press /)" autocomplete="off"
+           aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+    <ul id="search-results" role="listbox" hidden></ul>
+  </div>
+  <a class="toplink" href="../print.html">Single-page version</a>
+  <a class="toplink" href="../SBTK_handbook.pdf">PDF handbook</a>
+</header>
+<div class="frame">
+<nav id="sidebar" class="sidebar" aria-label="Documentation pages"><ul><li class="navcat"><span class="navcat-title">Overview</span><ul><li><a href="../index.html">SBTK: Small Body Toolkit</a></li><li><a href="../overview/limitations.html">Assumptions and limitations</a></li></ul></li><li class="navcat"><span class="navcat-title">Getting started</span><ul><li><a href="../getting-started/installation.html">Installation</a></li><li><a href="../getting-started/first-script.html">First script</a></li></ul></li><li class="navcat"><span class="navcat-title">Conventions</span><ul><li><a href="../conventions/units.html">Units</a></li><li><a href="../conventions/coordinates.html" aria-current="page" class="current">Coordinate systems and origins</a></li><li><a href="../conventions/gravity-coefficients.html">Gravity coefficients</a></li><li><a href="../conventions/moments-of-inertia.html">Moments of inertia</a></li></ul></li><li class="navcat"><span class="navcat-title">Models and calculations</span><ul><li><a href="../models/shape-models.html">Shape models</a></li><li><a href="../models/density-distributions.html">Density distributions</a></li><li><a href="../models/forward-model.html">Gravity and moment calculations</a></li></ul></li><li class="navcat"><span class="navcat-title">Measurements and inversion</span><ul><li><a href="../inversion/measurements.html">Measurement sets</a></li><li><a href="../inversion/density-estimation.html">Density estimation</a></li><li><a href="../inversion/statistics.html">Goodness of fit and model comparison</a></li></ul></li><li class="navcat"><span class="navcat-title">Files</span><ul><li><a href="../files/results-folders.html">Results folders and figures</a></li><li><a href="../files/exchange-packages.html">Exchange packages</a></li></ul></li><li class="navcat"><span class="navcat-title">Examples</span><ul><li><a href="../examples/density-models.html">Density models by component type</a></li><li><a href="../examples/calculations.html">Calculations</a></li><li><a href="../examples/tutorials.html">Tutorial scripts</a></li></ul></li><li class="navcat"><span class="navcat-title">Projects</span><ul><li><a href="../projects/template.html">Project template</a></li><li><a href="../projects/bennu.html">Bennu</a></li><li><a href="../projects/hera-blind-test.html">Hera blind test</a></li></ul></li><li class="navcat"><span class="navcat-title">Reference</span><ul><li><a href="../reference/api.html">API reference</a></li><li><a href="../reference/api/sbtk.html">sbtk</a></li><li><a href="../reference/api/units.html">sbtk.units</a></li><li><a href="../reference/api/shape.html">sbtk.shape</a></li><li><a href="../reference/api/body.html">sbtk.body</a></li><li><a href="../reference/api/interior.html">sbtk.interior</a></li><li><a href="../reference/api/gravity.html">sbtk.gravity</a></li><li><a href="../reference/api/data.html">sbtk.data</a></li><li><a href="../reference/api/invert.html">sbtk.invert</a></li><li><a href="../reference/api/compare.html">sbtk.compare</a></li><li><a href="../reference/api/exchange.html">sbtk.exchange</a></li><li><a href="../reference/api/io.html">sbtk.io</a></li><li><a href="../reference/api/plot.html">sbtk.plot</a></li><li><a href="../reference/data-structures.html">Data structures</a></li><li><a href="../reference/errors.html">Error identifiers</a></li><li><a href="../reference/internal.html">Internal functions</a></li></ul></li><li class="navcat"><span class="navcat-title">Validation</span><ul><li><a href="../validation/tests.html">Validation and tests</a></li></ul></li></ul></nav>
+<main id="content" tabindex="-1">
+<nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Conventions › <span aria-current="page">Coordinate systems and origins</span></nav>
+<article>
+<h1 id="top" id="coordinate-systems-and-origins">Coordinate systems and origins<a class="headerlink" href="#coordinate-systems-and-origins" title="Link to this section">#</a></h1>
+<h2 id="shape-model-frame">Shape-model frame<a class="headerlink" href="#shape-model-frame" title="Link to this section">#</a></h2>
+<p>Every position in SBTK is given in the <strong>shape-model frame</strong>: the origin and axes of the shape-model file, lengths in
+km. The <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis is taken as the spin axis. SBTK does not transform between frames; data in another frame must be
+rotated into the shape-model frame before use.</p>
+<p>Three points of the shape-model frame are distinct in general:</p>
+<table>
+<thead>
+<tr>
+<th>Point</th>
+<th>Definition</th>
+<th>Where SBTK stores it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shape-model origin</td>
+<td>The point (0, 0, 0) of the shape file. For the DART Didymos model v003 it is 57 m from the center of figure.</td>
+<td>the origin of every coordinate</td>
+</tr>
+<tr>
+<td>Center of figure</td>
+<td>Centroid of the volume enclosed by the shape model: the center of mass of a homogeneous body.</td>
+<td><a class="xref xref-field" href="../reference/data-structures.html#body.centroid_km"><code>body.centroid_km</code></a>, <a class="xref xref-field" href="../reference/data-structures.html#props.centroid_km"><code>props.centroid_km</code></a></td>
+</tr>
+<tr>
+<td>Center of mass</td>
+<td>Center of mass of the density model. It differs from the center of figure when the density is not uniform.</td>
+<td><a class="xref xref-field" href="../reference/data-structures.html#truth.com_km"><code>truth.com_km</code></a>, <a class="xref xref-field" href="../reference/data-structures.html#obs.com_minus_cof_km"><code>obs.com_minus_cof_km</code></a>, <code>center_of_mass.txt</code> of a measurement package</td>
+</tr>
+</tbody>
+</table>
+<h2 id="expansion-origin">Expansion origin<a class="headerlink" href="#expansion-origin" title="Link to this section">#</a></h2>
+<p>Gravity coefficients, first moments and the inertia tensor are computed <strong>about</strong> a point, the expansion origin. It
+is stored as <code>origin_km</code> in measurement sets (<a class="xref xref-field" href="../reference/data-structures.html#obs.origin_km"><code>obs.origin_km</code></a>), true models (<a class="xref xref-field" href="../reference/data-structures.html#truth.origin_km"><code>truth.origin_km</code></a>), inversion results
+(<a class="xref xref-field" href="../reference/data-structures.html#fit.origin_km"><code>fit.origin_km</code></a>) and geometries (<a class="xref xref-field" href="../reference/data-structures.html#geo.origin_km"><code>geo.origin_km</code></a>).</p>
+<ul>
+<li><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a> expands about the true center of mass of the simulated interior. Because layers and sectors
+  are measured from the expansion origin, the center of mass depends on the origin; the simulation repeats the
+  calculation about the new center of mass until it moves by less than 1 mm.</li>
+<li>Measurement packages read with <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a> are expanded about the <em>measured</em> center of mass, and the
+  inversion moves its predictions to the model's own center of mass
+  (<a href="../inversion/density-estimation.html#data-about-the-center-of-mass">Density estimation</a>).</li>
+<li><a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.geometry"><code>sbtk.gravity.geometry</code></a> takes any expansion origin about which the shape is star-shaped.</li>
+</ul>
+<h2 id="positions-of-components">Positions of components<a class="headerlink" href="#positions-of-components" title="Link to this section">#</a></h2>
+<p>Components are positioned in two different ways:</p>
+<ul>
+<li><strong>Spheres, ellipsoids and tori</strong> are placed in shape-model coordinates. <code>center_km = [0 0 0]</code> is the shape-model
+  origin, not the center of figure. A torus is centered on the <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis of the shape-model frame, in the plane
+  <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span> = <code>height_km</code>. To place a sphere at the center of figure, use <code>body.centroid_km</code> as its center.</li>
+<li><strong>Layers and sectors</strong> are measured along rays from the expansion origin: a layer's depth is the distance below the
+  surface along the ray through the point; a sector's radial fraction is the distance from the origin divided by the
+  distance from the origin to the surface along the same ray, and its latitude and longitude are measured about the
+  origin.</li>
+</ul>
+<h2 id="latitude-and-longitude">Latitude and longitude<a class="headerlink" href="#latitude-and-longitude" title="Link to this section">#</a></h2>
+<p>For a vector <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D431;</mi><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><mi>x</mi><mo>&#x0002C;</mo><mi>y</mi><mo>&#x0002C;</mo><mi>z</mi><mo stretchy="false">&#x00029;</mo></mrow></math></span> from the point of reference, latitude <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003D5;</mi></mrow></math></span> is measured from the <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mi>y</mi></mrow></math></span>-plane toward
+<span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x0002B;</mo><mi>z</mi></mrow></math></span> and longitude <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BB;</mi></mrow></math></span> from <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x0002B;</mo><mi>x</mi></mrow></math></span> toward <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x0002B;</mo><mi>y</mi></mrow></math>:</span></p>
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>&#x1D431;</mi><mo>&#x0003D;</mo><mi>d</mi><mspace width="0.167em" /><mo stretchy="false">&#x00028;</mo><mi>cos</mi><mi>&#x003D5;</mi><mi>cos</mi><mi>&#x003BB;</mi><mo>&#x0002C;</mo><mtext>&#x000A0;</mtext><mi>cos</mi><mi>&#x003D5;</mi><mi>sin</mi><mi>&#x003BB;</mi><mo>&#x0002C;</mo><mtext>&#x000A0;</mtext><mi>sin</mi><mi>&#x003D5;</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002E;</mo></mrow></math>
+<p><a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.latlon"><code>sbtk.interior.latlon</code></a> returns <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D431;</mi></mrow></math></span> from <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003D5;</mi></mrow></math>,</span> <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BB;</mi></mrow></math></span> (degrees) and <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>d</mi></mrow></math></span> (km). Sector longitudes are
+compared in <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">[</mo><mo>&#x02212;</mo><mn>180</mn><mi>°</mi><mo>&#x0002C;</mo><mn>180</mn><mi>°</mi><mo stretchy="false">&#x00029;</mo></mrow></math></span> with ranges that may extend beyond ±180°; for example <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">[</mo><mn>150</mn><mi>°</mi><mo>&#x0002C;</mo><mn>240</mn><mi>°</mi><mo stretchy="false">]</mo></mrow></math></span> includes <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mn>170</mn><mi>°</mi></mrow></math>.</span></p>
+<h2 id="ellipsoid-orientation">Ellipsoid orientation<a class="headerlink" href="#ellipsoid-orientation" title="Link to this section">#</a></h2>
+<p>An ellipsoid's semi-axes <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>a</mi><mo>&#x0002C;</mo><mi>b</mi><mo>&#x0002C;</mo><mi>c</mi><mo stretchy="false">&#x00029;</mo></mrow></math></span> lie along <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math>,</span> <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>y</mi></mrow></math>,</span> <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span> before rotation. The rotation is
+<span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>R</mi><mo>&#x0003D;</mo><msub><mi>R</mi><mi>z</mi></msub><mo stretchy="false">&#x00028;</mo><mi>&#x003C8;</mi><mo stretchy="false">&#x00029;</mo><mspace width="0.167em" /><msub><mi>R</mi><mi>y</mi></msub><mo stretchy="false">&#x00028;</mo><mi>&#x003B8;</mi><mo stretchy="false">&#x00029;</mo><mspace width="0.167em" /><msub><mi>R</mi><mi>x</mi></msub><mo stretchy="false">&#x00028;</mo><mi>&#x003C6;</mi><mo stretchy="false">&#x00029;</mo></mrow></math></span> with <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003C8;</mi></mrow></math></span> the yaw (about <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math>)</span>, <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B8;</mi></mrow></math></span> the pitch (about <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>y</mi></mrow></math>)</span> and <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003C6;</mi></mrow></math></span> the
+roll (about <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math>)</span>, given in degrees as <code>[yaw pitch roll]</code>. The columns of <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>R</mi></mrow></math></span> (<a class="xref xref-field" href="../reference/data-structures.html#component.axes"><code>component.axes</code></a>) are the ellipsoid's
+axes in the shape-model frame, and a point <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D431;</mi></mrow></math></span> is inside when
+<span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mo>&#x02211;</mo><mi>i</mi></msub><mo minsize="1.2em" maxsize="1.2em">(</mo><mo stretchy="false">[</mo><msup><mi>R</mi><mi>&#x1D5B3;</mi></msup><mo stretchy="false">&#x00028;</mo><mi>&#x1D431;</mi><mo>&#x02212;</mo><mi>&#x1D41C;</mi><mo stretchy="false">&#x00029;</mo><msub><mo stretchy="false">]</mo><mi>i</mi></msub><mo>&#x0002F;</mo><msub><mi>a</mi><mi>i</mi></msub><msup><mo minsize="1.2em" maxsize="1.2em">)</mo><mn>2</mn></msup><mo>&#x0003C;</mo><mn>1</mn></mrow></math>.</span></p>
+<h2 id="axes-of-the-inertia-tensor-and-the-coefficients">Axes of the inertia tensor and the coefficients<a class="headerlink" href="#axes-of-the-inertia-tensor-and-the-coefficients" title="Link to this section">#</a></h2>
+<p>Coefficients and inertia elements are given in the axes of the shape-model frame. Principal axes of inertia are not
+used as a frame; the libration ratio uses the principal moments in the <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mi>y</mi></mrow></math></span>-plane computed from the tensor
+(<a href="../conventions/moments-of-inertia.html#libration-ratio">Moments of inertia</a>).</p>
+</article>
+<nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../conventions/units.html" rel="prev"><span>Previous</span>Units</a><a class="next" href="../conventions/gravity-coefficients.html" rel="next"><span>Next</span>Gravity coefficients</a></nav>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-19.</footer>
+</main>
+<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#shape-model-frame">Shape-model frame</a></li><li class="lvl2"><a href="#expansion-origin">Expansion origin</a></li><li class="lvl2"><a href="#positions-of-components">Positions of components</a></li><li class="lvl2"><a href="#latitude-and-longitude">Latitude and longitude</a></li><li class="lvl2"><a href="#ellipsoid-orientation">Ellipsoid orientation</a></li><li class="lvl2"><a href="#axes-of-the-inertia-tensor-and-the-coefficients">Axes of the inertia tensor and the coefficients</a></li></ul></nav>
+</div>
+<script src="../assets/search-index.js?v=eb13bdaf5f"></script>
+<script src="../assets/site.js?v=eb13bdaf5f"></script>
+</body>
+</html>

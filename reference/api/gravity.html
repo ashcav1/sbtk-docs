@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en" data-root="../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>sbtk.gravity — SBTK documentation</title>
+<link rel="stylesheet" href="../../assets/site.css?v=eb13bdaf5f">
+<link rel="stylesheet" href="../../assets/pygments.css?v=eb13bdaf5f">
+<link rel="stylesheet" href="../../assets/print.css?v=eb13bdaf5f" media="print">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="topbar">
+  <button class="navtoggle" type="button" aria-controls="sidebar" aria-expanded="false">Contents</button>
+  <a class="sitename" href="../../index.html">SBTK documentation</a>
+  <span class="version">version 1.0.0</span>
+  <div class="search" role="search">
+    <label for="search-input" class="visually-hidden">Search the documentation</label>
+    <input id="search-input" type="search" placeholder="Search (press /)" autocomplete="off"
+           aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+    <ul id="search-results" role="listbox" hidden></ul>
+  </div>
+  <a class="toplink" href="../../print.html">Single-page version</a>
+  <a class="toplink" href="../../SBTK_handbook.pdf">PDF handbook</a>
+</header>
+<div class="frame">
+<nav id="sidebar" class="sidebar" aria-label="Documentation pages"><ul><li class="navcat"><span class="navcat-title">Overview</span><ul><li><a href="../../index.html">SBTK: Small Body Toolkit</a></li><li><a href="../../overview/limitations.html">Assumptions and limitations</a></li></ul></li><li class="navcat"><span class="navcat-title">Getting started</span><ul><li><a href="../../getting-started/installation.html">Installation</a></li><li><a href="../../getting-started/first-script.html">First script</a></li></ul></li><li class="navcat"><span class="navcat-title">Conventions</span><ul><li><a href="../../conventions/units.html">Units</a></li><li><a href="../../conventions/coordinates.html">Coordinate systems and origins</a></li><li><a href="../../conventions/gravity-coefficients.html">Gravity coefficients</a></li><li><a href="../../conventions/moments-of-inertia.html">Moments of inertia</a></li></ul></li><li class="navcat"><span class="navcat-title">Models and calculations</span><ul><li><a href="../../models/shape-models.html">Shape models</a></li><li><a href="../../models/density-distributions.html">Density distributions</a></li><li><a href="../../models/forward-model.html">Gravity and moment calculations</a></li></ul></li><li class="navcat"><span class="navcat-title">Measurements and inversion</span><ul><li><a href="../../inversion/measurements.html">Measurement sets</a></li><li><a href="../../inversion/density-estimation.html">Density estimation</a></li><li><a href="../../inversion/statistics.html">Goodness of fit and model comparison</a></li></ul></li><li class="navcat"><span class="navcat-title">Files</span><ul><li><a href="../../files/results-folders.html">Results folders and figures</a></li><li><a href="../../files/exchange-packages.html">Exchange packages</a></li></ul></li><li class="navcat"><span class="navcat-title">Examples</span><ul><li><a href="../../examples/density-models.html">Density models by component type</a></li><li><a href="../../examples/calculations.html">Calculations</a></li><li><a href="../../examples/tutorials.html">Tutorial scripts</a></li></ul></li><li class="navcat"><span class="navcat-title">Projects</span><ul><li><a href="../../projects/template.html">Project template</a></li><li><a href="../../projects/bennu.html">Bennu</a></li><li><a href="../../projects/hera-blind-test.html">Hera blind test</a></li></ul></li><li class="navcat"><span class="navcat-title">Reference</span><ul><li><a href="../../reference/api.html">API reference</a></li><li><a href="../../reference/api/sbtk.html">sbtk</a></li><li><a href="../../reference/api/units.html">sbtk.units</a></li><li><a href="../../reference/api/shape.html">sbtk.shape</a></li><li><a href="../../reference/api/body.html">sbtk.body</a></li><li><a href="../../reference/api/interior.html">sbtk.interior</a></li><li><a href="../../reference/api/gravity.html" aria-current="page" class="current">sbtk.gravity</a></li><li><a href="../../reference/api/data.html">sbtk.data</a></li><li><a href="../../reference/api/invert.html">sbtk.invert</a></li><li><a href="../../reference/api/compare.html">sbtk.compare</a></li><li><a href="../../reference/api/exchange.html">sbtk.exchange</a></li><li><a href="../../reference/api/io.html">sbtk.io</a></li><li><a href="../../reference/api/plot.html">sbtk.plot</a></li><li><a href="../../reference/data-structures.html">Data structures</a></li><li><a href="../../reference/errors.html">Error identifiers</a></li><li><a href="../../reference/internal.html">Internal functions</a></li></ul></li><li class="navcat"><span class="navcat-title">Validation</span><ul><li><a href="../../validation/tests.html">Validation and tests</a></li></ul></li></ul></nav>
+<main id="content" tabindex="-1">
+<nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../../index.html">Documentation</a> › Reference › <span aria-current="page">sbtk.gravity</span></nav>
+<article>
+<h1 id="top"><code>sbtk.gravity</code>: Gravity and moment calculations</h1>
+<table class="overview"><thead><tr><th>Function</th><th>Purpose</th></tr></thead><tbody>
+<tr><td><a class="xref xref-fn" href="#sbtk.gravity.component_integrals"><code>component_integrals</code></a></td><td>Integrals over one component per unit density, clipped to the body.</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.gravity.forward"><code>forward</code></a></td><td>Forward model: gravity coefficients, center of mass and inertia of an interior.</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.gravity.geometry"><code>geometry</code></a></td><td>Facet-cone geometry of a body about an expansion origin (the integration workspace).</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.gravity.labels"><code>labels</code></a></td><td>Names of the gravity coefficients up to a degree, in SBTK order.</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.gravity.random_field_integrals"><code>random_field_integrals</code></a></td><td>Density-weighted integrals of the random density field.</td></tr>
+</tbody></table>
+<section class="api-entry" id="sbtk.gravity.component_integrals">
+<h2 class="api-name" id="sbtk.gravity.component_integrals-h"><code>sbtk.gravity.component_integrals</code><a class="headerlink" href="#sbtk.gravity.component_integrals" title="Link to sbtk.gravity.component_integrals">#</a></h2>
+<p class="api-summary">Integrals over one component per unit density, clipped to the body.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">I = <a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.component_integrals">sbtk.gravity.component_integrals</a>(geo, c)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.gravity.component_integrals.geo"><td data-label="Name"><code>geo</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">Geometry from <a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.geometry"><code>sbtk.gravity.geometry</code></a>: the expansion origin and degree of the integrals. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#geo"><code>geo</code></a>. </td></tr>
+<tr id="sbtk.gravity.component_integrals.c"><td data-label="Name"><code>c</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">One component. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#component"><code>component</code></a>. </td></tr>
+</tbody></table>
+<h3 class="api-sub">Outputs</h3><table class="params outputs"><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.gravity.component_integrals.out.I"><td data-label="Name"><code>I</code></td><td data-label="Description">Integrals of the part of the component inside the body, per unit density. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#integrals"><code>integrals</code></a>.</td></tr>
+</tbody></table>
+<h3 class="api-sub">Description</h3>
+<table class="defs"><tbody>
+<tr><td><code>I.U</code></td><td>1 x (L+1)^2  int (r/R)^l <code>Ybar_lm</code> dV  (packed as <code>geo.pk</code>)   [km^3]</td></tr>
+<tr><td><code>I.V</code></td><td>volume [km^3]</td></tr>
+<tr><td><code>I.m1</code></td><td>first moment [km^4]</td></tr>
+<tr><td><code>I.Q</code></td><td>second moments [xx yy zz xy xz yz] [km^5]</td></tr>
+</tbody></table>
+<p>all about <code>geo.origin_km</code> and limited to the body.</p>
+<p>A sphere entirely inside the body is an exact point mass. Every other component is integrated ray by ray: each interval of a sub-ray inside the component, between scaled facets <code>s_a</code> and <code>s_b</code>, adds its exact cone-scaling integrals (see <a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.geometry">sbtk.gravity.geometry</a>). Layers and sectors give the interval directly; spheres, ellipsoids and tori are found by sampling each ray through the component's bounding sphere (256 samples) and refining every boundary crossing by bisection, so a ray may cross a component any number of times.</p>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>body</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">geo = <a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.geometry">sbtk.gravity.geometry</a>(body, [0 0 0], 4);
+I = <a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.component_integrals">sbtk.gravity.component_integrals</a>(geo, <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, [0 0 0], 0.170, 0));
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;volume inside the body %.4f km^3\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">I</span><span class="p">.</span><span class="n">V</span><span class="p">);</span></code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.geometry"><code>sbtk.gravity.geometry</code></a>, <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.sphere"><code>sbtk.interior.sphere</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.forward"><code>sbtk.gravity.forward</code></a>, <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.run"><code>sbtk.invert.run</code></a>, <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.setup"><code>sbtk.invert.setup</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+gravity/component_integrals.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="sbtk.gravity.forward">
+<h2 class="api-name" id="sbtk.gravity.forward-h"><code>sbtk.gravity.forward</code><a class="headerlink" href="#sbtk.gravity.forward" title="Link to sbtk.gravity.forward">#</a></h2>
+<p class="api-summary">Forward model: gravity coefficients, center of mass and inertia of an interior.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">fm = <a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.forward">sbtk.gravity.forward</a>(geo, interior, mass_kg)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.gravity.forward.geo"><td data-label="Name"><code>geo</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">Geometry from <a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.geometry"><code>sbtk.gravity.geometry</code></a>; the coefficients and inertia are about <code>geo.origin_km</code>. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#geo"><code>geo</code></a>. </td></tr>
+<tr id="sbtk.gravity.forward.interior"><td data-label="Name"><code>interior</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">Components and random field. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#interior"><code>interior</code></a>. </td></tr>
+<tr id="sbtk.gravity.forward.mass_kg"><td data-label="Name"><code>mass_kg</code></td><td data-label="Size">scalar</td><td data-label="Class">double</td><td data-label="Unit">kg</td><td data-label="Default">required</td><td data-label="Description">Total mass; sets the background density. <span class="valid">Validation: <code>mustBePositive</code>.</span></td></tr>
+</tbody></table>
+<h3 class="api-sub">Outputs</h3><table class="params outputs"><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.gravity.forward.out.fm"><td data-label="Name"><code>fm</code></td><td data-label="Description">Background density, coefficients, center of mass and inertia. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#fm"><code>fm</code></a>.</td></tr>
+</tbody></table>
+<h3 class="api-sub">Description</h3>
+<p>density = background + sum of component relative densities + random field, with the background density set so that the total mass equals <code>mass_kg</code>.</p>
+<table class="defs"><tbody>
+<tr><td><code>fm.rho_bg_kgm3</code></td><td>background density [kg/m^3]</td></tr>
+<tr><td><code>fm.coef</code></td><td>1 x (L+1)^2 fully normalized coefficients about <code>geo.origin_km</code>, packed as <code>geo.pk</code> (C00, C10, C11, S11, C20, ...)</td></tr>
+<tr><td><code>fm.com_km</code></td><td>center of mass in shape-model coordinates [km]</td></tr>
+<tr><td><code>fm.inertia_norm</code></td><td>[Ixx Iyy Izz Ixy Ixz Iyz] about <code>geo.origin_km</code> / (M <code>R_ref</code>^2)</td></tr>
+<tr><td><code>fm.mass_kg</code></td><td><code>mass_kg</code></td></tr>
+</tbody></table>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>body</code>, <code>interior</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">geo = <a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.geometry">sbtk.gravity.geometry</a>(body, [0 0 0], 4);
+fm  = <a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.forward">sbtk.gravity.forward</a>(geo, interior, body.mass_kg);</code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.geometry"><code>sbtk.gravity.geometry</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.component_integrals"><code>sbtk.gravity.component_integrals</code></a>, <a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.random_field_integrals"><code>sbtk.gravity.random_field_integrals</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+gravity/forward.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="sbtk.gravity.geometry">
+<h2 class="api-name" id="sbtk.gravity.geometry-h"><code>sbtk.gravity.geometry</code><a class="headerlink" href="#sbtk.gravity.geometry" title="Link to sbtk.gravity.geometry">#</a></h2>
+<p class="api-summary">Facet-cone geometry of a body about an expansion origin (the integration workspace).</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">geo = <a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.geometry">sbtk.gravity.geometry</a>(body, origin_km, degree)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.gravity.geometry.body"><td data-label="Name"><code>body</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">from <a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.create">sbtk.body.create</a> Fields: <a class="xref xref-st" href="../../reference/data-structures.html#body"><code>body</code></a>. </td></tr>
+<tr id="sbtk.gravity.geometry.origin_km"><td data-label="Name"><code>origin_km</code></td><td data-label="Size">1 × 3</td><td data-label="Class">double</td><td data-label="Unit">km</td><td data-label="Default">required</td><td data-label="Description">expansion origin in shape-model coordinates [km] (1x3). Gravity coefficients, first moments and inertia are all about this point; layers and sectors are measured along rays from it. <span class="valid">Validation: <code>mustBeFinite</code>.</span></td></tr>
+<tr id="sbtk.gravity.geometry.degree"><td data-label="Name"><code>degree</code></td><td data-label="Size">scalar</td><td data-label="Class">double</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">highest spherical-harmonic degree (0 when only volumes, inertia or densities are needed: much faster) <span class="valid">Validation: <code>mustBeInteger, mustBeNonnegative</code>.</span></td></tr>
+</tbody></table>
+<h3 class="api-sub">Outputs</h3><table class="params outputs"><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.gravity.geometry.out.geo"><td data-label="Name"><code>geo</code></td><td data-label="Description">The facet-cone geometry and integrals. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#geo"><code>geo</code></a>.</td></tr>
+</tbody></table>
+<h3 class="api-sub">Description</h3>
+<p>The body is the union of tetrahedral cones with apex at the origin and a surface facet as base. For every cone geo stores, per unit density,</p>
+<table class="defs"><tbody>
+<tr><td><code>T</code></td><td>spherical-harmonic integrals  int (r/R)^l <code>Ybar_lm</code> dV   [km^3]  (nf x (L+1)^2)</td></tr>
+<tr><td><code>V</code></td><td>volume [km^3],  m1 first moment [km^4],</td></tr>
+<tr><td><code>Q</code></td><td>second moments [xx yy zz xy xz yz] [km^5]</td></tr>
+</tbody></table>
+<p>(T from the polyhedral kernel <a class="xref xref-fn" href="../../reference/internal.html#sbtk.internal.ComputePolyhedralCSBar_mex">sbtk.internal.ComputePolyhedralCSBar_mex</a>). Shrinking a cone about its apex by s multiplies r^l dV by s^(l+3), so the portion of a cone between the scaled facets <code>s_a</code> and <code>s_b</code> contributes exactly T (<code>s_b</code>^(l+3) - <code>s_a</code>^(l+3)), V (<code>s_b</code>^3 - <code>s_a</code>^3), m1 (<code>s_b</code>^4 - <code>s_a</code>^4), Q (<code>s_b</code>^5 - <code>s_a</code>^5). Interior components are described by such radial intervals along 9 sub-rays of every cone (<a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.component_integrals">sbtk.gravity.component_integrals</a>).</p>
+<p>geo fields (km units throughout)</p>
+<pre class="helppre">  body, origin_km, degree, R_ref_km, pk (coefficient packing, <a class="xref xref-fn" href="../../reference/internal.html#sbtk.internal.sh_packing">sbtk.internal.sh_packing</a>)
+  nf, K                 number of facets, sub-rays per facet (9)
+  faces, verts          mesh with vertices relative to origin_km
+  D, E, F, det6, EF, FD, DE    facet corners, 6 x cone volumes, edge cross products
+  T, V, m1, Q           per-cone integrals (above)
+  U_body, V_body, m1_body, Q_body   whole-body sums
+  ray_t, ray_dir        sub-ray surface distances [km] and unit directions (nf*K rows)</pre>
+<p>Didymos (49,152 facets): about 1 s at degree 4.</p>
+<p>Errors when some facet faces the origin (shape not star-shaped about it).</p>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>body</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">geo = <a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.geometry">sbtk.gravity.geometry</a>(body, body.centroid_km, 4);
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;%d facets, volume %.4f km^3\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">geo</span><span class="p">.</span><span class="n">nf</span><span class="p">,</span><span class="w"> </span><span class="n">geo</span><span class="p">.</span><span class="n">V_body</span><span class="p">);</span></code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.create"><code>sbtk.body.create</code></a>, <a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.component_integrals"><code>sbtk.gravity.component_integrals</code></a>, <a class="xref xref-fn" href="../../reference/internal.html#sbtk.internal.ComputePolyhedralCSBar_mex"><code>sbtk.internal.ComputePolyhedralCSBar_mex</code></a>, <a class="xref xref-fn" href="../../reference/internal.html#sbtk.internal.sh_packing"><code>sbtk.internal.sh_packing</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/compare.html#sbtk.compare.reference"><code>sbtk.compare.reference</code></a>, <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a>, <a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.density_grid"><code>sbtk.exchange.density_grid</code></a>, <a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a>, <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.setup"><code>sbtk.invert.setup</code></a>, <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.interior3d"><code>sbtk.plot.interior3d</code></a>, <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.slices"><code>sbtk.plot.slices</code></a>, <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.truth_vs_estimate"><code>sbtk.plot.truth_vs_estimate</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+gravity/geometry.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="sbtk.gravity.labels">
+<h2 class="api-name" id="sbtk.gravity.labels-h"><code>sbtk.gravity.labels</code><a class="headerlink" href="#sbtk.gravity.labels" title="Link to sbtk.gravity.labels">#</a></h2>
+<p class="api-summary">Names of the gravity coefficients up to a degree, in SBTK order.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">lab = <a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.labels">sbtk.gravity.labels</a>(degree)     <span class="c">% e.g. degree 2 -&gt; {&#39;C00&#39;,&#39;C10&#39;,&#39;C11&#39;,&#39;S11&#39;,&#39;C20&#39;,&#39;C21&#39;,&#39;S21&#39;,&#39;C22&#39;,&#39;S22&#39;}</span></code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.gravity.labels.degree"><td data-label="Name"><code>degree</code></td><td data-label="Size">scalar</td><td data-label="Class">double</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">Highest degree <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>L</mi></mrow></math>.</span> <span class="valid">Validation: <code>mustBeInteger, mustBeNonnegative</code>.</span></td></tr>
+</tbody></table>
+<h3 class="api-sub">Outputs</h3><table class="params outputs"><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.gravity.labels.out.lab"><td data-label="Name"><code>lab</code></td><td data-label="Description">1 × (L+1)² cell array of names in SBTK order, 'C00' … .</td></tr>
+</tbody></table>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">lab = <a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.labels">sbtk.gravity.labels</a>(4);                <span class="c">% 25 labels, C00 ... S44</span></code></pre></div>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+gravity/labels.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="sbtk.gravity.random_field_integrals">
+<h2 class="api-name" id="sbtk.gravity.random_field_integrals-h"><code>sbtk.gravity.random_field_integrals</code><a class="headerlink" href="#sbtk.gravity.random_field_integrals" title="Link to sbtk.gravity.random_field_integrals">#</a></h2>
+<p class="api-summary">Density-weighted integrals of the random density field.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">I = <a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.random_field_integrals">sbtk.gravity.random_field_integrals</a>(geo, field)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.gravity.random_field_integrals.geo"><td data-label="Name"><code>geo</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">Geometry from <a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.geometry"><code>sbtk.gravity.geometry</code></a>. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#geo"><code>geo</code></a>. </td></tr>
+<tr id="sbtk.gravity.random_field_integrals.field"><td data-label="Name"><code>field</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">The random field. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#random_field"><code>random_field</code></a>. </td></tr>
+</tbody></table>
+<h3 class="api-sub">Outputs</h3><table class="params outputs"><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.gravity.random_field_integrals.out.I"><td data-label="Name"><code>I</code></td><td data-label="Description">Density-weighted integrals of the random field. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#integrals"><code>integrals</code></a>.</td></tr>
+</tbody></table>
+<h3 class="api-sub">Description</h3>
+<p><code>I.U</code> = int drho (r/R)^l <code>Ybar_lm</code> dV, <code>I.V</code> = int drho dV, <code>I.m1</code>, <code>I.Q</code> likewise (units: kg/m^3 times km^n). The field is evaluated at the centroid of every radial shell of every facet cone (<a class="xref xref-fn" href="../../reference/internal.html#sbtk.internal.body_samples">sbtk.internal.body_samples</a>) and each shell contributes its exact cone-scaling integrals with that value. No field (<code>sigma_kgm3</code> = 0) gives zeros without sampling.</p>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>body</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">geo = <a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.geometry">sbtk.gravity.geometry</a>(body, [0 0 0], 4);
+I = <a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.random_field_integrals">sbtk.gravity.random_field_integrals</a>(geo, <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.random_field">sbtk.interior.random_field</a>(40, 0.06, 7));</code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.geometry"><code>sbtk.gravity.geometry</code></a>, <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.random_field"><code>sbtk.interior.random_field</code></a>, <a class="xref xref-fn" href="../../reference/internal.html#sbtk.internal.body_samples"><code>sbtk.internal.body_samples</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.forward"><code>sbtk.gravity.forward</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+gravity/random_field_integrals.m</code>, line 1.</p>
+</section>
+</article>
+<nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../../reference/api/interior.html" rel="prev"><span>Previous</span>sbtk.interior</a><a class="next" href="../../reference/api/data.html" rel="next"><span>Next</span>sbtk.data</a></nav>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-19.</footer>
+</main>
+<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#sbtk.gravity.component_integrals">sbtk.gravity.component_integrals</a></li><li class="lvl2"><a href="#sbtk.gravity.forward">sbtk.gravity.forward</a></li><li class="lvl2"><a href="#sbtk.gravity.geometry">sbtk.gravity.geometry</a></li><li class="lvl2"><a href="#sbtk.gravity.labels">sbtk.gravity.labels</a></li><li class="lvl2"><a href="#sbtk.gravity.random_field_integrals">sbtk.gravity.random_field_integrals</a></li></ul></nav>
+</div>
+<script src="../../assets/search-index.js?v=eb13bdaf5f"></script>
+<script src="../../assets/site.js?v=eb13bdaf5f"></script>
+</body>
+</html>

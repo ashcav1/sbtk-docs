@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en" data-root="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Validation and tests — SBTK documentation</title>
+<link rel="stylesheet" href="../assets/site.css?v=eb13bdaf5f">
+<link rel="stylesheet" href="../assets/pygments.css?v=eb13bdaf5f">
+<link rel="stylesheet" href="../assets/print.css?v=eb13bdaf5f" media="print">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="topbar">
+  <button class="navtoggle" type="button" aria-controls="sidebar" aria-expanded="false">Contents</button>
+  <a class="sitename" href="../index.html">SBTK documentation</a>
+  <span class="version">version 1.0.0</span>
+  <div class="search" role="search">
+    <label for="search-input" class="visually-hidden">Search the documentation</label>
+    <input id="search-input" type="search" placeholder="Search (press /)" autocomplete="off"
+           aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+    <ul id="search-results" role="listbox" hidden></ul>
+  </div>
+  <a class="toplink" href="../print.html">Single-page version</a>
+  <a class="toplink" href="../SBTK_handbook.pdf">PDF handbook</a>
+</header>
+<div class="frame">
+<nav id="sidebar" class="sidebar" aria-label="Documentation pages"><ul><li class="navcat"><span class="navcat-title">Overview</span><ul><li><a href="../index.html">SBTK: Small Body Toolkit</a></li><li><a href="../overview/limitations.html">Assumptions and limitations</a></li></ul></li><li class="navcat"><span class="navcat-title">Getting started</span><ul><li><a href="../getting-started/installation.html">Installation</a></li><li><a href="../getting-started/first-script.html">First script</a></li></ul></li><li class="navcat"><span class="navcat-title">Conventions</span><ul><li><a href="../conventions/units.html">Units</a></li><li><a href="../conventions/coordinates.html">Coordinate systems and origins</a></li><li><a href="../conventions/gravity-coefficients.html">Gravity coefficients</a></li><li><a href="../conventions/moments-of-inertia.html">Moments of inertia</a></li></ul></li><li class="navcat"><span class="navcat-title">Models and calculations</span><ul><li><a href="../models/shape-models.html">Shape models</a></li><li><a href="../models/density-distributions.html">Density distributions</a></li><li><a href="../models/forward-model.html">Gravity and moment calculations</a></li></ul></li><li class="navcat"><span class="navcat-title">Measurements and inversion</span><ul><li><a href="../inversion/measurements.html">Measurement sets</a></li><li><a href="../inversion/density-estimation.html">Density estimation</a></li><li><a href="../inversion/statistics.html">Goodness of fit and model comparison</a></li></ul></li><li class="navcat"><span class="navcat-title">Files</span><ul><li><a href="../files/results-folders.html">Results folders and figures</a></li><li><a href="../files/exchange-packages.html">Exchange packages</a></li></ul></li><li class="navcat"><span class="navcat-title">Examples</span><ul><li><a href="../examples/density-models.html">Density models by component type</a></li><li><a href="../examples/calculations.html">Calculations</a></li><li><a href="../examples/tutorials.html">Tutorial scripts</a></li></ul></li><li class="navcat"><span class="navcat-title">Projects</span><ul><li><a href="../projects/template.html">Project template</a></li><li><a href="../projects/bennu.html">Bennu</a></li><li><a href="../projects/hera-blind-test.html">Hera blind test</a></li></ul></li><li class="navcat"><span class="navcat-title">Reference</span><ul><li><a href="../reference/api.html">API reference</a></li><li><a href="../reference/api/sbtk.html">sbtk</a></li><li><a href="../reference/api/units.html">sbtk.units</a></li><li><a href="../reference/api/shape.html">sbtk.shape</a></li><li><a href="../reference/api/body.html">sbtk.body</a></li><li><a href="../reference/api/interior.html">sbtk.interior</a></li><li><a href="../reference/api/gravity.html">sbtk.gravity</a></li><li><a href="../reference/api/data.html">sbtk.data</a></li><li><a href="../reference/api/invert.html">sbtk.invert</a></li><li><a href="../reference/api/compare.html">sbtk.compare</a></li><li><a href="../reference/api/exchange.html">sbtk.exchange</a></li><li><a href="../reference/api/io.html">sbtk.io</a></li><li><a href="../reference/api/plot.html">sbtk.plot</a></li><li><a href="../reference/data-structures.html">Data structures</a></li><li><a href="../reference/errors.html">Error identifiers</a></li><li><a href="../reference/internal.html">Internal functions</a></li></ul></li><li class="navcat"><span class="navcat-title">Validation</span><ul><li><a href="../validation/tests.html" aria-current="page" class="current">Validation and tests</a></li></ul></li></ul></nav>
+<main id="content" tabindex="-1">
+<nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Validation › <span aria-current="page">Validation and tests</span></nav>
+<article>
+<h1 id="top" id="validation-and-tests">Validation and tests<a class="headerlink" href="#validation-and-tests" title="Link to this section">#</a></h1>
+<p>SBTK 1.0.0 has 129 unit and integration tests in MATLAB's unit-test framework. They run with</p>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">run(fullfile(<a class="xref xref-fn" href="../reference/api/sbtk.html#sbtk.root">sbtk.root</a>, &quot;tests&quot;, &quot;run_tests.m&quot;))      <span class="c">% about 3 minutes; writes tests/reports/test_report.txt</span></code></pre></div>
+<p>This page states what the tests check and with what tolerance, as written in the test files. It makes no claims
+beyond them. Unit tests use a small ellipsoid body (<code>tests/unit/small_body.m</code>); validation tests use an ellipsoid with
+semi-axes 0.5 × 0.4 × 0.3 km (20,480 facets) and the 9.3 m Didymos model with a bulk density of 2600 kg/m³ and
+<span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>R</mi><mtext>ref</mtext></msub></mrow></math></span> = 0.40 km.</p>
+<h2 id="comparison-with-independent-results">Comparison with independent results<a class="headerlink" href="#comparison-with-independent-results" title="Link to this section">#</a></h2>
+<p>From <code>tests/integration/test_validation.m</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Check</th>
+<th>Tolerance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>testKernelVolume</code></td>
+<td>The kernel's degree-0 integral of every facet cone equals the cone volume.</td>
+<td>relative 10⁻¹²</td>
+</tr>
+<tr>
+<td><code>testEllipsoidClosedForm</code></td>
+<td><span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>20</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub></mrow></math></span> and the principal moments of a homogeneous triaxial ellipsoid against the closed forms <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>C</mi><mrow><mn>20</mn></mrow></msub><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><mn>2</mn><msup><mi>c</mi><mn>2</mn></msup><mo>&#x02212;</mo><msup><mi>a</mi><mn>2</mn></msup><mo>&#x02212;</mo><msup><mi>b</mi><mn>2</mn></msup><mo stretchy="false">&#x00029;</mo><mo>&#x0002F;</mo><mo stretchy="false">&#x00028;</mo><mn>10</mn><msup><mi>R</mi><mn>2</mn></msup><mo stretchy="false">&#x00029;</mo></mrow></math>,</span> <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>C</mi><mrow><mn>22</mn></mrow></msub><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><msup><mi>a</mi><mn>2</mn></msup><mo>&#x02212;</mo><msup><mi>b</mi><mn>2</mn></msup><mo stretchy="false">&#x00029;</mo><mo>&#x0002F;</mo><mo stretchy="false">&#x00028;</mo><mn>20</mn><msup><mi>R</mi><mn>2</mn></msup><mo stretchy="false">&#x00029;</mo></mrow></math>,</span> <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>I</mi><mo>&#x0003D;</mo><mi>M</mi><mo stretchy="false">&#x00028;</mo><msup><mi>b</mi><mn>2</mn></msup><mo>&#x0002B;</mo><msup><mi>c</mi><mn>2</mn></msup><mo stretchy="false">&#x00029;</mo><mo>&#x0002F;</mo><mn>5</mn></mrow></math>,</span> …</td>
+<td>relative 2 × 10⁻³ (20,480-facet mesh)</td>
+</tr>
+<tr>
+<td><code>testConeScaling</code></td>
+<td>Kernel output for a cone scaled by <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>s</mi><mo>&#x0003D;</mo><mn>0.37</mn></mrow></math></span> against <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>s</mi><mrow><mi>l</mi><mo>&#x0002B;</mo><mn>3</mn></mrow></msup></mrow></math></span> times the unscaled integrals.</td>
+<td>relative 10⁻¹³</td>
+</tr>
+<tr>
+<td><code>testSpherePointMassVsRays</code></td>
+<td>A sphere integrated as a point mass against the same sphere integrated along rays (as an ellipsoid).</td>
+<td>relative 10⁻³</td>
+</tr>
+<tr>
+<td><code>testTorus</code></td>
+<td>Volume and <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub></mrow></math></span> of a buried torus against <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>2</mn><msup><mi>&#x003C0;</mi><mn>2</mn></msup><mi>R</mi><msup><mi>a</mi><mn>2</mn></msup></mrow></math></span> and <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>V</mi><mo stretchy="false">&#x00028;</mo><msup><mi>R</mi><mn>2</mn></msup><mo>&#x0002B;</mo><mn>3</mn><msup><mi>a</mi><mn>2</mn></msup><mo>&#x0002F;</mo><mn>4</mn><mo stretchy="false">&#x00029;</mo></mrow></math>.</span></td>
+<td>relative 10⁻⁴ (volume), 10⁻³ (<span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub></mrow></math>)</span></td>
+</tr>
+<tr>
+<td><code>testShellSector</code></td>
+<td>A full-sphere sector between radial fractions 0.5 and 0.75 has volume <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><msup><mn>0.75</mn><mn>3</mn></msup><mo>&#x02212;</mo><msup><mn>0.5</mn><mn>3</mn></msup><mo stretchy="false">&#x00029;</mo><mi>V</mi></mrow></math>.</span></td>
+<td>relative 10⁻¹²</td>
+</tr>
+<tr>
+<td><code>testSectorsTileBody</code></td>
+<td>The 24 sectors of a sector grid fill the body exactly once.</td>
+<td>relative 10⁻¹²</td>
+</tr>
+<tr>
+<td><code>testRandomFieldMonteCarlo</code></td>
+<td>Mass and degree-2 integrals of a random field (σ = 120 kg/m³, <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>L</mi></mrow></math></span> = 100 m) on Didymos against Monte Carlo integration with 4 × 10⁶ points.</td>
+<td>2% of the largest value</td>
+</tr>
+<tr>
+<td><code>testExactRecovery</code></td>
+<td>Exact Didymos data of a core (off-center), ridge and regolith: densities and the core center are recovered, starting with the core at the origin.</td>
+<td>10⁻⁶ kg/m³, 10⁻⁷ km, <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> &lt; 10⁻¹⁰</td>
+</tr>
+<tr>
+<td><code>testExactRecoverySectors</code></td>
+<td>Exact data of a 24-sector interior with random densities are fitted by the same sectors.</td>
+<td><span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> &lt; 10⁻⁶, densities within 20 kg/m³</td>
+</tr>
+<tr>
+<td><code>testCalibration</code></td>
+<td>Over 40 noise realizations, the standard deviation of (estimate − truth)/σ.</td>
+<td>within 0.25 of 1</td>
+</tr>
+<tr>
+<td><code>testFullCovariance</code></td>
+<td>The same with coefficients correlated by 0.6 and noise drawn from that covariance.</td>
+<td>within 0.25 of 1</td>
+</tr>
+<tr>
+<td><code>testInertiaHelps</code></td>
+<td>Adding <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>x</mi><mi>x</mi></mrow></msub></mrow></math>,</span> <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>y</mi><mi>y</mi></mrow></msub></mrow></math>,</span> <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub></mrow></math></span> to the gravity coefficients reduces every density uncertainty.</td>
+<td>strict</td>
+</tr>
+<tr>
+<td><code>testDimorphosExact</code></td>
+<td>Exact data of degree ≤ 3 and the libration ratio only (no other inertia data): an ellipsoidal core and a regolith layer are recovered.</td>
+<td>10⁻⁶ kg/m³</td>
+</tr>
+<tr>
+<td><code>testTextRoundTrip</code></td>
+<td>Writing and reading the measurement text format preserves values, covariance, origin, seed and libration ratio, and the fits agree.</td>
+<td>relative 10⁻¹⁴; densities 10⁻⁶ kg/m³</td>
+</tr>
+<tr>
+<td><code>testFromCoefficients</code></td>
+<td>Data built from coefficient matrices equal the original measurement set and give the same fit.</td>
+<td>exact; 10⁻⁶ kg/m³</td>
+</tr>
+</tbody>
+</table>
+<h2 id="conventions-and-frames">Conventions and frames<a class="headerlink" href="#conventions-and-frames" title="Link to this section">#</a></h2>
+<p>From <code>tests/unit/test_exchange.m</code> and <code>tests/unit/test_data.m</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Check</th>
+<th>Tolerance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>testDegreeTwoAndInertia</code></td>
+<td>The relations between <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>20</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub></mrow></math></span> and the inertia elements (<a href="../conventions/moments-of-inertia.html#relation-to-the-degree-2-coefficients">Moments of inertia</a>).</td>
+<td>10⁻¹²</td>
+</tr>
+<tr>
+<td><code>testNormalizationCode</code></td>
+<td>The normalization function printed in <code>conventions.txt</code> gives <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>N</mi><mrow><mn>20</mn></mrow></msub><mo>&#x0002C;</mo><msub><mi>N</mi><mrow><mn>21</mn></mrow></msub><mo>&#x0002C;</mo><msub><mi>N</mi><mrow><mn>22</mn></mrow></msub><mo>&#x0002C;</mo><msub><mi>N</mi><mrow><mn>30</mn></mrow></msub><mo>&#x0003D;</mo><msqrt><mn>5</mn></msqrt><mo>&#x0002C;</mo><msqrt><mrow><mn>5</mn><mo>&#x0002F;</mo><mn>3</mn></mrow></msqrt><mo>&#x0002C;</mo><msqrt><mrow><mn>5</mn><mo>&#x0002F;</mo><mn>12</mn></mrow></msqrt><mo>&#x0002C;</mo><msqrt><mn>7</mn></msqrt></mrow></math>.</span></td>
+<td>relative 10⁻¹⁵</td>
+</tr>
+<tr>
+<td><code>testShTranslation</code></td>
+<td>Integrals moved by the solid-harmonic translation equal integrals computed about the shifted origin, including inertia.</td>
+<td>10⁻¹² of the largest value</td>
+</tr>
+<tr>
+<td><code>testPredictionsAboutTheModelCenterOfMass</code></td>
+<td>For data about the center of mass, the predicted coefficients and inertia of a fit equal a forward model computed from scratch about the fitted center of mass.</td>
+<td>10⁻⁶</td>
+</tr>
+<tr>
+<td><code>testCenterOfMassFrameMatchesTheTrueFrame</code></td>
+<td>Inverting a measurement package (expansion about the model's center of mass) gives the densities of an inversion about the true center of mass.</td>
+<td>0.2σ; <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> within 10%</td>
+</tr>
+<tr>
+<td><code>testFrameIterationWithSectors</code></td>
+<td>The center-of-mass iteration converges with layers and many sectors.</td>
+<td>offset &lt; 10⁻⁶ km in fewer than 20 iterations</td>
+</tr>
+<tr>
+<td><code>testNothingAboutTheInterior</code></td>
+<td>A measurement package does not contain component names, the data-set name of the model, the seed, the expansion origin or the true center of mass.</td>
+<td></td>
+</tr>
+<tr>
+<td><code>testGridDefinition</code></td>
+<td>Density-grid cell centers lie on multiples of the spacing and the cells fill the body; grids of different spacing are rejected.</td>
+<td>volume within 5% at 50 m cells</td>
+</tr>
+<tr>
+<td><code>testLibrationRatioUsesPrincipalMoments</code></td>
+<td>The simulated libration ratio equals <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>B</mi><mo>&#x02212;</mo><mi>A</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002F;</mo><mi>C</mi></mrow></math></span> from the eigenvalues of the tensor, and the true tensor satisfies the libration row.</td>
+<td>relative 10⁻¹², 10⁻¹⁴</td>
+</tr>
+<tr>
+<td><code>testLibrationAmplitudeFormula</code></td>
+<td><span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>G</mi><mo>&#x0003D;</mo><mn>2</mn><mi>e</mi><mo>&#x0002F;</mo><mo stretchy="false">&#x00028;</mo><mn>3</mn><mi>k</mi><mo>&#x02212;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo></mrow></math></span> against numerical integration of planar libration in a Keplerian orbit (<span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>e</mi></mrow></math></span> = 0.01; <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>k</mi></mrow></math></span> = 0.07, 0.25, 0.5), and the inverse formula.</td>
+<td>3%; relative 10⁻¹²</td>
+</tr>
+</tbody>
+</table>
+<h2 id="inversion-behavior">Inversion behavior<a class="headerlink" href="#inversion-behavior" title="Link to this section">#</a></h2>
+<p>From <code>tests/unit/test_invert.m</code>: exact recovery with <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BD;</mi><mo>&#x0003D;</mo><mi>n</mi><mo>&#x02212;</mo><mi>p</mi></mrow></math>;</span> the mass constraint (relative 10⁻¹⁰); the
+homogeneous fit has the bulk density and <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BD;</mi><mo>&#x0003D;</mo><mi>n</mi></mrow></math>;</span> regularization reduces the norm of the relative densities and
+increases the degrees of freedom; the p-value of <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mn>10</mn></mrow></math></span> with <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BD;</mi><mo>&#x0003D;</mo><mn>10</mn></mrow></math></span> equals 0.44049; density bounds hold and are
+flagged; settings by name and value; starting values of the relative densities are not used; unknown inertia labels and
+inconsistent replacement data are rejected.</p>
+<h2 id="reproduction-of-published-and-earlier-results">Reproduction of published and earlier results<a class="headerlink" href="#reproduction-of-published-and-earlier-results" title="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Test file</th>
+<th>Check</th>
+<th>Tolerance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tests/integration/test_bennu_paper.m</code></td>
+<td>The Bennu inversion of Cavale et al. (Icarus) (<a href="../projects/bennu.html">Bennu</a>): core relative density; boulders; torus mass contrast; core center; background equal to the bulk density 1190 kg/m³; coefficients of degrees 3–4 not fitted by the paper.</td>
+<td>1 kg/m³; 2%; 1%; 0.5 m; 10⁻⁹ kg/m³; 0.15 of the JPL 1σ</td>
+</tr>
+<tr>
+<td><code>tests/integration/test_regression_baseline.m</code></td>
+<td>Geometry, integrals, sample points, simulation, noise, inversion, regularization choice, comparison and position estimation against values stored from the code before the toolkit (<code>tests/reference/baseline_v0.mat</code>).</td>
+<td>relative 10⁻¹⁰ unless stated in the test</td>
+</tr>
+</tbody>
+</table>
+<h2 id="other-tests">Other tests<a class="headerlink" href="#other-tests" title="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Test file</th>
+<th>Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>tests/unit/test_units.m</code></td>
+<td><span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>G</mi></mrow></math>,</span> length scales, inertia conversions, degree-1 conversion.</td>
+</tr>
+<tr>
+<td><code>tests/unit/test_shape.m</code></td>
+<td>OBJ reading with units, write–read round trip, ellipsoid volume (relative 3 × 10⁻³) and centroid, detection of inward and open meshes, units required, bundled models, SPC reduction (closed, outward, star-shaped).</td>
+</tr>
+<tr>
+<td><code>tests/unit/test_body.m</code></td>
+<td>Mass from density, centroid of a shifted shape, bodies from mass, invalid densities rejected.</td>
+</tr>
+<tr>
+<td><code>tests/unit/test_interior.m</code></td>
+<td>Constructors, ellipsoid rotation, layer depths, latitude–longitude, duplicate names, sector grids and ranges, random field reproducible and with standard deviation within 15% of σ.</td>
+</tr>
+<tr>
+<td><code>tests/unit/test_gravity.m</code></td>
+<td>Uniform body, mass kept by the background, center-of-mass shift, labels, non-star-shaped meshes rejected, components clipped to the body.</td>
+</tr>
+<tr>
+<td><code>tests/unit/test_data.m</code></td>
+<td>Measurement fields, center-of-mass frame, noise, negative density rejected, selection, covariance, inertia and libration rows, inertia uncertainties.</td>
+</tr>
+<tr>
+<td><code>tests/unit/test_compare.m</code></td>
+<td><span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mn>1</mn></mrow></math></span> for the true model; <span class="nobr"><math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mn>0</mn></mrow></math></span> (within 0.01) for a homogeneous estimate.</td>
+</tr>
+<tr>
+<td><code>tests/unit/test_io.m</code></td>
+<td>Run folders, missing runs, report functions.</td>
+</tr>
+<tr>
+<td><code>tests/unit/test_plot.m</code></td>
+<td>Every figure function runs.</td>
+</tr>
+<tr>
+<td><code>tests/integration/test_examples.m</code></td>
+<td>The eight tutorial scripts run, ex01 also section by section.</td>
+</tr>
+<tr>
+<td><code>tests/integration/test_template_project.m</code></td>
+<td>The project template runs: simulation, inversion, comparison.</td>
+</tr>
+</tbody>
+</table>
+<p>Longer studies in <code>tests/studies/</code> (recovery over interiors and data sets, edge cases of the forward model against
+brute-force integration, uncertainty calibration) are run separately and are not part of the test suite.</p>
+</article>
+<nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../reference/internal.html" rel="prev"><span>Previous</span>Internal functions</a><span></span></nav>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-19.</footer>
+</main>
+<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#comparison-with-independent-results">Comparison with independent results</a></li><li class="lvl2"><a href="#conventions-and-frames">Conventions and frames</a></li><li class="lvl2"><a href="#inversion-behavior">Inversion behavior</a></li><li class="lvl2"><a href="#reproduction-of-published-and-earlier-results">Reproduction of published and earlier results</a></li><li class="lvl2"><a href="#other-tests">Other tests</a></li></ul></nav>
+</div>
+<script src="../assets/search-index.js?v=eb13bdaf5f"></script>
+<script src="../assets/site.js?v=eb13bdaf5f"></script>
+</body>
+</html>
