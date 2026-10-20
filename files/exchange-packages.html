@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Exchange packages — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=198d1bfcfa">
-<link rel="stylesheet" href="../assets/pygments.css?v=198d1bfcfa">
-<link rel="stylesheet" href="../assets/print.css?v=198d1bfcfa" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=8ed8c35933">
+<link rel="stylesheet" href="../assets/pygments.css?v=8ed8c35933">
+<link rel="stylesheet" href="../assets/print.css?v=8ed8c35933" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -240,18 +240,22 @@ the original shape model moved and rotated into the new frame with <a class="xre
 <tbody>
 <tr>
 <td>Didymos</td>
-<td><code>didymos_v003_com_spin_axes.obj</code></td>
+<td><code>CUB-DATA3-Didymos_didymos_v003_com_spin_axes.obj</code></td>
 <td>center of mass</td>
 <td>spin axes: <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span> the axis of the largest moment, <span class="nobr"><math alttext="x" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></span> the DART <span class="nobr"><math alttext="x" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></span>-axis projected onto the plane normal to <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span></td>
 </tr>
 <tr>
 <td>Dimorphos</td>
-<td><code>dimorphos_v004_com_principal_axes.obj</code></td>
+<td><code>CUB-DATA6-Dimorphos_dimorphos_v004_com_principal_axes.obj</code></td>
 <td>center of mass</td>
 <td>principal axes: <span class="nobr"><math alttext="x" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></span> the axis of the smallest and <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span> of the largest moment</td>
 </tr>
 </tbody>
 </table>
+<p>Each true model has its own center of mass and axes, so each package has its own shape model, and its file name starts
+with the name of the package: <code>&lt;package&gt;_&lt;shape name&gt;.obj</code> (<a class="xref xref-fn" href="../reference/internal.html#sbtk.internal.shape_file_name"><code>sbtk.internal.shape_file_name</code></a>). The interior-model
+package of the data set and a solution of it use the same name. A shape model taken unchanged from a file keeps the
+file's name.</p>
 <p>The center of mass is then at the origin (to rounding), and the center of figure at
 <span class="nobr"><math alttext="-( r_CoM - r_CoF) A" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mo stretchy="false">&#x00028;</mo><msub><mi mathvariant="bold">r</mi><mtext>CoM</mtext></msub><mo>&#x02212;</mo><msub><mi mathvariant="bold">r</mi><mtext>CoF</mtext></msub><mo stretchy="false">&#x00029;</mo><mspace width="0.167em" /><mi>A</mi></mrow></math>.</span> The gravity field, the moments of inertia and
 <code>center_of_mass.txt</code>, and in the interior-model package every component and the density grid, are in this frame, so a
@@ -284,11 +288,11 @@ FILES
   center_of_mass.txt
   moments_of_inertia.txt
   conventions.txt
-  didymos_v003_com_spin_axes.obj shape model</code></pre></div>
+  DOC-DATA2-Didymos_didymos_v003_com_spin_axes.obj shape model</code></pre></div>
 <div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text"># product: center of mass in the shape-model frame
 # data_set: DOC-DATA2-Didymos
 # body: Didymos
-# shape_model: didymos_v003_com_spin_axes.obj (24578 vertices, 49152 facets, lengths in km)
+# shape_model: DOC-DATA2-Didymos_didymos_v003_com_spin_axes.obj (24578 vertices, 49152 facets, lengths in km)
 # center_of_figure: centroid of the shape-model volume
 # center_of_mass_minus_center_of_figure_km: -6.524599e-04 5.687456e-04 -4.755953e-05
 axis,center_of_mass_km,center_of_figure_km
@@ -487,7 +491,7 @@ DEGREE 1 AND THE CENTER OF MASS
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#file-layout">File layout</a></li><li class="lvl2"><a href="#measurement-package">Measurement package</a></li><li class="lvl3"><a href="#the-shape-model-of-a-package">The shape model of a package</a></li><li class="lvl3"><a href="#packages-of-exact-values">Packages of exact values</a></li><li class="lvl2"><a href="#interior-model-package">Interior-model package</a></li><li class="lvl2"><a href="#solution-package">Solution package</a></li><li class="lvl2"><a href="#density-grid">Density grid</a></li><li class="lvl2"><a href="#conventions.txt">conventions.txt</a></li><li class="lvl2"><a href="#other-formats">Other formats</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=198d1bfcfa"></script>
-<script src="../assets/site.js?v=198d1bfcfa"></script>
+<script src="../assets/search-index.js?v=8ed8c35933"></script>
+<script src="../assets/site.js?v=8ed8c35933"></script>
 </body>
 </html>
