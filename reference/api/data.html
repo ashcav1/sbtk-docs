@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>sbtk.data — SBTK documentation</title>
-<link rel="stylesheet" href="../../assets/site.css?v=8ed8c35933">
-<link rel="stylesheet" href="../../assets/pygments.css?v=8ed8c35933">
-<link rel="stylesheet" href="../../assets/print.css?v=8ed8c35933" media="print">
+<link rel="stylesheet" href="../../assets/site.css?v=ed0e42ddfc">
+<link rel="stylesheet" href="../../assets/pygments.css?v=ed0e42ddfc">
+<link rel="stylesheet" href="../../assets/print.css?v=ed0e42ddfc" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -226,7 +226,7 @@ obs = <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.add_
 <h3 class="api-sub">Description</h3>
 <p>For <code>obs.coef_about</code> = '<code>center_of_mass</code>' only: the coefficients of degree &gt;= 2 are about the body's center of mass wherever the origin is, and the degree-1 coefficients give the measured center of mass relative to the origin (C10 = dz/(sqrt(3) R), C11 = dx/(sqrt(3) R), S11 = dy/(sqrt(3) R)). Moving the origin changes only the degree-1 values; uncertainties are unchanged.</p>
 <h3 class="api-sub">Example</h3>
-<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">obs = <a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.read_data">sbtk.exchange.read_data</a>(&quot;CUB-DATA1-Didymos&quot;);
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">obs = <a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.read_data">sbtk.exchange.read_data</a>(&quot;UCB-DATA1-Didymos&quot;);
 moved = <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.move_origin">sbtk.data.move_origin</a>(obs, obs.origin_km + [0.001 0 0]);     <span class="c">% 1 m along x</span></code></pre></div>
 <h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a></dd></dl>
 <p class="impl">Implementation: <code>toolbox/+sbtk/+data/move_origin.m</code>, line 1.</p>
@@ -465,7 +465,7 @@ obs = <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.add_
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#sbtk.data.add_center_of_mass">sbtk.data.add_center_of_mass</a></li><li class="lvl2"><a href="#sbtk.data.add_libration">sbtk.data.add_libration</a></li><li class="lvl2"><a href="#sbtk.data.add_moi">sbtk.data.add_moi</a></li><li class="lvl2"><a href="#sbtk.data.add_moi_row">sbtk.data.add_moi_row</a></li><li class="lvl2"><a href="#sbtk.data.add_noise">sbtk.data.add_noise</a></li><li class="lvl2"><a href="#sbtk.data.from_coefficients">sbtk.data.from_coefficients</a></li><li class="lvl2"><a href="#sbtk.data.libration_ratio_from_amplitude">sbtk.data.libration_ratio_from_amplitude</a></li><li class="lvl2"><a href="#sbtk.data.move_origin">sbtk.data.move_origin</a></li><li class="lvl2"><a href="#sbtk.data.select_coefficients">sbtk.data.select_coefficients</a></li><li class="lvl2"><a href="#sbtk.data.select_degree">sbtk.data.select_degree</a></li><li class="lvl2"><a href="#sbtk.data.select_moi">sbtk.data.select_moi</a></li><li class="lvl2"><a href="#sbtk.data.set_covariance">sbtk.data.set_covariance</a></li><li class="lvl2"><a href="#sbtk.data.set_moi_sigma">sbtk.data.set_moi_sigma</a></li><li class="lvl2"><a href="#sbtk.data.set_uncertainties">sbtk.data.set_uncertainties</a></li><li class="lvl2"><a href="#sbtk.data.simulate">sbtk.data.simulate</a></li><li class="lvl2"><a href="#sbtk.data.summary">sbtk.data.summary</a></li><li class="lvl2"><a href="#sbtk.data.to_frame">sbtk.data.to_frame</a></li><li class="lvl2"><a href="#sbtk.data.uncertainties">sbtk.data.uncertainties</a></li><li class="lvl2"><a href="#sbtk.data.use_uncertainties">sbtk.data.use_uncertainties</a></li></ul></nav>
 </div>
-<script src="../../assets/search-index.js?v=8ed8c35933"></script>
-<script src="../../assets/site.js?v=8ed8c35933"></script>
+<script src="../../assets/search-index.js?v=ed0e42ddfc"></script>
+<script src="../../assets/site.js?v=ed0e42ddfc"></script>
 </body>
 </html>

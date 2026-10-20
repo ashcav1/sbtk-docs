@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Exchange packages — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=8ed8c35933">
-<link rel="stylesheet" href="../assets/pygments.css?v=8ed8c35933">
-<link rel="stylesheet" href="../assets/print.css?v=8ed8c35933" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=ed0e42ddfc">
+<link rel="stylesheet" href="../assets/pygments.css?v=ed0e42ddfc">
+<link rel="stylesheet" href="../assets/print.css?v=ed0e42ddfc" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -109,7 +109,7 @@ Every column and key with a unit ends with it; NaN marks a value that is not pro
 <tbody>
 <tr>
 <td><code>README.txt</code></td>
-<td>Summary (GM and mass, bulk density, degree and reference radius of the field; the uncertainties and the noise when the values have them) and the list of files.</td>
+<td>Summary (GM and mass, bulk density, degree and reference radius of the field; whether the values are exact or have uncertainties and noise) and the list of files.</td>
 </tr>
 <tr>
 <td><code>gravity_field.txt</code></td>
@@ -152,13 +152,13 @@ by <code>documentation/tools/make_samples.m</code>:</p>
 Prepared by Example team
 
 SUMMARY
-  GM                3.5193583900e-08 km^3/s^2, mass 5.273000e+11 kg
+  GM                3.51935839e-08 km^3/s^2, mass 5.273000e+11 kg
   bulk density      2592.98 kg/m^3 (mass / shape model volume 0.203356 km^3)
-  gravity field     degree 2 to 4, reference radius 0.4300 km, about the center of mass
+  gravity field     degrees 2 to 4, reference radius 0.43 km, about the center of mass
   center of mass    see center_of_mass.txt file
   inertia           see moments_of_inertia.txt file
-  uncertainties     1-sigma of every value; full covariance of the coefficients in gravity_covariance.txt
-  noise             Gaussian noise drawn from the stated uncertainties
+  frame             see conventions.txt file
+  values            with 1-sigma uncertainties (covariance of the coefficients in gravity_covariance.txt) and Gaussian noise drawn from them
 
 FILES
   gravity_field.txt
@@ -167,20 +167,20 @@ FILES
   moments_of_inertia.txt
   conventions.txt
   didymos_g_9309mm_spc_obj_0000n00000_v003.obj shape model</code></pre></div>
-<div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text"># product: gravity field: fully normalized spherical-harmonic coefficients
+<div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text"># product: gravity field, spherical-harmonic coefficients
 # data_set: DOC-DATA1-Didymos
 # body: Didymos
 # shape_model: didymos_g_9309mm_spc_obj_0000n00000_v003.obj (24578 vertices, 49152 facets, lengths in km)
-# frame: axes of the shape-model frame
-# expansion_origin: center of mass (center_of_mass.txt); degree-1 coefficients are zero by definition and not listed
+# expansion_point: the center of mass (center_of_mass.txt), so the degree-1 coefficients are zero; they are not listed
+# axes: those of the shape model file (conventions.txt)
 # normalization: fully normalized (conventions.txt)
-# reference_radius_km: 4.300000000000000e-01
-# GM_km3_s2: 3.519358390000000e-08
-# mass_kg: 5.272999999999999e+11
+# reference_radius_km: 0.43
+# GM_km3_s2: 3.51935839e-08
+# mass_kg: 5.273000e+11
 # max_degree: 4
-# C00: 1
+# C00: 1 (not listed)
 # uncertainties: 1-sigma; full covariance in gravity_covariance.txt
-# noise: Gaussian noise drawn from the stated uncertainties
+# noise: Gaussian noise drawn from the 1-sigma uncertainties was added to the values
 l,m,C,S,sigma_C,sigma_S
 2,0,-3.267843300100998e-02,0.000000000000000e+00,1.000000000000000e-04,0.000000000000000e+00
 2,1,3.580678708085953e-03,9.264930696445466e-04,1.000000000000000e-04,1.000000000000000e-04
@@ -191,29 +191,32 @@ l,m,C,S,sigma_C,sigma_S
 3,3,-7.109585763745573e-04,-1.687530510730563e-03,2.000000000000000e-04,2.000000000000000e-04
 4,0,3.025957726300028e-03,0.000000000000000e+00,4.000000000000000e-04,0.000000000000000e+00
 4,1,-1.108795363729265e-03,-9.890871671108035e-04,4.000000000000000e-04,4.000000000000000e-04</code></pre></div>
-<div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text"># product: center of mass in the shape-model frame
+<div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text"># product: center of mass and center of figure
 # data_set: DOC-DATA1-Didymos
 # body: Didymos
 # shape_model: didymos_g_9309mm_spc_obj_0000n00000_v003.obj (24578 vertices, 49152 facets, lengths in km)
-# center_of_figure: centroid of the shape-model volume
-# center_of_mass_minus_center_of_figure_km: 1.714294e-03 -9.460118e-04 -1.372618e-03
-# uncertainties: 1-sigma; full 3 x 3 covariance in the cov columns
-# noise: Gaussian noise drawn from the stated uncertainties
+# frame: that of the shape model file (conventions.txt)
+# center_of_mass: the point the gravity field and the moments of inertia are about
+# center_of_figure: centroid of the volume enclosed by the shape model (the center of mass if the density were uniform)
+# center_of_mass_minus_center_of_figure_km: 0.001714294458 -0.000946011764 -0.001372617864
+# uncertainties: 1-sigma of the center of mass; full 3 x 3 covariance in the cov columns
+# noise: Gaussian noise drawn from the 1-sigma uncertainties was added to the values
 axis,center_of_mass_km,sigma_km,center_of_figure_km,cov_x_km2,cov_y_km2,cov_z_km2
-x,1.764382858015673e-02,2.000000000000000e-03,1.592953412264642e-02,4.000000000000001e-06,0.000000000000000e+00,0.000000000000000e+00
-y,4.136784138399886e-02,2.000000000000000e-03,4.231385314807785e-02,0.000000000000000e+00,4.000000000000001e-06,0.000000000000000e+00
-z,-3.535115058532261e-02,2.000000000000000e-03,-3.397853272144903e-02,0.000000000000000e+00,0.000000000000000e+00,4.000000000000001e-06</code></pre></div>
+x,0.017643828580,0.002000000000,0.015929534123,4.000000000000001e-06,0.000000000000000e+00,0.000000000000000e+00
+y,0.041367841384,0.002000000000,0.042313853148,0.000000000000000e+00,4.000000000000001e-06,0.000000000000000e+00
+z,-0.035351150585,0.002000000000,-0.033978532721,0.000000000000000e+00,0.000000000000000e+00,4.000000000000001e-06</code></pre></div>
 <div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text"># product: moments of inertia about the center of mass
 # data_set: DOC-DATA1-Didymos
 # body: Didymos
 # shape_model: didymos_g_9309mm_spc_obj_0000n00000_v003.obj (24578 vertices, 49152 facets, lengths in km)
-# axes: axes of the shape-model frame
-# reference_radius_km: 4.300000000000000e-01
-# mass_kg: 5.272999999999999e+11
+# axes: those of the shape model file (conventions.txt)
+# normalization: values are I / (M R_ref^2), with M = mass_kg and R_ref = reference_radius_km
+# reference_radius_km: 0.43
+# mass_kg: 5.273000e+11
 # products_of_inertia: I_ij = integral rho (r^2 delta_ij - x_i x_j) dV, so Ixy = -integral rho x y dV
-# libration_ratio: (B - A) / C: principal moments A &lt;= B about axes in the xy-plane, C = Izz
+# libration_ratio: (B - A) / C, with A &lt;= B the principal moments about axes in the xy-plane and C = Izz
 # uncertainties: 1-sigma, uncorrelated
-# noise: Gaussian noise drawn from the stated uncertainties
+# noise: Gaussian noise drawn from the 1-sigma uncertainties was added to the values
 quantity,value,sigma,unit
 Ixx,2.553972158114155e-01,2.000000000000000e-03,M R_ref^2
 Iyy,2.641173924187360e-01,2.000000000000000e-03,M R_ref^2
@@ -240,13 +243,13 @@ the original shape model moved and rotated into the new frame with <a class="xre
 <tbody>
 <tr>
 <td>Didymos</td>
-<td><code>CUB-DATA3-Didymos_didymos_v003_com_spin_axes.obj</code></td>
+<td><code>UCB-DATA1-Didymos_didymos_v003_com_spin_axes.obj</code></td>
 <td>center of mass</td>
 <td>spin axes: <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span> the axis of the largest moment, <span class="nobr"><math alttext="x" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></span> the DART <span class="nobr"><math alttext="x" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></span>-axis projected onto the plane normal to <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span></td>
 </tr>
 <tr>
 <td>Dimorphos</td>
-<td><code>CUB-DATA6-Dimorphos_dimorphos_v004_com_principal_axes.obj</code></td>
+<td><code>UCB-DATA4-Dimorphos_dimorphos_v004_com_principal_axes.obj</code></td>
 <td>center of mass</td>
 <td>principal axes: <span class="nobr"><math alttext="x" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></span> the axis of the smallest and <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span> of the largest moment</td>
 </tr>
@@ -259,9 +262,10 @@ file's name.</p>
 <p>The center of mass is then at the origin (to rounding), and the center of figure at
 <span class="nobr"><math alttext="-( r_CoM - r_CoF) A" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mo stretchy="false">&#x00028;</mo><msub><mi mathvariant="bold">r</mi><mtext>CoM</mtext></msub><mo>&#x02212;</mo><msub><mi mathvariant="bold">r</mi><mtext>CoF</mtext></msub><mo stretchy="false">&#x00029;</mo><mspace width="0.167em" /><mi>A</mi></mrow></math>.</span> The gravity field, the moments of inertia and
 <code>center_of_mass.txt</code>, and in the interior-model package every component and the density grid, are in this frame, so a
-receiving team uses the shape model as it is, with nothing to move or rotate. <code>conventions.txt</code> states what the origin
-and the axes are and the change of frame (<span class="nobr"><math alttext="o = c" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi mathvariant="bold">o</mi><mo>&#x0003D;</mo><mi mathvariant="bold">c</mi></mrow></math></span> and <span class="nobr"><math alttext="A" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>A</mi></mrow></math>)</span>, so the coordinates of the original file are
-<span class="nobr"><math alttext="x = x&#x27; A^ T + c" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi mathvariant="bold">x</mi><mo>&#x0003D;</mo><msup><mi mathvariant="bold">x</mi><mi>&#x02032;</mi></msup><msup><mi>A</mi><mi mathvariant="sans-serif">T</mi></msup><mo>&#x0002B;</mo><mi mathvariant="bold">c</mi></mrow></math>.</span></p>
+receiving team uses the shape model as it is, with nothing to move or rotate. The FRAME section of <code>conventions.txt</code>
+states the origin and the axes, and the change of frame from the original file (<span class="nobr"><math alttext="o = c" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi mathvariant="bold">o</mi><mo>&#x0003D;</mo><mi mathvariant="bold">c</mi></mrow></math></span> and <span class="nobr"><math alttext="A" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>A</mi></mrow></math>)</span>, so
+the coordinates of the original file are <span class="nobr"><math alttext="x = x&#x27; A^ T + c" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi mathvariant="bold">x</mi><mo>&#x0003D;</mo><msup><mi mathvariant="bold">x</mi><mi>&#x02032;</mi></msup><msup><mi>A</mi><mi mathvariant="sans-serif">T</mi></msup><mo>&#x0002B;</mo><mi mathvariant="bold">c</mi></mrow></math>.</span> The shape model records
+this change as <a class="xref xref-field" href="../reference/data-structures.html#shape.frame_origin_km"><code>shape.frame_origin_km</code></a> and <a class="xref xref-field" href="../reference/data-structures.html#shape.frame_axes"><code>shape.frame_axes</code></a>, combined over successive changes of frame.</p>
 <h3 id="packages-of-exact-values">Packages of exact values<a class="headerlink" href="#packages-of-exact-values" title="Link to this section">#</a></h3>
 <p>A set without any uncertainties, such as the exact values of a true model (<a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a>), is written as a
 package of exact values:</p>
@@ -269,7 +273,7 @@ package of exact values:</p>
 <li><code>gravity_field.txt</code> has the columns <code>l,m,C,S</code>, <code>center_of_mass.txt</code> the columns
   <code>axis,center_of_mass_km,center_of_figure_km</code>, and <code>moments_of_inertia.txt</code> the columns <code>quantity,value,unit</code>;</li>
 <li>there is no <code>gravity_covariance.txt</code>;</li>
-<li>neither the metadata nor the README has an <code>uncertainties</code> or <code>noise</code> line.</li>
+<li>no file has <code>uncertainties</code> or <code>noise</code> metadata, and the README says that the values are exact.</li>
 </ul>
 <p>A maker's package of exact values in the frame with the center of mass as origin and the spin axes, made by
 <code>documentation/tools/make_samples.m</code>:</p>
@@ -277,11 +281,13 @@ package of exact values:</p>
 Prepared by Example team
 
 SUMMARY
-  GM                3.5193583900e-08 km^3/s^2, mass 5.273000e+11 kg
+  GM                3.51935839e-08 km^3/s^2, mass 5.273000e+11 kg
   bulk density      2592.98 kg/m^3 (mass / shape model volume 0.203356 km^3)
-  gravity field     degree 2 to 4, reference radius 0.4300 km, about the center of mass
+  gravity field     degrees 2 to 4, reference radius 0.43 km, about the center of mass
   center of mass    see center_of_mass.txt file
   inertia           see moments_of_inertia.txt file
+  frame             see conventions.txt file
+  values            exact: no noise added, no uncertainties given
 
 FILES
   gravity_field.txt
@@ -289,16 +295,18 @@ FILES
   moments_of_inertia.txt
   conventions.txt
   DOC-DATA2-Didymos_didymos_v003_com_spin_axes.obj shape model</code></pre></div>
-<div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text"># product: center of mass in the shape-model frame
+<div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text"># product: center of mass and center of figure
 # data_set: DOC-DATA2-Didymos
 # body: Didymos
 # shape_model: DOC-DATA2-Didymos_didymos_v003_com_spin_axes.obj (24578 vertices, 49152 facets, lengths in km)
-# center_of_figure: centroid of the shape-model volume
-# center_of_mass_minus_center_of_figure_km: -6.524599e-04 5.687456e-04 -4.755953e-05
+# frame: that of the shape model file, whose origin is the center of mass (conventions.txt)
+# center_of_mass: the point the gravity field and the moments of inertia are about
+# center_of_figure: centroid of the volume enclosed by the shape model (the center of mass if the density were uniform)
+# center_of_mass_minus_center_of_figure_km: -0.000652459894 0.000568745609 -0.000047559533
 axis,center_of_mass_km,center_of_figure_km
-x,4.817847965110595e-17,6.524598943212793e-04
-y,-1.540177875093725e-17,-5.687456089791184e-04
-z,4.418653248470465e-17,4.755953274498696e-05</code></pre></div>
+x,0.000000000000,0.000652459894
+y,0.000000000000,-0.000568745609
+z,0.000000000000,0.000047559533</code></pre></div>
 <p>In a blind test the makers send such packages, and each receiving team applies uncertainties of its own choosing.
 <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a> reads them with NaN uncertainties. The inversion then stops with
 <a class="xref xref-err" href="../reference/errors.html#sbtk:data:noUncertainties"><code>sbtk:data:noUncertainties</code></a> until uncertainties are given, for example with <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.use_uncertainties"><code>sbtk.data.use_uncertainties</code></a> from a
@@ -340,22 +348,22 @@ precision covers. A set with some uncertainties but not all is not written (<a c
 # data_set: DOC-DATA1-Didymos
 # body: Didymos
 # shape_model: didymos_g_9309mm_spc_obj_0000n00000_v003.obj (24578 vertices, 49152 facets, lengths in km)
-# mass_kg: 5.272999999999999e+11
+# frame: that of the shape model file (noise_free_data/conventions.txt)
+# mass_kg: 5.273000e+11
 # bulk_density_kgm3: 2592.984
 # background_density_kgm3: 2672.002
 # center_of_mass_km: 0.015281 0.042885 -0.034053
-# layers_and_sectors_from_km: 0.015281 0.042885 -0.034053 (depths and angles along rays from this point)
+# layers_and_sectors_from_km: 0.015281 0.042885 -0.034053 (the center of mass: layer depths and sector boundaries are measured along rays from this point)
 # overlaps: relative densities of overlapping components add; components are clipped to the shape model
-# principal_axes: x' = [0.835027009 -0.548783743 0.039576476], y' = [0.546420442 0.835555749 0.057195193], z' = [-0.064456144 -0.026134136 0.997578274] (unit vectors in the shape-model axes; x' smallest, z' largest moment)
-# principal_moments: A B C = 0.253270820 0.271737242 0.335835620 (I / (M R_ref^2), R_ref 0.4300 km)
+# principal_axes: x' = [0.835027009 -0.548783743 0.039576476], y' = [0.546420442 0.835555749 0.057195193], z' = [-0.064456144 -0.026134136 0.997578274] (unit vectors in the axes of the shape model file; x' of the smallest, z' of the largest moment)
+# principal_moments: A B C = 0.253270820 0.271737242 0.335835620 (I / (M R_ref^2), R_ref = 0.43 km)
 # random_field: Gaussian, standard deviation 40.0 kg/m^3, correlation exp(-d^2/(2 L^2)) with L = 0.0600 km, seed 7 (SBTK sbtk.interior.random_field); included in density_grid.txt
 # relative_density: density minus background density
 name,type,relative_density_kgm3,density_kgm3,geometry
 background,background,0.000,2672.002,"everything not in a component"
 core,sphere,450.000,3122.002,"center [15.9 42.3 -34.0] m; radius 170.0 m"
 torus,torus,-500.000,2172.002,"ring 370.0 m; tube 55.0 m; ring center [15.9 42.3 -34.0] m; axis [0.0000 0.0000 1.0000]"
-regolith,layer,-900.000,1772.002,"0.0 to 12.0 m below the surface"
-boulder,sphere,900.000,3572.002,"center [129.2 238.5 71.7] m; radius 40.0 m"</code></pre></div>
+regolith,layer,-900.000,1772.002,"0.0 to 12.0 m below the surface"</code></pre></div>
 <h2 id="solution-package">Solution package<a class="headerlink" href="#solution-package" title="Link to this section">#</a></h2>
 <table>
 <thead>
@@ -400,7 +408,7 @@ boulder,sphere,900.000,3572.002,"center [129.2 238.5 71.7] m; radius 40.0 m"</co
 # homogeneous_body: reduced chi2 44.86, p-value 3.61e-238
 # measurements_used: C10 C11 S11 C20 C21 S21 C22 S22 C30 C31 S31 C32 S32 C33 S33 C40 C41 S41 C42 S42 C43 S43 C44 S44 Ixx Iyy Izz
 # regularization: 0 (Tikhonov parameter)
-# layers_and_sectors_from_km: 0.017644 0.041368 -0.035351 (depths and angles are measured along rays from this point)
+# layers_and_sectors_from_km: 0.017644 0.041368 -0.035351 (the measured center of mass: layer depths and sector boundaries are measured along rays from this point)
 # relative_density: density minus background density
 # uncertainties: 1-sigma; covariance in solution_covariance.txt
 name,type,density_kgm3,density_sigma_kgm3,relative_density_kgm3,relative_density_sigma_kgm3,density,geometry
@@ -427,20 +435,31 @@ normalization code it prints. That of the maker's package above, whose shape mod
   angles in degrees.
 
 FRAME
-  Every position is in the frame of the shape-model file of this package.
-  Origin: the center of mass.
-  Axes: z is the axis of the largest moment of inertia (C21 = S21 = 0): the spin axis of
-  a body in principal-axis rotation.
-  The shape-model file of this package was made from another one by a change of frame:
-    didymos_g_9309mm_spc_obj_0000n00000_v003.obj transformed: x' = (x - o)*A, o = [0.015281496 0.042884748 -0.034053123] km, A = [0.997920540676 0.000000000000 -0.064456143974; -0.001688015795 0.999657019950 -0.026134136041; 0.064434036803 0.026188594157 0.997578273840]
-  We give you the shape model already in this frame, so that you do not have to make this
-  change of frame yourself.
+  All positions, the gravity field and the moments of inertia of this package are given
+  in the frame of its shape model file, DOC-DATA2-Didymos_didymos_v003_com_spin_axes.obj:
+    origin  the center of mass of the body
+    z       the axis of the largest moment of inertia, so C21 = S21 = 0 (to rounding
+            error); for a body in principal-axis rotation it is the spin axis
+    x       the x-axis of the original file projected onto the plane normal to z
+    y       completes the right-handed frame (y = z cross x)
+  The shape model file was made by moving and rotating the original file,
+    didymos_g_9309mm_spc_obj_0000n00000_v003.obj
+  into this frame:
+    x' = (x - o) A
+    o = [0.015281496 0.042884748 -0.034053123] km  (the center of mass, in the original file)
+    A = [  0.997920540676  0.000000000000 -0.064456143974
+          -0.001688015795  0.999657019950 -0.026134136041
+           0.064434036803  0.026188594157  0.997578273840 ]
+  where x and x' are the coordinates of a point in the original file and in this one
+  (row vectors, km), and o and the columns of A are the origin and the axes of this frame
+  in the original file. Use this package's shape model file with its data, not the
+  original file.
 
 GRAVITY FIELD COEFFICIENT NORMALIZATION
   The files give fully normalized coefficients:
     Cbar_lm = C_lm / N_lm,   Sbar_lm = S_lm / N_lm,   Pbar_lm = N_lm P_lm,
     N_lm = sqrt( (2 - delta_m0) (2l + 1) (l - m)! / (l + m)! )
-  P_lm has no Condon-Shortley phase (-1)^m. For example:
+  where P_lm are the associated Legendre functions without the factor (-1)^m. For example,
     N_20 = sqrt(5), N_21 = sqrt(5/3), N_22 = sqrt(5/12), N_30 = sqrt(7).
   Zonal coefficients: J_l = -C_l0 = -sqrt(2l + 1) Cbar_l0.
 
@@ -450,9 +469,9 @@ GRAVITY FIELD COEFFICIENT NORMALIZATION
     N = math.sqrt((2 - (m == 0)) * (2*l + 1) * math.factorial(l - m) / math.factorial(l + m))
 
 DEGREE 1 AND THE CENTER OF MASS
-  The gravity fields here are expanded about the center of mass, so the degree-1 gravity
-  coefficients are zero and are not listed. The position of the center of mass in the
-  shape-model frame is a separate measurement (center_of_mass.txt).</code></pre></div>
+  The gravity field is expanded about the center of mass, so its degree-1 coefficients are
+  zero and are not listed. The position of the center of mass in the frame of the shape
+  model file is a separate measurement (center_of_mass.txt).</code></pre></div>
 <h2 id="other-formats">Other formats<a class="headerlink" href="#other-formats" title="Link to this section">#</a></h2>
 <table>
 <thead>
@@ -491,7 +510,7 @@ DEGREE 1 AND THE CENTER OF MASS
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#file-layout">File layout</a></li><li class="lvl2"><a href="#measurement-package">Measurement package</a></li><li class="lvl3"><a href="#the-shape-model-of-a-package">The shape model of a package</a></li><li class="lvl3"><a href="#packages-of-exact-values">Packages of exact values</a></li><li class="lvl2"><a href="#interior-model-package">Interior-model package</a></li><li class="lvl2"><a href="#solution-package">Solution package</a></li><li class="lvl2"><a href="#density-grid">Density grid</a></li><li class="lvl2"><a href="#conventions.txt">conventions.txt</a></li><li class="lvl2"><a href="#other-formats">Other formats</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=8ed8c35933"></script>
-<script src="../assets/site.js?v=8ed8c35933"></script>
+<script src="../assets/search-index.js?v=ed0e42ddfc"></script>
+<script src="../assets/site.js?v=ed0e42ddfc"></script>
 </body>
 </html>

@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>sbtk.shape — SBTK documentation</title>
-<link rel="stylesheet" href="../../assets/site.css?v=8ed8c35933">
-<link rel="stylesheet" href="../../assets/pygments.css?v=8ed8c35933">
-<link rel="stylesheet" href="../../assets/print.css?v=8ed8c35933" media="print">
+<link rel="stylesheet" href="../../assets/site.css?v=ed0e42ddfc">
+<link rel="stylesheet" href="../../assets/pygments.css?v=ed0e42ddfc">
+<link rel="stylesheet" href="../../assets/print.css?v=ed0e42ddfc" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -128,11 +128,13 @@ shape = <a class="xref xref-fn" href="../../reference/api/shape.html#sbtk.shape.
 <tr><td><code>.faces</code></td><td>nf x 3 vertex indices</td></tr>
 <tr><td><code>.vertices_km</code></td><td>nv x 3 vertex positions [km]</td></tr>
 <tr><td><code>.source</code></td><td>the file it came from</td></tr>
+<tr><td><code>.frame_origin_km, .frame_axes</code></td><td>[0 0 0] and eye(3): the frame of the file (changed by</td></tr>
+<tr class="nested"><td><code>sbtk.body.to_frame; vertices = (file vertices - frame_origin_km)*frame_axes)</code></td><td></td></tr>
 </tbody></table>
 <h3 class="api-sub">Example</h3>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">shape = <a class="xref xref-fn" href="../../reference/api/shape.html#sbtk.shape.load">sbtk.shape.load</a>(fullfile(<a class="xref xref-fn" href="../../reference/api/sbtk.html#sbtk.root">sbtk.root</a>, &#39;data&#39;, &#39;shapes&#39;, ...
 <span class="w">            </span><span class="s">&#39;didymos_g_9309mm_spc_obj_0000n00000_v003.obj&#39;</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;km&quot;</span><span class="p">);</span></code></pre></div>
-<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/sbtk.html#sbtk.root"><code>sbtk.root</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="../../reference/api/units.html#sbtk.units.length_scale"><code>sbtk.units.length_scale</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a>, <a class="xref xref-fn" href="../../reference/api/shape.html#sbtk.shape.bundled"><code>sbtk.shape.bundled</code></a></dd></dl>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.to_frame"><code>sbtk.body.to_frame</code></a>, <a class="xref xref-fn" href="../../reference/api/sbtk.html#sbtk.root"><code>sbtk.root</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="../../reference/api/units.html#sbtk.units.length_scale"><code>sbtk.units.length_scale</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a>, <a class="xref xref-fn" href="../../reference/api/shape.html#sbtk.shape.bundled"><code>sbtk.shape.bundled</code></a></dd></dl>
 <p class="impl">Implementation: <code>toolbox/+sbtk/+shape/load.m</code>, line 1.</p>
 </section>
 <section class="api-entry" id="sbtk.shape.properties">
@@ -227,7 +229,7 @@ small = <a class="xref xref-fn" href="../../reference/api/shape.html#sbtk.shape.
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#sbtk.shape.bundled">sbtk.shape.bundled</a></li><li class="lvl2"><a href="#sbtk.shape.ellipsoid">sbtk.shape.ellipsoid</a></li><li class="lvl2"><a href="#sbtk.shape.from_arrays">sbtk.shape.from_arrays</a></li><li class="lvl2"><a href="#sbtk.shape.load">sbtk.shape.load</a></li><li class="lvl2"><a href="#sbtk.shape.properties">sbtk.shape.properties</a></li><li class="lvl2"><a href="#sbtk.shape.reduce">sbtk.shape.reduce</a></li><li class="lvl2"><a href="#sbtk.shape.reduce_spc">sbtk.shape.reduce_spc</a></li><li class="lvl2"><a href="#sbtk.shape.write_obj">sbtk.shape.write_obj</a></li></ul></nav>
 </div>
-<script src="../../assets/search-index.js?v=8ed8c35933"></script>
-<script src="../../assets/site.js?v=8ed8c35933"></script>
+<script src="../../assets/search-index.js?v=ed0e42ddfc"></script>
+<script src="../../assets/site.js?v=ed0e42ddfc"></script>
 </body>
 </html>

@@ -2380,7 +2380,7 @@ Every column and key with a unit ends with it; NaN marks a value that is not pro
 <tbody>
 <tr>
 <td><code>README.txt</code></td>
-<td>Summary (GM and mass, bulk density, degree and reference radius of the field; the uncertainties and the noise when the values have them) and the list of files.</td>
+<td>Summary (GM and mass, bulk density, degree and reference radius of the field; whether the values are exact or have uncertainties and noise) and the list of files.</td>
 </tr>
 <tr>
 <td><code>gravity_field.txt</code></td>
@@ -2423,13 +2423,13 @@ by <code>documentation/tools/make_samples.m</code>:</p>
 Prepared by Example team
 
 SUMMARY
-  GM                3.5193583900e-08 km^3/s^2, mass 5.273000e+11 kg
+  GM                3.51935839e-08 km^3/s^2, mass 5.273000e+11 kg
   bulk density      2592.98 kg/m^3 (mass / shape model volume 0.203356 km^3)
-  gravity field     degree 2 to 4, reference radius 0.4300 km, about the center of mass
+  gravity field     degrees 2 to 4, reference radius 0.43 km, about the center of mass
   center of mass    see center_of_mass.txt file
   inertia           see moments_of_inertia.txt file
-  uncertainties     1-sigma of every value; full covariance of the coefficients in gravity_covariance.txt
-  noise             Gaussian noise drawn from the stated uncertainties
+  frame             see conventions.txt file
+  values            with 1-sigma uncertainties (covariance of the coefficients in gravity_covariance.txt) and Gaussian noise drawn from them
 
 FILES
   gravity_field.txt
@@ -2438,20 +2438,20 @@ FILES
   moments_of_inertia.txt
   conventions.txt
   didymos_g_9309mm_spc_obj_0000n00000_v003.obj shape model</code></pre></div>
-<div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text"># product: gravity field: fully normalized spherical-harmonic coefficients
+<div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text"># product: gravity field, spherical-harmonic coefficients
 # data_set: DOC-DATA1-Didymos
 # body: Didymos
 # shape_model: didymos_g_9309mm_spc_obj_0000n00000_v003.obj (24578 vertices, 49152 facets, lengths in km)
-# frame: axes of the shape-model frame
-# expansion_origin: center of mass (center_of_mass.txt); degree-1 coefficients are zero by definition and not listed
+# expansion_point: the center of mass (center_of_mass.txt), so the degree-1 coefficients are zero; they are not listed
+# axes: those of the shape model file (conventions.txt)
 # normalization: fully normalized (conventions.txt)
-# reference_radius_km: 4.300000000000000e-01
-# GM_km3_s2: 3.519358390000000e-08
-# mass_kg: 5.272999999999999e+11
+# reference_radius_km: 0.43
+# GM_km3_s2: 3.51935839e-08
+# mass_kg: 5.273000e+11
 # max_degree: 4
-# C00: 1
+# C00: 1 (not listed)
 # uncertainties: 1-sigma; full covariance in gravity_covariance.txt
-# noise: Gaussian noise drawn from the stated uncertainties
+# noise: Gaussian noise drawn from the 1-sigma uncertainties was added to the values
 l,m,C,S,sigma_C,sigma_S
 2,0,-3.267843300100998e-02,0.000000000000000e+00,1.000000000000000e-04,0.000000000000000e+00
 2,1,3.580678708085953e-03,9.264930696445466e-04,1.000000000000000e-04,1.000000000000000e-04
@@ -2462,29 +2462,32 @@ l,m,C,S,sigma_C,sigma_S
 3,3,-7.109585763745573e-04,-1.687530510730563e-03,2.000000000000000e-04,2.000000000000000e-04
 4,0,3.025957726300028e-03,0.000000000000000e+00,4.000000000000000e-04,0.000000000000000e+00
 4,1,-1.108795363729265e-03,-9.890871671108035e-04,4.000000000000000e-04,4.000000000000000e-04</code></pre></div>
-<div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text"># product: center of mass in the shape-model frame
+<div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text"># product: center of mass and center of figure
 # data_set: DOC-DATA1-Didymos
 # body: Didymos
 # shape_model: didymos_g_9309mm_spc_obj_0000n00000_v003.obj (24578 vertices, 49152 facets, lengths in km)
-# center_of_figure: centroid of the shape-model volume
-# center_of_mass_minus_center_of_figure_km: 1.714294e-03 -9.460118e-04 -1.372618e-03
-# uncertainties: 1-sigma; full 3 x 3 covariance in the cov columns
-# noise: Gaussian noise drawn from the stated uncertainties
+# frame: that of the shape model file (conventions.txt)
+# center_of_mass: the point the gravity field and the moments of inertia are about
+# center_of_figure: centroid of the volume enclosed by the shape model (the center of mass if the density were uniform)
+# center_of_mass_minus_center_of_figure_km: 0.001714294458 -0.000946011764 -0.001372617864
+# uncertainties: 1-sigma of the center of mass; full 3 x 3 covariance in the cov columns
+# noise: Gaussian noise drawn from the 1-sigma uncertainties was added to the values
 axis,center_of_mass_km,sigma_km,center_of_figure_km,cov_x_km2,cov_y_km2,cov_z_km2
-x,1.764382858015673e-02,2.000000000000000e-03,1.592953412264642e-02,4.000000000000001e-06,0.000000000000000e+00,0.000000000000000e+00
-y,4.136784138399886e-02,2.000000000000000e-03,4.231385314807785e-02,0.000000000000000e+00,4.000000000000001e-06,0.000000000000000e+00
-z,-3.535115058532261e-02,2.000000000000000e-03,-3.397853272144903e-02,0.000000000000000e+00,0.000000000000000e+00,4.000000000000001e-06</code></pre></div>
+x,0.017643828580,0.002000000000,0.015929534123,4.000000000000001e-06,0.000000000000000e+00,0.000000000000000e+00
+y,0.041367841384,0.002000000000,0.042313853148,0.000000000000000e+00,4.000000000000001e-06,0.000000000000000e+00
+z,-0.035351150585,0.002000000000,-0.033978532721,0.000000000000000e+00,0.000000000000000e+00,4.000000000000001e-06</code></pre></div>
 <div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text"># product: moments of inertia about the center of mass
 # data_set: DOC-DATA1-Didymos
 # body: Didymos
 # shape_model: didymos_g_9309mm_spc_obj_0000n00000_v003.obj (24578 vertices, 49152 facets, lengths in km)
-# axes: axes of the shape-model frame
-# reference_radius_km: 4.300000000000000e-01
-# mass_kg: 5.272999999999999e+11
+# axes: those of the shape model file (conventions.txt)
+# normalization: values are I / (M R_ref^2), with M = mass_kg and R_ref = reference_radius_km
+# reference_radius_km: 0.43
+# mass_kg: 5.273000e+11
 # products_of_inertia: I_ij = integral rho (r^2 delta_ij - x_i x_j) dV, so Ixy = -integral rho x y dV
-# libration_ratio: (B - A) / C: principal moments A &lt;= B about axes in the xy-plane, C = Izz
+# libration_ratio: (B - A) / C, with A &lt;= B the principal moments about axes in the xy-plane and C = Izz
 # uncertainties: 1-sigma, uncorrelated
-# noise: Gaussian noise drawn from the stated uncertainties
+# noise: Gaussian noise drawn from the 1-sigma uncertainties was added to the values
 quantity,value,sigma,unit
 Ixx,2.553972158114155e-01,2.000000000000000e-03,M R_ref^2
 Iyy,2.641173924187360e-01,2.000000000000000e-03,M R_ref^2
@@ -2511,13 +2514,13 @@ the original shape model moved and rotated into the new frame with <a class="xre
 <tbody>
 <tr>
 <td>Didymos</td>
-<td><code>CUB-DATA3-Didymos_didymos_v003_com_spin_axes.obj</code></td>
+<td><code>UCB-DATA1-Didymos_didymos_v003_com_spin_axes.obj</code></td>
 <td>center of mass</td>
 <td>spin axes: <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span> the axis of the largest moment, <span class="nobr"><math alttext="x" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></span> the DART <span class="nobr"><math alttext="x" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></span>-axis projected onto the plane normal to <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span></td>
 </tr>
 <tr>
 <td>Dimorphos</td>
-<td><code>CUB-DATA6-Dimorphos_dimorphos_v004_com_principal_axes.obj</code></td>
+<td><code>UCB-DATA4-Dimorphos_dimorphos_v004_com_principal_axes.obj</code></td>
 <td>center of mass</td>
 <td>principal axes: <span class="nobr"><math alttext="x" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></span> the axis of the smallest and <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span> of the largest moment</td>
 </tr>
@@ -2530,9 +2533,10 @@ file's name.</p>
 <p>The center of mass is then at the origin (to rounding), and the center of figure at
 <span class="nobr"><math alttext="-( r_CoM - r_CoF) A" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mo stretchy="false">&#x00028;</mo><msub><mi mathvariant="bold">r</mi><mtext>CoM</mtext></msub><mo>&#x02212;</mo><msub><mi mathvariant="bold">r</mi><mtext>CoF</mtext></msub><mo stretchy="false">&#x00029;</mo><mspace width="0.167em" /><mi>A</mi></mrow></math>.</span> The gravity field, the moments of inertia and
 <code>center_of_mass.txt</code>, and in the interior-model package every component and the density grid, are in this frame, so a
-receiving team uses the shape model as it is, with nothing to move or rotate. <code>conventions.txt</code> states what the origin
-and the axes are and the change of frame (<span class="nobr"><math alttext="o = c" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi mathvariant="bold">o</mi><mo>&#x0003D;</mo><mi mathvariant="bold">c</mi></mrow></math></span> and <span class="nobr"><math alttext="A" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>A</mi></mrow></math>)</span>, so the coordinates of the original file are
-<span class="nobr"><math alttext="x = x&#x27; A^ T + c" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi mathvariant="bold">x</mi><mo>&#x0003D;</mo><msup><mi mathvariant="bold">x</mi><mi>&#x02032;</mi></msup><msup><mi>A</mi><mi mathvariant="sans-serif">T</mi></msup><mo>&#x0002B;</mo><mi mathvariant="bold">c</mi></mrow></math>.</span></p>
+receiving team uses the shape model as it is, with nothing to move or rotate. The FRAME section of <code>conventions.txt</code>
+states the origin and the axes, and the change of frame from the original file (<span class="nobr"><math alttext="o = c" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi mathvariant="bold">o</mi><mo>&#x0003D;</mo><mi mathvariant="bold">c</mi></mrow></math></span> and <span class="nobr"><math alttext="A" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>A</mi></mrow></math>)</span>, so
+the coordinates of the original file are <span class="nobr"><math alttext="x = x&#x27; A^ T + c" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi mathvariant="bold">x</mi><mo>&#x0003D;</mo><msup><mi mathvariant="bold">x</mi><mi>&#x02032;</mi></msup><msup><mi>A</mi><mi mathvariant="sans-serif">T</mi></msup><mo>&#x0002B;</mo><mi mathvariant="bold">c</mi></mrow></math>.</span> The shape model records
+this change as <a class="xref xref-field" href="#reference-data-structures--shape.frame_origin_km"><code>shape.frame_origin_km</code></a> and <a class="xref xref-field" href="#reference-data-structures--shape.frame_axes"><code>shape.frame_axes</code></a>, combined over successive changes of frame.</p>
 <h3 id="files-exchange-packages--packages-of-exact-values">Packages of exact values<a class="headerlink" href="#files-exchange-packages--packages-of-exact-values" title="Link to this section">#</a></h3>
 <p>A set without any uncertainties, such as the exact values of a true model (<a class="xref xref-fn" href="#reference-api-data--sbtk.data.simulate"><code>sbtk.data.simulate</code></a>), is written as a
 package of exact values:</p>
@@ -2540,7 +2544,7 @@ package of exact values:</p>
 <li><code>gravity_field.txt</code> has the columns <code>l,m,C,S</code>, <code>center_of_mass.txt</code> the columns
   <code>axis,center_of_mass_km,center_of_figure_km</code>, and <code>moments_of_inertia.txt</code> the columns <code>quantity,value,unit</code>;</li>
 <li>there is no <code>gravity_covariance.txt</code>;</li>
-<li>neither the metadata nor the README has an <code>uncertainties</code> or <code>noise</code> line.</li>
+<li>no file has <code>uncertainties</code> or <code>noise</code> metadata, and the README says that the values are exact.</li>
 </ul>
 <p>A maker's package of exact values in the frame with the center of mass as origin and the spin axes, made by
 <code>documentation/tools/make_samples.m</code>:</p>
@@ -2548,11 +2552,13 @@ package of exact values:</p>
 Prepared by Example team
 
 SUMMARY
-  GM                3.5193583900e-08 km^3/s^2, mass 5.273000e+11 kg
+  GM                3.51935839e-08 km^3/s^2, mass 5.273000e+11 kg
   bulk density      2592.98 kg/m^3 (mass / shape model volume 0.203356 km^3)
-  gravity field     degree 2 to 4, reference radius 0.4300 km, about the center of mass
+  gravity field     degrees 2 to 4, reference radius 0.43 km, about the center of mass
   center of mass    see center_of_mass.txt file
   inertia           see moments_of_inertia.txt file
+  frame             see conventions.txt file
+  values            exact: no noise added, no uncertainties given
 
 FILES
   gravity_field.txt
@@ -2560,16 +2566,18 @@ FILES
   moments_of_inertia.txt
   conventions.txt
   DOC-DATA2-Didymos_didymos_v003_com_spin_axes.obj shape model</code></pre></div>
-<div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text"># product: center of mass in the shape-model frame
+<div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text"># product: center of mass and center of figure
 # data_set: DOC-DATA2-Didymos
 # body: Didymos
 # shape_model: DOC-DATA2-Didymos_didymos_v003_com_spin_axes.obj (24578 vertices, 49152 facets, lengths in km)
-# center_of_figure: centroid of the shape-model volume
-# center_of_mass_minus_center_of_figure_km: -6.524599e-04 5.687456e-04 -4.755953e-05
+# frame: that of the shape model file, whose origin is the center of mass (conventions.txt)
+# center_of_mass: the point the gravity field and the moments of inertia are about
+# center_of_figure: centroid of the volume enclosed by the shape model (the center of mass if the density were uniform)
+# center_of_mass_minus_center_of_figure_km: -0.000652459894 0.000568745609 -0.000047559533
 axis,center_of_mass_km,center_of_figure_km
-x,4.817847965110595e-17,6.524598943212793e-04
-y,-1.540177875093725e-17,-5.687456089791184e-04
-z,4.418653248470465e-17,4.755953274498696e-05</code></pre></div>
+x,0.000000000000,0.000652459894
+y,0.000000000000,-0.000568745609
+z,0.000000000000,0.000047559533</code></pre></div>
 <p>In a blind test the makers send such packages, and each receiving team applies uncertainties of its own choosing.
 <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a> reads them with NaN uncertainties. The inversion then stops with
 <a class="xref xref-err" href="#reference-errors--sbtk:data:noUncertainties"><code>sbtk:data:noUncertainties</code></a> until uncertainties are given, for example with <a class="xref xref-fn" href="#reference-api-data--sbtk.data.use_uncertainties"><code>sbtk.data.use_uncertainties</code></a> from a
@@ -2611,22 +2619,22 @@ precision covers. A set with some uncertainties but not all is not written (<a c
 # data_set: DOC-DATA1-Didymos
 # body: Didymos
 # shape_model: didymos_g_9309mm_spc_obj_0000n00000_v003.obj (24578 vertices, 49152 facets, lengths in km)
-# mass_kg: 5.272999999999999e+11
+# frame: that of the shape model file (noise_free_data/conventions.txt)
+# mass_kg: 5.273000e+11
 # bulk_density_kgm3: 2592.984
 # background_density_kgm3: 2672.002
 # center_of_mass_km: 0.015281 0.042885 -0.034053
-# layers_and_sectors_from_km: 0.015281 0.042885 -0.034053 (depths and angles along rays from this point)
+# layers_and_sectors_from_km: 0.015281 0.042885 -0.034053 (the center of mass: layer depths and sector boundaries are measured along rays from this point)
 # overlaps: relative densities of overlapping components add; components are clipped to the shape model
-# principal_axes: x' = [0.835027009 -0.548783743 0.039576476], y' = [0.546420442 0.835555749 0.057195193], z' = [-0.064456144 -0.026134136 0.997578274] (unit vectors in the shape-model axes; x' smallest, z' largest moment)
-# principal_moments: A B C = 0.253270820 0.271737242 0.335835620 (I / (M R_ref^2), R_ref 0.4300 km)
+# principal_axes: x' = [0.835027009 -0.548783743 0.039576476], y' = [0.546420442 0.835555749 0.057195193], z' = [-0.064456144 -0.026134136 0.997578274] (unit vectors in the axes of the shape model file; x' of the smallest, z' of the largest moment)
+# principal_moments: A B C = 0.253270820 0.271737242 0.335835620 (I / (M R_ref^2), R_ref = 0.43 km)
 # random_field: Gaussian, standard deviation 40.0 kg/m^3, correlation exp(-d^2/(2 L^2)) with L = 0.0600 km, seed 7 (SBTK sbtk.interior.random_field); included in density_grid.txt
 # relative_density: density minus background density
 name,type,relative_density_kgm3,density_kgm3,geometry
 background,background,0.000,2672.002,"everything not in a component"
 core,sphere,450.000,3122.002,"center [15.9 42.3 -34.0] m; radius 170.0 m"
 torus,torus,-500.000,2172.002,"ring 370.0 m; tube 55.0 m; ring center [15.9 42.3 -34.0] m; axis [0.0000 0.0000 1.0000]"
-regolith,layer,-900.000,1772.002,"0.0 to 12.0 m below the surface"
-boulder,sphere,900.000,3572.002,"center [129.2 238.5 71.7] m; radius 40.0 m"</code></pre></div>
+regolith,layer,-900.000,1772.002,"0.0 to 12.0 m below the surface"</code></pre></div>
 <h2 id="files-exchange-packages--solution-package">Solution package<a class="headerlink" href="#files-exchange-packages--solution-package" title="Link to this section">#</a></h2>
 <table>
 <thead>
@@ -2671,7 +2679,7 @@ boulder,sphere,900.000,3572.002,"center [129.2 238.5 71.7] m; radius 40.0 m"</co
 # homogeneous_body: reduced chi2 44.86, p-value 3.61e-238
 # measurements_used: C10 C11 S11 C20 C21 S21 C22 S22 C30 C31 S31 C32 S32 C33 S33 C40 C41 S41 C42 S42 C43 S43 C44 S44 Ixx Iyy Izz
 # regularization: 0 (Tikhonov parameter)
-# layers_and_sectors_from_km: 0.017644 0.041368 -0.035351 (depths and angles are measured along rays from this point)
+# layers_and_sectors_from_km: 0.017644 0.041368 -0.035351 (the measured center of mass: layer depths and sector boundaries are measured along rays from this point)
 # relative_density: density minus background density
 # uncertainties: 1-sigma; covariance in solution_covariance.txt
 name,type,density_kgm3,density_sigma_kgm3,relative_density_kgm3,relative_density_sigma_kgm3,density,geometry
@@ -2698,20 +2706,31 @@ normalization code it prints. That of the maker's package above, whose shape mod
   angles in degrees.
 
 FRAME
-  Every position is in the frame of the shape-model file of this package.
-  Origin: the center of mass.
-  Axes: z is the axis of the largest moment of inertia (C21 = S21 = 0): the spin axis of
-  a body in principal-axis rotation.
-  The shape-model file of this package was made from another one by a change of frame:
-    didymos_g_9309mm_spc_obj_0000n00000_v003.obj transformed: x' = (x - o)*A, o = [0.015281496 0.042884748 -0.034053123] km, A = [0.997920540676 0.000000000000 -0.064456143974; -0.001688015795 0.999657019950 -0.026134136041; 0.064434036803 0.026188594157 0.997578273840]
-  We give you the shape model already in this frame, so that you do not have to make this
-  change of frame yourself.
+  All positions, the gravity field and the moments of inertia of this package are given
+  in the frame of its shape model file, DOC-DATA2-Didymos_didymos_v003_com_spin_axes.obj:
+    origin  the center of mass of the body
+    z       the axis of the largest moment of inertia, so C21 = S21 = 0 (to rounding
+            error); for a body in principal-axis rotation it is the spin axis
+    x       the x-axis of the original file projected onto the plane normal to z
+    y       completes the right-handed frame (y = z cross x)
+  The shape model file was made by moving and rotating the original file,
+    didymos_g_9309mm_spc_obj_0000n00000_v003.obj
+  into this frame:
+    x' = (x - o) A
+    o = [0.015281496 0.042884748 -0.034053123] km  (the center of mass, in the original file)
+    A = [  0.997920540676  0.000000000000 -0.064456143974
+          -0.001688015795  0.999657019950 -0.026134136041
+           0.064434036803  0.026188594157  0.997578273840 ]
+  where x and x' are the coordinates of a point in the original file and in this one
+  (row vectors, km), and o and the columns of A are the origin and the axes of this frame
+  in the original file. Use this package's shape model file with its data, not the
+  original file.
 
 GRAVITY FIELD COEFFICIENT NORMALIZATION
   The files give fully normalized coefficients:
     Cbar_lm = C_lm / N_lm,   Sbar_lm = S_lm / N_lm,   Pbar_lm = N_lm P_lm,
     N_lm = sqrt( (2 - delta_m0) (2l + 1) (l - m)! / (l + m)! )
-  P_lm has no Condon-Shortley phase (-1)^m. For example:
+  where P_lm are the associated Legendre functions without the factor (-1)^m. For example,
     N_20 = sqrt(5), N_21 = sqrt(5/3), N_22 = sqrt(5/12), N_30 = sqrt(7).
   Zonal coefficients: J_l = -C_l0 = -sqrt(2l + 1) Cbar_l0.
 
@@ -2721,9 +2740,9 @@ GRAVITY FIELD COEFFICIENT NORMALIZATION
     N = math.sqrt((2 - (m == 0)) * (2*l + 1) * math.factorial(l - m) / math.factorial(l + m))
 
 DEGREE 1 AND THE CENTER OF MASS
-  The gravity fields here are expanded about the center of mass, so the degree-1 gravity
-  coefficients are zero and are not listed. The position of the center of mass in the
-  shape-model frame is a separate measurement (center_of_mass.txt).</code></pre></div>
+  The gravity field is expanded about the center of mass, so its degree-1 coefficients are
+  zero and are not listed. The position of the center of mass in the frame of the shape
+  model file is a separate measurement (center_of_mass.txt).</code></pre></div>
 <h2 id="files-exchange-packages--other-formats">Other formats<a class="headerlink" href="#files-exchange-packages--other-formats" title="Link to this section">#</a></h2>
 <table>
 <thead>
@@ -3860,7 +3879,8 @@ not distributed with SBTK; the runners need them in <code>data/hera_rse/</code>.
 <p>Only the package folder in <code>redacted/</code> is shared: <code>log.txt</code> and everything in <code>unredacted/</code> contain the true model.</p>
 <h3 id="projects-hera-blind-test--maker-models">Maker models<a class="headerlink" href="#projects-hera-blind-test--maker-models" title="Link to this section">#</a></h3>
 <p><code>examples/make_didymos_1.m</code> to <code>make_dimorphos_3.m</code> are six true models made the same way, one script each, into
-<code>results/didymos_models/</code> and <code>results/dimorphos_models/</code>. They send exact values of every degree to 6 and <span class="nobr"><math alttext="I_xx" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>x</mi><mi>x</mi></mrow></msub></mrow></math>,</span>
+<code>results/didymos_models/</code> and <code>results/dimorphos_models/</code>, as packages 1 to 6. Didymos and Dimorphos share one
+numbering because a solution name carries only the number; the T1 demo sets of the simulate scripts are 7 and 8. They send exact values of every degree to 6 and <span class="nobr"><math alttext="I_xx" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>x</mi><mi>x</mi></mrow></msub></mrow></math>,</span>
 <span class="nobr"><math alttext="I_yy" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>y</mi><mi>y</mi></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="I_zz" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub></mrow></math>.</span></p>
 <table>
 <thead>
@@ -4284,11 +4304,13 @@ shape = <a class="xref xref-fn" href="#reference-api-shape--sbtk.shape.from_arra
 <tr><td><code>.faces</code></td><td>nf x 3 vertex indices</td></tr>
 <tr><td><code>.vertices_km</code></td><td>nv x 3 vertex positions [km]</td></tr>
 <tr><td><code>.source</code></td><td>the file it came from</td></tr>
+<tr><td><code>.frame_origin_km, .frame_axes</code></td><td>[0 0 0] and eye(3): the frame of the file (changed by</td></tr>
+<tr class="nested"><td><code>sbtk.body.to_frame; vertices = (file vertices - frame_origin_km)*frame_axes)</code></td><td></td></tr>
 </tbody></table>
 <h3 class="api-sub">Example</h3>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">shape = <a class="xref xref-fn" href="#reference-api-shape--sbtk.shape.load">sbtk.shape.load</a>(fullfile(<a class="xref xref-fn" href="#reference-api-sbtk--sbtk.root">sbtk.root</a>, &#39;data&#39;, &#39;shapes&#39;, ...
 <span class="w">            </span><span class="s">&#39;didymos_g_9309mm_spc_obj_0000n00000_v003.obj&#39;</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;km&quot;</span><span class="p">);</span></code></pre></div>
-<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="#reference-api-sbtk--sbtk.root"><code>sbtk.root</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="#reference-api-units--sbtk.units.length_scale"><code>sbtk.units.length_scale</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a>, <a class="xref xref-fn" href="#reference-api-shape--sbtk.shape.bundled"><code>sbtk.shape.bundled</code></a></dd></dl>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="#reference-api-body--sbtk.body.to_frame"><code>sbtk.body.to_frame</code></a>, <a class="xref xref-fn" href="#reference-api-sbtk--sbtk.root"><code>sbtk.root</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="#reference-api-units--sbtk.units.length_scale"><code>sbtk.units.length_scale</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a>, <a class="xref xref-fn" href="#reference-api-shape--sbtk.shape.bundled"><code>sbtk.shape.bundled</code></a></dd></dl>
 <p class="impl">Implementation: <code>toolbox/+sbtk/+shape/load.m</code>, line 1.</p>
 </section>
 <section class="api-entry" id="reference-api-shape--sbtk.shape.properties">
@@ -4454,13 +4476,13 @@ body  = <a class="xref xref-fn" href="#reference-api-body--sbtk.body.create">sbt
 <tr id="reference-api-body--sbtk.body.to_frame.body"><td data-label="Name"><code>body</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">from <a class="xref xref-fn" href="#reference-api-body--sbtk.body.create">sbtk.body.create</a> or <a class="xref xref-fn" href="#reference-api-body--sbtk.body.from_mass">sbtk.body.from_mass</a> Fields: <a class="xref xref-st" href="#reference-data-structures--body"><code>body</code></a>. </td></tr>
 <tr id="reference-api-body--sbtk.body.to_frame.origin_km"><td data-label="Name"><code>origin_km</code></td><td data-label="Size">1 × 3</td><td data-label="Class">double</td><td data-label="Unit">km</td><td data-label="Default">required</td><td data-label="Description">origin of the new frame in the current frame [km]; [0 0 0] keeps the origin <span class="valid">Validation: <code>mustBeFinite</code>.</span></td></tr>
 <tr id="reference-api-body--sbtk.body.to_frame.axes"><td data-label="Name"><code>axes</code></td><td data-label="Size">3 × 3</td><td data-label="Class">double</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">3 x 3 rotation, columns: the new axes as unit vectors in the current frame, e.g. cf.axes of <a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.center_of_mass_frame">sbtk.gravity.center_of_mass_frame</a>; eye(3) keeps the axes <span class="valid">Validation: <code>mustBeFinite</code>.</span></td></tr>
-<tr id="reference-api-body--sbtk.body.to_frame.shape_name"><td data-label="Name"><code>shape_name</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">name of the transformed shape model; an exchange package writes it as &lt;shape_name&gt;.obj </td></tr>
+<tr id="reference-api-body--sbtk.body.to_frame.shape_name"><td data-label="Name"><code>shape_name</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">name of the transformed shape model; an exchange package writes it as &lt;data set&gt;_&lt;shape_name&gt;.obj </td></tr>
 </tbody></table>
 <h3 class="api-sub">Outputs</h3><table class="params outputs"><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
 <tr id="reference-api-body--sbtk.body.to_frame.out.body"><td data-label="Name"><code>body</code></td><td data-label="Description">from <a class="xref xref-fn" href="#reference-api-body--sbtk.body.create">sbtk.body.create</a> or <a class="xref xref-fn" href="#reference-api-body--sbtk.body.from_mass">sbtk.body.from_mass</a> Fields: <a class="xref xref-st" href="#reference-data-structures--body"><code>body</code></a>.</td></tr>
 </tbody></table>
 <h3 class="api-sub">Description</h3>
-<p>The vertices become (v - <code>origin_km</code>)*axes; the mass, reference radius and name of the body are kept, and the center of figure moves with the shape. <code>shape.source</code> records the name of the original file (not its path, which a package must not carry) and the transformation. Use the same <code>origin_km</code> and axes for the measurements (<a class="xref xref-fn" href="#reference-api-data--sbtk.data.to_frame">sbtk.data.to_frame</a>) and the interior or true model (<a class="xref xref-fn" href="#reference-api-interior--sbtk.interior.to_frame">sbtk.interior.to_frame</a>).</p>
+<p>The vertices become (v - <code>origin_km</code>)*axes; the mass, reference radius and name of the body are kept, and the center of figure moves with the shape. <code>shape.source</code> keeps the name of the original file (not its path, which a package must not carry), and <code>shape.frame_origin_km</code> and <code>shape.frame_axes</code> give the frame relative to that file, combined over successive changes of frame: vertices = (file vertices - <code>frame_origin_km</code>)*<code>frame_axes</code>. An exchange package states them in conventions.txt. Use the same <code>origin_km</code> and axes for the measurements (<a class="xref xref-fn" href="#reference-api-data--sbtk.data.to_frame">sbtk.data.to_frame</a>) and the interior or true model (<a class="xref xref-fn" href="#reference-api-interior--sbtk.interior.to_frame">sbtk.interior.to_frame</a>).</p>
 <h3 class="api-sub">Example</h3>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>truth</code>, <code>body</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">spin   = <a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.center_of_mass_frame">sbtk.gravity.center_of_mass_frame</a>(truth, body, &quot;spin&quot;);
 body_s = <a class="xref xref-fn" href="#reference-api-body--sbtk.body.to_frame">sbtk.body.to_frame</a>(body, spin.com_km, spin.axes, &quot;didymos_v003_com_spin_axes&quot;);</code></pre></div>
@@ -5176,7 +5198,7 @@ obs = <a class="xref xref-fn" href="#reference-api-data--sbtk.data.add_libration
 <h3 class="api-sub">Description</h3>
 <p>For <code>obs.coef_about</code> = '<code>center_of_mass</code>' only: the coefficients of degree &gt;= 2 are about the body's center of mass wherever the origin is, and the degree-1 coefficients give the measured center of mass relative to the origin (C10 = dz/(sqrt(3) R), C11 = dx/(sqrt(3) R), S11 = dy/(sqrt(3) R)). Moving the origin changes only the degree-1 values; uncertainties are unchanged.</p>
 <h3 class="api-sub">Example</h3>
-<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">obs = <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_data">sbtk.exchange.read_data</a>(&quot;CUB-DATA1-Didymos&quot;);
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">obs = <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_data">sbtk.exchange.read_data</a>(&quot;UCB-DATA1-Didymos&quot;);
 moved = <a class="xref xref-fn" href="#reference-api-data--sbtk.data.move_origin">sbtk.data.move_origin</a>(obs, obs.origin_km + [0.001 0 0]);     <span class="c">% 1 m along x</span></code></pre></div>
 <h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a></dd></dl>
 <p class="impl">Implementation: <code>toolbox/+sbtk/+data/move_origin.m</code>, line 1.</p>
@@ -5692,8 +5714,8 @@ ref = <a class="xref xref-fn" href="#reference-api-compare--sbtk.compare.referen
 <tr id="reference-api-compare--sbtk.compare.grid_summary.out.lines"><td data-label="Name"><code>lines</code></td><td data-label="Description">the printed lines (string array), e.g. for writelines into a results folder</td></tr>
 </tbody></table>
 <h3 class="api-sub">Example</h3>
-<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">cmp = <a class="xref xref-fn" href="#reference-api-compare--sbtk.compare.grids">sbtk.compare.grids</a>(<a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_grid">sbtk.exchange.read_grid</a>(&quot;CUB-MOD1-Didymos/density_grid.txt&quot;), ...
-                         <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_grid">sbtk.exchange.read_grid</a>(&quot;CUB-SOL_CUB1/density_grid.txt&quot;));
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">cmp = <a class="xref xref-fn" href="#reference-api-compare--sbtk.compare.grids">sbtk.compare.grids</a>(<a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_grid">sbtk.exchange.read_grid</a>(&quot;UCB-MOD1-Didymos/density_grid.txt&quot;), ...
+                         <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_grid">sbtk.exchange.read_grid</a>(&quot;UCB-SOL_UCB1/density_grid.txt&quot;));
 <a class="xref xref-fn" href="#reference-api-compare--sbtk.compare.grid_summary">sbtk.compare.grid_summary</a>(cmp);</code></pre></div>
 <h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="#reference-api-compare--sbtk.compare.grids"><code>sbtk.compare.grids</code></a>, <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_grid"><code>sbtk.exchange.read_grid</code></a></dd></dl>
 <p class="impl">Implementation: <code>toolbox/+sbtk/+compare/grid_summary.m</code>, line 1.</p>
@@ -5720,8 +5742,8 @@ ref = <a class="xref xref-fn" href="#reference-api-compare--sbtk.compare.referen
 </tbody></table>
 <p><code>cmp.n_common</code>, <code>cmp.n_truth</code>, <code>cmp.n_estimate</code>   numbers of cells</p>
 <h3 class="api-sub">Example</h3>
-<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">cmp = <a class="xref xref-fn" href="#reference-api-compare--sbtk.compare.grids">sbtk.compare.grids</a>(<a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_grid">sbtk.exchange.read_grid</a>(&quot;CUB-MOD1-Didymos/density_grid.txt&quot;), ...
-                         <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_grid">sbtk.exchange.read_grid</a>(&quot;XYZ-SOL_CUB1/density_grid.txt&quot;));</code></pre></div>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">cmp = <a class="xref xref-fn" href="#reference-api-compare--sbtk.compare.grids">sbtk.compare.grids</a>(<a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_grid">sbtk.exchange.read_grid</a>(&quot;UCB-MOD1-Didymos/density_grid.txt&quot;), ...
+                         <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_grid">sbtk.exchange.read_grid</a>(&quot;XYZ-SOL_UCB1/density_grid.txt&quot;));</code></pre></div>
 <h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.density_grid"><code>sbtk.exchange.density_grid</code></a>, <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_grid"><code>sbtk.exchange.read_grid</code></a></dd></dl>
 <p class="impl">Implementation: <code>toolbox/+sbtk/+compare/grids.m</code>, line 1.</p>
 </section>
@@ -5863,7 +5885,7 @@ model = <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.loc
 <p>A package of exact values (no 1-sigma columns, no <code>gravity_covariance.txt</code>) gives a set with NaN uncertainties: give it uncertainties (e.g. <a class="xref xref-fn" href="#reference-api-data--sbtk.data.use_uncertainties">sbtk.data.use_uncertainties</a> with the precision file of the test) before sbtk.invert.</p>
 <p>The libration ratio (B - A)/C becomes the row (B - A) - ratio*Izz = 0 with sigma <code>ratio_sigma</code> * Izz, where Izz is the measured Izz if the package has one, otherwise the Izz of the homogeneous body.</p>
 <h3 class="api-sub">Example</h3>
-<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>components</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">[obs, body] = <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_data">sbtk.exchange.read_data</a>(&quot;CUB-DATA1-Didymos&quot;);
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>components</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">[obs, body] = <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_data">sbtk.exchange.read_data</a>(&quot;UCB-DATA1-Didymos&quot;);
 fit = <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.solve">sbtk.invert.solve</a>(body, components, obs, <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.options">sbtk.invert.options</a>());</code></pre></div>
 <h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="#reference-api-data--sbtk.data.use_uncertainties"><code>sbtk.data.use_uncertainties</code></a>, <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.options"><code>sbtk.invert.options</code></a>, <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.solve"><code>sbtk.invert.solve</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="#reference-api-body--sbtk.body.from_mass"><code>sbtk.body.from_mass</code></a>, <a class="xref xref-fn" href="#reference-api-data--sbtk.data.add_libration"><code>sbtk.data.add_libration</code></a>, <a class="xref xref-fn" href="#reference-api-data--sbtk.data.add_moi"><code>sbtk.data.add_moi</code></a>, <a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.geometry"><code>sbtk.gravity.geometry</code></a>, <a class="xref xref-fn" href="#reference-api-shape--sbtk.shape.load"><code>sbtk.shape.load</code></a>, <a class="xref xref-fn" href="#reference-api-units--sbtk.units.G"><code>sbtk.units.G</code></a></dd></dl>
 <p class="impl">Implementation: <code>toolbox/+sbtk/+exchange/read_data.m</code>, line 1.</p>
@@ -5882,7 +5904,7 @@ fit = <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.solve">sb
 <h3 class="api-sub">Description</h3>
 <p><code>grid.spacing_km</code>, <code>grid.x_km</code> (n x 3), <code>grid.density_kgm3</code>, <code>grid.density_sigma_kgm3</code> Compare two grids with <a class="xref xref-fn" href="#reference-api-compare--sbtk.compare.grids">sbtk.compare.grids</a>.</p>
 <h3 class="api-sub">Example</h3>
-<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">grid = <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_grid">sbtk.exchange.read_grid</a>(&quot;CUB-MOD1-Didymos/density_grid.txt&quot;);</code></pre></div>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">grid = <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_grid">sbtk.exchange.read_grid</a>(&quot;UCB-MOD1-Didymos/density_grid.txt&quot;);</code></pre></div>
 <h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="#reference-api-compare--sbtk.compare.grids"><code>sbtk.compare.grids</code></a></dd></dl>
 <p class="impl">Implementation: <code>toolbox/+sbtk/+exchange/read_grid.m</code>, line 1.</p>
 </section>
@@ -5916,14 +5938,14 @@ fit = <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.solve">sb
 <h3 class="api-sub">Syntax</h3>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">name = <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.solution_name">sbtk.exchange.solution_name</a>(team, data_set)</code></pre></div>
 <h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
-<tr id="reference-api-exchange--sbtk.exchange.solution_name.team"><td data-label="Name"><code>team</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">the team that made the solution, e.g. "CUB" </td></tr>
+<tr id="reference-api-exchange--sbtk.exchange.solution_name.team"><td data-label="Name"><code>team</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">the team that made the solution, e.g. "UCB" </td></tr>
 <tr id="reference-api-exchange--sbtk.exchange.solution_name.data_set"><td data-label="Name"><code>data_set</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">the measurement package solved, named &lt;data team&gt;-DATA&lt;number&gt;[-comment] </td></tr>
 </tbody></table>
 <h3 class="api-sub">Outputs</h3><table class="params outputs"><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
 <tr id="reference-api-exchange--sbtk.exchange.solution_name.out.name"><td data-label="Name"><code>name</code></td><td data-label="Description">Package name <code>&lt;team&gt;-SOL_&lt;data team&gt;&lt;number&gt;</code>.</td></tr>
 </tbody></table>
 <h3 class="api-sub">Example</h3>
-<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.solution_name">sbtk.exchange.solution_name</a>(&quot;CUB&quot;, &quot;ROB-DATA1&quot;)          <span class="c">% &quot;CUB-SOL_ROB1&quot;</span></code></pre></div>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.solution_name">sbtk.exchange.solution_name</a>(&quot;UCB&quot;, &quot;ROB-DATA1&quot;)          <span class="c">% &quot;UCB-SOL_ROB1&quot;</span></code></pre></div>
 <p class="impl">Implementation: <code>toolbox/+sbtk/+exchange/solution_name.m</code>, line 1.</p>
 </section>
 <section class="api-entry" id="reference-api-exchange--sbtk.exchange.write_data">
@@ -5933,7 +5955,7 @@ fit = <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.solve">sb
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">folder = <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_data">sbtk.exchange.write_data</a>(parent, data_set, body, obs, prepared_by)</code></pre></div>
 <h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
 <tr id="reference-api-exchange--sbtk.exchange.write_data.parent"><td data-label="Name"><code>parent</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">folder in which the package folder is created </td></tr>
-<tr id="reference-api-exchange--sbtk.exchange.write_data.data_set"><td data-label="Name"><code>data_set</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">package name, e.g. "CUB-DATA1-Didymos" (team - DATA&lt;number&gt; - comment) </td></tr>
+<tr id="reference-api-exchange--sbtk.exchange.write_data.data_set"><td data-label="Name"><code>data_set</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">package name, e.g. "UCB-DATA1-Didymos" (team - DATA&lt;number&gt; - comment) </td></tr>
 <tr id="reference-api-exchange--sbtk.exchange.write_data.body"><td data-label="Name"><code>body</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">from <a class="xref xref-fn" href="#reference-api-body--sbtk.body.create">sbtk.body.create</a>; its shape-model file is copied into the package Fields: <a class="xref xref-st" href="#reference-data-structures--body"><code>body</code></a>. </td></tr>
 <tr id="reference-api-exchange--sbtk.exchange.write_data.obs"><td data-label="Name"><code>obs</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">the measurements with degree-1 coefficients (the center of mass): exact values (a maker's package; the receiving team applies its own uncertainties), or values with uncertainties and noise (<a class="xref xref-fn" href="#reference-api-data--sbtk.data.add_noise">sbtk.data.add_noise</a>) Fields: <a class="xref xref-st" href="#reference-data-structures--obs"><code>obs</code></a>. </td></tr>
 <tr id="reference-api-exchange--sbtk.exchange.write_data.prepared_by"><td data-label="Name"><code>prepared_by</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">who made the package, e.g. "University of Colorado Boulder, name (e-mail)" </td></tr>
@@ -5954,7 +5976,7 @@ fit = <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.solve">sb
 </tbody></table>
 <p>The files state only what applies: 1-sigma columns and the noise when the values have them (<a class="xref xref-fn" href="#reference-internal--sbtk.internal.exchange_data_files">sbtk.internal.exchange_data_files</a>). Nothing else of obs is written: not the expansion origin of the simulation (the true center of mass), the noise seed or the notes. Format: docs/exchange_format.md; read back with <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_data">sbtk.exchange.read_data</a>.</p>
 <h3 class="api-sub">Example</h3>
-<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>out</code>, <code>body</code>, <code>exact</code>, <code>prepared_by</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_data">sbtk.exchange.write_data</a>(fullfile(out.folder, &quot;redacted&quot;), &quot;CUB-DATA1-Didymos&quot;, body, exact, prepared_by);</code></pre></div>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>out</code>, <code>body</code>, <code>exact</code>, <code>prepared_by</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_data">sbtk.exchange.write_data</a>(fullfile(out.folder, &quot;redacted&quot;), &quot;UCB-DATA1-Didymos&quot;, body, exact, prepared_by);</code></pre></div>
 <h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="#reference-api-body--sbtk.body.create"><code>sbtk.body.create</code></a>, <a class="xref xref-fn" href="#reference-api-data--sbtk.data.add_noise"><code>sbtk.data.add_noise</code></a>, <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a>, <a class="xref xref-fn" href="#reference-internal--sbtk.internal.exchange_data_files"><code>sbtk.internal.exchange_data_files</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="#reference-api-data--sbtk.data.set_covariance"><code>sbtk.data.set_covariance</code></a>, <a class="xref xref-fn" href="#reference-api-data--sbtk.data.set_moi_sigma"><code>sbtk.data.set_moi_sigma</code></a>, <a class="xref xref-fn" href="#reference-api-data--sbtk.data.set_uncertainties"><code>sbtk.data.set_uncertainties</code></a>, <a class="xref xref-fn" href="#reference-api-data--sbtk.data.use_uncertainties"><code>sbtk.data.use_uncertainties</code></a>, <a class="xref xref-fn" href="#reference-api-shape--sbtk.shape.properties"><code>sbtk.shape.properties</code></a></dd></dl>
 <p class="impl">Implementation: <code>toolbox/+sbtk/+exchange/write_data.m</code>, line 1.</p>
 </section>
@@ -5965,8 +5987,8 @@ fit = <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.solve">sb
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">folder = <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_model">sbtk.exchange.write_model</a>(parent, model_set, data_set, body, truth, obs_exact, spacing_km, prepared_by)</code></pre></div>
 <h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
 <tr id="reference-api-exchange--sbtk.exchange.write_model.parent"><td data-label="Name"><code>parent</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">folder in which the package folder is created </td></tr>
-<tr id="reference-api-exchange--sbtk.exchange.write_model.model_set"><td data-label="Name"><code>model_set</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">package name, e.g. "CUB-MOD1-Didymos" </td></tr>
-<tr id="reference-api-exchange--sbtk.exchange.write_model.data_set"><td data-label="Name"><code>data_set</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">name of the measurement package made from this model, e.g. "CUB-DATA1-Didymos" </td></tr>
+<tr id="reference-api-exchange--sbtk.exchange.write_model.model_set"><td data-label="Name"><code>model_set</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">package name, e.g. "UCB-MOD1-Didymos" </td></tr>
+<tr id="reference-api-exchange--sbtk.exchange.write_model.data_set"><td data-label="Name"><code>data_set</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">name of the measurement package made from this model, e.g. "UCB-DATA1-Didymos" </td></tr>
 <tr id="reference-api-exchange--sbtk.exchange.write_model.body"><td data-label="Name"><code>body</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">from <a class="xref xref-fn" href="#reference-api-body--sbtk.body.create">sbtk.body.create</a> Fields: <a class="xref xref-st" href="#reference-data-structures--body"><code>body</code></a>. </td></tr>
 <tr id="reference-api-exchange--sbtk.exchange.write_model.truth"><td data-label="Name"><code>truth</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">the true model (<a class="xref xref-fn" href="#reference-api-data--sbtk.data.simulate">sbtk.data.simulate</a>) Fields: <a class="xref xref-st" href="#reference-data-structures--truth"><code>truth</code></a>. </td></tr>
 <tr id="reference-api-exchange--sbtk.exchange.write_model.obs_exact"><td data-label="Name"><code>obs_exact</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">the measurements without noise: the exact values of <a class="xref xref-fn" href="#reference-api-data--sbtk.data.simulate">sbtk.data.simulate</a>, with or without uncertainties (without, their 1-sigma are written as NaN) </td></tr>
@@ -5988,7 +6010,7 @@ fit = <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.solve">sb
 <p>Compare a solution with it by <a class="xref xref-fn" href="#reference-api-compare--sbtk.compare.grids">sbtk.compare.grids</a> on the two density grids.</p>
 <h3 class="api-sub">Example</h3>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>out</code>, <code>body</code>, <code>truth</code>, <code>exact</code>, <code>prepared_by</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><span class="c">% exact: the measurements before sbtk.data.add_noise</span>
-<a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_model">sbtk.exchange.write_model</a>(fullfile(out.folder, &quot;unredacted&quot;), &quot;CUB-MOD1-Didymos&quot;, &quot;CUB-DATA1-Didymos&quot;, ...
+<a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_model">sbtk.exchange.write_model</a>(fullfile(out.folder, &quot;unredacted&quot;), &quot;UCB-MOD1-Didymos&quot;, &quot;UCB-DATA1-Didymos&quot;, ...
 <span class="w">                          </span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="n">truth</span><span class="p">,</span><span class="w"> </span><span class="n">exact</span><span class="p">,</span><span class="w"> </span><span class="mf">0.020</span><span class="p">,</span><span class="w"> </span><span class="n">prepared_by</span><span class="p">);</span></code></pre></div>
 <h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="#reference-api-body--sbtk.body.create"><code>sbtk.body.create</code></a>, <a class="xref xref-fn" href="#reference-api-compare--sbtk.compare.grids"><code>sbtk.compare.grids</code></a>, <a class="xref xref-fn" href="#reference-api-data--sbtk.data.add_noise"><code>sbtk.data.add_noise</code></a>, <a class="xref xref-fn" href="#reference-api-data--sbtk.data.simulate"><code>sbtk.data.simulate</code></a>, <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.density_grid"><code>sbtk.exchange.density_grid</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.density_grid"><code>sbtk.exchange.density_grid</code></a>, <a class="xref xref-fn" href="#reference-api-plot--sbtk.plot.interior3d"><code>sbtk.plot.interior3d</code></a>, <a class="xref xref-fn" href="#reference-api-plot--sbtk.plot.slices"><code>sbtk.plot.slices</code></a>, <a class="xref xref-fn" href="#reference-api-shape--sbtk.shape.properties"><code>sbtk.shape.properties</code></a></dd></dl>
 <p class="impl">Implementation: <code>toolbox/+sbtk/+exchange/write_model.m</code>, line 1.</p>
@@ -6000,7 +6022,7 @@ fit = <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.solve">sb
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">folder = <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_solution">sbtk.exchange.write_solution</a>(parent, solution_set, body, fit, homogeneous, spacing_km, prepared_by)</code></pre></div>
 <h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
 <tr id="reference-api-exchange--sbtk.exchange.write_solution.parent"><td data-label="Name"><code>parent</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">folder in which the package folder is created </td></tr>
-<tr id="reference-api-exchange--sbtk.exchange.write_solution.solution_set"><td data-label="Name"><code>solution_set</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">package name, e.g. "CUB-<code>SOL_ROB1</code>" (team - SOL_&lt;data team&gt;&lt;number&gt;) </td></tr>
+<tr id="reference-api-exchange--sbtk.exchange.write_solution.solution_set"><td data-label="Name"><code>solution_set</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">package name, e.g. "UCB-<code>SOL_ROB1</code>" (team - SOL_&lt;data team&gt;&lt;number&gt;) </td></tr>
 <tr id="reference-api-exchange--sbtk.exchange.write_solution.body"><td data-label="Name"><code>body</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">the body used in the inversion Fields: <a class="xref xref-st" href="#reference-data-structures--body"><code>body</code></a>. </td></tr>
 <tr id="reference-api-exchange--sbtk.exchange.write_solution.fit"><td data-label="Name"><code>fit</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">from <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.run">sbtk.invert.run</a> (<code>fit.data_name</code> names the measurement package) Fields: <a class="xref xref-st" href="#reference-data-structures--fit"><code>fit</code></a>. </td></tr>
 <tr id="reference-api-exchange--sbtk.exchange.write_solution.homogeneous"><td data-label="Name"><code>homogeneous</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">from <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.homogeneous">sbtk.invert.homogeneous</a> (the same data fitted by a homogeneous body) Fields: <a class="xref xref-st" href="#reference-data-structures--fit"><code>fit</code></a>. </td></tr>
@@ -6023,7 +6045,7 @@ fit = <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.solve">sb
 <h3 class="api-sub">Example</h3>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>body</code>, <code>components</code>, <code>obs</code>, <code>out</code>, <code>prepared_by</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">prob = <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.setup">sbtk.invert.setup</a>(body, components, obs, <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.options">sbtk.invert.options</a>());
 fit  = <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.run">sbtk.invert.run</a>(prob);
-<a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_solution">sbtk.exchange.write_solution</a>(out.folder, <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.solution_name">sbtk.exchange.solution_name</a>(&quot;CUB&quot;, obs.name), body, fit, ...
+<a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_solution">sbtk.exchange.write_solution</a>(out.folder, <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.solution_name">sbtk.exchange.solution_name</a>(&quot;UCB&quot;, obs.name), body, fit, ...
                              <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.homogeneous">sbtk.invert.homogeneous</a>(prob), 0.020, prepared_by);</code></pre></div>
 <h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.solution_name"><code>sbtk.exchange.solution_name</code></a>, <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.homogeneous"><code>sbtk.invert.homogeneous</code></a>, <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.options"><code>sbtk.invert.options</code></a>, <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.run"><code>sbtk.invert.run</code></a>, <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.setup"><code>sbtk.invert.setup</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.density_grid"><code>sbtk.exchange.density_grid</code></a>, <a class="xref xref-fn" href="#reference-api-plot--sbtk.plot.densities"><code>sbtk.plot.densities</code></a>, <a class="xref xref-fn" href="#reference-api-plot--sbtk.plot.interior3d"><code>sbtk.plot.interior3d</code></a>, <a class="xref xref-fn" href="#reference-api-plot--sbtk.plot.residuals"><code>sbtk.plot.residuals</code></a>, <a class="xref xref-fn" href="#reference-api-plot--sbtk.plot.slices"><code>sbtk.plot.slices</code></a></dd></dl>
 <p class="impl">Implementation: <code>toolbox/+sbtk/+exchange/write_solution.m</code>, line 1.</p>
@@ -6678,12 +6700,14 @@ either.</p>
 <h2 id="reference-data-structures--shape"><code>shape</code>: Shape model<a class="headerlink" href="#reference-data-structures--shape" title="Link to this section">#</a></h2>
 <p class="madeby">Created by <a class="xref xref-fn" href="#reference-api-shape--sbtk.shape.load"><code>sbtk.shape.load</code></a>, <a class="xref xref-fn" href="#reference-api-shape--sbtk.shape.bundled"><code>sbtk.shape.bundled</code></a>, <a class="xref xref-fn" href="#reference-api-shape--sbtk.shape.from_arrays"><code>sbtk.shape.from_arrays</code></a>, <a class="xref xref-fn" href="#reference-api-shape--sbtk.shape.ellipsoid"><code>sbtk.shape.ellipsoid</code></a>, <a class="xref xref-fn" href="#reference-api-shape--sbtk.shape.reduce"><code>sbtk.shape.reduce</code></a>, <a class="xref xref-fn" href="#reference-api-shape--sbtk.shape.reduce_spc"><code>sbtk.shape.reduce_spc</code></a>.</p>
 <p>A closed triangular mesh with vertex positions in kilometers.</p>
-<details class="fields" id="reference-data-structures--shape-fields"><summary>Fields of <code>shape</code> (4)</summary>
+<details class="fields" id="reference-data-structures--shape-fields"><summary>Fields of <code>shape</code> (6)</summary>
 <table class="fieldtable"><thead><tr><th>Field</th><th>Size</th><th>Unit</th><th>Description</th></tr></thead><tbody>
 <tr id="reference-data-structures--shape.name"><td data-label="Field"><code>name</code><a class="rowlink" href="#reference-data-structures--shape.name" aria-label="Link to field shape.name">#</a></td><td data-label="Size">text</td><td data-label="Unit"></td><td data-label="Description">File name without extension, or the name given.</td></tr>
 <tr id="reference-data-structures--shape.faces"><td data-label="Field"><code>faces</code><a class="rowlink" href="#reference-data-structures--shape.faces" aria-label="Link to field shape.faces">#</a></td><td data-label="Size">nf × 3</td><td data-label="Unit"></td><td data-label="Description">Vertex indices of each triangle (1-based), ordered so that the normal points outward.</td></tr>
 <tr id="reference-data-structures--shape.vertices_km"><td data-label="Field"><code>vertices_km</code><a class="rowlink" href="#reference-data-structures--shape.vertices_km" aria-label="Link to field shape.vertices_km">#</a></td><td data-label="Size">nv × 3</td><td data-label="Unit">km</td><td data-label="Description">Vertex positions in the shape-model frame.</td></tr>
-<tr id="reference-data-structures--shape.source"><td data-label="Field"><code>source</code><a class="rowlink" href="#reference-data-structures--shape.source" aria-label="Link to field shape.source">#</a></td><td data-label="Size">text</td><td data-label="Unit"></td><td data-label="Description">Path of the file the shape was read from; <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_data"><code>sbtk.exchange.write_data</code></a> copies this file into a measurement package.</td></tr>
+<tr id="reference-data-structures--shape.source"><td data-label="Field"><code>source</code><a class="rowlink" href="#reference-data-structures--shape.source" aria-label="Link to field shape.source">#</a></td><td data-label="Size">text</td><td data-label="Unit"></td><td data-label="Description">Path of the file the shape was read from (<code>'arrays'</code> or <code>'ellipsoid'</code> for shapes not read from a file). After <a class="xref xref-fn" href="#reference-api-body--sbtk.body.to_frame"><code>sbtk.body.to_frame</code></a>, the name of the original file without its path. <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_data"><code>sbtk.exchange.write_data</code></a> copies the file into a measurement package if the shape model is that file unchanged.</td></tr>
+<tr id="reference-data-structures--shape.frame_origin_km"><td data-label="Field"><code>frame_origin_km</code><a class="rowlink" href="#reference-data-structures--shape.frame_origin_km" aria-label="Link to field shape.frame_origin_km">#</a></td><td data-label="Size">1 × 3</td><td data-label="Unit">km</td><td data-label="Description">Origin of the shape model's frame in the coordinates of <code>source</code>: <code>[0 0 0]</code>, or as set by <a class="xref xref-fn" href="#reference-api-body--sbtk.body.to_frame"><code>sbtk.body.to_frame</code></a> (combined over successive changes of frame).</td></tr>
+<tr id="reference-data-structures--shape.frame_axes"><td data-label="Field"><code>frame_axes</code><a class="rowlink" href="#reference-data-structures--shape.frame_axes" aria-label="Link to field shape.frame_axes">#</a></td><td data-label="Size">3 × 3</td><td data-label="Unit"></td><td data-label="Description">Axes of the shape model's frame (columns) in the coordinates of <code>source</code>: <code>eye(3)</code>, or as set by <a class="xref xref-fn" href="#reference-api-body--sbtk.body.to_frame"><code>sbtk.body.to_frame</code></a>. The vertices are <code>(source vertices - frame_origin_km)*frame_axes</code>.</td></tr>
 </tbody></table></details>
 <h2 id="reference-data-structures--props"><code>props</code>: Shape properties<a class="headerlink" href="#reference-data-structures--props" title="Link to this section">#</a></h2>
 <p class="madeby">Created by <a class="xref xref-fn" href="#reference-api-shape--sbtk.shape.properties"><code>sbtk.shape.properties</code></a>.</p>
@@ -7214,7 +7238,7 @@ its centroid and volume. Used by the comparisons and the random-field integrals.
 <tr id="reference-internal--sbtk.internal.surface_distance"><td><code>sbtk.internal.surface_distance</code></td><td>Distance from the expansion origin to the surface along unit directions [km].</td><td><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.density_grid"><code>sbtk.exchange.density_grid</code></a>, <a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.component_integrals"><code>sbtk.gravity.component_integrals</code></a>, <a class="xref xref-fn" href="#reference-api-interior--sbtk.interior.density_at"><code>sbtk.interior.density_at</code></a>, <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.run"><code>sbtk.invert.run</code></a>, <a class="xref xref-fn" href="#reference-api-plot--sbtk.plot.interior3d"><code>sbtk.plot.interior3d</code></a></td></tr>
 <tr id="reference-internal--sbtk.internal.surface_distance_near"><td><code>sbtk.internal.surface_distance_near</code></td><td>Distance from a nearby origin to the surface through given points [km].</td><td><a class="xref xref-fn" href="#reference-api-compare--sbtk.compare.reference"><code>sbtk.compare.reference</code></a></td></tr>
 </tbody></table></section><section class="printpage" id="validation-tests"><p class="printcat">Validation</p><h1 id="validation-tests--validation-and-tests">Validation and tests<a class="headerlink" href="#validation-tests--validation-and-tests" title="Link to this section">#</a></h1>
-<p>SBTK 1.0.0 has 152 unit and integration tests in MATLAB's unit-test framework. They run with</p>
+<p>SBTK 1.0.0 has 153 unit and integration tests in MATLAB's unit-test framework. They run with</p>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">run(fullfile(<a class="xref xref-fn" href="#reference-api-sbtk--sbtk.root">sbtk.root</a>, &quot;tests&quot;, &quot;run_tests.m&quot;))      <span class="c">% about 6 minutes; writes tests/reports/test_report.txt</span></code></pre></div>
 <p>This page states what the tests check and with what tolerance, as written in the test files. It makes no claims
 beyond them. Unit tests use a small ellipsoid body (<code>tests/unit/small_body.m</code>); validation tests use an ellipsoid with
@@ -7361,7 +7385,7 @@ semi-axes 0.5 × 0.4 × 0.3 km (20,480 facets) and the 9.3 m Didymos model with 
 </tr>
 <tr>
 <td><code>testExactPackage</code></td>
-<td>A package of exact values has the columns <code>l,m,C,S</code>, no covariance file and no uncertainty or noise lines; it is read back with NaN uncertainties, the inversion asks for uncertainties, and with them it fits.</td>
+<td>A package of exact values has the columns <code>l,m,C,S</code>, no covariance file and no uncertainty or noise metadata, and its README says the values are exact; it is read back with NaN uncertainties, the inversion asks for uncertainties, and with them it fits.</td>
 <td>values 10⁻¹⁷; <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> &lt; 10⁻⁶</td>
 </tr>
 <tr>
@@ -7452,7 +7476,7 @@ generalized.</p>
 </tr>
 <tr>
 <td><code>tests/unit/test_frames.m</code></td>
-<td><code>testSpinAxes</code>: in the spin axes <span class="nobr"><math alttext="C_21 = S_21 = 0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub><mo>&#x0003D;</mo><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math></span> to <span class="nobr"><math alttext="10^-13" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>13</mn></mrow></msup></mrow></math>,</span> <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span> is the axis of the largest moment, <span class="nobr"><math alttext="x" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></span> lies in the plane of the shape-model <span class="nobr"><math alttext="x" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></span>-axis and <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math>,</span> <span class="nobr"><math alttext="12 atan2( S_22, C_22)" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mstyle displaystyle="false" scriptlevel="0"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mspace width="0.167em" /><mrow><mi mathvariant="normal">a</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">n</mi><mn>2</mn></mrow><mo stretchy="false">&#x00028;</mo><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub><mo>&#x0002C;</mo><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub><mo stretchy="false">&#x00029;</mo></mrow></math></span> is the longitude of the axis of the smallest moment, each degree's power is unchanged, and the comparison with the homogeneous body gives its own terms. <code>testChangeOfFrameEqualsSimulationInIt</code>: a body, an interior with every component type and a random field, carried into a rotated and shifted frame and simulated there, give the transformed true model, coefficients, inertia rows and libration ratio of the original simulation (to <span class="nobr"><math alttext="10^-7" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>7</mn></mrow></msup></mrow></math>)</span>, and the density grid in the new frame equals the original model at the same points (to <span class="nobr"><math alttext="10^-9" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>9</mn></mrow></msup></mrow></math></span> kg/m³). <code>testPackageInSpinAxes</code>: packages in the spin axes contain their own shape-model file, the data have <span class="nobr"><math alttext="C_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="S_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math></span> zero within the noise, and the grid and the component descriptions are in the same frame. <code>testChangeOfFrameRules</code>: a shift applies to any set; new axes need exact inertia rows and complete degrees; fits are not transformed; non-rotations are rejected. <code>testNoLocalPathInPackage</code>: a package with a shape model changed in frame names the original file but not its folder. <code>testGeneratedShapeNamedAfterPackage</code>: a shape model changed in frame and written into two packages gets two file names, <code>&lt;data set&gt;_&lt;shape name&gt;.obj</code>, and the interior-model package names the same file as its data package.</td>
+<td><code>testSpinAxes</code>: in the spin axes <span class="nobr"><math alttext="C_21 = S_21 = 0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub><mo>&#x0003D;</mo><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math></span> to <span class="nobr"><math alttext="10^-13" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>13</mn></mrow></msup></mrow></math>,</span> <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span> is the axis of the largest moment, <span class="nobr"><math alttext="x" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></span> lies in the plane of the shape-model <span class="nobr"><math alttext="x" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></span>-axis and <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math>,</span> <span class="nobr"><math alttext="12 atan2( S_22, C_22)" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mstyle displaystyle="false" scriptlevel="0"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mspace width="0.167em" /><mrow><mi mathvariant="normal">a</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">n</mi><mn>2</mn></mrow><mo stretchy="false">&#x00028;</mo><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub><mo>&#x0002C;</mo><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub><mo stretchy="false">&#x00029;</mo></mrow></math></span> is the longitude of the axis of the smallest moment, each degree's power is unchanged, and the comparison with the homogeneous body gives its own terms. <code>testChangeOfFrameEqualsSimulationInIt</code>: a body, an interior with every component type and a random field, carried into a rotated and shifted frame and simulated there, give the transformed true model, coefficients, inertia rows and libration ratio of the original simulation (to <span class="nobr"><math alttext="10^-7" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>7</mn></mrow></msup></mrow></math>)</span>, and the density grid in the new frame equals the original model at the same points (to <span class="nobr"><math alttext="10^-9" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>9</mn></mrow></msup></mrow></math></span> kg/m³). <code>testPackageInSpinAxes</code>: packages in the spin axes contain their own shape-model file, the data have <span class="nobr"><math alttext="C_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="S_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math></span> zero within the noise, and the grid and the component descriptions are in the same frame. <code>testChangeOfFrameRules</code>: a shift applies to any set; new axes need exact inertia rows and complete degrees; fits are not transformed; non-rotations are rejected. <code>testNoLocalPathInPackage</code>: a package with a shape model changed in frame names the original file but not its folder. <code>testChangesOfFrameCombine</code>: after two changes of frame the shape model's vertices equal <code>(original vertices - frame_origin_km)*frame_axes</code> to 10⁻¹² km. <code>testGeneratedShapeNamedAfterPackage</code>: a shape model changed in frame and written into two packages gets two file names, <code>&lt;data set&gt;_&lt;shape name&gt;.obj</code>, and the interior-model package names the same file as its data package.</td>
 </tr>
 <tr>
 <td><code>tests/unit/test_data.m</code></td>

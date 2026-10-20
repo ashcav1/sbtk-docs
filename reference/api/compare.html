@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>sbtk.compare — SBTK documentation</title>
-<link rel="stylesheet" href="../../assets/site.css?v=8ed8c35933">
-<link rel="stylesheet" href="../../assets/pygments.css?v=8ed8c35933">
-<link rel="stylesheet" href="../../assets/print.css?v=8ed8c35933" media="print">
+<link rel="stylesheet" href="../../assets/site.css?v=ed0e42ddfc">
+<link rel="stylesheet" href="../../assets/pygments.css?v=ed0e42ddfc">
+<link rel="stylesheet" href="../../assets/print.css?v=ed0e42ddfc" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -75,8 +75,8 @@ ref = <a class="xref xref-fn" href="../../reference/api/compare.html#sbtk.compar
 <tr id="sbtk.compare.grid_summary.out.lines"><td data-label="Name"><code>lines</code></td><td data-label="Description">the printed lines (string array), e.g. for writelines into a results folder</td></tr>
 </tbody></table>
 <h3 class="api-sub">Example</h3>
-<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">cmp = <a class="xref xref-fn" href="../../reference/api/compare.html#sbtk.compare.grids">sbtk.compare.grids</a>(<a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.read_grid">sbtk.exchange.read_grid</a>(&quot;CUB-MOD1-Didymos/density_grid.txt&quot;), ...
-                         <a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.read_grid">sbtk.exchange.read_grid</a>(&quot;CUB-SOL_CUB1/density_grid.txt&quot;));
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">cmp = <a class="xref xref-fn" href="../../reference/api/compare.html#sbtk.compare.grids">sbtk.compare.grids</a>(<a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.read_grid">sbtk.exchange.read_grid</a>(&quot;UCB-MOD1-Didymos/density_grid.txt&quot;), ...
+                         <a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.read_grid">sbtk.exchange.read_grid</a>(&quot;UCB-SOL_UCB1/density_grid.txt&quot;));
 <a class="xref xref-fn" href="../../reference/api/compare.html#sbtk.compare.grid_summary">sbtk.compare.grid_summary</a>(cmp);</code></pre></div>
 <h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/compare.html#sbtk.compare.grids"><code>sbtk.compare.grids</code></a>, <a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.read_grid"><code>sbtk.exchange.read_grid</code></a></dd></dl>
 <p class="impl">Implementation: <code>toolbox/+sbtk/+compare/grid_summary.m</code>, line 1.</p>
@@ -103,8 +103,8 @@ ref = <a class="xref xref-fn" href="../../reference/api/compare.html#sbtk.compar
 </tbody></table>
 <p><code>cmp.n_common</code>, <code>cmp.n_truth</code>, <code>cmp.n_estimate</code>   numbers of cells</p>
 <h3 class="api-sub">Example</h3>
-<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">cmp = <a class="xref xref-fn" href="../../reference/api/compare.html#sbtk.compare.grids">sbtk.compare.grids</a>(<a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.read_grid">sbtk.exchange.read_grid</a>(&quot;CUB-MOD1-Didymos/density_grid.txt&quot;), ...
-                         <a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.read_grid">sbtk.exchange.read_grid</a>(&quot;XYZ-SOL_CUB1/density_grid.txt&quot;));</code></pre></div>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">cmp = <a class="xref xref-fn" href="../../reference/api/compare.html#sbtk.compare.grids">sbtk.compare.grids</a>(<a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.read_grid">sbtk.exchange.read_grid</a>(&quot;UCB-MOD1-Didymos/density_grid.txt&quot;), ...
+                         <a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.read_grid">sbtk.exchange.read_grid</a>(&quot;XYZ-SOL_UCB1/density_grid.txt&quot;));</code></pre></div>
 <h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.density_grid"><code>sbtk.exchange.density_grid</code></a>, <a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.read_grid"><code>sbtk.exchange.read_grid</code></a></dd></dl>
 <p class="impl">Implementation: <code>toolbox/+sbtk/+compare/grids.m</code>, line 1.</p>
 </section>
@@ -182,7 +182,7 @@ cmp = <a class="xref xref-fn" href="../../reference/api/compare.html#sbtk.compar
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#sbtk.compare.evaluate">sbtk.compare.evaluate</a></li><li class="lvl2"><a href="#sbtk.compare.grid_summary">sbtk.compare.grid_summary</a></li><li class="lvl2"><a href="#sbtk.compare.grids">sbtk.compare.grids</a></li><li class="lvl2"><a href="#sbtk.compare.reference">sbtk.compare.reference</a></li><li class="lvl2"><a href="#sbtk.compare.summary">sbtk.compare.summary</a></li><li class="lvl2"><a href="#sbtk.compare.with_truth">sbtk.compare.with_truth</a></li></ul></nav>
 </div>
-<script src="../../assets/search-index.js?v=8ed8c35933"></script>
-<script src="../../assets/site.js?v=8ed8c35933"></script>
+<script src="../../assets/search-index.js?v=ed0e42ddfc"></script>
+<script src="../../assets/site.js?v=ed0e42ddfc"></script>
 </body>
 </html>

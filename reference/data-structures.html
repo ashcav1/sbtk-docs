@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Data structures — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=8ed8c35933">
-<link rel="stylesheet" href="../assets/pygments.css?v=8ed8c35933">
-<link rel="stylesheet" href="../assets/print.css?v=8ed8c35933" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=ed0e42ddfc">
+<link rel="stylesheet" href="../assets/pygments.css?v=ed0e42ddfc">
+<link rel="stylesheet" href="../assets/print.css?v=ed0e42ddfc" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -67,12 +67,14 @@ either.</p>
 <h2 id="shape"><code>shape</code>: Shape model<a class="headerlink" href="#shape" title="Link to this section">#</a></h2>
 <p class="madeby">Created by <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.load"><code>sbtk.shape.load</code></a>, <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.bundled"><code>sbtk.shape.bundled</code></a>, <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.from_arrays"><code>sbtk.shape.from_arrays</code></a>, <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.ellipsoid"><code>sbtk.shape.ellipsoid</code></a>, <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.reduce"><code>sbtk.shape.reduce</code></a>, <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.reduce_spc"><code>sbtk.shape.reduce_spc</code></a>.</p>
 <p>A closed triangular mesh with vertex positions in kilometers.</p>
-<details class="fields" id="shape-fields"><summary>Fields of <code>shape</code> (4)</summary>
+<details class="fields" id="shape-fields"><summary>Fields of <code>shape</code> (6)</summary>
 <table class="fieldtable"><thead><tr><th>Field</th><th>Size</th><th>Unit</th><th>Description</th></tr></thead><tbody>
 <tr id="shape.name"><td data-label="Field"><code>name</code><a class="rowlink" href="#shape.name" aria-label="Link to field shape.name">#</a></td><td data-label="Size">text</td><td data-label="Unit"></td><td data-label="Description">File name without extension, or the name given.</td></tr>
 <tr id="shape.faces"><td data-label="Field"><code>faces</code><a class="rowlink" href="#shape.faces" aria-label="Link to field shape.faces">#</a></td><td data-label="Size">nf × 3</td><td data-label="Unit"></td><td data-label="Description">Vertex indices of each triangle (1-based), ordered so that the normal points outward.</td></tr>
 <tr id="shape.vertices_km"><td data-label="Field"><code>vertices_km</code><a class="rowlink" href="#shape.vertices_km" aria-label="Link to field shape.vertices_km">#</a></td><td data-label="Size">nv × 3</td><td data-label="Unit">km</td><td data-label="Description">Vertex positions in the shape-model frame.</td></tr>
-<tr id="shape.source"><td data-label="Field"><code>source</code><a class="rowlink" href="#shape.source" aria-label="Link to field shape.source">#</a></td><td data-label="Size">text</td><td data-label="Unit"></td><td data-label="Description">Path of the file the shape was read from; <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_data"><code>sbtk.exchange.write_data</code></a> copies this file into a measurement package.</td></tr>
+<tr id="shape.source"><td data-label="Field"><code>source</code><a class="rowlink" href="#shape.source" aria-label="Link to field shape.source">#</a></td><td data-label="Size">text</td><td data-label="Unit"></td><td data-label="Description">Path of the file the shape was read from (<code>'arrays'</code> or <code>'ellipsoid'</code> for shapes not read from a file). After <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.to_frame"><code>sbtk.body.to_frame</code></a>, the name of the original file without its path. <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_data"><code>sbtk.exchange.write_data</code></a> copies the file into a measurement package if the shape model is that file unchanged.</td></tr>
+<tr id="shape.frame_origin_km"><td data-label="Field"><code>frame_origin_km</code><a class="rowlink" href="#shape.frame_origin_km" aria-label="Link to field shape.frame_origin_km">#</a></td><td data-label="Size">1 × 3</td><td data-label="Unit">km</td><td data-label="Description">Origin of the shape model's frame in the coordinates of <code>source</code>: <code>[0 0 0]</code>, or as set by <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.to_frame"><code>sbtk.body.to_frame</code></a> (combined over successive changes of frame).</td></tr>
+<tr id="shape.frame_axes"><td data-label="Field"><code>frame_axes</code><a class="rowlink" href="#shape.frame_axes" aria-label="Link to field shape.frame_axes">#</a></td><td data-label="Size">3 × 3</td><td data-label="Unit"></td><td data-label="Description">Axes of the shape model's frame (columns) in the coordinates of <code>source</code>: <code>eye(3)</code>, or as set by <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.to_frame"><code>sbtk.body.to_frame</code></a>. The vertices are <code>(source vertices - frame_origin_km)*frame_axes</code>.</td></tr>
 </tbody></table></details>
 <h2 id="props"><code>props</code>: Shape properties<a class="headerlink" href="#props" title="Link to this section">#</a></h2>
 <p class="madeby">Created by <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.properties"><code>sbtk.shape.properties</code></a>.</p>
@@ -490,7 +492,7 @@ its centroid and volume. Used by the comparisons and the random-field integrals.
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#shape">shape : Shape model</a></li><li class="lvl2"><a href="#props">props : Shape properties</a></li><li class="lvl2"><a href="#body">body : Body</a></li><li class="lvl2"><a href="#component">component : Interior component</a></li><li class="lvl2"><a href="#interior">interior : Interior model</a></li><li class="lvl2"><a href="#random_field">random_field : Gaussian random density field</a></li><li class="lvl2"><a href="#unc">unc : Uncertainties for a simulation</a></li><li class="lvl2"><a href="#obs">obs : Measurement set</a></li><li class="lvl2"><a href="#moi">moi : Moment-of-inertia measurement row</a></li><li class="lvl2"><a href="#truth">truth : True model of a simulation</a></li><li class="lvl2"><a href="#geo">geo : Facet-cone geometry</a></li><li class="lvl2"><a href="#integrals">integrals : Integrals of a component</a></li><li class="lvl2"><a href="#fm">fm : Forward-model result</a></li><li class="lvl2"><a href="#cf">cf : Field about its center of mass</a></li><li class="lvl2"><a href="#opts">opts : Inversion settings</a></li><li class="lvl2"><a href="#prob">prob : Prepared inversion</a></li><li class="lvl2"><a href="#fit">fit : Inversion result</a></li><li class="lvl2"><a href="#cmp">cmp : Comparison with the true model</a></li><li class="lvl2"><a href="#ref">ref : Prepared true model for comparisons</a></li><li class="lvl2"><a href="#grid">grid : Density grid</a></li><li class="lvl2"><a href="#gridcmp">gridcmp : Comparison of two density grids</a></li><li class="lvl2"><a href="#out">out : Results folder</a></li><li class="lvl2"><a href="#pk">pk : Coefficient order</a></li><li class="lvl2"><a href="#samples">samples : Points filling the body</a></li><li class="lvl2"><a href="#slices">slices : Plotting planes</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=8ed8c35933"></script>
-<script src="../assets/site.js?v=8ed8c35933"></script>
+<script src="../assets/search-index.js?v=ed0e42ddfc"></script>
+<script src="../assets/site.js?v=ed0e42ddfc"></script>
 </body>
 </html>
