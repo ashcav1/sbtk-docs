@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tutorial scripts — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=035946533c">
-<link rel="stylesheet" href="../assets/pygments.css?v=035946533c">
-<link rel="stylesheet" href="../assets/print.css?v=035946533c" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=8de7f0aaef">
+<link rel="stylesheet" href="../assets/pygments.css?v=8de7f0aaef">
+<link rel="stylesheet" href="../assets/print.css?v=8de7f0aaef" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -506,10 +506,9 @@ body = <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.from_m
 <span class="n">folder</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">tempname</span><span class="p">;</span><span class="w">                                         </span><span class="c">% where the packages go (normally a results folder)</span>
 
 <span class="c">%% A true model, made in the frame of the shape model file</span>
-torus = <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.torus">sbtk.interior.torus</a>(&quot;torus&quot;, 0.370, 0.055, 0, -800);
+torus = <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.torus">sbtk.interior.torus</a>(&quot;torus&quot;, 0.370, 0.055, 0, -500);
 <span class="n">torus</span><span class="p">.</span><span class="n">center_km</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">cof</span><span class="p">;</span>
-interior = <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>([<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, cof + [0.01 0.005 0.001], 0.200, -700), torus, ...
-                                 <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;layer&quot;, 0, 0.012, -400)]);
+interior = <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>([<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, cof + [0.02 -0.01 0], 0.150, 400), torus]);
 interior = <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.align_with_spin_axis">sbtk.interior.align_with_spin_axis</a>(body, interior, &quot;torus&quot;, 0.01, 20);   <span class="c">% torus about the spin axis</span>
 [exact, truth] = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, interior, 4, &quot;moved_and_rotated&quot;);
 
@@ -543,7 +542,7 @@ model = <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchan
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#ex01-quick-start">ex01: quick start</a></li><li class="lvl2"><a href="#ex02-shapes-and-bodies">ex02: shapes and bodies</a></li><li class="lvl2"><a href="#ex03-forward-model">ex03: forward model</a></li><li class="lvl2"><a href="#ex04-inversion-options">ex04: inversion options</a></li><li class="lvl2"><a href="#ex05-importing-data">ex05: importing data</a></li><li class="lvl2"><a href="#ex06-results-folders">ex06: results folders</a></li><li class="lvl2"><a href="#ex07-exchange-packages">ex07: exchange packages</a></li><li class="lvl2"><a href="#ex08-moments-of-inertia-and-the-libration-ratio">ex08: moments of inertia and the libration ratio</a></li><li class="lvl2"><a href="#ex09-moved-and-rotated-package">ex09: moved and rotated package</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=035946533c"></script>
-<script src="../assets/site.js?v=035946533c"></script>
+<script src="../assets/search-index.js?v=8de7f0aaef"></script>
+<script src="../assets/site.js?v=8de7f0aaef"></script>
 </body>
 </html>
