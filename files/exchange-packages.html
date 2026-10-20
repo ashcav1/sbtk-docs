@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Exchange packages — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=8719ecf8c4">
-<link rel="stylesheet" href="../assets/pygments.css?v=8719ecf8c4">
-<link rel="stylesheet" href="../assets/print.css?v=8719ecf8c4" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=035946533c">
+<link rel="stylesheet" href="../assets/pygments.css?v=035946533c">
+<link rel="stylesheet" href="../assets/print.css?v=035946533c" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -24,7 +24,7 @@
   <a class="toplink" href="../SBTK_handbook.pdf">PDF handbook</a>
 </header>
 <div class="frame">
-<nav id="sidebar" class="sidebar" aria-label="Documentation pages"><ul><li class="navcat"><span class="navcat-title">Overview</span><ul><li><a href="../index.html">SBTK: Small Body Toolkit</a></li><li><a href="../overview/limitations.html">Assumptions and limitations</a></li></ul></li><li class="navcat"><span class="navcat-title">Getting started</span><ul><li><a href="../getting-started/installation.html">Installation</a></li><li><a href="../getting-started/first-script.html">First script</a></li></ul></li><li class="navcat"><span class="navcat-title">Conventions</span><ul><li><a href="../conventions/units.html">Units</a></li><li><a href="../conventions/coordinates.html">Coordinate systems and origins</a></li><li><a href="../conventions/gravity-coefficients.html">Gravity coefficients</a></li><li><a href="../conventions/gravity-frames.html">Frames of a gravity field</a></li><li><a href="../conventions/moments-of-inertia.html">Moments of inertia</a></li></ul></li><li class="navcat"><span class="navcat-title">Models and calculations</span><ul><li><a href="../models/shape-models.html">Shape models</a></li><li><a href="../models/density-distributions.html">Density distributions</a></li><li><a href="../models/forward-model.html">Gravity and moment calculations</a></li></ul></li><li class="navcat"><span class="navcat-title">Measurements and inversion</span><ul><li><a href="../inversion/measurements.html">Measurement sets</a></li><li><a href="../inversion/density-estimation.html">Density estimation</a></li><li><a href="../inversion/statistics.html">Goodness of fit and model comparison</a></li></ul></li><li class="navcat"><span class="navcat-title">Files</span><ul><li><a href="../files/results-folders.html">Results folders and figures</a></li><li><a href="../files/exchange-packages.html" aria-current="page" class="current">Exchange packages</a></li></ul></li><li class="navcat"><span class="navcat-title">Examples</span><ul><li><a href="../examples/density-models.html">Density models by component type</a></li><li><a href="../examples/calculations.html">Calculations</a></li><li><a href="../examples/tutorials.html">Tutorial scripts</a></li></ul></li><li class="navcat"><span class="navcat-title">Projects</span><ul><li><a href="../projects/template.html">Project template</a></li><li><a href="../projects/bennu.html">Bennu</a></li><li><a href="../projects/hera-blind-test.html">Hera blind test</a></li></ul></li><li class="navcat"><span class="navcat-title">Reference</span><ul><li><a href="../reference/api.html">API reference</a></li><li><a href="../reference/api/sbtk.html">sbtk</a></li><li><a href="../reference/api/units.html">sbtk.units</a></li><li><a href="../reference/api/shape.html">sbtk.shape</a></li><li><a href="../reference/api/body.html">sbtk.body</a></li><li><a href="../reference/api/interior.html">sbtk.interior</a></li><li><a href="../reference/api/gravity.html">sbtk.gravity</a></li><li><a href="../reference/api/data.html">sbtk.data</a></li><li><a href="../reference/api/invert.html">sbtk.invert</a></li><li><a href="../reference/api/compare.html">sbtk.compare</a></li><li><a href="../reference/api/exchange.html">sbtk.exchange</a></li><li><a href="../reference/api/io.html">sbtk.io</a></li><li><a href="../reference/api/plot.html">sbtk.plot</a></li><li><a href="../reference/data-structures.html">Data structures</a></li><li><a href="../reference/errors.html">Error identifiers</a></li><li><a href="../reference/internal.html">Internal functions</a></li></ul></li><li class="navcat"><span class="navcat-title">Validation</span><ul><li><a href="../validation/tests.html">Validation and tests</a></li></ul></li></ul></nav>
+<nav id="sidebar" class="sidebar" aria-label="Documentation pages"><ul><li class="navcat"><span class="navcat-title">Overview</span><ul><li><a href="../index.html">SBTK: Small Body Toolkit</a></li><li><a href="../overview/limitations.html">Assumptions and limitations</a></li></ul></li><li class="navcat"><span class="navcat-title">Getting started</span><ul><li><a href="../getting-started/installation.html">Installation</a></li><li><a href="../getting-started/first-script.html">First script</a></li></ul></li><li class="navcat"><span class="navcat-title">Conventions</span><ul><li><a href="../conventions/units.html">Units</a></li><li><a href="../conventions/coordinates.html">Coordinate systems and origins</a></li><li><a href="../conventions/gravity-coefficients.html">Gravity coefficients</a></li><li><a href="../conventions/gravity-frames.html">Frames of a gravity field</a></li><li><a href="../conventions/moments-of-inertia.html">Moments of inertia</a></li></ul></li><li class="navcat"><span class="navcat-title">Models and calculations</span><ul><li><a href="../models/shape-models.html">Shape models</a></li><li><a href="../models/density-distributions.html">Density distributions</a></li><li><a href="../models/forward-model.html">Gravity and moment calculations</a></li></ul></li><li class="navcat"><span class="navcat-title">Measurements and inversion</span><ul><li><a href="../inversion/measurements.html">Measurement sets</a></li><li><a href="../inversion/density-estimation.html">Density estimation</a></li><li><a href="../inversion/statistics.html">Goodness of fit and model comparison</a></li></ul></li><li class="navcat"><span class="navcat-title">Files</span><ul><li><a href="../files/results-folders.html">Results folders and figures</a></li><li><a href="../files/exchange-packages.html" aria-current="page" class="current">Exchange packages</a></li></ul></li><li class="navcat"><span class="navcat-title">Examples</span><ul><li><a href="../examples/density-models.html">Density models by component type</a></li><li><a href="../examples/calculations.html">Calculations</a></li><li><a href="../examples/tutorials.html">Tutorial scripts</a></li></ul></li><li class="navcat"><span class="navcat-title">Projects</span><ul><li><a href="../projects/template.html">Project template</a></li><li><a href="../projects/bennu.html">Bennu</a></li><li><a href="../projects/hera-blind-test.html">Hera blind test</a></li><li><a href="../projects/didymos-dimorphos-values.html">Didymos and Dimorphos values</a></li></ul></li><li class="navcat"><span class="navcat-title">Reference</span><ul><li><a href="../reference/api.html">API reference</a></li><li><a href="../reference/api/sbtk.html">sbtk</a></li><li><a href="../reference/api/units.html">sbtk.units</a></li><li><a href="../reference/api/shape.html">sbtk.shape</a></li><li><a href="../reference/api/body.html">sbtk.body</a></li><li><a href="../reference/api/interior.html">sbtk.interior</a></li><li><a href="../reference/api/gravity.html">sbtk.gravity</a></li><li><a href="../reference/api/data.html">sbtk.data</a></li><li><a href="../reference/api/invert.html">sbtk.invert</a></li><li><a href="../reference/api/compare.html">sbtk.compare</a></li><li><a href="../reference/api/exchange.html">sbtk.exchange</a></li><li><a href="../reference/api/io.html">sbtk.io</a></li><li><a href="../reference/api/plot.html">sbtk.plot</a></li><li><a href="../reference/data-structures.html">Data structures</a></li><li><a href="../reference/errors.html">Error identifiers</a></li><li><a href="../reference/internal.html">Internal functions</a></li></ul></li><li class="navcat"><span class="navcat-title">Validation</span><ul><li><a href="../validation/tests.html">Validation and tests</a></li></ul></li></ul></nav>
 <main id="content" tabindex="-1">
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Files › <span aria-current="page">Exchange packages</span></nav>
 <article>
@@ -113,7 +113,7 @@ Every column and key with a unit ends with it; NaN marks a value that is not pro
 </tr>
 <tr>
 <td><code>gravity_field.txt</code></td>
-<td><code>l,m,C,S</code> for degrees 2 and higher, fully normalized, about the center of mass, with <code>sigma_C,sigma_S</code> when the values have uncertainties.</td>
+<td><code>l,m,C,S</code>, fully normalized, with <code>sigma_C,sigma_S</code> when the values have uncertainties: from degree 1 about the origin of the shape model file, or from degree 2 about the center of mass (<a href="#expansion-point">Expansion point</a>).</td>
 </tr>
 <tr>
 <td><code>gravity_covariance.txt</code></td>
@@ -125,11 +125,11 @@ Every column and key with a unit ends with it; NaN marks a value that is not pro
 </tr>
 <tr>
 <td><code>moments_of_inertia.txt</code></td>
-<td><code>quantity,value,unit</code> (and <code>sigma</code>): inertia elements as <span class="nobr"><math alttext="I/(M R_ref^2)" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>I</mi><mo>&#x0002F;</mo><mo stretchy="false">&#x00028;</mo><mi>M</mi><msubsup><mi>R</mi><mtext>ref</mtext><mn>2</mn></msubsup><mo stretchy="false">&#x00029;</mo></mrow></math></span> about the center of mass and/or the libration ratio. The sign convention of the products of inertia and the definition of the libration ratio are given when the file has them.</td>
+<td><code>quantity,value,unit</code> (and <code>sigma</code>): inertia elements as <span class="nobr"><math alttext="I/(M R_ref^2)" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>I</mi><mo>&#x0002F;</mo><mo stretchy="false">&#x00028;</mo><mi>M</mi><msubsup><mi>R</mi><mtext>ref</mtext><mn>2</mn></msubsup><mo stretchy="false">&#x00029;</mo></mrow></math></span> about the same point as the gravity field and/or the libration ratio. The sign convention of the products of inertia and the definition of the libration ratio are given when the file has them.</td>
 </tr>
 <tr>
 <td><code>conventions.txt</code></td>
-<td>Units; the frame (what its origin and axes are, and the change of frame from the original shape-model file); the normalization, with MATLAB and Python code; degree 1 and the center of mass.</td>
+<td>Units; the frame (what its origin and axes are, and any change of frame from the original shape-model file); the normalization, with MATLAB and Python code; degree 1 and the center of mass.</td>
 </tr>
 <tr>
 <td><code>&lt;shape&gt;.obj</code></td>
@@ -137,15 +137,39 @@ Every column and key with a unit ends with it; NaN marks a value that is not pro
 </tr>
 </tbody>
 </table>
-<p>The gravity field is expanded about the center of mass, as a radio-science solution is, so it has no degree-1 terms;
-the position of the center of mass is a separate measurement in <code>center_of_mass.txt</code>. The package contains nothing
-about the interior: not the expansion origin of the simulation (the true center of mass), the noise seed, the model
-name or any component; <code>testNothingAboutTheInterior</code> checks this (<a href="../validation/tests.html">Validation</a>).</p>
-<p><a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a> returns the measurement set with <code>coef_about = 'center_of_mass'</code>: the coefficients of
-degree ≥ 2 with their covariance, degree-1 coefficients 0 ± σ that carry the uncertainty of the center of mass, the
-inertia rows, and the body built from the package's shape model and GM. A libration ratio becomes the row
-<span class="nobr"><math alttext="(B-A) - k I_zz = 0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>B</mi><mo>&#x02212;</mo><mi>A</mi><mo stretchy="false">&#x00029;</mo><mo>&#x02212;</mo><mi>k</mi><mspace width="0.167em" /><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math></span> with σ = <span class="nobr"><math alttext="σ_k I_zz" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003C3;</mi><mi>k</mi></msub><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub></mrow></math>,</span> using the measured <span class="nobr"><math alttext="I_zz" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub></mrow></math></span> if the package has one and that of a
-homogeneous body otherwise.</p>
+<p>The package contains nothing about the interior: not the noise seed, the model name or any component;
+<code>testNothingAboutTheInterior</code> checks this (<a href="../validation/tests.html">Validation</a>).</p>
+<h3 id="expansion-point">Expansion point<a class="headerlink" href="#expansion-point" title="Link to this section">#</a></h3>
+<p>The gravity field and the moments of inertia are given about one of two points, chosen by the measurement set that
+<a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_data"><code>sbtk.exchange.write_data</code></a> writes:</p>
+<table>
+<thead>
+<tr>
+<th>Point</th>
+<th>Measurement set</th>
+<th><code>gravity_field.txt</code></th>
+<th><a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a> returns</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The origin of the shape model file (the HLP6 choice)</td>
+<td>about <code>[0 0 0]</code>, e.g. from <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.expand_about"><code>sbtk.data.expand_about</code></a></td>
+<td>degree 1 and above; degree 1 gives the center of mass</td>
+<td>the coefficients as given, <code>coef_about = 'origin'</code>, <code>origin_km = [0 0 0]</code></td>
+</tr>
+<tr>
+<td>The center of mass, as a radio-science solution</td>
+<td>any other set</td>
+<td>degree 2 and above; degree 1 is zero and not listed</td>
+<td>degree ≥ 2 about the measured center of mass, degree 1 as 0 ± σ (the uncertainty of the center of mass), <code>coef_about = 'center_of_mass'</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>center_of_mass.txt</code> gives the center of mass and the center of figure in both, and <code>conventions.txt</code> states which
+point the package uses. The body is built from the package's shape model and GM. A libration ratio, which is defined
+about the center of mass, becomes the row <span class="nobr"><math alttext="(B-A) - k I_zz = 0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>B</mi><mo>&#x02212;</mo><mi>A</mi><mo stretchy="false">&#x00029;</mo><mo>&#x02212;</mo><mi>k</mi><mspace width="0.167em" /><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math></span> with σ = <span class="nobr"><math alttext="σ_k I_zz" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003C3;</mi><mi>k</mi></msub><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub></mrow></math>,</span> using the measured
+<span class="nobr"><math alttext="I_zz" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub></mrow></math></span> if the package has one and that of a homogeneous body otherwise.</p>
 <p>The files state only what applies to the package. Those of a measurement package with uncertainties and noise, made
 by <code>documentation/tools/make_samples.m</code>:</p>
 <div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text">DOC-DATA1-Didymos: measurements of Didymos
@@ -226,15 +250,17 @@ Ixz,-7.467290512494866e-03,2.000000000000000e-03,M R_ref^2
 Iyz,-1.855098124365382e-03,2.000000000000000e-03,M R_ref^2
 libration_ratio,8.070726840715539e-02,2.000000000000000e-02,1</code></pre></div>
 <h3 id="the-shape-model-of-a-package">The shape model of a package<a class="headerlink" href="#the-shape-model-of-a-package" title="Link to this section">#</a></h3>
-<p>A package's shape model is the one the data were made with, in the frame of every position of the package. A maker who
-changes the frame, as the HLP6 makers do (<a href="../conventions/gravity-frames.html#makers">Frames of a gravity field</a>), sends
-the original shape model moved and rotated into the new frame with <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.to_frame"><code>sbtk.body.to_frame</code></a>: every vertex becomes
+<p>A package's shape model is the one the data were made with, in the frame of every position of the package. The HLP6
+makers send the shape model file as distributed, unchanged, with its original name
+(<a href="../conventions/gravity-frames.html#makers">Frames of a gravity field</a>). A maker who changes the frame (tutorial
+<a href="../examples/tutorials.html#ex09-moved-and-rotated-package">ex09</a>) sends the original shape model moved and rotated into
+the new frame with <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.to_frame"><code>sbtk.body.to_frame</code></a>: every vertex becomes
 <span class="nobr"><math alttext="x&#x27; = ( x - c) A" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi mathvariant="bold">x</mi><mi>&#x02032;</mi></msup><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><mi mathvariant="bold">x</mi><mo>&#x02212;</mo><mi mathvariant="bold">c</mi><mo stretchy="false">&#x00029;</mo><mspace width="0.167em" /><mi>A</mi></mrow></math>,</span> with <span class="nobr"><math alttext="c" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi mathvariant="bold">c</mi></mrow></math></span> the center of mass of the true model and the columns of
 <span class="nobr"><math alttext="A" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>A</mi></mrow></math></span> the new axes, both in the frame of the original file. The shape itself does not change, only its coordinates.</p>
 <table>
 <thead>
 <tr>
-<th>Body</th>
+<th>Example</th>
 <th>Shape model of the package</th>
 <th>Origin</th>
 <th>Axes</th>
@@ -242,14 +268,14 @@ the original shape model moved and rotated into the new frame with <a class="xre
 </thead>
 <tbody>
 <tr>
-<td>Didymos</td>
-<td><code>UCB-DATA1-Didymos_didymos_v003_com_spin_axes.obj</code></td>
+<td>Didymos, spin axes</td>
+<td><code>TEAM-DATA1-Didymos_didymos_v003_com_spin_axes.obj</code></td>
 <td>center of mass</td>
-<td>spin axes: <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span> the axis of the largest moment, <span class="nobr"><math alttext="x" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></span> the DART <span class="nobr"><math alttext="x" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></span>-axis projected onto the plane normal to <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span></td>
+<td><span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span> the axis of the largest moment, <span class="nobr"><math alttext="x" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></span> the DART <span class="nobr"><math alttext="x" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></span>-axis projected onto the plane normal to <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span></td>
 </tr>
 <tr>
-<td>Dimorphos</td>
-<td><code>UCB-DATA4-Dimorphos_dimorphos_v004_com_principal_axes.obj</code></td>
+<td>Dimorphos, principal axes</td>
+<td><code>TEAM-DATA2-Dimorphos_dimorphos_v004_com_principal_axes.obj</code></td>
 <td>center of mass</td>
 <td>principal axes: <span class="nobr"><math alttext="x" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></span> the axis of the smallest and <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span> of the largest moment</td>
 </tr>
@@ -265,7 +291,28 @@ file's name.</p>
 receiving team uses the shape model as it is, with nothing to move or rotate. The FRAME section of <code>conventions.txt</code>
 states the origin and the axes, and the change of frame from the original file (<span class="nobr"><math alttext="o = c" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi mathvariant="bold">o</mi><mo>&#x0003D;</mo><mi mathvariant="bold">c</mi></mrow></math></span> and <span class="nobr"><math alttext="A" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>A</mi></mrow></math>)</span>, so
 the coordinates of the original file are <span class="nobr"><math alttext="x = x&#x27; A^ T + c" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi mathvariant="bold">x</mi><mo>&#x0003D;</mo><msup><mi mathvariant="bold">x</mi><mi>&#x02032;</mi></msup><msup><mi>A</mi><mi mathvariant="sans-serif">T</mi></msup><mo>&#x0002B;</mo><mi mathvariant="bold">c</mi></mrow></math>.</span> The shape model records
-this change as <a class="xref xref-field" href="../reference/data-structures.html#shape.frame_origin_km"><code>shape.frame_origin_km</code></a> and <a class="xref xref-field" href="../reference/data-structures.html#shape.frame_axes"><code>shape.frame_axes</code></a>, combined over successive changes of frame.</p>
+this change as <a class="xref xref-field" href="../reference/data-structures.html#shape.frame_origin_km"><code>shape.frame_origin_km</code></a> and <a class="xref xref-field" href="../reference/data-structures.html#shape.frame_axes"><code>shape.frame_axes</code></a>, combined over successive changes of frame.
+The FRAME section of such a package, made by <code>documentation/tools/make_samples.m</code>:</p>
+<div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text">FRAME
+  All positions, the gravity field and the moments of inertia of this package are given
+  in the frame of its shape model file, DOC-DATA3-Didymos_didymos_v003_com_spin_axes.obj:
+    origin  the center of mass of the body
+    z       the axis of the largest moment of inertia, so C21 = S21 = 0 (to rounding
+            error); for a body in principal-axis rotation it is the spin axis
+    x       the x-axis of the original file projected onto the plane normal to z
+    y       completes the right-handed frame (y = z cross x)
+  The shape model file was made by moving and rotating the original file,
+    didymos_g_9309mm_spc_obj_0000n00000_v003.obj
+  into this frame:
+    x' = (x - o) A
+    o = [0.015281496 0.042884748 -0.034053123] km  (the center of mass, in the original file)
+    A = [  0.997920540676  0.000000000000 -0.064456143974
+          -0.001688015795  0.999657019950 -0.026134136041
+           0.064434036803  0.026188594157  0.997578273840 ]
+  where x and x' are the coordinates of a point in the original file and in this one
+  (row vectors, km), and o and the columns of A are the origin and the axes of this frame
+  in the original file. Use this package's shape model file with its data, not the
+  original file.</code></pre></div>
 <h3 id="packages-of-exact-values">Packages of exact values<a class="headerlink" href="#packages-of-exact-values" title="Link to this section">#</a></h3>
 <p>A set without any uncertainties, such as the exact values of a true model (<a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a>), is written as a
 package of exact values:</p>
@@ -275,15 +322,15 @@ package of exact values:</p>
 <li>there is no <code>gravity_covariance.txt</code>;</li>
 <li>no file has an <code>uncertainties</code> or <code>noise</code> line.</li>
 </ul>
-<p>A maker's package of exact values in the frame with the center of mass as origin and the spin axes, made by
-<code>documentation/tools/make_samples.m</code>:</p>
+<p>A maker's package of exact values in the frame and about the origin of the shape model file, as the HLP6 makers send
+them, made by <code>documentation/tools/make_samples.m</code>:</p>
 <div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text">DOC-DATA2-Didymos: measurements of Didymos
 Prepared by Example team
 
 SUMMARY
   GM                3.51935839e-08 km^3/s^2, mass 5.273000e+11 kg
   bulk density      2592.98 kg/m^3 (mass / shape model volume 0.203356 km^3)
-  gravity field     degrees 2 to 4, reference radius 0.43 km, about the center of mass
+  gravity field     degrees 1 to 4, reference radius 0.43 km, about the origin of the shape model file
   center of mass    see center_of_mass.txt file
   inertia           see moments_of_inertia.txt file
   frame             see conventions.txt file
@@ -293,19 +340,19 @@ FILES
   center_of_mass.txt
   moments_of_inertia.txt
   conventions.txt
-  DOC-DATA2-Didymos_didymos_v003_com_spin_axes.obj shape model</code></pre></div>
+  didymos_g_9309mm_spc_obj_0000n00000_v003.obj shape model</code></pre></div>
 <div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text"># product: center of mass and center of figure
 # data_set: DOC-DATA2-Didymos
 # body: Didymos
-# shape_model: DOC-DATA2-Didymos_didymos_v003_com_spin_axes.obj (24578 vertices, 49152 facets, lengths in km)
-# frame: that of the shape model file, whose origin is the center of mass (conventions.txt)
-# center_of_mass: the point the gravity field and the moments of inertia are about
+# shape_model: didymos_g_9309mm_spc_obj_0000n00000_v003.obj (24578 vertices, 49152 facets, lengths in km)
+# frame: that of the shape model file (conventions.txt)
+# center_of_mass: the center of mass of the body, the same as the degree-1 coefficients in gravity_field.txt give
 # center_of_figure: centroid of the volume enclosed by the shape model (the center of mass if the density were uniform)
-# center_of_mass_minus_center_of_figure_km: -0.000652459894 0.000568745609 -0.000047559533
+# center_of_mass_minus_center_of_figure_km: -0.000648037626 0.000570894830 -0.000074590333
 axis,center_of_mass_km,center_of_figure_km
-x,0.000000000000,0.000652459894
-y,0.000000000000,-0.000568745609
-z,0.000000000000,0.000047559533</code></pre></div>
+x,0.015281496496,0.015929534123
+y,0.042884747979,0.042313853148
+z,-0.034053123055,-0.033978532721</code></pre></div>
 <p>In a blind test the makers send such packages, and each receiving team applies uncertainties of its own choosing.
 <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a> reads them with NaN uncertainties. The inversion then stops with
 <a class="xref xref-err" href="../reference/errors.html#sbtk:data:noUncertainties"><code>sbtk:data:noUncertainties</code></a> until uncertainties are given, for example with <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.use_uncertainties"><code>sbtk.data.use_uncertainties</code></a> from a
@@ -428,31 +475,17 @@ example solution with its model:</p>
   97.9% of the common cells have abs(estimate - true) &lt;= 2 sigma of the estimate</code></pre></div>
 <h2 id="conventions.txt">conventions.txt<a class="headerlink" href="#conventions.txt" title="Link to this section">#</a></h2>
 <p>Every measurement package includes this file, written by <a class="xref xref-fn" href="../reference/internal.html#sbtk.internal.exchange_conventions"><code>sbtk.internal.exchange_conventions</code></a>; the tests check the
-normalization code it prints. That of the maker's package above, whose shape model was moved and rotated:</p>
+normalization code it prints. That of the maker's package above, in the frame and about the origin of the shape model
+file:</p>
 <div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text">UNITS
   Lengths and positions in km, mass in kg, time in s, GM in km^3/s^2, densities in kg/m^3,
   angles in degrees.
 
 FRAME
   All positions, the gravity field and the moments of inertia of this package are given
-  in the frame of its shape model file, DOC-DATA2-Didymos_didymos_v003_com_spin_axes.obj:
-    origin  the center of mass of the body
-    z       the axis of the largest moment of inertia, so C21 = S21 = 0 (to rounding
-            error); for a body in principal-axis rotation it is the spin axis
-    x       the x-axis of the original file projected onto the plane normal to z
-    y       completes the right-handed frame (y = z cross x)
-  The shape model file was made by moving and rotating the original file,
-    didymos_g_9309mm_spc_obj_0000n00000_v003.obj
-  into this frame:
-    x' = (x - o) A
-    o = [0.015281496 0.042884748 -0.034053123] km  (the center of mass, in the original file)
-    A = [  0.997920540676  0.000000000000 -0.064456143974
-          -0.001688015795  0.999657019950 -0.026134136041
-           0.064434036803  0.026188594157  0.997578273840 ]
-  where x and x' are the coordinates of a point in the original file and in this one
-  (row vectors, km), and o and the columns of A are the origin and the axes of this frame
-  in the original file. Use this package's shape model file with its data, not the
-  original file.
+  in the frame of its shape model file, didymos_g_9309mm_spc_obj_0000n00000_v003.obj:
+    origin  the origin of the shape model file; the center of mass is in center_of_mass.txt
+    axes    those of the shape model file as distributed
 
 GRAVITY FIELD COEFFICIENT NORMALIZATION
   The files give fully normalized coefficients:
@@ -468,9 +501,12 @@ GRAVITY FIELD COEFFICIENT NORMALIZATION
     N = math.sqrt((2 - (m == 0)) * (2*l + 1) * math.factorial(l - m) / math.factorial(l + m))
 
 DEGREE 1 AND THE CENTER OF MASS
-  The gravity field is expanded about the center of mass, so its degree-1 coefficients are
-  zero and are not listed. The position of the center of mass in the frame of the shape
-  model file is a separate measurement (center_of_mass.txt).</code></pre></div>
+  The gravity field is expanded about the origin of the shape model file. Its degree-1
+  coefficients give the center of mass (xc, yc, zc) relative to that origin:
+    Cbar_10 = zc / (sqrt(3) R),   Cbar_11 = xc / (sqrt(3) R),   Sbar_11 = yc / (sqrt(3) R)
+  with R the reference radius; center_of_mass.txt gives the same position. The moments
+  of inertia are about the same origin; about the center of mass they are
+    I_ij(center of mass) = I_ij(origin) - M (|c|^2 delta_ij - c_i c_j),   c = (xc, yc, zc).</code></pre></div>
 <h2 id="other-formats">Other formats<a class="headerlink" href="#other-formats" title="Link to this section">#</a></h2>
 <table>
 <thead>
@@ -507,9 +543,9 @@ DEGREE 1 AND THE CENTER OF MASS
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../files/results-folders.html" rel="prev"><span>Previous</span>Results folders and figures</a><a class="next" href="../examples/density-models.html" rel="next"><span>Next</span>Density models by component type</a></nav>
 <footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-20.</footer>
 </main>
-<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#file-layout">File layout</a></li><li class="lvl2"><a href="#measurement-package">Measurement package</a></li><li class="lvl3"><a href="#the-shape-model-of-a-package">The shape model of a package</a></li><li class="lvl3"><a href="#packages-of-exact-values">Packages of exact values</a></li><li class="lvl2"><a href="#interior-model-package">Interior-model package</a></li><li class="lvl2"><a href="#solution-package">Solution package</a></li><li class="lvl2"><a href="#density-grid">Density grid</a></li><li class="lvl2"><a href="#conventions.txt">conventions.txt</a></li><li class="lvl2"><a href="#other-formats">Other formats</a></li></ul></nav>
+<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#file-layout">File layout</a></li><li class="lvl2"><a href="#measurement-package">Measurement package</a></li><li class="lvl3"><a href="#expansion-point">Expansion point</a></li><li class="lvl3"><a href="#the-shape-model-of-a-package">The shape model of a package</a></li><li class="lvl3"><a href="#packages-of-exact-values">Packages of exact values</a></li><li class="lvl2"><a href="#interior-model-package">Interior-model package</a></li><li class="lvl2"><a href="#solution-package">Solution package</a></li><li class="lvl2"><a href="#density-grid">Density grid</a></li><li class="lvl2"><a href="#conventions.txt">conventions.txt</a></li><li class="lvl2"><a href="#other-formats">Other formats</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=8719ecf8c4"></script>
-<script src="../assets/site.js?v=8719ecf8c4"></script>
+<script src="../assets/search-index.js?v=035946533c"></script>
+<script src="../assets/site.js?v=035946533c"></script>
 </body>
 </html>

@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en" data-root="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Didymos and Dimorphos values — SBTK documentation</title>
+<link rel="stylesheet" href="../assets/site.css?v=035946533c">
+<link rel="stylesheet" href="../assets/pygments.css?v=035946533c">
+<link rel="stylesheet" href="../assets/print.css?v=035946533c" media="print">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="topbar">
+  <button class="navtoggle" type="button" aria-controls="sidebar" aria-expanded="false">Contents</button>
+  <a class="sitename" href="../index.html">SBTK documentation</a>
+  <span class="version">version 1.0.0</span>
+  <div class="search" role="search">
+    <label for="search-input" class="visually-hidden">Search the documentation</label>
+    <input id="search-input" type="search" placeholder="Search (press /)" autocomplete="off"
+           aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+    <ul id="search-results" role="listbox" hidden></ul>
+  </div>
+  <a class="toplink" href="../print.html">Single-page version</a>
+  <a class="toplink" href="../SBTK_handbook.pdf">PDF handbook</a>
+</header>
+<div class="frame">
+<nav id="sidebar" class="sidebar" aria-label="Documentation pages"><ul><li class="navcat"><span class="navcat-title">Overview</span><ul><li><a href="../index.html">SBTK: Small Body Toolkit</a></li><li><a href="../overview/limitations.html">Assumptions and limitations</a></li></ul></li><li class="navcat"><span class="navcat-title">Getting started</span><ul><li><a href="../getting-started/installation.html">Installation</a></li><li><a href="../getting-started/first-script.html">First script</a></li></ul></li><li class="navcat"><span class="navcat-title">Conventions</span><ul><li><a href="../conventions/units.html">Units</a></li><li><a href="../conventions/coordinates.html">Coordinate systems and origins</a></li><li><a href="../conventions/gravity-coefficients.html">Gravity coefficients</a></li><li><a href="../conventions/gravity-frames.html">Frames of a gravity field</a></li><li><a href="../conventions/moments-of-inertia.html">Moments of inertia</a></li></ul></li><li class="navcat"><span class="navcat-title">Models and calculations</span><ul><li><a href="../models/shape-models.html">Shape models</a></li><li><a href="../models/density-distributions.html">Density distributions</a></li><li><a href="../models/forward-model.html">Gravity and moment calculations</a></li></ul></li><li class="navcat"><span class="navcat-title">Measurements and inversion</span><ul><li><a href="../inversion/measurements.html">Measurement sets</a></li><li><a href="../inversion/density-estimation.html">Density estimation</a></li><li><a href="../inversion/statistics.html">Goodness of fit and model comparison</a></li></ul></li><li class="navcat"><span class="navcat-title">Files</span><ul><li><a href="../files/results-folders.html">Results folders and figures</a></li><li><a href="../files/exchange-packages.html">Exchange packages</a></li></ul></li><li class="navcat"><span class="navcat-title">Examples</span><ul><li><a href="../examples/density-models.html">Density models by component type</a></li><li><a href="../examples/calculations.html">Calculations</a></li><li><a href="../examples/tutorials.html">Tutorial scripts</a></li></ul></li><li class="navcat"><span class="navcat-title">Projects</span><ul><li><a href="../projects/template.html">Project template</a></li><li><a href="../projects/bennu.html">Bennu</a></li><li><a href="../projects/hera-blind-test.html">Hera blind test</a></li><li><a href="../projects/didymos-dimorphos-values.html" aria-current="page" class="current">Didymos and Dimorphos values</a></li></ul></li><li class="navcat"><span class="navcat-title">Reference</span><ul><li><a href="../reference/api.html">API reference</a></li><li><a href="../reference/api/sbtk.html">sbtk</a></li><li><a href="../reference/api/units.html">sbtk.units</a></li><li><a href="../reference/api/shape.html">sbtk.shape</a></li><li><a href="../reference/api/body.html">sbtk.body</a></li><li><a href="../reference/api/interior.html">sbtk.interior</a></li><li><a href="../reference/api/gravity.html">sbtk.gravity</a></li><li><a href="../reference/api/data.html">sbtk.data</a></li><li><a href="../reference/api/invert.html">sbtk.invert</a></li><li><a href="../reference/api/compare.html">sbtk.compare</a></li><li><a href="../reference/api/exchange.html">sbtk.exchange</a></li><li><a href="../reference/api/io.html">sbtk.io</a></li><li><a href="../reference/api/plot.html">sbtk.plot</a></li><li><a href="../reference/data-structures.html">Data structures</a></li><li><a href="../reference/errors.html">Error identifiers</a></li><li><a href="../reference/internal.html">Internal functions</a></li></ul></li><li class="navcat"><span class="navcat-title">Validation</span><ul><li><a href="../validation/tests.html">Validation and tests</a></li></ul></li></ul></nav>
+<main id="content" tabindex="-1">
+<nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Projects › <span aria-current="page">Didymos and Dimorphos values</span></nav>
+<article>
+<h1 id="didymos-and-dimorphos-values">Didymos and Dimorphos values<a class="headerlink" href="#didymos-and-dimorphos-values" title="Link to this section">#</a></h1>
+<p class="lastedit">Last edited October 20, 2026</p>
+<p>Every value SBTK uses to model Didymos and Dimorphos, where it comes from and how it is used. Each value is one of:</p>
+<ul>
+<li><strong>agreed</strong>: the value the Hera blind-test group uses (<code>projects/hera_hlp6/hlp6_didymos.m</code>, <code>hlp6_dimorphos.m</code>);</li>
+<li><strong>derived</strong>: computed from other values in this table;</li>
+<li><strong>assumed</strong>: an SBTK choice, not a measurement;</li>
+<li><strong>published</strong>: from a paper or a public data product.</li>
+</ul>
+<p>A copy of this table with the files of the Hera working group it was checked against (their locations and the values
+of the end-to-end test products, which are not for redistribution) is <code>projects/hera_hlp6/VALUES.md</code> in the
+repository.</p>
+<h2 id="shape-models">Shape models<a class="headerlink" href="#shape-models" title="Link to this section">#</a></h2>
+<p>The shape models are the DART stereophotoclinometry (SPC) models, Didymos version 3 and Dimorphos version 4 (from
+before the DART impact). They are distributed by ESA in the Hera SPICE kernels (digital shape kernels, at
+<code>spiftp.esac.esa.int/data/SPICE/HERA/kernels/dsk/</code>). <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.bundled"><code>sbtk.shape.bundled</code></a> loads them by name. The volume and the
+volume-equivalent diameter <span class="nobr"><math alttext="D = (6V/π)^1/3" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>D</mi><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><mn>6</mn><mi>V</mi><mo>&#x0002F;</mo><mi>&#x003C0;</mi><msup><mo stretchy="false">&#x00029;</mo><mrow><mn>1</mn><mo>&#x0002F;</mo><mn>3</mn></mrow></msup></mrow></math></span> are derived from each file.</p>
+<table>
+<thead>
+<tr>
+<th><code>bundled</code> name</th>
+<th>File</th>
+<th>Sampling</th>
+<th>Facets</th>
+<th>Volume (km³)</th>
+<th><span class="nobr"><math alttext="D" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>D</mi></mrow></math></span> (m)</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>didymos</code></td>
+<td><code>didymos_g_9309mm_spc_obj_0000n00000_v003.obj</code></td>
+<td>9.3 m</td>
+<td>49,152</td>
+<td>0.20336</td>
+<td>729.6</td>
+<td><strong>agreed</strong> for the blind test</td>
+</tr>
+<tr>
+<td><code>didymos_highres</code></td>
+<td><code>g_01165mm_spc_obj_didy_0000n00000_v003.obj</code></td>
+<td>1.165 m</td>
+<td>3,145,728</td>
+<td>0.20381</td>
+<td>730.1</td>
+<td>the most detailed Didymos model; not in git (160 MB)</td>
+</tr>
+<tr>
+<td><code>didymos_every8</code></td>
+<td><code>g_01165mm_spc_obj_didy_0000n00000_v003_every8.obj</code></td>
+<td>9.3 m</td>
+<td>49,152</td>
+<td>0.20375</td>
+<td>730.1</td>
+<td><strong>derived</strong>: every 8th grid point of <code>didymos_highres</code></td>
+</tr>
+<tr>
+<td><code>dimorphos</code></td>
+<td><code>g_00243mm_spc_obj_dimo_0000n00000_v004_every8.obj</code></td>
+<td>1.94 m</td>
+<td>49,152</td>
+<td>0.0017597</td>
+<td>149.8</td>
+<td><strong>derived</strong>: every 8th grid point of <code>dimorphos_highres</code>; used for the blind test</td>
+</tr>
+<tr>
+<td><code>dimorphos_highres</code></td>
+<td><code>g_00243mm_spc_obj_dimo_0000n00000_v004.obj</code></td>
+<td>0.243 m</td>
+<td>3,145,728</td>
+<td>0.0017602</td>
+<td>149.8</td>
+<td>the most detailed Dimorphos model; not in git (160 MB)</td>
+</tr>
+</tbody>
+</table>
+<p>Points to know:</p>
+<ul>
+<li><strong>Use the same file as the other teams.</strong> The 9.3 m Didymos file is a separate product, not a subsample of the
+  1.165 m model: its volume is 0.22% smaller, its center of figure is 0.35 m away, and its degree-2 coefficients differ
+  by up to <span class="nobr"><math alttext="3×10^-4" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>3</mn><mi>&#x000D7;</mi><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>4</mn></mrow></msup></mrow></math>,</span> about the size of the measurement uncertainties. Data made with one file and inverted with
+  another carry that difference as an error.</li>
+<li><strong>Dimorphos.</strong> The group's Dimorphos file is an official 1.94 m product. SBTK does not have it yet and uses its own
+  1.94 m subsample of the 0.243 m model (<code>dimorphos</code>), which may differ from it in the same way. The models are from
+  before the DART impact, which may have changed the shape.</li>
+<li><strong>Frame.</strong> Each file has its own body-fixed frame, <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span> along the spin axis. The origin of the Didymos files is not the
+  center of figure (57 m from it); the HLP6 makers keep that origin
+  (<a href="../conventions/gravity-frames.html#makers">Frames of a gravity field</a>).</li>
+<li><a href="../models/shape-models.html">Shape models</a> describes how SBTK reads and checks them; <code>data/shapes/README.md</code>
+  compares the subsampled and full-resolution models.</li>
+</ul>
+<h2 id="mass-and-gm">Mass and GM<a class="headerlink" href="#mass-and-gm" title="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Quantity</th>
+<th>Didymos</th>
+<th>Dimorphos</th>
+<th>Kind</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mass <span class="nobr"><math alttext="M" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi></mrow></math></span></td>
+<td>5.273 × 10¹¹ kg</td>
+<td>2.700 × 10⁹ kg</td>
+<td><strong>agreed</strong></td>
+<td>Didymos Reference Model v6.2 (Makadia et al. 2026), the masses the Hera radio-science end-to-end test was made with</td>
+</tr>
+<tr>
+<td>Gravitational constant <span class="nobr"><math alttext="G" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>G</mi></mrow></math></span></td>
+<td>6.67430 × 10⁻²⁰ km³ kg⁻¹ s⁻²</td>
+<td>same</td>
+<td><strong>published</strong></td>
+<td>CODATA 2018 (<a class="xref xref-fn" href="../reference/api/units.html#sbtk.units.G"><code>sbtk.units.G</code></a>)</td>
+</tr>
+<tr>
+<td><span class="nobr"><math alttext="GM" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>G</mi><mi>M</mi></mrow></math></span></td>
+<td>3.51936 × 10⁻⁸ km³/s²</td>
+<td>1.80206 × 10⁻¹⁰ km³/s²</td>
+<td><strong>derived</strong></td>
+<td><span class="nobr"><math alttext="G M" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>G</mi><mi>M</mi></mrow></math></span></td>
+</tr>
+</tbody>
+</table>
+<p>The maker packages give <span class="nobr"><math alttext="GM" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>G</mi><mi>M</mi></mrow></math></span> and the mass (<span class="nobr"><math alttext="GM/G" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>G</mi><mi>M</mi><mo>&#x0002F;</mo><mi>G</mi></mrow></math>)</span>. <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a> takes the mass from <span class="nobr"><math alttext="GM" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>G</mi><mi>M</mi></mrow></math>,</span> so a
+package from a team that used another <span class="nobr"><math alttext="G" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>G</mi></mrow></math></span> gives that team's mass.</p>
+<h2 id="bulk-density">Bulk density<a class="headerlink" href="#bulk-density" title="Link to this section">#</a></h2>
+<p>The bulk density is <strong>derived</strong>: the mass divided by the volume of the shape model in use. It is not set separately,
+and it is the background density of a homogeneous model (<a href="../models/density-distributions.html">Density distributions</a>).</p>
+<table>
+<thead>
+<tr>
+<th>Shape model</th>
+<th>Didymos</th>
+<th>Dimorphos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Blind-test files (<code>didymos</code>, <code>dimorphos</code>)</td>
+<td>2593 kg/m³</td>
+<td>1534 kg/m³</td>
+</tr>
+<tr>
+<td>Full resolution (<code>didymos_highres</code>, <code>dimorphos_highres</code>)</td>
+<td>2587 kg/m³</td>
+<td>1534 kg/m³</td>
+</tr>
+</tbody>
+</table>
+<h2 id="gravity-field-settings">Gravity field settings<a class="headerlink" href="#gravity-field-settings" title="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Didymos</th>
+<th>Dimorphos</th>
+<th>Kind</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Reference radius <span class="nobr"><math alttext="R_ref" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>R</mi><mtext>ref</mtext></msub></mrow></math></span></td>
+<td>0.43 km</td>
+<td>0.10 km</td>
+<td><strong>agreed</strong></td>
+<td>the reference radii of the gravity fields of the Hera radio-science end-to-end test</td>
+</tr>
+<tr>
+<td>Degree of the receiving team's fit</td>
+<td>5</td>
+<td>3</td>
+<td><strong>agreed</strong></td>
+<td>the degrees of those fields; finders truncate to them</td>
+</tr>
+<tr>
+<td>Degree the makers send</td>
+<td>6</td>
+<td>6</td>
+<td><strong>assumed</strong></td>
+<td>the makers send every degree to 6; finders truncate</td>
+</tr>
+<tr>
+<td>Expansion point and axes</td>
+<td>origin and axes of the shape model file</td>
+<td>same</td>
+<td><strong>agreed</strong></td>
+<td>the HLP6 makers (<a href="../files/exchange-packages.html#expansion-point">Exchange packages</a>)</td>
+</tr>
+<tr>
+<td>Inertia data</td>
+<td><span class="nobr"><math alttext="I_xx" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>x</mi><mi>x</mi></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="I_yy" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>y</mi><mi>y</mi></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="I_zz" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub></mrow></math></span> about the same origin</td>
+<td>same</td>
+<td><strong>assumed</strong></td>
+<td>the maker models (<a href="../projects/hera-blind-test.html#maker-models">Hera blind test</a>)</td>
+</tr>
+</tbody>
+</table>
+<p>Coefficients given with another reference radius <span class="nobr"><math alttext="R&#x27;" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mi>&#x02032;</mi></msup></mrow></math></span> convert as <span class="nobr"><math alttext="C&#x27;_lm = C_lm (R/R&#x27;)^l" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msubsup><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mi>l</mi><mi>m</mi></mrow><mi>&#x02032;</mi></msubsup><mo>&#x0003D;</mo><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mi>l</mi><mi>m</mi></mrow></msub><mspace width="0.167em" /><mo stretchy="false">&#x00028;</mo><mi>R</mi><mo>&#x0002F;</mo><msup><mi>R</mi><mi>&#x02032;</mi></msup><msup><mo stretchy="false">&#x00029;</mo><mi>l</mi></msup></mrow></math></span>
+(<a href="../conventions/gravity-coefficients.html">Gravity coefficients</a>).</p>
+<h2 id="uncertainties">Uncertainties<a class="headerlink" href="#uncertainties" title="Link to this section">#</a></h2>
+<p>The makers send exact values. Each receiving team chooses its uncertainties; SBTK's inversion runners use the
+precision of the Hera radio-science end-to-end test (<code>projects/hera_hlp6/hlp6_uncertainties.m</code>), which is not
+distributed with SBTK (<a href="../projects/hera-blind-test.html">Hera blind test</a>).</p>
+<h2 id="modeling-choices">Modeling choices<a class="headerlink" href="#modeling-choices" title="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Didymos</th>
+<th>Dimorphos</th>
+<th>Kind</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Density-grid spacing of model and solution packages</td>
+<td>20 m (about 25,000 cells)</td>
+<td>5 m (about 15,000 cells)</td>
+<td><strong>assumed</strong></td>
+</tr>
+<tr>
+<td>Upper bound on a component's density in the inversion</td>
+<td>4500 kg/m³</td>
+<td>4500 kg/m³</td>
+<td><strong>assumed</strong> (<a class="xref xref-field" href="../reference/data-structures.html#opts.rho_max_kgm3"><code>opts.rho_max_kgm3</code></a>)</td>
+</tr>
+<tr>
+<td>Impact side of Dimorphos (maker models)</td>
+<td></td>
+<td>latitude −11°, longitude 260° in the axes of the DART file</td>
+<td><strong>derived</strong> from where the shape model has its finest detail</td>
+</tr>
+</tbody>
+</table>
+</article>
+<nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../projects/hera-blind-test.html" rel="prev"><span>Previous</span>Hera blind test</a><a class="next" href="../reference/api.html" rel="next"><span>Next</span>API reference</a></nav>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-20.</footer>
+</main>
+<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#shape-models">Shape models</a></li><li class="lvl2"><a href="#mass-and-gm">Mass and GM</a></li><li class="lvl2"><a href="#bulk-density">Bulk density</a></li><li class="lvl2"><a href="#gravity-field-settings">Gravity field settings</a></li><li class="lvl2"><a href="#uncertainties">Uncertainties</a></li><li class="lvl2"><a href="#modeling-choices">Modeling choices</a></li></ul></nav>
+</div>
+<script src="../assets/search-index.js?v=035946533c"></script>
+<script src="../assets/site.js?v=035946533c"></script>
+</body>
+</html>
