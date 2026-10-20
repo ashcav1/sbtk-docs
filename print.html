@@ -2380,7 +2380,7 @@ Every column and key with a unit ends with it; NaN marks a value that is not pro
 <tbody>
 <tr>
 <td><code>README.txt</code></td>
-<td>Summary (GM and mass, bulk density, degree and reference radius of the field; whether the values are exact or have uncertainties and noise) and the list of files.</td>
+<td>Summary (GM and mass, bulk density, degree and reference radius of the field; the uncertainties and the noise when the values have them) and the list of files.</td>
 </tr>
 <tr>
 <td><code>gravity_field.txt</code></td>
@@ -2544,7 +2544,7 @@ package of exact values:</p>
 <li><code>gravity_field.txt</code> has the columns <code>l,m,C,S</code>, <code>center_of_mass.txt</code> the columns
   <code>axis,center_of_mass_km,center_of_figure_km</code>, and <code>moments_of_inertia.txt</code> the columns <code>quantity,value,unit</code>;</li>
 <li>there is no <code>gravity_covariance.txt</code>;</li>
-<li>no file has <code>uncertainties</code> or <code>noise</code> metadata, and the README says that the values are exact.</li>
+<li>no file has an <code>uncertainties</code> or <code>noise</code> line.</li>
 </ul>
 <p>A maker's package of exact values in the frame with the center of mass as origin and the spin axes, made by
 <code>documentation/tools/make_samples.m</code>:</p>
@@ -2558,7 +2558,6 @@ SUMMARY
   center of mass    see center_of_mass.txt file
   inertia           see moments_of_inertia.txt file
   frame             see conventions.txt file
-  values            exact: no noise added, no uncertainties given
 
 FILES
   gravity_field.txt
@@ -7385,7 +7384,7 @@ semi-axes 0.5 × 0.4 × 0.3 km (20,480 facets) and the 9.3 m Didymos model with 
 </tr>
 <tr>
 <td><code>testExactPackage</code></td>
-<td>A package of exact values has the columns <code>l,m,C,S</code>, no covariance file and no uncertainty or noise metadata, and its README says the values are exact; it is read back with NaN uncertainties, the inversion asks for uncertainties, and with them it fits.</td>
+<td>A package of exact values has the columns <code>l,m,C,S</code>, no covariance file and no uncertainty or noise lines; it is read back with NaN uncertainties, the inversion asks for uncertainties, and with them it fits.</td>
 <td>values 10⁻¹⁷; <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> &lt; 10⁻⁶</td>
 </tr>
 <tr>
