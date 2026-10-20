@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>API reference — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=681c18c4f5">
-<link rel="stylesheet" href="../assets/pygments.css?v=681c18c4f5">
-<link rel="stylesheet" href="../assets/print.css?v=681c18c4f5" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=ca4d69c501">
+<link rel="stylesheet" href="../assets/pygments.css?v=ca4d69c501">
+<link rel="stylesheet" href="../assets/print.css?v=ca4d69c501" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -34,10 +34,10 @@
 <tr><td><a class="xref" href="../reference/api/sbtk.html"><code>sbtk</code></a></td><td>Version and repository folder</td><td>2</td></tr>
 <tr><td><a class="xref" href="../reference/api/units.html"><code>sbtk.units</code></a></td><td>Constants and unit conversions</td><td>6</td></tr>
 <tr><td><a class="xref" href="../reference/api/shape.html"><code>sbtk.shape</code></a></td><td>Shape models</td><td>8</td></tr>
-<tr><td><a class="xref" href="../reference/api/body.html"><code>sbtk.body</code></a></td><td>Bodies</td><td>3</td></tr>
-<tr><td><a class="xref" href="../reference/api/interior.html"><code>sbtk.interior</code></a></td><td>Density distributions</td><td>13</td></tr>
+<tr><td><a class="xref" href="../reference/api/body.html"><code>sbtk.body</code></a></td><td>Bodies</td><td>4</td></tr>
+<tr><td><a class="xref" href="../reference/api/interior.html"><code>sbtk.interior</code></a></td><td>Density distributions</td><td>14</td></tr>
 <tr><td><a class="xref" href="../reference/api/gravity.html"><code>sbtk.gravity</code></a></td><td>Gravity and moment calculations</td><td>6</td></tr>
-<tr><td><a class="xref" href="../reference/api/data.html"><code>sbtk.data</code></a></td><td>Measurement sets</td><td>18</td></tr>
+<tr><td><a class="xref" href="../reference/api/data.html"><code>sbtk.data</code></a></td><td>Measurement sets</td><td>19</td></tr>
 <tr><td><a class="xref" href="../reference/api/invert.html"><code>sbtk.invert</code></a></td><td>Density estimation</td><td>9</td></tr>
 <tr><td><a class="xref" href="../reference/api/compare.html"><code>sbtk.compare</code></a></td><td>Comparison with a true model</td><td>6</td></tr>
 <tr><td><a class="xref" href="../reference/api/exchange.html"><code>sbtk.exchange</code></a></td><td>Exchange packages</td><td>9</td></tr>
@@ -49,6 +49,7 @@
 <tr><td><a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.create"><code>sbtk.body.create</code></a></td><td>A small body: shape model, bulk density and reference radius.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.from_mass"><code>sbtk.body.from_mass</code></a></td><td>A small body defined by its mass instead of its bulk density.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.summary"><code>sbtk.body.summary</code></a></td><td>Print a body's main numbers.</td></tr>
+<tr><td><a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.to_frame"><code>sbtk.body.to_frame</code></a></td><td>A body with its shape model in another frame: x' = (x - <code>origin_km</code>) * axes.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/compare.html#sbtk.compare.evaluate"><code>sbtk.compare.evaluate</code></a></td><td>Compare a fit with the true model, using a prepared reference (see <a class="xref xref-fn" href="../reference/api/compare.html#sbtk.compare.reference">sbtk.compare.reference</a>).</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/compare.html#sbtk.compare.grid_summary"><code>sbtk.compare.grid_summary</code></a></td><td>Print a cell-by-cell comparison of two density grids.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/compare.html#sbtk.compare.grids"><code>sbtk.compare.grids</code></a></td><td>Compare two density grids cell by cell (e.g. a solution package with an interior-model package).</td></tr>
@@ -71,6 +72,7 @@
 <tr><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_uncertainties"><code>sbtk.data.set_uncertainties</code></a></td><td>Give measurements a 1-sigma uncertainty per degree and per inertia quantity.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a></td><td>True model of an interior and its exact gravity coefficients and moments of inertia.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.summary"><code>sbtk.data.summary</code></a></td><td>Print what is in a measurement set.</td></tr>
+<tr><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.to_frame"><code>sbtk.data.to_frame</code></a></td><td>A measurement set in another frame: x' = (x - <code>origin_km</code>) * axes.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.uncertainties"><code>sbtk.data.uncertainties</code></a></td><td>1-sigma measurement uncertainties by degree and by inertia quantity, for <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_uncertainties">sbtk.data.set_uncertainties</a>.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.use_uncertainties"><code>sbtk.data.use_uncertainties</code></a></td><td>Give measurements the coefficient uncertainties of another data set (e.g. a precision file).</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.density_grid"><code>sbtk.exchange.density_grid</code></a></td><td>Density of a model at the centers of a cubic grid inside the body.</td></tr>
@@ -82,7 +84,7 @@
 <tr><td><a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_data"><code>sbtk.exchange.write_data</code></a></td><td>Write a measurement package to send to other teams (nothing about the interior).</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_model"><code>sbtk.exchange.write_model</code></a></td><td>Write the interior-model package behind a measurement package (released after the solutions).</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_solution"><code>sbtk.exchange.write_solution</code></a></td><td>Write an inversion result as a solution package for the other teams.</td></tr>
-<tr><td><a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.center_of_mass_frame"><code>sbtk.gravity.center_of_mass_frame</code></a></td><td>A gravity field about its center of mass, in the shape-model axes or its principal axes.</td></tr>
+<tr><td><a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.center_of_mass_frame"><code>sbtk.gravity.center_of_mass_frame</code></a></td><td>A gravity field about its center of mass, in the shape-model, spin or principal axes.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.component_integrals"><code>sbtk.gravity.component_integrals</code></a></td><td>Integrals over one component per unit density, clipped to the body.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.forward"><code>sbtk.gravity.forward</code></a></td><td>Forward model: gravity coefficients, center of mass and inertia of an interior.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.geometry"><code>sbtk.gravity.geometry</code></a></td><td>Facet-cone geometry of a body about an expansion origin (the integration workspace).</td></tr>
@@ -100,7 +102,8 @@
 <tr><td><a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sector_grid"><code>sbtk.interior.sector_grid</code></a></td><td>Sectors that tile the whole body (a model without assumed structure).</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere"><code>sbtk.interior.sphere</code></a></td><td>Uniform sphere component (e.g. a core, a boulder or a void).</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.summary"><code>sbtk.interior.summary</code></a></td><td>Print a list of components.</td></tr>
-<tr><td><a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.torus"><code>sbtk.interior.torus</code></a></td><td>Uniform torus component about the spin axis z, clipped to the body.</td></tr>
+<tr><td><a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.to_frame"><code>sbtk.interior.to_frame</code></a></td><td>An interior or a true model in another frame: x' = (x - <code>origin_km</code>) * axes.</td></tr>
+<tr><td><a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.torus"><code>sbtk.interior.torus</code></a></td><td>Uniform torus component about the z-axis, clipped to the body.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.choose_regularization"><code>sbtk.invert.choose_regularization</code></a></td><td>Tikhonov regularization parameter by the discrepancy principle.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.goodness_of_fit"><code>sbtk.invert.goodness_of_fit</code></a></td><td>Reduced chi-square and chi-square test of a fit.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.homogeneous"><code>sbtk.invert.homogeneous</code></a></td><td>Fit a homogeneous body (no components) to the same measurements.</td></tr>
@@ -164,7 +167,7 @@
 </main>
 
 </div>
-<script src="../assets/search-index.js?v=681c18c4f5"></script>
-<script src="../assets/site.js?v=681c18c4f5"></script>
+<script src="../assets/search-index.js?v=ca4d69c501"></script>
+<script src="../assets/site.js?v=ca4d69c501"></script>
 </body>
 </html>

@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>sbtk.interior — SBTK documentation</title>
-<link rel="stylesheet" href="../../assets/site.css?v=681c18c4f5">
-<link rel="stylesheet" href="../../assets/pygments.css?v=681c18c4f5">
-<link rel="stylesheet" href="../../assets/print.css?v=681c18c4f5" media="print">
+<link rel="stylesheet" href="../../assets/site.css?v=ca4d69c501">
+<link rel="stylesheet" href="../../assets/pygments.css?v=ca4d69c501">
+<link rel="stylesheet" href="../../assets/print.css?v=ca4d69c501" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -42,7 +42,8 @@
 <tr><td><a class="xref xref-fn" href="#sbtk.interior.sector_grid"><code>sector_grid</code></a></td><td>Sectors that tile the whole body (a model without assumed structure).</td></tr>
 <tr><td><a class="xref xref-fn" href="#sbtk.interior.sphere"><code>sphere</code></a></td><td>Uniform sphere component (e.g. a core, a boulder or a void).</td></tr>
 <tr><td><a class="xref xref-fn" href="#sbtk.interior.summary"><code>summary</code></a></td><td>Print a list of components.</td></tr>
-<tr><td><a class="xref xref-fn" href="#sbtk.interior.torus"><code>torus</code></a></td><td>Uniform torus component about the spin axis z, clipped to the body.</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.interior.to_frame"><code>to_frame</code></a></td><td>An interior or a true model in another frame: x' = (x - <code>origin_km</code>) * axes.</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.interior.torus"><code>torus</code></a></td><td>Uniform torus component about the z-axis, clipped to the body.</td></tr>
 </tbody></table>
 <section class="api-entry" id="sbtk.interior.create">
 <h2 class="api-name" id="sbtk.interior.create-h"><code>sbtk.interior.create</code><a class="headerlink" href="#sbtk.interior.create" title="Link to sbtk.interior.create">#</a></h2>
@@ -205,11 +206,11 @@ rho = <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.inter
 </tbody></table>
 <h3 class="api-sub">Description</h3>
 <p><code>drho_kgm3</code> relative density [kg/m^3]</p>
-<p>Latitude and longitude are measured about the expansion origin. <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.sector">sbtk.interior.sector</a>("shell", [0.5 0.75], [-90 90], [-180 180], 0) is a shell that follows the shape. See also <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.sector_grid">sbtk.interior.sector_grid</a>.</p>
+<p>Latitude and longitude are measured about the expansion origin, in the axes of the shape-model frame (<code>c.axes</code> = eye(3); <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.to_frame">sbtk.interior.to_frame</a> turns them with the frame). <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.sector">sbtk.interior.sector</a>("shell", [0.5 0.75], [-90 90], [-180 180], 0) is a shell that follows the shape. See also <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.sector_grid">sbtk.interior.sector_grid</a>.</p>
 <h3 class="api-sub">Example</h3>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">block = <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.sector">sbtk.interior.sector</a>(&quot;block&quot;, [0.3 0.9], [40 90], [150 240], +200);   <span class="c">% radial fraction, latitude, longitude</span>
 shell = <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.sector">sbtk.interior.sector</a>(&quot;shell&quot;, [0.5 0.75], [-90 90], [-180 180], -300);</code></pre></div>
-<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.sector_grid"><code>sbtk.interior.sector_grid</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.sector_grid"><code>sbtk.interior.sector_grid</code></a></dd></dl>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.sector_grid"><code>sbtk.interior.sector_grid</code></a>, <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.to_frame"><code>sbtk.interior.to_frame</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.sector_grid"><code>sbtk.interior.sector_grid</code></a></dd></dl>
 <p class="impl">Implementation: <code>toolbox/+sbtk/+interior/sector.m</code>, line 1.</p>
 </section>
 <section class="api-entry" id="sbtk.interior.sector_grid">
@@ -269,9 +270,33 @@ fit = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.
 <h3 class="api-sub">Related functions</h3><dl class="related"><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.report_simulation"><code>sbtk.io.report_simulation</code></a></dd></dl>
 <p class="impl">Implementation: <code>toolbox/+sbtk/+interior/summary.m</code>, line 1.</p>
 </section>
+<section class="api-entry" id="sbtk.interior.to_frame">
+<h2 class="api-name" id="sbtk.interior.to_frame-h"><code>sbtk.interior.to_frame</code><a class="headerlink" href="#sbtk.interior.to_frame" title="Link to sbtk.interior.to_frame">#</a></h2>
+<p class="api-summary">An interior or a true model in another frame: x' = (x - <code>origin_km</code>) * axes.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">model = <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.to_frame">sbtk.interior.to_frame</a>(model, origin_km, axes)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.interior.to_frame.model"><td data-label="Name"><code>model</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">an interior (<a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>) or a true model (truth from <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>) </td></tr>
+<tr id="sbtk.interior.to_frame.origin_km"><td data-label="Name"><code>origin_km</code></td><td data-label="Size">1 × 3</td><td data-label="Class">double</td><td data-label="Unit">km</td><td data-label="Default">required</td><td data-label="Description">origin of the new frame in the current frame [km]; [0 0 0] keeps the origin <span class="valid">Validation: <code>mustBeFinite</code>.</span></td></tr>
+<tr id="sbtk.interior.to_frame.axes"><td data-label="Name"><code>axes</code></td><td data-label="Size">3 × 3</td><td data-label="Class">double</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">3 x 3 rotation, columns: the new axes as unit vectors in the current frame, e.g. cf.axes of <a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.center_of_mass_frame">sbtk.gravity.center_of_mass_frame</a>; eye(3) keeps the axes <span class="valid">Validation: <code>mustBeFinite</code>.</span></td></tr>
+</tbody></table>
+<h3 class="api-sub">Outputs</h3><table class="params outputs"><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.interior.to_frame.out.model"><td data-label="Name"><code>model</code></td><td data-label="Description">an interior (<a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>) or a true model (truth from <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>)</td></tr>
+</tbody></table>
+<h3 class="api-sub">Description</h3>
+<p>Every position is transformed as x' = (x - <code>origin_km</code>)*axes and every direction as d' = d*axes: the centers of spheres, ellipsoids and tori, the axes of ellipsoids, tori and sectors (<code>c.axes</code>), the random field, and for a true model <code>origin_km</code> and <code>com_km</code>. Its coefficients are rotated (exact, <a class="xref xref-fn" href="../../reference/internal.html#sbtk.internal.sh_rotation">sbtk.internal.sh_rotation</a>) and its inertia elements become axes'*I*axes; both stay about the same point. The density at every point of the body is unchanged, so the model, the body from <a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.to_frame">sbtk.body.to_frame</a> and the measurements from <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.to_frame">sbtk.data.to_frame</a> (same <code>origin_km</code> and axes) describe the same body in the new frame: simulating, gridding, plotting and comparing there gives the transformed results. An inversion result cannot be transformed: transform the measurements and the body and invert in the new frame.</p>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>body</code>, <code>interior</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">[exact, truth] = <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, interior, 4, &quot;T1&quot;);
+spin  = <a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.center_of_mass_frame">sbtk.gravity.center_of_mass_frame</a>(truth, body, &quot;spin&quot;);   <span class="c">% z = axis of the largest moment</span>
+truth_s = <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.to_frame">sbtk.interior.to_frame</a>(truth, [0 0 0], spin.axes);
+body_s  = <a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.to_frame">sbtk.body.to_frame</a>(body, [0 0 0], spin.axes, &quot;didymos_spin_axes&quot;);
+grid = <a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.density_grid">sbtk.exchange.density_grid</a>(body_s, truth_s, 0.020);         <span class="c">% the grid in the new frame</span></code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.to_frame"><code>sbtk.body.to_frame</code></a>, <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a>, <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.to_frame"><code>sbtk.data.to_frame</code></a>, <a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.density_grid"><code>sbtk.exchange.density_grid</code></a>, <a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.center_of_mass_frame"><code>sbtk.gravity.center_of_mass_frame</code></a>, <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.create"><code>sbtk.interior.create</code></a>, <a class="xref xref-fn" href="../../reference/internal.html#sbtk.internal.sh_rotation"><code>sbtk.internal.sh_rotation</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.to_frame"><code>sbtk.body.to_frame</code></a>, <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.to_frame"><code>sbtk.data.to_frame</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+interior/to_frame.m</code>, line 1.</p>
+</section>
 <section class="api-entry" id="sbtk.interior.torus">
 <h2 class="api-name" id="sbtk.interior.torus-h"><code>sbtk.interior.torus</code><a class="headerlink" href="#sbtk.interior.torus" title="Link to sbtk.interior.torus">#</a></h2>
-<p class="api-summary">Uniform torus component about the spin axis z, clipped to the body.</p>
+<p class="api-summary">Uniform torus component about the z-axis, clipped to the body.</p>
 <h3 class="api-sub">Syntax</h3>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">c = <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.torus">sbtk.interior.torus</a>(name, ring_radius_km, tube_radius_km, height_km, drho_kgm3)</code></pre></div>
 <h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
@@ -285,18 +310,19 @@ fit = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.
 <tr id="sbtk.interior.torus.out.p"><td data-label="Name"><code>p</code></td><td data-label="Description">The component. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#component"><code>component</code></a>.</td></tr>
 </tbody></table>
 <h3 class="api-sub">Description</h3>
-<p>The torus may be buried, intersect the surface (an equatorial ridge) or extend outside the body; only its intersection with the body counts.</p>
+<p>The torus lies about the z-axis of the shape-model frame (<code>c.center_km</code> = [0 0 0], <code>c.axes</code> = eye(3); <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.to_frame">sbtk.interior.to_frame</a> moves and turns both with the frame). It may be buried, intersect the surface (an equatorial ridge) or extend outside the body; only its intersection with the body counts.</p>
 <h3 class="api-sub">Example</h3>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">ridge = <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.torus">sbtk.interior.torus</a>(&quot;ridge&quot;, 0.370, 0.055, 0, -500);</code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.to_frame"><code>sbtk.interior.to_frame</code></a></dd></dl>
 <p class="impl">Implementation: <code>toolbox/+sbtk/+interior/torus.m</code>, line 1.</p>
 </section>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../../reference/api/body.html" rel="prev"><span>Previous</span>sbtk.body</a><a class="next" href="../../reference/api/gravity.html" rel="next"><span>Next</span>sbtk.gravity</a></nav>
 <footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-19.</footer>
 </main>
-<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#sbtk.interior.create">sbtk.interior.create</a></li><li class="lvl2"><a href="#sbtk.interior.density_at">sbtk.interior.density_at</a></li><li class="lvl2"><a href="#sbtk.interior.ellipsoid">sbtk.interior.ellipsoid</a></li><li class="lvl2"><a href="#sbtk.interior.latlon">sbtk.interior.latlon</a></li><li class="lvl2"><a href="#sbtk.interior.layer">sbtk.interior.layer</a></li><li class="lvl2"><a href="#sbtk.interior.no_components">sbtk.interior.no_components</a></li><li class="lvl2"><a href="#sbtk.interior.no_random_field">sbtk.interior.no_random_field</a></li><li class="lvl2"><a href="#sbtk.interior.random_field">sbtk.interior.random_field</a></li><li class="lvl2"><a href="#sbtk.interior.sector">sbtk.interior.sector</a></li><li class="lvl2"><a href="#sbtk.interior.sector_grid">sbtk.interior.sector_grid</a></li><li class="lvl2"><a href="#sbtk.interior.sphere">sbtk.interior.sphere</a></li><li class="lvl2"><a href="#sbtk.interior.summary">sbtk.interior.summary</a></li><li class="lvl2"><a href="#sbtk.interior.torus">sbtk.interior.torus</a></li></ul></nav>
+<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#sbtk.interior.create">sbtk.interior.create</a></li><li class="lvl2"><a href="#sbtk.interior.density_at">sbtk.interior.density_at</a></li><li class="lvl2"><a href="#sbtk.interior.ellipsoid">sbtk.interior.ellipsoid</a></li><li class="lvl2"><a href="#sbtk.interior.latlon">sbtk.interior.latlon</a></li><li class="lvl2"><a href="#sbtk.interior.layer">sbtk.interior.layer</a></li><li class="lvl2"><a href="#sbtk.interior.no_components">sbtk.interior.no_components</a></li><li class="lvl2"><a href="#sbtk.interior.no_random_field">sbtk.interior.no_random_field</a></li><li class="lvl2"><a href="#sbtk.interior.random_field">sbtk.interior.random_field</a></li><li class="lvl2"><a href="#sbtk.interior.sector">sbtk.interior.sector</a></li><li class="lvl2"><a href="#sbtk.interior.sector_grid">sbtk.interior.sector_grid</a></li><li class="lvl2"><a href="#sbtk.interior.sphere">sbtk.interior.sphere</a></li><li class="lvl2"><a href="#sbtk.interior.summary">sbtk.interior.summary</a></li><li class="lvl2"><a href="#sbtk.interior.to_frame">sbtk.interior.to_frame</a></li><li class="lvl2"><a href="#sbtk.interior.torus">sbtk.interior.torus</a></li></ul></nav>
 </div>
-<script src="../../assets/search-index.js?v=681c18c4f5"></script>
-<script src="../../assets/site.js?v=681c18c4f5"></script>
+<script src="../../assets/search-index.js?v=ca4d69c501"></script>
+<script src="../../assets/site.js?v=ca4d69c501"></script>
 </body>
 </html>

@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Assumptions and limitations — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=681c18c4f5">
-<link rel="stylesheet" href="../assets/pygments.css?v=681c18c4f5">
-<link rel="stylesheet" href="../assets/print.css?v=681c18c4f5" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=ca4d69c501">
+<link rel="stylesheet" href="../assets/pygments.css?v=ca4d69c501">
+<link rel="stylesheet" href="../assets/print.css?v=ca4d69c501" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -52,10 +52,13 @@ item links to the page where the behavior is described.</p>
 <li>The <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis of the shape-model frame is taken as the spin axis and as a principal axis in the definition of the
   libration ratio (<a href="../conventions/moments-of-inertia.html">Moments of inertia</a>). For a homogeneous body the axis of the
   largest moment is 3.6° from the shape-model <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis for Didymos and 0.7° for Dimorphos.</li>
-<li>Measurements, models and estimates are in the shape-model axes. <a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.center_of_mass_frame"><code>sbtk.gravity.center_of_mass_frame</code></a> expresses a
-  field in its principal axes for output and comparison, but measurement sets cannot be given in another frame: data in
-  a principal-axis frame must be rotated into the shape-model frame before use
-  (<a href="../conventions/gravity-frames.html">Frames of a gravity field</a>).</li>
+<li>Measurements, models and estimates of one body are in one frame, that of its shape model. <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.to_frame"><code>sbtk.data.to_frame</code></a>
+  turns the axes of a measurement set only when its inertia rows are exact (the values of <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a>): rows
+  with uncertainties would mix with correlations that the rows cannot hold. An inversion result cannot be transformed;
+  invert in the frame wanted (<a href="../conventions/gravity-frames.html">Frames of a gravity field</a>).</li>
+<li>The spin axes are those of a body in principal-axis rotation (z along the axis of the largest moment); the rotation
+  state itself is not modeled, and a spin pole known with an error is represented only by the noise of
+  <span class="nobr"><math alttext="C_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="S_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math>.</span></li>
 <li>When a field with uncertainties is moved to its center of mass or rotated into its principal axes, the covariance is
   propagated through the translation and rotation as linear maps; the uncertainty of the center of mass and of the
   principal axes themselves is not added.</li>
@@ -107,7 +110,7 @@ item links to the page where the behavior is described.</p>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#physical-model">Physical model</a></li><li class="lvl2"><a href="#geometry">Geometry</a></li><li class="lvl2"><a href="#numerical-integration">Numerical integration</a></li><li class="lvl2"><a href="#estimation">Estimation</a></li><li class="lvl2"><a href="#data-formats">Data formats</a></li><li class="lvl2"><a href="#software">Software</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=681c18c4f5"></script>
-<script src="../assets/site.js?v=681c18c4f5"></script>
+<script src="../assets/search-index.js?v=ca4d69c501"></script>
+<script src="../assets/site.js?v=ca4d69c501"></script>
 </body>
 </html>

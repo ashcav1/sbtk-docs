@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Moments of inertia — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=681c18c4f5">
-<link rel="stylesheet" href="../assets/pygments.css?v=681c18c4f5">
-<link rel="stylesheet" href="../assets/print.css?v=681c18c4f5" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=ca4d69c501">
+<link rel="stylesheet" href="../assets/pygments.css?v=ca4d69c501">
+<link rel="stylesheet" href="../assets/print.css?v=ca4d69c501" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -55,7 +55,9 @@ chooses the rows a data set contains and <code>opts.moi_labels</code> (<a class=
 <p>The libration ratio is</p>
 <math alttext="k = (B - A)/(C)," xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>k</mi><mo>&#x0003D;</mo><mfrac><mrow><mi>B</mi><mo>&#x02212;</mo><mi>A</mi></mrow><mrow><mi>C</mi></mrow></mfrac><mo>&#x0002C;</mo></mrow></math>
 <p>with <span class="nobr"><math alttext="A ≤ B" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>A</mi><mo>&#x02264;</mo><mi>B</mi></mrow></math></span> the principal moments of inertia about the axes in the <span class="nobr"><math alttext="xy" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mi>y</mi></mrow></math></span>-plane and <span class="nobr"><math alttext="C = I_zz" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>C</mi><mo>&#x0003D;</mo><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub></mrow></math>;</span> the spin axis <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span> is
-taken as a principal axis. With <span class="nobr"><math alttext="a" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi></mrow></math></span> the angle of those principal axes from the <span class="nobr"><math alttext="x" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></span>-axis,</p>
+taken as a principal axis, which holds exactly in the spin or principal axes of the field
+(<a href="../conventions/gravity-frames.html">Frames of a gravity field</a>). For a tumbling body the rotation gives ratios of principal moments
+instead (<a href="../conventions/gravity-frames.html#tumbling-bodies-and-dimorphos">Tumbling bodies</a>). With <span class="nobr"><math alttext="a" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi></mrow></math></span> the angle of those principal axes from the <span class="nobr"><math alttext="x" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></span>-axis,</p>
 <math alttext="B - A = cos(2a) (I_yy-I_xx) + sin(2a)· 2I_xy," xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>B</mi><mo>&#x02212;</mo><mi>A</mi><mo>&#x0003D;</mo><mi>cos</mi><mo stretchy="false">&#x00028;</mo><mn>2</mn><mi>a</mi><mo stretchy="false">&#x00029;</mo><mspace width="0.167em" /><mo stretchy="false">&#x00028;</mo><msub><mi>I</mi><mrow><mi>y</mi><mi>y</mi></mrow></msub><mo>&#x02212;</mo><msub><mi>I</mi><mrow><mi>x</mi><mi>x</mi></mrow></msub><mo stretchy="false">&#x00029;</mo><mo>&#x0002B;</mo><mi>sin</mi><mo stretchy="false">&#x00028;</mo><mn>2</mn><mi>a</mi><mo stretchy="false">&#x00029;</mo><mi>&#x000B7;</mi><mn>2</mn><msub><mi>I</mi><mrow><mi>x</mi><mi>y</mi></mrow></msub><mo>&#x0002C;</mo></mrow></math>
 <p>which is linear in the tensor once <span class="nobr"><math alttext="a" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi></mrow></math></span> is fixed. <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_libration"><code>sbtk.data.add_libration</code></a> takes <span class="nobr"><math alttext="a" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>a</mi></mrow></math></span> from the measured <span class="nobr"><math alttext="C_22" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub></mrow></math></span>
 and <span class="nobr"><math alttext="S_22" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub></mrow></math>,</span> since <span class="nobr"><math alttext="(cos(2a), sin(2a))" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>cos</mi><mo stretchy="false">&#x00028;</mo><mn>2</mn><mi>a</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002C;</mo><mi>sin</mi><mo stretchy="false">&#x00028;</mo><mn>2</mn><mi>a</mi><mo stretchy="false">&#x00029;</mo><mo stretchy="false">&#x00029;</mo></mrow></math></span> is proportional to <span class="nobr"><math alttext="(C_22, -S_22)" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><msub><mi>C</mi><mrow><mn>22</mn></mrow></msub><mo>&#x0002C;</mo><mo>&#x02212;</mo><msub><mi>S</mi><mrow><mn>22</mn></mrow></msub><mo stretchy="false">&#x00029;</mo></mrow></math></span> about the center of mass, and adds
@@ -81,7 +83,7 @@ the mutual dynamics of a binary are not included.</p>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#inertia-tensor">Inertia tensor</a></li><li class="lvl2"><a href="#relation-to-the-degree-2-coefficients">Relation to the degree-2 coefficients</a></li><li class="lvl2"><a href="#measurement-rows">Measurement rows</a></li><li class="lvl2"><a href="#libration-ratio">Libration ratio</a></li><li class="lvl2"><a href="#libration-ratio-from-a-libration-amplitude">Libration ratio from a libration amplitude</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=681c18c4f5"></script>
-<script src="../assets/site.js?v=681c18c4f5"></script>
+<script src="../assets/search-index.js?v=ca4d69c501"></script>
+<script src="../assets/site.js?v=ca4d69c501"></script>
 </body>
 </html>

@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>sbtk.body — SBTK documentation</title>
-<link rel="stylesheet" href="../../assets/site.css?v=681c18c4f5">
-<link rel="stylesheet" href="../../assets/pygments.css?v=681c18c4f5">
-<link rel="stylesheet" href="../../assets/print.css?v=681c18c4f5" media="print">
+<link rel="stylesheet" href="../../assets/site.css?v=ca4d69c501">
+<link rel="stylesheet" href="../../assets/pygments.css?v=ca4d69c501">
+<link rel="stylesheet" href="../../assets/print.css?v=ca4d69c501" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -33,6 +33,7 @@
 <tr><td><a class="xref xref-fn" href="#sbtk.body.create"><code>create</code></a></td><td>A small body: shape model, bulk density and reference radius.</td></tr>
 <tr><td><a class="xref xref-fn" href="#sbtk.body.from_mass"><code>from_mass</code></a></td><td>A small body defined by its mass instead of its bulk density.</td></tr>
 <tr><td><a class="xref xref-fn" href="#sbtk.body.summary"><code>summary</code></a></td><td>Print a body's main numbers.</td></tr>
+<tr><td><a class="xref xref-fn" href="#sbtk.body.to_frame"><code>to_frame</code></a></td><td>A body with its shape model in another frame: x' = (x - <code>origin_km</code>) * axes.</td></tr>
 </tbody></table>
 <section class="api-entry" id="sbtk.body.create">
 <h2 class="api-name" id="sbtk.body.create-h"><code>sbtk.body.create</code><a class="headerlink" href="#sbtk.body.create" title="Link to sbtk.body.create">#</a></h2>
@@ -79,7 +80,7 @@ body  = <a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.cr
 <p>Same as <a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.create">sbtk.body.create</a> with bulk density = mass / shape volume. Use it when the mass (or GM / G) is what was measured.</p>
 <h3 class="api-sub">Example</h3>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>shape</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">body = <a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.from_mass">sbtk.body.from_mass</a>(&quot;Didymos&quot;, shape, 5.273e11, 0.43);</code></pre></div>
-<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.create"><code>sbtk.body.create</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.create"><code>sbtk.body.create</code></a>, <a class="xref xref-fn" href="../../reference/api/shape.html#sbtk.shape.properties"><code>sbtk.shape.properties</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a>, <a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.read_shadr"><code>sbtk.exchange.read_shadr</code></a></dd></dl>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.create"><code>sbtk.body.create</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.create"><code>sbtk.body.create</code></a>, <a class="xref xref-fn" href="../../reference/api/shape.html#sbtk.shape.properties"><code>sbtk.shape.properties</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.to_frame"><code>sbtk.body.to_frame</code></a>, <a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a>, <a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.read_shadr"><code>sbtk.exchange.read_shadr</code></a></dd></dl>
 <p class="impl">Implementation: <code>toolbox/+sbtk/+body/from_mass.m</code>, line 1.</p>
 </section>
 <section class="api-entry" id="sbtk.body.summary">
@@ -96,13 +97,35 @@ body  = <a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.cr
 <h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.from_mass"><code>sbtk.body.from_mass</code></a>, <a class="xref xref-fn" href="../../reference/api/shape.html#sbtk.shape.bundled"><code>sbtk.shape.bundled</code></a></dd></dl>
 <p class="impl">Implementation: <code>toolbox/+sbtk/+body/summary.m</code>, line 1.</p>
 </section>
+<section class="api-entry" id="sbtk.body.to_frame">
+<h2 class="api-name" id="sbtk.body.to_frame-h"><code>sbtk.body.to_frame</code><a class="headerlink" href="#sbtk.body.to_frame" title="Link to sbtk.body.to_frame">#</a></h2>
+<p class="api-summary">A body with its shape model in another frame: x' = (x - <code>origin_km</code>) * axes.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">body = <a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.to_frame">sbtk.body.to_frame</a>(body, origin_km, axes, shape_name)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.body.to_frame.body"><td data-label="Name"><code>body</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">from <a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.create">sbtk.body.create</a> or <a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.from_mass">sbtk.body.from_mass</a> Fields: <a class="xref xref-st" href="../../reference/data-structures.html#body"><code>body</code></a>. </td></tr>
+<tr id="sbtk.body.to_frame.origin_km"><td data-label="Name"><code>origin_km</code></td><td data-label="Size">1 × 3</td><td data-label="Class">double</td><td data-label="Unit">km</td><td data-label="Default">required</td><td data-label="Description">origin of the new frame in the current frame [km]; [0 0 0] keeps the origin <span class="valid">Validation: <code>mustBeFinite</code>.</span></td></tr>
+<tr id="sbtk.body.to_frame.axes"><td data-label="Name"><code>axes</code></td><td data-label="Size">3 × 3</td><td data-label="Class">double</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">3 x 3 rotation, columns: the new axes as unit vectors in the current frame, e.g. cf.axes of <a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.center_of_mass_frame">sbtk.gravity.center_of_mass_frame</a>; eye(3) keeps the axes <span class="valid">Validation: <code>mustBeFinite</code>.</span></td></tr>
+<tr id="sbtk.body.to_frame.shape_name"><td data-label="Name"><code>shape_name</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">name of the transformed shape model; an exchange package writes it as &lt;shape_name&gt;.obj </td></tr>
+</tbody></table>
+<h3 class="api-sub">Outputs</h3><table class="params outputs"><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr id="sbtk.body.to_frame.out.body"><td data-label="Name"><code>body</code></td><td data-label="Description">from <a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.create">sbtk.body.create</a> or <a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.from_mass">sbtk.body.from_mass</a> Fields: <a class="xref xref-st" href="../../reference/data-structures.html#body"><code>body</code></a>.</td></tr>
+</tbody></table>
+<h3 class="api-sub">Description</h3>
+<p>The vertices become (v - <code>origin_km</code>)*axes; the mass, reference radius and name of the body are kept, and the center of figure moves with the shape. <code>shape.source</code> records the original file and the transformation. Use the same <code>origin_km</code> and axes for the measurements (<a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.to_frame">sbtk.data.to_frame</a>) and the interior or true model (<a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.to_frame">sbtk.interior.to_frame</a>).</p>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>truth</code>, <code>body</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">spin   = <a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.center_of_mass_frame">sbtk.gravity.center_of_mass_frame</a>(truth, body, &quot;spin&quot;);
+body_s = <a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.to_frame">sbtk.body.to_frame</a>(body, [0 0 0], spin.axes, &quot;didymos_v003_spin_axes&quot;);</code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.create"><code>sbtk.body.create</code></a>, <a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.from_mass"><code>sbtk.body.from_mass</code></a>, <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.to_frame"><code>sbtk.data.to_frame</code></a>, <a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.center_of_mass_frame"><code>sbtk.gravity.center_of_mass_frame</code></a>, <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.to_frame"><code>sbtk.interior.to_frame</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.from_mass"><code>sbtk.body.from_mass</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.to_frame"><code>sbtk.interior.to_frame</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+body/to_frame.m</code>, line 1.</p>
+</section>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../../reference/api/shape.html" rel="prev"><span>Previous</span>sbtk.shape</a><a class="next" href="../../reference/api/interior.html" rel="next"><span>Next</span>sbtk.interior</a></nav>
 <footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-19.</footer>
 </main>
-<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#sbtk.body.create">sbtk.body.create</a></li><li class="lvl2"><a href="#sbtk.body.from_mass">sbtk.body.from_mass</a></li><li class="lvl2"><a href="#sbtk.body.summary">sbtk.body.summary</a></li></ul></nav>
+<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#sbtk.body.create">sbtk.body.create</a></li><li class="lvl2"><a href="#sbtk.body.from_mass">sbtk.body.from_mass</a></li><li class="lvl2"><a href="#sbtk.body.summary">sbtk.body.summary</a></li><li class="lvl2"><a href="#sbtk.body.to_frame">sbtk.body.to_frame</a></li></ul></nav>
 </div>
-<script src="../../assets/search-index.js?v=681c18c4f5"></script>
-<script src="../../assets/site.js?v=681c18c4f5"></script>
+<script src="../../assets/search-index.js?v=ca4d69c501"></script>
+<script src="../../assets/site.js?v=ca4d69c501"></script>
 </body>
 </html>

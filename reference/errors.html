@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Error identifiers — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=681c18c4f5">
-<link rel="stylesheet" href="../assets/pygments.css?v=681c18c4f5">
-<link rel="stylesheet" href="../assets/print.css?v=681c18c4f5" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=ca4d69c501">
+<link rel="stylesheet" href="../assets/pygments.css?v=ca4d69c501">
+<link rel="stylesheet" href="../assets/print.css?v=ca4d69c501" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -41,6 +41,7 @@
 <tr id="sbtk:data:covSymmetric"><td><code>sbtk:data:covSymmetric</code></td><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_covariance"><code>sbtk.data.set_covariance</code></a></td><td>The covariance must be symmetric.</td></tr>
 <tr id="sbtk:data:degreeOne"><td><code>sbtk:data:degreeOne</code></td><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_center_of_mass"><code>sbtk.data.add_center_of_mass</code></a></td><td>The data already have degree-1 coefficients.</td></tr>
 <tr id="sbtk:data:duplicateMoi"><td><code>sbtk:data:duplicateMoi</code></td><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_moi_row"><code>sbtk.data.add_moi_row</code></a></td><td>The data already have a moment-of-inertia row named %s.</td></tr>
+<tr id="sbtk:data:incompleteDegree"><td><code>sbtk:data:incompleteDegree</code></td><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.to_frame"><code>sbtk.data.to_frame</code></a></td><td>Rotating the coefficients needs every coefficient of each degree present; degree %d is incomplete.</td></tr>
 <tr id="sbtk:data:moiLabel"><td><code>sbtk:data:moiLabel</code></td><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.select_moi"><code>sbtk.data.select_moi</code></a></td><td>The data have no moment-of-inertia measurement %s.</td></tr>
 <tr id="sbtk:data:moiLabel-sbtk.data.set_moi_sigma"><td><code>sbtk:data:moiLabel</code></td><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_moi_sigma"><code>sbtk.data.set_moi_sigma</code></a></td><td>The data have no moment-of-inertia measurement %s.</td></tr>
 <tr id="sbtk:data:moveOrigin"><td><code>sbtk:data:moveOrigin</code></td><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.move_origin"><code>sbtk.data.move_origin</code></a></td><td>Only measurements about the center of mass can move their origin; these are about obs.origin_km.</td></tr>
@@ -53,6 +54,7 @@
 <tr id="sbtk:data:noUncertainties-sbtk.exchange.write_data"><td><code>sbtk:data:noUncertainties</code></td><td><a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_data"><code>sbtk.exchange.write_data</code></a></td><td>The measurements have no uncertainties, which a measurement package states with every value: give them with sbtk.data.set_uncertainties, sbtk.data.use_uncertainties, sbtk.data.set_covariance or sbtk.data.set_moi_sigma.</td></tr>
 <tr id="sbtk:data:noUncertainties-sbtk.invert.replace_data"><td><code>sbtk:data:noUncertainties</code></td><td><a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.replace_data"><code>sbtk.invert.replace_data</code></a></td><td>The measurements have no uncertainties, which the inversion needs as weights: give them with sbtk.data.set_uncertainties, sbtk.data.use_uncertainties, sbtk.data.set_covariance or sbtk.data.set_moi_sigma.</td></tr>
 <tr id="sbtk:data:noUncertainties-sbtk.invert.setup"><td><code>sbtk:data:noUncertainties</code></td><td><a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.setup"><code>sbtk.invert.setup</code></a></td><td>The measurements have no uncertainties, which the inversion needs as weights: give them with sbtk.data.set_uncertainties, sbtk.data.use_uncertainties, sbtk.data.set_covariance or sbtk.data.set_moi_sigma.</td></tr>
+<tr id="sbtk:data:transformMeasured"><td><code>sbtk:data:transformMeasured</code></td><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.to_frame"><code>sbtk.data.to_frame</code></a></td><td>Inertia rows can be expressed in new axes only from the full inertia tensor without uncertainties: transform the exact values of sbtk.data.simulate, then use sbtk.data.set_uncertainties, sbtk.data.select_moi and sbtk.data.add_noise.</td></tr>
 <tr id="sbtk:data:uncertainties"><td><code>sbtk:data:uncertainties</code></td><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_uncertainties"><code>sbtk.data.set_uncertainties</code></a></td><td>unc.coef_sigma_by_degree has %d values; degree %d needs one per degree.</td></tr>
 <tr id="sbtk:data:zeroSigma"><td><code>sbtk:data:zeroSigma</code></td><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.from_coefficients"><code>sbtk.data.from_coefficients</code></a></td><td>Uncertainty of %s is zero; every used coefficient needs sigma &gt; 0.</td></tr>
 <tr id="sbtk:exchange:correlatedCenterOfMass"><td><code>sbtk:exchange:correlatedCenterOfMass</code></td><td><a class="xref xref-fn" href="../reference/internal.html#sbtk.internal.exchange_data_files"><code>sbtk.internal.exchange_data_files</code></a></td><td>The center of mass is correlated with the other coefficients; the exchange format gives them separately.</td></tr>
@@ -63,13 +65,14 @@
 <tr id="sbtk:exchange:moiRow"><td><code>sbtk:exchange:moiRow</code></td><td><a class="xref xref-fn" href="../reference/internal.html#sbtk.internal.exchange_data_files"><code>sbtk.internal.exchange_data_files</code></a></td><td>Moment-of-inertia row %s has no exchange-format equivalent.</td></tr>
 <tr id="sbtk:exchange:noCenterOfMass"><td><code>sbtk:exchange:noCenterOfMass</code></td><td><a class="xref xref-fn" href="../reference/internal.html#sbtk.internal.exchange_data_files"><code>sbtk.internal.exchange_data_files</code></a></td><td>The data need the degree-1 coefficients (the measured center of mass): add them with sbtk.data.add_center_of_mass.</td></tr>
 <tr id="sbtk:exchange:normalization"><td><code>sbtk:exchange:normalization</code></td><td><a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_shadr"><code>sbtk.exchange.read_shadr</code></a></td><td>The header of %s gives normalization state %g; SBTK needs 1 (fully normalized).</td></tr>
-<tr id="sbtk:exchange:shapeFile"><td><code>sbtk:exchange:shapeFile</code></td><td><a class="xref xref-fn" href="../reference/internal.html#sbtk.internal.exchange_data_files"><code>sbtk.internal.exchange_data_files</code></a></td><td>The package needs the shape-model file; this shape came from "%s". Write it with sbtk.shape.write_obj and load it with sbtk.shape.load.</td></tr>
+<tr id="sbtk:frame:notRotation"><td><code>sbtk:frame:notRotation</code></td><td><a class="xref xref-fn" href="../reference/internal.html#sbtk.internal.check_rotation"><code>sbtk.internal.check_rotation</code></a></td><td>The axes must be a rotation: orthonormal columns (the new axes as unit vectors in the current frame) with determinant +1.</td></tr>
 <tr id="sbtk:gravity:incompleteSet"><td><code>sbtk:gravity:incompleteSet</code></td><td><a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.center_of_mass_frame"><code>sbtk.gravity.center_of_mass_frame</code></a></td><td>The field is about a point %.1f m from its center of mass and does not have every coefficient up to degree %d, which moving it needs.</td></tr>
 <tr id="sbtk:gravity:incompleteSet-sbtk.gravity.center_of_mass_frame"><td><code>sbtk:gravity:incompleteSet</code></td><td><a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.center_of_mass_frame"><code>sbtk.gravity.center_of_mass_frame</code></a></td><td>The principal axes need every coefficient of degree 2 to %d; the field lacks some.</td></tr>
 <tr id="sbtk:gravity:notStarShaped"><td><code>sbtk:gravity:notStarShaped</code></td><td><a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.geometry"><code>sbtk.gravity.geometry</code></a></td><td>%d facets face the expansion origin: the shape is not star-shaped about [%g %g %g] km.</td></tr>
 <tr id="sbtk:interior:duplicateName"><td><code>sbtk:interior:duplicateName</code></td><td><a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create"><code>sbtk.interior.create</code></a></td><td>Component names must be unique (they label the results): %s</td></tr>
 <tr id="sbtk:interior:sectorCount"><td><code>sbtk:interior:sectorCount</code></td><td><a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sector_grid"><code>sbtk.interior.sector_grid</code></a></td><td>Use 1 to 9 bands in each direction (got %d, %d, %d).</td></tr>
 <tr id="sbtk:interior:sectorRange"><td><code>sbtk:interior:sectorRange</code></td><td><a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sector"><code>sbtk.interior.sector</code></a></td><td>Sector %s: each range must increase (frac %s, lat %s, lon %s) and span at most 360 deg of longitude.</td></tr>
+<tr id="sbtk:interior:transformFit"><td><code>sbtk:interior:transformFit</code></td><td><a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.to_frame"><code>sbtk.interior.to_frame</code></a></td><td>An inversion result cannot be transformed. Transform the measurements (sbtk.data.to_frame) and the body (sbtk.body.to_frame) and invert in the new frame.</td></tr>
 <tr id="sbtk:invert:coefLabel"><td><code>sbtk:invert:coefLabel</code></td><td><a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.setup"><code>sbtk.invert.setup</code></a></td><td>Coefficient %s is above obs.degree = %d.</td></tr>
 <tr id="sbtk:invert:differentData"><td><code>sbtk:invert:differentData</code></td><td><a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.replace_data"><code>sbtk.invert.replace_data</code></a></td><td>The new data differ in labels, origin, degree, mass or inertia weights: run sbtk.invert.setup instead.</td></tr>
 <tr id="sbtk:invert:duplicateName"><td><code>sbtk:invert:duplicateName</code></td><td><a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.setup"><code>sbtk.invert.setup</code></a></td><td>Component names must be unique: %s</td></tr>
@@ -99,7 +102,7 @@
 </main>
 
 </div>
-<script src="../assets/search-index.js?v=681c18c4f5"></script>
-<script src="../assets/site.js?v=681c18c4f5"></script>
+<script src="../assets/search-index.js?v=ca4d69c501"></script>
+<script src="../assets/site.js?v=ca4d69c501"></script>
 </body>
 </html>

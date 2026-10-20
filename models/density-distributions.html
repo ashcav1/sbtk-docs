@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Density distributions — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=681c18c4f5">
-<link rel="stylesheet" href="../assets/pygments.css?v=681c18c4f5">
-<link rel="stylesheet" href="../assets/print.css?v=681c18c4f5" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=ca4d69c501">
+<link rel="stylesheet" href="../assets/pygments.css?v=ca4d69c501">
+<link rel="stylesheet" href="../assets/print.css?v=ca4d69c501" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -101,6 +101,10 @@ along the ray through <span class="nobr"><math alttext="x" xmlns="http://www.w3.
 <li><strong>Ellipsoid.</strong> <span class="nobr"><math alttext="R = R_z(yaw)R_y(pitch)R_x(roll)" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>R</mi><mo>&#x0003D;</mo><msub><mi>R</mi><mi>z</mi></msub><mo stretchy="false">&#x00028;</mo><mtext>yaw</mtext><mo stretchy="false">&#x00029;</mo><msub><mi>R</mi><mi>y</mi></msub><mo stretchy="false">&#x00028;</mo><mtext>pitch</mtext><mo stretchy="false">&#x00029;</mo><msub><mi>R</mi><mi>x</mi></msub><mo stretchy="false">&#x00028;</mo><mtext>roll</mtext><mo stretchy="false">&#x00029;</mo></mrow></math></span> (<a href="../conventions/coordinates.html#ellipsoid-orientation">Coordinate systems</a>).</li>
 <li><strong>Torus.</strong> Centered on the <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis; it may be buried, cross the surface (an equatorial ridge) or extend outside the
   body. Only the part inside the body counts.</li>
+<li><strong>In another frame.</strong> <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.to_frame"><code>sbtk.interior.to_frame</code></a> moves and turns every component with the frame: centers, the axes of
+  ellipsoids, the axis of a torus and the axes in which a sector's latitude and longitude are measured
+  (<a class="xref xref-field" href="../reference/data-structures.html#component.axes"><code>component.axes</code></a>), and the random field. The density at every point is unchanged
+  (<a href="../conventions/gravity-frames.html">Frames of a gravity field</a>).</li>
 <li><strong>Layer.</strong> Depth is measured along the ray from the expansion origin, not along the surface normal; <code>layer("regolith",
   0, 0.012, …)</code> is the outermost 12 m along each ray.</li>
 <li><strong>Sector.</strong> Radial fractions follow the shape: <code>sector("shell", [0.5 0.75], [-90 90], [-180 180], …)</code> is a shell between
@@ -151,7 +155,7 @@ the density at the center of figure and 300 m from it along <span class="nobr"><
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#density-model">Density model</a></li><li class="lvl2"><a href="#component-types">Component types</a></li><li class="lvl2"><a href="#sector-grids">Sector grids</a></li><li class="lvl2"><a href="#random-density-field">Random density field</a></li><li class="lvl2"><a href="#prescribed-components">Prescribed components</a></li><li class="lvl2"><a href="#example">Example</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=681c18c4f5"></script>
-<script src="../assets/site.js?v=681c18c4f5"></script>
+<script src="../assets/search-index.js?v=ca4d69c501"></script>
+<script src="../assets/site.js?v=ca4d69c501"></script>
 </body>
 </html>
