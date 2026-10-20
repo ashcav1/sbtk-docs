@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Calculations — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=ab9adf4ce7">
-<link rel="stylesheet" href="../assets/pygments.css?v=ab9adf4ce7">
-<link rel="stylesheet" href="../assets/print.css?v=ab9adf4ce7" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=198d1bfcfa">
+<link rel="stylesheet" href="../assets/pygments.css?v=198d1bfcfa">
+<link rel="stylesheet" href="../assets/print.css?v=198d1bfcfa" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -28,12 +28,13 @@
 <main id="content" tabindex="-1">
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Examples › <span aria-current="page">Calculations</span></nav>
 <article>
-<h1 id="top" id="calculations">Calculations<a class="headerlink" href="#calculations" title="Link to this section">#</a></h1>
+<h1 id="calculations">Calculations<a class="headerlink" href="#calculations" title="Link to this section">#</a></h1>
+<p class="lastedit">Last edited October 20, 2026</p>
 <p>Short examples of individual calculations. Fragments on this page use the variables of the setup script below.</p>
 <h2 id="setup">Setup<a class="headerlink" href="#setup" title="Link to this section">#</a></h2>
 <div class="codeblock codeblock-code" id="calc-setup"><div class="codehead"><span>MATLAB script: Body, interior and measurements used by the examples on this page</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><span class="nb">run</span><span class="p">(</span><span class="s">&quot;/path/to/SBTK/sbtk_setup.m&quot;</span><span class="p">)</span>
 body = <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.from_mass">sbtk.body.from_mass</a>(&quot;Didymos&quot;, <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.bundled">sbtk.shape.bundled</a>(&quot;didymos&quot;), 5.273e11, 0.43);
-components = [<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, [0 0 0], 0.170, +450), <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;, 0, 0.012, -900)];
+components = [<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, body.centroid_km, 0.170, +450), <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;, 0, 0.012, -900)];
 [exact, truth] = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>(components), 4, &quot;calculations&quot;);   <span class="c">% the true model</span>
 unc  = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.uncertainties">sbtk.data.uncertainties</a>([<a class="xref xref-fn" href="../reference/api/units.html#sbtk.units.offset_to_degree1">sbtk.units.offset_to_degree1</a>(0.002, 0.43), 1e-4, 2e-4, 4e-4], 2e-3, 0.02);
 exact = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_uncertainties">sbtk.data.set_uncertainties</a>(exact, unc);                     <span class="c">% exact values with uncertainties</span>
@@ -80,13 +81,14 @@ cp = <a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.ce
 mo = <a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.center_of_mass_frame">sbtk.gravity.center_of_mass_frame</a>(obs, body, &quot;principal&quot;);      <span class="c">% a measurement set: with its covariance</span>
 <span class="nb">fprintf</span><span class="p">(</span><span class="s">&quot;C22 in principal axes %.4e +- %.1e\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">mo</span><span class="p">.</span><span class="n">coef</span><span class="p">(</span><span class="n">mo</span><span class="p">.</span><span class="n">labels</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;C22&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">mo</span><span class="p">.</span><span class="n">sigma</span><span class="p">(</span><span class="n">mo</span><span class="p">.</span><span class="n">labels</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;C22&quot;</span><span class="p">))</span></code></pre></div>
 <h2 id="a-body-and-its-true-model-in-another-frame">A body and its true model in another frame<a class="headerlink" href="#a-body-and-its-true-model-in-another-frame" title="Link to this section">#</a></h2>
-<p><a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.to_frame"><code>sbtk.body.to_frame</code></a> and <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.to_frame"><code>sbtk.interior.to_frame</code></a> carry the shape model and the true model into the spin axes;
-the density grid is then on cells of that frame (<a href="../conventions/gravity-frames.html#packages-in-another-frame">Frames of a gravity field</a>).</p>
+<p><a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.to_frame"><code>sbtk.body.to_frame</code></a> and <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.to_frame"><code>sbtk.interior.to_frame</code></a> carry the shape model and the true model into the frame with the
+center of mass as origin and the spin axes; the density grid is then on cells of that frame (<a href="../conventions/gravity-frames.html#packages-in-another-frame">Frames of a gravity field</a>).</p>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment. Requires the variables defined in <a href="../examples/calculations.html#calc-setup">Body, interior and measurements used by the examples on this page</a>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">spin = <a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.center_of_mass_frame">sbtk.gravity.center_of_mass_frame</a>(truth, body, &quot;spin&quot;);
-body_s  = <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.to_frame">sbtk.body.to_frame</a>(body, [0 0 0], spin.axes, &quot;didymos_v003_spin_axes&quot;);
-truth_s = <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.to_frame">sbtk.interior.to_frame</a>(truth, [0 0 0], spin.axes);
-<span class="nb">fprintf</span><span class="p">(</span><span class="s">&quot;center of mass %s km in the shape-model frame, %s km in the spin axes\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">mat2str</span><span class="p">(</span><span class="n">truth</span><span class="p">.</span><span class="n">com_km</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">),</span><span class="w"> </span><span class="k">...</span>
+body_s  = <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.to_frame">sbtk.body.to_frame</a>(body, spin.com_km, spin.axes, &quot;didymos_v003_com_spin_axes&quot;);
+truth_s = <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.to_frame">sbtk.interior.to_frame</a>(truth, spin.com_km, spin.axes);
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&quot;center of mass %s km in the shape-model file, %s km in the new frame\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">mat2str</span><span class="p">(</span><span class="n">truth</span><span class="p">.</span><span class="n">com_km</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">),</span><span class="w"> </span><span class="k">...</span>
 <span class="w">        </span><span class="nb">mat2str</span><span class="p">(</span><span class="n">truth_s</span><span class="p">.</span><span class="n">com_km</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">))</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&quot;center of figure %s km in the new frame\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">mat2str</span><span class="p">(</span><span class="n">body_s</span><span class="p">.</span><span class="n">centroid_km</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">))</span>
 grid_s = <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.density_grid">sbtk.exchange.density_grid</a>(body_s, truth_s, 0.040);
 <span class="nb">fprintf</span><span class="p">(</span><span class="s">&quot;%d cells of 40 m in the spin axes\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">numel</span><span class="p">(</span><span class="n">grid_s</span><span class="p">.</span><span class="n">density_kgm3</span><span class="p">))</span></code></pre></div>
 <h2 id="density-at-points-and-on-a-grid">Density at points and on a grid<a class="headerlink" href="#density-at-points-and-on-a-grid" title="Link to this section">#</a></h2>
@@ -169,11 +171,11 @@ ref = <a class="xref xref-fn" href="../reference/api/compare.html#sbtk.compare.r
 <span class="nb">fprintf</span><span class="p">(</span><span class="s">&quot;R2 over 20 noise realizations: %.2f +- %.2f\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">mean</span><span class="p">(</span><span class="n">R2</span><span class="p">),</span><span class="w"> </span><span class="nb">std</span><span class="p">(</span><span class="n">R2</span><span class="p">))</span></code></pre></div>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../examples/density-models.html" rel="prev"><span>Previous</span>Density models by component type</a><a class="next" href="../examples/tutorials.html" rel="next"><span>Next</span>Tutorial scripts</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-19.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-20.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#setup">Setup</a></li><li class="lvl2"><a href="#unit-conversions">Unit conversions</a></li><li class="lvl2"><a href="#volume-and-moments-of-one-component">Volume and moments of one component</a></li><li class="lvl2"><a href="#coefficients-and-inertia-about-another-origin">Coefficients and inertia about another origin</a></li><li class="lvl2"><a href="#difference-from-the-homogeneous-body">Difference from the homogeneous body</a></li><li class="lvl2"><a href="#field-about-the-center-of-mass-in-spin-and-principal-axes">Field about the center of mass, in spin and principal axes</a></li><li class="lvl2"><a href="#a-body-and-its-true-model-in-another-frame">A body and its true model in another frame</a></li><li class="lvl2"><a href="#density-at-points-and-on-a-grid">Density at points and on a grid</a></li><li class="lvl2"><a href="#uncertainties-from-another-data-set">Uncertainties from another data set</a></li><li class="lvl2"><a href="#inertia-measurements">Inertia measurements</a></li><li class="lvl2"><a href="#measured-center-of-mass">Measured center of mass</a></li><li class="lvl2"><a href="#reading-a-shadr-layout-gravity-file">Reading a SHADR-layout gravity file</a></li><li class="lvl2"><a href="#packages-for-another-team">Packages for another team</a></li><li class="lvl2"><a href="#many-fits-against-one-true-model">Many fits against one true model</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=ab9adf4ce7"></script>
-<script src="../assets/site.js?v=ab9adf4ce7"></script>
+<script src="../assets/search-index.js?v=198d1bfcfa"></script>
+<script src="../assets/site.js?v=198d1bfcfa"></script>
 </body>
 </html>

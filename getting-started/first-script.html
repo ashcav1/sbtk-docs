@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>First script — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=ab9adf4ce7">
-<link rel="stylesheet" href="../assets/pygments.css?v=ab9adf4ce7">
-<link rel="stylesheet" href="../assets/print.css?v=ab9adf4ce7" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=198d1bfcfa">
+<link rel="stylesheet" href="../assets/pygments.css?v=198d1bfcfa">
+<link rel="stylesheet" href="../assets/print.css?v=198d1bfcfa" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -28,7 +28,8 @@
 <main id="content" tabindex="-1">
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Getting started › <span aria-current="page">First script</span></nav>
 <article>
-<h1 id="top" id="first-script">First script<a class="headerlink" href="#first-script" title="Link to this section">#</a></h1>
+<h1 id="first-script">First script<a class="headerlink" href="#first-script" title="Link to this section">#</a></h1>
+<p class="lastedit">Last edited October 20, 2026</p>
 <p>The script below runs the complete SBTK sequence on the shape model of the asteroid Didymos: it defines a body and a
 known interior (the true model), computes the exact gravity coefficients and moments of inertia of that interior, turns
 them into measurements by giving them uncertainties and adding noise, estimates the densities of the interior from those
@@ -42,7 +43,7 @@ body = <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.from_m
 <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.summary">sbtk.body.summary</a>(body)
 
 <span class="c">% 2. A known interior: a dense core and a low-density surface layer</span>
-components = [<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, [0 0 0], 0.170, +450), ...<span class="c">   % center [km], radius [km], relative density [kg/m^3]</span>
+components = [<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, body.centroid_km, 0.170, +450), ...<span class="c">   % center [km]: the center of figure</span>
               <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;, 0, 0.012, -900)];        <span class="c">% from 0 to 12 m below the surface</span>
 interior = <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>(components);
 
@@ -77,30 +78,30 @@ Didymos measurements (first_script)
   mass 5.273e+11 kg, reference radius 430 m, gravity to degree 4
   24 gravity coefficients: 3 of degree 1, 5 of degree 2, 7 of degree 3, 9 of degree 4
   7 moment-of-inertia measurements: Ixx Iyy Izz Ixy Ixz Iyz libration
-  coefficients are about origin_km = [15.7 41.6 -33.4] m (shape-model coordinates)
+  coefficients are about origin_km = [15.9 42.3 -34.0] m (shape-model coordinates)
   coefficient covariance: diagonal (independent uncertainties)
-  example: C20 = -3.4872e-02 +- 1.0e-04
+  example: C20 = -3.4877e-02 +- 1.0e-04
   notes: Simulated by SBTK from interior first_script. Values include simulated measurement noise (seed 1).
 
 Didymos inversion of first_script: 27 measurements
-  chi2 = 29.73, dof = 25.0, reduced chi2 = 1.19, p = 0.23 (consistent with the measurements at the 5% level)
+  chi2 = 27.77, dof = 25.0, reduced chi2 = 1.11, p = 0.32 (consistent with the measurements at the 5% level)
 
   component    density [kg/m^3]      relative density [kg/m^3]
-  background     2699 +-    42
-  core           2969 +-    94          +270 +-   133
-  regolith       1293 +-   271         -1405 +-   313
+  background     2741 +-    51
+  core           2871 +-   115          +131 +-   164   not resolved (|relative density| &lt; 1 sigma)
+  regolith       1040 +-   323         -1701 +-   373
 
   largest normalized residual: S42, 2.0 sigma
 
 Didymos: estimate compared with the true model
-  R2 = 0.76: fraction of the variance of the true density about its mean explained by the estimate
+  R2 = 0.37: fraction of the variance of the true density about its mean explained by the estimate
   R2_max = 1.00: the largest R2 these components can reach
-  RMS density error 167 kg/m^3; standard deviation of the true density 337 kg/m^3
-  reduced chi2 of the fit 1.19 (p = 0.23)
+  RMS density error 267 kg/m^3; standard deviation of the true density 337 kg/m^3
+  reduced chi2 of the fit 1.11 (p = 0.32)
 
   component         estimate [kg/m^3]       true    deviation
-  core                 2969 +-    94       3083       1.2 sigma
-  regolith             1293 +-   271       1733       1.6 sigma</code></pre></div>
+  core                 2871 +-   115       3083       1.8 sigma
+  regolith             1040 +-   323       1733       2.1 sigma</code></pre></div>
 <p>The figure shows the true density, the estimated density and their difference on the planes <span class="nobr"><math alttext="z = 0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math></span> and <span class="nobr"><math alttext="y = 0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>y</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math></span>
 through the center of mass (<a href="../files/results-folders.html#figures">Figures</a>).</p>
 <h2 id="what-each-step-does">What each step does<a class="headerlink" href="#what-each-step-does" title="Link to this section">#</a></h2>
@@ -110,10 +111,12 @@ through the center of mass (<a href="../files/results-folders.html#figures">Figu
    <span class="nobr"><math alttext="R_ref = 0.43" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>R</mi><mtext>ref</mtext></msub><mo>&#x0003D;</mo><mn>0.43</mn></mrow></math></span> km of the coefficients; the bulk density <span class="nobr"><math alttext="M/V" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi><mo>&#x0002F;</mo><mi>V</mi></mrow></math></span> follows from the shape volume. The center of
    figure is 57 m from the origin of the shape-model file, which is not the body's center
    (<a href="../conventions/coordinates.html">Coordinate systems and origins</a>).</li>
-<li><strong>Interior.</strong> The core is a sphere of radius 170 m centered at the shape-model origin, 450 kg/m³ denser than the
-   background. The origin keeps the example short; a core meant to be central is placed at the center of figure,
-   <code>body.centroid_km</code> (<a href="../models/density-distributions.html#where-to-place-components">Where to place components</a>). The regolith is everything within 12 m of the surface, measured along rays from the center of mass, 900
-   kg/m³ lighter than the background. The background density is not given: it is set so that the total mass equals
+<li><strong>Interior.</strong> The core is a sphere of radius 170 m centered at the center of figure, <code>body.centroid_km</code>, 450 kg/m³
+   denser than the background; positions of spheres, ellipsoids and tori are shape-model coordinates, and the origin
+   of this file is 57 m from the center of figure
+   (<a href="../models/density-distributions.html#where-to-place-components">Where to place components</a>). The regolith is
+   everything within 12 m of the surface, measured along rays from the center of mass, 900 kg/m³ lighter than the
+   background. The background density is not given: it is set so that the total mass equals
    <span class="nobr"><math alttext="M" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi></mrow></math></span> (<a href="../models/density-distributions.html">Density distributions</a>).</li>
 <li><strong>True model.</strong> <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a> computes the fully normalized gravity coefficients of degree 1 to 4, the
    six inertia elements and the libration ratio of this interior, about its center of mass
@@ -125,12 +128,15 @@ through the center of mass (<a href="../files/results-folders.html#figures">Figu
    (<a href="../inversion/measurements.html">Measurement sets</a>).</li>
 <li><strong>Estimation.</strong> <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.solve"><code>sbtk.invert.solve</code></a> fits the background density and the relative density of each component to the
    24 coefficients and, with the standard settings of <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.options"><code>sbtk.invert.options</code></a>, to <code>Ixx</code>, <code>Iyy</code> and <code>Izz</code>, with the
-   total mass as a constraint (<a href="../inversion/density-estimation.html">Density estimation</a>). The reduced <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> of 1.19
-   with <span class="nobr"><math alttext="p = 0.23" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>p</mi><mo>&#x0003D;</mo><mn>0.23</mn></mrow></math></span> means that the model fits the data within their uncertainties
+   total mass as a constraint (<a href="../inversion/density-estimation.html">Density estimation</a>). The reduced <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> of 1.11
+   with <span class="nobr"><math alttext="p = 0.32" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>p</mi><mo>&#x0003D;</mo><mn>0.32</mn></mrow></math></span> means that the model fits the data within their uncertainties
    (<a href="../inversion/statistics.html">Goodness of fit</a>).</li>
-<li><strong>Comparison.</strong> <a class="xref xref-fn" href="../reference/api/compare.html#sbtk.compare.with_truth"><code>sbtk.compare.with_truth</code></a> evaluates both densities throughout the body. <span class="nobr"><math alttext="R^2 = 0.76" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mn>0.76</mn></mrow></math></span> is the fraction
+<li><strong>Comparison.</strong> <a class="xref xref-fn" href="../reference/api/compare.html#sbtk.compare.with_truth"><code>sbtk.compare.with_truth</code></a> evaluates both densities throughout the body. <span class="nobr"><math alttext="R^2 = 0.37" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mn>0.37</mn></mrow></math></span> is the fraction
    of the variance of the true density that the estimate explains; <span class="nobr"><math alttext="R^2_max = 1" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msubsup><mi>R</mi><mtext>max</mtext><mn>2</mn></msubsup><mo>&#x0003D;</mo><mn>1</mn></mrow></math></span> because the estimate uses the
-   true geometry. Each component's estimate is within 1.6σ of its true density.</li>
+   true geometry. Each component's estimate is within 2.1σ of its true density. The core is not resolved (its relative
+   density is smaller than its 1σ): a core concentric with the body changes the field much as the background and the
+   regolith layer do, so at these uncertainties the three are hard to tell apart. An off-center core, or more precise
+   inertia measurements, separate them better (<a href="../examples/tutorials.html">Tutorial ex08</a>).</li>
 </ol>
 <h2 id="next-steps">Next steps<a class="headerlink" href="#next-steps" title="Link to this section">#</a></h2>
 <ul>
@@ -141,11 +147,11 @@ through the center of mass (<a href="../files/results-folders.html#figures">Figu
 </ul>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../getting-started/installation.html" rel="prev"><span>Previous</span>Installation</a><a class="next" href="../conventions/units.html" rel="next"><span>Next</span>Units</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-19.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-20.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#script">Script</a></li><li class="lvl2"><a href="#output">Output</a></li><li class="lvl2"><a href="#what-each-step-does">What each step does</a></li><li class="lvl2"><a href="#next-steps">Next steps</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=ab9adf4ce7"></script>
-<script src="../assets/site.js?v=ab9adf4ce7"></script>
+<script src="../assets/search-index.js?v=198d1bfcfa"></script>
+<script src="../assets/site.js?v=198d1bfcfa"></script>
 </body>
 </html>

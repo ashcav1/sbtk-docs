@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SBTK: Small Body Toolkit — SBTK documentation</title>
-<link rel="stylesheet" href="./assets/site.css?v=ab9adf4ce7">
-<link rel="stylesheet" href="./assets/pygments.css?v=ab9adf4ce7">
-<link rel="stylesheet" href="./assets/print.css?v=ab9adf4ce7" media="print">
+<link rel="stylesheet" href="./assets/site.css?v=198d1bfcfa">
+<link rel="stylesheet" href="./assets/pygments.css?v=198d1bfcfa">
+<link rel="stylesheet" href="./assets/print.css?v=198d1bfcfa" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -28,7 +28,8 @@
 <main id="content" tabindex="-1">
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="./index.html">Documentation</a> › Overview</nav>
 <article>
-<h1 id="top" id="sbtk-small-body-toolkit">SBTK: Small Body Toolkit<a class="headerlink" href="#sbtk-small-body-toolkit" title="Link to this section">#</a></h1>
+<h1 id="sbtk-small-body-toolkit">SBTK: Small Body Toolkit<a class="headerlink" href="#sbtk-small-body-toolkit" title="Link to this section">#</a></h1>
+<p class="lastedit">Last edited October 20, 2026</p>
 <p>SBTK is a MATLAB toolkit for the interior density distribution of asteroids and other small bodies. It computes the
 gravity coefficients, center of mass and moments of inertia of a density model inside a polyhedral shape model, and it
 estimates the densities of such a model from measured gravity coefficients and moments of inertia. This site documents
@@ -37,7 +38,7 @@ version 1.0.0.</p>
 <p>The following are implemented and covered by the test suite (<a href="./validation/tests.html">Validation</a>).</p>
 <dl>
 <dt>Density models</dt>
-<dd>A background density, uniform components (spheres, triaxial ellipsoids, tori about the <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis, layers below the
+<dd>A background density, uniform components (spheres, triaxial ellipsoids, tori with any axis, layers below the
 surface, latitude–longitude–radius sectors) and an optional Gaussian random density field, clipped to a closed
 polyhedral shape model that is star-shaped about the expansion origin
 (<a href="./models/density-distributions.html">Density distributions</a>).</dd>
@@ -45,14 +46,20 @@ polyhedral shape model that is star-shaped about the expansion origin
 <dd>Fully normalized spherical-harmonic coefficients to any degree, the center of mass and the inertia tensor of such a
 model, from exact polyhedral integrals over the cones between the expansion origin and each surface facet
 (<a href="./models/forward-model.html">Gravity and moment calculations</a>).</dd>
+<dt>Frames</dt>
+<dd>Coefficients about the center of mass in the shape-model axes, the spin axes or the principal axes of inertia, and
+bodies, measurements and models carried into another frame
+(<a href="./conventions/gravity-frames.html">Frames of a gravity field</a>).</dd>
 <dt>Measurement sets</dt>
 <dd>Gravity coefficients with a full covariance, moment-of-inertia elements, linear combinations of them, the libration
-ratio <span class="nobr"><math alttext="(B-A)/C" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>B</mi><mo>&#x02212;</mo><mi>A</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002F;</mo><mi>C</mi></mrow></math></span> and the center of mass, either simulated with Gaussian noise or read from files
+ratio <span class="nobr"><math alttext="(B-A)/C" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>B</mi><mo>&#x02212;</mo><mi>A</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002F;</mo><mi>C</mi></mrow></math></span> and the center of mass, simulated (exact values, or with uncertainties and Gaussian noise) or read
+from files
 (<a href="./inversion/measurements.html">Measurement sets</a>).</dd>
 <dt>Density estimation</dt>
 <dd>Weighted least squares for the background density and the relative density of each component, with the total mass
-as an equality constraint, bounds on the densities, optional Tikhonov regularization, optional estimation of sphere
-centers, linearized 1σ uncertainties, and a <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> test of the fit
+as an equality constraint, bounds on the densities, optional Tikhonov regularization, optional estimation of the
+position of spheres, ellipsoids and tori and of the axis of ellipsoids and tori, linearized 1σ uncertainties, and a
+<span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> test of the fit
 (<a href="./inversion/density-estimation.html">Density estimation</a>).</dd>
 <dt>Comparison with a true model</dt>
 <dd>For synthetic tests: the fraction of the variance of the true density explained by the estimate (<span class="nobr"><math alttext="R^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow></math>)</span>, the
@@ -99,7 +106,7 @@ other platforms (<a href="./getting-started/installation.html">Installation</a>)
 </tr>
 <tr>
 <td>Examples</td>
-<td>One example per component type and per calculation; the eight tutorial scripts.</td>
+<td>One example per component type and per calculation; the eight tutorial scripts and the six maker models.</td>
 </tr>
 <tr>
 <td>Projects</td>
@@ -124,11 +131,11 @@ Data" (Icarus). Shape models: DART stereophotoclinometry models of Didymos (v003
 shape model of Bennu.</p>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><span></span><a class="next" href="./overview/limitations.html" rel="next"><span>Next</span>Assumptions and limitations</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-19.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-20.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#capabilities">Capabilities</a></li><li class="lvl2"><a href="#status-and-requirements">Status and requirements</a></li><li class="lvl2"><a href="#organization-of-this-documentation">Organization of this documentation</a></li><li class="lvl2"><a href="#credits">Credits</a></li></ul></nav>
 </div>
-<script src="./assets/search-index.js?v=ab9adf4ce7"></script>
-<script src="./assets/site.js?v=ab9adf4ce7"></script>
+<script src="./assets/search-index.js?v=198d1bfcfa"></script>
+<script src="./assets/site.js?v=198d1bfcfa"></script>
 </body>
 </html>

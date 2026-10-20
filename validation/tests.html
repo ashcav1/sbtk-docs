@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Validation and tests — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=ab9adf4ce7">
-<link rel="stylesheet" href="../assets/pygments.css?v=ab9adf4ce7">
-<link rel="stylesheet" href="../assets/print.css?v=ab9adf4ce7" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=198d1bfcfa">
+<link rel="stylesheet" href="../assets/pygments.css?v=198d1bfcfa">
+<link rel="stylesheet" href="../assets/print.css?v=198d1bfcfa" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -28,9 +28,10 @@
 <main id="content" tabindex="-1">
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Validation › <span aria-current="page">Validation and tests</span></nav>
 <article>
-<h1 id="top" id="validation-and-tests">Validation and tests<a class="headerlink" href="#validation-and-tests" title="Link to this section">#</a></h1>
-<p>SBTK 1.0.0 has 129 unit and integration tests in MATLAB's unit-test framework. They run with</p>
-<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">run(fullfile(<a class="xref xref-fn" href="../reference/api/sbtk.html#sbtk.root">sbtk.root</a>, &quot;tests&quot;, &quot;run_tests.m&quot;))      <span class="c">% about 3 minutes; writes tests/reports/test_report.txt</span></code></pre></div>
+<h1 id="validation-and-tests">Validation and tests<a class="headerlink" href="#validation-and-tests" title="Link to this section">#</a></h1>
+<p class="lastedit">Last edited October 20, 2026</p>
+<p>SBTK 1.0.0 has 151 unit and integration tests in MATLAB's unit-test framework. They run with</p>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">run(fullfile(<a class="xref xref-fn" href="../reference/api/sbtk.html#sbtk.root">sbtk.root</a>, &quot;tests&quot;, &quot;run_tests.m&quot;))      <span class="c">% about 6 minutes; writes tests/reports/test_report.txt</span></code></pre></div>
 <p>This page states what the tests check and with what tolerance, as written in the test files. It makes no claims
 beyond them. Unit tests use a small ellipsoid body (<code>tests/unit/small_body.m</code>); validation tests use an ellipsoid with
 semi-axes 0.5 × 0.4 × 0.3 km (20,480 facets) and the 9.3 m Didymos model with a bulk density of 2600 kg/m³ and
@@ -175,6 +176,16 @@ semi-axes 0.5 × 0.4 × 0.3 km (20,480 facets) and the 9.3 m Didymos model with 
 <td></td>
 </tr>
 <tr>
+<td><code>testExactPackage</code></td>
+<td>A package of exact values has the columns <code>l,m,C,S</code>, no covariance file and no uncertainty or noise lines; it is read back with NaN uncertainties, the inversion asks for uncertainties, and with them it fits.</td>
+<td>values 10⁻¹⁷; <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> &lt; 10⁻⁶</td>
+</tr>
+<tr>
+<td><code>testReportStatesWhatApplies</code></td>
+<td>Uncertainties, noise, the sign convention of the products of inertia and the libration ratio are stated only when the package has them; exact values with the center of mass as origin in principal axes, or with <span class="nobr"><math alttext="x" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math>,</span> <span class="nobr"><math alttext="y" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>y</mi></mrow></math></span> turned 20° about <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math>,</span> are described as such in <code>conventions.txt</code>, and the package's shape model has its center of mass at the origin.</td>
+<td>10⁻¹² km; obj precision for the center of figure</td>
+</tr>
+<tr>
 <td><code>testGridDefinition</code></td>
 <td>Density-grid cell centers lie on multiples of the spacing and the cells fill the body; grids of different spacing are rejected.</td>
 <td>volume within 5% at 50 m cells</td>
@@ -199,7 +210,9 @@ flagged; settings by name and value; starting values of the relative densities a
 inconsistent replacement data are rejected. <code>testEstimateTorusAxisAndHeight</code>: the axis of a torus (true tilt 4.5°) and
 its height (12 m), started 3.5° and 15 m away, are recovered from exact values to 0.02° and 0.2 m with its density
 (5 kg/m³). <code>testGeometryLimits</code>: a hard limit on the tilt holds, an a priori constraint keeps the axis at its start, and
-geometry asked of components without a center or an axis is rejected. The sphere-position results of
+geometry asked of components without a center or an axis is rejected. <code>testEstimateEllipsoidOrientation</code>: the full
+orientation of an ellipsoid (the direction of its third axis and its turn about it), started 8° away, is recovered from
+exact values to 0.05°, and a limit of 3° on the turn holds. The sphere-position results of
 <code>test_regression_baseline.m</code> (including the number of iterations) did not change when the estimated geometry was
 generalized.</p>
 <h2 id="reproduction-of-published-and-earlier-results">Reproduction of published and earlier results<a class="headerlink" href="#reproduction-of-published-and-earlier-results" title="Link to this section">#</a></h2>
@@ -219,8 +232,8 @@ generalized.</p>
 </tr>
 <tr>
 <td><code>tests/integration/test_regression_baseline.m</code></td>
-<td>Geometry, integrals, sample points, simulation, noise, inversion, regularization choice, comparison and position estimation against values stored from the code before the toolkit (<code>tests/reference/baseline_v0.mat</code>).</td>
-<td>relative 10⁻¹⁰ unless stated in the test</td>
+<td>Geometry, integrals, sample points, simulation, noise, inversion, regularization choice, comparison and position estimation against values stored from the code before the toolkit (<code>tests/reference/baseline_v0.mat</code>). Results that include an ellipsoid or a torus differ because their ray crossings are now exact: the old code sampled 256 points per chord and missed rays that only graze them (the exact crossings equal 4096 samples to 10⁻¹⁵).</td>
+<td>relative 10⁻¹⁰ unless stated in the test; 2 × 10⁻⁶ with an ellipsoid or a torus</td>
 </tr>
 </tbody>
 </table>
@@ -255,7 +268,7 @@ generalized.</p>
 </tr>
 <tr>
 <td><code>tests/unit/test_frames.m</code></td>
-<td><code>testSpinAxes</code>: in the spin axes <span class="nobr"><math alttext="C_21 = S_21 = 0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub><mo>&#x0003D;</mo><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math></span> to <span class="nobr"><math alttext="10^-13" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>13</mn></mrow></msup></mrow></math>,</span> <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span> is the axis of the largest moment, <span class="nobr"><math alttext="x" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></span> lies in the plane of the shape-model <span class="nobr"><math alttext="x" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></span>-axis and <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math>,</span> <span class="nobr"><math alttext="12 atan2( S_22, C_22)" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mstyle displaystyle="false" scriptlevel="0"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mspace width="0.167em" /><mrow><mi mathvariant="normal">a</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">n</mi><mn>2</mn></mrow><mo stretchy="false">&#x00028;</mo><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub><mo>&#x0002C;</mo><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub><mo stretchy="false">&#x00029;</mo></mrow></math></span> is the longitude of the axis of the smallest moment, each degree's power is unchanged, and the comparison with the homogeneous body gives its own terms. <code>testChangeOfFrameEqualsSimulationInIt</code>: a body, an interior with every component type and a random field, carried into a rotated and shifted frame and simulated there, give the transformed true model, coefficients, inertia rows and libration ratio of the original simulation (to <span class="nobr"><math alttext="10^-7" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>7</mn></mrow></msup></mrow></math>)</span>, and the density grid in the new frame equals the original model at the same points (to <span class="nobr"><math alttext="10^-9" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>9</mn></mrow></msup></mrow></math></span> kg/m³). <code>testPackageInSpinAxes</code>: packages in the spin axes contain their own shape-model file, the data have <span class="nobr"><math alttext="C_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="S_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math></span> zero within the noise, and the grid and the component descriptions are in the same frame. <code>testChangeOfFrameRules</code>: a shift applies to any set; new axes need exact inertia rows and complete degrees; fits are not transformed; non-rotations are rejected.</td>
+<td><code>testSpinAxes</code>: in the spin axes <span class="nobr"><math alttext="C_21 = S_21 = 0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub><mo>&#x0003D;</mo><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math></span> to <span class="nobr"><math alttext="10^-13" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>13</mn></mrow></msup></mrow></math>,</span> <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span> is the axis of the largest moment, <span class="nobr"><math alttext="x" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></span> lies in the plane of the shape-model <span class="nobr"><math alttext="x" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></span>-axis and <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math>,</span> <span class="nobr"><math alttext="12 atan2( S_22, C_22)" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mstyle displaystyle="false" scriptlevel="0"><mfrac><mn>1</mn><mn>2</mn></mfrac></mstyle><mspace width="0.167em" /><mrow><mi mathvariant="normal">a</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">n</mi><mn>2</mn></mrow><mo stretchy="false">&#x00028;</mo><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub><mo>&#x0002C;</mo><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub><mo stretchy="false">&#x00029;</mo></mrow></math></span> is the longitude of the axis of the smallest moment, each degree's power is unchanged, and the comparison with the homogeneous body gives its own terms. <code>testChangeOfFrameEqualsSimulationInIt</code>: a body, an interior with every component type and a random field, carried into a rotated and shifted frame and simulated there, give the transformed true model, coefficients, inertia rows and libration ratio of the original simulation (to <span class="nobr"><math alttext="10^-7" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>7</mn></mrow></msup></mrow></math>)</span>, and the density grid in the new frame equals the original model at the same points (to <span class="nobr"><math alttext="10^-9" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>9</mn></mrow></msup></mrow></math></span> kg/m³). <code>testPackageInSpinAxes</code>: packages in the spin axes contain their own shape-model file, the data have <span class="nobr"><math alttext="C_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="S_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math></span> zero within the noise, and the grid and the component descriptions are in the same frame. <code>testChangeOfFrameRules</code>: a shift applies to any set; new axes need exact inertia rows and complete degrees; fits are not transformed; non-rotations are rejected. <code>testNoLocalPathInPackage</code>: a package with a shape model changed in frame names the original file but not its folder.</td>
 </tr>
 <tr>
 <td><code>tests/unit/test_data.m</code></td>
@@ -281,17 +294,21 @@ generalized.</p>
 <td><code>tests/integration/test_template_project.m</code></td>
 <td>The project template runs: simulation, inversion, comparison.</td>
 </tr>
+<tr>
+<td><code>tests/integration/test_maker_scripts.m</code></td>
+<td>The six HLP6 maker scripts in <code>examples/</code> pass the code analyzer; <code>make_didymos_3</code> and <code>make_dimorphos_3</code> run, and their packages have exact values only, their own shape-model file with the center of mass at the origin, the frame stated in <code>conventions.txt</code>, <span class="nobr"><math alttext="C_21 = S_21 = 0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub><mo>&#x0003D;</mo><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math></span> (and <span class="nobr"><math alttext="S_22 = 0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math></span> for Dimorphos) to 10⁻¹², every boulder or void of the model, and no local paths.</td>
+</tr>
 </tbody>
 </table>
 <p>Longer studies in <code>tests/studies/</code> (recovery over interiors and data sets, edge cases of the forward model against
 brute-force integration, uncertainty calibration) are run separately and are not part of the test suite.</p>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../reference/internal.html" rel="prev"><span>Previous</span>Internal functions</a><span></span></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-19.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-20.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#comparison-with-independent-results">Comparison with independent results</a></li><li class="lvl2"><a href="#conventions-and-frames">Conventions and frames</a></li><li class="lvl2"><a href="#inversion-behavior">Inversion behavior</a></li><li class="lvl2"><a href="#reproduction-of-published-and-earlier-results">Reproduction of published and earlier results</a></li><li class="lvl2"><a href="#other-tests">Other tests</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=ab9adf4ce7"></script>
-<script src="../assets/site.js?v=ab9adf4ce7"></script>
+<script src="../assets/search-index.js?v=198d1bfcfa"></script>
+<script src="../assets/site.js?v=198d1bfcfa"></script>
 </body>
 </html>

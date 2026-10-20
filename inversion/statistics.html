@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Goodness of fit and model comparison — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=ab9adf4ce7">
-<link rel="stylesheet" href="../assets/pygments.css?v=ab9adf4ce7">
-<link rel="stylesheet" href="../assets/print.css?v=ab9adf4ce7" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=198d1bfcfa">
+<link rel="stylesheet" href="../assets/pygments.css?v=198d1bfcfa">
+<link rel="stylesheet" href="../assets/print.css?v=198d1bfcfa" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -28,7 +28,8 @@
 <main id="content" tabindex="-1">
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Measurements and inversion › <span aria-current="page">Goodness of fit and model comparison</span></nav>
 <article>
-<h1 id="top" id="goodness-of-fit-and-model-comparison">Goodness of fit and model comparison<a class="headerlink" href="#goodness-of-fit-and-model-comparison" title="Link to this section">#</a></h1>
+<h1 id="goodness-of-fit-and-model-comparison">Goodness of fit and model comparison<a class="headerlink" href="#goodness-of-fit-and-model-comparison" title="Link to this section">#</a></h1>
+<p class="lastedit">Last edited October 20, 2026</p>
 <h2 id="chi-square-test">Chi-square test<a class="headerlink" href="#chi-square-test" title="Link to this section">#</a></h2>
 <p>For a fit with residuals <span class="nobr"><math alttext="r = y_pred - y" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D42B;</mi><mo>&#x0003D;</mo><msub><mi>&#x1D432;</mi><mtext>pred</mtext></msub><mo>&#x02212;</mo><mi>&#x1D432;</mi></mrow></math></span> and measurement covariance <span class="nobr"><math alttext="" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003A3;</mi></mrow></math>:</span></p>
 <table>
@@ -120,7 +121,7 @@ of <span class="nobr"><math alttext="(ρ - ρ_true)/σ" xmlns="http://www.w3.org
 <div class="codeblock codeblock-code" id="calibration-example"><div class="codehead"><span>MATLAB script: Calibration over noise realizations</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><span class="nb">run</span><span class="p">(</span><span class="s">&quot;/path/to/SBTK/sbtk_setup.m&quot;</span><span class="p">)</span>
 body = <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.from_mass">sbtk.body.from_mass</a>(&quot;Didymos&quot;, <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.bundled">sbtk.shape.bundled</a>(&quot;didymos&quot;), 5.273e11, 0.43);
 unc  = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.uncertainties">sbtk.data.uncertainties</a>([<a class="xref xref-fn" href="../reference/api/units.html#sbtk.units.offset_to_degree1">sbtk.units.offset_to_degree1</a>(0.002, 0.43), 1e-4, 2e-4, 4e-4], 2e-3, 0.02);
-components = [<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, [0 0 0], 0.17, +450), <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;, 0, 0.012, -900)];
+components = [<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, body.centroid_km, 0.17, +450), <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;, 0, 0.012, -900)];
 [exact, truth] = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>(components), 4, &quot;calibration&quot;);
 exact = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_uncertainties">sbtk.data.set_uncertainties</a>(exact, unc);
 
@@ -134,11 +135,11 @@ prob = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.se
 <span class="nb">fprintf</span><span class="p">(</span><span class="s">&quot;standard deviation of (estimate - truth)/sigma: %.2f\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">std</span><span class="p">(</span><span class="n">z</span><span class="p">(:)))</span></code></pre></div>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../inversion/density-estimation.html" rel="prev"><span>Previous</span>Density estimation</a><a class="next" href="../files/results-folders.html" rel="next"><span>Next</span>Results folders and figures</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-19.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-20.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#chi-square-test">Chi-square test</a></li><li class="lvl2"><a href="#homogeneous-body">Homogeneous body</a></li><li class="lvl2"><a href="#normalized-residuals">Normalized residuals</a></li><li class="lvl2"><a href="#comparison-with-a-true-model">Comparison with a true model</a></li><li class="lvl2"><a href="#comparison-of-density-grids">Comparison of density grids</a></li><li class="lvl2"><a href="#calibration-of-the-uncertainties">Calibration of the uncertainties</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=ab9adf4ce7"></script>
-<script src="../assets/site.js?v=ab9adf4ce7"></script>
+<script src="../assets/search-index.js?v=198d1bfcfa"></script>
+<script src="../assets/site.js?v=198d1bfcfa"></script>
 </body>
 </html>

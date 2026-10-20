@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>sbtk.data — SBTK documentation</title>
-<link rel="stylesheet" href="../../assets/site.css?v=ab9adf4ce7">
-<link rel="stylesheet" href="../../assets/pygments.css?v=ab9adf4ce7">
-<link rel="stylesheet" href="../../assets/print.css?v=ab9adf4ce7" media="print">
+<link rel="stylesheet" href="../../assets/site.css?v=198d1bfcfa">
+<link rel="stylesheet" href="../../assets/pygments.css?v=198d1bfcfa">
+<link rel="stylesheet" href="../../assets/print.css?v=198d1bfcfa" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,6 +29,7 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../../index.html">Documentation</a> › Reference › <span aria-current="page">sbtk.data</span></nav>
 <article>
 <h1 id="top"><code>sbtk.data</code>: Measurement sets</h1>
+<p class="lastedit">Last edited October 20, 2026</p>
 <table class="overview"><thead><tr><th>Function</th><th>Purpose</th></tr></thead><tbody>
 <tr><td><a class="xref xref-fn" href="#sbtk.data.add_center_of_mass"><code>add_center_of_mass</code></a></td><td>Add degree-1 coefficients that place the center of mass at a given point.</td></tr>
 <tr><td><a class="xref xref-fn" href="#sbtk.data.add_libration"><code>add_libration</code></a></td><td>Add a measured libration ratio (B - A)/C.</td></tr>
@@ -408,7 +409,7 @@ obs = <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.add_
 <p><code>origin_km</code> becomes (<code>origin_km</code> - o)*axes and <code>com_minus_cof_km</code> becomes <code>com_minus_cof_km</code>*axes. The coefficients stay about the same point and are rotated degree by degree, with their covariance (exact, <a class="xref xref-fn" href="../../reference/internal.html#sbtk.internal.sh_rotation">sbtk.internal.sh_rotation</a>); every degree present must be complete. The inertia elements Ixx ... Iyz are recomputed as the elements in the new axes (axes'*I*axes); the libration row and <code>libration_ratio</code> use the new z-axis (C = Izz) and the principal axes in the new xy-plane; any other row keeps its meaning (its weights are transformed). A translation alone (axes = eye(3)) applies to any set. Use the same <code>origin_km</code> and axes for the body (<a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.to_frame">sbtk.body.to_frame</a>) and the interior or true model (<a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.to_frame">sbtk.interior.to_frame</a>).</p>
 <h3 class="api-sub">Example</h3>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>truth</code>, <code>body</code>, <code>exact</code>, <code>unc</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">spin    = <a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.center_of_mass_frame">sbtk.gravity.center_of_mass_frame</a>(truth, body, &quot;spin&quot;);
-exact_s = <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.to_frame">sbtk.data.to_frame</a>(exact, [0 0 0], spin.axes);          <span class="c">% C21 = S21 = 0</span>
+exact_s = <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.to_frame">sbtk.data.to_frame</a>(exact, spin.com_km, spin.axes);      <span class="c">% C21 = S21 = 0</span>
 obs_s   = <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.add_noise">sbtk.data.add_noise</a>(<a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.set_uncertainties">sbtk.data.set_uncertainties</a>(exact_s, unc), 1);</code></pre></div>
 <h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.to_frame"><code>sbtk.body.to_frame</code></a>, <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.add_noise"><code>sbtk.data.add_noise</code></a>, <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.set_uncertainties"><code>sbtk.data.set_uncertainties</code></a>, <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a>, <a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.center_of_mass_frame"><code>sbtk.gravity.center_of_mass_frame</code></a>, <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.to_frame"><code>sbtk.interior.to_frame</code></a>, <a class="xref xref-fn" href="../../reference/internal.html#sbtk.internal.sh_rotation"><code>sbtk.internal.sh_rotation</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.add_noise"><code>sbtk.data.add_noise</code></a>, <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.select_moi"><code>sbtk.data.select_moi</code></a>, <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.set_uncertainties"><code>sbtk.data.set_uncertainties</code></a>, <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.to_frame"><code>sbtk.interior.to_frame</code></a></dd></dl>
 <p class="impl">Implementation: <code>toolbox/+sbtk/+data/to_frame.m</code>, line 1.</p>
@@ -460,11 +461,11 @@ obs = <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.add_
 </section>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../../reference/api/gravity.html" rel="prev"><span>Previous</span>sbtk.gravity</a><a class="next" href="../../reference/api/invert.html" rel="next"><span>Next</span>sbtk.invert</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-19.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-20.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#sbtk.data.add_center_of_mass">sbtk.data.add_center_of_mass</a></li><li class="lvl2"><a href="#sbtk.data.add_libration">sbtk.data.add_libration</a></li><li class="lvl2"><a href="#sbtk.data.add_moi">sbtk.data.add_moi</a></li><li class="lvl2"><a href="#sbtk.data.add_moi_row">sbtk.data.add_moi_row</a></li><li class="lvl2"><a href="#sbtk.data.add_noise">sbtk.data.add_noise</a></li><li class="lvl2"><a href="#sbtk.data.from_coefficients">sbtk.data.from_coefficients</a></li><li class="lvl2"><a href="#sbtk.data.libration_ratio_from_amplitude">sbtk.data.libration_ratio_from_amplitude</a></li><li class="lvl2"><a href="#sbtk.data.move_origin">sbtk.data.move_origin</a></li><li class="lvl2"><a href="#sbtk.data.select_coefficients">sbtk.data.select_coefficients</a></li><li class="lvl2"><a href="#sbtk.data.select_degree">sbtk.data.select_degree</a></li><li class="lvl2"><a href="#sbtk.data.select_moi">sbtk.data.select_moi</a></li><li class="lvl2"><a href="#sbtk.data.set_covariance">sbtk.data.set_covariance</a></li><li class="lvl2"><a href="#sbtk.data.set_moi_sigma">sbtk.data.set_moi_sigma</a></li><li class="lvl2"><a href="#sbtk.data.set_uncertainties">sbtk.data.set_uncertainties</a></li><li class="lvl2"><a href="#sbtk.data.simulate">sbtk.data.simulate</a></li><li class="lvl2"><a href="#sbtk.data.summary">sbtk.data.summary</a></li><li class="lvl2"><a href="#sbtk.data.to_frame">sbtk.data.to_frame</a></li><li class="lvl2"><a href="#sbtk.data.uncertainties">sbtk.data.uncertainties</a></li><li class="lvl2"><a href="#sbtk.data.use_uncertainties">sbtk.data.use_uncertainties</a></li></ul></nav>
 </div>
-<script src="../../assets/search-index.js?v=ab9adf4ce7"></script>
-<script src="../../assets/site.js?v=ab9adf4ce7"></script>
+<script src="../../assets/search-index.js?v=198d1bfcfa"></script>
+<script src="../../assets/site.js?v=198d1bfcfa"></script>
 </body>
 </html>

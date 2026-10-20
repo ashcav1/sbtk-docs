@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>sbtk.interior — SBTK documentation</title>
-<link rel="stylesheet" href="../../assets/site.css?v=ab9adf4ce7">
-<link rel="stylesheet" href="../../assets/pygments.css?v=ab9adf4ce7">
-<link rel="stylesheet" href="../../assets/print.css?v=ab9adf4ce7" media="print">
+<link rel="stylesheet" href="../../assets/site.css?v=198d1bfcfa">
+<link rel="stylesheet" href="../../assets/pygments.css?v=198d1bfcfa">
+<link rel="stylesheet" href="../../assets/print.css?v=198d1bfcfa" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,6 +29,7 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../../index.html">Documentation</a> › Reference › <span aria-current="page">sbtk.interior</span></nav>
 <article>
 <h1 id="top"><code>sbtk.interior</code>: Density distributions</h1>
+<p class="lastedit">Last edited October 20, 2026</p>
 <table class="overview"><thead><tr><th>Function</th><th>Purpose</th></tr></thead><tbody>
 <tr><td><a class="xref xref-fn" href="#sbtk.interior.align_with_spin_axis"><code>align_with_spin_axis</code></a></td><td>Set the axis of components along the axis of the largest moment of the whole model.</td></tr>
 <tr><td><a class="xref xref-fn" href="#sbtk.interior.create"><code>create</code></a></td><td>An interior model: components plus an optional random density field.</td></tr>
@@ -339,9 +340,9 @@ See also <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.in
 <p>Every position is transformed as x' = (x - <code>origin_km</code>)*axes and every direction as d' = d*axes: the centers of spheres, ellipsoids and tori, the axes of ellipsoids, tori and sectors (<code>c.axes</code>), the random field, and for a true model <code>origin_km</code> and <code>com_km</code>. Its coefficients are rotated (exact, <a class="xref xref-fn" href="../../reference/internal.html#sbtk.internal.sh_rotation">sbtk.internal.sh_rotation</a>) and its inertia elements become axes'*I*axes; both stay about the same point. The density at every point of the body is unchanged, so the model, the body from <a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.to_frame">sbtk.body.to_frame</a> and the measurements from <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.to_frame">sbtk.data.to_frame</a> (same <code>origin_km</code> and axes) describe the same body in the new frame: simulating, gridding, plotting and comparing there gives the transformed results. An inversion result cannot be transformed: transform the measurements and the body and invert in the new frame.</p>
 <h3 class="api-sub">Example</h3>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>body</code>, <code>interior</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">[exact, truth] = <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, interior, 4, &quot;T1&quot;);
-spin  = <a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.center_of_mass_frame">sbtk.gravity.center_of_mass_frame</a>(truth, body, &quot;spin&quot;);   <span class="c">% z = axis of the largest moment</span>
-truth_s = <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.to_frame">sbtk.interior.to_frame</a>(truth, [0 0 0], spin.axes);
-body_s  = <a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.to_frame">sbtk.body.to_frame</a>(body, [0 0 0], spin.axes, &quot;didymos_spin_axes&quot;);
+spin  = <a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.center_of_mass_frame">sbtk.gravity.center_of_mass_frame</a>(truth, body, &quot;spin&quot;);   <span class="c">% origin: center of mass; z: largest moment</span>
+truth_s = <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.to_frame">sbtk.interior.to_frame</a>(truth, spin.com_km, spin.axes);
+body_s  = <a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.to_frame">sbtk.body.to_frame</a>(body, spin.com_km, spin.axes, &quot;didymos_com_spin_axes&quot;);
 grid = <a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.density_grid">sbtk.exchange.density_grid</a>(body_s, truth_s, 0.020);         <span class="c">% the grid in the new frame</span></code></pre></div>
 <h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.to_frame"><code>sbtk.body.to_frame</code></a>, <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a>, <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.to_frame"><code>sbtk.data.to_frame</code></a>, <a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.density_grid"><code>sbtk.exchange.density_grid</code></a>, <a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.center_of_mass_frame"><code>sbtk.gravity.center_of_mass_frame</code></a>, <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.create"><code>sbtk.interior.create</code></a>, <a class="xref xref-fn" href="../../reference/internal.html#sbtk.internal.sh_rotation"><code>sbtk.internal.sh_rotation</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.to_frame"><code>sbtk.body.to_frame</code></a>, <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.to_frame"><code>sbtk.data.to_frame</code></a></dd></dl>
 <p class="impl">Implementation: <code>toolbox/+sbtk/+interior/to_frame.m</code>, line 1.</p>
@@ -370,11 +371,11 @@ grid = <a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exch
 </section>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../../reference/api/body.html" rel="prev"><span>Previous</span>sbtk.body</a><a class="next" href="../../reference/api/gravity.html" rel="next"><span>Next</span>sbtk.gravity</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-19.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-20.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#sbtk.interior.align_with_spin_axis">sbtk.interior.align_with_spin_axis</a></li><li class="lvl2"><a href="#sbtk.interior.create">sbtk.interior.create</a></li><li class="lvl2"><a href="#sbtk.interior.density_at">sbtk.interior.density_at</a></li><li class="lvl2"><a href="#sbtk.interior.ellipsoid">sbtk.interior.ellipsoid</a></li><li class="lvl2"><a href="#sbtk.interior.latlon">sbtk.interior.latlon</a></li><li class="lvl2"><a href="#sbtk.interior.layer">sbtk.interior.layer</a></li><li class="lvl2"><a href="#sbtk.interior.no_components">sbtk.interior.no_components</a></li><li class="lvl2"><a href="#sbtk.interior.no_random_field">sbtk.interior.no_random_field</a></li><li class="lvl2"><a href="#sbtk.interior.random_field">sbtk.interior.random_field</a></li><li class="lvl2"><a href="#sbtk.interior.sector">sbtk.interior.sector</a></li><li class="lvl2"><a href="#sbtk.interior.sector_grid">sbtk.interior.sector_grid</a></li><li class="lvl2"><a href="#sbtk.interior.set_axis">sbtk.interior.set_axis</a></li><li class="lvl2"><a href="#sbtk.interior.sphere">sbtk.interior.sphere</a></li><li class="lvl2"><a href="#sbtk.interior.summary">sbtk.interior.summary</a></li><li class="lvl2"><a href="#sbtk.interior.to_frame">sbtk.interior.to_frame</a></li><li class="lvl2"><a href="#sbtk.interior.torus">sbtk.interior.torus</a></li></ul></nav>
 </div>
-<script src="../../assets/search-index.js?v=ab9adf4ce7"></script>
-<script src="../../assets/site.js?v=ab9adf4ce7"></script>
+<script src="../../assets/search-index.js?v=198d1bfcfa"></script>
+<script src="../../assets/site.js?v=198d1bfcfa"></script>
 </body>
 </html>

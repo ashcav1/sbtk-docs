@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Results folders and figures — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=ab9adf4ce7">
-<link rel="stylesheet" href="../assets/pygments.css?v=ab9adf4ce7">
-<link rel="stylesheet" href="../assets/print.css?v=ab9adf4ce7" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=198d1bfcfa">
+<link rel="stylesheet" href="../assets/pygments.css?v=198d1bfcfa">
+<link rel="stylesheet" href="../assets/print.css?v=198d1bfcfa" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -28,7 +28,8 @@
 <main id="content" tabindex="-1">
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Files › <span aria-current="page">Results folders and figures</span></nav>
 <article>
-<h1 id="top" id="results-folders-and-figures">Results folders and figures<a class="headerlink" href="#results-folders-and-figures" title="Link to this section">#</a></h1>
+<h1 id="results-folders-and-figures">Results folders and figures<a class="headerlink" href="#results-folders-and-figures" title="Link to this section">#</a></h1>
+<p class="lastedit">Last edited October 20, 2026</p>
 <h2 id="run-folders">Run folders<a class="headerlink" href="#run-folders" title="Link to this section">#</a></h2>
 <p><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.new_run"><code>sbtk.io.new_run</code></a><code>(project, name)</code> creates the folder <code>results/&lt;project&gt;/&lt;yyyy-mm-dd_HHMMSS&gt;_&lt;name&gt;/</code> in the
 repository and starts recording everything printed in the Command Window to <code>log.txt</code> in it, until
@@ -147,58 +148,59 @@ mass_kg 5.272999999999999e+11
 GM_km3_s2 3.519358390000000e-08
 R_ref_km 4.300000000000000e-01
 degree 4
-origin_km 1.453440773342489e-02 4.112035414216061e-02 -3.392607730328611e-02
+origin_km 1.528148834993066e-02 4.288469572137803e-02 -3.405288560049095e-02
 coef_about origin   (origin: coefficients about origin_km; center_of_mass: degree &gt;= 2 about the center of mass)
-com_minus_cof_km -1.395126389221530e-03 -1.193499005917247e-03 5.245541816292082e-05
+com_minus_cof_km -6.480457727157593e-04 5.708425733001801e-04 -7.435287904191540e-05
 noise_seed 1   (NaN = exact values or real data)
 libration_sigma 2.000000000000000e-02   (1-sigma of the libration ratio; NaN = none)
 # gravity field about origin_km: l m C S sigma_C sigma_S
-coef 1 0 -1.743145135706865e-03  0.000000000000000e+00 2.685350089254074e-03 0.000000000000000e+00
-coef 1 1  3.171858563801359e-03 -2.036659386678798e-03 2.685350089254074e-03 2.685350089254074e-03
-coef 2 0 -3.308870416819257e-02  0.000000000000000e+00 1.000000000000000e-04 0.000000000000000e+00
-coef 2 1  3.443836268814033e-03  6.765896193352993e-04 1.000000000000000e-04 1.000000000000000e-04
-coef 2 2  2.368486854293218e-03 -6.394968330691455e-03 1.000000000000000e-04 1.000000000000000e-04
-coef 3 0  1.253824937493145e-03  0.000000000000000e+00 2.000000000000000e-04 0.000000000000000e+00
-coef 3 1 -2.135893293678847e-03  1.326773998541520e-03 2.000000000000000e-04 2.000000000000000e-04
-coef 3 2 -1.776780802220330e-04  1.129245977979117e-03 2.000000000000000e-04 2.000000000000000e-04
-coef 3 3 -5.987943415043902e-04 -1.678056521335140e-03 2.000000000000000e-04 2.000000000000000e-04
-coef 4 0  3.285705624694989e-03  0.000000000000000e+00 4.000000000000000e-04 0.000000000000000e+00
-coef 4 1 -1.040835984882483e-03 -9.051510788629604e-04 4.000000000000000e-04 4.000000000000000e-04
-coef 4 2  5.810724700841951e-04  1.489082606584673e-03 4.000000000000000e-04 4.000000000000000e-04</code></pre></div>
+coef 1 0 -1.743147996446580e-03  0.000000000000000e+00 2.685350089254074e-03 0.000000000000000e+00
+coef 1 1  3.171855274043025e-03 -2.036642465133304e-03 2.685350089254074e-03 2.685350089254074e-03
+coef 2 0 -3.267843300100998e-02  0.000000000000000e+00 1.000000000000000e-04 0.000000000000000e+00
+coef 2 1  3.580678708085953e-03  9.264930696445466e-04 1.000000000000000e-04 1.000000000000000e-04
+coef 2 2  2.690908094312223e-03 -6.620608536237520e-03 1.000000000000000e-04 1.000000000000000e-04
+coef 3 0  8.207508643558385e-04  0.000000000000000e+00 2.000000000000000e-04 0.000000000000000e+00
+coef 3 1 -2.161190799036665e-03  1.345792464405454e-03 2.000000000000000e-04 2.000000000000000e-04
+coef 3 2 -1.185030577784691e-04  1.023223669886617e-03 2.000000000000000e-04 2.000000000000000e-04
+coef 3 3 -7.109585763745573e-04 -1.687530510730563e-03 2.000000000000000e-04 2.000000000000000e-04
+coef 4 0  3.025957726300028e-03  0.000000000000000e+00 4.000000000000000e-04 0.000000000000000e+00
+coef 4 1 -1.108795363729265e-03 -9.890871671108035e-04 4.000000000000000e-04 4.000000000000000e-04
+coef 4 2  5.087506921525737e-04  1.560247138787098e-03 4.000000000000000e-04 4.000000000000000e-04</code></pre></div>
 <p><strong>Inversion results</strong> (<a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.write_fit"><code>sbtk.io.write_fit</code></a>): lines beginning with <code>#</code> describe the lines below them.</p>
 <div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text"># Didymos inversion of didymos_example (SBTK 1.0.0)
 # chi-square, degrees of freedom, reduced chi-square, p-value (consistent at 5%: true)
-chi2 26.0562   dof 24.000   chi2_reduced 1.0857   p_value 0.3503
+chi2 25.9429   dof 24.000   chi2_reduced 1.0810   p_value 0.3561
 n_measurements 27
 regularization 0
 moi_used Ixx Iyy Izz
-origin_km 1.453440773342489e-02 4.112035414216061e-02 -3.392607730328611e-02
+origin_km 1.528148834993066e-02 4.288469572137803e-02 -3.405288560049095e-02
 coef_about origin   com_shift_km 0.000000000 0.000000000 0.000000000   (degree &gt;= 2 and inertia predicted about origin_km + com_shift_km)
 # density &lt;component&gt; &lt;relative density&gt; &lt;its 1-sigma&gt; &lt;density&gt; &lt;its 1-sigma&gt;   [kg/m^3]
 #   (+ center x y z and their 1-sigma in km, if the center was estimated; + axis x y z and the
-#    1-sigma of its tilt about the first and second axes in deg, if the axis was estimated)
-density background 0 0 2698.366 76.036
-density core 482.581 314.730 3180.948 240.993
-density torus -441.574 91.943 2256.792 50.909
-density regolith -1271.940 426.435 1426.427 353.374
+#    1-sigma of the rotations about the first, second and third axes in deg, if estimated)
+density background 0 0 2666.936 129.322
+density core 642.329 533.014 3309.265 405.126
+density torus -414.298 108.921 2252.638 52.039
+density regolith -1082.035 716.363 1584.901 588.859
 # component &lt;name&gt; &lt;type&gt; &lt;geometry&gt;
-component core sphere center [0.0 0.0 0.0] m, radius 170.0 m
-component torus torus ring 370.0 m, tube 55.0 m, at z = 0.0 m
+component core sphere center [15.9 42.3 -34.0] m, radius 170.0 m
+component torus torus ring 370.0 m, tube 55.0 m, ring center [15.9 42.3 -34.0] m, axis [0.0000 0.0000 1.0000]
 component regolith layer 0.0 to 12.0 m below the surface
 # residual &lt;label&gt; &lt;measured&gt; &lt;predicted&gt; &lt;sigma&gt; &lt;(predicted - measured)/sigma&gt;
-residual C10 -1.743145135707e-03  1.994753512469e-04 2.685350e-03  0.723
-residual C11  3.171858563801e-03  8.016627734306e-04 2.685350e-03 -0.883</code></pre></div>
+residual C10 -1.743147996447e-03  8.859490892471e-05 2.685350e-03  0.682
+residual C11  3.171855274043e-03  7.515844247841e-04 2.685350e-03 -0.901</code></pre></div>
 <p><strong>True models</strong> (<a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.write_truth"><code>sbtk.io.write_truth</code></a>) and <strong>comparisons</strong> (<a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.write_comparison"><code>sbtk.io.write_comparison</code></a>) use the same layout.</p>
 <h2 id="figures">Figures<a class="headerlink" href="#figures" title="Link to this section">#</a></h2>
 <p>Every plot function returns a figure handle. <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.save_figure"><code>sbtk.io.save_figure</code></a><code>(out, fig, name)</code> saves it as
 <code>figures/&lt;name&gt;.png</code> at 200 dpi in a run folder; <code>exportgraphics</code> saves it anywhere. Densities are drawn with a
 sequential color map (dark blue to yellow); signed differences with blue for lower and red for higher density.</p>
 <p>The figures below come from one synthetic Didymos run, made by <code>documentation/tools/make_samples.m</code>: a core
-(+450 kg/m³), an equatorial torus (−500), a 12 m regolith layer (−900), a boulder of radius 40 m (+900) and a random
+(+450 kg/m³) at the center of figure, an equatorial torus (−500) about the <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis through it, a 12 m regolith layer
+(−900), a boulder of radius 40 m (+900) and a random
 field of 40 kg/m³ with a 60 m correlation length; measurements to degree 4 with the uncertainties of the
 <a href="../getting-started/first-script.html">first script</a>; an inversion for core, torus and regolith (the boulder and the field
-are not in the inversion model). The fit has <span class="nobr"><math alttext="χ^2/ν = 1.09" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup><mo>&#x0002F;</mo><mi>&#x003BD;</mi><mo>&#x0003D;</mo><mn>1.09</mn></mrow></math></span> (<span class="nobr"><math alttext="p = 0.35" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>p</mi><mo>&#x0003D;</mo><mn>0.35</mn></mrow></math>)</span>, the homogeneous body <span class="nobr"><math alttext="χ^2/ν = 37.5" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup><mo>&#x0002F;</mo><mi>&#x003BD;</mi><mo>&#x0003D;</mo><mn>37.5</mn></mrow></math>;</span>
-<span class="nobr"><math alttext="R^2 = 0.88" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mn>0.88</mn></mrow></math></span> with <span class="nobr"><math alttext="R^2_max = 0.98" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msubsup><mi>R</mi><mtext>max</mtext><mn>2</mn></msubsup><mo>&#x0003D;</mo><mn>0.98</mn></mrow></math>.</span></p>
+are not in the inversion model). The fit has <span class="nobr"><math alttext="χ^2/ν = 1.08" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup><mo>&#x0002F;</mo><mi>&#x003BD;</mi><mo>&#x0003D;</mo><mn>1.08</mn></mrow></math></span> (<span class="nobr"><math alttext="p = 0.36" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>p</mi><mo>&#x0003D;</mo><mn>0.36</mn></mrow></math>)</span>, the homogeneous body <span class="nobr"><math alttext="χ^2/ν = 45.0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup><mo>&#x0002F;</mo><mi>&#x003BD;</mi><mo>&#x0003D;</mo><mn>45.0</mn></mrow></math>;</span>
+<span class="nobr"><math alttext="R^2 = 0.93" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mn>0.93</mn></mrow></math></span> with <span class="nobr"><math alttext="R^2_max = 0.98" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msubsup><mi>R</mi><mtext>max</mtext><mn>2</mn></msubsup><mo>&#x0003D;</mo><mn>0.98</mn></mrow></math>.</span></p>
 <h3 id="shape-model">Shape model<a class="headerlink" href="#shape-model" title="Link to this section">#</a></h3>
 <p><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.shape"><code>sbtk.plot.shape</code></a><code>(body)</code>: the mesh with its center of figure and axes.</p>
 <figure class="figure"><img src="../images/shape.png" alt="Didymos shape model (DART v003, 9.3 m sampling)." loading="lazy"><figcaption>Didymos shape model (DART v003, 9.3 m sampling).</figcaption></figure>
@@ -252,11 +254,11 @@ Not saved by the report functions; save it with <a class="xref xref-fn" href="..
 <figure class="figure"><img src="../images/difference_from_homogeneous_principal.png" alt="The true model minus the homogeneous body in the principal axes of the true model." loading="lazy"><figcaption>The true model minus the homogeneous body in the principal axes of the true model.</figcaption></figure>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../inversion/statistics.html" rel="prev"><span>Previous</span>Goodness of fit and model comparison</a><a class="next" href="../files/exchange-packages.html" rel="next"><span>Next</span>Exchange packages</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-19.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-20.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#run-folders">Run folders</a></li><li class="lvl2"><a href="#files">Files</a></li><li class="lvl2"><a href="#text-formats">Text formats</a></li><li class="lvl2"><a href="#figures">Figures</a></li><li class="lvl3"><a href="#shape-model">Shape model</a></li><li class="lvl3"><a href="#interior-in-three-dimensions">Interior in three dimensions</a></li><li class="lvl3"><a href="#density-slices">Density slices</a></li><li class="lvl3"><a href="#measurements">Measurements</a></li><li class="lvl3"><a href="#normalized-residuals">Normalized residuals</a></li><li class="lvl3"><a href="#estimated-densities">Estimated densities</a></li><li class="lvl3"><a href="#comparison-with-the-true-model">Comparison with the true model</a></li><li class="lvl3"><a href="#difference-from-the-homogeneous-body">Difference from the homogeneous body</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=ab9adf4ce7"></script>
-<script src="../assets/site.js?v=ab9adf4ce7"></script>
+<script src="../assets/search-index.js?v=198d1bfcfa"></script>
+<script src="../assets/site.js?v=198d1bfcfa"></script>
 </body>
 </html>

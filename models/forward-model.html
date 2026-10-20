@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gravity and moment calculations — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=ab9adf4ce7">
-<link rel="stylesheet" href="../assets/pygments.css?v=ab9adf4ce7">
-<link rel="stylesheet" href="../assets/print.css?v=ab9adf4ce7" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=198d1bfcfa">
+<link rel="stylesheet" href="../assets/pygments.css?v=198d1bfcfa">
+<link rel="stylesheet" href="../assets/print.css?v=198d1bfcfa" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -28,7 +28,8 @@
 <main id="content" tabindex="-1">
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Models and calculations › <span aria-current="page">Gravity and moment calculations</span></nav>
 <article>
-<h1 id="top" id="gravity-and-moment-calculations">Gravity and moment calculations<a class="headerlink" href="#gravity-and-moment-calculations" title="Link to this section">#</a></h1>
+<h1 id="gravity-and-moment-calculations">Gravity and moment calculations<a class="headerlink" href="#gravity-and-moment-calculations" title="Link to this section">#</a></h1>
+<p class="lastedit">Last edited October 20, 2026</p>
 <p>The forward model computes, for a density model inside a shape model, the gravity coefficients
 (<a href="../conventions/gravity-coefficients.html">Gravity coefficients</a>), the center of mass and the inertia tensor
 (<a href="../conventions/moments-of-inertia.html">Moments of inertia</a>) about an expansion origin <span class="nobr"><math alttext="o" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D428;</mi></mrow></math>.</span></p>
@@ -84,9 +85,11 @@ density (<a class="xref xref-st" href="../reference/data-structures.html#integra
   directly.</li>
 <li><strong>Sector:</strong> the radial fractions give <span class="nobr"><math alttext="s_a" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>s</mi><mi>a</mi></msub></mrow></math></span> and <span class="nobr"><math alttext="s_b" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>s</mi><mi>b</mi></msub></mrow></math>;</span> whether a sub-ray lies within the latitude and longitude range is
   tested at the middle of the interval.</li>
-<li><strong>Sphere crossing the surface, ellipsoid, torus:</strong> each sub-ray is sampled at 256 points over its chord through the
-  component's bounding sphere; every change between inside and outside is refined by bisection (50 steps), so a ray
-  may enter and leave the component several times. Each interval contributes <span class="nobr"><math alttext="s_b^p - s_a^p" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msubsup><mi>s</mi><mi>b</mi><mi>p</mi></msubsup><mo>&#x02212;</mo><msubsup><mi>s</mi><mi>a</mi><mi>p</mi></msubsup></mrow></math>.</span></li>
+<li><strong>Sphere crossing the surface, ellipsoid, torus:</strong> a sub-ray crosses the component's surface where a polynomial in
+  the distance along it vanishes: a quadratic for a sphere or an ellipsoid, a quartic for a torus (solved as the
+  eigenvalues of its companion matrix). Its real roots between the expansion origin and the body's surface split the
+  sub-ray, and each piece whose midpoint is inside the component contributes <span class="nobr"><math alttext="s_b^p - s_a^p" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msubsup><mi>s</mi><mi>b</mi><mi>p</mi></msubsup><mo>&#x02212;</mo><msubsup><mi>s</mi><mi>a</mi><mi>p</mi></msubsup></mrow></math>,</span> so a ray may enter and
+  leave the component several times, and a ray that only grazes it contributes a correspondingly short piece.</li>
 </ul>
 <p>For each facet the contributions are averaged over its 9 sub-rays and multiplied by the cone's integrals. The result is
 exact when the radial interval is the same along every sub-ray of a cone, and converges with mesh resolution
@@ -166,11 +169,11 @@ lab = <a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.l
 and the degree-1 coefficients about the center of figure are not zero.</p>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../models/density-distributions.html" rel="prev"><span>Previous</span>Density distributions</a><a class="next" href="../inversion/measurements.html" rel="next"><span>Next</span>Measurement sets</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-19.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-20.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#facet-cones">Facet cones</a></li><li class="lvl2"><a href="#scaling-within-a-cone">Scaling within a cone</a></li><li class="lvl2"><a href="#integrals-of-components">Integrals of components</a></li><li class="lvl2"><a href="#coefficients-center-of-mass-and-inertia">Coefficients, center of mass and inertia</a></li><li class="lvl2"><a href="#simulated-measurements">Simulated measurements</a></li><li class="lvl2"><a href="#computation-time">Computation time</a></li><li class="lvl2"><a href="#example">Example</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=ab9adf4ce7"></script>
-<script src="../assets/site.js?v=ab9adf4ce7"></script>
+<script src="../assets/search-index.js?v=198d1bfcfa"></script>
+<script src="../assets/site.js?v=198d1bfcfa"></script>
 </body>
 </html>

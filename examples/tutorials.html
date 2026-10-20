@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tutorial scripts — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=ab9adf4ce7">
-<link rel="stylesheet" href="../assets/pygments.css?v=ab9adf4ce7">
-<link rel="stylesheet" href="../assets/print.css?v=ab9adf4ce7" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=198d1bfcfa">
+<link rel="stylesheet" href="../assets/pygments.css?v=198d1bfcfa">
+<link rel="stylesheet" href="../assets/print.css?v=198d1bfcfa" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -28,7 +28,8 @@
 <main id="content" tabindex="-1">
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Examples › <span aria-current="page">Tutorial scripts</span></nav>
 <article>
-<h1 id="top" id="tutorial-scripts">Tutorial scripts<a class="headerlink" href="#tutorial-scripts" title="Link to this section">#</a></h1>
+<h1 id="tutorial-scripts">Tutorial scripts<a class="headerlink" href="#tutorial-scripts" title="Link to this section">#</a></h1>
+<p class="lastedit">Last edited October 20, 2026</p>
 <p>The repository folder <code>examples/</code> contains eight tutorial scripts with sections. Each adds <code>toolbox/</code> to the path
 itself and can be run whole or section by section. All eight run in the test suite
 (<code>tests/integration/test_examples.m</code>, also section by section for ex01). The code below is included from the
@@ -84,6 +85,9 @@ repository files.</p>
 </tr>
 </tbody>
 </table>
+<p>The same folder has six maker models, <code>make_didymos_1.m</code> to <code>make_dimorphos_3.m</code>: true models of Didymos and
+Dimorphos written as exchange packages for the Hera blind test
+(<a href="../projects/hera-blind-test.html#maker-models">Maker models</a>).</p>
 <h2 id="ex01-quick-start">ex01: quick start<a class="headerlink" href="#ex01-quick-start" title="Link to this section">#</a></h2>
 <p>The sequence of the <a href="../getting-started/first-script.html">first script</a> on the full-resolution Didymos model (3,145,728
 facets), which is not in the repository (<a href="../getting-started/installation.html#files-that-are-not-in-the-repository">Installation</a>).
@@ -103,7 +107,7 @@ body = <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.from_m
 <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.summary">sbtk.body.summary</a>(body)
 
 <span class="c">%% 2. Forward model: a dense core and a low-density surface layer</span>
-components = [<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, [0 0 0], 0.170, +450), ...<span class="c">      % center [km], radius [km], relative density [kg/m^3]</span>
+components = [<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, body.centroid_km, 0.170, +450), ...<span class="c">  % center [km] (the center of figure), radius [km], relative density [kg/m^3]</span>
               <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;, 0, 0.012, -900)];           <span class="c">% from 0 to 12 m below the surface</span>
 [exact, truth] = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>(components), 4, &quot;quick_start&quot;);   <span class="c">% exact values</span>
 
@@ -174,13 +178,18 @@ three-dimensional, slice and measurement figures.</p>
 body = <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.from_mass">sbtk.body.from_mass</a>(&quot;Didymos&quot;, <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.bundled">sbtk.shape.bundled</a>(&quot;didymos&quot;), 5.273e11, 0.43);
 
 <span class="c">%% Components</span>
+<span class="c">% Spheres, ellipsoids and tori are placed in shape-model coordinates, here from the center of</span>
+<span class="c">% figure (the origin of this shape-model file is 57 m from it); layers and sectors are</span>
+<span class="c">% measured from the center of mass.</span>
+<span class="n">cof</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">body</span><span class="p">.</span><span class="n">centroid_km</span><span class="p">;</span>
 <span class="n">components</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="k">...</span>
-  <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, [0 0 0], 0.170, +250), ...<span class="c">                                 % center, radius</span>
-  <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.ellipsoid">sbtk.interior.ellipsoid</a>(&quot;lens&quot;, [0.05 0.10 0.12], [0.20 0.08 0.05], [40 -30 15], +300), ...<span class="c"> % center, semi-axes, yaw/pitch/roll</span>
-  <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.torus">sbtk.interior.torus</a>(&quot;torus&quot;, 0.370, 0.055, 0.000, -500), ...<span class="c">                            % ring radius, tube radius, height</span>
-  <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;, 0.000, 0.012, -900), ...<span class="c">                                % top, bottom depth</span>
-  <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sector">sbtk.interior.sector</a>(&quot;block&quot;, [0.3 0.9], [40 90], [150 240], +200), ...<span class="c">                 % radial fraction, lat, lon</span>
-  <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;boulder&quot;, <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.latlon">sbtk.interior.latlon</a>(25, 60, 0.250), 0.040, +900)];     <span class="c">% position from lat/lon/distance</span>
+  <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, cof, 0.170, +250), ...<span class="c">                                         % center, radius</span>
+  <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.ellipsoid">sbtk.interior.ellipsoid</a>(&quot;lens&quot;, cof + [0.05 0.10 0.12], [0.20 0.08 0.05], [40 -30 15], +300), ...<span class="c"> % center, semi-axes, yaw/pitch/roll</span>
+  <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.torus">sbtk.interior.torus</a>(&quot;torus&quot;, 0.370, 0.055, 0.000, -500), ...<span class="c">                                % ring radius, tube radius, height</span>
+  <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;, 0.000, 0.012, -900), ...<span class="c">                                    % top, bottom depth</span>
+  <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sector">sbtk.interior.sector</a>(&quot;block&quot;, [0.3 0.9], [40 90], [150 240], +200), ...<span class="c">                     % radial fraction, lat, lon</span>
+  <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;boulder&quot;, cof + <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.latlon">sbtk.interior.latlon</a>(25, 60, 0.250), 0.040, +900)];   <span class="c">% position from lat/lon/distance</span>
+<span class="n">components</span><span class="p">(</span><span class="mi">3</span><span class="p">).</span><span class="n">center_km</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">cof</span><span class="p">;</span><span class="w">                                                                </span><span class="c">% the torus about the z-axis through cof</span>
 <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.summary">sbtk.interior.summary</a>(components)
 
 <span class="c">%% Gaussian random density field (standard deviation 40 kg/m^3, correlation length 60 m, seed 7)</span>
@@ -220,17 +229,20 @@ realizations using <a class="xref xref-fn" href="../reference/api/invert.html#sb
 <span class="nb">addpath</span><span class="p">(</span><span class="nb">fullfile</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">which</span><span class="p">(</span><span class="s">&#39;ex04_inversion&#39;</span><span class="p">))),</span><span class="w"> </span><span class="s">&#39;toolbox&#39;</span><span class="p">));</span>
 body  = <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.from_mass">sbtk.body.from_mass</a>(&quot;Didymos&quot;, <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.bundled">sbtk.shape.bundled</a>(&quot;didymos&quot;), 5.273e11, 0.43);
 unc   = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.uncertainties">sbtk.data.uncertainties</a>([<a class="xref xref-fn" href="../reference/api/units.html#sbtk.units.offset_to_degree1">sbtk.units.offset_to_degree1</a>(0.002, 0.43), 1e-4, 2e-4, 4e-4], 2e-3, 0.02);
-truth_components = [<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, [0.03 -0.02 0.01], 0.17, +500), ...
+<span class="n">cof</span><span class="w">   </span><span class="p">=</span><span class="w"> </span><span class="n">body</span><span class="p">.</span><span class="n">centroid_km</span><span class="p">;</span><span class="w">                  </span><span class="c">% components are placed from the center of figure</span>
+truth_components = [<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, cof + [0.03 -0.02 0.01], 0.17, +500), ...
                <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.torus">sbtk.interior.torus</a>(&quot;torus&quot;, 0.37, 0.055, 0, -500), <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;, 0, 0.012, -900)];
+<span class="n">truth_components</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="n">center_km</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">cof</span><span class="p">;</span><span class="w">       </span><span class="c">% the torus about the z-axis through the center of figure</span>
 [exact, truth] = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>(truth_components), 4, &quot;ex04&quot;);
 exact = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_uncertainties">sbtk.data.set_uncertainties</a>(exact, unc);
 obs = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise">sbtk.data.add_noise</a>(exact, 1);
 
 <span class="c">%% Set up once</span>
-<span class="c">% Component geometry is fixed (the core is placed at the origin, off the true center);</span>
-<span class="c">% relative densities are estimated, so their values here are not used.</span>
-components = [<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, [0 0 0], 0.17, 0), <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.torus">sbtk.interior.torus</a>(&quot;torus&quot;, 0.37, 0.055, 0, 0), ...
+<span class="c">% Component geometry is fixed (the core is placed at the center of figure, 37 m from the true</span>
+<span class="c">% center); relative densities are estimated, so their values here are not used.</span>
+components = [<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, cof, 0.17, 0), <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.torus">sbtk.interior.torus</a>(&quot;torus&quot;, 0.37, 0.055, 0, 0), ...
               <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;, 0, 0.012, 0)];
+<span class="n">components</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="n">center_km</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">cof</span><span class="p">;</span>
 opts = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.options">sbtk.invert.options</a>();             <span class="c">% every setting and its standard value</span>
 <span class="nb">disp</span><span class="p">(</span><span class="n">opts</span><span class="p">)</span>
 prob = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.setup">sbtk.invert.setup</a>(body, components, obs, opts);
@@ -352,7 +364,8 @@ density grid (<a href="../files/exchange-packages.html">Exchange packages</a>).<
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB script: examples/ex07_exchange_packages.m</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><span class="c">%% EX07_EXCHANGE_PACKAGES  Data for other teams: measurement, interior-model and solution packages. (~40 s)</span>
 <span class="c">%</span>
 <span class="c">% A blind test: one team simulates measurements of an interior it keeps hidden and</span>
-<span class="c">% sends only the measurement package; another team inverts the package and sends a</span>
+<span class="c">% sends only the measurement package, of exact values; another team gives them its own</span>
+<span class="c">% uncertainties, inverts them and sends a</span>
 <span class="c">% solution package; at the end both are compared with the hidden model on a common</span>
 <span class="c">% density grid. Every package is plain text with its units, frame and normalization</span>
 <span class="c">% written in it (docs/exchange_format.md). projects/hera_hlp6 does the same with</span>
@@ -364,18 +377,18 @@ unc  = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.uncert
 <span class="n">folder</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">tempname</span><span class="p">;</span><span class="w">                         </span><span class="c">% where the packages go (normally a results folder)</span>
 
 <span class="c">%% The team that makes the data</span>
-hidden = [<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, [0.03 0 0], 0.25, +500), <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;, 0, 0.02, -800)];
+hidden = [<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, body.centroid_km + [0.03 0 0], 0.25, +500), ...<span class="c">   % 30 m from the center of figure</span>
+          <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;, 0, 0.02, -800)];
 [exact, truth] = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>(hidden), 4, &quot;hidden_model&quot;);
-exact = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_uncertainties">sbtk.data.set_uncertainties</a>(exact, unc);      <span class="c">% noise-free values with their uncertainties</span>
-obs = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise">sbtk.data.add_noise</a>(exact, 1);
-data = <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_data">sbtk.exchange.write_data</a>(folder, &quot;TEAM-DATA1-example&quot;, body, obs, &quot;Team, contact&quot;);         <span class="c">% send now</span>
+data = <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_data">sbtk.exchange.write_data</a>(folder, &quot;TEAM-DATA1-example&quot;, body, exact, &quot;Team, contact&quot;);       <span class="c">% send now: exact values</span>
 model = <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_model">sbtk.exchange.write_model</a>(folder, &quot;TEAM-MOD1-example&quot;, &quot;TEAM-DATA1-example&quot;, body, truth, ...
 <span class="w">                                  </span><span class="n">exact</span><span class="p">,</span><span class="w"> </span><span class="mf">0.04</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Team, contact&quot;</span><span class="p">);</span><span class="w">                                     </span><span class="c">% send at the end</span>
 <span class="nb">type</span><span class="p">(</span><span class="nb">fullfile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;README.txt&#39;</span><span class="p">))</span>
 
 <span class="c">%% The team that inverts it: everything comes from the package</span>
 [obs2, body2] = <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_data">sbtk.exchange.read_data</a>(data);          <span class="c">% shape model, GM and reference radius included</span>
-components = [<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, [0 0 0], 0.25, 0), <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;, 0, 0.02, 0)];
+obs2 = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise">sbtk.data.add_noise</a>(<a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_uncertainties">sbtk.data.set_uncertainties</a>(obs2, unc), 1);   <span class="c">% its own uncertainties (and noise, optionally)</span>
+components = [<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, body2.centroid_km, 0.25, 0), <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;, 0, 0.02, 0)];
 prob = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.setup">sbtk.invert.setup</a>(body2, components, obs2, <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.options">sbtk.invert.options</a>());
 fit  = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.run">sbtk.invert.run</a>(prob);
 <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.summary">sbtk.invert.summary</a>(fit)
@@ -408,7 +421,7 @@ libration ratio from an observed libration amplitude; adding measured inertia va
 body = <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.from_mass">sbtk.body.from_mass</a>(&quot;Didymos&quot;, <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.bundled">sbtk.shape.bundled</a>(&quot;didymos&quot;), 5.273e11, 0.43);
 
 <span class="c">%% Simulated measurements: every inertia quantity is available</span>
-truth_components = [<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, [0 0 0], 0.170, +450), ...
+truth_components = [<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, body.centroid_km, 0.170, +450), ...<span class="c">   % at the center of figure</span>
                     <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;, 0, 0.012, -900)];
 [exact, truth] = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>(truth_components), 4, &quot;ex08&quot;);
 unc = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.uncertainties">sbtk.data.uncertainties</a>([<a class="xref xref-fn" href="../reference/api/units.html#sbtk.units.offset_to_degree1">sbtk.units.offset_to_degree1</a>(0.002, 0.43), 1e-4, 2e-4, 4e-4], ...
@@ -465,11 +478,11 @@ fit = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.sol
 <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.summary">sbtk.invert.summary</a>(fit)</code></pre></div>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../examples/calculations.html" rel="prev"><span>Previous</span>Calculations</a><a class="next" href="../projects/template.html" rel="next"><span>Next</span>Project template</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-19.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-20.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#ex01-quick-start">ex01: quick start</a></li><li class="lvl2"><a href="#ex02-shapes-and-bodies">ex02: shapes and bodies</a></li><li class="lvl2"><a href="#ex03-forward-model">ex03: forward model</a></li><li class="lvl2"><a href="#ex04-inversion-options">ex04: inversion options</a></li><li class="lvl2"><a href="#ex05-importing-data">ex05: importing data</a></li><li class="lvl2"><a href="#ex06-results-folders">ex06: results folders</a></li><li class="lvl2"><a href="#ex07-exchange-packages">ex07: exchange packages</a></li><li class="lvl2"><a href="#ex08-moments-of-inertia-and-the-libration-ratio">ex08: moments of inertia and the libration ratio</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=ab9adf4ce7"></script>
-<script src="../assets/site.js?v=ab9adf4ce7"></script>
+<script src="../assets/search-index.js?v=198d1bfcfa"></script>
+<script src="../assets/site.js?v=198d1bfcfa"></script>
 </body>
 </html>

@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Internal functions — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=ab9adf4ce7">
-<link rel="stylesheet" href="../assets/pygments.css?v=ab9adf4ce7">
-<link rel="stylesheet" href="../assets/print.css?v=ab9adf4ce7" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=198d1bfcfa">
+<link rel="stylesheet" href="../assets/pygments.css?v=198d1bfcfa">
+<link rel="stylesheet" href="../assets/print.css?v=198d1bfcfa" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,6 +29,7 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Reference › <span aria-current="page">Internal functions</span></nav>
 <article>
 <h1 id="top">Internal functions</h1>
+<p class="lastedit">Last edited October 20, 2026</p>
 <p>Functions in <code>sbtk.internal</code> implement the supported functions. They are not part of the supported interface: their arguments and behavior may change without notice, and scripts should not call them. They are listed here because the methods pages refer to some of them. The toolbox contains no deprecated or legacy functions.</p>
 <table class="overview"><thead><tr><th>Function</th><th>Purpose</th><th>Used by (supported functions)</th></tr></thead><tbody>
 <tr id="sbtk.internal.body_samples"><td><code>sbtk.internal.body_samples</code></td><td>Points that fill the body, with the volume each one represents.</td><td><a class="xref xref-fn" href="../reference/api/compare.html#sbtk.compare.reference"><code>sbtk.compare.reference</code></a>, <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a>, <a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.random_field_integrals"><code>sbtk.gravity.random_field_integrals</code></a></td></tr>
@@ -43,7 +44,7 @@
 <tr id="sbtk.internal.density_map"><td><code>sbtk.internal.density_map</code></td><td>Sequential dark-blue -&gt; teal -&gt; yellow color map (viridis-like) for densities.</td><td><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.slices"><code>sbtk.plot.slices</code></a>, <a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.truth_vs_estimate"><code>sbtk.plot.truth_vs_estimate</code></a></td></tr>
 <tr id="sbtk.internal.difference_map"><td><code>sbtk.internal.difference_map</code></td><td>Blue - white - red color map for signed differences (blue lighter, red denser).</td><td><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.interior3d"><code>sbtk.plot.interior3d</code></a>, <a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.truth_vs_estimate"><code>sbtk.plot.truth_vs_estimate</code></a></td></tr>
 <tr id="sbtk.internal.empty_moi"><td><code>sbtk.internal.empty_moi</code></td><td>Empty list of moment-of-inertia measurement rows.</td><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.from_coefficients"><code>sbtk.data.from_coefficients</code></a>, <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a>, <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.read_jpl_gravity"><code>sbtk.io.read_jpl_gravity</code></a>, <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.read_measurements"><code>sbtk.io.read_measurements</code></a></td></tr>
-<tr id="sbtk.internal.exchange_conventions"><td><code>sbtk.internal.exchange_conventions</code></td><td>Text of conventions.txt: units, frames, normalization (with code), relations.</td><td>other internal functions</td></tr>
+<tr id="sbtk.internal.exchange_conventions"><td><code>sbtk.internal.exchange_conventions</code></td><td>Text of conventions.txt: units, frame, normalization (with code), degree 1.</td><td>other internal functions</td></tr>
 <tr id="sbtk.internal.exchange_data_files"><td><code>sbtk.internal.exchange_data_files</code></td><td>Write the measurement files of an exchange package.</td><td><a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_data"><code>sbtk.exchange.write_data</code></a>, <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_model"><code>sbtk.exchange.write_model</code></a></td></tr>
 <tr id="sbtk.internal.exchange_grid_write"><td><code>sbtk.internal.exchange_grid_write</code></td><td>Write <code>density_grid.txt</code> of an interior-model or solution package.</td><td><a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_model"><code>sbtk.exchange.write_model</code></a>, <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_solution"><code>sbtk.exchange.write_solution</code></a></td></tr>
 <tr id="sbtk.internal.exchange_number"><td><code>sbtk.internal.exchange_number</code></td><td>Numeric value of a metadata key of an exchange file (error if missing).</td><td><a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a>, <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_grid"><code>sbtk.exchange.read_grid</code></a></td></tr>
@@ -76,11 +77,11 @@
 </tbody></table>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../reference/errors.html" rel="prev"><span>Previous</span>Error identifiers</a><a class="next" href="../validation/tests.html" rel="next"><span>Next</span>Validation and tests</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-19.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-20.</footer>
 </main>
 
 </div>
-<script src="../assets/search-index.js?v=ab9adf4ce7"></script>
-<script src="../assets/site.js?v=ab9adf4ce7"></script>
+<script src="../assets/search-index.js?v=198d1bfcfa"></script>
+<script src="../assets/site.js?v=198d1bfcfa"></script>
 </body>
 </html>

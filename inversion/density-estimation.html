@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Density estimation — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=ab9adf4ce7">
-<link rel="stylesheet" href="../assets/pygments.css?v=ab9adf4ce7">
-<link rel="stylesheet" href="../assets/print.css?v=ab9adf4ce7" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=198d1bfcfa">
+<link rel="stylesheet" href="../assets/pygments.css?v=198d1bfcfa">
+<link rel="stylesheet" href="../assets/print.css?v=198d1bfcfa" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -28,9 +28,11 @@
 <main id="content" tabindex="-1">
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Measurements and inversion › <span aria-current="page">Density estimation</span></nav>
 <article>
-<h1 id="top" id="density-estimation">Density estimation<a class="headerlink" href="#density-estimation" title="Link to this section">#</a></h1>
-<p>The inversion estimates the background density and the relative densities of a set of components of fixed geometry
-(and optionally sphere centers) from a measurement set.</p>
+<h1 id="density-estimation">Density estimation<a class="headerlink" href="#density-estimation" title="Link to this section">#</a></h1>
+<p class="lastedit">Last edited October 20, 2026</p>
+<p>The inversion estimates the background density and the relative densities of a set of components from a measurement
+set, and optionally parts of their geometry: the position of spheres, ellipsoids and tori and the axis of ellipsoids
+and tori (<a href="#estimated-geometry">Estimated geometry</a>).</p>
 <h2 id="procedure">Procedure<a class="headerlink" href="#procedure" title="Link to this section">#</a></h2>
 <p><a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.setup"><code>sbtk.invert.setup</code></a><code>(body, components, obs, opts)</code> builds the geometry about <a class="xref xref-field" href="../reference/data-structures.html#obs.origin_km"><code>obs.origin_km</code></a> and the design matrix
 once (<a class="xref xref-st" href="../reference/data-structures.html#prob"><code>prob</code></a>); <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.run"><code>sbtk.invert.run</code></a><code>(prob)</code> solves. <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.solve"><code>sbtk.invert.solve</code></a> does both. Reusing <code>prob</code> is faster when the
@@ -83,24 +85,31 @@ stops with <a class="xref xref-err" href="../reference/errors.html#sbtk:invert:s
 </tr>
 <tr>
 <td><a class="xref xref-field" href="../reference/data-structures.html#component.estimate_axis"><code>component.estimate_axis</code></a> <code>= true</code></td>
-<td>ellipsoid, torus</td>
-<td>the direction of the axis: two tilts about the component's own first and second axes, deg (<code>&lt;name&gt;_tilt1</code>, <code>_tilt2</code>)</td>
+<td>torus</td>
+<td>the direction of its axis: two tilts about its own first and second axes, deg (<code>&lt;name&gt;_tilt1</code>, <code>_tilt2</code>)</td>
+</tr>
+<tr>
+<td><a class="xref xref-field" href="../reference/data-structures.html#component.estimate_axis"><code>component.estimate_axis</code></a> <code>= true</code></td>
+<td>ellipsoid</td>
+<td>its orientation: the two tilts of its third axis and the turn about it, deg (<code>&lt;name&gt;_tilt1</code>, <code>_tilt2</code>, <code>_turn</code>)</td>
 </tr>
 </tbody>
 </table>
 <p>Setting either field on a component without a center or an axis stops the inversion with
 <a class="xref xref-err" href="../reference/errors.html#sbtk:invert:geometryParameter"><code>sbtk:invert:geometryParameter</code></a>. The geometry is found by Gauss–Newton iteration:</p>
 <ul>
-<li><strong>Each step</strong> linearizes the measurements in the geometry parameters (central differences of the integrals:
-  10⁻⁶ km, 10⁻⁴ deg) and solves the bounded problem.</li>
+<li><strong>Each step</strong> linearizes the measurements in the geometry parameters and solves the bounded problem. The derivatives
+  are central differences of the integrals: 10⁻⁶ km for a sphere inside the body (a point mass), 10⁻⁴ km and
+  10⁻² deg for components integrated along rays, whose integrals are smooth only on scales larger than the ray
+  spacing (<a href="../overview/limitations.html#numerical-integration">Assumptions and limitations</a>).</li>
 <li><strong>Trust region.</strong> The steps are limited to <a class="xref xref-field" href="../reference/data-structures.html#opts.step_km"><code>opts.step_km</code></a> for a center coordinate and <a class="xref xref-field" href="../reference/data-structures.html#opts.step_deg"><code>opts.step_deg</code></a> for a
-  tilt. A step that does not lower the objective is undone and the trust region halved; a successful step restores it.</li>
-<li><strong>A priori constraints.</strong> With <a class="xref xref-field" href="../reference/data-structures.html#opts.position_sigma_km"><code>opts.position_sigma_km</code></a> or <a class="xref xref-field" href="../reference/data-structures.html#opts.axis_sigma_deg"><code>opts.axis_sigma_deg</code></a> finite, each center coordinate
-  or tilt has an a priori constraint of that 1σ about its starting value. These are needed when the measurements do
+  tilt or turn. A step that does not lower the objective is undone and the trust region halved; a successful step restores it.</li>
+<li><strong>A priori constraints.</strong> With <a class="xref xref-field" href="../reference/data-structures.html#opts.position_sigma_km"><code>opts.position_sigma_km</code></a> or <a class="xref xref-field" href="../reference/data-structures.html#opts.axis_sigma_deg"><code>opts.axis_sigma_deg</code></a> finite, each center coordinate,
+  tilt or turn has an a priori constraint of that 1σ about its starting value. These are needed when the measurements do
   not determine all of the geometry, and they keep a component from absorbing structure the model lacks (below).</li>
-<li><strong>Hard limits.</strong> <a class="xref xref-field" href="../reference/data-structures.html#opts.max_shift_km"><code>opts.max_shift_km</code></a> bounds the distance of an estimated center from its start, and
-  <a class="xref xref-field" href="../reference/data-structures.html#opts.max_tilt_deg"><code>opts.max_tilt_deg</code></a> the angle of an estimated axis from its starting direction. Spheres are always kept inside the
-  body.</li>
+<li><strong>Hard limits.</strong> <a class="xref xref-field" href="../reference/data-structures.html#opts.max_shift_km"><code>opts.max_shift_km</code></a> bounds the distance of an estimated center from its start,
+  <a class="xref xref-field" href="../reference/data-structures.html#opts.max_tilt_deg"><code>opts.max_tilt_deg</code></a> the angle of an estimated axis from its starting direction, and <a class="xref xref-field" href="../reference/data-structures.html#opts.max_turn_deg"><code>opts.max_turn_deg</code></a> the turn
+  of an ellipsoid about its axis. Spheres are always kept inside the body.</li>
 <li><strong>Stopping.</strong> Iteration stops after <a class="xref xref-field" href="../reference/data-structures.html#opts.max_iter"><code>opts.max_iter</code></a> steps, or earlier when any of these holds:</li>
 <li>the objective changes by less than 10⁻¹⁰ relative;</li>
 <li>an accepted step changes every parameter by less than <a class="xref xref-field" href="../reference/data-structures.html#opts.geometry_tol"><code>opts.geometry_tol</code></a> of its step limit;</li>
@@ -116,9 +125,13 @@ while moving the component away from the truth. Example: a Didymos true model ha
 center of figure, plus a boulder and a random density field. The data are its exact values weighted by the Hera
 radio-science precision. An inversion model with a core, the torus and the regolith has a reduced <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> of 121
 (<span class="nobr"><math alttext="R^2 = -5.3" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mo>&#x02212;</mo><mn>5.3</mn></mrow></math>)</span> with fixed geometry. With the torus axis and height estimated (a priori 1σ of 1° and 10 m, limits of
-10° and 50 m), <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> drops to 37 while <span class="nobr"><math alttext="R^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow></math></span> falls to <span class="nobr"><math alttext="-5.7" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mn>5.7</mn></mrow></math>.</span> The torus tilts 4.6° and moves 47 m down to stand in
-for the boulder. At this precision such priors are weak, and the height stops near its limit. Priors, or limits tight
-enough to bind, must express how well the geometry is actually known.</p>
+10° and 50 m), <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> drops to 39 while <span class="nobr"><math alttext="R^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow></math></span> falls to <span class="nobr"><math alttext="-5.7" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mn>5.7</mn></mrow></math>.</span> The torus tilts 5.6° and moves 41 m up to stand in
+for the boulder. At this precision such priors are weak. Priors, or limits tight enough to bind, must express how well
+the geometry is actually known.</p>
+<p><strong>Local minima.</strong> A fit whose geometry absorbs structure can have more than one local minimum. The same Didymos fit,
+with the derivatives taken over smaller steps, settled with the torus 47 m <em>below</em> the center of figure and a reduced
+<span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> of 37; which minimum Gauss–Newton reaches depends on its path. Compare fits started from different
+geometries before reading a position or an axis as a result.</p>
 <p><a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.align_with_spin_axis"><code>sbtk.interior.align_with_spin_axis</code></a> is the counterpart for making a true model: it sets the axis of tori, ellipsoids
 or sectors along the model's own axis of the largest moment by fixed-point iteration
 (<a href="../models/density-distributions.html#axes-of-components">Density distributions</a>).</p>
@@ -204,7 +217,7 @@ of mass (<a href="../validation/tests.html">Validation</a>).</p>
 <tr>
 <td><a class="xref xref-field" href="../reference/data-structures.html#opts.step_deg"><code>opts.step_deg</code></a></td>
 <td>1</td>
-<td>Trust-region radius of an axis tilt, deg.</td>
+<td>Trust-region radius of an axis tilt or turn, deg.</td>
 </tr>
 <tr>
 <td><a class="xref xref-field" href="../reference/data-structures.html#opts.position_sigma_km"><code>opts.position_sigma_km</code></a></td>
@@ -214,7 +227,7 @@ of mass (<a href="../validation/tests.html">Validation</a>).</p>
 <tr>
 <td><a class="xref xref-field" href="../reference/data-structures.html#opts.axis_sigma_deg"><code>opts.axis_sigma_deg</code></a></td>
 <td><code>Inf</code></td>
-<td>A priori 1σ of axis tilts, deg.</td>
+<td>A priori 1σ of axis tilts and turns, deg.</td>
 </tr>
 <tr>
 <td><a class="xref xref-field" href="../reference/data-structures.html#opts.max_shift_km"><code>opts.max_shift_km</code></a></td>
@@ -225,6 +238,11 @@ of mass (<a href="../validation/tests.html">Validation</a>).</p>
 <td><a class="xref xref-field" href="../reference/data-structures.html#opts.max_tilt_deg"><code>opts.max_tilt_deg</code></a></td>
 <td><code>Inf</code></td>
 <td>Largest angle of an estimated axis from its start, deg.</td>
+</tr>
+<tr>
+<td><a class="xref xref-field" href="../reference/data-structures.html#opts.max_turn_deg"><code>opts.max_turn_deg</code></a></td>
+<td><code>Inf</code></td>
+<td>Largest turn of an estimated ellipsoid about its axis from its start, deg.</td>
 </tr>
 <tr>
 <td><a class="xref xref-field" href="../reference/data-structures.html#opts.geometry_tol"><code>opts.geometry_tol</code></a></td>
@@ -238,15 +256,18 @@ of mass (<a href="../validation/tests.html">Validation</a>).</p>
 <div class="codeblock codeblock-code" id="estimation-example"><div class="codehead"><span>MATLAB script: Estimation with several settings</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><span class="nb">run</span><span class="p">(</span><span class="s">&quot;/path/to/SBTK/sbtk_setup.m&quot;</span><span class="p">)</span>
 body = <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.from_mass">sbtk.body.from_mass</a>(&quot;Didymos&quot;, <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.bundled">sbtk.shape.bundled</a>(&quot;didymos&quot;), 5.273e11, 0.43);
 unc  = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.uncertainties">sbtk.data.uncertainties</a>([<a class="xref xref-fn" href="../reference/api/units.html#sbtk.units.offset_to_degree1">sbtk.units.offset_to_degree1</a>(0.002, 0.43), 1e-4, 2e-4, 4e-4], 2e-3, 0.02);
-true_components = [<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, [0.03 -0.02 0.01], 0.17, +500), ...
+<span class="n">cof</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">body</span><span class="p">.</span><span class="n">centroid_km</span><span class="p">;</span><span class="w">                                                </span><span class="c">% positions from the center of figure</span>
+true_components = [<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, cof + [0.03 -0.02 0.01], 0.17, +500), ...
                    <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.torus">sbtk.interior.torus</a>(&quot;torus&quot;, 0.37, 0.055, 0.015, -500), ...
                    <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;, 0, 0.012, -900)];
+<span class="n">true_components</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="n">center_km</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">cof</span><span class="p">;</span><span class="w">                                    </span><span class="c">% the torus about the z-axis through cof</span>
 [exact, truth] = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>(true_components), 4, &quot;estimation&quot;);
 obs = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise">sbtk.data.add_noise</a>(<a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_uncertainties">sbtk.data.set_uncertainties</a>(exact, unc), 1);
 
-components = [<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, [0 0 0], 0.17, 0), ...<span class="c">    % geometry fixed, densities estimated</span>
+components = [<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, cof, 0.17, 0), ...<span class="c">         % geometry fixed, densities estimated</span>
               <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.torus">sbtk.interior.torus</a>(&quot;torus&quot;, 0.37, 0.055, 0, 0), ...
               <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;, 0, 0.012, 0)];
+<span class="n">components</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="n">center_km</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">cof</span><span class="p">;</span>
 prob = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.setup">sbtk.invert.setup</a>(body, components, obs, <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.options">sbtk.invert.options</a>());
 hom  = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.homogeneous">sbtk.invert.homogeneous</a>(prob);                                  <span class="c">% is structure required?</span>
 fit  = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.run">sbtk.invert.run</a>(prob);
@@ -254,21 +275,22 @@ fit  = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.ru
 
 <span class="n">moving</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">components</span><span class="p">;</span><span class="w">  </span><span class="n">moving</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">estimate_position</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w">              </span><span class="c">% estimate the core center as well</span>
 fit_p  = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.solve">sbtk.invert.solve</a>(body, moving, obs);
-<span class="nb">fprintf</span><span class="p">(</span><span class="s">&quot;core center [%.0f %.0f %.0f] m +- [%.0f %.0f %.0f] m\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">1e3</span><span class="o">*</span><span class="n">fit_p</span><span class="p">.</span><span class="n">components</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">center_km</span><span class="p">,</span><span class="w"> </span><span class="mf">1e3</span><span class="o">*</span><span class="n">fit_p</span><span class="p">.</span><span class="n">center_sigma_km</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="p">:))</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&quot;core center [%.0f %.0f %.0f] m from the center of figure +- [%.0f %.0f %.0f] m\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">        </span><span class="mf">1e3</span><span class="o">*</span><span class="p">(</span><span class="n">fit_p</span><span class="p">.</span><span class="n">components</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">center_km</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">cof</span><span class="p">),</span><span class="w"> </span><span class="mf">1e3</span><span class="o">*</span><span class="n">fit_p</span><span class="p">.</span><span class="n">center_sigma_km</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="p">:))</span>
 
 <span class="n">raised</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">components</span><span class="p">;</span><span class="w">  </span><span class="n">raised</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="n">estimate_position</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="nb">false</span><span class="w"> </span><span class="nb">false</span><span class="w"> </span><span class="nb">true</span><span class="p">];</span><span class="w">  </span><span class="c">% estimate the height of the torus</span>
 fit_z  = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.solve">sbtk.invert.solve</a>(body, raised, obs, <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.options">sbtk.invert.options</a>(max_shift_km=0.030));
-<span class="nb">fprintf</span><span class="p">(</span><span class="s">&quot;torus height %.1f m +- %.1f m (true 15 m)\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">1e3</span><span class="o">*</span><span class="n">fit_z</span><span class="p">.</span><span class="n">components</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="n">center_km</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="mf">1e3</span><span class="o">*</span><span class="n">fit_z</span><span class="p">.</span><span class="n">center_sigma_km</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">))</span></code></pre></div>
-<p>The true core is at (30, −20, 10) m from the shape-model origin and the true torus 15 m above it; the fixed-geometry
-fit places both at the origin. More
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&quot;torus height %.1f m +- %.1f m (true 15 m)\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">1e3</span><span class="o">*</span><span class="p">(</span><span class="n">fit_z</span><span class="p">.</span><span class="n">components</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="n">center_km</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">cof</span><span class="p">(</span><span class="mi">3</span><span class="p">)),</span><span class="w"> </span><span class="mf">1e3</span><span class="o">*</span><span class="n">fit_z</span><span class="p">.</span><span class="n">center_sigma_km</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">))</span></code></pre></div>
+<p>The true core is at (30, −20, 10) m from the center of figure and the true torus 15 m above it; the fixed-geometry
+fit places both at the center of figure. More
 examples: <a href="../examples/calculations.html">Calculations</a>.</p>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../inversion/measurements.html" rel="prev"><span>Previous</span>Measurement sets</a><a class="next" href="../inversion/statistics.html" rel="next"><span>Next</span>Goodness of fit and model comparison</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-19.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-20.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#procedure">Procedure</a></li><li class="lvl2"><a href="#estimation-problem">Estimation problem</a></li><li class="lvl2"><a href="#estimated-geometry">Estimated geometry</a></li><li class="lvl2"><a href="#uncertainties">Uncertainties</a></li><li class="lvl2"><a href="#regularization">Regularization</a></li><li class="lvl2"><a href="#data-about-the-center-of-mass">Data about the center of mass</a></li><li class="lvl2"><a href="#settings">Settings</a></li><li class="lvl2"><a href="#example">Example</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=ab9adf4ce7"></script>
-<script src="../assets/site.js?v=ab9adf4ce7"></script>
+<script src="../assets/search-index.js?v=198d1bfcfa"></script>
+<script src="../assets/site.js?v=198d1bfcfa"></script>
 </body>
 </html>

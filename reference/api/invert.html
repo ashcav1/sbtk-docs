@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>sbtk.invert — SBTK documentation</title>
-<link rel="stylesheet" href="../../assets/site.css?v=ab9adf4ce7">
-<link rel="stylesheet" href="../../assets/pygments.css?v=ab9adf4ce7">
-<link rel="stylesheet" href="../../assets/print.css?v=ab9adf4ce7" media="print">
+<link rel="stylesheet" href="../../assets/site.css?v=198d1bfcfa">
+<link rel="stylesheet" href="../../assets/pygments.css?v=198d1bfcfa">
+<link rel="stylesheet" href="../../assets/print.css?v=198d1bfcfa" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,6 +29,7 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../../index.html">Documentation</a> › Reference › <span aria-current="page">sbtk.invert</span></nav>
 <article>
 <h1 id="top"><code>sbtk.invert</code>: Density estimation</h1>
+<p class="lastedit">Last edited October 20, 2026</p>
 <table class="overview"><thead><tr><th>Function</th><th>Purpose</th></tr></thead><tbody>
 <tr><td><a class="xref xref-fn" href="#sbtk.invert.choose_regularization"><code>choose_regularization</code></a></td><td>Tikhonov regularization parameter by the discrepancy principle.</td></tr>
 <tr><td><a class="xref xref-fn" href="#sbtk.invert.goodness_of_fit"><code>goodness_of_fit</code></a></td><td>Reduced chi-square and chi-square test of a fit.</td></tr>
@@ -117,11 +118,12 @@ opts = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert
 <tr id="sbtk.invert.options.max_iter"><td data-label="Name"><code>max_iter</code></td><td data-label="Size">scalar</td><td data-label="Class">double</td><td data-label="Unit"></td><td data-label="Default"><code>20</code></td><td data-label="Description">Name-value argument; Gauss-Newton iterations for the geometry of components with <code>estimate_position</code> or <code>estimate_axis</code> <span class="valid">Validation: <code>mustBeInteger, mustBeNonnegative</code>.</span></td></tr>
 <tr id="sbtk.invert.options.step_km"><td data-label="Name"><code>step_km</code></td><td data-label="Size">scalar</td><td data-label="Class">double</td><td data-label="Unit">km</td><td data-label="Default"><code>0.010</code></td><td data-label="Description">Name-value argument; trust-region radius of a step of a center coordinate [km] <span class="valid">Validation: <code>mustBePositive</code>.</span></td></tr>
 <tr id="sbtk.invert.options.position_sigma_km"><td data-label="Name"><code>position_sigma_km</code></td><td data-label="Size">scalar</td><td data-label="Class">double</td><td data-label="Unit">km</td><td data-label="Default"><code>Inf</code></td><td data-label="Description">Name-value argument; a priori 1-sigma of each estimated center coordinate about its <span class="valid">Validation: <code>mustBePositive</code>.</span></td></tr>
-<tr id="sbtk.invert.options.step_deg"><td data-label="Name"><code>step_deg</code></td><td data-label="Size">scalar</td><td data-label="Class">double</td><td data-label="Unit">deg</td><td data-label="Default"><code>1</code></td><td data-label="Description">Name-value argument; trust-region radius of a step of an axis tilt [deg] <span class="valid">Validation: <code>mustBePositive</code>.</span></td></tr>
-<tr id="sbtk.invert.options.axis_sigma_deg"><td data-label="Name"><code>axis_sigma_deg</code></td><td data-label="Size">scalar</td><td data-label="Class">double</td><td data-label="Unit">deg</td><td data-label="Default"><code>Inf</code></td><td data-label="Description">Name-value argument; a priori 1-sigma of each estimated axis tilt about the starting axis [deg]; Inf = no constraint <span class="valid">Validation: <code>mustBePositive</code>.</span></td></tr>
+<tr id="sbtk.invert.options.step_deg"><td data-label="Name"><code>step_deg</code></td><td data-label="Size">scalar</td><td data-label="Class">double</td><td data-label="Unit">deg</td><td data-label="Default"><code>1</code></td><td data-label="Description">Name-value argument; trust-region radius of a step of an axis tilt or turn [deg] <span class="valid">Validation: <code>mustBePositive</code>.</span></td></tr>
+<tr id="sbtk.invert.options.axis_sigma_deg"><td data-label="Name"><code>axis_sigma_deg</code></td><td data-label="Size">scalar</td><td data-label="Class">double</td><td data-label="Unit">deg</td><td data-label="Default"><code>Inf</code></td><td data-label="Description">Name-value argument; a priori 1-sigma of each estimated axis tilt and turn about the starting orientation [deg]; Inf = no constraint <span class="valid">Validation: <code>mustBePositive</code>.</span></td></tr>
 <tr id="sbtk.invert.options.max_shift_km"><td data-label="Name"><code>max_shift_km</code></td><td data-label="Size">scalar</td><td data-label="Class">double</td><td data-label="Unit">km</td><td data-label="Default"><code>Inf</code></td><td data-label="Description">Name-value argument; largest distance of an estimated center from its starting point [km]; Inf = no limit (a sphere is kept inside the body in any case) <span class="valid">Validation: <code>mustBePositive</code>.</span></td></tr>
 <tr id="sbtk.invert.options.max_tilt_deg"><td data-label="Name"><code>max_tilt_deg</code></td><td data-label="Size">scalar</td><td data-label="Class">double</td><td data-label="Unit">deg</td><td data-label="Default"><code>Inf</code></td><td data-label="Description">Name-value argument; largest angle of an estimated axis from its starting direction [deg]; Inf = no limit <span class="valid">Validation: <code>mustBePositive</code>.</span></td></tr>
 <tr id="sbtk.invert.options.geometry_tol"><td data-label="Name"><code>geometry_tol</code></td><td data-label="Size">scalar</td><td data-label="Class">double</td><td data-label="Unit"></td><td data-label="Default"><code>1e-3</code></td><td data-label="Description">Name-value argument; the geometry has converged when an accepted step changes every geometry parameter by less than this fraction of its step limit <span class="valid">Validation: <code>mustBeNonnegative</code>.</span></td></tr>
+<tr id="sbtk.invert.options.max_turn_deg"><td data-label="Name"><code>max_turn_deg</code></td><td data-label="Size">scalar</td><td data-label="Class">double</td><td data-label="Unit">deg</td><td data-label="Default"><code>Inf</code></td><td data-label="Description">Name-value argument; largest turn of an estimated ellipsoid about its axis from its starting orientation [deg]; Inf = no limit <span class="valid">Validation: <code>mustBePositive</code>.</span></td></tr>
 </tbody></table>
 <h3 class="api-sub">Outputs</h3><table class="params outputs"><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
 <tr id="sbtk.invert.options.out.opts"><td data-label="Name"><code>opts</code></td><td data-label="Description">The settings. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#opts"><code>opts</code></a>.</td></tr>
@@ -131,7 +133,7 @@ opts = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert
 <tr><td><code>starting point [km]; Inf = no constraint. Needed when more</code></td><td></td></tr>
 <tr><td><code>geometry is estimated than the measurements determine.</code></td><td></td></tr>
 </tbody></table>
-<p>Standard values: <code>moi_labels</code> {'Ixx','Iyy','Izz'}, regularization 0, background "estimate", <code>rho_max_kgm3</code> 4500, <code>max_iter</code> 20, <code>step_km</code> 0.010, <code>step_deg</code> 1, <code>position_sigma_km</code> Inf, <code>axis_sigma_deg</code> Inf, <code>max_shift_km</code> Inf, <code>max_tilt_deg</code> Inf, <code>geometry_tol</code> 1e-3. The fields can also be changed afterwards (<code>opts.regularization</code> = 10).</p>
+<p>Standard values: <code>moi_labels</code> {'Ixx','Iyy','Izz'}, regularization 0, background "estimate", <code>rho_max_kgm3</code> 4500, <code>max_iter</code> 20, <code>step_km</code> 0.010, <code>step_deg</code> 1, <code>position_sigma_km</code> Inf, <code>axis_sigma_deg</code> Inf, <code>max_shift_km</code> Inf, <code>max_tilt_deg</code> Inf, <code>max_turn_deg</code> Inf, <code>geometry_tol</code> 1e-3. The fields can also be changed afterwards (<code>opts.regularization</code> = 10).</p>
 <h3 class="api-sub">Example</h3>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">opts = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.options">sbtk.invert.options</a>(moi_labels={&#39;libration&#39;}, background=&quot;bulk&quot;);
 opts = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.options">sbtk.invert.options</a>(moi_labels={});                 <span class="c">% gravity coefficients only</span></code></pre></div>
@@ -179,7 +181,7 @@ opts = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert
 <tr><td><code>drho_sigma_kgm3</code></td><td>1-sigma of each relative density</td></tr>
 <tr><td><code>rho_kgm3, rho_sigma_kgm3</code></td><td>density of each component (background + relative) and its 1-sigma</td></tr>
 <tr><td><code>center_sigma_km</code></td><td>n x 3 1-sigma of the center coordinates (NaN unless estimated)</td></tr>
-<tr><td><code>axis_sigma_deg</code></td><td>n x 2 1-sigma of the axis tilt about the component's first and second axes [deg] (NaN unless estimated)</td></tr>
+<tr><td><code>axis_sigma_deg</code></td><td>n x 3 1-sigma of the rotations about the component's first, second and third axes [deg]: the tilts of its axis and, for an ellipsoid, its turn about it (NaN unless estimated)</td></tr>
 <tr><td><code>at_bound</code></td><td>density at 0 or <code>rho_max</code></td></tr>
 <tr><td><code>resolved</code></td><td>|relative density| &gt; its 1-sigma</td></tr>
 <tr><td><code>determined</code></td><td>false if the measurements (with any prior or regularization) do not determine all free parameters; cov is then a pseudo-inverse and the solution is not unique</td></tr>
@@ -268,11 +270,11 @@ fit = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.
 </section>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../../reference/api/data.html" rel="prev"><span>Previous</span>sbtk.data</a><a class="next" href="../../reference/api/compare.html" rel="next"><span>Next</span>sbtk.compare</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-19.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-20.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#sbtk.invert.choose_regularization">sbtk.invert.choose_regularization</a></li><li class="lvl2"><a href="#sbtk.invert.goodness_of_fit">sbtk.invert.goodness_of_fit</a></li><li class="lvl2"><a href="#sbtk.invert.homogeneous">sbtk.invert.homogeneous</a></li><li class="lvl2"><a href="#sbtk.invert.options">sbtk.invert.options</a></li><li class="lvl2"><a href="#sbtk.invert.replace_data">sbtk.invert.replace_data</a></li><li class="lvl2"><a href="#sbtk.invert.run">sbtk.invert.run</a></li><li class="lvl2"><a href="#sbtk.invert.setup">sbtk.invert.setup</a></li><li class="lvl2"><a href="#sbtk.invert.solve">sbtk.invert.solve</a></li><li class="lvl2"><a href="#sbtk.invert.summary">sbtk.invert.summary</a></li></ul></nav>
 </div>
-<script src="../../assets/search-index.js?v=ab9adf4ce7"></script>
-<script src="../../assets/site.js?v=ab9adf4ce7"></script>
+<script src="../../assets/search-index.js?v=198d1bfcfa"></script>
+<script src="../../assets/site.js?v=198d1bfcfa"></script>
 </body>
 </html>

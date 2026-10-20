@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Assumptions and limitations — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=ab9adf4ce7">
-<link rel="stylesheet" href="../assets/pygments.css?v=ab9adf4ce7">
-<link rel="stylesheet" href="../assets/print.css?v=ab9adf4ce7" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=198d1bfcfa">
+<link rel="stylesheet" href="../assets/pygments.css?v=198d1bfcfa">
+<link rel="stylesheet" href="../assets/print.css?v=198d1bfcfa" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -28,7 +28,8 @@
 <main id="content" tabindex="-1">
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Overview › <span aria-current="page">Assumptions and limitations</span></nav>
 <article>
-<h1 id="top" id="assumptions-and-limitations">Assumptions and limitations<a class="headerlink" href="#assumptions-and-limitations" title="Link to this section">#</a></h1>
+<h1 id="assumptions-and-limitations">Assumptions and limitations<a class="headerlink" href="#assumptions-and-limitations" title="Link to this section">#</a></h1>
+<p class="lastedit">Last edited October 20, 2026</p>
 <p>This page lists the physical and numerical assumptions of SBTK 1.0.0 and the calculations it does not perform. Each
 item links to the page where the behavior is described.</p>
 <h2 id="physical-model">Physical model<a class="headerlink" href="#physical-model" title="Link to this section">#</a></h2>
@@ -71,14 +72,18 @@ item links to the page where the behavior is described.</p>
   cone integrals over them. The result is exact when the radial interval is the same along every sub-ray of a cone and
   otherwise converges with the mesh resolution. Sector boundaries in latitude and longitude are resolved at the
   sub-ray spacing. The validation tests bound the errors for particular cases (<a href="../validation/tests.html">Validation</a>).</li>
-<li>Boundaries of spheres, ellipsoids and tori along a ray are located from 256 samples per chord through the component's
-  bounding sphere and refined by bisection; a component thinner than the sample spacing along a ray can be missed.</li>
+<li>The crossings of a ray with a sphere, ellipsoid or torus are exact (roots of a quadratic or quartic). The integrals
+  of these components are continuous in their position and orientation, but smooth only on scales larger than the
+  ray spacing: where a ray grazes a component, its piece inside changes like a square root. The derivatives used to
+  estimate geometry are therefore taken over steps of 0.1 m and 0.01° (<a href="../inversion/density-estimation.html#estimated-geometry">Estimated geometry</a>).</li>
 <li>The random density field is integrated with one value per radial shell (24 shells per facet cone).</li>
 </ul>
 <h2 id="estimation">Estimation<a class="headerlink" href="#estimation" title="Link to this section">#</a></h2>
 <ul>
-<li>The measurements are linear in the densities. Sphere centers, when estimated, are found by Gauss–Newton iteration
-  with a trust region; the geometry of all other components is fixed.</li>
+<li>The measurements are linear in the densities. Positions and axes of components, when estimated, are found by
+  Gauss–Newton iteration with a trust region and optional a priori constraints and limits; the geometry of layers and
+  sectors, and of every component not marked for estimation, is fixed. An estimated geometry can absorb signal from
+  structure the model lacks (<a href="../inversion/density-estimation.html#estimated-geometry">Estimated geometry</a>).</li>
 <li>The uncertainties are the linearized covariance with the mass constraint and fixed parameters eliminated. The
   inequality bounds on the densities are not reflected in the covariance; <code>fit.at_bound</code> flags densities at a bound.</li>
 <li>The <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> test assumes Gaussian measurement errors with the stated covariance.</li>
@@ -106,11 +111,11 @@ item links to the page where the behavior is described.</p>
 </ul>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../index.html" rel="prev"><span>Previous</span>SBTK: Small Body Toolkit</a><a class="next" href="../getting-started/installation.html" rel="next"><span>Next</span>Installation</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-19.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-20.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#physical-model">Physical model</a></li><li class="lvl2"><a href="#geometry">Geometry</a></li><li class="lvl2"><a href="#numerical-integration">Numerical integration</a></li><li class="lvl2"><a href="#estimation">Estimation</a></li><li class="lvl2"><a href="#data-formats">Data formats</a></li><li class="lvl2"><a href="#software">Software</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=ab9adf4ce7"></script>
-<script src="../assets/site.js?v=ab9adf4ce7"></script>
+<script src="../assets/search-index.js?v=198d1bfcfa"></script>
+<script src="../assets/site.js?v=198d1bfcfa"></script>
 </body>
 </html>
