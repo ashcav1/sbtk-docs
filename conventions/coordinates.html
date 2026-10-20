@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Coordinate systems and origins — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=ca4d69c501">
-<link rel="stylesheet" href="../assets/pygments.css?v=ca4d69c501">
-<link rel="stylesheet" href="../assets/print.css?v=ca4d69c501" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=134d1bb24a">
+<link rel="stylesheet" href="../assets/pygments.css?v=134d1bb24a">
+<link rel="stylesheet" href="../assets/print.css?v=134d1bb24a" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -48,7 +48,7 @@ shape-model, spin or principal axes (<a href="../conventions/gravity-frames.html
 <tbody>
 <tr>
 <td>Shape-model origin</td>
-<td>The point (0, 0, 0) of the shape file. For the DART Didymos model v003 it is 57 m from the center of figure.</td>
+<td>The point (0, 0, 0) of the shape file, chosen by its makers. For the DART Didymos model v003 it is 57 m from the center of figure; for the OSIRIS-REx Bennu model it is the center of mass found from the tracking data, 1.4 m from the center of figure.</td>
 <td>the origin of every coordinate</td>
 </tr>
 <tr>
@@ -80,8 +80,11 @@ is stored as <code>origin_km</code> in measurement sets (<a class="xref xref-fie
 <p>Components are positioned in two different ways:</p>
 <ul>
 <li><strong>Spheres, ellipsoids and tori</strong> are placed in shape-model coordinates. <code>center_km = [0 0 0]</code> is the shape-model
-  origin, not the center of figure. A torus is centered on the <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis of the shape-model frame, in the plane
-  <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span> = <code>height_km</code>. To place a sphere at the center of figure, use <code>body.centroid_km</code> as its center.</li>
+  origin, not the center of figure. A torus lies about its axis, the third of <a class="xref xref-field" href="../reference/data-structures.html#component.axes"><code>component.axes</code></a>, through
+  <a class="xref xref-field" href="../reference/data-structures.html#component.center_km"><code>component.center_km</code></a>, in the plane at <code>height_km</code> along that axis; as constructed this is the <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis through the
+  origin. To place components from the center of figure, as recommended, use <code>body.centroid_km</code>: a sphere at
+  <code>body.centroid_km + offset</code>, a torus with <code>center_km = body.centroid_km</code>
+  (<a href="../models/density-distributions.html#where-to-place-components">Where to place components</a>).</li>
 <li><strong>Layers and sectors</strong> are measured along rays from the expansion origin: a layer's depth is the distance below the
   surface along the ray through the point; a sector's radial fraction is the distance from the origin divided by the
   distance from the origin to the surface along the same ray, and its latitude and longitude are measured about the
@@ -118,7 +121,7 @@ the spin and principal axes.</p>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#shape-model-frame">Shape-model frame</a></li><li class="lvl2"><a href="#expansion-origin">Expansion origin</a></li><li class="lvl2"><a href="#positions-of-components">Positions of components</a></li><li class="lvl2"><a href="#latitude-and-longitude">Latitude and longitude</a></li><li class="lvl2"><a href="#ellipsoid-orientation">Ellipsoid orientation</a></li><li class="lvl2"><a href="#axes-of-the-inertia-tensor-and-the-coefficients">Axes of the inertia tensor and the coefficients</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=ca4d69c501"></script>
-<script src="../assets/site.js?v=ca4d69c501"></script>
+<script src="../assets/search-index.js?v=134d1bb24a"></script>
+<script src="../assets/site.js?v=134d1bb24a"></script>
 </body>
 </html>

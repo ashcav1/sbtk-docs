@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Validation and tests — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=ca4d69c501">
-<link rel="stylesheet" href="../assets/pygments.css?v=ca4d69c501">
-<link rel="stylesheet" href="../assets/print.css?v=ca4d69c501" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=134d1bb24a">
+<link rel="stylesheet" href="../assets/pygments.css?v=134d1bb24a">
+<link rel="stylesheet" href="../assets/print.css?v=134d1bb24a" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -88,7 +88,7 @@ semi-axes 0.5 × 0.4 × 0.3 km (20,480 facets) and the 9.3 m Didymos model with 
 </tr>
 <tr>
 <td><code>testExactRecovery</code></td>
-<td>Exact Didymos data of a core (off-center), ridge and regolith: densities and the core center are recovered, starting with the core at the origin.</td>
+<td>Exact Didymos data of a core (off-center), torus and regolith: densities and the core center are recovered, starting with the core at the origin.</td>
 <td>10⁻⁶ kg/m³, 10⁻⁷ km, <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> &lt; 10⁻¹⁰</td>
 </tr>
 <tr>
@@ -196,7 +196,12 @@ semi-axes 0.5 × 0.4 × 0.3 km (20,480 facets) and the 9.3 m Didymos model with 
 homogeneous fit has the bulk density and <span class="nobr"><math alttext="ν = n" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BD;</mi><mo>&#x0003D;</mo><mi>n</mi></mrow></math>;</span> regularization reduces the norm of the relative densities and
 increases the degrees of freedom; the p-value of <span class="nobr"><math alttext="χ^2 = 10" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mn>10</mn></mrow></math></span> with <span class="nobr"><math alttext="ν = 10" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BD;</mi><mo>&#x0003D;</mo><mn>10</mn></mrow></math></span> equals 0.44049; density bounds hold and are
 flagged; settings by name and value; starting values of the relative densities are not used; unknown inertia labels and
-inconsistent replacement data are rejected.</p>
+inconsistent replacement data are rejected. <code>testEstimateTorusAxisAndHeight</code>: the axis of a torus (true tilt 4.5°) and
+its height (12 m), started 3.5° and 15 m away, are recovered from exact values to 0.02° and 0.2 m with its density
+(5 kg/m³). <code>testGeometryLimits</code>: a hard limit on the tilt holds, an a priori constraint keeps the axis at its start, and
+geometry asked of components without a center or an axis is rejected. The sphere-position results of
+<code>test_regression_baseline.m</code> (including the number of iterations) did not change when the estimated geometry was
+generalized.</p>
 <h2 id="reproduction-of-published-and-earlier-results">Reproduction of published and earlier results<a class="headerlink" href="#reproduction-of-published-and-earlier-results" title="Link to this section">#</a></h2>
 <table>
 <thead>
@@ -242,7 +247,7 @@ inconsistent replacement data are rejected.</p>
 </tr>
 <tr>
 <td><code>tests/unit/test_interior.m</code></td>
-<td>Constructors, ellipsoid rotation, layer depths, latitude–longitude, duplicate names, sector grids and ranges, random field reproducible and with standard deviation within 15% of σ.</td>
+<td>Constructors, ellipsoid rotation, layer depths, latitude–longitude, duplicate names, sector grids and ranges, random field reproducible and with standard deviation within 15% of σ. <code>testSetAxis</code>: the axis points along the direction, by the smallest rotation. <code>testAlignWithSpinAxis</code>: a torus aligned with the axis of the largest moment of the model it belongs to (to 0.002°, in fewer than 10 simulations), the other components unchanged, unknown names and non-convergence reported.</td>
 </tr>
 <tr>
 <td><code>tests/unit/test_gravity.m</code></td>
@@ -286,7 +291,7 @@ brute-force integration, uncertainty calibration) are run separately and are not
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#comparison-with-independent-results">Comparison with independent results</a></li><li class="lvl2"><a href="#conventions-and-frames">Conventions and frames</a></li><li class="lvl2"><a href="#inversion-behavior">Inversion behavior</a></li><li class="lvl2"><a href="#reproduction-of-published-and-earlier-results">Reproduction of published and earlier results</a></li><li class="lvl2"><a href="#other-tests">Other tests</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=ca4d69c501"></script>
-<script src="../assets/site.js?v=ca4d69c501"></script>
+<script src="../assets/search-index.js?v=134d1bb24a"></script>
+<script src="../assets/site.js?v=134d1bb24a"></script>
 </body>
 </html>

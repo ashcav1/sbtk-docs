@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Frames of a gravity field — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=ca4d69c501">
-<link rel="stylesheet" href="../assets/pygments.css?v=ca4d69c501">
-<link rel="stylesheet" href="../assets/print.css?v=ca4d69c501" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=134d1bb24a">
+<link rel="stylesheet" href="../assets/pygments.css?v=134d1bb24a">
+<link rel="stylesheet" href="../assets/print.css?v=134d1bb24a" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -171,7 +171,7 @@ zero, and the axis of the smallest moment lies at longitude</p>
 <p>These are the conditions of a body-fixed frame of a body in principal-axis rotation, whose spin axis is the axis of its
 largest moment. The prime meridian here is the direction of the shape-model <span class="nobr"><math alttext="x" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></span>-axis.</p>
 <h2 id="one-field-in-four-frames">One field in four frames<a class="headerlink" href="#one-field-in-four-frames" title="Link to this section">#</a></h2>
-<p>Below is the true model of the documentation example (core, ridge, regolith, boulder and a random density field in the
+<p>Below is the true model of the documentation example (core, torus, regolith, boulder and a random density field in the
 9.3 m Didymos model, <a href="../files/results-folders.html">Results folders and figures</a>) in the four frames, made by
 <code>documentation/tools/make_samples.m</code>:</p>
 <figure class="figure"><img src="../images/frames.png" alt="The degree-1 and degree-2 coefficients (top) and the magnitude of every coefficient (bottom) of one field: about the shape-model origin (gray), and about its center of mass in the shape-model axes (blue), the spin axes (green) and the principal axes (red). Values at the dotted line are zero to rounding." loading="lazy"><figcaption>The degree-1 and degree-2 coefficients (top) and the magnitude of every coefficient (bottom) of one field: about the shape-model origin (gray), and about its center of mass in the shape-model axes (blue), the spin axes (green) and the principal axes (red). Values at the dotted line are zero to rounding.</figcaption></figure>
@@ -348,8 +348,10 @@ given by <span class="nobr"><math alttext="S_22/ C_22" xmlns="http://www.w3.org/
   very different σ (in a principal-axis solution, for example, <span class="nobr"><math alttext="σ( C_22) σ( S_22)" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003C3;</mi><mo stretchy="false">&#x00028;</mo><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub><mo stretchy="false">&#x00029;</mo><mo>&#x0226A;</mo><mi>&#x003C3;</mi><mo stretchy="false">&#x00028;</mo><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub><mo stretchy="false">&#x00029;</mo></mrow></math>)</span>. Applying
   such a table coefficient by coefficient in other axes is an approximation. <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.to_frame"><code>sbtk.data.to_frame</code></a> rotates a full
   covariance exactly.</li>
-<li><strong>Components tied to the rotation.</strong> Components defined in the shape-model frame, such as an equatorial ridge about
-  its <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis, are tilted relative to the spin axes by the angle between them. <code>interior_model.txt</code> gives their
+<li><strong>Components tied to the rotation.</strong> A component defined in the shape-model frame, such as a torus about its
+  <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis, is tilted relative to the spin axes by the angle between them. If it should lie about the spin axis, as an
+  equatorial torus does, set its axis with <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.align_with_spin_axis"><code>sbtk.interior.align_with_spin_axis</code></a> before simulating
+  (<a href="../models/density-distributions.html#axes-of-components">Axes of components</a>). <code>interior_model.txt</code> gives the
   geometry in the frame of the package.</li>
 </ul>
 <h3 id="finders">Finders<a class="headerlink" href="#finders" title="Link to this section">#</a></h3>
@@ -367,8 +369,11 @@ given by <span class="nobr"><math alttext="S_22/ C_22" xmlns="http://www.w3.org/
 <h3 id="packages-in-another-frame">Packages in another frame<a class="headerlink" href="#packages-in-another-frame" title="Link to this section">#</a></h3>
 <div class="codeblock codeblock-code" id="frames-package"><div class="codehead"><span>MATLAB script: Measurement and interior-model packages in the spin axes</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><span class="nb">run</span><span class="p">(</span><span class="s">&quot;/path/to/SBTK/sbtk_setup.m&quot;</span><span class="p">)</span>
 body = <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.from_mass">sbtk.body.from_mass</a>(&quot;Didymos&quot;, <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.bundled">sbtk.shape.bundled</a>(&quot;didymos&quot;), 5.273e11, 0.43);
-interior = <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>([<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, [0 0 0], 0.170, +450), ...
-                                 <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.torus">sbtk.interior.torus</a>(&quot;ridge&quot;, 0.370, 0.055, 0, -500)]);
+<span class="n">cof</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">body</span><span class="p">.</span><span class="n">centroid_km</span><span class="p">;</span><span class="w">                                                      </span><span class="c">% place from the center of figure</span>
+torus = <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.torus">sbtk.interior.torus</a>(&quot;torus&quot;, 0.370, 0.055, 0, -500);
+<span class="n">torus</span><span class="p">.</span><span class="n">center_km</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">cof</span><span class="p">;</span>
+interior = <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>([<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, cof, 0.170, +450), torus]);
+interior = <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.align_with_spin_axis">sbtk.interior.align_with_spin_axis</a>(body, interior, &quot;torus&quot;, 0.01, 20);   <span class="c">% torus about the spin axis</span>
 [exact, truth] = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, interior, 4, &quot;spin example&quot;);      <span class="c">% in the frame of the shape-model file</span>
 
 spin  = <a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.center_of_mass_frame">sbtk.gravity.center_of_mass_frame</a>(truth, body, &quot;spin&quot;);             <span class="c">% or &quot;principal&quot;</span>
@@ -385,7 +390,8 @@ model = <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchan
 [received, rbody] = <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_data">sbtk.exchange.read_data</a>(data);                           <span class="c">% what a receiving team reads</span>
 <span class="nb">fprintf</span><span class="p">(</span><span class="s">&quot;%s: C21 %+.1e, S21 %+.1e (1-sigma %.0e)\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">rbody</span><span class="p">.</span><span class="n">shape</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">received</span><span class="p">.</span><span class="n">coef</span><span class="p">(</span><span class="mi">5</span><span class="p">:</span><span class="mi">6</span><span class="p">),</span><span class="w"> </span><span class="nb">sqrt</span><span class="p">(</span><span class="n">received</span><span class="p">.</span><span class="n">coef_cov</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">)))</span></code></pre></div>
 <p>The package contains <code>didymos_v003_spin_axes.obj</code>. Its <code>conventions.txt</code> states the rotation from the original file,
-and <code>interior_model.txt</code> describes the ridge with its axis in the new frame. The HLP6 runners have a FRAME setting that
+and <code>interior_model.txt</code> describes the torus with its axis in the new frame: along <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math>,</span> because it was aligned with the
+spin axis. The HLP6 runners have a FRAME setting that
 does this (<a href="../projects/hera-blind-test.html">Hera blind test</a>).</p>
 <h2 id="tumbling-bodies-and-dimorphos">Tumbling bodies and Dimorphos<a class="headerlink" href="#tumbling-bodies-and-dimorphos" title="Link to this section">#</a></h2>
 <p><strong>The gravity field does not depend on the rotation.</strong> The coefficients and the principal axes describe the mass
@@ -437,7 +443,7 @@ obs = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_moi
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#summary">Summary</a></li><li class="lvl2"><a href="#moving-the-expansion-point-to-the-center-of-mass">Moving the expansion point to the center of mass</a></li><li class="lvl3"><a href="#degree-1">Degree 1</a></li><li class="lvl3"><a href="#higher-degrees">Higher degrees</a></li><li class="lvl2"><a href="#rotating-the-axes">Rotating the axes</a></li><li class="lvl3"><a href="#principal-axes-from-the-degree-2-coefficients">Principal axes from the degree-2 coefficients</a></li><li class="lvl3"><a href="#what-a-rotation-changes">What a rotation changes</a></li><li class="lvl3"><a href="#principal-axes">Principal axes</a></li><li class="lvl3"><a href="#spin-axes">Spin axes</a></li><li class="lvl2"><a href="#one-field-in-four-frames">One field in four frames</a></li><li class="lvl2"><a href="#comparison-with-the-homogeneous-body">Comparison with the homogeneous body</a></li><li class="lvl2"><a href="#frames-used-for-measured-and-modeled-fields">Frames used for measured and modeled fields</a></li><li class="lvl3"><a href="#body-fixed-frames-of-measured-fields">Body-fixed frames of measured fields</a></li><li class="lvl3"><a href="#example-bennu">Example: Bennu</a></li><li class="lvl3"><a href="#principal-axis-frames">Principal-axis frames</a></li><li class="lvl2"><a href="#which-frame-to-use">Which frame to use</a></li><li class="lvl3"><a href="#makers">Makers</a></li><li class="lvl3"><a href="#finders">Finders</a></li><li class="lvl3"><a href="#packages-in-another-frame">Packages in another frame</a></li><li class="lvl2"><a href="#tumbling-bodies-and-dimorphos">Tumbling bodies and Dimorphos</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=ca4d69c501"></script>
-<script src="../assets/site.js?v=ca4d69c501"></script>
+<script src="../assets/search-index.js?v=134d1bb24a"></script>
+<script src="../assets/site.js?v=134d1bb24a"></script>
 </body>
 </html>

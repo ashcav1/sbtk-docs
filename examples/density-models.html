@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Density models by component type — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=ca4d69c501">
-<link rel="stylesheet" href="../assets/pygments.css?v=ca4d69c501">
-<link rel="stylesheet" href="../assets/print.css?v=ca4d69c501" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=134d1bb24a">
+<link rel="stylesheet" href="../assets/pygments.css?v=134d1bb24a">
+<link rel="stylesheet" href="../assets/print.css?v=134d1bb24a" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -53,11 +53,13 @@ boulder = <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.inte
 <a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.slices">sbtk.plot.slices</a>(body, {truth}, {&#39;ellipsoid&#39;});</code></pre></div>
 <h2 id="torus">Torus<a class="headerlink" href="#torus" title="Link to this section">#</a></h2>
 <p>A torus about the <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis: ring radius, tube radius, height of its plane. Only the part inside the body counts, so a
-torus that crosses the surface at the equator represents an equatorial ridge.</p>
-<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment. Requires the variables defined in <a href="../examples/density-models.html#models-setup">Body and uncertainties used by the examples on this page</a>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">ridge = <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.torus">sbtk.interior.torus</a>(&quot;ridge&quot;, 0.370, 0.055, 0, -500);
+torus that crosses the surface at the equator represents a belt of different density along the equator. Set its
+<code>center_km</code> to place it about the center of figure, and align it with the spin axis with
+<a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.align_with_spin_axis"><code>sbtk.interior.align_with_spin_axis</code></a> (<a href="../models/density-distributions.html#axes-of-components">Axes of components</a>).</p>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment. Requires the variables defined in <a href="../examples/density-models.html#models-setup">Body and uncertainties used by the examples on this page</a>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">torus = <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.torus">sbtk.interior.torus</a>(&quot;torus&quot;, 0.370, 0.055, 0, -500);
 geo = <a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.geometry">sbtk.gravity.geometry</a>(body, body.centroid_km, 0);
-I = <a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.component_integrals">sbtk.gravity.component_integrals</a>(geo, ridge);
-<span class="nb">fprintf</span><span class="p">(</span><span class="s">&quot;ridge volume inside the body: %.5f km^3 (%.1f%% of the body)\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">I</span><span class="p">.</span><span class="n">V</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="o">*</span><span class="n">I</span><span class="p">.</span><span class="n">V</span><span class="o">/</span><span class="n">body</span><span class="p">.</span><span class="n">volume_km3</span><span class="p">)</span></code></pre></div>
+I = <a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.component_integrals">sbtk.gravity.component_integrals</a>(geo, torus);
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&quot;torus volume inside the body: %.5f km^3 (%.1f%% of the body)\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">I</span><span class="p">.</span><span class="n">V</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="o">*</span><span class="n">I</span><span class="p">.</span><span class="n">V</span><span class="o">/</span><span class="n">body</span><span class="p">.</span><span class="n">volume_km3</span><span class="p">)</span></code></pre></div>
 <h2 id="layer">Layer<a class="headerlink" href="#layer" title="Link to this section">#</a></h2>
 <p>Top and bottom depth below the surface, along rays from the expansion origin.</p>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment. Requires the variables defined in <a href="../examples/density-models.html#models-setup">Body and uncertainties used by the examples on this page</a>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">regolith = <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;, 0, 0.012, -900);          <span class="c">% the outermost 12 m</span>
@@ -124,7 +126,7 @@ fit = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.sol
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#setup">Setup</a></li><li class="lvl2"><a href="#sphere">Sphere</a></li><li class="lvl2"><a href="#ellipsoid">Ellipsoid</a></li><li class="lvl2"><a href="#torus">Torus</a></li><li class="lvl2"><a href="#layer">Layer</a></li><li class="lvl2"><a href="#sector">Sector</a></li><li class="lvl2"><a href="#sector-grid">Sector grid</a></li><li class="lvl2"><a href="#random-density-field">Random density field</a></li><li class="lvl2"><a href="#homogeneous-body">Homogeneous body</a></li><li class="lvl2"><a href="#prescribed-component">Prescribed component</a></li><li class="lvl2"><a href="#estimated-sphere-position">Estimated sphere position</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=ca4d69c501"></script>
-<script src="../assets/site.js?v=ca4d69c501"></script>
+<script src="../assets/search-index.js?v=134d1bb24a"></script>
+<script src="../assets/site.js?v=134d1bb24a"></script>
 </body>
 </html>

@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Results folders and figures — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=ca4d69c501">
-<link rel="stylesheet" href="../assets/pygments.css?v=ca4d69c501">
-<link rel="stylesheet" href="../assets/print.css?v=ca4d69c501" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=134d1bb24a">
+<link rel="stylesheet" href="../assets/pygments.css?v=134d1bb24a">
+<link rel="stylesheet" href="../assets/print.css?v=134d1bb24a" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -149,7 +149,7 @@ R_ref_km 4.300000000000000e-01
 degree 4
 origin_km 1.453440773342489e-02 4.112035414216061e-02 -3.392607730328611e-02
 coef_about origin   (origin: coefficients about origin_km; center_of_mass: degree &gt;= 2 about the center of mass)
-com_minus_cof_km -1.395126389221634e-03 -1.193499005917274e-03 5.245541816286531e-05
+com_minus_cof_km -1.395126389221530e-03 -1.193499005917247e-03 5.245541816292082e-05
 noise_seed 1   (NaN = exact values or real data)
 libration_sigma 2.000000000000000e-02   (1-sigma of the libration ratio; NaN = none)
 # gravity field about origin_km: l m C S sigma_C sigma_S
@@ -175,28 +175,28 @@ moi_used Ixx Iyy Izz
 origin_km 1.453440773342489e-02 4.112035414216061e-02 -3.392607730328611e-02
 coef_about origin   com_shift_km 0.000000000 0.000000000 0.000000000   (degree &gt;= 2 and inertia predicted about origin_km + com_shift_km)
 # density &lt;component&gt; &lt;relative density&gt; &lt;its 1-sigma&gt; &lt;density&gt; &lt;its 1-sigma&gt;   [kg/m^3]
-#   (+ center x y z and their 1-sigma in km, for spheres whose position was estimated)
+#   (+ center x y z and their 1-sigma in km, if the center was estimated; + axis x y z and the
+#    1-sigma of its tilt about the first and second axes in deg, if the axis was estimated)
 density background 0 0 2698.366 76.036
 density core 482.581 314.730 3180.948 240.993
-density ridge -441.574 91.943 2256.792 50.909
+density torus -441.574 91.943 2256.792 50.909
 density regolith -1271.940 426.435 1426.427 353.374
 # component &lt;name&gt; &lt;type&gt; &lt;geometry&gt;
 component core sphere center [0.0 0.0 0.0] m, radius 170.0 m
-component ridge torus ring 370.0 m, tube 55.0 m, at z = 0.0 m
+component torus torus ring 370.0 m, tube 55.0 m, at z = 0.0 m
 component regolith layer 0.0 to 12.0 m below the surface
 # residual &lt;label&gt; &lt;measured&gt; &lt;predicted&gt; &lt;sigma&gt; &lt;(predicted - measured)/sigma&gt;
 residual C10 -1.743145135707e-03  1.994753512469e-04 2.685350e-03  0.723
-residual C11  3.171858563801e-03  8.016627734306e-04 2.685350e-03 -0.883
-residual S11 -2.036659386679e-03 -5.259591366322e-04 2.685350e-03  0.563</code></pre></div>
+residual C11  3.171858563801e-03  8.016627734306e-04 2.685350e-03 -0.883</code></pre></div>
 <p><strong>True models</strong> (<a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.write_truth"><code>sbtk.io.write_truth</code></a>) and <strong>comparisons</strong> (<a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.write_comparison"><code>sbtk.io.write_comparison</code></a>) use the same layout.</p>
 <h2 id="figures">Figures<a class="headerlink" href="#figures" title="Link to this section">#</a></h2>
 <p>Every plot function returns a figure handle. <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.save_figure"><code>sbtk.io.save_figure</code></a><code>(out, fig, name)</code> saves it as
 <code>figures/&lt;name&gt;.png</code> at 200 dpi in a run folder; <code>exportgraphics</code> saves it anywhere. Densities are drawn with a
 sequential color map (dark blue to yellow); signed differences with blue for lower and red for higher density.</p>
 <p>The figures below come from one synthetic Didymos run, made by <code>documentation/tools/make_samples.m</code>: a core
-(+450 kg/m³), an equatorial ridge (−500), a 12 m regolith layer (−900), a boulder of radius 40 m (+900) and a random
+(+450 kg/m³), an equatorial torus (−500), a 12 m regolith layer (−900), a boulder of radius 40 m (+900) and a random
 field of 40 kg/m³ with a 60 m correlation length; measurements to degree 4 with the uncertainties of the
-<a href="../getting-started/first-script.html">first script</a>; an inversion for core, ridge and regolith (the boulder and the field
+<a href="../getting-started/first-script.html">first script</a>; an inversion for core, torus and regolith (the boulder and the field
 are not in the inversion model). The fit has <span class="nobr"><math alttext="χ^2/ν = 1.09" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup><mo>&#x0002F;</mo><mi>&#x003BD;</mi><mo>&#x0003D;</mo><mn>1.09</mn></mrow></math></span> (<span class="nobr"><math alttext="p = 0.35" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>p</mi><mo>&#x0003D;</mo><mn>0.35</mn></mrow></math>)</span>, the homogeneous body <span class="nobr"><math alttext="χ^2/ν = 37.5" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup><mo>&#x0002F;</mo><mi>&#x003BD;</mi><mo>&#x0003D;</mo><mn>37.5</mn></mrow></math>;</span>
 <span class="nobr"><math alttext="R^2 = 0.88" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mn>0.88</mn></mrow></math></span> with <span class="nobr"><math alttext="R^2_max = 0.98" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msubsup><mi>R</mi><mtext>max</mtext><mn>2</mn></msubsup><mo>&#x0003D;</mo><mn>0.98</mn></mrow></math>.</span></p>
 <h3 id="shape-model">Shape model<a class="headerlink" href="#shape-model" title="Link to this section">#</a></h3>
@@ -206,7 +206,7 @@ are not in the inversion model). The fit has <span class="nobr"><math alttext="�
 <p><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.interior3d"><code>sbtk.plot.interior3d</code></a><code>(body, model, title)</code>: the surface drawn translucent; spheres, ellipsoids and tori drawn where
 they lie inside the body, layers by their lower boundary; color is the relative density. Sectors are not drawn (use
 slices). Saved as <code>truth_3d.png</code> and <code>estimate_3d.png</code> by the report functions.</p>
-<figure class="figure"><img src="../images/truth_3d.png" alt="True model: core, ridge, lower boundary of the regolith layer, boulder." loading="lazy"><figcaption>True model: core, ridge, lower boundary of the regolith layer, boulder.</figcaption></figure>
+<figure class="figure"><img src="../images/truth_3d.png" alt="True model: core, torus, lower boundary of the regolith layer, boulder." loading="lazy"><figcaption>True model: core, torus, lower boundary of the regolith layer, boulder.</figcaption></figure>
 <h3 id="density-slices">Density slices<a class="headerlink" href="#density-slices" title="Link to this section">#</a></h3>
 <p><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.slices"><code>sbtk.plot.slices</code></a><code>(body, {models}, {titles})</code>: the density on the plane <span class="nobr"><math alttext="z = 0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math></span> (left) and the plane <span class="nobr"><math alttext="y = 0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>y</mi><mo>&#x0003D;</mo><mn>0</mn></mrow></math></span> (right), both
 through the first model's origin, one row per model with a common color scale. Saved as <code>truth_slices.png</code> and
@@ -256,7 +256,7 @@ Not saved by the report functions; save it with <a class="xref xref-fn" href="..
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#run-folders">Run folders</a></li><li class="lvl2"><a href="#files">Files</a></li><li class="lvl2"><a href="#text-formats">Text formats</a></li><li class="lvl2"><a href="#figures">Figures</a></li><li class="lvl3"><a href="#shape-model">Shape model</a></li><li class="lvl3"><a href="#interior-in-three-dimensions">Interior in three dimensions</a></li><li class="lvl3"><a href="#density-slices">Density slices</a></li><li class="lvl3"><a href="#measurements">Measurements</a></li><li class="lvl3"><a href="#normalized-residuals">Normalized residuals</a></li><li class="lvl3"><a href="#estimated-densities">Estimated densities</a></li><li class="lvl3"><a href="#comparison-with-the-true-model">Comparison with the true model</a></li><li class="lvl3"><a href="#difference-from-the-homogeneous-body">Difference from the homogeneous body</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=ca4d69c501"></script>
-<script src="../assets/site.js?v=ca4d69c501"></script>
+<script src="../assets/search-index.js?v=134d1bb24a"></script>
+<script src="../assets/site.js?v=134d1bb24a"></script>
 </body>
 </html>

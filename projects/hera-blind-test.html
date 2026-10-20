@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hera blind test — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=ca4d69c501">
-<link rel="stylesheet" href="../assets/pygments.css?v=ca4d69c501">
-<link rel="stylesheet" href="../assets/print.css?v=ca4d69c501" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=134d1bb24a">
+<link rel="stylesheet" href="../assets/pygments.css?v=134d1bb24a">
+<link rel="stylesheet" href="../assets/print.css?v=134d1bb24a" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -127,7 +127,12 @@ runners need them in <code>data/hera_rse/</code>.</p>
 <li><strong>NAME AND DELIVERY</strong>: the run name, the package number <span class="nobr"><math alttext="n" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>n</mi></mrow></math>,</span> and the inertia quantities the package contains
    (any of <code>Ixx</code> … <code>Iyz</code>, <code>libration</code>, or none; <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.select_moi"><code>sbtk.data.select_moi</code></a>).</li>
 <li><strong>INTERIOR</strong>: components and random field (<a href="../models/density-distributions.html">Density distributions</a>), in the
-   frame of the DART shape-model file.</li>
+   axes of the DART shape-model file with positions measured from the center of figure (<code>cof = body.centroid_km</code>),
+   not from the origin of the file, which is 57 m from it for Didymos
+   (<a href="../models/density-distributions.html#where-to-place-components">Where to place components</a>). The torus lies about
+   the z-axis through <code>cof</code>. <code>align_with_spin_axis</code> names the components whose axis is set along the axis of the
+   largest moment of the whole true model (Didymos: <code>"torus"</code>, which forms about the spin axis; Dimorphos: none),
+   with <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.align_with_spin_axis"><code>sbtk.interior.align_with_spin_axis</code></a>.</li>
 <li><strong>FRAME OF THE PACKAGES</strong>: <code>"spin"</code>, <code>"principal"</code> or <code>"shape"</code>. Didymos uses the spin axes of the true model
    (<span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span> along its axis of the largest moment, <span class="nobr"><math alttext="x" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></span> toward the shape-model <span class="nobr"><math alttext="x" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></span>-axis: <span class="nobr"><math alttext="C_21 = S_21 = 0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub><mo>&#x0003D;</mo><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math></span>
    within the noise, as in a mission field of a body in principal-axis rotation); Dimorphos, which may be tumbling,
@@ -136,7 +141,8 @@ runners need them in <code>data/hera_rse/</code>.</p>
    elements) and the 1σ of the libration ratio. They are applied coefficient by coefficient in the frame of the
    packages.</li>
 <li><strong>NOISE</strong>: the seed.</li>
-<li><strong>RUN</strong>: <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a> (the true model and its exact values, without uncertainties); with
+<li><strong>RUN</strong>: <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create"><code>sbtk.interior.create</code></a> and <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.align_with_spin_axis"><code>sbtk.interior.align_with_spin_axis</code></a>; <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a> (the true
+   model and its exact values, without uncertainties); with
    <a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.center_of_mass_frame"><code>sbtk.gravity.center_of_mass_frame</code></a> the axes of the chosen frame, and <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.to_frame"><code>sbtk.body.to_frame</code></a>,
    <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.to_frame"><code>sbtk.interior.to_frame</code></a>, <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.to_frame"><code>sbtk.data.to_frame</code></a> to carry the body (its shape model is written into the package
    as <code>&lt;shape&gt;_&lt;frame&gt;_axes.obj</code>), the true model and the exact values into it;
@@ -156,7 +162,10 @@ runners need them in <code>data/hera_rse/</code>.</p>
 <p><code>invert_didymos.m</code> reads the redacted package of the newest simulation of the given name with
 <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.locate"><code>sbtk.exchange.locate</code></a> and <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a>, exactly as another team receives it, so the inversion expands
 about the measured center of mass (<a href="../inversion/density-estimation.html#data-about-the-center-of-mass">Density estimation</a>).
-It writes <code>fit.*</code>, <code>homogeneous.txt</code>, figures and the solution package <code>&lt;team&gt;-SOL_&lt;data team&gt;&lt;n&gt;/</code>.
+Its model places the core and the torus at the center of figure of the package's shape model, as a receiving team
+would, and estimates the torus axis and height (<a href="../inversion/density-estimation.html#estimated-geometry">Estimated geometry</a>):
+<code>estimate_axis = true</code>, <code>estimate_position = [false false true]</code>, with a priori 1σ of 1° and 10 m and limits of 10° and
+50 m. It writes <code>fit.*</code>, <code>homogeneous.txt</code>, figures and the solution package <code>&lt;team&gt;-SOL_&lt;data team&gt;&lt;n&gt;/</code>.
 <code>invert_received_data.m</code> does the same for a package from another team, or, with the commented lines, for a SHADR-layout
 gravity file, for which the shape model and the point the coefficients are about must be given.</p>
 <h2 id="comparison-runs">Comparison runs<a class="headerlink" href="#comparison-runs" title="Link to this section">#</a></h2>
@@ -170,16 +179,18 @@ not contain. With the uncertainties of the end-to-end simulation, the <span clas
 both bodies, and the estimated densities are biased accordingly. For Didymos, the same three-component model fits an
 interior that consists of those components alone (reduced <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> 0.98). At this precision an inversion model has to
 include structure down to the scale of such features to pass the test (<a href="../inversion/statistics.html">Goodness of fit</a>).
-In the spin or principal axes, the components of the delivered inversion models, which are written as a receiving
-team would write them in the frame of the package, are moreover turned against the true components by the rotation of
-the frame (3.7° for Didymos, 12° about <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span> for Dimorphos), as an actual receiving team's would be.</p>
+For Didymos T1, whose torus is aligned with the spin axis and so lies about the <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis of the package, the model with
+fixed geometry has a reduced <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> of 119 and <span class="nobr"><math alttext="R^2 = -5.3" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mo>&#x02212;</mo><mn>5.3</mn></mrow></math>.</span> Estimating the torus axis and height lowers <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> to
+37 (<span class="nobr"><math alttext="R^2 = -4.8" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mo>&#x02212;</mo><mn>4.8</mn></mrow></math>)</span>, but the torus tilts 5.5° and rises 42 m: it takes up the signal of the boulder, which the model
+lacks. For Dimorphos, in its principal axes, the ellipsoidal core of the model is turned 12° about <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span> against the true
+core, as a receiving team's would be (reduced <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> 302).</p>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../projects/bennu.html" rel="prev"><span>Previous</span>Bennu</a><a class="next" href="../reference/api.html" rel="next"><span>Next</span>API reference</a></nav>
 <footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-19.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#files">Files</a></li><li class="lvl2"><a href="#settings">Settings</a></li><li class="lvl2"><a href="#simulation-runs">Simulation runs</a></li><li class="lvl2"><a href="#inversion-runs">Inversion runs</a></li><li class="lvl2"><a href="#comparison-runs">Comparison runs</a></li><li class="lvl2"><a href="#example-runs">Example runs</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=ca4d69c501"></script>
-<script src="../assets/site.js?v=ca4d69c501"></script>
+<script src="../assets/search-index.js?v=134d1bb24a"></script>
+<script src="../assets/site.js?v=134d1bb24a"></script>
 </body>
 </html>

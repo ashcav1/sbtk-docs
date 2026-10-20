@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Internal functions — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=ca4d69c501">
-<link rel="stylesheet" href="../assets/pygments.css?v=ca4d69c501">
-<link rel="stylesheet" href="../assets/print.css?v=ca4d69c501" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=134d1bb24a">
+<link rel="stylesheet" href="../assets/pygments.css?v=134d1bb24a">
+<link rel="stylesheet" href="../assets/print.css?v=134d1bb24a" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -49,6 +49,10 @@
 <tr id="sbtk.internal.exchange_number"><td><code>sbtk.internal.exchange_number</code></td><td>Numeric value of a metadata key of an exchange file (error if missing).</td><td><a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a>, <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_grid"><code>sbtk.exchange.read_grid</code></a></td></tr>
 <tr id="sbtk.internal.exchange_read"><td><code>sbtk.internal.exchange_read</code></td><td>Read one exchange-format text file (see <a class="xref xref-fn" href="../reference/internal.html#sbtk.internal.exchange_write">sbtk.internal.exchange_write</a>).</td><td><a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a>, <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_grid"><code>sbtk.exchange.read_grid</code></a></td></tr>
 <tr id="sbtk.internal.exchange_write"><td><code>sbtk.internal.exchange_write</code></td><td>Write one exchange-format text file.</td><td><a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_model"><code>sbtk.exchange.write_model</code></a>, <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_solution"><code>sbtk.exchange.write_solution</code></a></td></tr>
+<tr id="sbtk.internal.fixed_point"><td><code>sbtk.internal.fixed_point</code></td><td>Iterate x = update(x) until a step moves x by at most tol; at most <code>max_iter</code> steps.</td><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a>, <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.align_with_spin_axis"><code>sbtk.interior.align_with_spin_axis</code></a></td></tr>
+<tr id="sbtk.internal.geometry_deviation"><td><code>sbtk.internal.geometry_deviation</code></td><td>How far one geometry parameter of a component is from its start.</td><td><a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.run"><code>sbtk.invert.run</code></a></td></tr>
+<tr id="sbtk.internal.geometry_parameters"><td><code>sbtk.internal.geometry_parameters</code></td><td>The geometry an inversion estimates: one entry per scalar parameter.</td><td><a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.setup"><code>sbtk.invert.setup</code></a></td></tr>
+<tr id="sbtk.internal.geometry_step"><td><code>sbtk.internal.geometry_step</code></td><td>A component with one geometry parameter changed by a step.</td><td><a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.run"><code>sbtk.invert.run</code></a></td></tr>
 <tr id="sbtk.internal.icosphere"><td><code>sbtk.internal.icosphere</code></td><td>Unit sphere mesh: an icosahedron with every triangle split into four LEVEL times.</td><td><a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.ellipsoid"><code>sbtk.shape.ellipsoid</code></a></td></tr>
 <tr id="sbtk.internal.inertia_from_Q"><td><code>sbtk.internal.inertia_from_Q</code></td><td>Inertia tensor from second moments.</td><td><a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a>, <a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.forward"><code>sbtk.gravity.forward</code></a></td></tr>
 <tr id="sbtk.internal.libration_weights"><td><code>sbtk.internal.libration_weights</code></td><td>Weights on [Ixx Iyy Izz Ixy Ixz Iyz] of the libration row (B - A) - ratio*C = 0.</td><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_libration"><code>sbtk.data.add_libration</code></a>, <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a>, <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.to_frame"><code>sbtk.data.to_frame</code></a></td></tr>
@@ -76,7 +80,7 @@
 </main>
 
 </div>
-<script src="../assets/search-index.js?v=ca4d69c501"></script>
-<script src="../assets/site.js?v=ca4d69c501"></script>
+<script src="../assets/search-index.js?v=134d1bb24a"></script>
+<script src="../assets/site.js?v=134d1bb24a"></script>
 </body>
 </html>

@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>API reference — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=ca4d69c501">
-<link rel="stylesheet" href="../assets/pygments.css?v=ca4d69c501">
-<link rel="stylesheet" href="../assets/print.css?v=ca4d69c501" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=134d1bb24a">
+<link rel="stylesheet" href="../assets/pygments.css?v=134d1bb24a">
+<link rel="stylesheet" href="../assets/print.css?v=134d1bb24a" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -35,7 +35,7 @@
 <tr><td><a class="xref" href="../reference/api/units.html"><code>sbtk.units</code></a></td><td>Constants and unit conversions</td><td>6</td></tr>
 <tr><td><a class="xref" href="../reference/api/shape.html"><code>sbtk.shape</code></a></td><td>Shape models</td><td>8</td></tr>
 <tr><td><a class="xref" href="../reference/api/body.html"><code>sbtk.body</code></a></td><td>Bodies</td><td>4</td></tr>
-<tr><td><a class="xref" href="../reference/api/interior.html"><code>sbtk.interior</code></a></td><td>Density distributions</td><td>14</td></tr>
+<tr><td><a class="xref" href="../reference/api/interior.html"><code>sbtk.interior</code></a></td><td>Density distributions</td><td>16</td></tr>
 <tr><td><a class="xref" href="../reference/api/gravity.html"><code>sbtk.gravity</code></a></td><td>Gravity and moment calculations</td><td>6</td></tr>
 <tr><td><a class="xref" href="../reference/api/data.html"><code>sbtk.data</code></a></td><td>Measurement sets</td><td>19</td></tr>
 <tr><td><a class="xref" href="../reference/api/invert.html"><code>sbtk.invert</code></a></td><td>Density estimation</td><td>9</td></tr>
@@ -90,6 +90,7 @@
 <tr><td><a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.geometry"><code>sbtk.gravity.geometry</code></a></td><td>Facet-cone geometry of a body about an expansion origin (the integration workspace).</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.labels"><code>sbtk.gravity.labels</code></a></td><td>Names of the gravity coefficients up to a degree, in SBTK order.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.random_field_integrals"><code>sbtk.gravity.random_field_integrals</code></a></td><td>Density-weighted integrals of the random density field.</td></tr>
+<tr><td><a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.align_with_spin_axis"><code>sbtk.interior.align_with_spin_axis</code></a></td><td>Set the axis of components along the axis of the largest moment of the whole model.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create"><code>sbtk.interior.create</code></a></td><td>An interior model: components plus an optional random density field.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.density_at"><code>sbtk.interior.density_at</code></a></td><td>Density [kg/m^3] of a model at points inside the body.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.ellipsoid"><code>sbtk.interior.ellipsoid</code></a></td><td>Uniform triaxial ellipsoid component, rotated, clipped to the body.</td></tr>
@@ -100,6 +101,7 @@
 <tr><td><a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.random_field"><code>sbtk.interior.random_field</code></a></td><td>Gaussian random density field added to the interior.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sector"><code>sbtk.interior.sector</code></a></td><td>Uniform sector component: radial fractions x latitude/longitude range.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sector_grid"><code>sbtk.interior.sector_grid</code></a></td><td>Sectors that tile the whole body (a model without assumed structure).</td></tr>
+<tr><td><a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.set_axis"><code>sbtk.interior.set_axis</code></a></td><td>Turn a component so that its axis points along a given direction.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere"><code>sbtk.interior.sphere</code></a></td><td>Uniform sphere component (e.g. a core, a boulder or a void).</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.summary"><code>sbtk.interior.summary</code></a></td><td>Print a list of components.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.to_frame"><code>sbtk.interior.to_frame</code></a></td><td>An interior or a true model in another frame: x' = (x - <code>origin_km</code>) * axes.</td></tr>
@@ -167,7 +169,7 @@
 </main>
 
 </div>
-<script src="../assets/search-index.js?v=ca4d69c501"></script>
-<script src="../assets/site.js?v=ca4d69c501"></script>
+<script src="../assets/search-index.js?v=134d1bb24a"></script>
+<script src="../assets/site.js?v=134d1bb24a"></script>
 </body>
 </html>

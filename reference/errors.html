@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Error identifiers — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=ca4d69c501">
-<link rel="stylesheet" href="../assets/pygments.css?v=ca4d69c501">
-<link rel="stylesheet" href="../assets/print.css?v=ca4d69c501" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=134d1bb24a">
+<link rel="stylesheet" href="../assets/pygments.css?v=134d1bb24a">
+<link rel="stylesheet" href="../assets/print.css?v=134d1bb24a" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -70,12 +70,18 @@
 <tr id="sbtk:gravity:incompleteSet-sbtk.gravity.center_of_mass_frame"><td><code>sbtk:gravity:incompleteSet</code></td><td><a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.center_of_mass_frame"><code>sbtk.gravity.center_of_mass_frame</code></a></td><td>The principal axes need every coefficient of degree 2 to %d; the field lacks some.</td></tr>
 <tr id="sbtk:gravity:notStarShaped"><td><code>sbtk:gravity:notStarShaped</code></td><td><a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.geometry"><code>sbtk.gravity.geometry</code></a></td><td>%d facets face the expansion origin: the shape is not star-shaped about [%g %g %g] km.</td></tr>
 <tr id="sbtk:interior:duplicateName"><td><code>sbtk:interior:duplicateName</code></td><td><a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create"><code>sbtk.interior.create</code></a></td><td>Component names must be unique (they label the results): %s</td></tr>
+<tr id="sbtk:interior:noAxis"><td><code>sbtk:interior:noAxis</code></td><td><a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.set_axis"><code>sbtk.interior.set_axis</code></a></td><td>Component %s is a %s, which has no axis.</td></tr>
+<tr id="sbtk:interior:noAxis-sbtk.interior.set_axis"><td><code>sbtk:interior:noAxis</code></td><td><a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.set_axis"><code>sbtk.interior.set_axis</code></a></td><td>The direction for the axis of %s is zero.</td></tr>
 <tr id="sbtk:interior:sectorCount"><td><code>sbtk:interior:sectorCount</code></td><td><a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sector_grid"><code>sbtk.interior.sector_grid</code></a></td><td>Use 1 to 9 bands in each direction (got %d, %d, %d).</td></tr>
 <tr id="sbtk:interior:sectorRange"><td><code>sbtk:interior:sectorRange</code></td><td><a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sector"><code>sbtk.interior.sector</code></a></td><td>Sector %s: each range must increase (frac %s, lat %s, lon %s) and span at most 360 deg of longitude.</td></tr>
 <tr id="sbtk:interior:transformFit"><td><code>sbtk:interior:transformFit</code></td><td><a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.to_frame"><code>sbtk.interior.to_frame</code></a></td><td>An inversion result cannot be transformed. Transform the measurements (sbtk.data.to_frame) and the body (sbtk.body.to_frame) and invert in the new frame.</td></tr>
+<tr id="sbtk:interior:unknownComponent"><td><code>sbtk:interior:unknownComponent</code></td><td><a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.align_with_spin_axis"><code>sbtk.interior.align_with_spin_axis</code></a></td><td>The interior has no component named %s.</td></tr>
 <tr id="sbtk:invert:coefLabel"><td><code>sbtk:invert:coefLabel</code></td><td><a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.setup"><code>sbtk.invert.setup</code></a></td><td>Coefficient %s is above obs.degree = %d.</td></tr>
 <tr id="sbtk:invert:differentData"><td><code>sbtk:invert:differentData</code></td><td><a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.replace_data"><code>sbtk.invert.replace_data</code></a></td><td>The new data differ in labels, origin, degree, mass or inertia weights: run sbtk.invert.setup instead.</td></tr>
 <tr id="sbtk:invert:duplicateName"><td><code>sbtk:invert:duplicateName</code></td><td><a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.setup"><code>sbtk.invert.setup</code></a></td><td>Component names must be unique: %s</td></tr>
+<tr id="sbtk:invert:geometryParameter"><td><code>sbtk:invert:geometryParameter</code></td><td><a class="xref xref-fn" href="../reference/internal.html#sbtk.internal.geometry_parameters"><code>sbtk.internal.geometry_parameters</code></a></td><td>estimate_position of %s must be true, false or a mask of 3 (x, y, z).</td></tr>
+<tr id="sbtk:invert:geometryParameter-sbtk.internal.geometry_parameters"><td><code>sbtk:invert:geometryParameter</code></td><td><a class="xref xref-fn" href="../reference/internal.html#sbtk.internal.geometry_parameters"><code>sbtk.internal.geometry_parameters</code></a></td><td>Component %s is a %s, which has no center to estimate.</td></tr>
+<tr id="sbtk:invert:geometryParameter-sbtk.internal.geometry_parameters"><td><code>sbtk:invert:geometryParameter</code></td><td><a class="xref xref-fn" href="../reference/internal.html#sbtk.internal.geometry_parameters"><code>sbtk.internal.geometry_parameters</code></a></td><td>Component %s is a %s, which has no axis to estimate.</td></tr>
 <tr id="sbtk:invert:infeasible"><td><code>sbtk:invert:infeasible</code></td><td><a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.run"><code>sbtk.invert.run</code></a></td><td>Prescribed densities violate the density bounds.</td></tr>
 <tr id="sbtk:invert:moiLabel"><td><code>sbtk:invert:moiLabel</code></td><td><a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.setup"><code>sbtk.invert.setup</code></a></td><td>opts.moi_labels asks for %s; the data have: %s.</td></tr>
 <tr id="sbtk:invert:noCenterOfMass"><td><code>sbtk:invert:noCenterOfMass</code></td><td><a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.setup"><code>sbtk.invert.setup</code></a></td><td>Coefficients about the center of mass need its measured position as degree-1 coefficients (sbtk.data.add_center_of_mass).</td></tr>
@@ -89,6 +95,7 @@
 <tr id="sbtk:io:noRun"><td><code>sbtk:io:noRun</code></td><td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.latest_run"><code>sbtk.io.latest_run</code></a></td><td>No run named %s in results/%s.</td></tr>
 <tr id="sbtk:io:notNormalized"><td><code>sbtk:io:notNormalized</code></td><td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.read_jpl_gravity"><code>sbtk.io.read_jpl_gravity</code></a></td><td>The coefficients in %s are not normalized.</td></tr>
 <tr id="sbtk:io:referenceRadius"><td><code>sbtk:io:referenceRadius</code></td><td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.read_jpl_gravity"><code>sbtk.io.read_jpl_gravity</code></a></td><td>The file's reference radius is %g km; body.R_ref_km is %g km.</td></tr>
+<tr id="sbtk:iteration:notConverged"><td><code>sbtk:iteration:notConverged</code></td><td><a class="xref xref-fn" href="../reference/internal.html#sbtk.internal.fixed_point"><code>sbtk.internal.fixed_point</code></a></td><td>The iteration for %s did not converge in %d steps (last change %.3g, tolerance %.3g).</td></tr>
 <tr id="sbtk:plot:names"><td><code>sbtk:plot:names</code></td><td><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.difference_from_homogeneous"><code>sbtk.plot.difference_from_homogeneous</code></a></td><td>Give one name per set: %d sets, %d names.</td></tr>
 <tr id="sbtk:shape:notDownloaded"><td><code>sbtk:shape:notDownloaded</code></td><td><a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.bundled"><code>sbtk.shape.bundled</code></a></td><td>%s is not in data/shapes/: the high-resolution models are not in git; copy it from the Hera server (End-to-End Test/Shape/).</td></tr>
 <tr id="sbtk:shape:notSpc"><td><code>sbtk:shape:notSpc</code></td><td><a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.reduce_spc"><code>sbtk.shape.reduce_spc</code></a></td><td>%d vertices and %d facets: not an SPC grid model (6 (q+1)^2 vertices, 12 q^2 facets).</td></tr>
@@ -102,7 +109,7 @@
 </main>
 
 </div>
-<script src="../assets/search-index.js?v=ca4d69c501"></script>
-<script src="../assets/site.js?v=ca4d69c501"></script>
+<script src="../assets/search-index.js?v=134d1bb24a"></script>
+<script src="../assets/site.js?v=134d1bb24a"></script>
 </body>
 </html>
