@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Density estimation — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=134d1bb24a">
-<link rel="stylesheet" href="../assets/pygments.css?v=134d1bb24a">
-<link rel="stylesheet" href="../assets/print.css?v=134d1bb24a" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=ab9adf4ce7">
+<link rel="stylesheet" href="../assets/pygments.css?v=ab9adf4ce7">
+<link rel="stylesheet" href="../assets/print.css?v=ab9adf4ce7" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -113,11 +113,12 @@ stops with <a class="xref xref-err" href="../reference/errors.html#sbtk:invert:s
 priors and limits always refer to the geometry the components were given.</p>
 <p><strong>Absorbed structure.</strong> An estimated geometry can absorb structure the model lacks, so freeing it can lower <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span>
 while moving the component away from the truth. Example: a Didymos true model has a torus about its spin axis at the
-center of figure, plus a boulder and a random density field. An inversion model with a core, the torus and the
-regolith, with the torus axis and height estimated, lowers the reduced <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> from 119 to 37. But it tilts the torus
-5.5° and raises it 42 m to stand in for the boulder, with only the limits of 10° and 50 m. A priori 1σ of 1° and 10 m
-give nearly the same result, because at the precision of these data (Hera radio-science uncertainties) such priors are
-weak. Priors, or limits tight enough to bind, must express how well the geometry is actually known.</p>
+center of figure, plus a boulder and a random density field. The data are its exact values weighted by the Hera
+radio-science precision. An inversion model with a core, the torus and the regolith has a reduced <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> of 121
+(<span class="nobr"><math alttext="R^2 = -5.3" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mo>&#x02212;</mo><mn>5.3</mn></mrow></math>)</span> with fixed geometry. With the torus axis and height estimated (a priori 1σ of 1° and 10 m, limits of
+10° and 50 m), <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> drops to 37 while <span class="nobr"><math alttext="R^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow></math></span> falls to <span class="nobr"><math alttext="-5.7" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mn>5.7</mn></mrow></math>.</span> The torus tilts 4.6° and moves 47 m down to stand in
+for the boulder. At this precision such priors are weak, and the height stops near its limit. Priors, or limits tight
+enough to bind, must express how well the geometry is actually known.</p>
 <p><a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.align_with_spin_axis"><code>sbtk.interior.align_with_spin_axis</code></a> is the counterpart for making a true model: it sets the axis of tori, ellipsoids
 or sectors along the model's own axis of the largest moment by fixed-point iteration
 (<a href="../models/density-distributions.html#axes-of-components">Density distributions</a>).</p>
@@ -267,7 +268,7 @@ examples: <a href="../examples/calculations.html">Calculations</a>.</p>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#procedure">Procedure</a></li><li class="lvl2"><a href="#estimation-problem">Estimation problem</a></li><li class="lvl2"><a href="#estimated-geometry">Estimated geometry</a></li><li class="lvl2"><a href="#uncertainties">Uncertainties</a></li><li class="lvl2"><a href="#regularization">Regularization</a></li><li class="lvl2"><a href="#data-about-the-center-of-mass">Data about the center of mass</a></li><li class="lvl2"><a href="#settings">Settings</a></li><li class="lvl2"><a href="#example">Example</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=134d1bb24a"></script>
-<script src="../assets/site.js?v=134d1bb24a"></script>
+<script src="../assets/search-index.js?v=ab9adf4ce7"></script>
+<script src="../assets/site.js?v=ab9adf4ce7"></script>
 </body>
 </html>

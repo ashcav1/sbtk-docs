@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>sbtk.body — SBTK documentation</title>
-<link rel="stylesheet" href="../../assets/site.css?v=134d1bb24a">
-<link rel="stylesheet" href="../../assets/pygments.css?v=134d1bb24a">
-<link rel="stylesheet" href="../../assets/print.css?v=134d1bb24a" media="print">
+<link rel="stylesheet" href="../../assets/site.css?v=ab9adf4ce7">
+<link rel="stylesheet" href="../../assets/pygments.css?v=ab9adf4ce7">
+<link rel="stylesheet" href="../../assets/print.css?v=ab9adf4ce7" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -112,7 +112,7 @@ body  = <a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.cr
 <tr id="sbtk.body.to_frame.out.body"><td data-label="Name"><code>body</code></td><td data-label="Description">from <a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.create">sbtk.body.create</a> or <a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.from_mass">sbtk.body.from_mass</a> Fields: <a class="xref xref-st" href="../../reference/data-structures.html#body"><code>body</code></a>.</td></tr>
 </tbody></table>
 <h3 class="api-sub">Description</h3>
-<p>The vertices become (v - <code>origin_km</code>)*axes; the mass, reference radius and name of the body are kept, and the center of figure moves with the shape. <code>shape.source</code> records the original file and the transformation. Use the same <code>origin_km</code> and axes for the measurements (<a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.to_frame">sbtk.data.to_frame</a>) and the interior or true model (<a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.to_frame">sbtk.interior.to_frame</a>).</p>
+<p>The vertices become (v - <code>origin_km</code>)*axes; the mass, reference radius and name of the body are kept, and the center of figure moves with the shape. <code>shape.source</code> records the name of the original file (not its path, which a package must not carry) and the transformation. Use the same <code>origin_km</code> and axes for the measurements (<a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.to_frame">sbtk.data.to_frame</a>) and the interior or true model (<a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.to_frame">sbtk.interior.to_frame</a>).</p>
 <h3 class="api-sub">Example</h3>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>truth</code>, <code>body</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">spin   = <a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.center_of_mass_frame">sbtk.gravity.center_of_mass_frame</a>(truth, body, &quot;spin&quot;);
 body_s = <a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.to_frame">sbtk.body.to_frame</a>(body, [0 0 0], spin.axes, &quot;didymos_v003_spin_axes&quot;);</code></pre></div>
@@ -125,7 +125,7 @@ body_s = <a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.t
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#sbtk.body.create">sbtk.body.create</a></li><li class="lvl2"><a href="#sbtk.body.from_mass">sbtk.body.from_mass</a></li><li class="lvl2"><a href="#sbtk.body.summary">sbtk.body.summary</a></li><li class="lvl2"><a href="#sbtk.body.to_frame">sbtk.body.to_frame</a></li></ul></nav>
 </div>
-<script src="../../assets/search-index.js?v=134d1bb24a"></script>
-<script src="../../assets/site.js?v=134d1bb24a"></script>
+<script src="../../assets/search-index.js?v=ab9adf4ce7"></script>
+<script src="../../assets/site.js?v=ab9adf4ce7"></script>
 </body>
 </html>

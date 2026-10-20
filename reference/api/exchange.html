@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>sbtk.exchange — SBTK documentation</title>
-<link rel="stylesheet" href="../../assets/site.css?v=134d1bb24a">
-<link rel="stylesheet" href="../../assets/pygments.css?v=134d1bb24a">
-<link rel="stylesheet" href="../../assets/print.css?v=134d1bb24a" media="print">
+<link rel="stylesheet" href="../../assets/site.css?v=ab9adf4ce7">
+<link rel="stylesheet" href="../../assets/pygments.css?v=ab9adf4ce7">
+<link rel="stylesheet" href="../../assets/print.css?v=ab9adf4ce7" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -96,11 +96,12 @@ model = <a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exc
 <tr id="sbtk.exchange.read_data.out.body"><td data-label="Name"><code>body</code></td><td data-label="Description">from the package's shape model (lengths in km), mass = GM / G and the package's reference radius Fields: <a class="xref xref-st" href="../../reference/data-structures.html#body"><code>body</code></a>.</td></tr>
 </tbody></table>
 <h3 class="api-sub">Description</h3>
+<p>A package of exact values (no 1-sigma columns, no <code>gravity_covariance.txt</code>) gives a set with NaN uncertainties: give it uncertainties (e.g. <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.use_uncertainties">sbtk.data.use_uncertainties</a> with the precision file of the test) before sbtk.invert.</p>
 <p>The libration ratio (B - A)/C becomes the row (B - A) - ratio*Izz = 0 with sigma <code>ratio_sigma</code> * Izz, where Izz is the measured Izz if the package has one, otherwise the Izz of the homogeneous body.</p>
 <h3 class="api-sub">Example</h3>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>components</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">[obs, body] = <a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.read_data">sbtk.exchange.read_data</a>(&quot;CUB-DATA1-Didymos&quot;);
 fit = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.solve">sbtk.invert.solve</a>(body, components, obs, <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.options">sbtk.invert.options</a>());</code></pre></div>
-<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.options"><code>sbtk.invert.options</code></a>, <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.solve"><code>sbtk.invert.solve</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.from_mass"><code>sbtk.body.from_mass</code></a>, <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.add_libration"><code>sbtk.data.add_libration</code></a>, <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.add_moi"><code>sbtk.data.add_moi</code></a>, <a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.geometry"><code>sbtk.gravity.geometry</code></a>, <a class="xref xref-fn" href="../../reference/api/shape.html#sbtk.shape.load"><code>sbtk.shape.load</code></a>, <a class="xref xref-fn" href="../../reference/api/units.html#sbtk.units.G"><code>sbtk.units.G</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.write_data"><code>sbtk.exchange.write_data</code></a></dd></dl>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.use_uncertainties"><code>sbtk.data.use_uncertainties</code></a>, <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.options"><code>sbtk.invert.options</code></a>, <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.solve"><code>sbtk.invert.solve</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.from_mass"><code>sbtk.body.from_mass</code></a>, <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.add_libration"><code>sbtk.data.add_libration</code></a>, <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.add_moi"><code>sbtk.data.add_moi</code></a>, <a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.geometry"><code>sbtk.gravity.geometry</code></a>, <a class="xref xref-fn" href="../../reference/api/shape.html#sbtk.shape.load"><code>sbtk.shape.load</code></a>, <a class="xref xref-fn" href="../../reference/api/units.html#sbtk.units.G"><code>sbtk.units.G</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.write_data"><code>sbtk.exchange.write_data</code></a></dd></dl>
 <p class="impl">Implementation: <code>toolbox/+sbtk/+exchange/read_data.m</code>, line 1.</p>
 </section>
 <section class="api-entry" id="sbtk.exchange.read_grid">
@@ -269,7 +270,7 @@ fit  = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#sbtk.exchange.density_grid">sbtk.exchange.density_grid</a></li><li class="lvl2"><a href="#sbtk.exchange.locate">sbtk.exchange.locate</a></li><li class="lvl2"><a href="#sbtk.exchange.read_data">sbtk.exchange.read_data</a></li><li class="lvl2"><a href="#sbtk.exchange.read_grid">sbtk.exchange.read_grid</a></li><li class="lvl2"><a href="#sbtk.exchange.read_shadr">sbtk.exchange.read_shadr</a></li><li class="lvl2"><a href="#sbtk.exchange.solution_name">sbtk.exchange.solution_name</a></li><li class="lvl2"><a href="#sbtk.exchange.write_data">sbtk.exchange.write_data</a></li><li class="lvl2"><a href="#sbtk.exchange.write_model">sbtk.exchange.write_model</a></li><li class="lvl2"><a href="#sbtk.exchange.write_solution">sbtk.exchange.write_solution</a></li></ul></nav>
 </div>
-<script src="../../assets/search-index.js?v=134d1bb24a"></script>
-<script src="../../assets/site.js?v=134d1bb24a"></script>
+<script src="../../assets/search-index.js?v=ab9adf4ce7"></script>
+<script src="../../assets/site.js?v=ab9adf4ce7"></script>
 </body>
 </html>

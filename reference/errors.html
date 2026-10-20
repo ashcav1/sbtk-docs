@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Error identifiers — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=134d1bb24a">
-<link rel="stylesheet" href="../assets/pygments.css?v=134d1bb24a">
-<link rel="stylesheet" href="../assets/print.css?v=134d1bb24a" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=ab9adf4ce7">
+<link rel="stylesheet" href="../assets/pygments.css?v=ab9adf4ce7">
+<link rel="stylesheet" href="../assets/print.css?v=ab9adf4ce7" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -51,7 +51,7 @@
 <tr id="sbtk:data:noIzz"><td><code>sbtk:data:noIzz</code></td><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_moi_sigma"><code>sbtk.data.set_moi_sigma</code></a></td><td>The 1-sigma of the libration row is the ratio's 1-sigma times Izz / (M R_ref^2) of the Izz row, which these data do not have: set it before sbtk.data.select_moi.</td></tr>
 <tr id="sbtk:data:noIzz-sbtk.data.set_uncertainties"><td><code>sbtk:data:noIzz</code></td><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_uncertainties"><code>sbtk.data.set_uncertainties</code></a></td><td>The 1-sigma of the libration row is the ratio's 1-sigma times Izz / (M R_ref^2) of the Izz row, which these data do not have: set the uncertainties before sbtk.data.select_moi.</td></tr>
 <tr id="sbtk:data:noUncertainties"><td><code>sbtk:data:noUncertainties</code></td><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise"><code>sbtk.data.add_noise</code></a></td><td>The measurements have no uncertainties to draw noise from: give them with sbtk.data.set_uncertainties, sbtk.data.use_uncertainties, sbtk.data.set_covariance or sbtk.data.set_moi_sigma.</td></tr>
-<tr id="sbtk:data:noUncertainties-sbtk.exchange.write_data"><td><code>sbtk:data:noUncertainties</code></td><td><a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_data"><code>sbtk.exchange.write_data</code></a></td><td>The measurements have no uncertainties, which a measurement package states with every value: give them with sbtk.data.set_uncertainties, sbtk.data.use_uncertainties, sbtk.data.set_covariance or sbtk.data.set_moi_sigma.</td></tr>
+<tr id="sbtk:data:noUncertainties-sbtk.exchange.write_data"><td><code>sbtk:data:noUncertainties</code></td><td><a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_data"><code>sbtk.exchange.write_data</code></a></td><td>Some of the measurements have uncertainties and some do not. Give all of them (sbtk.data.set_uncertainties, sbtk.data.use_uncertainties, sbtk.data.set_covariance, sbtk.data.set_moi_sigma) or none (exact values).</td></tr>
 <tr id="sbtk:data:noUncertainties-sbtk.invert.replace_data"><td><code>sbtk:data:noUncertainties</code></td><td><a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.replace_data"><code>sbtk.invert.replace_data</code></a></td><td>The measurements have no uncertainties, which the inversion needs as weights: give them with sbtk.data.set_uncertainties, sbtk.data.use_uncertainties, sbtk.data.set_covariance or sbtk.data.set_moi_sigma.</td></tr>
 <tr id="sbtk:data:noUncertainties-sbtk.invert.setup"><td><code>sbtk:data:noUncertainties</code></td><td><a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.setup"><code>sbtk.invert.setup</code></a></td><td>The measurements have no uncertainties, which the inversion needs as weights: give them with sbtk.data.set_uncertainties, sbtk.data.use_uncertainties, sbtk.data.set_covariance or sbtk.data.set_moi_sigma.</td></tr>
 <tr id="sbtk:data:transformMeasured"><td><code>sbtk:data:transformMeasured</code></td><td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.to_frame"><code>sbtk.data.to_frame</code></a></td><td>Inertia rows can be expressed in new axes only from the full inertia tensor without uncertainties: transform the exact values of sbtk.data.simulate, then use sbtk.data.set_uncertainties, sbtk.data.select_moi and sbtk.data.add_noise.</td></tr>
@@ -109,7 +109,7 @@
 </main>
 
 </div>
-<script src="../assets/search-index.js?v=134d1bb24a"></script>
-<script src="../assets/site.js?v=134d1bb24a"></script>
+<script src="../assets/search-index.js?v=ab9adf4ce7"></script>
+<script src="../assets/site.js?v=ab9adf4ce7"></script>
 </body>
 </html>

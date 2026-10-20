@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hera blind test — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=134d1bb24a">
-<link rel="stylesheet" href="../assets/pygments.css?v=134d1bb24a">
-<link rel="stylesheet" href="../assets/print.css?v=134d1bb24a" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=ab9adf4ce7">
+<link rel="stylesheet" href="../assets/pygments.css?v=ab9adf4ce7">
+<link rel="stylesheet" href="../assets/print.css?v=ab9adf4ce7" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -32,9 +32,10 @@
 <p><code>projects/hera_hlp6/</code> contains the runner scripts SBTK uses in a blind test of interior-modeling methods for the binary
 asteroid Didymos–Dimorphos, the target of ESA's Hera mission. In such a test one team simulates measurements of an
 interior it keeps hidden and shares only the measurements; other teams estimate the interior; the hidden models are
-released afterwards and compared with the estimates on a common density grid. The measurement uncertainties are those
-of the Hera end-to-end simulation, read from files of the Hera working group that are not distributed with SBTK; the
-runners need them in <code>data/hera_rse/</code>.</p>
+released afterwards and compared with the estimates on a common density grid. The makers deliver exact values,
+without uncertainties or noise; each receiving team weights them with uncertainties of its own choosing. SBTK's
+inversion runners use those of the Hera end-to-end simulation, read from files of the Hera working group that are
+not distributed with SBTK; the runners need them in <code>data/hera_rse/</code>.</p>
 <h2 id="files">Files<a class="headerlink" href="#files" title="Link to this section">#</a></h2>
 <table>
 <thead>
@@ -51,6 +52,10 @@ runners need them in <code>data/hera_rse/</code>.</p>
 <tr>
 <td><code>hlp6_team.m</code></td>
 <td>Team identifier and contact written into package names and files.</td>
+</tr>
+<tr>
+<td><code>hlp6_uncertainties.m</code></td>
+<td>The receiving team's uncertainties: the Hera radio-science precision of the gravity coefficients (to degree 5 for Didymos, 3 for Dimorphos, to which the coefficients are truncated), the inertia elements and the libration ratio.</td>
 </tr>
 <tr>
 <td><code>simulate_didymos.m</code>, <code>simulate_dimorphos.m</code></td>
@@ -122,7 +127,7 @@ runners need them in <code>data/hera_rse/</code>.</p>
 </tbody>
 </table>
 <h2 id="simulation-runs">Simulation runs<a class="headerlink" href="#simulation-runs" title="Link to this section">#</a></h2>
-<p>A simulation runner has six sections:</p>
+<p>A simulation runner has four sections:</p>
 <ol>
 <li><strong>NAME AND DELIVERY</strong>: the run name, the package number <span class="nobr"><math alttext="n" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>n</mi></mrow></math>,</span> and the inertia quantities the package contains
    (any of <code>Ixx</code> … <code>Iyz</code>, <code>libration</code>, or none; <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.select_moi"><code>sbtk.data.select_moi</code></a>).</li>
@@ -134,22 +139,17 @@ runners need them in <code>data/hera_rse/</code>.</p>
    largest moment of the whole true model (Didymos: <code>"torus"</code>, which forms about the spin axis; Dimorphos: none),
    with <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.align_with_spin_axis"><code>sbtk.interior.align_with_spin_axis</code></a>.</li>
 <li><strong>FRAME OF THE PACKAGES</strong>: <code>"spin"</code>, <code>"principal"</code> or <code>"shape"</code>. Didymos uses the spin axes of the true model
-   (<span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span> along its axis of the largest moment, <span class="nobr"><math alttext="x" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></span> toward the shape-model <span class="nobr"><math alttext="x" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></span>-axis: <span class="nobr"><math alttext="C_21 = S_21 = 0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub><mo>&#x0003D;</mo><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math></span>
-   within the noise, as in a mission field of a body in principal-axis rotation); Dimorphos, which may be tumbling,
+   (<span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span> along its axis of the largest moment, <span class="nobr"><math alttext="x" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></span> toward the shape-model <span class="nobr"><math alttext="x" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></span>-axis: <span class="nobr"><math alttext="C_21 = S_21 = 0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub><mo>&#x0003D;</mo><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math>,</span>
+   as in a mission field of a body in principal-axis rotation); Dimorphos, which may be tumbling,
    uses its principal axes (<a href="../conventions/gravity-frames.html#which-frame-to-use">Frames of a gravity field</a>).</li>
-<li><strong>MEASUREMENT UNCERTAINTIES</strong>: the uncertainty files of the end-to-end simulation (gravity coefficients and inertia
-   elements) and the 1σ of the libration ratio. They are applied coefficient by coefficient in the frame of the
-   packages.</li>
-<li><strong>NOISE</strong>: the seed.</li>
 <li><strong>RUN</strong>: <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create"><code>sbtk.interior.create</code></a> and <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.align_with_spin_axis"><code>sbtk.interior.align_with_spin_axis</code></a>; <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a> (the true
    model and its exact values, without uncertainties); with
    <a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.center_of_mass_frame"><code>sbtk.gravity.center_of_mass_frame</code></a> the axes of the chosen frame, and <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.to_frame"><code>sbtk.body.to_frame</code></a>,
    <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.to_frame"><code>sbtk.interior.to_frame</code></a>, <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.to_frame"><code>sbtk.data.to_frame</code></a> to carry the body (its shape model is written into the package
-   as <code>&lt;shape&gt;_&lt;frame&gt;_axes.obj</code>), the true model and the exact values into it;
-   <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.use_uncertainties"><code>sbtk.data.use_uncertainties</code></a> with the gravity file read by <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_shadr"><code>sbtk.exchange.read_shadr</code></a>;
-   <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_moi_sigma"><code>sbtk.data.set_moi_sigma</code></a> with the inertia uncertainties (given in kg km², divided by <span class="nobr"><math alttext="M R_ref^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi><msubsup><mi>R</mi><mtext>ref</mtext><mn>2</mn></msubsup></mrow></math>)</span> and the
-   libration σ; <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.select_moi"><code>sbtk.data.select_moi</code></a>; <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise"><code>sbtk.data.add_noise</code></a>; then <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.report_simulation"><code>sbtk.io.report_simulation</code></a>,
-   <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_data"><code>sbtk.exchange.write_data</code></a> and <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_model"><code>sbtk.exchange.write_model</code></a>.</li>
+   as <code>&lt;shape&gt;_&lt;frame&gt;_axes.obj</code>), the true model and the exact values into it; <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.select_moi"><code>sbtk.data.select_moi</code></a>; then
+   <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.report_simulation"><code>sbtk.io.report_simulation</code></a>, <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_data"><code>sbtk.exchange.write_data</code></a> (a package of exact values: no 1σ columns, no
+   covariance file, <a href="../files/exchange-packages.html#packages-of-exact-values">Exchange packages</a>) and
+   <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_model"><code>sbtk.exchange.write_model</code></a>.</li>
 </ol>
 <p>The run folder separates what may be shared from what may not:</p>
 <div class="codeblock codeblock-tree"><div class="codehead"><span>Simulation run folder of projects/hera_hlp6</span></div><pre><code class="language-tree">results/hera_hlp6/&lt;date_time&gt;_&lt;name&gt;/
@@ -162,7 +162,8 @@ runners need them in <code>data/hera_rse/</code>.</p>
 <p><code>invert_didymos.m</code> reads the redacted package of the newest simulation of the given name with
 <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.locate"><code>sbtk.exchange.locate</code></a> and <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a>, exactly as another team receives it, so the inversion expands
 about the measured center of mass (<a href="../inversion/density-estimation.html#data-about-the-center-of-mass">Density estimation</a>).
-Its model places the core and the torus at the center of figure of the package's shape model, as a receiving team
+<code>hlp6_uncertainties.m</code> then gives the exact values the receiving team's uncertainties (the Hera radio-science
+precision, truncating the coefficients to the degree it covers). Its model places the core and the torus at the center of figure of the package's shape model, as a receiving team
 would, and estimates the torus axis and height (<a href="../inversion/density-estimation.html#estimated-geometry">Estimated geometry</a>):
 <code>estimate_axis = true</code>, <code>estimate_position = [false false true]</code>, with a priori 1σ of 1° and 10 m and limits of 10° and
 50 m. It writes <code>fit.*</code>, <code>homogeneous.txt</code>, figures and the solution package <code>&lt;team&gt;-SOL_&lt;data team&gt;&lt;n&gt;/</code>.
@@ -175,22 +176,22 @@ measurement package (so that all three are in the frame of the packages), compar
 (<a class="xref xref-fn" href="../reference/api/compare.html#sbtk.compare.grids"><code>sbtk.compare.grids</code></a>), which is the comparison every team's solution receives.</p>
 <h2 id="example-runs">Example runs<a class="headerlink" href="#example-runs" title="Link to this section">#</a></h2>
 <p>The delivered interiors (named T1) include a boulder and a random density field that the delivered inversion models do
-not contain. With the uncertainties of the end-to-end simulation, the <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> test rejects the inversion models of
-both bodies, and the estimated densities are biased accordingly. For Didymos, the same three-component model fits an
+not contain. Weighted by the uncertainties of the end-to-end simulation, the <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> test rejects the inversion models
+of both bodies, and the estimated densities are biased accordingly. For Didymos, the same three-component model fits an
 interior that consists of those components alone (reduced <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> 0.98). At this precision an inversion model has to
 include structure down to the scale of such features to pass the test (<a href="../inversion/statistics.html">Goodness of fit</a>).
 For Didymos T1, whose torus is aligned with the spin axis and so lies about the <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis of the package, the model with
-fixed geometry has a reduced <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> of 119 and <span class="nobr"><math alttext="R^2 = -5.3" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mo>&#x02212;</mo><mn>5.3</mn></mrow></math>.</span> Estimating the torus axis and height lowers <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> to
-37 (<span class="nobr"><math alttext="R^2 = -4.8" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mo>&#x02212;</mo><mn>4.8</mn></mrow></math>)</span>, but the torus tilts 5.5° and rises 42 m: it takes up the signal of the boulder, which the model
+fixed geometry has a reduced <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> of 121 and <span class="nobr"><math alttext="R^2 = -5.3" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mo>&#x02212;</mo><mn>5.3</mn></mrow></math>.</span> Estimating the torus axis and height lowers <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> to
+37 but <span class="nobr"><math alttext="R^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow></math></span> to <span class="nobr"><math alttext="-5.7" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mn>5.7</mn></mrow></math>:</span> the torus tilts 4.6° and moves 47 m to take up the signal of the boulder, which the model
 lacks. For Dimorphos, in its principal axes, the ellipsoidal core of the model is turned 12° about <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span> against the true
-core, as a receiving team's would be (reduced <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> 302).</p>
+core, as a receiving team's would be (reduced <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> 313).</p>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../projects/bennu.html" rel="prev"><span>Previous</span>Bennu</a><a class="next" href="../reference/api.html" rel="next"><span>Next</span>API reference</a></nav>
 <footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-19.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#files">Files</a></li><li class="lvl2"><a href="#settings">Settings</a></li><li class="lvl2"><a href="#simulation-runs">Simulation runs</a></li><li class="lvl2"><a href="#inversion-runs">Inversion runs</a></li><li class="lvl2"><a href="#comparison-runs">Comparison runs</a></li><li class="lvl2"><a href="#example-runs">Example runs</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=134d1bb24a"></script>
-<script src="../assets/site.js?v=134d1bb24a"></script>
+<script src="../assets/search-index.js?v=ab9adf4ce7"></script>
+<script src="../assets/site.js?v=ab9adf4ce7"></script>
 </body>
 </html>
