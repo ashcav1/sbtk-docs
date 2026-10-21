@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Coordinate systems and origins — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=b2f24d4fd6">
-<link rel="stylesheet" href="../assets/pygments.css?v=b2f24d4fd6">
-<link rel="stylesheet" href="../assets/print.css?v=b2f24d4fd6" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=b9303e9c1c">
+<link rel="stylesheet" href="../assets/pygments.css?v=b9303e9c1c">
+<link rel="stylesheet" href="../assets/print.css?v=b9303e9c1c" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,7 +29,7 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Conventions › <span aria-current="page">Coordinate systems and origins</span></nav>
 <article>
 <h1 id="coordinate-systems-and-origins">Coordinate systems and origins<a class="headerlink" href="#coordinate-systems-and-origins" title="Link to this section">#</a></h1>
-<p class="lastedit">Last edited October 20, 2026</p>
+<p class="lastedit">Last edited October 21, 2026</p>
 <h2 id="shape-model-frame">Shape-model frame<a class="headerlink" href="#shape-model-frame" title="Link to this section">#</a></h2>
 <p>Every position in SBTK is given in the <strong>shape-model frame</strong>: the origin and axes of the shape model in use, lengths in
 km. The <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis is taken as the spin axis. Measurements, models and estimates of one body are in the same frame.
@@ -109,10 +109,11 @@ axes in the shape-model frame, and a point <span class="nobr"><math alttext="x" 
 <h2 id="axes-of-the-inertia-tensor-and-the-coefficients">Axes of the inertia tensor and the coefficients<a class="headerlink" href="#axes-of-the-inertia-tensor-and-the-coefficients" title="Link to this section">#</a></h2>
 <p>Coefficients and inertia elements are given about the center of mass but in the axes of the shape-model frame, not
 in principal axes of inertia, so <span class="nobr"><math alttext="C_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="S_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math></span> and <span class="nobr"><math alttext="S_22" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub></mrow></math></span> are in general not zero. For a
-homogeneous body, the axis of the largest moment of inertia is 3.6° from the shape-model <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis for Didymos (DART
-v003) and 0.7° for Dimorphos (v004), and the principal axes in the <span class="nobr"><math alttext="xy" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi><mi>y</mi></mrow></math></span>-plane are 33.6° and 7.8° from <span class="nobr"><math alttext="x" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math>;</span> in the
-shape-model axes the homogeneous Didymos has <span class="nobr"><math alttext="C_21 = 3.7×10^-3" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub><mo>&#x0003D;</mo><mn>3.7</mn><mi>&#x000D7;</mi><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>3</mn></mrow></msup></mrow></math>,</span> <span class="nobr"><math alttext="S_21 = 8.8×10^-4" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub><mo>&#x0003D;</mo><mn>8.8</mn><mi>&#x000D7;</mi><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>4</mn></mrow></msup></mrow></math></span> and
-<span class="nobr"><math alttext="S_22 = -7.0×10^-3" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub><mo>&#x0003D;</mo><mo>&#x02212;</mo><mn>7.0</mn><mi>&#x000D7;</mi><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>3</mn></mrow></msup></mrow></math>.</span> In the spin axes of a field (<span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span> along its axis of the largest moment)
+homogeneous body, the axis of the largest moment of inertia is 3.8° from the shape-model <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis for Didymos (DART
+v003, 1.165 m model) and 0.7° for Dimorphos (v004, 0.243 m model), and the axis of the smallest moment is turned
+32.2° and 7.8° from <span class="nobr"><math alttext="x" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></span> toward <span class="nobr"><math alttext="-y" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mi>y</mi></mrow></math>;</span> in the shape-model axes the homogeneous Didymos has, about its center of mass
+with <span class="nobr"><math alttext="R_ref" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>R</mi><mtext>ref</mtext></msub></mrow></math></span> = 410 m, <span class="nobr"><math alttext="C_21 = 4.4×10^-3" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub><mo>&#x0003D;</mo><mn>4.4</mn><mi>&#x000D7;</mi><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>3</mn></mrow></msup></mrow></math>,</span> <span class="nobr"><math alttext="S_21 = 9.4×10^-4" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub><mo>&#x0003D;</mo><mn>9.4</mn><mi>&#x000D7;</mi><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>4</mn></mrow></msup></mrow></math></span> and
+<span class="nobr"><math alttext="S_22 = -7.6×10^-3" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub><mo>&#x0003D;</mo><mo>&#x02212;</mo><mn>7.6</mn><mi>&#x000D7;</mi><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>3</mn></mrow></msup></mrow></math>.</span> In the spin axes of a field (<span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span> along its axis of the largest moment)
 <span class="nobr"><math alttext="C_21 = S_21 = 0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub><mo>&#x0003D;</mo><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math>,</span> and in its principal axes also <span class="nobr"><math alttext="S_22 = 0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math>;</span> the interior-model package states
 the principal axes of the true model (<a href="../conventions/gravity-frames.html">Frames of a gravity field</a>). A field and its shape model must
 be in the same frame: when they are not, carry the shape model into the frame of the field with
@@ -125,7 +126,7 @@ the spin and principal axes.</p>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#shape-model-frame">Shape-model frame</a></li><li class="lvl2"><a href="#expansion-origin">Expansion origin</a></li><li class="lvl2"><a href="#positions-of-components">Positions of components</a></li><li class="lvl2"><a href="#latitude-and-longitude">Latitude and longitude</a></li><li class="lvl2"><a href="#ellipsoid-orientation">Ellipsoid orientation</a></li><li class="lvl2"><a href="#axes-of-the-inertia-tensor-and-the-coefficients">Axes of the inertia tensor and the coefficients</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=b2f24d4fd6"></script>
-<script src="../assets/site.js?v=b2f24d4fd6"></script>
+<script src="../assets/search-index.js?v=b9303e9c1c"></script>
+<script src="../assets/site.js?v=b9303e9c1c"></script>
 </body>
 </html>
