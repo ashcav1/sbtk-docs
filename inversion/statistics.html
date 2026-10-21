@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Goodness of fit and model comparison — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=9c5ac07573">
-<link rel="stylesheet" href="../assets/pygments.css?v=9c5ac07573">
-<link rel="stylesheet" href="../assets/print.css?v=9c5ac07573" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=b2f24d4fd6">
+<link rel="stylesheet" href="../assets/pygments.css?v=b2f24d4fd6">
+<link rel="stylesheet" href="../assets/print.css?v=b2f24d4fd6" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,7 +29,7 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Measurements and inversion › <span aria-current="page">Goodness of fit and model comparison</span></nav>
 <article>
 <h1 id="goodness-of-fit-and-model-comparison">Goodness of fit and model comparison<a class="headerlink" href="#goodness-of-fit-and-model-comparison" title="Link to this section">#</a></h1>
-<p class="lastedit">Last edited October 20, 2026</p>
+<p class="lastedit">Last edited October 21, 2026</p>
 <h2 id="chi-square-test">Chi-square test<a class="headerlink" href="#chi-square-test" title="Link to this section">#</a></h2>
 <p>For a fit with residuals <span class="nobr"><math alttext="r = y_pred - y" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D42B;</mi><mo>&#x0003D;</mo><msub><mi>&#x1D432;</mi><mtext>pred</mtext></msub><mo>&#x02212;</mo><mi>&#x1D432;</mi></mrow></math></span> and measurement covariance <span class="nobr"><math alttext="" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003A3;</mi></mrow></math>:</span></p>
 <table>
@@ -91,7 +91,9 @@ model (<a href="../projects/hera-blind-test.html#example-runs">Hera blind test</
 <h2 id="comparison-with-a-true-model">Comparison with a true model<a class="headerlink" href="#comparison-with-a-true-model" title="Link to this section">#</a></h2>
 <p>In synthetic tests the true model is known. <a class="xref xref-fn" href="../reference/api/compare.html#sbtk.compare.with_truth"><code>sbtk.compare.with_truth</code></a><code>(body, truth, fit)</code> evaluates both densities at
 the centroids of 24 radial shells of every facet cone (1,179,648 points for the 49,152-facet Didymos model), each
-weighted by the shell volume <span class="nobr"><math alttext="w_i" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>w</mi><mi>i</mi></msub></mrow></math>,</span> with each model's layers and sectors measured from its own origin. It returns
+weighted by the shell volume <span class="nobr"><math alttext="w_i" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>w</mi><mi>i</mi></msub></mrow></math>,</span> with each model's layers and sectors measured from its own origin. A model with
+more than 50,000 facets is sampled in the cones of every <span class="nobr"><math alttext="k" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>k</mi></mrow></math></span>-th facet, <span class="nobr"><math alttext="k = n_f/50,000" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>k</mi><mo>&#x0003D;</mo><mi>&#x02308;</mi><msub><mi>n</mi><mi>f</mi></msub><mo>&#x0002F;</mo><mn>50</mn><mrow><mo>&#x0002C;</mo></mrow><mn>000</mn><mi>&#x02309;</mi></mrow></math>,</span> which fills
+the volume as evenly (1.2 million points for the 3,145,728-facet model instead of 75 million). It returns
 (<a class="xref xref-st" href="../reference/data-structures.html#cmp"><code>cmp</code></a>):</p>
 <math alttext="R^2 = 1 - Σ_i w_i(ρ_est,i - ρ_true,i)^2Σ_i w_i(ρ_true,i - ρ_true)^2," xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msup><mi>R</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mn>1</mn><mo>&#x02212;</mo><mfrac><mrow><munder><mo>&#x02211;</mo><mi>i</mi></munder><msub><mi>w</mi><mi>i</mi></msub><mo stretchy="false">&#x00028;</mo><msub><mi>&#x003C1;</mi><mrow><mtext>est</mtext><mo>&#x0002C;</mo><mi>i</mi></mrow></msub><mo>&#x02212;</mo><msub><mi>&#x003C1;</mi><mrow><mtext>true</mtext><mo>&#x0002C;</mo><mi>i</mi></mrow></msub><msup><mo stretchy="false">&#x00029;</mo><mn>2</mn></msup></mrow><mrow><munder><mo>&#x02211;</mo><mi>i</mi></munder><msub><mi>w</mi><mi>i</mi></msub><mo stretchy="false">&#x00028;</mo><msub><mi>&#x003C1;</mi><mrow><mtext>true</mtext><mo>&#x0002C;</mo><mi>i</mi></mrow></msub><mo>&#x02212;</mo><msub><mover><mi>&#x003C1;</mi><mo stretchy="true">&#x000AF;</mo></mover><mtext>true</mtext></msub><msup><mo stretchy="false">&#x00029;</mo><mn>2</mn></msup></mrow></mfrac><mo>&#x0002C;</mo></mrow></math>
 <p>the fraction of the volume-weighted variance of the true density about its mean that the estimate explains: 1 for an
@@ -139,7 +141,7 @@ prob = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.se
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#chi-square-test">Chi-square test</a></li><li class="lvl2"><a href="#homogeneous-body">Homogeneous body</a></li><li class="lvl2"><a href="#normalized-residuals">Normalized residuals</a></li><li class="lvl2"><a href="#comparison-with-a-true-model">Comparison with a true model</a></li><li class="lvl2"><a href="#comparison-of-density-grids">Comparison of density grids</a></li><li class="lvl2"><a href="#calibration-of-the-uncertainties">Calibration of the uncertainties</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=9c5ac07573"></script>
-<script src="../assets/site.js?v=9c5ac07573"></script>
+<script src="../assets/search-index.js?v=b2f24d4fd6"></script>
+<script src="../assets/site.js?v=b2f24d4fd6"></script>
 </body>
 </html>

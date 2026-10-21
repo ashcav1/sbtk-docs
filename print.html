@@ -935,7 +935,7 @@ given by <span class="nobr"><math alttext="S_22/ C_22" xmlns="http://www.w3.org/
 <p>The HLP6 makers agreed (20 October 2026) on the first of these two choices.</p>
 <ol>
 <li><strong>The frame and origin of the shape model file, as distributed</strong> (the HLP6 choice). The package names the
-   shape model file, which every team has, and its MD5 checksum. The gravity field is expanded about its origin, so degree 1 gives the center of mass and
+   shape model file, which every team has. The gravity field is expanded about its origin, so degree 1 gives the center of mass and
    is not zero, and <span class="nobr"><math alttext="C_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="S_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math></span> are those of the whole body in the shape-model axes (the homogeneous
    Didymos v003 alone has <span class="nobr"><math alttext="C_21 = 3.7×10^-3" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub><mo>&#x0003D;</mo><mn>3.7</mn><mi>&#x000D7;</mi><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>3</mn></mrow></msup></mrow></math>)</span>. The moments of inertia are about the same origin. Make the
    exact values with <a class="xref xref-fn" href="#reference-api-data--sbtk.data.simulate"><code>sbtk.data.simulate</code></a> and expand them about <code>[0 0 0]</code> with <a class="xref xref-fn" href="#reference-api-data--sbtk.data.expand_about"><code>sbtk.data.expand_about</code></a>. Nothing
@@ -1296,8 +1296,8 @@ full-resolution models:</p>
 </tbody>
 </table>
 <p>Differences of this size between the shape used to simulate data and the shape used to invert them act as a systematic
-error in the coefficients. Measurement packages therefore name the shape model they were made with, and its MD5
-checksum, and include it unless it is one of SBTK's files as distributed (<a href="#files-exchange-packages">Exchange packages</a>).
+error in the coefficients. Measurement packages therefore name the shape model they were made with, and include it
+unless it is one of SBTK's files as distributed (<a href="#files-exchange-packages">Exchange packages</a>).
 The HLP6 makers agreed on <code>didymos_highres</code>, the 1.165 m model (<a href="#projects-didymos-dimorphos-values">Didymos and Dimorphos values</a>).</p>
 <h2 id="models-shape-models--reducing-high-resolution-models">Reducing high-resolution models<a class="headerlink" href="#models-shape-models--reducing-high-resolution-models" title="Link to this section">#</a></h2>
 <p>High-resolution shape models have more facets than coefficients to degree 4 or 5 require. Two functions reduce them:</p>
@@ -2127,7 +2127,9 @@ model (<a href="#projects-hera-blind-test--example-runs">Hera blind test</a>).</
 <h2 id="inversion-statistics--comparison-with-a-true-model">Comparison with a true model<a class="headerlink" href="#inversion-statistics--comparison-with-a-true-model" title="Link to this section">#</a></h2>
 <p>In synthetic tests the true model is known. <a class="xref xref-fn" href="#reference-api-compare--sbtk.compare.with_truth"><code>sbtk.compare.with_truth</code></a><code>(body, truth, fit)</code> evaluates both densities at
 the centroids of 24 radial shells of every facet cone (1,179,648 points for the 49,152-facet Didymos model), each
-weighted by the shell volume <span class="nobr"><math alttext="w_i" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>w</mi><mi>i</mi></msub></mrow></math>,</span> with each model's layers and sectors measured from its own origin. It returns
+weighted by the shell volume <span class="nobr"><math alttext="w_i" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>w</mi><mi>i</mi></msub></mrow></math>,</span> with each model's layers and sectors measured from its own origin. A model with
+more than 50,000 facets is sampled in the cones of every <span class="nobr"><math alttext="k" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>k</mi></mrow></math></span>-th facet, <span class="nobr"><math alttext="k = n_f/50,000" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>k</mi><mo>&#x0003D;</mo><mi>&#x02308;</mi><msub><mi>n</mi><mi>f</mi></msub><mo>&#x0002F;</mo><mn>50</mn><mrow><mo>&#x0002C;</mo></mrow><mn>000</mn><mi>&#x02309;</mi></mrow></math>,</span> which fills
+the volume as evenly (1.2 million points for the 3,145,728-facet model instead of 75 million). It returns
 (<a class="xref xref-st" href="#reference-data-structures--cmp"><code>cmp</code></a>):</p>
 <math alttext="R^2 = 1 - Σ_i w_i(ρ_est,i - ρ_true,i)^2Σ_i w_i(ρ_true,i - ρ_true)^2," xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msup><mi>R</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mn>1</mn><mo>&#x02212;</mo><mfrac><mrow><munder><mo>&#x02211;</mo><mi>i</mi></munder><msub><mi>w</mi><mi>i</mi></msub><mo stretchy="false">&#x00028;</mo><msub><mi>&#x003C1;</mi><mrow><mtext>est</mtext><mo>&#x0002C;</mo><mi>i</mi></mrow></msub><mo>&#x02212;</mo><msub><mi>&#x003C1;</mi><mrow><mtext>true</mtext><mo>&#x0002C;</mo><mi>i</mi></mrow></msub><msup><mo stretchy="false">&#x00029;</mo><mn>2</mn></msup></mrow><mrow><munder><mo>&#x02211;</mo><mi>i</mi></munder><msub><mi>w</mi><mi>i</mi></msub><mo stretchy="false">&#x00028;</mo><msub><mi>&#x003C1;</mi><mrow><mtext>true</mtext><mo>&#x0002C;</mo><mi>i</mi></mrow></msub><mo>&#x02212;</mo><msub><mover><mi>&#x003C1;</mi><mo stretchy="true">&#x000AF;</mo></mover><mtext>true</mtext></msub><msup><mo stretchy="false">&#x00029;</mo><mn>2</mn></msup></mrow></mfrac><mo>&#x0002C;</mo></mrow></math>
 <p>the fraction of the volume-weighted variance of the true density about its mean that the estimate explains: 1 for an
@@ -2490,7 +2492,7 @@ Every column and key with a unit ends with it; NaN marks a value that is not pro
 </tr>
 <tr>
 <td><code>moments_of_inertia.txt</code></td>
-<td><code>quantity,value,unit</code> (and <code>sigma</code>): inertia elements as <span class="nobr"><math alttext="I/(M R_ref^2)" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>I</mi><mo>&#x0002F;</mo><mo stretchy="false">&#x00028;</mo><mi>M</mi><msubsup><mi>R</mi><mtext>ref</mtext><mn>2</mn></msubsup><mo stretchy="false">&#x00029;</mo></mrow></math></span> about the same point as the gravity field and/or the libration ratio. The sign convention of the products of inertia and the definition of the libration ratio are given when the file has them.</td>
+<td><code>quantity,value,unit</code> (and <code>sigma</code>): inertia elements as <span class="nobr"><math alttext="I/(M R_ref^2)" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>I</mi><mo>&#x0002F;</mo><mo stretchy="false">&#x00028;</mo><mi>M</mi><msubsup><mi>R</mi><mtext>ref</mtext><mn>2</mn></msubsup><mo stretchy="false">&#x00029;</mo></mrow></math></span> about the same point as the gravity field and/or the libration ratio. The products of inertia are tensor elements, <span class="nobr"><math alttext="I_xy = -∫ρ xy dV" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>x</mi><mi>y</mi></mrow></msub><mo>&#x0003D;</mo><mo>&#x02212;</mo><mo>&#x0222B;</mo><mi>&#x003C1;</mi><mspace width="0.167em" /><mi>x</mi><mi>y</mi><mspace width="0.167em" /><mi>d</mi><mi>V</mi></mrow></math></span> (<a href="#conventions-moments-of-inertia">Moments of inertia</a>); the definition of the libration ratio is given when the file has it.</td>
 </tr>
 <tr>
 <td><code>conventions.txt</code></td>
@@ -2498,7 +2500,7 @@ Every column and key with a unit ends with it; NaN marks a value that is not pro
 </tr>
 <tr>
 <td><code>&lt;shape&gt;.obj</code></td>
-<td>The shape model the data were made with, in km, in the frame of every position of the package (<a href="#files-exchange-packages--the-shape-model-of-a-package">The shape model of a package</a>). Not included when it is one of SBTK's shape model files as distributed (<code>data/shapes/</code>), such as the agreed HLP6 models: the README then names the file and its MD5 checksum.</td>
+<td>The shape model the data were made with, in km, in the frame of every position of the package (<a href="#files-exchange-packages--the-shape-model-of-a-package">The shape model of a package</a>). Not included when it is one of SBTK's shape model files as distributed (<code>data/shapes/</code>), such as the agreed HLP6 models: the files then name it.</td>
 </tr>
 <tr>
 <td><code>potential_acceleration.txt</code></td>
@@ -2546,7 +2548,7 @@ by <code>documentation/tools/make_samples.m</code>:</p>
 Prepared by Example team
 
 SUMMARY
-  shape model       didymos_g_9309mm_spc_obj_0000n00000_v003.obj, not included (MD5 f9b6db1811f6c65306fc67f9d1ffeeb5)
+  shape model       didymos_g_9309mm_spc_obj_0000n00000_v003.obj
   GM                3.51935839e-08 km^3/s^2, mass 5.273000e+11 kg
   bulk density      2592.98 kg/m^3 (mass / shape model volume 0.203356 km^3)
   gravity field     degrees 2 to 4, reference radius 0.43 km, about the center of mass
@@ -2566,16 +2568,16 @@ FILES
 # data_set: DOC-DATA1-Didymos
 # body: Didymos
 # shape_model: didymos_g_9309mm_spc_obj_0000n00000_v003.obj (24578 vertices, 49152 facets, lengths in km)
-# expansion_point: the center of mass (center_of_mass.txt), so the degree-1 coefficients are zero; they are not listed
-# axes: those of the shape model file (conventions.txt)
+# expansion_point: the center of mass
+# axes: shape model axes
 # normalization: fully normalized (conventions.txt)
 # reference_radius_km: 0.43
 # GM_km3_s2: 3.51935839e-08
 # mass_kg: 5.273000e+11
 # max_degree: 4
-# C00: 1 (not listed)
+# C00: 1
 # uncertainties: 1-sigma; full covariance in gravity_covariance.txt
-# noise: Gaussian noise drawn from the 1-sigma uncertainties was added to the values
+# noise: Gaussian, drawn from the 1-sigma uncertainties
 l,m,C,S,sigma_C,sigma_S
 2,0,-3.267843300100998e-02,0.000000000000000e+00,1.000000000000000e-04,0.000000000000000e+00
 2,1,3.580678708085953e-03,9.264930696445466e-04,1.000000000000000e-04,1.000000000000000e-04
@@ -2590,12 +2592,8 @@ l,m,C,S,sigma_C,sigma_S
 # data_set: DOC-DATA1-Didymos
 # body: Didymos
 # shape_model: didymos_g_9309mm_spc_obj_0000n00000_v003.obj (24578 vertices, 49152 facets, lengths in km)
-# frame: that of the shape model file (conventions.txt)
-# center_of_mass: the point the gravity field and the moments of inertia are about
-# center_of_figure: centroid of the volume enclosed by the shape model (the center of mass if the density were uniform)
-# center_of_mass_minus_center_of_figure_km: 0.001714294458 -0.000946011764 -0.001372617864
-# uncertainties: 1-sigma of the center of mass; full 3 x 3 covariance in the cov columns
-# noise: Gaussian noise drawn from the 1-sigma uncertainties was added to the values
+# uncertainties: 1-sigma; 3 x 3 covariance in the cov columns
+# noise: Gaussian, drawn from the 1-sigma uncertainties
 axis,center_of_mass_km,sigma_km,center_of_figure_km,cov_x_km2,cov_y_km2,cov_z_km2
 x,0.017643828580,0.002000000000,0.015929534123,4.000000000000001e-06,0.000000000000000e+00,0.000000000000000e+00
 y,0.041367841384,0.002000000000,0.042313853148,0.000000000000000e+00,4.000000000000001e-06,0.000000000000000e+00
@@ -2604,14 +2602,13 @@ z,-0.035351150585,0.002000000000,-0.033978532721,0.000000000000000e+00,0.0000000
 # data_set: DOC-DATA1-Didymos
 # body: Didymos
 # shape_model: didymos_g_9309mm_spc_obj_0000n00000_v003.obj (24578 vertices, 49152 facets, lengths in km)
-# axes: those of the shape model file (conventions.txt)
-# normalization: values are I / (M R_ref^2), with M = mass_kg and R_ref = reference_radius_km
+# axes: shape model axes
+# normalization: values are I / (M R_ref^2)
 # reference_radius_km: 0.43
 # mass_kg: 5.273000e+11
-# products_of_inertia: I_ij = integral rho (r^2 delta_ij - x_i x_j) dV, so Ixy = -integral rho x y dV
-# libration_ratio: (B - A) / C, with A &lt;= B the principal moments about axes in the xy-plane and C = Izz
+# libration_ratio: (B - A) / C, A &lt;= B principal moments about axes in the xy-plane, C = Izz
 # uncertainties: 1-sigma, uncorrelated
-# noise: Gaussian noise drawn from the 1-sigma uncertainties was added to the values
+# noise: Gaussian, drawn from the 1-sigma uncertainties
 quantity,value,sigma,unit
 Ixx,2.553972158114155e-01,2.000000000000000e-03,M R_ref^2
 Iyy,2.641173924187360e-01,2.000000000000000e-03,M R_ref^2
@@ -2624,8 +2621,7 @@ libration_ratio,8.070726840715539e-02,2.000000000000000e-02,1</code></pre></div>
 <p>A package's shape model is the one the data were made with, in the frame of every position of the package. The HLP6
 makers use the agreed shape model file as distributed, unchanged, in its own frame
 (<a href="#conventions-gravity-frames--makers">Frames of a gravity field</a>). Every team has that file, and it never
-changes, so a package made with it does not include it: <code>README.txt</code> names it and gives its MD5 checksum, which
-<code>md5 -q &lt;file&gt;</code> (macOS) or <code>md5sum &lt;file&gt;</code> (Linux) reproduces, and every other file names it in its header. A maker who changes the frame (tutorial
+changes, so a package made with it does not include it: <code>README.txt</code> and the header of every file name it.
 <a href="#examples-tutorials--ex09-moved-and-rotated-package">ex09</a>) sends the original shape model moved and rotated into
 the new frame with <a class="xref xref-fn" href="#reference-api-body--sbtk.body.to_frame"><code>sbtk.body.to_frame</code></a>: every vertex becomes
 <span class="nobr"><math alttext="x&#x27; = ( x - c) A" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi mathvariant="bold">x</mi><mi>&#x02032;</mi></msup><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><mi mathvariant="bold">x</mi><mo>&#x02212;</mo><mi mathvariant="bold">c</mi><mo stretchy="false">&#x00029;</mo><mspace width="0.167em" /><mi>A</mi></mrow></math>,</span> with <span class="nobr"><math alttext="c" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi mathvariant="bold">c</mi></mrow></math></span> the center of mass of the true model and the columns of
@@ -2670,8 +2666,7 @@ The FRAME section of such a package, made by <code>documentation/tools/make_samp
   All positions, the gravity field and the moments of inertia of this package are given
   in the frame of its shape model file, DOC-DATA3-Didymos_didymos_v003_com_spin_axes.obj:
     origin  the center of mass of the body
-    z       the axis of the largest moment of inertia, so C21 = S21 = 0 (to rounding
-            error); for a body in principal-axis rotation it is the spin axis
+    z       the axis of the largest moment of inertia
     x       the x-axis of the original file projected onto the plane normal to z
     y       completes the right-handed frame (y = z cross x)
   The shape model file was made by moving and rotating the original file,
@@ -2682,9 +2677,8 @@ The FRAME section of such a package, made by <code>documentation/tools/make_samp
     A = [  0.997920540676  0.000000000000 -0.064456143974
           -0.001688015795  0.999657019950 -0.026134136041
            0.064434036803  0.026188594157  0.997578273840 ]
-  where x and x' are the coordinates of a point in the original file and in this one
-  (row vectors, km), and o and the columns of A are the origin and the axes of this frame
-  in the original file. Use this package's shape model file with its data, not the
+  where x and x' are the coordinates of a point (row vectors, km) in the original file and
+  in this one, and o and the columns of A are the origin and the axes of this frame in the
   original file.</code></pre></div>
 <h3 id="files-exchange-packages--potential-and-acceleration-at-points">Potential and acceleration at points<a class="headerlink" href="#files-exchange-packages--potential-and-acceleration-at-points" title="Link to this section">#</a></h3>
 <p><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_potential"><code>sbtk.exchange.write_potential</code></a> adds <code>potential_acceleration.txt</code> to a package: one row per point with its position
@@ -2711,7 +2705,7 @@ them, made by <code>documentation/tools/make_samples.m</code>:</p>
 Prepared by Example team
 
 SUMMARY
-  shape model       didymos_g_9309mm_spc_obj_0000n00000_v003.obj, not included (MD5 f9b6db1811f6c65306fc67f9d1ffeeb5)
+  shape model       didymos_g_9309mm_spc_obj_0000n00000_v003.obj
   GM                3.51935839e-08 km^3/s^2, mass 5.273000e+11 kg
   bulk density      2592.98 kg/m^3 (mass / shape model volume 0.203356 km^3)
   gravity field     degrees 1 to 4, reference radius 0.43 km, about the origin of the shape model file
@@ -2729,10 +2723,6 @@ FILES
 # data_set: DOC-DATA2-Didymos
 # body: Didymos
 # shape_model: didymos_g_9309mm_spc_obj_0000n00000_v003.obj (24578 vertices, 49152 facets, lengths in km)
-# frame: that of the shape model file (conventions.txt)
-# center_of_mass: the center of mass of the body, the same as the degree-1 coefficients in gravity_field.txt give
-# center_of_figure: centroid of the volume enclosed by the shape model (the center of mass if the density were uniform)
-# center_of_mass_minus_center_of_figure_km: -0.000648037626 0.000570894830 -0.000074590333
 axis,center_of_mass_km,center_of_figure_km
 x,0.015281496496,0.015929534123
 y,0.042884747979,0.042313853148
@@ -2778,22 +2768,23 @@ precision covers. A set with some uncertainties but not all is not written (<a c
 # data_set: DOC-DATA1-Didymos
 # body: Didymos
 # shape_model: didymos_g_9309mm_spc_obj_0000n00000_v003.obj (24578 vertices, 49152 facets, lengths in km)
-# frame: that of the shape model file (noise_free_data/conventions.txt)
+# frame: shape model frame
 # mass_kg: 5.273000e+11
 # bulk_density_kgm3: 2592.984
 # background_density_kgm3: 2672.002
 # center_of_mass_km: 0.015281 0.042885 -0.034053
-# layers_and_sectors_from_km: 0.015281 0.042885 -0.034053 (the center of mass: layer depths and sector boundaries are measured along rays from this point)
-# overlaps: relative densities of overlapping components add; components are clipped to the shape model
-# principal_axes: x' = [0.835027009 -0.548783743 0.039576476], y' = [0.546420442 0.835555749 0.057195193], z' = [-0.064456144 -0.026134136 0.997578274] (unit vectors in the axes of the shape model file; x' of the smallest, z' of the largest moment)
-# principal_moments: A B C = 0.253270820 0.271737242 0.335835620 (I / (M R_ref^2), R_ref = 0.43 km)
-# random_field: Gaussian, standard deviation 40.0 kg/m^3, correlation exp(-d^2/(2 L^2)) with L = 0.0600 km, seed 7 (SBTK sbtk.interior.random_field); included in density_grid.txt
+# layers_and_sectors_from_km: 0.015281 0.042885 -0.034053
+# overlaps: relative densities add; components are clipped to the shape model
+# principal_axes: x' = [0.835027009 -0.548783743 0.039576476], y' = [0.546420442 0.835555749 0.057195193], z' = [-0.064456144 -0.026134136 0.997578274] (x' smallest, z' largest moment)
+# principal_moments: A B C = 0.253270820 0.271737242 0.335835620 (I / (M R_ref^2))
+# random_field: Gaussian, standard deviation 40.0 kg/m^3, correlation exp(-d^2/(2 L^2)) with L = 0.0600 km, seed 7
 # relative_density: density minus background density
 name,type,relative_density_kgm3,density_kgm3,geometry
 background,background,0.000,2672.002,"everything not in a component"
 core,sphere,450.000,3122.002,"center [15.9 42.3 -34.0] m; radius 170.0 m"
 torus,torus,-500.000,2172.002,"ring 370.0 m; tube 55.0 m; ring center [15.9 42.3 -34.0] m; axis [0.0000 0.0000 1.0000]"
-regolith,layer,-900.000,1772.002,"0.0 to 12.0 m below the surface"</code></pre></div>
+regolith,layer,-900.000,1772.002,"0.0 to 12.0 m below the surface"
+boulder,sphere,900.000,3572.002,"center [129.2 238.5 71.7] m; radius 40.0 m"</code></pre></div>
 <h2 id="files-exchange-packages--solution-package">Solution package<a class="headerlink" href="#files-exchange-packages--solution-package" title="Link to this section">#</a></h2>
 <table>
 <thead>
@@ -2838,7 +2829,7 @@ regolith,layer,-900.000,1772.002,"0.0 to 12.0 m below the surface"</code></pre><
 # homogeneous_body: reduced chi2 44.86, p-value 3.61e-238
 # measurements_used: C10 C11 S11 C20 C21 S21 C22 S22 C30 C31 S31 C32 S32 C33 S33 C40 C41 S41 C42 S42 C43 S43 C44 S44 Ixx Iyy Izz
 # regularization: 0 (Tikhonov parameter)
-# layers_and_sectors_from_km: 0.017644 0.041368 -0.035351 (the measured center of mass: layer depths and sector boundaries are measured along rays from this point)
+# layers_and_sectors_from_km: 0.017644 0.041368 -0.035351
 # relative_density: density minus background density
 # uncertainties: 1-sigma; covariance in solution_covariance.txt
 name,type,density_kgm3,density_sigma_kgm3,relative_density_kgm3,relative_density_sigma_kgm3,density,geometry
@@ -2868,7 +2859,7 @@ file:</p>
 FRAME
   All positions, the gravity field and the moments of inertia of this package are given
   in the frame of its shape model file, didymos_g_9309mm_spc_obj_0000n00000_v003.obj:
-    origin  the origin of the shape model file; the center of mass is in center_of_mass.txt
+    origin  the origin of the shape model file (different from the CoF and CoM)
     axes    those of the shape model file as distributed
 
 GRAVITY FIELD COEFFICIENT NORMALIZATION
@@ -2888,11 +2879,8 @@ GRAVITY FIELD COEFFICIENT NORMALIZATION
 
 DEGREE 1 AND THE CENTER OF MASS
   The gravity field is expanded about the origin of the shape model file. Its degree-1
-  coefficients give the center of mass (xc, yc, zc) relative to that origin:
-    Cbar_10 = zc / (sqrt(3) R),   Cbar_11 = xc / (sqrt(3) R),   Sbar_11 = yc / (sqrt(3) R)
-  with R the reference radius; center_of_mass.txt gives the same position. The moments
-  of inertia are about the same origin; about the center of mass they are
-    I_ij(center of mass) = I_ij(origin) - M (|c|^2 delta_ij - c_i c_j),   c = (xc, yc, zc).</code></pre></div>
+  coefficients give the center of mass (xc, yc, zc) relative to that origin. The moments
+  of inertia are about the same origin.</code></pre></div>
 <h2 id="files-exchange-packages--other-formats">Other formats<a class="headerlink" href="#files-exchange-packages--other-formats" title="Link to this section">#</a></h2>
 <table>
 <thead>
@@ -4099,7 +4087,7 @@ and 4.5 GB, and a simulation repeats it until the center of mass settles.</p>
 numbering because a solution name carries only the number; the T1 demo sets of the simulate scripts are 7 and 8. They
 send exact values of every degree to 10, normalized and unnormalized, and <span class="nobr"><math alttext="I_xx" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>x</mi><mi>x</mi></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="I_yy" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>y</mi><mi>y</mi></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="I_zz" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub></mrow></math>,</span> in the frame
 and about the origin of the DART shape model file (degree 1 and <span class="nobr"><math alttext="C_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="S_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math></span> are not zero). The
-packages name that file and its MD5 checksum but do not include it.</p>
+packages name that file but do not include it.</p>
 <p>The interiors of these models are not described on this site, which is public, until the true models are released;
 <code>projects/hera_hlp6/README.md</code> in the repository lists them.
 <code>examples/make_didymos_homogeneous.m</code> makes the reference the makers compare, as their cross-validation asks
@@ -4243,7 +4231,7 @@ before the DART impact [Daly et al. 2023; Daly et al. 2024]. They are published 
   degree-2 coefficients differ by up to <span class="nobr"><math alttext="3×10^-4" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>3</mn><mi>&#x000D7;</mi><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>4</mn></mrow></msup></mrow></math>,</span> about the size of the measurement uncertainties. Data made
   with one file and inverted with another carry that difference as an error. <code>data/shapes/README.md</code> compares all
   the versions.</li>
-<li><strong>Packages do not include the file.</strong> A package made with one of these files names it with its MD5 checksum
+<li><strong>Packages do not include the file.</strong> A package made with one of these files names it
   (<a href="#files-exchange-packages">Exchange packages</a>).</li>
 <li><strong>Dimorphos.</strong> The models are from before the DART impact, which may have changed the shape.</li>
 <li><strong>Frame.</strong> Each file has its own body-fixed frame, <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span> along the spin axis. The HLP6 makers keep it ("native
@@ -5487,7 +5475,7 @@ I = <a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.component
 <table class="defs"><tbody>
 <tr><td><code>f.U_km2_s2</code></td><td>n x 1 potential [km^2/s^2], positive: U = G integral rho / |r - r'| dV</td></tr>
 <tr><td><code>f.acc_km_s2</code></td><td>n x 3 acceleration [km/s^2], the gradient of U (the rotation of the body is not included)</td></tr>
-<tr><td><code>f.method</code></td><td>how it was computed, in words (for the file header)</td></tr>
+<tr><td><code>f.method</code></td><td>the method, for the file header: "Werner and Scheeres 1997", and the cubes for a model that is not homogeneous</td></tr>
 </tbody></table>
 <h3 class="api-sub">Example</h3>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>body</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">[~, truth] = <a class="xref xref-fn" href="#reference-api-data--sbtk.data.simulate">sbtk.data.simulate</a>(body, <a class="xref xref-fn" href="#reference-api-interior--sbtk.interior.create">sbtk.interior.create</a>(<a class="xref xref-fn" href="#reference-api-interior--sbtk.interior.no_components">sbtk.interior.no_components</a>()), 4, &quot;homogeneous&quot;);
@@ -6403,7 +6391,7 @@ ref = <a class="xref xref-fn" href="#reference-api-compare--sbtk.compare.referen
 <tr id="reference-api-compare--sbtk.compare.reference.out.ref"><td data-label="Name"><code>ref</code></td><td data-label="Description">The prepared reference. Fields: <a class="xref xref-st" href="#reference-data-structures--ref"><code>ref</code></a>.</td></tr>
 </tbody></table>
 <h3 class="api-sub">Description</h3>
-<p>Evaluates the true density at points filling the body (24 radial shells per facet cone, weighted by volume, in the true model's frame), the membership of every point in every component, and <code>R2_max</code> for these components. <a class="xref xref-fn" href="#reference-api-compare--sbtk.compare.evaluate">sbtk.compare.evaluate</a>(ref, fit) then compares any such fit in milliseconds.</p>
+<p>Evaluates the true density at points filling the body (24 radial shells per facet cone, weighted by volume, in the true model's frame), the membership of every point in every component, and <code>R2_max</code> for these components. A model with more than 50,000 facets is sampled in the cones of every k-th facet only (k = ceil(facets/50,000)), which fills the volume as evenly: about 1.2 million points, as for the 49,152-facet Didymos model, instead of 75 million for the 3,145,728-facet one. <a class="xref xref-fn" href="#reference-api-compare--sbtk.compare.evaluate">sbtk.compare.evaluate</a>(ref, fit) then compares any such fit in milliseconds.</p>
 <h3 class="api-sub">Example</h3>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>body</code>, <code>truth</code>, <code>components</code>, <code>prob</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">ref = <a class="xref xref-fn" href="#reference-api-compare--sbtk.compare.reference">sbtk.compare.reference</a>(body, truth, components, prob.geo.origin_km);
 cmp = <a class="xref xref-fn" href="#reference-api-compare--sbtk.compare.evaluate">sbtk.compare.evaluate</a>(ref, <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.run">sbtk.invert.run</a>(prob));
@@ -6616,8 +6604,8 @@ fit = <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.solve">sb
 <tr><td><code>moments_of_inertia.txt</code></td><td>inertia tensor elements and/or libration ratio</td></tr>
 <tr><td><code>conventions.txt</code></td><td>units, frame, normalization (with code), degree 1</td></tr>
 <tr><td><code>&lt;shape model&gt;.obj        the shape model, unless it is one of SBTK's shape models as</code></td><td></td></tr>
-<tr class="nested"><td><code>distributed (data/shapes/): the README then names it with its</code></td><td></td></tr>
-<tr class="nested"><td><code>MD5 checksum, and sbtk.exchange.read_data finds it there</code></td><td></td></tr>
+<tr class="nested"><td><code>distributed (data/shapes/): the files then name it, and</code></td><td></td></tr>
+<tr class="nested"><td><code>sbtk.exchange.read_data finds it there</code></td><td></td></tr>
 </tbody></table>
 <p>The files state only what applies: 1-sigma columns and the noise when the values have them (<a class="xref xref-fn" href="#reference-internal--sbtk.internal.exchange_data_files">sbtk.internal.exchange_data_files</a>). Nothing else of obs is written: not the expansion origin of the simulation (the true center of mass), the noise seed or the notes. Format: docs/exchange_format.md; read back with <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_data">sbtk.exchange.read_data</a>.</p>
 <h3 class="api-sub">Example</h3>
@@ -6676,7 +6664,7 @@ fit = <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.solve">sb
 <tr id="reference-api-exchange--sbtk.exchange.write_potential.out.file"><td data-label="Name"><code>file</code></td><td data-label="Description">Path of the <code>potential_acceleration.txt</code> file that was written.</td></tr>
 </tbody></table>
 <h3 class="api-sub">Description</h3>
-<p>Writes <code>potential_acceleration.txt</code>, one row per point, in SI units as the HLP6 makers' cross-validation asks: the position [m], the potential U [m^2/s^2] (positive, U = G integral rho / |r - r'| dV) and the acceleration, the gradient of U [m/s^2], without the rotation of the body. The header says how the field was computed. The file is added to the list of files in README.txt.</p>
+<p>Writes <code>potential_acceleration.txt</code>, one row per point, in SI units as the HLP6 makers' cross-validation asks: the position [m], the potential U [m^2/s^2] (positive, U = G integral rho / |r - r'| dV) and the acceleration, the gradient of U [m/s^2], without the rotation of the body. The header names the method (<a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.field_at">sbtk.gravity.field_at</a>). The file is added to the list of files in README.txt.</p>
 <h3 class="api-sub">Example</h3>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>out</code>, <code>data_set</code>, <code>body</code>, <code>exact</code>, <code>prepared_by</code>, <code>truth</code>, <code>points_km</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">pkg = <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_data">sbtk.exchange.write_data</a>(fullfile(out.folder, &quot;redacted&quot;), data_set, body, exact, prepared_by);
 <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_potential">sbtk.exchange.write_potential</a>(pkg, body, truth, points_km, 0.020);</code></pre></div>
@@ -7885,7 +7873,6 @@ its centroid and volume. Used by the comparisons and the random-field integrals.
 <tr id="reference-internal--sbtk.internal.exchange_number"><td><code>sbtk.internal.exchange_number</code></td><td>Numeric value of a metadata key of an exchange file (error if missing).</td><td><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a>, <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_grid"><code>sbtk.exchange.read_grid</code></a></td></tr>
 <tr id="reference-internal--sbtk.internal.exchange_read"><td><code>sbtk.internal.exchange_read</code></td><td>Read one exchange-format text file (see <a class="xref xref-fn" href="#reference-internal--sbtk.internal.exchange_write">sbtk.internal.exchange_write</a>).</td><td><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a>, <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_grid"><code>sbtk.exchange.read_grid</code></a></td></tr>
 <tr id="reference-internal--sbtk.internal.exchange_write"><td><code>sbtk.internal.exchange_write</code></td><td>Write one exchange-format text file.</td><td><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_model"><code>sbtk.exchange.write_model</code></a>, <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_potential"><code>sbtk.exchange.write_potential</code></a>, <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_solution"><code>sbtk.exchange.write_solution</code></a></td></tr>
-<tr id="reference-internal--sbtk.internal.file_md5"><td><code>sbtk.internal.file_md5</code></td><td>MD5 checksum of a file, as 32 lowercase hexadecimal digits.</td><td><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_data"><code>sbtk.exchange.write_data</code></a></td></tr>
 <tr id="reference-internal--sbtk.internal.fixed_point"><td><code>sbtk.internal.fixed_point</code></td><td>Iterate x = update(x) until a step moves x by at most tol; at most <code>max_iter</code> steps.</td><td><a class="xref xref-fn" href="#reference-api-data--sbtk.data.simulate"><code>sbtk.data.simulate</code></a>, <a class="xref xref-fn" href="#reference-api-interior--sbtk.interior.align_with_spin_axis"><code>sbtk.interior.align_with_spin_axis</code></a></td></tr>
 <tr id="reference-internal--sbtk.internal.geometry_deviation"><td><code>sbtk.internal.geometry_deviation</code></td><td>How far one geometry parameter of a component is from its start.</td><td><a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.run"><code>sbtk.invert.run</code></a></td></tr>
 <tr id="reference-internal--sbtk.internal.geometry_parameters"><td><code>sbtk.internal.geometry_parameters</code></td><td>The geometry an inversion estimates: one entry per scalar parameter.</td><td><a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.setup"><code>sbtk.invert.setup</code></a></td></tr>
@@ -7905,7 +7892,7 @@ its centroid and volume. Used by the comparisons and the random-field integrals.
 <tr id="reference-internal--sbtk.internal.sh_packing"><td><code>sbtk.internal.sh_packing</code></td><td>Ordering of packed spherical-harmonic coefficient vectors.</td><td><a class="xref xref-fn" href="#reference-api-data--sbtk.data.expand_about"><code>sbtk.data.expand_about</code></a>, <a class="xref xref-fn" href="#reference-api-data--sbtk.data.from_coefficients"><code>sbtk.data.from_coefficients</code></a>, <a class="xref xref-fn" href="#reference-api-data--sbtk.data.select_degree"><code>sbtk.data.select_degree</code></a>, <a class="xref xref-fn" href="#reference-api-data--sbtk.data.set_uncertainties"><code>sbtk.data.set_uncertainties</code></a>, <a class="xref xref-fn" href="#reference-api-data--sbtk.data.summary"><code>sbtk.data.summary</code></a>, <a class="xref xref-fn" href="#reference-api-data--sbtk.data.to_frame"><code>sbtk.data.to_frame</code></a>, <a class="xref xref-fn" href="#reference-api-data--sbtk.data.use_uncertainties"><code>sbtk.data.use_uncertainties</code></a>, <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_shadr"><code>sbtk.exchange.read_shadr</code></a>, <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_model"><code>sbtk.exchange.write_model</code></a>, <a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.center_of_mass_frame"><code>sbtk.gravity.center_of_mass_frame</code></a>, <a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.geometry"><code>sbtk.gravity.geometry</code></a>, <a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.labels"><code>sbtk.gravity.labels</code></a>, <a class="xref xref-fn" href="#reference-api-interior--sbtk.interior.to_frame"><code>sbtk.interior.to_frame</code></a>, <a class="xref xref-fn" href="#reference-api-io--sbtk.io.read_jpl_gravity"><code>sbtk.io.read_jpl_gravity</code></a>, <a class="xref xref-fn" href="#reference-api-io--sbtk.io.report_simulation"><code>sbtk.io.report_simulation</code></a>, <a class="xref xref-fn" href="#reference-api-io--sbtk.io.write_measurements"><code>sbtk.io.write_measurements</code></a>, <a class="xref xref-fn" href="#reference-api-plot--sbtk.plot.difference_from_homogeneous"><code>sbtk.plot.difference_from_homogeneous</code></a>, <a class="xref xref-fn" href="#reference-api-plot--sbtk.plot.measurements"><code>sbtk.plot.measurements</code></a></td></tr>
 <tr id="reference-internal--sbtk.internal.sh_rotation"><td><code>sbtk.internal.sh_rotation</code></td><td>Matrix that expresses spherical-harmonic coefficients in rotated axes.</td><td><a class="xref xref-fn" href="#reference-api-data--sbtk.data.to_frame"><code>sbtk.data.to_frame</code></a>, <a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.center_of_mass_frame"><code>sbtk.gravity.center_of_mass_frame</code></a>, <a class="xref xref-fn" href="#reference-api-interior--sbtk.interior.to_frame"><code>sbtk.interior.to_frame</code></a>, <a class="xref xref-fn" href="#reference-api-plot--sbtk.plot.difference_from_homogeneous"><code>sbtk.plot.difference_from_homogeneous</code></a></td></tr>
 <tr id="reference-internal--sbtk.internal.sh_translation"><td><code>sbtk.internal.sh_translation</code></td><td>Matrix that moves spherical-harmonic integrals to a shifted expansion origin.</td><td><a class="xref xref-fn" href="#reference-api-data--sbtk.data.expand_about"><code>sbtk.data.expand_about</code></a>, <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_model"><code>sbtk.exchange.write_model</code></a>, <a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.center_of_mass_frame"><code>sbtk.gravity.center_of_mass_frame</code></a>, <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.run"><code>sbtk.invert.run</code></a></td></tr>
-<tr id="reference-internal--sbtk.internal.shape_file_name"><td><code>sbtk.internal.shape_file_name</code></td><td>File name of a shape model in an exchange package.</td><td><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_data"><code>sbtk.exchange.write_data</code></a></td></tr>
+<tr id="reference-internal--sbtk.internal.shape_file_name"><td><code>sbtk.internal.shape_file_name</code></td><td>File name of a shape model in an exchange package.</td><td>other internal functions</td></tr>
 <tr id="reference-internal--sbtk.internal.slice_axes"><td><code>sbtk.internal.slice_axes</code></td><td>Draw one density slice (image + body outline) on axes ax.</td><td><a class="xref xref-fn" href="#reference-api-plot--sbtk.plot.slices"><code>sbtk.plot.slices</code></a>, <a class="xref xref-fn" href="#reference-api-plot--sbtk.plot.truth_vs_estimate"><code>sbtk.plot.truth_vs_estimate</code></a></td></tr>
 <tr id="reference-internal--sbtk.internal.slice_images"><td><code>sbtk.internal.slice_images</code></td><td>Absolute density of each model on the two slice planes.</td><td><a class="xref xref-fn" href="#reference-api-plot--sbtk.plot.slices"><code>sbtk.plot.slices</code></a>, <a class="xref xref-fn" href="#reference-api-plot--sbtk.plot.truth_vs_estimate"><code>sbtk.plot.truth_vs_estimate</code></a></td></tr>
 <tr id="reference-internal--sbtk.internal.slice_planes"><td><code>sbtk.internal.slice_planes</code></td><td>Grid points on the two plotting planes, for density slices.</td><td>other internal functions</td></tr>
@@ -8071,7 +8058,7 @@ semi-axes 0.5 × 0.4 × 0.3 km (20,480 facets) and the 9.3 m Didymos model with 
 </tr>
 <tr>
 <td><code>testReportStatesWhatApplies</code></td>
-<td>Uncertainties, noise, the sign convention of the products of inertia and the libration ratio are stated only when the package has them; exact values with the center of mass as origin in principal axes, or with <span class="nobr"><math alttext="x" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math>,</span> <span class="nobr"><math alttext="y" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>y</mi></mrow></math></span> turned 20° about <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math>,</span> are described as such in <code>conventions.txt</code>, and the package's shape model has its center of mass at the origin.</td>
+<td>Uncertainties, noise and the libration ratio are stated only when the package has them; exact values with the center of mass as origin in principal axes, or with <span class="nobr"><math alttext="x" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math>,</span> <span class="nobr"><math alttext="y" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>y</mi></mrow></math></span> turned 20° about <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math>,</span> are described as such in <code>conventions.txt</code>, and the package's shape model has its center of mass at the origin.</td>
 <td>10⁻¹² km; obj precision for the center of figure</td>
 </tr>
 <tr>
@@ -8081,7 +8068,7 @@ semi-axes 0.5 × 0.4 × 0.3 km (20,480 facets) and the 9.3 m Didymos model with 
 </tr>
 <tr>
 <td><code>testShippedShapeModelNotIncluded</code></td>
-<td>A package made with one of SBTK's shape model files names it with its MD5 checksum but does not include it; <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a> reads it from <code>data/shapes/</code>.</td>
+<td>A package made with one of SBTK's shape model files names it but does not include it; <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a> reads it from <code>data/shapes/</code>.</td>
 <td>vertices exact</td>
 </tr>
 <tr>
@@ -8200,7 +8187,7 @@ generalized.</p>
 </tr>
 <tr>
 <td><code>tests/integration/test_maker_scripts.m</code></td>
-<td>The seven HLP6 maker scripts in <code>examples/</code> pass the code analyzer; <code>make_didymos_3</code>, <code>make_dimorphos_3</code> and <code>make_didymos_homogeneous</code> run on the full-resolution models, and their packages have exact values only, to degree 10, normalized and unnormalized, in the frame and about the origin of the shape model file (degree 1 listed, <span class="nobr"><math alttext="C_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="S_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math></span> not zero), which they name with its MD5 checksum and do not include, every boulder or void of the model, and no local paths. The homogeneous package has the agreed GM and reference radius, its degree 1 gives the center of figure (to 10⁻⁹ km), it has all six inertia elements and the potential and acceleration at the 20 points of the makers' cross-validation.</td>
+<td>The seven HLP6 maker scripts in <code>examples/</code> pass the code analyzer; <code>make_didymos_3</code>, <code>make_dimorphos_3</code> and <code>make_didymos_homogeneous</code> run on the full-resolution models, and their packages have exact values only, to degree 10, normalized and unnormalized, in the frame and about the origin of the shape model file (degree 1 listed, <span class="nobr"><math alttext="C_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="S_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math></span> not zero), which they name and do not include, every boulder or void of the model, and no local paths. The homogeneous package has the agreed GM and reference radius, its degree 1 gives the center of figure (to 10⁻⁹ km), it has all six inertia elements and the potential and acceleration at the 20 points of the makers' cross-validation.</td>
 </tr>
 </tbody>
 </table>

@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>sbtk.gravity — SBTK documentation</title>
-<link rel="stylesheet" href="../../assets/site.css?v=9c5ac07573">
-<link rel="stylesheet" href="../../assets/pygments.css?v=9c5ac07573">
-<link rel="stylesheet" href="../../assets/print.css?v=9c5ac07573" media="print">
+<link rel="stylesheet" href="../../assets/site.css?v=b2f24d4fd6">
+<link rel="stylesheet" href="../../assets/pygments.css?v=b2f24d4fd6">
+<link rel="stylesheet" href="../../assets/print.css?v=b2f24d4fd6" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -125,7 +125,7 @@ I = <a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.
 <table class="defs"><tbody>
 <tr><td><code>f.U_km2_s2</code></td><td>n x 1 potential [km^2/s^2], positive: U = G integral rho / |r - r'| dV</td></tr>
 <tr><td><code>f.acc_km_s2</code></td><td>n x 3 acceleration [km/s^2], the gradient of U (the rotation of the body is not included)</td></tr>
-<tr><td><code>f.method</code></td><td>how it was computed, in words (for the file header)</td></tr>
+<tr><td><code>f.method</code></td><td>the method, for the file header: "Werner and Scheeres 1997", and the cubes for a model that is not homogeneous</td></tr>
 </tbody></table>
 <h3 class="api-sub">Example</h3>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>body</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">[~, truth] = <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.simulate">sbtk.data.simulate</a>(body, <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.create">sbtk.interior.create</a>(<a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.no_components">sbtk.interior.no_components</a>()), 4, &quot;homogeneous&quot;);
@@ -266,7 +266,7 @@ I = <a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#sbtk.gravity.center_of_mass_frame">sbtk.gravity.center_of_mass_frame</a></li><li class="lvl2"><a href="#sbtk.gravity.component_integrals">sbtk.gravity.component_integrals</a></li><li class="lvl2"><a href="#sbtk.gravity.field_at">sbtk.gravity.field_at</a></li><li class="lvl2"><a href="#sbtk.gravity.forward">sbtk.gravity.forward</a></li><li class="lvl2"><a href="#sbtk.gravity.geometry">sbtk.gravity.geometry</a></li><li class="lvl2"><a href="#sbtk.gravity.labels">sbtk.gravity.labels</a></li><li class="lvl2"><a href="#sbtk.gravity.polyhedron">sbtk.gravity.polyhedron</a></li><li class="lvl2"><a href="#sbtk.gravity.random_field_integrals">sbtk.gravity.random_field_integrals</a></li></ul></nav>
 </div>
-<script src="../../assets/search-index.js?v=9c5ac07573"></script>
-<script src="../../assets/site.js?v=9c5ac07573"></script>
+<script src="../../assets/search-index.js?v=b2f24d4fd6"></script>
+<script src="../../assets/site.js?v=b2f24d4fd6"></script>
 </body>
 </html>

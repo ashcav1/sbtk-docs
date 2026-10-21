@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>sbtk.exchange — SBTK documentation</title>
-<link rel="stylesheet" href="../../assets/site.css?v=9c5ac07573">
-<link rel="stylesheet" href="../../assets/pygments.css?v=9c5ac07573">
-<link rel="stylesheet" href="../../assets/print.css?v=9c5ac07573" media="print">
+<link rel="stylesheet" href="../../assets/site.css?v=b2f24d4fd6">
+<link rel="stylesheet" href="../../assets/pygments.css?v=b2f24d4fd6">
+<link rel="stylesheet" href="../../assets/print.css?v=b2f24d4fd6" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -190,8 +190,8 @@ fit = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.
 <tr><td><code>moments_of_inertia.txt</code></td><td>inertia tensor elements and/or libration ratio</td></tr>
 <tr><td><code>conventions.txt</code></td><td>units, frame, normalization (with code), degree 1</td></tr>
 <tr><td><code>&lt;shape model&gt;.obj        the shape model, unless it is one of SBTK's shape models as</code></td><td></td></tr>
-<tr class="nested"><td><code>distributed (data/shapes/): the README then names it with its</code></td><td></td></tr>
-<tr class="nested"><td><code>MD5 checksum, and sbtk.exchange.read_data finds it there</code></td><td></td></tr>
+<tr class="nested"><td><code>distributed (data/shapes/): the files then name it, and</code></td><td></td></tr>
+<tr class="nested"><td><code>sbtk.exchange.read_data finds it there</code></td><td></td></tr>
 </tbody></table>
 <p>The files state only what applies: 1-sigma columns and the noise when the values have them (<a class="xref xref-fn" href="../../reference/internal.html#sbtk.internal.exchange_data_files">sbtk.internal.exchange_data_files</a>). Nothing else of obs is written: not the expansion origin of the simulation (the true center of mass), the noise seed or the notes. Format: docs/exchange_format.md; read back with <a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.read_data">sbtk.exchange.read_data</a>.</p>
 <h3 class="api-sub">Example</h3>
@@ -250,7 +250,7 @@ fit = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.
 <tr id="sbtk.exchange.write_potential.out.file"><td data-label="Name"><code>file</code></td><td data-label="Description">Path of the <code>potential_acceleration.txt</code> file that was written.</td></tr>
 </tbody></table>
 <h3 class="api-sub">Description</h3>
-<p>Writes <code>potential_acceleration.txt</code>, one row per point, in SI units as the HLP6 makers' cross-validation asks: the position [m], the potential U [m^2/s^2] (positive, U = G integral rho / |r - r'| dV) and the acceleration, the gradient of U [m/s^2], without the rotation of the body. The header says how the field was computed. The file is added to the list of files in README.txt.</p>
+<p>Writes <code>potential_acceleration.txt</code>, one row per point, in SI units as the HLP6 makers' cross-validation asks: the position [m], the potential U [m^2/s^2] (positive, U = G integral rho / |r - r'| dV) and the acceleration, the gradient of U [m/s^2], without the rotation of the body. The header names the method (<a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.field_at">sbtk.gravity.field_at</a>). The file is added to the list of files in README.txt.</p>
 <h3 class="api-sub">Example</h3>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>out</code>, <code>data_set</code>, <code>body</code>, <code>exact</code>, <code>prepared_by</code>, <code>truth</code>, <code>points_km</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">pkg = <a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.write_data">sbtk.exchange.write_data</a>(fullfile(out.folder, &quot;redacted&quot;), data_set, body, exact, prepared_by);
 <a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.write_potential">sbtk.exchange.write_potential</a>(pkg, body, truth, points_km, 0.020);</code></pre></div>
@@ -298,7 +298,7 @@ fit  = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#sbtk.exchange.density_grid">sbtk.exchange.density_grid</a></li><li class="lvl2"><a href="#sbtk.exchange.locate">sbtk.exchange.locate</a></li><li class="lvl2"><a href="#sbtk.exchange.read_data">sbtk.exchange.read_data</a></li><li class="lvl2"><a href="#sbtk.exchange.read_grid">sbtk.exchange.read_grid</a></li><li class="lvl2"><a href="#sbtk.exchange.read_shadr">sbtk.exchange.read_shadr</a></li><li class="lvl2"><a href="#sbtk.exchange.solution_name">sbtk.exchange.solution_name</a></li><li class="lvl2"><a href="#sbtk.exchange.write_data">sbtk.exchange.write_data</a></li><li class="lvl2"><a href="#sbtk.exchange.write_model">sbtk.exchange.write_model</a></li><li class="lvl2"><a href="#sbtk.exchange.write_potential">sbtk.exchange.write_potential</a></li><li class="lvl2"><a href="#sbtk.exchange.write_solution">sbtk.exchange.write_solution</a></li></ul></nav>
 </div>
-<script src="../../assets/search-index.js?v=9c5ac07573"></script>
-<script src="../../assets/site.js?v=9c5ac07573"></script>
+<script src="../../assets/search-index.js?v=b2f24d4fd6"></script>
+<script src="../../assets/site.js?v=b2f24d4fd6"></script>
 </body>
 </html>

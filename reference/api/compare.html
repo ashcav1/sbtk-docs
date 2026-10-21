@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>sbtk.compare — SBTK documentation</title>
-<link rel="stylesheet" href="../../assets/site.css?v=9c5ac07573">
-<link rel="stylesheet" href="../../assets/pygments.css?v=9c5ac07573">
-<link rel="stylesheet" href="../../assets/print.css?v=9c5ac07573" media="print">
+<link rel="stylesheet" href="../../assets/site.css?v=b2f24d4fd6">
+<link rel="stylesheet" href="../../assets/pygments.css?v=b2f24d4fd6">
+<link rel="stylesheet" href="../../assets/print.css?v=b2f24d4fd6" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -123,7 +123,7 @@ ref = <a class="xref xref-fn" href="../../reference/api/compare.html#sbtk.compar
 <tr id="sbtk.compare.reference.out.ref"><td data-label="Name"><code>ref</code></td><td data-label="Description">The prepared reference. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#ref"><code>ref</code></a>.</td></tr>
 </tbody></table>
 <h3 class="api-sub">Description</h3>
-<p>Evaluates the true density at points filling the body (24 radial shells per facet cone, weighted by volume, in the true model's frame), the membership of every point in every component, and <code>R2_max</code> for these components. <a class="xref xref-fn" href="../../reference/api/compare.html#sbtk.compare.evaluate">sbtk.compare.evaluate</a>(ref, fit) then compares any such fit in milliseconds.</p>
+<p>Evaluates the true density at points filling the body (24 radial shells per facet cone, weighted by volume, in the true model's frame), the membership of every point in every component, and <code>R2_max</code> for these components. A model with more than 50,000 facets is sampled in the cones of every k-th facet only (k = ceil(facets/50,000)), which fills the volume as evenly: about 1.2 million points, as for the 49,152-facet Didymos model, instead of 75 million for the 3,145,728-facet one. <a class="xref xref-fn" href="../../reference/api/compare.html#sbtk.compare.evaluate">sbtk.compare.evaluate</a>(ref, fit) then compares any such fit in milliseconds.</p>
 <h3 class="api-sub">Example</h3>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>body</code>, <code>truth</code>, <code>components</code>, <code>prob</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">ref = <a class="xref xref-fn" href="../../reference/api/compare.html#sbtk.compare.reference">sbtk.compare.reference</a>(body, truth, components, prob.geo.origin_km);
 cmp = <a class="xref xref-fn" href="../../reference/api/compare.html#sbtk.compare.evaluate">sbtk.compare.evaluate</a>(ref, <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.run">sbtk.invert.run</a>(prob));
@@ -182,7 +182,7 @@ cmp = <a class="xref xref-fn" href="../../reference/api/compare.html#sbtk.compar
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#sbtk.compare.evaluate">sbtk.compare.evaluate</a></li><li class="lvl2"><a href="#sbtk.compare.grid_summary">sbtk.compare.grid_summary</a></li><li class="lvl2"><a href="#sbtk.compare.grids">sbtk.compare.grids</a></li><li class="lvl2"><a href="#sbtk.compare.reference">sbtk.compare.reference</a></li><li class="lvl2"><a href="#sbtk.compare.summary">sbtk.compare.summary</a></li><li class="lvl2"><a href="#sbtk.compare.with_truth">sbtk.compare.with_truth</a></li></ul></nav>
 </div>
-<script src="../../assets/search-index.js?v=9c5ac07573"></script>
-<script src="../../assets/site.js?v=9c5ac07573"></script>
+<script src="../../assets/search-index.js?v=b2f24d4fd6"></script>
+<script src="../../assets/site.js?v=b2f24d4fd6"></script>
 </body>
 </html>
