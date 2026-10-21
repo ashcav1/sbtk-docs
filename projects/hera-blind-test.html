@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hera blind test — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=8de7f0aaef">
-<link rel="stylesheet" href="../assets/pygments.css?v=8de7f0aaef">
-<link rel="stylesheet" href="../assets/print.css?v=8de7f0aaef" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=9c5ac07573">
+<link rel="stylesheet" href="../assets/pygments.css?v=9c5ac07573">
+<link rel="stylesheet" href="../assets/print.css?v=9c5ac07573" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,7 +29,7 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Projects › <span aria-current="page">Hera blind test</span></nav>
 <article>
 <h1 id="hera-blind-test">Hera blind test<a class="headerlink" href="#hera-blind-test" title="Link to this section">#</a></h1>
-<p class="lastedit">Last edited October 20, 2026</p>
+<p class="lastedit">Last edited October 21, 2026</p>
 <p><code>projects/hera_hlp6/</code> contains the runner scripts SBTK uses in a blind test of interior-modeling methods for the binary
 asteroid Didymos–Dimorphos, the target of ESA's Hera mission. In such a test one team simulates measurements of an
 interior it keeps hidden and shares only the measurements; other teams estimate the interior; the hidden models are
@@ -86,40 +86,45 @@ copies in <code>data/hera_rse/</code>.</p>
 <thead>
 <tr>
 <th>Setting</th>
-<th>Didymos</th>
+<th>Didymos (agreed by the makers, 21 October 2026)</th>
 <th>Dimorphos</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Shape model</td>
-<td>DART v003, 9.3 m sampling, 49,152 facets</td>
-<td>DART v004 (before the impact), every 8th point of the 0.243 m model, 49,152 facets</td>
+<td>DART v003, 1.165 m sampling, 3,145,728 facets</td>
+<td>DART v004 (before the impact), 0.243 m sampling, 3,145,728 facets</td>
+</tr>
+<tr>
+<td>Bulk density</td>
+<td>2600 kg/m³</td>
+<td>1534 kg/m³</td>
 </tr>
 <tr>
 <td>Mass</td>
-<td>5.273 × 10¹¹ kg</td>
+<td>5.299121 × 10¹¹ kg (GM 3.5367926256900638 × 10⁻⁸ km³/s²)</td>
 <td>2.700 × 10⁹ kg</td>
 </tr>
 <tr>
 <td>Reference radius</td>
-<td>0.43 km</td>
+<td>0.41 km</td>
 <td>0.10 km</td>
 </tr>
 <tr>
-<td>Degree</td>
-<td>5</td>
-<td>3</td>
+<td>Degrees the makers send</td>
+<td>1 to 10</td>
+<td>1 to 10</td>
+</tr>
+<tr>
+<td>Degrees the receiving team fits</td>
+<td>1 to 5</td>
+<td>1 to 3</td>
 </tr>
 <tr>
 <td>Density-grid spacing</td>
 <td>0.020 km</td>
 <td>0.005 km</td>
-</tr>
-<tr>
-<td>Bulk density</td>
-<td>2593 kg/m³</td>
-<td>1534 kg/m³</td>
 </tr>
 <tr>
 <td>Frame of the packages</td>
@@ -128,7 +133,9 @@ copies in <code>data/hera_rse/</code>.</p>
 </tr>
 </tbody>
 </table>
-<p>Where each of these values comes from, and the alternatives: <a href="../projects/didymos-dimorphos-values.html">Didymos and Dimorphos values</a>.</p>
+<p>Where each of these values comes from, and the alternatives: <a href="../projects/didymos-dimorphos-values.html">Didymos and Dimorphos values</a>.
+A run on the full-resolution models takes minutes: the geometry of 3 million facets to degree 10 takes about a minute
+and 4.5 GB, and a simulation repeats it until the center of mass settles.</p>
 <h2 id="simulation-runs">Simulation runs<a class="headerlink" href="#simulation-runs" title="Link to this section">#</a></h2>
 <p>A simulation runner has four sections:</p>
 <ol>
@@ -166,12 +173,15 @@ copies in <code>data/hera_rse/</code>.</p>
 <p><code>examples/make_didymos_1.m</code> to <code>make_dimorphos_3.m</code> are six true models made the same way, one script each, into
 <code>results/didymos_models/</code> and <code>results/dimorphos_models/</code>, as packages 1 to 6. Didymos and Dimorphos share one
 numbering because a solution name carries only the number; the T1 demo sets of the simulate scripts are 7 and 8. They
-send exact values of every degree to 6 and <span class="nobr"><math alttext="I_xx" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>x</mi><mi>x</mi></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="I_yy" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>y</mi><mi>y</mi></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="I_zz" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub></mrow></math>,</span> in the frame and about the origin of the DART
-shape model file (degree 1 and <span class="nobr"><math alttext="C_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="S_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math></span> are not zero), with the file unchanged.</p>
+send exact values of every degree to 10, normalized and unnormalized, and <span class="nobr"><math alttext="I_xx" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>x</mi><mi>x</mi></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="I_yy" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>y</mi><mi>y</mi></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="I_zz" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub></mrow></math>,</span> in the frame
+and about the origin of the DART shape model file (degree 1 and <span class="nobr"><math alttext="C_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="S_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math></span> are not zero). The
+packages name that file and its MD5 checksum but do not include it.</p>
 <p>The interiors of these models are not described on this site, which is public, until the true models are released;
 <code>projects/hera_hlp6/README.md</code> in the repository lists them.
-<code>examples/make_didymos_homogeneous.m</code> makes the reference the makers compare: Didymos at constant density, every
-degree to 6 and all six inertia elements, in the same frame and about the same origin (package
+<code>examples/make_didymos_homogeneous.m</code> makes the reference the makers compare, as their cross-validation asks
+(<a href="../projects/didymos-dimorphos-values.html#potential-and-acceleration-at-the-cross-validation-points">Didymos and Dimorphos values</a>):
+Didymos at 2600 kg/m³, every degree to 10 and all six inertia elements, in the same frame and about the same origin,
+and the potential and acceleration at the 20 agreed points (<a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_potential"><code>sbtk.exchange.write_potential</code></a>; package
 <code>UCB-DATA0-Didymos-homogeneous</code>). Its degree 1 gives the center of figure. If two makers compute the same homogeneous
 field from the same shape model file, they work in the same frame with the same conventions.
 <code>tests/integration/test_maker_scripts.m</code> runs <code>make_didymos_3</code>, <code>make_dimorphos_3</code> and <code>make_didymos_homogeneous</code> and
@@ -207,11 +217,11 @@ and tilts 6.9° to take up the signal of the boulder, which the model lacks
 Dimorphos, an ellipsoidal core and the regolith give a reduced <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> of 47 and <span class="nobr"><math alttext="R^2 = 0.04" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mn>0.04</mn></mrow></math>.</span></p>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../projects/bennu.html" rel="prev"><span>Previous</span>Bennu</a><a class="next" href="../projects/didymos-dimorphos-values.html" rel="next"><span>Next</span>Didymos and Dimorphos values</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-20.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-21.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#files">Files</a></li><li class="lvl2"><a href="#settings">Settings</a></li><li class="lvl2"><a href="#simulation-runs">Simulation runs</a></li><li class="lvl3"><a href="#maker-models">Maker models</a></li><li class="lvl2"><a href="#inversion-runs">Inversion runs</a></li><li class="lvl2"><a href="#comparison-runs">Comparison runs</a></li><li class="lvl2"><a href="#example-runs">Example runs</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=8de7f0aaef"></script>
-<script src="../assets/site.js?v=8de7f0aaef"></script>
+<script src="../assets/search-index.js?v=9c5ac07573"></script>
+<script src="../assets/site.js?v=9c5ac07573"></script>
 </body>
 </html>

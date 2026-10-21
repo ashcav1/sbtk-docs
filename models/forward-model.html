@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gravity and moment calculations — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=8de7f0aaef">
-<link rel="stylesheet" href="../assets/pygments.css?v=8de7f0aaef">
-<link rel="stylesheet" href="../assets/print.css?v=8de7f0aaef" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=9c5ac07573">
+<link rel="stylesheet" href="../assets/pygments.css?v=9c5ac07573">
+<link rel="stylesheet" href="../assets/print.css?v=9c5ac07573" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,13 +29,14 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Models and calculations › <span aria-current="page">Gravity and moment calculations</span></nav>
 <article>
 <h1 id="gravity-and-moment-calculations">Gravity and moment calculations<a class="headerlink" href="#gravity-and-moment-calculations" title="Link to this section">#</a></h1>
-<p class="lastedit">Last edited October 20, 2026</p>
+<p class="lastedit">Last edited October 21, 2026</p>
 <p>The forward model computes, for a density model inside a shape model, the gravity coefficients
 (<a href="../conventions/gravity-coefficients.html">Gravity coefficients</a>), the center of mass and the inertia tensor
 (<a href="../conventions/moments-of-inertia.html">Moments of inertia</a>) about an expansion origin <span class="nobr"><math alttext="o" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D428;</mi></mrow></math>.</span></p>
 <h2 id="facet-cones">Facet cones<a class="headerlink" href="#facet-cones" title="Link to this section">#</a></h2>
 <p><a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.geometry"><code>sbtk.gravity.geometry</code></a><code>(body, origin_km, degree)</code> divides the body into tetrahedral cones, one per surface facet, with
-apex at <span class="nobr"><math alttext="o" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D428;</mi></mrow></math></span> and the facet as base. This partition is exact when the shape is star-shaped about <span class="nobr"><math alttext="o" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D428;</mi></mrow></math>.</span>
+apex at <span class="nobr"><math alttext="o" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D428;</mi></mrow></math></span> and the facet as base. This partition is exact when the shape is star-shaped about <span class="nobr"><math alttext="o" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D428;</mi></mrow></math></span>
+(small overhangs count with their sign: <a href="../models/shape-models.html">Shape models</a>).
 For every cone <span class="nobr"><math alttext="f" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>f</mi></mrow></math></span> it stores, per unit density (<a class="xref xref-st" href="../reference/data-structures.html#geo"><code>geo</code></a>):</p>
 <table>
 <thead>
@@ -121,6 +122,58 @@ the coefficients to degree <span class="nobr"><math alttext="L" xmlns="http://ww
 <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_moi_sigma"><code>sbtk.data.set_moi_sigma</code></a>) gives the exact values uncertainties and <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_noise"><code>sbtk.data.add_noise</code></a> draws one noisy
 realization (<a href="../inversion/measurements.html">Measurement sets</a>). Selecting which inertia quantities a data set contains:
 <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.select_moi"><code>sbtk.data.select_moi</code></a>.</p>
+<h2 id="potential-and-acceleration-at-points">Potential and acceleration at points<a class="headerlink" href="#potential-and-acceleration-at-points" title="Link to this section">#</a></h2>
+<p>The spherical-harmonic expansion converges only outside the sphere about its expansion point that encloses the body,
+and slowly near it. For points closer in, or on the surface, SBTK computes the potential and the acceleration from
+the shape model directly:</p>
+<ul>
+<li><a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.polyhedron"><code>sbtk.gravity.polyhedron</code></a>: a homogeneous polyhedron, exactly, with the closed form of Werner and Scheeres
+  (1997, <em>Celestial Mechanics and Dynamical Astronomy</em> 65, 313–344), a sum over the edges and faces of the shape
+  model. It holds outside, on and inside the body; on an edge the edge terms are zero.</li>
+<li><a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.field_at"><code>sbtk.gravity.field_at</code></a>: any model. The background density fills the polyhedron, exactly; the departures from it
+  (components, random field) are taken on the density grid of <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.density_grid"><code>sbtk.exchange.density_grid</code></a>, each cell a uniform
+  cube with the closed form of Nagy, Papp and Benedek (2000, <em>Journal of Geodesy</em> 74, 552–560). A homogeneous model is
+  exact; otherwise the cubes follow the boundaries of the components to within a cell.</li>
+</ul>
+<p>The potential is positive, <span class="nobr"><math alttext="U = G∫ρ/| r - r&#x27;| dV" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>U</mi><mo>&#x0003D;</mo><mi>G</mi><mo>&#x0222B;</mo><mi>&#x003C1;</mi><mo>&#x0002F;</mo><mo stretchy="false">&#x0007C;</mo><mi mathvariant="bold">r</mi><mo>&#x02212;</mo><msup><mi mathvariant="bold">r</mi><mi>&#x02032;</mi></msup><mo stretchy="false">&#x0007C;</mo><mspace width="0.167em" /><mi>d</mi><mi>V</mi></mrow></math>,</span> and the acceleration is its gradient; the
+rotation of the body is not included. <code>tests/unit/test_gravity.m</code> checks that the two closed forms give the same cube
+to <span class="nobr"><math alttext="10^-10" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>10</mn></mrow></msup></mrow></math>,</span> that the divergence of the acceleration is <span class="nobr"><math alttext="-4π Gρ" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mn>4</mn><mi>&#x003C0;</mi><mi>G</mi><mi>&#x003C1;</mi></mrow></math></span> inside the body, and that the acceleration is the
+gradient of the potential.</p>
+<p>For the homogeneous Didymos (1.165 m model, 2600 kg/m³, <span class="nobr"><math alttext="R_ref" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>R</mi><mtext>ref</mtext></msub></mrow></math></span> = 410 m), the expansion about the origin of the
+file compared with the exact potential (the sphere that encloses the body has a radius of 449.7 m):</p>
+<table>
+<thead>
+<tr>
+<th>Distance from the origin</th>
+<th>Expansion to degree 10</th>
+<th>to degree 30</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>492 m (1.2 <span class="nobr"><math alttext="R_ref" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>R</mi><mtext>ref</mtext></msub></mrow></math>)</span></td>
+<td>1.5 × 10⁻⁴</td>
+<td>7.8 × 10⁻⁷</td>
+</tr>
+<tr>
+<td>600 m</td>
+<td>6.7 × 10⁻⁶</td>
+<td>2.2 × 10⁻¹⁰</td>
+</tr>
+<tr>
+<td>707 m</td>
+<td>1.9 × 10⁻⁷</td>
+<td>1.9 × 10⁻¹²</td>
+</tr>
+<tr>
+<td>2449 m</td>
+<td>5.8 × 10⁻¹³</td>
+<td>8 × 10⁻¹⁵</td>
+</tr>
+</tbody>
+</table>
+<p>(relative difference of the potential at one point each). The polyhedron takes about 1 s per point for 3 million
+facets.</p>
 <h2 id="computation-time">Computation time<a class="headerlink" href="#computation-time" title="Link to this section">#</a></h2>
 <p>Times measured by <code>tools/benchmark.m</code> on Didymos (49,152 facets, degree 4), MATLAB R2025a on an Apple-silicon laptop:</p>
 <table>
@@ -153,7 +206,9 @@ realization (<a href="../inversion/measurements.html">Measurement sets</a>). Sel
 </tr>
 </tbody>
 </table>
-<p>The geometry scales with the number of facets; a 3,145,728-facet model takes about a minute to read and integrate.</p>
+<p>The geometry scales with the number of facets and with the number of coefficients: the agreed 3,145,728-facet
+Didymos model takes 4 s to read and 56 s to integrate to degree 10 (4.5 GB), and a forward model with four
+components then 14 s.</p>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Link to this section">#</a></h2>
 <div class="codeblock codeblock-code" id="forward-example"><div class="codehead"><span>MATLAB script: Coefficients, center of mass and inertia of a model</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><span class="nb">run</span><span class="p">(</span><span class="s">&quot;/path/to/SBTK/sbtk_setup.m&quot;</span><span class="p">)</span>
 body = <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.from_mass">sbtk.body.from_mass</a>(&quot;Didymos&quot;, <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.bundled">sbtk.shape.bundled</a>(&quot;didymos&quot;), 5.273e11, 0.43);
@@ -169,11 +224,11 @@ lab = <a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.l
 and the degree-1 coefficients about the center of figure are not zero.</p>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../models/density-distributions.html" rel="prev"><span>Previous</span>Density distributions</a><a class="next" href="../inversion/measurements.html" rel="next"><span>Next</span>Measurement sets</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-20.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-21.</footer>
 </main>
-<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#facet-cones">Facet cones</a></li><li class="lvl2"><a href="#scaling-within-a-cone">Scaling within a cone</a></li><li class="lvl2"><a href="#integrals-of-components">Integrals of components</a></li><li class="lvl2"><a href="#coefficients-center-of-mass-and-inertia">Coefficients, center of mass and inertia</a></li><li class="lvl2"><a href="#simulated-measurements">Simulated measurements</a></li><li class="lvl2"><a href="#computation-time">Computation time</a></li><li class="lvl2"><a href="#example">Example</a></li></ul></nav>
+<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#facet-cones">Facet cones</a></li><li class="lvl2"><a href="#scaling-within-a-cone">Scaling within a cone</a></li><li class="lvl2"><a href="#integrals-of-components">Integrals of components</a></li><li class="lvl2"><a href="#coefficients-center-of-mass-and-inertia">Coefficients, center of mass and inertia</a></li><li class="lvl2"><a href="#simulated-measurements">Simulated measurements</a></li><li class="lvl2"><a href="#potential-and-acceleration-at-points">Potential and acceleration at points</a></li><li class="lvl2"><a href="#computation-time">Computation time</a></li><li class="lvl2"><a href="#example">Example</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=8de7f0aaef"></script>
-<script src="../assets/site.js?v=8de7f0aaef"></script>
+<script src="../assets/search-index.js?v=9c5ac07573"></script>
+<script src="../assets/site.js?v=9c5ac07573"></script>
 </body>
 </html>

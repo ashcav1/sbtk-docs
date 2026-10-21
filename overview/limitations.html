@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Assumptions and limitations — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=8de7f0aaef">
-<link rel="stylesheet" href="../assets/pygments.css?v=8de7f0aaef">
-<link rel="stylesheet" href="../assets/print.css?v=8de7f0aaef" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=9c5ac07573">
+<link rel="stylesheet" href="../assets/pygments.css?v=9c5ac07573">
+<link rel="stylesheet" href="../assets/print.css?v=9c5ac07573" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,7 +29,7 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Overview › <span aria-current="page">Assumptions and limitations</span></nav>
 <article>
 <h1 id="assumptions-and-limitations">Assumptions and limitations<a class="headerlink" href="#assumptions-and-limitations" title="Link to this section">#</a></h1>
-<p class="lastedit">Last edited October 20, 2026</p>
+<p class="lastedit">Last edited October 21, 2026</p>
 <p>This page lists the physical and numerical assumptions of SBTK 1.0.0 and the calculations it does not perform. Each
 item links to the page where the behavior is described.</p>
 <h2 id="physical-model">Physical model<a class="headerlink" href="#physical-model" title="Link to this section">#</a></h2>
@@ -46,8 +46,8 @@ item links to the page where the behavior is described.</p>
 <h2 id="geometry">Geometry<a class="headerlink" href="#geometry" title="Link to this section">#</a></h2>
 <ul>
 <li>The shape model must be closed, ordered outward and star-shaped about the expansion origin: every facet must face
-  away from it (<a href="../models/shape-models.html">Shape models</a>). Bodies with overhangs that violate this cannot be
-  integrated.</li>
+  away from it, except small overhangs holding less than 10⁻⁶ of the volume (<a href="../models/shape-models.html">Shape models</a>).
+  Bodies with larger overhangs cannot be integrated.</li>
 <li>Layers and sectors are defined along rays from the expansion origin (the center of mass), not along the local surface
   normal (<a href="../conventions/coordinates.html">Coordinate systems</a>).</li>
 <li>The <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis of the shape-model frame is taken as the spin axis and as a principal axis in the definition of the
@@ -111,11 +111,11 @@ item links to the page where the behavior is described.</p>
 </ul>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../index.html" rel="prev"><span>Previous</span>SBTK: Small Body Toolkit</a><a class="next" href="../getting-started/installation.html" rel="next"><span>Next</span>Installation</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-20.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-21.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#physical-model">Physical model</a></li><li class="lvl2"><a href="#geometry">Geometry</a></li><li class="lvl2"><a href="#numerical-integration">Numerical integration</a></li><li class="lvl2"><a href="#estimation">Estimation</a></li><li class="lvl2"><a href="#data-formats">Data formats</a></li><li class="lvl2"><a href="#software">Software</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=8de7f0aaef"></script>
-<script src="../assets/site.js?v=8de7f0aaef"></script>
+<script src="../assets/search-index.js?v=9c5ac07573"></script>
+<script src="../assets/site.js?v=9c5ac07573"></script>
 </body>
 </html>

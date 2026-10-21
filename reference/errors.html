@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Error identifiers — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=8de7f0aaef">
-<link rel="stylesheet" href="../assets/pygments.css?v=8de7f0aaef">
-<link rel="stylesheet" href="../assets/print.css?v=8de7f0aaef" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=9c5ac07573">
+<link rel="stylesheet" href="../assets/pygments.css?v=9c5ac07573">
+<link rel="stylesheet" href="../assets/print.css?v=9c5ac07573" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,7 +29,7 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Reference › <span aria-current="page">Error identifiers</span></nav>
 <article>
 <h1 id="top">Error identifiers</h1>
-<p class="lastedit">Last edited October 20, 2026</p>
+<p class="lastedit">Last edited October 21, 2026</p>
 <p>SBTK raises an error instead of substituting a value when an input is invalid or a computation cannot proceed. Every error has an identifier <code>sbtk:&lt;package&gt;:&lt;condition&gt;</code>, usable with <code>verifyError</code> in tests. The messages below are the fixed parts of the message text; values inserted at run time appear as format specifiers (<code>%s</code>, <code>%d</code>, <code>%g</code>).</p>
 <table class="errors"><thead><tr><th>Identifier</th><th>Raised by</th><th>Message</th></tr></thead><tbody>
 <tr id="sbtk:compare:differentComponents"><td><code>sbtk:compare:differentComponents</code></td><td><a class="xref xref-fn" href="../reference/api/compare.html#sbtk.compare.evaluate"><code>sbtk.compare.evaluate</code></a></td><td>The fit's components differ from the reference's or origin (e.g. a sphere position was estimated): use sbtk.compare.with_truth.</td></tr>
@@ -69,6 +69,7 @@
 <tr id="sbtk:exchange:moiRow"><td><code>sbtk:exchange:moiRow</code></td><td><a class="xref xref-fn" href="../reference/internal.html#sbtk.internal.exchange_data_files"><code>sbtk.internal.exchange_data_files</code></a></td><td>Moment-of-inertia row %s has no exchange-format equivalent.</td></tr>
 <tr id="sbtk:exchange:noCenterOfMass"><td><code>sbtk:exchange:noCenterOfMass</code></td><td><a class="xref xref-fn" href="../reference/internal.html#sbtk.internal.exchange_data_files"><code>sbtk.internal.exchange_data_files</code></a></td><td>The data need the degree-1 coefficients (the measured center of mass): add them with sbtk.data.add_center_of_mass.</td></tr>
 <tr id="sbtk:exchange:normalization"><td><code>sbtk:exchange:normalization</code></td><td><a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_shadr"><code>sbtk.exchange.read_shadr</code></a></td><td>The header of %s gives normalization state %g; SBTK needs 1 (fully normalized).</td></tr>
+<tr id="sbtk:exchange:shapeModel"><td><code>sbtk:exchange:shapeModel</code></td><td><a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a></td><td>The package names the shape model %s, which is neither in the package nor in data/shapes/: copy that file into data/shapes/.</td></tr>
 <tr id="sbtk:frame:notRotation"><td><code>sbtk:frame:notRotation</code></td><td><a class="xref xref-fn" href="../reference/internal.html#sbtk.internal.check_rotation"><code>sbtk.internal.check_rotation</code></a></td><td>The axes must be a rotation: orthonormal columns (the new axes as unit vectors in the current frame) with determinant +1.</td></tr>
 <tr id="sbtk:gravity:incompleteSet"><td><code>sbtk:gravity:incompleteSet</code></td><td><a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.center_of_mass_frame"><code>sbtk.gravity.center_of_mass_frame</code></a></td><td>The field is about a point %.1f m from its center of mass and does not have every coefficient up to degree %d, which moving it needs.</td></tr>
 <tr id="sbtk:gravity:incompleteSet-sbtk.gravity.center_of_mass_frame"><td><code>sbtk:gravity:incompleteSet</code></td><td><a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.center_of_mass_frame"><code>sbtk.gravity.center_of_mass_frame</code></a></td><td>The principal axes need every coefficient of degree 2 to %d; the field lacks some.</td></tr>
@@ -101,7 +102,7 @@
 <tr id="sbtk:io:referenceRadius"><td><code>sbtk:io:referenceRadius</code></td><td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.read_jpl_gravity"><code>sbtk.io.read_jpl_gravity</code></a></td><td>The file's reference radius is %g km; body.R_ref_km is %g km.</td></tr>
 <tr id="sbtk:iteration:notConverged"><td><code>sbtk:iteration:notConverged</code></td><td><a class="xref xref-fn" href="../reference/internal.html#sbtk.internal.fixed_point"><code>sbtk.internal.fixed_point</code></a></td><td>The iteration for %s did not converge in %d steps (last change %.3g, tolerance %.3g).</td></tr>
 <tr id="sbtk:plot:names"><td><code>sbtk:plot:names</code></td><td><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.difference_from_homogeneous"><code>sbtk.plot.difference_from_homogeneous</code></a></td><td>Give one name per set: %d sets, %d names.</td></tr>
-<tr id="sbtk:shape:notDownloaded"><td><code>sbtk:shape:notDownloaded</code></td><td><a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.bundled"><code>sbtk.shape.bundled</code></a></td><td>%s is not in data/shapes/: the high-resolution models are not in git; copy it from the Hera server (End-to-End Test/Shape/).</td></tr>
+<tr id="sbtk:shape:notDownloaded"><td><code>sbtk:shape:notDownloaded</code></td><td><a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.bundled"><code>sbtk.shape.bundled</code></a></td><td>%s is not in data/shapes/: the high-resolution models are not in git; copy it from the Hera server (End-to-End Test/HLP6G BlindTest/inputs/Reference models/).</td></tr>
 <tr id="sbtk:shape:notSpc"><td><code>sbtk:shape:notSpc</code></td><td><a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.reduce_spc"><code>sbtk.shape.reduce_spc</code></a></td><td>%d vertices and %d facets: not an SPC grid model (6 (q+1)^2 vertices, 12 q^2 facets).</td></tr>
 <tr id="sbtk:shape:reduce"><td><code>sbtk:shape:reduce</code></td><td><a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.reduce"><code>sbtk.shape.reduce</code></a></td><td>The reduced shape (%d facets) is closed %d, outward %d, star-shaped %d: try another number of facets.</td></tr>
 <tr id="sbtk:shape:spcReduce"><td><code>sbtk:shape:spcReduce</code></td><td><a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.reduce_spc"><code>sbtk.shape.reduce_spc</code></a></td><td>The reduced grid (%d vertices) is closed %d, outward %d, star-shaped %d: the vertices are not in SPC grid order.</td></tr>
@@ -109,11 +110,11 @@
 </tbody></table>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../reference/data-structures.html" rel="prev"><span>Previous</span>Data structures</a><a class="next" href="../reference/internal.html" rel="next"><span>Next</span>Internal functions</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-20.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-21.</footer>
 </main>
 
 </div>
-<script src="../assets/search-index.js?v=8de7f0aaef"></script>
-<script src="../assets/site.js?v=8de7f0aaef"></script>
+<script src="../assets/search-index.js?v=9c5ac07573"></script>
+<script src="../assets/site.js?v=9c5ac07573"></script>
 </body>
 </html>

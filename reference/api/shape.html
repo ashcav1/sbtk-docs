@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>sbtk.shape — SBTK documentation</title>
-<link rel="stylesheet" href="../../assets/site.css?v=8de7f0aaef">
-<link rel="stylesheet" href="../../assets/pygments.css?v=8de7f0aaef">
-<link rel="stylesheet" href="../../assets/print.css?v=8de7f0aaef" media="print">
+<link rel="stylesheet" href="../../assets/site.css?v=9c5ac07573">
+<link rel="stylesheet" href="../../assets/pygments.css?v=9c5ac07573">
+<link rel="stylesheet" href="../../assets/print.css?v=9c5ac07573" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,7 +29,7 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../../index.html">Documentation</a> › Reference › <span aria-current="page">sbtk.shape</span></nav>
 <article>
 <h1 id="top"><code>sbtk.shape</code>: Shape models</h1>
-<p class="lastedit">Last edited October 20, 2026</p>
+<p class="lastedit">Last edited October 21, 2026</p>
 <table class="overview"><thead><tr><th>Function</th><th>Purpose</th></tr></thead><tbody>
 <tr><td><a class="xref xref-fn" href="#sbtk.shape.bundled"><code>bundled</code></a></td><td>A shape model that ships with SBTK, by short name.</td></tr>
 <tr><td><a class="xref xref-fn" href="#sbtk.shape.ellipsoid"><code>ellipsoid</code></a></td><td>Triaxial ellipsoid shape model (an icosphere stretched to the semi-axes).</td></tr>
@@ -53,16 +53,16 @@
 </tbody></table>
 <h3 class="api-sub">Description</h3>
 <table class="defs"><tbody>
-<tr><td><code>"didymos"</code></td><td><code>didymos_g_9309mm_spc_obj_0000n00000_v003.obj</code>: DART SPC model v003 at 9.3 m sampling (49,152 facets), the version the Hera radio-science team and the HLP6-G test use</td></tr>
+<tr><td><code>"didymos"</code></td><td><code>didymos_g_9309mm_spc_obj_0000n00000_v003.obj</code>: DART SPC model v003 at 9.3 m sampling (49,152 facets), the version the Hera radio-science team uses</td></tr>
 <tr><td><code>"dimorphos"</code></td><td><code>g_00243mm_spc_obj_dimo_0000n00000_v004_every8.obj</code>: DART SPC model v004 (pre-impact) at 1.94 m sampling (49,152 facets), every 8th point of the high-resolution grid (<a class="xref xref-fn" href="../../reference/api/shape.html#sbtk.shape.reduce_spc">sbtk.shape.reduce_spc</a>)</td></tr>
-<tr><td><code>"didymos_highres"</code></td><td><code>g_01165mm_spc_obj_didy_0000n00000_v003.obj</code>: 1.165 m, 3,145,728 facets</td></tr>
+<tr><td><code>"didymos_highres"</code></td><td><code>g_01165mm_spc_obj_didy_0000n00000_v003.obj</code>: 1.165 m, 3,145,728 facets; the reference model of the HLP6-G test</td></tr>
 <tr><td><code>"dimorphos_highres"</code></td><td><code>g_00243mm_spc_obj_dimo_0000n00000_v004.obj</code>: 0.243 m, 3,145,728 facets</td></tr>
 <tr><td><code>"didymos_every8"</code></td><td><code>g_01165mm_spc_obj_didy_0000n00000_v003_every8.obj</code>: every 8th point of "<code>didymos_highres</code>" (49,152 facets)</td></tr>
 <tr><td><code>"dimorphos_placeholder"</code></td><td>a placeholder shape (not a mission model; kept for the tests)</td></tr>
 <tr><td><code>"bennu"</code></td><td>OSIRIS-REx shape model (<code>bennu_higher_qual</code>)</td></tr>
 <tr><td><code>"example_asteroid"</code></td><td>a synthetic 1.2 km body (projects/template)</td></tr>
 </tbody></table>
-<p>The two high-resolution files (about 160 MB each) are not in git: copy them from the Hera server (End-to-End Test/Shape/) or ESA's SPICE server (spiftp.esac.esa.int/data/SPICE/HERA/kernels/dsk/) into data/shapes/. See data/shapes/README.md for every file. For any other shape model use <a class="xref xref-fn" href="../../reference/api/shape.html#sbtk.shape.load">sbtk.shape.load</a>(file, unit).</p>
+<p>The two high-resolution files (about 160 MB each) are not in git: copy them from the Hera server (End-to-End Test/HLP6G BlindTest/inputs/Reference models/) or ESA's SPICE server (spiftp.esac.esa.int/data/SPICE/HERA/kernels/dsk/) into data/shapes/. See data/shapes/README.md for every file. For any other shape model use <a class="xref xref-fn" href="../../reference/api/shape.html#sbtk.shape.load">sbtk.shape.load</a>(file, unit).</p>
 <h3 class="api-sub">Example</h3>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">body = <a class="xref xref-fn" href="../../reference/api/body.html#sbtk.body.from_mass">sbtk.body.from_mass</a>(&quot;Didymos&quot;, <a class="xref xref-fn" href="../../reference/api/shape.html#sbtk.shape.bundled">sbtk.shape.bundled</a>(&quot;didymos&quot;), 5.273e11, 0.43);
 big  = <a class="xref xref-fn" href="../../reference/api/shape.html#sbtk.shape.bundled">sbtk.shape.bundled</a>(&quot;dimorphos_highres&quot;);                <span class="c">% 3 s to read</span></code></pre></div>
@@ -225,11 +225,11 @@ small = <a class="xref xref-fn" href="../../reference/api/shape.html#sbtk.shape.
 </section>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../../reference/api/units.html" rel="prev"><span>Previous</span>sbtk.units</a><a class="next" href="../../reference/api/body.html" rel="next"><span>Next</span>sbtk.body</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-20.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-21.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#sbtk.shape.bundled">sbtk.shape.bundled</a></li><li class="lvl2"><a href="#sbtk.shape.ellipsoid">sbtk.shape.ellipsoid</a></li><li class="lvl2"><a href="#sbtk.shape.from_arrays">sbtk.shape.from_arrays</a></li><li class="lvl2"><a href="#sbtk.shape.load">sbtk.shape.load</a></li><li class="lvl2"><a href="#sbtk.shape.properties">sbtk.shape.properties</a></li><li class="lvl2"><a href="#sbtk.shape.reduce">sbtk.shape.reduce</a></li><li class="lvl2"><a href="#sbtk.shape.reduce_spc">sbtk.shape.reduce_spc</a></li><li class="lvl2"><a href="#sbtk.shape.write_obj">sbtk.shape.write_obj</a></li></ul></nav>
 </div>
-<script src="../../assets/search-index.js?v=8de7f0aaef"></script>
-<script src="../../assets/site.js?v=8de7f0aaef"></script>
+<script src="../../assets/search-index.js?v=9c5ac07573"></script>
+<script src="../../assets/site.js?v=9c5ac07573"></script>
 </body>
 </html>

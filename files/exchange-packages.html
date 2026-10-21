@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Exchange packages — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=8de7f0aaef">
-<link rel="stylesheet" href="../assets/pygments.css?v=8de7f0aaef">
-<link rel="stylesheet" href="../assets/print.css?v=8de7f0aaef" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=9c5ac07573">
+<link rel="stylesheet" href="../assets/pygments.css?v=9c5ac07573">
+<link rel="stylesheet" href="../assets/print.css?v=9c5ac07573" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,7 +29,7 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Files › <span aria-current="page">Exchange packages</span></nav>
 <article>
 <h1 id="exchange-packages">Exchange packages<a class="headerlink" href="#exchange-packages" title="Link to this section">#</a></h1>
-<p class="lastedit">Last edited October 20, 2026</p>
+<p class="lastedit">Last edited October 21, 2026</p>
 <p>Exchange packages carry measurements, interior models and solutions between teams, for example in a blind test where
 one team simulates measurements of an interior it keeps hidden and other teams invert them. They are plain text with
 the units, frame and normalization written in them, and can be read without SBTK.</p>
@@ -116,8 +116,12 @@ Every column and key with a unit ends with it; NaN marks a value that is not pro
 <td><code>l,m,C,S</code>, fully normalized, with <code>sigma_C,sigma_S</code> when the values have uncertainties: from degree 1 about the origin of the shape model file, or from degree 2 about the center of mass (<a href="#expansion-point">Expansion point</a>).</td>
 </tr>
 <tr>
+<td><code>gravity_field_unnormalized.txt</code></td>
+<td>The same coefficients unnormalized, <span class="nobr"><math alttext="C_lm = N_lm C_lm" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>C</mi><mrow><mi>l</mi><mi>m</mi></mrow></msub><mo>&#x0003D;</mo><msub><mi>N</mi><mrow><mi>l</mi><mi>m</mi></mrow></msub><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mi>l</mi><mi>m</mi></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="S_lm = N_lm S_lm" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>S</mi><mrow><mi>l</mi><mi>m</mi></mrow></msub><mo>&#x0003D;</mo><msub><mi>N</mi><mrow><mi>l</mi><mi>m</mi></mrow></msub><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mi>l</mi><mi>m</mi></mrow></msub></mrow></math></span> (<a href="../conventions/gravity-coefficients.html">Gravity coefficients</a>), and their 1σ when they have one.</td>
+</tr>
+<tr>
 <td><code>gravity_covariance.txt</code></td>
-<td>Full covariance of those coefficients; rows and columns labeled. Only when the values have uncertainties.</td>
+<td>Full covariance of the normalized coefficients; rows and columns labeled. Only when the values have uncertainties.</td>
 </tr>
 <tr>
 <td><code>center_of_mass.txt</code></td>
@@ -133,7 +137,11 @@ Every column and key with a unit ends with it; NaN marks a value that is not pro
 </tr>
 <tr>
 <td><code>&lt;shape&gt;.obj</code></td>
-<td>The shape model the data were made with, in km, in the frame of every position of the package (<a href="#the-shape-model-of-a-package">The shape model of a package</a>).</td>
+<td>The shape model the data were made with, in km, in the frame of every position of the package (<a href="#the-shape-model-of-a-package">The shape model of a package</a>). Not included when it is one of SBTK's shape model files as distributed (<code>data/shapes/</code>), such as the agreed HLP6 models: the README then names the file and its MD5 checksum.</td>
+</tr>
+<tr>
+<td><code>potential_acceleration.txt</code></td>
+<td>Optional (<a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_potential"><code>sbtk.exchange.write_potential</code></a>): the gravitational potential and acceleration at given points, in SI units (<a href="#potential-and-acceleration-at-points">Potential and acceleration at points</a>).</td>
 </tr>
 </tbody>
 </table>
@@ -167,7 +175,8 @@ Every column and key with a unit ends with it; NaN marks a value that is not pro
 </tbody>
 </table>
 <p><code>center_of_mass.txt</code> gives the center of mass and the center of figure in both, and <code>conventions.txt</code> states which
-point the package uses. The body is built from the package's shape model and GM. A libration ratio, which is defined
+point the package uses. The body is built from the package's shape model and GM; <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a> reads the
+shape model from the package, or from <code>data/shapes/</code> when the package names a file it does not include. A libration ratio, which is defined
 about the center of mass, becomes the row <span class="nobr"><math alttext="(B-A) - k I_zz = 0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>B</mi><mo>&#x02212;</mo><mi>A</mi><mo stretchy="false">&#x00029;</mo><mo>&#x02212;</mo><mi>k</mi><mspace width="0.167em" /><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math></span> with σ = <span class="nobr"><math alttext="σ_k I_zz" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003C3;</mi><mi>k</mi></msub><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub></mrow></math>,</span> using the measured
 <span class="nobr"><math alttext="I_zz" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub></mrow></math></span> if the package has one and that of a homogeneous body otherwise.</p>
 <p>The files state only what applies to the package. Those of a measurement package with uncertainties and noise, made
@@ -176,6 +185,7 @@ by <code>documentation/tools/make_samples.m</code>:</p>
 Prepared by Example team
 
 SUMMARY
+  shape model       didymos_g_9309mm_spc_obj_0000n00000_v003.obj, not included (MD5 f9b6db1811f6c65306fc67f9d1ffeeb5)
   GM                3.51935839e-08 km^3/s^2, mass 5.273000e+11 kg
   bulk density      2592.98 kg/m^3 (mass / shape model volume 0.203356 km^3)
   gravity field     degrees 2 to 4, reference radius 0.43 km, about the center of mass
@@ -186,11 +196,11 @@ SUMMARY
 
 FILES
   gravity_field.txt
+  gravity_field_unnormalized.txt
   gravity_covariance.txt
   center_of_mass.txt
   moments_of_inertia.txt
-  conventions.txt
-  didymos_g_9309mm_spc_obj_0000n00000_v003.obj shape model</code></pre></div>
+  conventions.txt</code></pre></div>
 <div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text"># product: gravity field, spherical-harmonic coefficients
 # data_set: DOC-DATA1-Didymos
 # body: Didymos
@@ -251,8 +261,10 @@ Iyz,-1.855098124365382e-03,2.000000000000000e-03,M R_ref^2
 libration_ratio,8.070726840715539e-02,2.000000000000000e-02,1</code></pre></div>
 <h3 id="the-shape-model-of-a-package">The shape model of a package<a class="headerlink" href="#the-shape-model-of-a-package" title="Link to this section">#</a></h3>
 <p>A package's shape model is the one the data were made with, in the frame of every position of the package. The HLP6
-makers send the shape model file as distributed, unchanged, with its original name
-(<a href="../conventions/gravity-frames.html#makers">Frames of a gravity field</a>). A maker who changes the frame (tutorial
+makers use the agreed shape model file as distributed, unchanged, in its own frame
+(<a href="../conventions/gravity-frames.html#makers">Frames of a gravity field</a>). Every team has that file, and it never
+changes, so a package made with it does not include it: <code>README.txt</code> names it and gives its MD5 checksum, which
+<code>md5 -q &lt;file&gt;</code> (macOS) or <code>md5sum &lt;file&gt;</code> (Linux) reproduces, and every other file names it in its header. A maker who changes the frame (tutorial
 <a href="../examples/tutorials.html#ex09-moved-and-rotated-package">ex09</a>) sends the original shape model moved and rotated into
 the new frame with <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.to_frame"><code>sbtk.body.to_frame</code></a>: every vertex becomes
 <span class="nobr"><math alttext="x&#x27; = ( x - c) A" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi mathvariant="bold">x</mi><mi>&#x02032;</mi></msup><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><mi mathvariant="bold">x</mi><mo>&#x02212;</mo><mi mathvariant="bold">c</mi><mo stretchy="false">&#x00029;</mo><mspace width="0.167em" /><mi>A</mi></mrow></math>,</span> with <span class="nobr"><math alttext="c" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi mathvariant="bold">c</mi></mrow></math></span> the center of mass of the true model and the columns of
@@ -313,6 +325,16 @@ The FRAME section of such a package, made by <code>documentation/tools/make_samp
   (row vectors, km), and o and the columns of A are the origin and the axes of this frame
   in the original file. Use this package's shape model file with its data, not the
   original file.</code></pre></div>
+<h3 id="potential-and-acceleration-at-points">Potential and acceleration at points<a class="headerlink" href="#potential-and-acceleration-at-points" title="Link to this section">#</a></h3>
+<p><a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_potential"><code>sbtk.exchange.write_potential</code></a> adds <code>potential_acceleration.txt</code> to a package: one row per point with its position
+<code>x_m,y_m,z_m</code> in the frame of the shape model file, the potential <code>U_m2_s2</code> and the acceleration
+<code>ax_m_s2,ay_m_s2,az_m_s2</code>, in SI units as the HLP6 makers' cross-validation asks. The potential is positive,
+<span class="nobr"><math alttext="U = G∫ ρ/| r - r&#x27;| dV" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>U</mi><mo>&#x0003D;</mo><mi>G</mi><mo>&#x0222B;</mo><mi>&#x003C1;</mi><mo>&#x0002F;</mo><mo stretchy="false">&#x0007C;</mo><mi mathvariant="bold">r</mi><mo>&#x02212;</mo><msup><mi mathvariant="bold">r</mi><mi>&#x02032;</mi></msup><mo stretchy="false">&#x0007C;</mo><mspace width="0.167em" /><mi>d</mi><mi>V</mi></mrow></math>,</span> the acceleration is its gradient, and the rotation of the body is not
+included. The header states how the values were computed (<a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.field_at"><code>sbtk.gravity.field_at</code></a>): exactly for a homogeneous
+body, otherwise with the departures from the background density on a grid of cubes
+(<a href="../models/forward-model.html#potential-and-acceleration-at-points">Potential and acceleration at points</a>). The
+function works for any model; the HLP6 makers give it for the homogeneous Didymos
+(<code>examples/make_didymos_homogeneous.m</code>).</p>
 <h3 id="packages-of-exact-values">Packages of exact values<a class="headerlink" href="#packages-of-exact-values" title="Link to this section">#</a></h3>
 <p>A set without any uncertainties, such as the exact values of a true model (<a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a>), is written as a
 package of exact values:</p>
@@ -328,6 +350,7 @@ them, made by <code>documentation/tools/make_samples.m</code>:</p>
 Prepared by Example team
 
 SUMMARY
+  shape model       didymos_g_9309mm_spc_obj_0000n00000_v003.obj, not included (MD5 f9b6db1811f6c65306fc67f9d1ffeeb5)
   GM                3.51935839e-08 km^3/s^2, mass 5.273000e+11 kg
   bulk density      2592.98 kg/m^3 (mass / shape model volume 0.203356 km^3)
   gravity field     degrees 1 to 4, reference radius 0.43 km, about the origin of the shape model file
@@ -337,10 +360,10 @@ SUMMARY
 
 FILES
   gravity_field.txt
+  gravity_field_unnormalized.txt
   center_of_mass.txt
   moments_of_inertia.txt
-  conventions.txt
-  didymos_g_9309mm_spc_obj_0000n00000_v003.obj shape model</code></pre></div>
+  conventions.txt</code></pre></div>
 <div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text"># product: center of mass and center of figure
 # data_set: DOC-DATA2-Didymos
 # body: Didymos
@@ -494,6 +517,8 @@ GRAVITY FIELD COEFFICIENT NORMALIZATION
   where P_lm are the associated Legendre functions without the factor (-1)^m. For example,
     N_20 = sqrt(5), N_21 = sqrt(5/3), N_22 = sqrt(5/12), N_30 = sqrt(7).
   Zonal coefficients: J_l = -C_l0 = -sqrt(2l + 1) Cbar_l0.
+  gravity_field_unnormalized.txt gives the same coefficients unnormalized:
+    C_lm = N_lm Cbar_lm,   S_lm = N_lm Sbar_lm.
 
   MATLAB
     N = sqrt((2 - (m == 0)) .* (2*l + 1) .* factorial(l - m) ./ factorial(l + m));
@@ -541,11 +566,11 @@ DEGREE 1 AND THE CENTER OF MASS
 </table>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../files/results-folders.html" rel="prev"><span>Previous</span>Results folders and figures</a><a class="next" href="../examples/density-models.html" rel="next"><span>Next</span>Density models by component type</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-20.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-21.</footer>
 </main>
-<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#file-layout">File layout</a></li><li class="lvl2"><a href="#measurement-package">Measurement package</a></li><li class="lvl3"><a href="#expansion-point">Expansion point</a></li><li class="lvl3"><a href="#the-shape-model-of-a-package">The shape model of a package</a></li><li class="lvl3"><a href="#packages-of-exact-values">Packages of exact values</a></li><li class="lvl2"><a href="#interior-model-package">Interior-model package</a></li><li class="lvl2"><a href="#solution-package">Solution package</a></li><li class="lvl2"><a href="#density-grid">Density grid</a></li><li class="lvl2"><a href="#conventions.txt">conventions.txt</a></li><li class="lvl2"><a href="#other-formats">Other formats</a></li></ul></nav>
+<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#file-layout">File layout</a></li><li class="lvl2"><a href="#measurement-package">Measurement package</a></li><li class="lvl3"><a href="#expansion-point">Expansion point</a></li><li class="lvl3"><a href="#the-shape-model-of-a-package">The shape model of a package</a></li><li class="lvl3"><a href="#potential-and-acceleration-at-points">Potential and acceleration at points</a></li><li class="lvl3"><a href="#packages-of-exact-values">Packages of exact values</a></li><li class="lvl2"><a href="#interior-model-package">Interior-model package</a></li><li class="lvl2"><a href="#solution-package">Solution package</a></li><li class="lvl2"><a href="#density-grid">Density grid</a></li><li class="lvl2"><a href="#conventions.txt">conventions.txt</a></li><li class="lvl2"><a href="#other-formats">Other formats</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=8de7f0aaef"></script>
-<script src="../assets/site.js?v=8de7f0aaef"></script>
+<script src="../assets/search-index.js?v=9c5ac07573"></script>
+<script src="../assets/site.js?v=9c5ac07573"></script>
 </body>
 </html>

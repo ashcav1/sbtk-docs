@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Validation and tests — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=8de7f0aaef">
-<link rel="stylesheet" href="../assets/pygments.css?v=8de7f0aaef">
-<link rel="stylesheet" href="../assets/print.css?v=8de7f0aaef" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=9c5ac07573">
+<link rel="stylesheet" href="../assets/pygments.css?v=9c5ac07573">
+<link rel="stylesheet" href="../assets/print.css?v=9c5ac07573" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,9 +29,11 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Validation › <span aria-current="page">Validation and tests</span></nav>
 <article>
 <h1 id="validation-and-tests">Validation and tests<a class="headerlink" href="#validation-and-tests" title="Link to this section">#</a></h1>
-<p class="lastedit">Last edited October 20, 2026</p>
-<p>SBTK 1.0.0 has 157 unit and integration tests in MATLAB's unit-test framework. They run with</p>
-<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">run(fullfile(<a class="xref xref-fn" href="../reference/api/sbtk.html#sbtk.root">sbtk.root</a>, &quot;tests&quot;, &quot;run_tests.m&quot;))      <span class="c">% about 6 minutes; writes tests/reports/test_report.txt</span></code></pre></div>
+<p class="lastedit">Last edited October 21, 2026</p>
+<p>SBTK 1.0.0 has 164 unit and integration tests in MATLAB's unit-test framework. They run with</p>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">run(fullfile(<a class="xref xref-fn" href="../reference/api/sbtk.html#sbtk.root">sbtk.root</a>, &quot;tests&quot;, &quot;run_tests.m&quot;))      <span class="c">% about 40 minutes; writes tests/reports/test_report.txt</span></code></pre></div>
+<p>Most of the time goes to <code>tests/integration/test_maker_scripts.m</code>, which runs three HLP6 maker scripts on the
+full-resolution shape models (3 million facets, degree 10).</p>
 <p>This page states what the tests check and with what tolerance, as written in the test files. It makes no claims
 beyond them. Unit tests use a small ellipsoid body (<code>tests/unit/small_body.m</code>); validation tests use an ellipsoid with
 semi-axes 0.5 × 0.4 × 0.3 km (20,480 facets) and the 9.3 m Didymos model with a bulk density of 2600 kg/m³ and
@@ -191,6 +193,21 @@ semi-axes 0.5 × 0.4 × 0.3 km (20,480 facets) and the 9.3 m Didymos model with 
 <td>10⁻¹² km; obj precision for the center of figure</td>
 </tr>
 <tr>
+<td><code>testUnnormalizedCoefficients</code></td>
+<td><code>gravity_field_unnormalized.txt</code> gives the coefficients of <code>gravity_field.txt</code> times <span class="nobr"><math alttext="N_lm" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>N</mi><mrow><mi>l</mi><mi>m</mi></mrow></msub></mrow></math>,</span> and their 1σ for values with uncertainties.</td>
+<td>relative 10⁻¹⁴</td>
+</tr>
+<tr>
+<td><code>testShippedShapeModelNotIncluded</code></td>
+<td>A package made with one of SBTK's shape model files names it with its MD5 checksum but does not include it; <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a> reads it from <code>data/shapes/</code>.</td>
+<td>vertices exact</td>
+</tr>
+<tr>
+<td><code>testWritePotential</code></td>
+<td><code>potential_acceleration.txt</code> gives the positions, potential and acceleration of <a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.polyhedron"><code>sbtk.gravity.polyhedron</code></a> in SI units and is listed once in <code>README.txt</code>.</td>
+<td>relative 10⁻¹⁴</td>
+</tr>
+<tr>
 <td><code>testGridDefinition</code></td>
 <td>Density-grid cell centers lie on multiples of the spacing and the cells fill the body; grids of different spacing are rejected.</td>
 <td>volume within 5% at 50 m cells</td>
@@ -269,7 +286,7 @@ generalized.</p>
 </tr>
 <tr>
 <td><code>tests/unit/test_gravity.m</code></td>
-<td>Uniform body, mass kept by the background, center-of-mass shift, labels, non-star-shaped meshes rejected, components clipped to the body. <code>testCenterOfMassFrame</code>: about the center of mass degree 1 is 0; in principal axes <span class="nobr"><math alttext="C_21 = S_21 = S_22 = 0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub><mo>&#x0003D;</mo><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub><mo>&#x0003D;</mo><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math>,</span> each degree's power and each degree's total variance are unchanged, and <span class="nobr"><math alttext="C_20" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>20</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="C_22" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub></mrow></math></span> equal the values from the principal moments; a measurement set, the same set without degree 1, and a set lacking a coefficient.</td>
+<td>Uniform body, mass kept by the background, center-of-mass shift, labels, non-star-shaped meshes rejected, components clipped to the body. <code>testPolyhedronAgreesWithCube</code>: the polyhedron formula and the cube formula give the same potential and acceleration of a cube, outside, on a face (on the edge between its triangles) and inside (to 10⁻¹⁰). <code>testPolyhedronField</code>: inside the body the divergence of the acceleration is <span class="nobr"><math alttext="-4π Gρ" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mn>4</mn><mi>&#x003C0;</mi><mi>G</mi><mi>&#x003C1;</mi></mrow></math>,</span> outside the acceleration is the gradient of the potential (to 10⁻⁶), and far away the potential is <span class="nobr"><math alttext="GM/r" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>G</mi><mi>M</mi><mo>&#x0002F;</mo><mi>r</mi></mrow></math>.</span> <code>testFieldAt</code>: a homogeneous model gives the polyhedron (to 10⁻¹²); a sphere of excess density adds the field of its mass (within 2% on a 10 m grid). <code>testSmallOverhangAccepted</code>: seen from a point where one facet of a 0.1 mm dent faces it, the signed cones give the volume (to 10⁻¹²) and the center of figure (to 10⁻¹² km); a point outside the body is rejected. <code>testCenterOfMassFrame</code>: about the center of mass degree 1 is 0; in principal axes <span class="nobr"><math alttext="C_21 = S_21 = S_22 = 0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub><mo>&#x0003D;</mo><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub><mo>&#x0003D;</mo><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math>,</span> each degree's power and each degree's total variance are unchanged, and <span class="nobr"><math alttext="C_20" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>20</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="C_22" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub></mrow></math></span> equal the values from the principal moments; a measurement set, the same set without degree 1, and a set lacking a coefficient.</td>
 </tr>
 <tr>
 <td><code>tests/unit/test_frames.m</code></td>
@@ -301,7 +318,7 @@ generalized.</p>
 </tr>
 <tr>
 <td><code>tests/integration/test_maker_scripts.m</code></td>
-<td>The seven HLP6 maker scripts in <code>examples/</code> pass the code analyzer; <code>make_didymos_3</code>, <code>make_dimorphos_3</code> and <code>make_didymos_homogeneous</code> run, and their packages have exact values only, in the frame and about the origin of the original shape model file, which they contain unchanged (degree 1 listed, <span class="nobr"><math alttext="C_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="S_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math></span> not zero), every boulder or void of the model, and no local paths. The homogeneous package's degree 1 gives the center of figure (to 10⁻⁹ km) and it has all six inertia elements.</td>
+<td>The seven HLP6 maker scripts in <code>examples/</code> pass the code analyzer; <code>make_didymos_3</code>, <code>make_dimorphos_3</code> and <code>make_didymos_homogeneous</code> run on the full-resolution models, and their packages have exact values only, to degree 10, normalized and unnormalized, in the frame and about the origin of the shape model file (degree 1 listed, <span class="nobr"><math alttext="C_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="S_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math></span> not zero), which they name with its MD5 checksum and do not include, every boulder or void of the model, and no local paths. The homogeneous package has the agreed GM and reference radius, its degree 1 gives the center of figure (to 10⁻⁹ km), it has all six inertia elements and the potential and acceleration at the 20 points of the makers' cross-validation.</td>
 </tr>
 </tbody>
 </table>
@@ -309,11 +326,11 @@ generalized.</p>
 brute-force integration, uncertainty calibration) are run separately and are not part of the test suite.</p>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../reference/internal.html" rel="prev"><span>Previous</span>Internal functions</a><span></span></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-20.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-21.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#comparison-with-independent-results">Comparison with independent results</a></li><li class="lvl2"><a href="#conventions-and-frames">Conventions and frames</a></li><li class="lvl2"><a href="#inversion-behavior">Inversion behavior</a></li><li class="lvl2"><a href="#reproduction-of-published-and-earlier-results">Reproduction of published and earlier results</a></li><li class="lvl2"><a href="#other-tests">Other tests</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=8de7f0aaef"></script>
-<script src="../assets/site.js?v=8de7f0aaef"></script>
+<script src="../assets/search-index.js?v=9c5ac07573"></script>
+<script src="../assets/site.js?v=9c5ac07573"></script>
 </body>
 </html>

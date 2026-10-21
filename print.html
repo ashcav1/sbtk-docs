@@ -11,7 +11,7 @@
 <p>Documentation of SBTK (Small Body Toolkit) version 1.0.0: density distributions, gravity coefficients and
 moments of inertia of small bodies from polyhedral shape models, and estimation of densities from gravity and
 inertia measurements.</p>
-<p>Generated from the SBTK source on 2026-10-20. The website version is at <a href="https://ashcav1.github.io/sbtk-docs/">https://ashcav1.github.io/sbtk-docs/</a>.</p>
+<p>Generated from the SBTK source on 2026-10-21. The website version is at <a href="https://ashcav1.github.io/sbtk-docs/">https://ashcav1.github.io/sbtk-docs/</a>.</p>
 <h2 class="toc-title">Contents</h2><ol class="printtoc"><li><a href="#index">SBTK: Small Body Toolkit</a></li><li><a href="#overview-limitations">Assumptions and limitations</a></li><li><a href="#getting-started-installation">Installation</a></li><li><a href="#getting-started-first-script">First script</a></li><li><a href="#conventions-units">Units</a></li><li><a href="#conventions-coordinates">Coordinate systems and origins</a></li><li><a href="#conventions-gravity-coefficients">Gravity coefficients</a></li><li><a href="#conventions-gravity-frames">Frames of a gravity field</a></li><li><a href="#conventions-moments-of-inertia">Moments of inertia</a></li><li><a href="#models-shape-models">Shape models</a></li><li><a href="#models-density-distributions">Density distributions</a></li><li><a href="#models-forward-model">Gravity and moment calculations</a></li><li><a href="#inversion-measurements">Measurement sets</a></li><li><a href="#inversion-density-estimation">Density estimation</a></li><li><a href="#inversion-statistics">Goodness of fit and model comparison</a></li><li><a href="#files-results-folders">Results folders and figures</a></li><li><a href="#files-exchange-packages">Exchange packages</a></li><li><a href="#examples-density-models">Density models by component type</a></li><li><a href="#examples-calculations">Calculations</a></li><li><a href="#examples-tutorials">Tutorial scripts</a></li><li><a href="#projects-template">Project template</a></li><li><a href="#projects-bennu">Bennu</a></li><li><a href="#projects-hera-blind-test">Hera blind test</a></li><li><a href="#projects-didymos-dimorphos-values">Didymos and Dimorphos values</a></li><li><a href="#reference-api">API reference</a></li><li><a href="#reference-api-sbtk">sbtk</a></li><li><a href="#reference-api-units">sbtk.units</a></li><li><a href="#reference-api-shape">sbtk.shape</a></li><li><a href="#reference-api-body">sbtk.body</a></li><li><a href="#reference-api-interior">sbtk.interior</a></li><li><a href="#reference-api-gravity">sbtk.gravity</a></li><li><a href="#reference-api-data">sbtk.data</a></li><li><a href="#reference-api-invert">sbtk.invert</a></li><li><a href="#reference-api-compare">sbtk.compare</a></li><li><a href="#reference-api-exchange">sbtk.exchange</a></li><li><a href="#reference-api-io">sbtk.io</a></li><li><a href="#reference-api-plot">sbtk.plot</a></li><li><a href="#reference-data-structures">Data structures</a></li><li><a href="#reference-errors">Error identifiers</a></li><li><a href="#reference-internal">Internal functions</a></li><li><a href="#validation-tests">Validation and tests</a></li></ol>
 </section>
 <section class="printpage" id="index"><p class="printcat">Overview</p><h1 id="index--sbtk-small-body-toolkit">SBTK: Small Body Toolkit<a class="headerlink" href="#index--sbtk-small-body-toolkit" title="Link to this section">#</a></h1>
@@ -130,8 +130,8 @@ item links to the page where the behavior is described.</p>
 <h2 id="overview-limitations--geometry">Geometry<a class="headerlink" href="#overview-limitations--geometry" title="Link to this section">#</a></h2>
 <ul>
 <li>The shape model must be closed, ordered outward and star-shaped about the expansion origin: every facet must face
-  away from it (<a href="#models-shape-models">Shape models</a>). Bodies with overhangs that violate this cannot be
-  integrated.</li>
+  away from it, except small overhangs holding less than 10⁻⁶ of the volume (<a href="#models-shape-models">Shape models</a>).
+  Bodies with larger overhangs cannot be integrated.</li>
 <li>Layers and sectors are defined along rays from the expansion origin (the center of mass), not along the local surface
   normal (<a href="#conventions-coordinates">Coordinate systems</a>).</li>
 <li>The <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis of the shape-model frame is taken as the spin axis and as a principal axis in the definition of the
@@ -934,8 +934,8 @@ given by <span class="nobr"><math alttext="S_22/ C_22" xmlns="http://www.w3.org/
 <h3 id="conventions-gravity-frames--makers">Makers<a class="headerlink" href="#conventions-gravity-frames--makers" title="Link to this section">#</a></h3>
 <p>The HLP6 makers agreed (20 October 2026) on the first of these two choices.</p>
 <ol>
-<li><strong>The frame and origin of the shape model file, as distributed</strong> (the HLP6 choice). The package contains the
-   shape model file unchanged. The gravity field is expanded about its origin, so degree 1 gives the center of mass and
+<li><strong>The frame and origin of the shape model file, as distributed</strong> (the HLP6 choice). The package names the
+   shape model file, which every team has, and its MD5 checksum. The gravity field is expanded about its origin, so degree 1 gives the center of mass and
    is not zero, and <span class="nobr"><math alttext="C_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="S_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math></span> are those of the whole body in the shape-model axes (the homogeneous
    Didymos v003 alone has <span class="nobr"><math alttext="C_21 = 3.7×10^-3" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub><mo>&#x0003D;</mo><mn>3.7</mn><mi>&#x000D7;</mi><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>3</mn></mrow></msup></mrow></math>)</span>. The moments of inertia are about the same origin. Make the
    exact values with <a class="xref xref-fn" href="#reference-api-data--sbtk.data.simulate"><code>sbtk.data.simulate</code></a> and expand them about <code>[0 0 0]</code> with <a class="xref xref-fn" href="#reference-api-data--sbtk.data.expand_about"><code>sbtk.data.expand_about</code></a>. Nothing
@@ -1173,7 +1173,11 @@ the mutual dynamics of a binary are not included.</p></section><section class="p
   the surface once.</li>
 </ul>
 <p><a class="xref xref-fn" href="#reference-api-shape--sbtk.shape.properties"><code>sbtk.shape.properties</code></a> reports all three, the last about the centroid (<a class="xref xref-st" href="#reference-data-structures--props"><code>props</code></a>). <a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.geometry"><code>sbtk.gravity.geometry</code></a> stops
-with <a class="xref xref-err" href="#reference-errors--sbtk:gravity:notStarShaped"><code>sbtk:gravity:notStarShaped</code></a> when a facet faces the expansion origin.</p>
+with <a class="xref xref-err" href="#reference-errors--sbtk:gravity:notStarShaped"><code>sbtk:gravity:notStarShaped</code></a> when facets face the expansion origin, unless their cones hold less than <span class="nobr"><math alttext="10^-6" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>6</mn></mrow></msup></mrow></math></span>
+of the volume. Such small overhangs occur in high-resolution models: seen from a point 4.6 m from the center of
+figure of the 0.243 m Dimorphos model, two facets of 0.025 m² face it, with <span class="nobr"><math alttext="2.5×10^-9" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>2.5</mn><mi>&#x000D7;</mi><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>9</mn></mrow></msup></mrow></math></span> of the volume. Their
+cones count with their sign, which is exact for the body (the signed cones of any closed mesh add up to its volume
+integrals) and leaves an error of the order of their volume in layers and sectors.</p>
 <div class="codeblock codeblock-code" id="models-shape-models--shape-check"><div class="codehead"><span>MATLAB script: Checking a shape model</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><span class="nb">run</span><span class="p">(</span><span class="s">&quot;/path/to/SBTK/sbtk_setup.m&quot;</span><span class="p">)</span>
 shape = <a class="xref xref-fn" href="#reference-api-shape--sbtk.shape.bundled">sbtk.shape.bundled</a>(&quot;didymos&quot;);
 p = <a class="xref xref-fn" href="#reference-api-shape--sbtk.shape.properties">sbtk.shape.properties</a>(shape)
@@ -1292,8 +1296,9 @@ full-resolution models:</p>
 </tbody>
 </table>
 <p>Differences of this size between the shape used to simulate data and the shape used to invert them act as a systematic
-error in the coefficients. Measurement packages therefore include the shape model they were made with
-(<a href="#files-exchange-packages">Exchange packages</a>).</p>
+error in the coefficients. Measurement packages therefore name the shape model they were made with, and its MD5
+checksum, and include it unless it is one of SBTK's files as distributed (<a href="#files-exchange-packages">Exchange packages</a>).
+The HLP6 makers agreed on <code>didymos_highres</code>, the 1.165 m model (<a href="#projects-didymos-dimorphos-values">Didymos and Dimorphos values</a>).</p>
 <h2 id="models-shape-models--reducing-high-resolution-models">Reducing high-resolution models<a class="headerlink" href="#models-shape-models--reducing-high-resolution-models" title="Link to this section">#</a></h2>
 <p>High-resolution shape models have more facets than coefficients to degree 4 or 5 require. Two functions reduce them:</p>
 <ul>
@@ -1491,7 +1496,8 @@ the density at the center of figure and 300 m from it along <span class="nobr"><
 (<a href="#conventions-moments-of-inertia">Moments of inertia</a>) about an expansion origin <span class="nobr"><math alttext="o" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D428;</mi></mrow></math>.</span></p>
 <h2 id="models-forward-model--facet-cones">Facet cones<a class="headerlink" href="#models-forward-model--facet-cones" title="Link to this section">#</a></h2>
 <p><a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.geometry"><code>sbtk.gravity.geometry</code></a><code>(body, origin_km, degree)</code> divides the body into tetrahedral cones, one per surface facet, with
-apex at <span class="nobr"><math alttext="o" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D428;</mi></mrow></math></span> and the facet as base. This partition is exact when the shape is star-shaped about <span class="nobr"><math alttext="o" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D428;</mi></mrow></math>.</span>
+apex at <span class="nobr"><math alttext="o" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D428;</mi></mrow></math></span> and the facet as base. This partition is exact when the shape is star-shaped about <span class="nobr"><math alttext="o" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D428;</mi></mrow></math></span>
+(small overhangs count with their sign: <a href="#models-shape-models">Shape models</a>).
 For every cone <span class="nobr"><math alttext="f" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>f</mi></mrow></math></span> it stores, per unit density (<a class="xref xref-st" href="#reference-data-structures--geo"><code>geo</code></a>):</p>
 <table>
 <thead>
@@ -1577,6 +1583,58 @@ the coefficients to degree <span class="nobr"><math alttext="L" xmlns="http://ww
 <a class="xref xref-fn" href="#reference-api-data--sbtk.data.set_moi_sigma"><code>sbtk.data.set_moi_sigma</code></a>) gives the exact values uncertainties and <a class="xref xref-fn" href="#reference-api-data--sbtk.data.add_noise"><code>sbtk.data.add_noise</code></a> draws one noisy
 realization (<a href="#inversion-measurements">Measurement sets</a>). Selecting which inertia quantities a data set contains:
 <a class="xref xref-fn" href="#reference-api-data--sbtk.data.select_moi"><code>sbtk.data.select_moi</code></a>.</p>
+<h2 id="models-forward-model--potential-and-acceleration-at-points">Potential and acceleration at points<a class="headerlink" href="#models-forward-model--potential-and-acceleration-at-points" title="Link to this section">#</a></h2>
+<p>The spherical-harmonic expansion converges only outside the sphere about its expansion point that encloses the body,
+and slowly near it. For points closer in, or on the surface, SBTK computes the potential and the acceleration from
+the shape model directly:</p>
+<ul>
+<li><a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.polyhedron"><code>sbtk.gravity.polyhedron</code></a>: a homogeneous polyhedron, exactly, with the closed form of Werner and Scheeres
+  (1997, <em>Celestial Mechanics and Dynamical Astronomy</em> 65, 313–344), a sum over the edges and faces of the shape
+  model. It holds outside, on and inside the body; on an edge the edge terms are zero.</li>
+<li><a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.field_at"><code>sbtk.gravity.field_at</code></a>: any model. The background density fills the polyhedron, exactly; the departures from it
+  (components, random field) are taken on the density grid of <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.density_grid"><code>sbtk.exchange.density_grid</code></a>, each cell a uniform
+  cube with the closed form of Nagy, Papp and Benedek (2000, <em>Journal of Geodesy</em> 74, 552–560). A homogeneous model is
+  exact; otherwise the cubes follow the boundaries of the components to within a cell.</li>
+</ul>
+<p>The potential is positive, <span class="nobr"><math alttext="U = G∫ρ/| r - r&#x27;| dV" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>U</mi><mo>&#x0003D;</mo><mi>G</mi><mo>&#x0222B;</mo><mi>&#x003C1;</mi><mo>&#x0002F;</mo><mo stretchy="false">&#x0007C;</mo><mi mathvariant="bold">r</mi><mo>&#x02212;</mo><msup><mi mathvariant="bold">r</mi><mi>&#x02032;</mi></msup><mo stretchy="false">&#x0007C;</mo><mspace width="0.167em" /><mi>d</mi><mi>V</mi></mrow></math>,</span> and the acceleration is its gradient; the
+rotation of the body is not included. <code>tests/unit/test_gravity.m</code> checks that the two closed forms give the same cube
+to <span class="nobr"><math alttext="10^-10" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>10</mn></mrow></msup></mrow></math>,</span> that the divergence of the acceleration is <span class="nobr"><math alttext="-4π Gρ" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mn>4</mn><mi>&#x003C0;</mi><mi>G</mi><mi>&#x003C1;</mi></mrow></math></span> inside the body, and that the acceleration is the
+gradient of the potential.</p>
+<p>For the homogeneous Didymos (1.165 m model, 2600 kg/m³, <span class="nobr"><math alttext="R_ref" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>R</mi><mtext>ref</mtext></msub></mrow></math></span> = 410 m), the expansion about the origin of the
+file compared with the exact potential (the sphere that encloses the body has a radius of 449.7 m):</p>
+<table>
+<thead>
+<tr>
+<th>Distance from the origin</th>
+<th>Expansion to degree 10</th>
+<th>to degree 30</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>492 m (1.2 <span class="nobr"><math alttext="R_ref" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>R</mi><mtext>ref</mtext></msub></mrow></math>)</span></td>
+<td>1.5 × 10⁻⁴</td>
+<td>7.8 × 10⁻⁷</td>
+</tr>
+<tr>
+<td>600 m</td>
+<td>6.7 × 10⁻⁶</td>
+<td>2.2 × 10⁻¹⁰</td>
+</tr>
+<tr>
+<td>707 m</td>
+<td>1.9 × 10⁻⁷</td>
+<td>1.9 × 10⁻¹²</td>
+</tr>
+<tr>
+<td>2449 m</td>
+<td>5.8 × 10⁻¹³</td>
+<td>8 × 10⁻¹⁵</td>
+</tr>
+</tbody>
+</table>
+<p>(relative difference of the potential at one point each). The polyhedron takes about 1 s per point for 3 million
+facets.</p>
 <h2 id="models-forward-model--computation-time">Computation time<a class="headerlink" href="#models-forward-model--computation-time" title="Link to this section">#</a></h2>
 <p>Times measured by <code>tools/benchmark.m</code> on Didymos (49,152 facets, degree 4), MATLAB R2025a on an Apple-silicon laptop:</p>
 <table>
@@ -1609,7 +1667,9 @@ realization (<a href="#inversion-measurements">Measurement sets</a>). Selecting 
 </tr>
 </tbody>
 </table>
-<p>The geometry scales with the number of facets; a 3,145,728-facet model takes about a minute to read and integrate.</p>
+<p>The geometry scales with the number of facets and with the number of coefficients: the agreed 3,145,728-facet
+Didymos model takes 4 s to read and 56 s to integrate to degree 10 (4.5 GB), and a forward model with four
+components then 14 s.</p>
 <h2 id="models-forward-model--example">Example<a class="headerlink" href="#models-forward-model--example" title="Link to this section">#</a></h2>
 <div class="codeblock codeblock-code" id="models-forward-model--forward-example"><div class="codehead"><span>MATLAB script: Coefficients, center of mass and inertia of a model</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><span class="nb">run</span><span class="p">(</span><span class="s">&quot;/path/to/SBTK/sbtk_setup.m&quot;</span><span class="p">)</span>
 body = <a class="xref xref-fn" href="#reference-api-body--sbtk.body.from_mass">sbtk.body.from_mass</a>(&quot;Didymos&quot;, <a class="xref xref-fn" href="#reference-api-shape--sbtk.shape.bundled">sbtk.shape.bundled</a>(&quot;didymos&quot;), 5.273e11, 0.43);
@@ -2417,8 +2477,12 @@ Every column and key with a unit ends with it; NaN marks a value that is not pro
 <td><code>l,m,C,S</code>, fully normalized, with <code>sigma_C,sigma_S</code> when the values have uncertainties: from degree 1 about the origin of the shape model file, or from degree 2 about the center of mass (<a href="#files-exchange-packages--expansion-point">Expansion point</a>).</td>
 </tr>
 <tr>
+<td><code>gravity_field_unnormalized.txt</code></td>
+<td>The same coefficients unnormalized, <span class="nobr"><math alttext="C_lm = N_lm C_lm" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>C</mi><mrow><mi>l</mi><mi>m</mi></mrow></msub><mo>&#x0003D;</mo><msub><mi>N</mi><mrow><mi>l</mi><mi>m</mi></mrow></msub><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mi>l</mi><mi>m</mi></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="S_lm = N_lm S_lm" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>S</mi><mrow><mi>l</mi><mi>m</mi></mrow></msub><mo>&#x0003D;</mo><msub><mi>N</mi><mrow><mi>l</mi><mi>m</mi></mrow></msub><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mi>l</mi><mi>m</mi></mrow></msub></mrow></math></span> (<a href="#conventions-gravity-coefficients">Gravity coefficients</a>), and their 1σ when they have one.</td>
+</tr>
+<tr>
 <td><code>gravity_covariance.txt</code></td>
-<td>Full covariance of those coefficients; rows and columns labeled. Only when the values have uncertainties.</td>
+<td>Full covariance of the normalized coefficients; rows and columns labeled. Only when the values have uncertainties.</td>
 </tr>
 <tr>
 <td><code>center_of_mass.txt</code></td>
@@ -2434,7 +2498,11 @@ Every column and key with a unit ends with it; NaN marks a value that is not pro
 </tr>
 <tr>
 <td><code>&lt;shape&gt;.obj</code></td>
-<td>The shape model the data were made with, in km, in the frame of every position of the package (<a href="#files-exchange-packages--the-shape-model-of-a-package">The shape model of a package</a>).</td>
+<td>The shape model the data were made with, in km, in the frame of every position of the package (<a href="#files-exchange-packages--the-shape-model-of-a-package">The shape model of a package</a>). Not included when it is one of SBTK's shape model files as distributed (<code>data/shapes/</code>), such as the agreed HLP6 models: the README then names the file and its MD5 checksum.</td>
+</tr>
+<tr>
+<td><code>potential_acceleration.txt</code></td>
+<td>Optional (<a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_potential"><code>sbtk.exchange.write_potential</code></a>): the gravitational potential and acceleration at given points, in SI units (<a href="#files-exchange-packages--potential-and-acceleration-at-points">Potential and acceleration at points</a>).</td>
 </tr>
 </tbody>
 </table>
@@ -2468,7 +2536,8 @@ Every column and key with a unit ends with it; NaN marks a value that is not pro
 </tbody>
 </table>
 <p><code>center_of_mass.txt</code> gives the center of mass and the center of figure in both, and <code>conventions.txt</code> states which
-point the package uses. The body is built from the package's shape model and GM. A libration ratio, which is defined
+point the package uses. The body is built from the package's shape model and GM; <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a> reads the
+shape model from the package, or from <code>data/shapes/</code> when the package names a file it does not include. A libration ratio, which is defined
 about the center of mass, becomes the row <span class="nobr"><math alttext="(B-A) - k I_zz = 0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>B</mi><mo>&#x02212;</mo><mi>A</mi><mo stretchy="false">&#x00029;</mo><mo>&#x02212;</mo><mi>k</mi><mspace width="0.167em" /><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math></span> with σ = <span class="nobr"><math alttext="σ_k I_zz" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>&#x003C3;</mi><mi>k</mi></msub><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub></mrow></math>,</span> using the measured
 <span class="nobr"><math alttext="I_zz" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub></mrow></math></span> if the package has one and that of a homogeneous body otherwise.</p>
 <p>The files state only what applies to the package. Those of a measurement package with uncertainties and noise, made
@@ -2477,6 +2546,7 @@ by <code>documentation/tools/make_samples.m</code>:</p>
 Prepared by Example team
 
 SUMMARY
+  shape model       didymos_g_9309mm_spc_obj_0000n00000_v003.obj, not included (MD5 f9b6db1811f6c65306fc67f9d1ffeeb5)
   GM                3.51935839e-08 km^3/s^2, mass 5.273000e+11 kg
   bulk density      2592.98 kg/m^3 (mass / shape model volume 0.203356 km^3)
   gravity field     degrees 2 to 4, reference radius 0.43 km, about the center of mass
@@ -2487,11 +2557,11 @@ SUMMARY
 
 FILES
   gravity_field.txt
+  gravity_field_unnormalized.txt
   gravity_covariance.txt
   center_of_mass.txt
   moments_of_inertia.txt
-  conventions.txt
-  didymos_g_9309mm_spc_obj_0000n00000_v003.obj shape model</code></pre></div>
+  conventions.txt</code></pre></div>
 <div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text"># product: gravity field, spherical-harmonic coefficients
 # data_set: DOC-DATA1-Didymos
 # body: Didymos
@@ -2552,8 +2622,10 @@ Iyz,-1.855098124365382e-03,2.000000000000000e-03,M R_ref^2
 libration_ratio,8.070726840715539e-02,2.000000000000000e-02,1</code></pre></div>
 <h3 id="files-exchange-packages--the-shape-model-of-a-package">The shape model of a package<a class="headerlink" href="#files-exchange-packages--the-shape-model-of-a-package" title="Link to this section">#</a></h3>
 <p>A package's shape model is the one the data were made with, in the frame of every position of the package. The HLP6
-makers send the shape model file as distributed, unchanged, with its original name
-(<a href="#conventions-gravity-frames--makers">Frames of a gravity field</a>). A maker who changes the frame (tutorial
+makers use the agreed shape model file as distributed, unchanged, in its own frame
+(<a href="#conventions-gravity-frames--makers">Frames of a gravity field</a>). Every team has that file, and it never
+changes, so a package made with it does not include it: <code>README.txt</code> names it and gives its MD5 checksum, which
+<code>md5 -q &lt;file&gt;</code> (macOS) or <code>md5sum &lt;file&gt;</code> (Linux) reproduces, and every other file names it in its header. A maker who changes the frame (tutorial
 <a href="#examples-tutorials--ex09-moved-and-rotated-package">ex09</a>) sends the original shape model moved and rotated into
 the new frame with <a class="xref xref-fn" href="#reference-api-body--sbtk.body.to_frame"><code>sbtk.body.to_frame</code></a>: every vertex becomes
 <span class="nobr"><math alttext="x&#x27; = ( x - c) A" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi mathvariant="bold">x</mi><mi>&#x02032;</mi></msup><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><mi mathvariant="bold">x</mi><mo>&#x02212;</mo><mi mathvariant="bold">c</mi><mo stretchy="false">&#x00029;</mo><mspace width="0.167em" /><mi>A</mi></mrow></math>,</span> with <span class="nobr"><math alttext="c" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi mathvariant="bold">c</mi></mrow></math></span> the center of mass of the true model and the columns of
@@ -2614,6 +2686,16 @@ The FRAME section of such a package, made by <code>documentation/tools/make_samp
   (row vectors, km), and o and the columns of A are the origin and the axes of this frame
   in the original file. Use this package's shape model file with its data, not the
   original file.</code></pre></div>
+<h3 id="files-exchange-packages--potential-and-acceleration-at-points">Potential and acceleration at points<a class="headerlink" href="#files-exchange-packages--potential-and-acceleration-at-points" title="Link to this section">#</a></h3>
+<p><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_potential"><code>sbtk.exchange.write_potential</code></a> adds <code>potential_acceleration.txt</code> to a package: one row per point with its position
+<code>x_m,y_m,z_m</code> in the frame of the shape model file, the potential <code>U_m2_s2</code> and the acceleration
+<code>ax_m_s2,ay_m_s2,az_m_s2</code>, in SI units as the HLP6 makers' cross-validation asks. The potential is positive,
+<span class="nobr"><math alttext="U = G∫ ρ/| r - r&#x27;| dV" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>U</mi><mo>&#x0003D;</mo><mi>G</mi><mo>&#x0222B;</mo><mi>&#x003C1;</mi><mo>&#x0002F;</mo><mo stretchy="false">&#x0007C;</mo><mi mathvariant="bold">r</mi><mo>&#x02212;</mo><msup><mi mathvariant="bold">r</mi><mi>&#x02032;</mi></msup><mo stretchy="false">&#x0007C;</mo><mspace width="0.167em" /><mi>d</mi><mi>V</mi></mrow></math>,</span> the acceleration is its gradient, and the rotation of the body is not
+included. The header states how the values were computed (<a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.field_at"><code>sbtk.gravity.field_at</code></a>): exactly for a homogeneous
+body, otherwise with the departures from the background density on a grid of cubes
+(<a href="#models-forward-model--potential-and-acceleration-at-points">Potential and acceleration at points</a>). The
+function works for any model; the HLP6 makers give it for the homogeneous Didymos
+(<code>examples/make_didymos_homogeneous.m</code>).</p>
 <h3 id="files-exchange-packages--packages-of-exact-values">Packages of exact values<a class="headerlink" href="#files-exchange-packages--packages-of-exact-values" title="Link to this section">#</a></h3>
 <p>A set without any uncertainties, such as the exact values of a true model (<a class="xref xref-fn" href="#reference-api-data--sbtk.data.simulate"><code>sbtk.data.simulate</code></a>), is written as a
 package of exact values:</p>
@@ -2629,6 +2711,7 @@ them, made by <code>documentation/tools/make_samples.m</code>:</p>
 Prepared by Example team
 
 SUMMARY
+  shape model       didymos_g_9309mm_spc_obj_0000n00000_v003.obj, not included (MD5 f9b6db1811f6c65306fc67f9d1ffeeb5)
   GM                3.51935839e-08 km^3/s^2, mass 5.273000e+11 kg
   bulk density      2592.98 kg/m^3 (mass / shape model volume 0.203356 km^3)
   gravity field     degrees 1 to 4, reference radius 0.43 km, about the origin of the shape model file
@@ -2638,10 +2721,10 @@ SUMMARY
 
 FILES
   gravity_field.txt
+  gravity_field_unnormalized.txt
   center_of_mass.txt
   moments_of_inertia.txt
-  conventions.txt
-  didymos_g_9309mm_spc_obj_0000n00000_v003.obj shape model</code></pre></div>
+  conventions.txt</code></pre></div>
 <div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text"># product: center of mass and center of figure
 # data_set: DOC-DATA2-Didymos
 # body: Didymos
@@ -2795,6 +2878,8 @@ GRAVITY FIELD COEFFICIENT NORMALIZATION
   where P_lm are the associated Legendre functions without the factor (-1)^m. For example,
     N_20 = sqrt(5), N_21 = sqrt(5/3), N_22 = sqrt(5/12), N_30 = sqrt(7).
   Zonal coefficients: J_l = -C_l0 = -sqrt(2l + 1) Cbar_l0.
+  gravity_field_unnormalized.txt gives the same coefficients unnormalized:
+    C_lm = N_lm Cbar_lm,   S_lm = N_lm Sbar_lm.
 
   MATLAB
     N = sqrt((2 - (m == 0)) .* (2*l + 1) .* factorial(l - m) ./ factorial(l + m));
@@ -3925,40 +4010,45 @@ copies in <code>data/hera_rse/</code>.</p>
 <thead>
 <tr>
 <th>Setting</th>
-<th>Didymos</th>
+<th>Didymos (agreed by the makers, 21 October 2026)</th>
 <th>Dimorphos</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Shape model</td>
-<td>DART v003, 9.3 m sampling, 49,152 facets</td>
-<td>DART v004 (before the impact), every 8th point of the 0.243 m model, 49,152 facets</td>
+<td>DART v003, 1.165 m sampling, 3,145,728 facets</td>
+<td>DART v004 (before the impact), 0.243 m sampling, 3,145,728 facets</td>
+</tr>
+<tr>
+<td>Bulk density</td>
+<td>2600 kg/m³</td>
+<td>1534 kg/m³</td>
 </tr>
 <tr>
 <td>Mass</td>
-<td>5.273 × 10¹¹ kg</td>
+<td>5.299121 × 10¹¹ kg (GM 3.5367926256900638 × 10⁻⁸ km³/s²)</td>
 <td>2.700 × 10⁹ kg</td>
 </tr>
 <tr>
 <td>Reference radius</td>
-<td>0.43 km</td>
+<td>0.41 km</td>
 <td>0.10 km</td>
 </tr>
 <tr>
-<td>Degree</td>
-<td>5</td>
-<td>3</td>
+<td>Degrees the makers send</td>
+<td>1 to 10</td>
+<td>1 to 10</td>
+</tr>
+<tr>
+<td>Degrees the receiving team fits</td>
+<td>1 to 5</td>
+<td>1 to 3</td>
 </tr>
 <tr>
 <td>Density-grid spacing</td>
 <td>0.020 km</td>
 <td>0.005 km</td>
-</tr>
-<tr>
-<td>Bulk density</td>
-<td>2593 kg/m³</td>
-<td>1534 kg/m³</td>
 </tr>
 <tr>
 <td>Frame of the packages</td>
@@ -3967,7 +4057,9 @@ copies in <code>data/hera_rse/</code>.</p>
 </tr>
 </tbody>
 </table>
-<p>Where each of these values comes from, and the alternatives: <a href="#projects-didymos-dimorphos-values">Didymos and Dimorphos values</a>.</p>
+<p>Where each of these values comes from, and the alternatives: <a href="#projects-didymos-dimorphos-values">Didymos and Dimorphos values</a>.
+A run on the full-resolution models takes minutes: the geometry of 3 million facets to degree 10 takes about a minute
+and 4.5 GB, and a simulation repeats it until the center of mass settles.</p>
 <h2 id="projects-hera-blind-test--simulation-runs">Simulation runs<a class="headerlink" href="#projects-hera-blind-test--simulation-runs" title="Link to this section">#</a></h2>
 <p>A simulation runner has four sections:</p>
 <ol>
@@ -4005,12 +4097,15 @@ copies in <code>data/hera_rse/</code>.</p>
 <p><code>examples/make_didymos_1.m</code> to <code>make_dimorphos_3.m</code> are six true models made the same way, one script each, into
 <code>results/didymos_models/</code> and <code>results/dimorphos_models/</code>, as packages 1 to 6. Didymos and Dimorphos share one
 numbering because a solution name carries only the number; the T1 demo sets of the simulate scripts are 7 and 8. They
-send exact values of every degree to 6 and <span class="nobr"><math alttext="I_xx" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>x</mi><mi>x</mi></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="I_yy" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>y</mi><mi>y</mi></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="I_zz" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub></mrow></math>,</span> in the frame and about the origin of the DART
-shape model file (degree 1 and <span class="nobr"><math alttext="C_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="S_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math></span> are not zero), with the file unchanged.</p>
+send exact values of every degree to 10, normalized and unnormalized, and <span class="nobr"><math alttext="I_xx" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>x</mi><mi>x</mi></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="I_yy" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>y</mi><mi>y</mi></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="I_zz" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub></mrow></math>,</span> in the frame
+and about the origin of the DART shape model file (degree 1 and <span class="nobr"><math alttext="C_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="S_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math></span> are not zero). The
+packages name that file and its MD5 checksum but do not include it.</p>
 <p>The interiors of these models are not described on this site, which is public, until the true models are released;
 <code>projects/hera_hlp6/README.md</code> in the repository lists them.
-<code>examples/make_didymos_homogeneous.m</code> makes the reference the makers compare: Didymos at constant density, every
-degree to 6 and all six inertia elements, in the same frame and about the same origin (package
+<code>examples/make_didymos_homogeneous.m</code> makes the reference the makers compare, as their cross-validation asks
+(<a href="#projects-didymos-dimorphos-values--potential-and-acceleration-at-the-cross-validation-points">Didymos and Dimorphos values</a>):
+Didymos at 2600 kg/m³, every degree to 10 and all six inertia elements, in the same frame and about the same origin,
+and the potential and acceleration at the 20 agreed points (<a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_potential"><code>sbtk.exchange.write_potential</code></a>; package
 <code>UCB-DATA0-Didymos-homogeneous</code>). Its degree 1 gives the center of figure. If two makers compute the same homogeneous
 field from the same shape model file, they work in the same frame with the same conventions.
 <code>tests/integration/test_maker_scripts.m</code> runs <code>make_didymos_3</code>, <code>make_dimorphos_3</code> and <code>make_didymos_homogeneous</code> and
@@ -4052,9 +4147,12 @@ Dimorphos, an ellipsoidal core and the regolith give a reduced <span class="nobr
 <li><strong>derived</strong>: computed from other values on this page;</li>
 <li><strong>assumed</strong>: an SBTK choice, not a measurement.</li>
 </ul>
+<p>The HLP6 makers agreed on the Didymos values on 21 October 2026 [HLP6 cross-validation 2026]: the 1.165 m shape
+model in its own frame, bulk density 2600 kg/m³, reference radius 410 m, degrees to 10, and the potential and
+acceleration at 20 given points. There are no agreed Dimorphos values yet.</p>
 <p>The values are set in the repository in <code>projects/hera_hlp6/hlp6_didymos.m</code> and <code>projects/hera_hlp6/hlp6_dimorphos.m</code>
-(shape model, mass, reference radius, degree, grid spacing), <code>projects/hera_hlp6/hlp6_uncertainties.m</code> (the
-receiving team's uncertainties) and the maker scripts <code>examples/make_didymos_1.m</code> to <code>make_dimorphos_3.m</code>.</p>
+(shape model, mass or bulk density, reference radius, degree, grid spacing), <code>projects/hera_hlp6/hlp6_uncertainties.m</code>
+(the receiving team's uncertainties) and the maker scripts <code>examples/make_didymos_1.m</code> to <code>make_dimorphos_3.m</code>.</p>
 <h2 id="projects-didymos-dimorphos-values--shape-models">Shape models<a class="headerlink" href="#projects-didymos-dimorphos-values--shape-models" title="Link to this section">#</a></h2>
 <p>The shape models are the DART stereophotoclinometry (SPC) models, Didymos version 3 and Dimorphos version 4, from
 before the DART impact [Daly et al. 2023; Daly et al. 2024]. They are published in two places:</p>
@@ -4065,7 +4163,8 @@ before the DART impact [Daly et al. 2023; Daly et al. 2024]. They are published 
 <li>Dimorphos: <a href="https://pds-smallbodies.astro.umd.edu/holdings/pds4-dart_shapemodel-v1.0/data_derived_dimorphos_model_v004/">https://pds-smallbodies.astro.umd.edu/holdings/pds4-dart_shapemodel-v1.0/data_derived_dimorphos_model_v004/</a></li>
 <li><strong>ESA SPICE</strong>: the full-resolution models only, as OBJ and digital shape kernel (<code>.bds</code>) files,
   <a href="https://spiftp.esac.esa.int/data/SPICE/HERA/kernels/dsk/">https://spiftp.esac.esa.int/data/SPICE/HERA/kernels/dsk/</a>. The working-group server has the same two files in
-  <code>Hera_WG/End-to-End Test/Shape/</code>.</li>
+  <code>Hera_WG/End-to-End Test/Shape/</code>, and the agreed Didymos file in
+  <code>Hera_WG/End-to-End Test/HLP6G BlindTest/inputs/Reference models/Didymos/</code>.</li>
 </ul>
 <p>The volume and the volume-equivalent diameter <span class="nobr"><math alttext="D = (6V/π)^1/3" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>D</mi><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><mn>6</mn><mi>V</mi><mo>&#x0002F;</mo><mi>&#x003C0;</mi><msup><mo stretchy="false">&#x00029;</mo><mrow><mn>1</mn><mo>&#x0002F;</mo><mn>3</mn></mrow></msup></mrow></math></span> are <strong>derived</strong> from each file.</p>
 <table>
@@ -4088,7 +4187,7 @@ before the DART impact [Daly et al. 2023; Daly et al. 2024]. They are published 
 <td>49,152</td>
 <td>0.20336</td>
 <td>729.6</td>
-<td><strong>published</strong>, <strong>agreed</strong>: PDS, Didymos collection (3.4 MB), the file unchanged. The blind-test Didymos model, the one the Hera radio-science (RSE) team uses.</td>
+<td><strong>published</strong>: PDS, Didymos collection (3.4 MB), the file unchanged. The version the Hera radio-science (RSE) team uses; SBTK's blind-test packages until 20 October 2026.</td>
 </tr>
 <tr>
 <td><code>didymos_highres</code></td>
@@ -4097,7 +4196,7 @@ before the DART impact [Daly et al. 2023; Daly et al. 2024]. They are published 
 <td>3,145,728</td>
 <td>0.20381</td>
 <td>730.1</td>
-<td><strong>published</strong>: ESA SPICE (162 MB; also on the server). PDS has the 1.165 m model as <code>didymos_g_1165mm_spc_obj_0000n00000_v003.obj</code>. Not in git.</td>
+<td><strong>agreed</strong>, <strong>published</strong>: the HLP6 reference model of Didymos. ESA SPICE (162 MB) and the server. PDS has the 1.165 m model as <code>didymos_g_1165mm_spc_obj_0000n00000_v003.obj</code>. MD5 <code>0a585bc46d19f29778d7721970958723</code>. Not in git.</td>
 </tr>
 <tr>
 <td><code>didymos_every8</code></td>
@@ -4115,7 +4214,7 @@ before the DART impact [Daly et al. 2023; Daly et al. 2024]. They are published 
 <td>49,152</td>
 <td>0.0017597</td>
 <td>149.8</td>
-<td><strong>derived</strong>: every 8th grid point of <code>dimorphos_highres</code>. Used for the blind-test Dimorphos packages so far.</td>
+<td><strong>derived</strong>: every 8th grid point of <code>dimorphos_highres</code>. SBTK's blind-test Dimorphos packages until 20 October 2026.</td>
 </tr>
 <tr>
 <td><code>dimorphos_highres</code></td>
@@ -4124,7 +4223,7 @@ before the DART impact [Daly et al. 2023; Daly et al. 2024]. They are published 
 <td>3,145,728</td>
 <td>0.0017602</td>
 <td>149.8</td>
-<td><strong>published</strong>: ESA SPICE (162 MB; also on the server). PDS has it as <code>dimorphos_g_0243mm_spc_obj_0000n00000_v004.obj</code>. Not in git.</td>
+<td><strong>published</strong>, <strong>assumed</strong>: ESA SPICE (162 MB) and the server. SBTK's blind-test Dimorphos packages (like the agreed Didymos model, the full resolution). PDS has it as <code>dimorphos_g_0243mm_spc_obj_0000n00000_v004.obj</code>. MD5 <code>d8263a016169434e09fd10f8b065f0a1</code>. Not in git.</td>
 </tr>
 <tr>
 <td>(not in SBTK yet)</td>
@@ -4139,15 +4238,18 @@ before the DART impact [Daly et al. 2023; Daly et al. 2024]. They are published 
 </table>
 <p>Points to know:</p>
 <ul>
-<li><strong>Use the same file as the other teams.</strong> The 9.3 m Didymos file is a separate product, not a subsample of the
-  1.165 m model: its volume is 0.22% smaller, its center of figure is 0.35 m away, and its degree-2 coefficients differ
-  by up to <span class="nobr"><math alttext="3×10^-4" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>3</mn><mi>&#x000D7;</mi><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>4</mn></mrow></msup></mrow></math>,</span> about the size of the measurement uncertainties. Data made with one file and inverted with
-  another carry that difference as an error. <code>data/shapes/README.md</code> compares all the versions.</li>
-<li><strong>Dimorphos.</strong> SBTK's <code>dimorphos</code> has the sampling of the PDS 1.94 m file but is a plain subsample of the
-  0.243 m model, so it may differ from the PDS file in the same way. The models are from before the DART impact, which
-  may have changed the shape.</li>
-<li><strong>Frame.</strong> Each file has its own body-fixed frame, <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span> along the spin axis. The origin of the Didymos files is 57 m
-  from the center of figure; the HLP6 makers keep it (<a href="#conventions-gravity-frames--makers">Frames of a gravity field</a>).</li>
+<li><strong>Use the same file as the other teams.</strong> The agreed Didymos file is the 1.165 m model. The 9.3 m file is a
+  separate product, not a subsample of it: its volume is 0.22% smaller, its center of figure is 0.35 m away, and its
+  degree-2 coefficients differ by up to <span class="nobr"><math alttext="3×10^-4" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>3</mn><mi>&#x000D7;</mi><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>4</mn></mrow></msup></mrow></math>,</span> about the size of the measurement uncertainties. Data made
+  with one file and inverted with another carry that difference as an error. <code>data/shapes/README.md</code> compares all
+  the versions.</li>
+<li><strong>Packages do not include the file.</strong> A package made with one of these files names it with its MD5 checksum
+  (<a href="#files-exchange-packages">Exchange packages</a>).</li>
+<li><strong>Dimorphos.</strong> The models are from before the DART impact, which may have changed the shape.</li>
+<li><strong>Frame.</strong> Each file has its own body-fixed frame, <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span> along the spin axis. The HLP6 makers keep it ("native
+  reference frame of the shape model, not barycentric"; <a href="#conventions-gravity-frames--makers">Frames of a gravity field</a>).
+  The center of figure is 56.765 m from the origin of the agreed Didymos file, at (+15.723, +42.487, −34.204) m, and
+  0.751 m from that of the Dimorphos file, at (−0.741, −0.117, −0.007) m.</li>
 </ul>
 <h2 id="projects-didymos-dimorphos-values--mass-and-gm">Mass and GM<a class="headerlink" href="#projects-didymos-dimorphos-values--mass-and-gm" title="Link to this section">#</a></h2>
 <table>
@@ -4162,11 +4264,18 @@ before the DART impact [Daly et al. 2023; Daly et al. 2024]. They are published 
 </thead>
 <tbody>
 <tr>
+<td>Bulk density</td>
+<td>2600 kg/m³</td>
+<td></td>
+<td><strong>agreed</strong> (Didymos)</td>
+<td>[HLP6 cross-validation 2026]</td>
+</tr>
+<tr>
 <td>Mass <span class="nobr"><math alttext="M" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi></mrow></math></span></td>
-<td>5.273 × 10¹¹ kg</td>
+<td>5.299121 × 10¹¹ kg</td>
 <td>2.700 × 10⁹ kg</td>
-<td><strong>agreed</strong></td>
-<td>the masses the RSE end-to-end test uses, from the Didymos Reference Model, issue 6.2 (<strong>server</strong>, <code>Hera_WG/End-to-End Test/Didymos Reference model/Didymos Reference Model issue 6_2_clean.pdf</code>) and [Makadia et al. 2026]. The group's input values are in <code>Hera_WG/End-to-End Test/Endtoendtest_inputs.xlsx</code> (<strong>server</strong>).</td>
+<td><strong>derived</strong> (Didymos: bulk density × volume of the agreed file); <strong>server</strong> (Dimorphos)</td>
+<td>Dimorphos: the mass the RSE end-to-end test uses, from the Didymos Reference Model, issue 6.2 (<code>Hera_WG/End-to-End Test/Didymos Reference model/Didymos Reference Model issue 6_2_clean.pdf</code>) and [Makadia et al. 2026]. The group's end-to-end input values are in <code>Hera_WG/End-to-End Test/Endtoendtest_inputs.xlsx</code>.</td>
 </tr>
 <tr>
 <td>Gravitational constant <span class="nobr"><math alttext="G" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>G</mi></mrow></math></span></td>
@@ -4177,10 +4286,17 @@ before the DART impact [Daly et al. 2023; Daly et al. 2024]. They are published 
 </tr>
 <tr>
 <td><span class="nobr"><math alttext="GM = G M" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>G</mi><mi>M</mi><mo>&#x0003D;</mo><mi>G</mi><mi>M</mi></mrow></math></span></td>
-<td>3.51935839 × 10⁻⁸ km³/s²</td>
+<td>3.5367926256900638 × 10⁻⁸ km³/s²</td>
 <td>1.802061 × 10⁻¹⁰ km³/s²</td>
-<td><strong>derived</strong></td>
+<td><strong>agreed</strong> (Didymos), <strong>derived</strong></td>
+<td>Didymos: [HLP6 cross-validation 2026]. <span class="nobr"><math alttext="G" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>G</mi></mrow></math></span> × 2600 kg/m³ × the volume of the agreed file gives the same value to 13 digits, so the group uses CODATA 2018 too.</td>
+</tr>
+<tr>
+<td>Mass used until 20 October 2026</td>
+<td>5.273 × 10¹¹ kg</td>
 <td></td>
+<td><strong>server</strong></td>
+<td>the RSE end-to-end test (Reference Model 6.2)</td>
 </tr>
 <tr>
 <td><span class="nobr"><math alttext="GM" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>G</mi><mi>M</mi></mrow></math></span> estimated in the RSE end-to-end test</td>
@@ -4201,29 +4317,11 @@ before the DART impact [Daly et al. 2023; Daly et al. 2024]. They are published 
 <p>The maker packages give <span class="nobr"><math alttext="GM" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>G</mi><mi>M</mi></mrow></math></span> and the mass (<span class="nobr"><math alttext="GM/G" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>G</mi><mi>M</mi><mo>&#x0002F;</mo><mi>G</mi></mrow></math>)</span>. <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a> takes the mass from <span class="nobr"><math alttext="GM" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>G</mi><mi>M</mi></mrow></math>,</span> so a
 package from a team that used another <span class="nobr"><math alttext="G" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>G</mi></mrow></math></span> gives that team's mass.</p>
 <h2 id="projects-didymos-dimorphos-values--bulk-density">Bulk density<a class="headerlink" href="#projects-didymos-dimorphos-values--bulk-density" title="Link to this section">#</a></h2>
-<p>The bulk density is <strong>derived</strong>: the mass divided by the volume of the shape model in use. It is not set separately,
-and it is the background density of a homogeneous model (<a href="#models-density-distributions">Density distributions</a>).</p>
-<table>
-<thead>
-<tr>
-<th>Shape model</th>
-<th>Didymos</th>
-<th>Dimorphos</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Blind-test files (<code>didymos</code>, <code>dimorphos</code>)</td>
-<td>2593 kg/m³</td>
-<td>1534 kg/m³</td>
-</tr>
-<tr>
-<td>Full resolution (<code>didymos_highres</code>, <code>dimorphos_highres</code>)</td>
-<td>2587 kg/m³</td>
-<td>1534 kg/m³</td>
-</tr>
-</tbody>
-</table>
+<p>The bulk density is the background density of a homogeneous model (<a href="#models-density-distributions">Density distributions</a>).
+For Didymos it is <strong>agreed</strong>, 2600 kg/m³, and sets the mass. For Dimorphos it is <strong>derived</strong>: 2.700 × 10⁹ kg over the
+volume of the 0.243 m model, 1534 kg/m³.</p>
+<p>Before the agreement SBTK took the mass of the RSE end-to-end test, 5.273 × 10¹¹ kg, which gives 2593 kg/m³ with
+the 9.3 m file and 2587 kg/m³ with the 1.165 m file.</p>
 <h2 id="projects-didymos-dimorphos-values--gravity-field-settings">Gravity field settings<a class="headerlink" href="#projects-didymos-dimorphos-values--gravity-field-settings" title="Link to this section">#</a></h2>
 <table>
 <thead>
@@ -4238,31 +4336,31 @@ and it is the background density of a homogeneous model (<a href="#models-densit
 <tbody>
 <tr>
 <td>Reference radius <span class="nobr"><math alttext="R_ref" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>R</mi><mtext>ref</mtext></msub></mrow></math></span></td>
-<td>0.43 km</td>
+<td>0.41 km</td>
 <td>0.10 km</td>
-<td><strong>server</strong>, <strong>agreed</strong></td>
-<td>header lines of the RSE <code>.tab</code> files. The RSE inertia files state "0.4 m" and "0.1 m", a labeling error.</td>
+<td><strong>agreed</strong> (Didymos), <strong>server</strong> (Dimorphos)</td>
+<td>Didymos: [HLP6 cross-validation 2026]. Dimorphos: the RSE <code>.tab</code> file. The RSE Didymos file uses 0.43 km; its coefficients and their 1σ convert to 0.41 km (below). The RSE inertia files state "0.4 m" and "0.1 m", a labeling error.</td>
 </tr>
 <tr>
 <td>Degree of the receiving team's fit</td>
 <td>5</td>
 <td>3</td>
-<td><strong>server</strong>, <strong>agreed</strong></td>
+<td><strong>server</strong></td>
 <td>the degrees of the RSE <code>.tab</code> files; finders truncate to them</td>
 </tr>
 <tr>
 <td>Degree the makers send</td>
-<td>6</td>
-<td>6</td>
-<td><strong>assumed</strong></td>
-<td>finders truncate</td>
+<td>10</td>
+<td>10</td>
+<td><strong>agreed</strong> (Didymos), <strong>assumed</strong> (Dimorphos)</td>
+<td>[HLP6 cross-validation 2026]: <code>max_l</code> 10</td>
 </tr>
 <tr>
 <td>Expansion point and axes</td>
 <td>origin and axes of the shape model file</td>
 <td>same</td>
 <td><strong>agreed</strong></td>
-<td>the HLP6 makers, 20 October 2026 (<a href="#files-exchange-packages--expansion-point">Exchange packages</a>)</td>
+<td>the HLP6 makers, 20 and 21 October 2026 (<a href="#files-exchange-packages--expansion-point">Exchange packages</a>)</td>
 </tr>
 <tr>
 <td>Inertia data the makers send</td>
@@ -4275,6 +4373,37 @@ and it is the background density of a homogeneous model (<a href="#models-densit
 </table>
 <p>Coefficients given with another reference radius <span class="nobr"><math alttext="R&#x27;" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mi>&#x02032;</mi></msup></mrow></math></span> convert as <span class="nobr"><math alttext="C&#x27;_lm = C_lm (R/R&#x27;)^l" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msubsup><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mi>l</mi><mi>m</mi></mrow><mi>&#x02032;</mi></msubsup><mo>&#x0003D;</mo><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mi>l</mi><mi>m</mi></mrow></msub><mspace width="0.167em" /><mo stretchy="false">&#x00028;</mo><mi>R</mi><mo>&#x0002F;</mo><msup><mi>R</mi><mi>&#x02032;</mi></msup><msup><mo stretchy="false">&#x00029;</mo><mi>l</mi></msup></mrow></math></span>
 (<a href="#conventions-gravity-coefficients">Gravity coefficients</a>).</p>
+<h2 id="projects-didymos-dimorphos-values--potential-and-acceleration-at-the-cross-validation-points">Potential and acceleration at the cross-validation points<a class="headerlink" href="#projects-didymos-dimorphos-values--potential-and-acceleration-at-the-cross-validation-points" title="Link to this section">#</a></h2>
+<p>The makers also give the gravitational potential and acceleration of the homogeneous Didymos at 20 points
+[HLP6 cross-validation 2026], in m in the frame of the agreed file (<code>projects/hera_hlp6/cross_validation/points.csv</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Points</th>
+<th>Distance from the origin of the file</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1: on the surface at latitude 45°, longitude 45°</td>
+<td>332 m</td>
+</tr>
+<tr>
+<td>2: near an equilibrium point of the homogeneous body</td>
+<td>360 m</td>
+</tr>
+<tr>
+<td>3–8, 9–14, 15–20: six points each on spheres of radius 1.2, 1.5 and 2.0 <span class="nobr"><math alttext="R_ref" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>R</mi><mtext>ref</mtext></msub></mrow></math></span> (Fibonacci lattice)</td>
+<td>492, 615, 820 m</td>
+</tr>
+</tbody>
+</table>
+<p>SBTK computes them exactly from the polyhedron of the shape model (<a href="#models-forward-model--potential-and-acceleration-at-points">Potential and acceleration at points</a>).
+The sphere about the origin that encloses Didymos has a radius of 449.7 m, so points 1 and 2 are inside it, where
+the spherical-harmonic expansion does not converge. At 1.2 <span class="nobr"><math alttext="R_ref" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>R</mi><mtext>ref</mtext></msub></mrow></math></span> the expansion to degree 10 differs from
+the exact potential by up to 1.5 × 10⁻⁴ of it; a team that evaluates the coefficients there will differ by that much.
+At point 2 the gravitational acceleration, 2.40 × 10⁻⁴ m/s², points to the center of mass and equals the centrifugal
+acceleration of the 2.26 h rotation about an axis through it: the point is an equilibrium point, as stated.</p>
 <h2 id="projects-didymos-dimorphos-values--uncertainties-of-the-receiving-team">Uncertainties of the receiving team<a class="headerlink" href="#projects-didymos-dimorphos-values--uncertainties-of-the-receiving-team" title="Link to this section">#</a></h2>
 <p>The makers send exact values. SBTK's inversion runners give them the precision of the RSE end-to-end test
 (<code>projects/hera_hlp6/hlp6_uncertainties.m</code>), read from the RSE files (<strong>server</strong>, <code>Hera_WG/End-to-End Test/Radio
@@ -4317,6 +4446,8 @@ only, not for scientific use"). The blind-test group's precision files are in
 </tr>
 </tbody>
 </table>
+<p>The Didymos coefficients and their 1σ are given for <span class="nobr"><math alttext="R_ref" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>R</mi><mtext>ref</mtext></msub></mrow></math></span> = 0.43 km; <a class="xref xref-fn" href="#reference-api-data--sbtk.data.use_uncertainties"><code>sbtk.data.use_uncertainties</code></a> converts
+the 1σ of degree <span class="nobr"><math alttext="l" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>l</mi></mrow></math></span> to the agreed 0.41 km by the factor <span class="nobr"><math alttext="(0.43/0.41)^l" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mn>0.43</mn><mo>&#x0002F;</mo><mn>0.41</mn><msup><mo stretchy="false">&#x00029;</mo><mi>l</mi></msup></mrow></math>.</span></p>
 <p>The RSE fields are given in principal-axis frames (for the homogeneous body, 33.6° (Didymos) and 7.8° (Dimorphos)
 from the shape-model <span class="nobr"><math alttext="x" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></span>-axis about <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math>,</span> with the axis of the largest moment tilted 3.6° and 0.7° from the
 shape-model <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis). Their 1σ table is applied coefficient by coefficient in the frame of the packages, which is an
@@ -4364,6 +4495,10 @@ approximation (<a href="#conventions-gravity-frames--makers">Frames of a gravity
   doi:10.26007/bm57-x327. The same authors, "... for dimorphos_model_v004, Version 1.0," NASA Planetary Data System
   (2023). doi:10.26007/0nss-vd15. Bundle <code>urn:nasa:pds:dart_shapemodel</code>,
   <a href="https://pds-smallbodies.astro.umd.edu/holdings/pds4-dart_shapemodel-v1.0/">https://pds-smallbodies.astro.umd.edu/holdings/pds4-dart_shapemodel-v1.0/</a>.</li>
+<li><strong>HLP6 cross-validation 2026.</strong> Hera working group, "Hera Blind-Test interior HLP6: Homogeneous Didymos data for
+  makers cross-validation test" (README of the makers, 21 October 2026). On the server with the agreed shape model
+  (<code>Hera_WG/End-to-End Test/HLP6G BlindTest/inputs/Reference models/Didymos/</code>); copy in
+  <code>projects/hera_hlp6/cross_validation/</code>.</li>
 <li><strong>ESA SPICE kernels for Hera</strong>, shape models (digital shape kernels and OBJ files):
   <a href="https://spiftp.esac.esa.int/data/SPICE/HERA/kernels/dsk/">https://spiftp.esac.esa.int/data/SPICE/HERA/kernels/dsk/</a>.</li>
 <li><strong>Hera working-group server</strong>, folder <code>Hera_WG/End-to-End Test/</code>: <code>Shape/</code> (full-resolution shape models),
@@ -4378,11 +4513,11 @@ approximation (<a href="#conventions-gravity-frames--makers">Frames of a gravity
 <tr><td><a class="xref" href="#reference-api-shape"><code>sbtk.shape</code></a></td><td>Shape models</td><td>8</td></tr>
 <tr><td><a class="xref" href="#reference-api-body"><code>sbtk.body</code></a></td><td>Bodies</td><td>4</td></tr>
 <tr><td><a class="xref" href="#reference-api-interior"><code>sbtk.interior</code></a></td><td>Density distributions</td><td>16</td></tr>
-<tr><td><a class="xref" href="#reference-api-gravity"><code>sbtk.gravity</code></a></td><td>Gravity and moment calculations</td><td>6</td></tr>
+<tr><td><a class="xref" href="#reference-api-gravity"><code>sbtk.gravity</code></a></td><td>Gravity and moment calculations</td><td>8</td></tr>
 <tr><td><a class="xref" href="#reference-api-data"><code>sbtk.data</code></a></td><td>Measurement sets</td><td>20</td></tr>
 <tr><td><a class="xref" href="#reference-api-invert"><code>sbtk.invert</code></a></td><td>Density estimation</td><td>9</td></tr>
 <tr><td><a class="xref" href="#reference-api-compare"><code>sbtk.compare</code></a></td><td>Comparison with a true model</td><td>6</td></tr>
-<tr><td><a class="xref" href="#reference-api-exchange"><code>sbtk.exchange</code></a></td><td>Exchange packages</td><td>9</td></tr>
+<tr><td><a class="xref" href="#reference-api-exchange"><code>sbtk.exchange</code></a></td><td>Exchange packages</td><td>10</td></tr>
 <tr><td><a class="xref" href="#reference-api-io"><code>sbtk.io</code></a></td><td>Results folders and text files</td><td>22</td></tr>
 <tr><td><a class="xref" href="#reference-api-plot"><code>sbtk.plot</code></a></td><td>Figures</td><td>9</td></tr>
 </tbody></table>
@@ -4426,12 +4561,15 @@ approximation (<a href="#conventions-gravity-frames--makers">Frames of a gravity
 <tr><td><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.solution_name"><code>sbtk.exchange.solution_name</code></a></td><td>Name of a solution package: &lt;team&gt;-SOL_&lt;data team&gt;&lt;number&gt;.</td></tr>
 <tr><td><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_data"><code>sbtk.exchange.write_data</code></a></td><td>Write a measurement package to send to other teams (nothing about the interior).</td></tr>
 <tr><td><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_model"><code>sbtk.exchange.write_model</code></a></td><td>Write the interior-model package behind a measurement package (released after the solutions).</td></tr>
+<tr><td><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_potential"><code>sbtk.exchange.write_potential</code></a></td><td>Add the gravitational potential and acceleration at given points to a package.</td></tr>
 <tr><td><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_solution"><code>sbtk.exchange.write_solution</code></a></td><td>Write an inversion result as a solution package for the other teams.</td></tr>
 <tr><td><a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.center_of_mass_frame"><code>sbtk.gravity.center_of_mass_frame</code></a></td><td>A gravity field about its center of mass, in the shape-model, spin or principal axes.</td></tr>
 <tr><td><a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.component_integrals"><code>sbtk.gravity.component_integrals</code></a></td><td>Integrals over one component per unit density, clipped to the body.</td></tr>
+<tr><td><a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.field_at"><code>sbtk.gravity.field_at</code></a></td><td>Gravitational potential and acceleration of a model of the body at given points.</td></tr>
 <tr><td><a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.forward"><code>sbtk.gravity.forward</code></a></td><td>Forward model: gravity coefficients, center of mass and inertia of an interior.</td></tr>
 <tr><td><a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.geometry"><code>sbtk.gravity.geometry</code></a></td><td>Facet-cone geometry of a body about an expansion origin (the integration workspace).</td></tr>
 <tr><td><a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.labels"><code>sbtk.gravity.labels</code></a></td><td>Names of the gravity coefficients up to a degree, in SBTK order.</td></tr>
+<tr><td><a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.polyhedron"><code>sbtk.gravity.polyhedron</code></a></td><td>Potential and acceleration of a homogeneous polyhedron, exact (Werner &amp; Scheeres 1997).</td></tr>
 <tr><td><a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.random_field_integrals"><code>sbtk.gravity.random_field_integrals</code></a></td><td>Density-weighted integrals of the random density field.</td></tr>
 <tr><td><a class="xref xref-fn" href="#reference-api-interior--sbtk.interior.align_with_spin_axis"><code>sbtk.interior.align_with_spin_axis</code></a></td><td>Set the axis of components along the axis of the largest moment of the whole model.</td></tr>
 <tr><td><a class="xref xref-fn" href="#reference-api-interior--sbtk.interior.create"><code>sbtk.interior.create</code></a></td><td>An interior model: components plus an optional random density field.</td></tr>
@@ -4518,7 +4656,7 @@ approximation (<a href="#conventions-gravity-frames--makers">Frames of a gravity
 <h3 class="api-sub">Outputs</h3><table class="params outputs"><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
 <tr id="reference-api-sbtk--sbtk.root.out.r"><td data-label="Name"><code>r</code></td><td data-label="Description">Absolute path of the SBTK repository folder (the folder that contains toolbox/).</td></tr>
 </tbody></table>
-<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Called by</dt><dd><a class="xref xref-fn" href="#reference-api-io--sbtk.io.latest_run"><code>sbtk.io.latest_run</code></a>, <a class="xref xref-fn" href="#reference-api-io--sbtk.io.new_run"><code>sbtk.io.new_run</code></a>, <a class="xref xref-fn" href="#reference-api-shape--sbtk.shape.bundled"><code>sbtk.shape.bundled</code></a></dd></dl>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Called by</dt><dd><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a>, <a class="xref xref-fn" href="#reference-api-io--sbtk.io.latest_run"><code>sbtk.io.latest_run</code></a>, <a class="xref xref-fn" href="#reference-api-io--sbtk.io.new_run"><code>sbtk.io.new_run</code></a>, <a class="xref xref-fn" href="#reference-api-shape--sbtk.shape.bundled"><code>sbtk.shape.bundled</code></a></dd></dl>
 <p class="impl">Implementation: <code>toolbox/+sbtk/root.m</code>, line 1.</p>
 </section>
 <section class="api-entry" id="reference-api-sbtk--sbtk.version">
@@ -4550,7 +4688,7 @@ approximation (<a href="#conventions-gravity-frames--makers">Frames of a gravity
 </tbody></table>
 <h3 class="api-sub">Example</h3>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>body</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">GM_km3_s2 = <a class="xref xref-fn" href="#reference-api-units--sbtk.units.G">sbtk.units.G</a>()*body.mass_kg;</code></pre></div>
-<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Called by</dt><dd><a class="xref xref-fn" href="#reference-api-body--sbtk.body.create"><code>sbtk.body.create</code></a>, <a class="xref xref-fn" href="#reference-api-data--sbtk.data.from_coefficients"><code>sbtk.data.from_coefficients</code></a>, <a class="xref xref-fn" href="#reference-api-data--sbtk.data.simulate"><code>sbtk.data.simulate</code></a>, <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a>, <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_shadr"><code>sbtk.exchange.read_shadr</code></a>, <a class="xref xref-fn" href="#reference-api-io--sbtk.io.read_jpl_gravity"><code>sbtk.io.read_jpl_gravity</code></a></dd></dl>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Called by</dt><dd><a class="xref xref-fn" href="#reference-api-body--sbtk.body.create"><code>sbtk.body.create</code></a>, <a class="xref xref-fn" href="#reference-api-data--sbtk.data.from_coefficients"><code>sbtk.data.from_coefficients</code></a>, <a class="xref xref-fn" href="#reference-api-data--sbtk.data.simulate"><code>sbtk.data.simulate</code></a>, <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a>, <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_shadr"><code>sbtk.exchange.read_shadr</code></a>, <a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.polyhedron"><code>sbtk.gravity.polyhedron</code></a>, <a class="xref xref-fn" href="#reference-api-io--sbtk.io.read_jpl_gravity"><code>sbtk.io.read_jpl_gravity</code></a></dd></dl>
 <p class="impl">Implementation: <code>toolbox/+sbtk/+units/G.m</code>, line 1.</p>
 </section>
 <section class="api-entry" id="reference-api-units--sbtk.units.length_scale">
@@ -4655,16 +4793,16 @@ unc = <a class="xref xref-fn" href="#reference-api-data--sbtk.data.uncertainties
 </tbody></table>
 <h3 class="api-sub">Description</h3>
 <table class="defs"><tbody>
-<tr><td><code>"didymos"</code></td><td><code>didymos_g_9309mm_spc_obj_0000n00000_v003.obj</code>: DART SPC model v003 at 9.3 m sampling (49,152 facets), the version the Hera radio-science team and the HLP6-G test use</td></tr>
+<tr><td><code>"didymos"</code></td><td><code>didymos_g_9309mm_spc_obj_0000n00000_v003.obj</code>: DART SPC model v003 at 9.3 m sampling (49,152 facets), the version the Hera radio-science team uses</td></tr>
 <tr><td><code>"dimorphos"</code></td><td><code>g_00243mm_spc_obj_dimo_0000n00000_v004_every8.obj</code>: DART SPC model v004 (pre-impact) at 1.94 m sampling (49,152 facets), every 8th point of the high-resolution grid (<a class="xref xref-fn" href="#reference-api-shape--sbtk.shape.reduce_spc">sbtk.shape.reduce_spc</a>)</td></tr>
-<tr><td><code>"didymos_highres"</code></td><td><code>g_01165mm_spc_obj_didy_0000n00000_v003.obj</code>: 1.165 m, 3,145,728 facets</td></tr>
+<tr><td><code>"didymos_highres"</code></td><td><code>g_01165mm_spc_obj_didy_0000n00000_v003.obj</code>: 1.165 m, 3,145,728 facets; the reference model of the HLP6-G test</td></tr>
 <tr><td><code>"dimorphos_highres"</code></td><td><code>g_00243mm_spc_obj_dimo_0000n00000_v004.obj</code>: 0.243 m, 3,145,728 facets</td></tr>
 <tr><td><code>"didymos_every8"</code></td><td><code>g_01165mm_spc_obj_didy_0000n00000_v003_every8.obj</code>: every 8th point of "<code>didymos_highres</code>" (49,152 facets)</td></tr>
 <tr><td><code>"dimorphos_placeholder"</code></td><td>a placeholder shape (not a mission model; kept for the tests)</td></tr>
 <tr><td><code>"bennu"</code></td><td>OSIRIS-REx shape model (<code>bennu_higher_qual</code>)</td></tr>
 <tr><td><code>"example_asteroid"</code></td><td>a synthetic 1.2 km body (projects/template)</td></tr>
 </tbody></table>
-<p>The two high-resolution files (about 160 MB each) are not in git: copy them from the Hera server (End-to-End Test/Shape/) or ESA's SPICE server (spiftp.esac.esa.int/data/SPICE/HERA/kernels/dsk/) into data/shapes/. See data/shapes/README.md for every file. For any other shape model use <a class="xref xref-fn" href="#reference-api-shape--sbtk.shape.load">sbtk.shape.load</a>(file, unit).</p>
+<p>The two high-resolution files (about 160 MB each) are not in git: copy them from the Hera server (End-to-End Test/HLP6G BlindTest/inputs/Reference models/) or ESA's SPICE server (spiftp.esac.esa.int/data/SPICE/HERA/kernels/dsk/) into data/shapes/. See data/shapes/README.md for every file. For any other shape model use <a class="xref xref-fn" href="#reference-api-shape--sbtk.shape.load">sbtk.shape.load</a>(file, unit).</p>
 <h3 class="api-sub">Example</h3>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">body = <a class="xref xref-fn" href="#reference-api-body--sbtk.body.from_mass">sbtk.body.from_mass</a>(&quot;Didymos&quot;, <a class="xref xref-fn" href="#reference-api-shape--sbtk.shape.bundled">sbtk.shape.bundled</a>(&quot;didymos&quot;), 5.273e11, 0.43);
 big  = <a class="xref xref-fn" href="#reference-api-shape--sbtk.shape.bundled">sbtk.shape.bundled</a>(&quot;dimorphos_highres&quot;);                <span class="c">% 3 s to read</span></code></pre></div>
@@ -5257,9 +5395,11 @@ grid = <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.dens
 <table class="overview"><thead><tr><th>Function</th><th>Purpose</th></tr></thead><tbody>
 <tr><td><a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.center_of_mass_frame"><code>center_of_mass_frame</code></a></td><td>A gravity field about its center of mass, in the shape-model, spin or principal axes.</td></tr>
 <tr><td><a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.component_integrals"><code>component_integrals</code></a></td><td>Integrals over one component per unit density, clipped to the body.</td></tr>
+<tr><td><a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.field_at"><code>field_at</code></a></td><td>Gravitational potential and acceleration of a model of the body at given points.</td></tr>
 <tr><td><a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.forward"><code>forward</code></a></td><td>Forward model: gravity coefficients, center of mass and inertia of an interior.</td></tr>
 <tr><td><a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.geometry"><code>geometry</code></a></td><td>Facet-cone geometry of a body about an expansion origin (the integration workspace).</td></tr>
 <tr><td><a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.labels"><code>labels</code></a></td><td>Names of the gravity coefficients up to a degree, in SBTK order.</td></tr>
+<tr><td><a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.polyhedron"><code>polyhedron</code></a></td><td>Potential and acceleration of a homogeneous polyhedron, exact (Werner &amp; Scheeres 1997).</td></tr>
 <tr><td><a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.random_field_integrals"><code>random_field_integrals</code></a></td><td>Density-weighted integrals of the random density field.</td></tr>
 </tbody></table>
 <section class="api-entry" id="reference-api-gravity--sbtk.gravity.center_of_mass_frame">
@@ -5328,6 +5468,33 @@ I = <a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.component
 <h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.geometry"><code>sbtk.gravity.geometry</code></a>, <a class="xref xref-fn" href="#reference-api-interior--sbtk.interior.sphere"><code>sbtk.interior.sphere</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.center_of_mass_frame"><code>sbtk.gravity.center_of_mass_frame</code></a>, <a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.forward"><code>sbtk.gravity.forward</code></a>, <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.run"><code>sbtk.invert.run</code></a>, <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.setup"><code>sbtk.invert.setup</code></a></dd></dl>
 <p class="impl">Implementation: <code>toolbox/+sbtk/+gravity/component_integrals.m</code>, line 1.</p>
 </section>
+<section class="api-entry" id="reference-api-gravity--sbtk.gravity.field_at">
+<h2 class="api-name" id="reference-api-gravity--sbtk.gravity.field_at-h"><code>sbtk.gravity.field_at</code><a class="headerlink" href="#reference-api-gravity--sbtk.gravity.field_at" title="Link to sbtk.gravity.field_at">#</a></h2>
+<p class="api-summary">Gravitational potential and acceleration of a model of the body at given points.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">f = <a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.field_at">sbtk.gravity.field_at</a>(body, model, points_km, grid_km)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="reference-api-gravity--sbtk.gravity.field_at.body"><td data-label="Name"><code>body</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">from <a class="xref xref-fn" href="#reference-api-body--sbtk.body.create">sbtk.body.create</a> Fields: <a class="xref xref-st" href="#reference-data-structures--body"><code>body</code></a>. </td></tr>
+<tr id="reference-api-gravity--sbtk.gravity.field_at.model"><td data-label="Name"><code>model</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">a true model (<a class="xref xref-fn" href="#reference-api-data--sbtk.data.simulate">sbtk.data.simulate</a>) or a fit (<a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.run">sbtk.invert.run</a>): <code>rho_bg_kgm3</code>, components, <code>random_field</code> </td></tr>
+<tr id="reference-api-gravity--sbtk.gravity.field_at.points_km"><td data-label="Name"><code>points_km</code></td><td data-label="Size">any × 3</td><td data-label="Class">double</td><td data-label="Unit">km</td><td data-label="Default">required</td><td data-label="Description">n x 3 points in the frame of the shape model [km]: outside, on or inside the body <span class="valid">Validation: <code>mustBeFinite</code>.</span></td></tr>
+<tr id="reference-api-gravity--sbtk.gravity.field_at.grid_km"><td data-label="Name"><code>grid_km</code></td><td data-label="Size">scalar</td><td data-label="Class">double</td><td data-label="Unit">km</td><td data-label="Default">required</td><td data-label="Description">cell edge [km] of the grid that carries the departures from the background density (components, random field); not used for a homogeneous model <span class="valid">Validation: <code>mustBePositive</code>.</span></td></tr>
+</tbody></table>
+<h3 class="api-sub">Outputs</h3><table class="params outputs"><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr id="reference-api-gravity--sbtk.gravity.field_at.out.f"><td data-label="Name"><code>f</code></td><td data-label="Description">Potential <code>U_km2_s2</code> (n x 1) and acceleration <code>acc_km_s2</code> (n x 3) at the points, and <code>method</code>, how they were computed.</td></tr>
+</tbody></table>
+<h3 class="api-sub">Description</h3>
+<p>The background density fills the shape model, and its field is exact (<a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.polyhedron">sbtk.gravity.polyhedron</a>). The departures from it are taken at the cell centers of the density grid of the model (<a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.density_grid">sbtk.exchange.density_grid</a>), each cell a uniform cube (<a class="xref xref-fn" href="#reference-internal--sbtk.internal.prism_field">sbtk.internal.prism_field</a>). For a homogeneous model (no components, no random field) the result is exact. Otherwise the cubes follow the boundaries of the components and of the body only to within a cell: a finer grid gives a more accurate field near them, and the field of the departures has the error of that representation.</p>
+<table class="defs"><tbody>
+<tr><td><code>f.U_km2_s2</code></td><td>n x 1 potential [km^2/s^2], positive: U = G integral rho / |r - r'| dV</td></tr>
+<tr><td><code>f.acc_km_s2</code></td><td>n x 3 acceleration [km/s^2], the gradient of U (the rotation of the body is not included)</td></tr>
+<tr><td><code>f.method</code></td><td>how it was computed, in words (for the file header)</td></tr>
+</tbody></table>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>body</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">[~, truth] = <a class="xref xref-fn" href="#reference-api-data--sbtk.data.simulate">sbtk.data.simulate</a>(body, <a class="xref xref-fn" href="#reference-api-interior--sbtk.interior.create">sbtk.interior.create</a>(<a class="xref xref-fn" href="#reference-api-interior--sbtk.interior.no_components">sbtk.interior.no_components</a>()), 4, &quot;homogeneous&quot;);
+f = <a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.field_at">sbtk.gravity.field_at</a>(body, truth, [0.5 0 0; 0 0.6 0], 0.020);</code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="#reference-api-body--sbtk.body.create"><code>sbtk.body.create</code></a>, <a class="xref xref-fn" href="#reference-api-data--sbtk.data.simulate"><code>sbtk.data.simulate</code></a>, <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.density_grid"><code>sbtk.exchange.density_grid</code></a>, <a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.polyhedron"><code>sbtk.gravity.polyhedron</code></a>, <a class="xref xref-fn" href="#reference-api-interior--sbtk.interior.create"><code>sbtk.interior.create</code></a>, <a class="xref xref-fn" href="#reference-api-interior--sbtk.interior.no_components"><code>sbtk.interior.no_components</code></a>, <a class="xref xref-fn" href="#reference-internal--sbtk.internal.prism_field"><code>sbtk.internal.prism_field</code></a>, <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.run"><code>sbtk.invert.run</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.density_grid"><code>sbtk.exchange.density_grid</code></a>, <a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.polyhedron"><code>sbtk.gravity.polyhedron</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_potential"><code>sbtk.exchange.write_potential</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+gravity/field_at.m</code>, line 1.</p>
+</section>
 <section class="api-entry" id="reference-api-gravity--sbtk.gravity.forward">
 <h2 class="api-name" id="reference-api-gravity--sbtk.gravity.forward-h"><code>sbtk.gravity.forward</code><a class="headerlink" href="#reference-api-gravity--sbtk.gravity.forward" title="Link to sbtk.gravity.forward">#</a></h2>
 <p class="api-summary">Forward model: gravity coefficients, center of mass and inertia of an interior.</p>
@@ -5386,7 +5553,7 @@ fm  = <a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.forward
   U_body, V_body, m1_body, Q_body   whole-body sums
   ray_t, ray_dir        sub-ray surface distances [km] and unit directions (nf*K rows)</pre>
 <p>Didymos (49,152 facets): about 1 s at degree 4.</p>
-<p>Errors when some facet faces the origin (shape not star-shaped about it).</p>
+<p>Every facet should face away from the origin (the shape star-shaped about it). Facets that face it are accepted when their cones hold less than 1e-6 of the volume: small overhangs of a high-resolution model, such as the 0.243 m Dimorphos model seen from a point a few meters from its center. Their cones count with their sign (negative), which is exact for the body and leaves an error of the order of their volume in layers and sectors. Otherwise sbtk:gravity:notStarShaped.</p>
 <h3 class="api-sub">Example</h3>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>body</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">geo = <a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.geometry">sbtk.gravity.geometry</a>(body, body.centroid_km, 4);
 <span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;%d facets, volume %.4f km^3\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">geo</span><span class="p">.</span><span class="n">nf</span><span class="p">,</span><span class="w"> </span><span class="n">geo</span><span class="p">.</span><span class="n">V_body</span><span class="p">);</span></code></pre></div>
@@ -5407,6 +5574,33 @@ fm  = <a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.forward
 <h3 class="api-sub">Example</h3>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">lab = <a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.labels">sbtk.gravity.labels</a>(4);                <span class="c">% 25 labels, C00 ... S44</span></code></pre></div>
 <p class="impl">Implementation: <code>toolbox/+sbtk/+gravity/labels.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="reference-api-gravity--sbtk.gravity.polyhedron">
+<h2 class="api-name" id="reference-api-gravity--sbtk.gravity.polyhedron-h"><code>sbtk.gravity.polyhedron</code><a class="headerlink" href="#reference-api-gravity--sbtk.gravity.polyhedron" title="Link to sbtk.gravity.polyhedron">#</a></h2>
+<p class="api-summary">Potential and acceleration of a homogeneous polyhedron, exact (Werner &amp; Scheeres 1997).</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">[U, acc] = <a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.polyhedron">sbtk.gravity.polyhedron</a>(shape, density_kgm3, points_km)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="reference-api-gravity--sbtk.gravity.polyhedron.shape"><td data-label="Name"><code>shape</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">from <a class="xref xref-fn" href="#reference-api-shape--sbtk.shape.load">sbtk.shape.load</a> (a closed mesh, triangles ordered so that their normals point outward) Fields: <a class="xref xref-st" href="#reference-data-structures--shape"><code>shape</code></a>. </td></tr>
+<tr id="reference-api-gravity--sbtk.gravity.polyhedron.density_kgm3"><td data-label="Name"><code>density_kgm3</code></td><td data-label="Size">scalar</td><td data-label="Class">double</td><td data-label="Unit">kg/m³</td><td data-label="Default">required</td><td data-label="Description">uniform density [kg/m^3] <span class="valid">Validation: <code>mustBeFinite</code>.</span></td></tr>
+<tr id="reference-api-gravity--sbtk.gravity.polyhedron.points_km"><td data-label="Name"><code>points_km</code></td><td data-label="Size">any × 3</td><td data-label="Class">double</td><td data-label="Unit">km</td><td data-label="Default">required</td><td data-label="Description">n x 3 points in the frame of the shape model [km]: outside, on or inside the body <span class="valid">Validation: <code>mustBeFinite</code>.</span></td></tr>
+</tbody></table>
+<h3 class="api-sub">Outputs</h3><table class="params outputs"><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr id="reference-api-gravity--sbtk.gravity.polyhedron.out.U"><td data-label="Name"><code>U</code></td><td data-label="Description">n x 1 gravitational potential [km^2/s^2], positive: U = G integral rho / |r - r'| dV</td></tr>
+<tr id="reference-api-gravity--sbtk.gravity.polyhedron.out.acc"><td data-label="Name"><code>acc</code></td><td data-label="Description">n x 3 gravitational acceleration [km/s^2], the gradient of U (no rotation)</td></tr>
+</tbody></table>
+<h3 class="api-sub">Description</h3>
+<p>The closed form of Werner and Scheeres (1997, Celestial Mechanics and Dynamical Astronomy 65, 313-344), with <code>r_e</code> and <code>r_f</code> the vectors from the point to an edge and to a face, <code>n_f</code> the outward normal of the face and <code>n_fe</code> that of its edge in the plane of the face:</p>
+<table class="defs"><tbody>
+<tr><td><code>acc = -G rho      sum_f sum_(e of f) n_f (n_fe . r_e) L_e         +  G rho      sum_f n_f (r_f . n_f) w_f</code></td><td></td></tr>
+</tbody></table>
+<p>where <code>L_e</code> = ln((a + b + e)/(a + b - e)) for an edge of length e whose ends are at distances a and b, and <code>w_f</code> is the signed solid angle of the face seen from the point (the sum of <code>w_f</code> is 4 pi inside the body and 0 outside). Each edge enters once for each of its two faces, which is the edge dyad of the paper. The expressions hold on the surface too. On an edge or a vertex <code>L_e</code> is infinite, but both factors in front of it are zero there and the terms go to zero (as d^2 ln d with the distance d from the edge), so they are taken as zero. About 1 s per point for 3 million facets.</p>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">shape = <a class="xref xref-fn" href="#reference-api-shape--sbtk.shape.bundled">sbtk.shape.bundled</a>(&quot;didymos_highres&quot;);
+[U, acc] = <a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.polyhedron">sbtk.gravity.polyhedron</a>(shape, 2600, [0.5 0 0]);        <span class="c">% 500 m along x</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;U %.6e km^2/s^2, |acc| %.6e km/s^2\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">U</span><span class="p">,</span><span class="w"> </span><span class="nb">norm</span><span class="p">(</span><span class="n">acc</span><span class="p">));</span></code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="#reference-api-shape--sbtk.shape.bundled"><code>sbtk.shape.bundled</code></a>, <a class="xref xref-fn" href="#reference-api-shape--sbtk.shape.load"><code>sbtk.shape.load</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="#reference-api-units--sbtk.units.G"><code>sbtk.units.G</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.field_at"><code>sbtk.gravity.field_at</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+gravity/polyhedron.m</code>, line 1.</p>
 </section>
 <section class="api-entry" id="reference-api-gravity--sbtk.gravity.random_field_integrals">
 <h2 class="api-name" id="reference-api-gravity--sbtk.gravity.random_field_integrals-h"><code>sbtk.gravity.random_field_integrals</code><a class="headerlink" href="#reference-api-gravity--sbtk.gravity.random_field_integrals" title="Link to sbtk.gravity.random_field_integrals">#</a></h2>
@@ -6271,6 +6465,7 @@ cmp = <a class="xref xref-fn" href="#reference-api-compare--sbtk.compare.evaluat
 <tr><td><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.solution_name"><code>solution_name</code></a></td><td>Name of a solution package: &lt;team&gt;-SOL_&lt;data team&gt;&lt;number&gt;.</td></tr>
 <tr><td><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_data"><code>write_data</code></a></td><td>Write a measurement package to send to other teams (nothing about the interior).</td></tr>
 <tr><td><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_model"><code>write_model</code></a></td><td>Write the interior-model package behind a measurement package (released after the solutions).</td></tr>
+<tr><td><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_potential"><code>write_potential</code></a></td><td>Add the gravitational potential and acceleration at given points to a package.</td></tr>
 <tr><td><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_solution"><code>write_solution</code></a></td><td>Write an inversion result as a solution package for the other teams.</td></tr>
 </tbody></table>
 <section class="api-entry" id="reference-api-exchange--sbtk.exchange.density_grid">
@@ -6292,7 +6487,7 @@ cmp = <a class="xref xref-fn" href="#reference-api-compare--sbtk.compare.evaluat
 <h3 class="api-sub">Example</h3>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>body</code>, <code>truth</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">grid = <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.density_grid">sbtk.exchange.density_grid</a>(body, truth, 0.020);                <span class="c">% 20 m cells</span>
 <span class="nb">scatter3</span><span class="p">(</span><span class="nb">grid</span><span class="p">.</span><span class="n">x_km</span><span class="p">(:,</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="nb">grid</span><span class="p">.</span><span class="n">x_km</span><span class="p">(:,</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="nb">grid</span><span class="p">.</span><span class="n">x_km</span><span class="p">(:,</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="nb">grid</span><span class="p">.</span><span class="n">density_kgm3</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;filled&#39;</span><span class="p">);</span></code></pre></div>
-<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="#reference-api-body--sbtk.body.create"><code>sbtk.body.create</code></a>, <a class="xref xref-fn" href="#reference-api-data--sbtk.data.simulate"><code>sbtk.data.simulate</code></a>, <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_solution"><code>sbtk.exchange.write_solution</code></a>, <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.run"><code>sbtk.invert.run</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.geometry"><code>sbtk.gravity.geometry</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_model"><code>sbtk.exchange.write_model</code></a>, <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_solution"><code>sbtk.exchange.write_solution</code></a></dd></dl>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="#reference-api-body--sbtk.body.create"><code>sbtk.body.create</code></a>, <a class="xref xref-fn" href="#reference-api-data--sbtk.data.simulate"><code>sbtk.data.simulate</code></a>, <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_solution"><code>sbtk.exchange.write_solution</code></a>, <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.run"><code>sbtk.invert.run</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.geometry"><code>sbtk.gravity.geometry</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_model"><code>sbtk.exchange.write_model</code></a>, <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_solution"><code>sbtk.exchange.write_solution</code></a>, <a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.field_at"><code>sbtk.gravity.field_at</code></a></dd></dl>
 <p class="impl">Implementation: <code>toolbox/+sbtk/+exchange/density_grid.m</code>, line 1.</p>
 </section>
 <section class="api-entry" id="reference-api-exchange--sbtk.exchange.locate">
@@ -6322,7 +6517,7 @@ model = <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.loc
 <h3 class="api-sub">Syntax</h3>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">[obs, body] = <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_data">sbtk.exchange.read_data</a>(folder)</code></pre></div>
 <h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
-<tr id="reference-api-exchange--sbtk.exchange.read_data.folder"><td data-label="Name"><code>folder</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">the package folder (README.txt, <code>gravity_field.txt</code>, <code>gravity_covariance.txt</code>, <code>center_of_mass.txt</code>, <code>moments_of_inertia.txt</code>, conventions.txt, shape model) <span class="valid">Validation: <code>mustBeFolder</code>.</span></td></tr>
+<tr id="reference-api-exchange--sbtk.exchange.read_data.folder"><td data-label="Name"><code>folder</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">the package folder (README.txt, <code>gravity_field.txt</code>, <code>gravity_covariance.txt</code>, <code>center_of_mass.txt</code>, <code>moments_of_inertia.txt</code>, conventions.txt, shape model). The shape model file the package names is read from the package, or from data/shapes/ when the package does not include it (<a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_data">sbtk.exchange.write_data</a>) <span class="valid">Validation: <code>mustBeFolder</code>.</span></td></tr>
 </tbody></table>
 <h3 class="api-sub">Outputs</h3><table class="params outputs"><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
 <tr id="reference-api-exchange--sbtk.exchange.read_data.out.obs"><td data-label="Name"><code>obs</code></td><td data-label="Description">the measurements, ready for sbtk.invert, in one of two forms: - a package about the origin of its shape model file (<code>gravity_field.txt</code> lists degree 1): the coefficients of degree 1..L as given, about <code>obs.origin_km</code> = [0 0 0] (<code>coef_about</code> = 'origin'), and the moments of inertia about the same origin; - a package about the center of mass: coefficients of degree 2..L with their full covariance, expanded about the measured center of mass (<code>obs.origin_km</code>, <code>coef_about</code> = '<code>center_of_mass</code>'), plus degree-1 coefficients 0 +- sigma that carry the uncertainty of the center of mass, and the moment-of-inertia rows Fields: <a class="xref xref-st" href="#reference-data-structures--obs"><code>obs</code></a>.</td></tr>
@@ -6334,7 +6529,7 @@ model = <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.loc
 <h3 class="api-sub">Example</h3>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>components</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">[obs, body] = <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_data">sbtk.exchange.read_data</a>(&quot;UCB-DATA1-Didymos&quot;);
 fit = <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.solve">sbtk.invert.solve</a>(body, components, obs, <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.options">sbtk.invert.options</a>());</code></pre></div>
-<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="#reference-api-data--sbtk.data.use_uncertainties"><code>sbtk.data.use_uncertainties</code></a>, <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.options"><code>sbtk.invert.options</code></a>, <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.solve"><code>sbtk.invert.solve</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="#reference-api-body--sbtk.body.from_mass"><code>sbtk.body.from_mass</code></a>, <a class="xref xref-fn" href="#reference-api-data--sbtk.data.add_libration"><code>sbtk.data.add_libration</code></a>, <a class="xref xref-fn" href="#reference-api-data--sbtk.data.add_moi"><code>sbtk.data.add_moi</code></a>, <a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.geometry"><code>sbtk.gravity.geometry</code></a>, <a class="xref xref-fn" href="#reference-api-shape--sbtk.shape.load"><code>sbtk.shape.load</code></a>, <a class="xref xref-fn" href="#reference-api-units--sbtk.units.G"><code>sbtk.units.G</code></a></dd></dl>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="#reference-api-data--sbtk.data.use_uncertainties"><code>sbtk.data.use_uncertainties</code></a>, <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_data"><code>sbtk.exchange.write_data</code></a>, <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.options"><code>sbtk.invert.options</code></a>, <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.solve"><code>sbtk.invert.solve</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="#reference-api-body--sbtk.body.from_mass"><code>sbtk.body.from_mass</code></a>, <a class="xref xref-fn" href="#reference-api-data--sbtk.data.add_libration"><code>sbtk.data.add_libration</code></a>, <a class="xref xref-fn" href="#reference-api-data--sbtk.data.add_moi"><code>sbtk.data.add_moi</code></a>, <a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.geometry"><code>sbtk.gravity.geometry</code></a>, <a class="xref xref-fn" href="#reference-api-sbtk--sbtk.root"><code>sbtk.root</code></a>, <a class="xref xref-fn" href="#reference-api-shape--sbtk.shape.load"><code>sbtk.shape.load</code></a>, <a class="xref xref-fn" href="#reference-api-units--sbtk.units.G"><code>sbtk.units.G</code></a></dd></dl>
 <p class="impl">Implementation: <code>toolbox/+sbtk/+exchange/read_data.m</code>, line 1.</p>
 </section>
 <section class="api-entry" id="reference-api-exchange--sbtk.exchange.read_grid">
@@ -6403,7 +6598,7 @@ fit = <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.solve">sb
 <h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
 <tr id="reference-api-exchange--sbtk.exchange.write_data.parent"><td data-label="Name"><code>parent</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">folder in which the package folder is created </td></tr>
 <tr id="reference-api-exchange--sbtk.exchange.write_data.data_set"><td data-label="Name"><code>data_set</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">package name, e.g. "UCB-DATA1-Didymos" (team - DATA&lt;number&gt; - comment) </td></tr>
-<tr id="reference-api-exchange--sbtk.exchange.write_data.body"><td data-label="Name"><code>body</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">from <a class="xref xref-fn" href="#reference-api-body--sbtk.body.create">sbtk.body.create</a>; its shape-model file is copied into the package Fields: <a class="xref xref-st" href="#reference-data-structures--body"><code>body</code></a>. </td></tr>
+<tr id="reference-api-exchange--sbtk.exchange.write_data.body"><td data-label="Name"><code>body</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">from <a class="xref xref-fn" href="#reference-api-body--sbtk.body.create">sbtk.body.create</a> Fields: <a class="xref xref-st" href="#reference-data-structures--body"><code>body</code></a>. </td></tr>
 <tr id="reference-api-exchange--sbtk.exchange.write_data.obs"><td data-label="Name"><code>obs</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">the measurements with degree-1 coefficients (the center of mass): exact values (a maker's package; the receiving team applies its own uncertainties), or values with uncertainties and noise (<a class="xref xref-fn" href="#reference-api-data--sbtk.data.add_noise">sbtk.data.add_noise</a>) Fields: <a class="xref xref-st" href="#reference-data-structures--obs"><code>obs</code></a>. </td></tr>
 <tr id="reference-api-exchange--sbtk.exchange.write_data.prepared_by"><td data-label="Name"><code>prepared_by</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">who made the package, e.g. "University of Colorado Boulder, name (e-mail)" </td></tr>
 </tbody></table>
@@ -6415,11 +6610,14 @@ fit = <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.solve">sb
 <table class="defs"><tbody>
 <tr><td><code>README.txt</code></td><td>summary and list of files</td></tr>
 <tr><td><code>gravity_field.txt</code></td><td>coefficients of degree 1..L about the origin of the shape model file, or of degree 2..L about the center of mass (<code>exchange_data_files</code>)</td></tr>
+<tr><td><code>gravity_field_unnormalized.txt</code></td><td>the same coefficients unnormalized</td></tr>
 <tr><td><code>gravity_covariance.txt</code></td><td>their full covariance (values with uncertainties only)</td></tr>
 <tr><td><code>center_of_mass.txt</code></td><td>center of mass and center of figure in the shape-model frame</td></tr>
 <tr><td><code>moments_of_inertia.txt</code></td><td>inertia tensor elements and/or libration ratio</td></tr>
 <tr><td><code>conventions.txt</code></td><td>units, frame, normalization (with code), degree 1</td></tr>
-<tr><td><code>&lt;shape model&gt;.obj        the shape model</code></td><td></td></tr>
+<tr><td><code>&lt;shape model&gt;.obj        the shape model, unless it is one of SBTK's shape models as</code></td><td></td></tr>
+<tr class="nested"><td><code>distributed (data/shapes/): the README then names it with its</code></td><td></td></tr>
+<tr class="nested"><td><code>MD5 checksum, and sbtk.exchange.read_data finds it there</code></td><td></td></tr>
 </tbody></table>
 <p>The files state only what applies: 1-sigma columns and the noise when the values have them (<a class="xref xref-fn" href="#reference-internal--sbtk.internal.exchange_data_files">sbtk.internal.exchange_data_files</a>). Nothing else of obs is written: not the expansion origin of the simulation (the true center of mass), the noise seed or the notes. Format: docs/exchange_format.md; read back with <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_data">sbtk.exchange.read_data</a>.</p>
 <h3 class="api-sub">Example</h3>
@@ -6461,6 +6659,29 @@ fit = <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.solve">sb
 <span class="w">                          </span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="n">truth</span><span class="p">,</span><span class="w"> </span><span class="n">exact</span><span class="p">,</span><span class="w"> </span><span class="mf">0.020</span><span class="p">,</span><span class="w"> </span><span class="n">prepared_by</span><span class="p">);</span></code></pre></div>
 <h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="#reference-api-body--sbtk.body.create"><code>sbtk.body.create</code></a>, <a class="xref xref-fn" href="#reference-api-compare--sbtk.compare.grids"><code>sbtk.compare.grids</code></a>, <a class="xref xref-fn" href="#reference-api-data--sbtk.data.add_noise"><code>sbtk.data.add_noise</code></a>, <a class="xref xref-fn" href="#reference-api-data--sbtk.data.simulate"><code>sbtk.data.simulate</code></a>, <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.density_grid"><code>sbtk.exchange.density_grid</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.density_grid"><code>sbtk.exchange.density_grid</code></a>, <a class="xref xref-fn" href="#reference-api-plot--sbtk.plot.interior3d"><code>sbtk.plot.interior3d</code></a>, <a class="xref xref-fn" href="#reference-api-plot--sbtk.plot.slices"><code>sbtk.plot.slices</code></a>, <a class="xref xref-fn" href="#reference-api-shape--sbtk.shape.properties"><code>sbtk.shape.properties</code></a></dd></dl>
 <p class="impl">Implementation: <code>toolbox/+sbtk/+exchange/write_model.m</code>, line 1.</p>
+</section>
+<section class="api-entry" id="reference-api-exchange--sbtk.exchange.write_potential">
+<h2 class="api-name" id="reference-api-exchange--sbtk.exchange.write_potential-h"><code>sbtk.exchange.write_potential</code><a class="headerlink" href="#reference-api-exchange--sbtk.exchange.write_potential" title="Link to sbtk.exchange.write_potential">#</a></h2>
+<p class="api-summary">Add the gravitational potential and acceleration at given points to a package.</p>
+<h3 class="api-sub">Syntax</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">file = <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_potential">sbtk.exchange.write_potential</a>(folder, body, model, points_km, grid_km)</code></pre></div>
+<h3 class="api-sub">Arguments</h3><table class="params"><thead><tr><th>Name</th><th>Size</th><th>Class</th><th>Unit</th><th>Default</th><th>Description</th></tr></thead><tbody>
+<tr id="reference-api-exchange--sbtk.exchange.write_potential.folder"><td data-label="Name"><code>folder</code></td><td data-label="Size">1 × 1</td><td data-label="Class">string</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">a package folder made by <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_data">sbtk.exchange.write_data</a> (or <code>write_model</code>) <span class="valid">Validation: <code>mustBeFolder</code>.</span></td></tr>
+<tr id="reference-api-exchange--sbtk.exchange.write_potential.body"><td data-label="Name"><code>body</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">the body of the package Fields: <a class="xref xref-st" href="#reference-data-structures--body"><code>body</code></a>. </td></tr>
+<tr id="reference-api-exchange--sbtk.exchange.write_potential.model"><td data-label="Name"><code>model</code></td><td data-label="Size">1 × 1</td><td data-label="Class">struct</td><td data-label="Unit"></td><td data-label="Default">required</td><td data-label="Description">the model whose field is wanted: a true model (<a class="xref xref-fn" href="#reference-api-data--sbtk.data.simulate">sbtk.data.simulate</a>) or a fit </td></tr>
+<tr id="reference-api-exchange--sbtk.exchange.write_potential.points_km"><td data-label="Name"><code>points_km</code></td><td data-label="Size">any × 3</td><td data-label="Class">double</td><td data-label="Unit">km</td><td data-label="Default">required</td><td data-label="Description">n x 3 points in the frame of the shape model file [km] <span class="valid">Validation: <code>mustBeFinite</code>.</span></td></tr>
+<tr id="reference-api-exchange--sbtk.exchange.write_potential.grid_km"><td data-label="Name"><code>grid_km</code></td><td data-label="Size">scalar</td><td data-label="Class">double</td><td data-label="Unit">km</td><td data-label="Default">required</td><td data-label="Description">cell edge [km] for the departures from the background density (<a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.field_at">sbtk.gravity.field_at</a>; not used for a homogeneous model) <span class="valid">Validation: <code>mustBePositive</code>.</span></td></tr>
+</tbody></table>
+<h3 class="api-sub">Outputs</h3><table class="params outputs"><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody>
+<tr id="reference-api-exchange--sbtk.exchange.write_potential.out.file"><td data-label="Name"><code>file</code></td><td data-label="Description">Path of the <code>potential_acceleration.txt</code> file that was written.</td></tr>
+</tbody></table>
+<h3 class="api-sub">Description</h3>
+<p>Writes <code>potential_acceleration.txt</code>, one row per point, in SI units as the HLP6 makers' cross-validation asks: the position [m], the potential U [m^2/s^2] (positive, U = G integral rho / |r - r'| dV) and the acceleration, the gradient of U [m/s^2], without the rotation of the body. The header says how the field was computed. The file is added to the list of files in README.txt.</p>
+<h3 class="api-sub">Example</h3>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>out</code>, <code>data_set</code>, <code>body</code>, <code>exact</code>, <code>prepared_by</code>, <code>truth</code>, <code>points_km</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">pkg = <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_data">sbtk.exchange.write_data</a>(fullfile(out.folder, &quot;redacted&quot;), data_set, body, exact, prepared_by);
+<a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_potential">sbtk.exchange.write_potential</a>(pkg, body, truth, points_km, 0.020);</code></pre></div>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="#reference-api-data--sbtk.data.simulate"><code>sbtk.data.simulate</code></a>, <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_data"><code>sbtk.exchange.write_data</code></a>, <a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.field_at"><code>sbtk.gravity.field_at</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.field_at"><code>sbtk.gravity.field_at</code></a></dd></dl>
+<p class="impl">Implementation: <code>toolbox/+sbtk/+exchange/write_potential.m</code>, line 1.</p>
 </section>
 <section class="api-entry" id="reference-api-exchange--sbtk.exchange.write_solution">
 <h2 class="api-name" id="reference-api-exchange--sbtk.exchange.write_solution-h"><code>sbtk.exchange.write_solution</code><a class="headerlink" href="#reference-api-exchange--sbtk.exchange.write_solution" title="Link to sbtk.exchange.write_solution">#</a></h2>
@@ -7605,6 +7826,7 @@ its centroid and volume. Used by the comparisons and the random-field integrals.
 <tr id="reference-errors--sbtk:exchange:moiRow"><td><code>sbtk:exchange:moiRow</code></td><td><a class="xref xref-fn" href="#reference-internal--sbtk.internal.exchange_data_files"><code>sbtk.internal.exchange_data_files</code></a></td><td>Moment-of-inertia row %s has no exchange-format equivalent.</td></tr>
 <tr id="reference-errors--sbtk:exchange:noCenterOfMass"><td><code>sbtk:exchange:noCenterOfMass</code></td><td><a class="xref xref-fn" href="#reference-internal--sbtk.internal.exchange_data_files"><code>sbtk.internal.exchange_data_files</code></a></td><td>The data need the degree-1 coefficients (the measured center of mass): add them with sbtk.data.add_center_of_mass.</td></tr>
 <tr id="reference-errors--sbtk:exchange:normalization"><td><code>sbtk:exchange:normalization</code></td><td><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_shadr"><code>sbtk.exchange.read_shadr</code></a></td><td>The header of %s gives normalization state %g; SBTK needs 1 (fully normalized).</td></tr>
+<tr id="reference-errors--sbtk:exchange:shapeModel"><td><code>sbtk:exchange:shapeModel</code></td><td><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a></td><td>The package names the shape model %s, which is neither in the package nor in data/shapes/: copy that file into data/shapes/.</td></tr>
 <tr id="reference-errors--sbtk:frame:notRotation"><td><code>sbtk:frame:notRotation</code></td><td><a class="xref xref-fn" href="#reference-internal--sbtk.internal.check_rotation"><code>sbtk.internal.check_rotation</code></a></td><td>The axes must be a rotation: orthonormal columns (the new axes as unit vectors in the current frame) with determinant +1.</td></tr>
 <tr id="reference-errors--sbtk:gravity:incompleteSet"><td><code>sbtk:gravity:incompleteSet</code></td><td><a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.center_of_mass_frame"><code>sbtk.gravity.center_of_mass_frame</code></a></td><td>The field is about a point %.1f m from its center of mass and does not have every coefficient up to degree %d, which moving it needs.</td></tr>
 <tr id="reference-errors--sbtk:gravity:incompleteSet-sbtk.gravity.center_of_mass_frame"><td><code>sbtk:gravity:incompleteSet</code></td><td><a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.center_of_mass_frame"><code>sbtk.gravity.center_of_mass_frame</code></a></td><td>The principal axes need every coefficient of degree 2 to %d; the field lacks some.</td></tr>
@@ -7637,7 +7859,7 @@ its centroid and volume. Used by the comparisons and the random-field integrals.
 <tr id="reference-errors--sbtk:io:referenceRadius"><td><code>sbtk:io:referenceRadius</code></td><td><a class="xref xref-fn" href="#reference-api-io--sbtk.io.read_jpl_gravity"><code>sbtk.io.read_jpl_gravity</code></a></td><td>The file's reference radius is %g km; body.R_ref_km is %g km.</td></tr>
 <tr id="reference-errors--sbtk:iteration:notConverged"><td><code>sbtk:iteration:notConverged</code></td><td><a class="xref xref-fn" href="#reference-internal--sbtk.internal.fixed_point"><code>sbtk.internal.fixed_point</code></a></td><td>The iteration for %s did not converge in %d steps (last change %.3g, tolerance %.3g).</td></tr>
 <tr id="reference-errors--sbtk:plot:names"><td><code>sbtk:plot:names</code></td><td><a class="xref xref-fn" href="#reference-api-plot--sbtk.plot.difference_from_homogeneous"><code>sbtk.plot.difference_from_homogeneous</code></a></td><td>Give one name per set: %d sets, %d names.</td></tr>
-<tr id="reference-errors--sbtk:shape:notDownloaded"><td><code>sbtk:shape:notDownloaded</code></td><td><a class="xref xref-fn" href="#reference-api-shape--sbtk.shape.bundled"><code>sbtk.shape.bundled</code></a></td><td>%s is not in data/shapes/: the high-resolution models are not in git; copy it from the Hera server (End-to-End Test/Shape/).</td></tr>
+<tr id="reference-errors--sbtk:shape:notDownloaded"><td><code>sbtk:shape:notDownloaded</code></td><td><a class="xref xref-fn" href="#reference-api-shape--sbtk.shape.bundled"><code>sbtk.shape.bundled</code></a></td><td>%s is not in data/shapes/: the high-resolution models are not in git; copy it from the Hera server (End-to-End Test/HLP6G BlindTest/inputs/Reference models/).</td></tr>
 <tr id="reference-errors--sbtk:shape:notSpc"><td><code>sbtk:shape:notSpc</code></td><td><a class="xref xref-fn" href="#reference-api-shape--sbtk.shape.reduce_spc"><code>sbtk.shape.reduce_spc</code></a></td><td>%d vertices and %d facets: not an SPC grid model (6 (q+1)^2 vertices, 12 q^2 facets).</td></tr>
 <tr id="reference-errors--sbtk:shape:reduce"><td><code>sbtk:shape:reduce</code></td><td><a class="xref xref-fn" href="#reference-api-shape--sbtk.shape.reduce"><code>sbtk.shape.reduce</code></a></td><td>The reduced shape (%d facets) is closed %d, outward %d, star-shaped %d: try another number of facets.</td></tr>
 <tr id="reference-errors--sbtk:shape:spcReduce"><td><code>sbtk:shape:spcReduce</code></td><td><a class="xref xref-fn" href="#reference-api-shape--sbtk.shape.reduce_spc"><code>sbtk.shape.reduce_spc</code></a></td><td>The reduced grid (%d vertices) is closed %d, outward %d, star-shaped %d: the vertices are not in SPC grid order.</td></tr>
@@ -7662,7 +7884,8 @@ its centroid and volume. Used by the comparisons and the random-field integrals.
 <tr id="reference-internal--sbtk.internal.exchange_grid_write"><td><code>sbtk.internal.exchange_grid_write</code></td><td>Write <code>density_grid.txt</code> of an interior-model or solution package.</td><td><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_model"><code>sbtk.exchange.write_model</code></a>, <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_solution"><code>sbtk.exchange.write_solution</code></a></td></tr>
 <tr id="reference-internal--sbtk.internal.exchange_number"><td><code>sbtk.internal.exchange_number</code></td><td>Numeric value of a metadata key of an exchange file (error if missing).</td><td><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a>, <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_grid"><code>sbtk.exchange.read_grid</code></a></td></tr>
 <tr id="reference-internal--sbtk.internal.exchange_read"><td><code>sbtk.internal.exchange_read</code></td><td>Read one exchange-format text file (see <a class="xref xref-fn" href="#reference-internal--sbtk.internal.exchange_write">sbtk.internal.exchange_write</a>).</td><td><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a>, <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_grid"><code>sbtk.exchange.read_grid</code></a></td></tr>
-<tr id="reference-internal--sbtk.internal.exchange_write"><td><code>sbtk.internal.exchange_write</code></td><td>Write one exchange-format text file.</td><td><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_model"><code>sbtk.exchange.write_model</code></a>, <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_solution"><code>sbtk.exchange.write_solution</code></a></td></tr>
+<tr id="reference-internal--sbtk.internal.exchange_write"><td><code>sbtk.internal.exchange_write</code></td><td>Write one exchange-format text file.</td><td><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_model"><code>sbtk.exchange.write_model</code></a>, <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_potential"><code>sbtk.exchange.write_potential</code></a>, <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_solution"><code>sbtk.exchange.write_solution</code></a></td></tr>
+<tr id="reference-internal--sbtk.internal.file_md5"><td><code>sbtk.internal.file_md5</code></td><td>MD5 checksum of a file, as 32 lowercase hexadecimal digits.</td><td><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_data"><code>sbtk.exchange.write_data</code></a></td></tr>
 <tr id="reference-internal--sbtk.internal.fixed_point"><td><code>sbtk.internal.fixed_point</code></td><td>Iterate x = update(x) until a step moves x by at most tol; at most <code>max_iter</code> steps.</td><td><a class="xref xref-fn" href="#reference-api-data--sbtk.data.simulate"><code>sbtk.data.simulate</code></a>, <a class="xref xref-fn" href="#reference-api-interior--sbtk.interior.align_with_spin_axis"><code>sbtk.interior.align_with_spin_axis</code></a></td></tr>
 <tr id="reference-internal--sbtk.internal.geometry_deviation"><td><code>sbtk.internal.geometry_deviation</code></td><td>How far one geometry parameter of a component is from its start.</td><td><a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.run"><code>sbtk.invert.run</code></a></td></tr>
 <tr id="reference-internal--sbtk.internal.geometry_parameters"><td><code>sbtk.internal.geometry_parameters</code></td><td>The geometry an inversion estimates: one entry per scalar parameter.</td><td><a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.setup"><code>sbtk.invert.setup</code></a></td></tr>
@@ -7675,21 +7898,24 @@ its centroid and volume. Used by the comparisons and the random-field integrals.
 <tr id="reference-internal--sbtk.internal.observe"><td><code>sbtk.internal.observe</code></td><td>Predicted measurements from per-unit-density integrals I (struct with U and Q).</td><td><a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.run"><code>sbtk.invert.run</code></a>, <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.setup"><code>sbtk.invert.setup</code></a></td></tr>
 <tr id="reference-internal--sbtk.internal.point_mass_sh"><td><code>sbtk.internal.point_mass_sh</code></td><td>Normalized spherical harmonics of unit point masses.</td><td><a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.component_integrals"><code>sbtk.gravity.component_integrals</code></a></td></tr>
 <tr id="reference-internal--sbtk.internal.principal_axes"><td><code>sbtk.internal.principal_axes</code></td><td>Principal axes of inertia from the degree-2 gravity coefficients.</td><td><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_model"><code>sbtk.exchange.write_model</code></a>, <a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.center_of_mass_frame"><code>sbtk.gravity.center_of_mass_frame</code></a>, <a class="xref xref-fn" href="#reference-api-plot--sbtk.plot.difference_from_homogeneous"><code>sbtk.plot.difference_from_homogeneous</code></a></td></tr>
+<tr id="reference-internal--sbtk.internal.prism_field"><td><code>sbtk.internal.prism_field</code></td><td>Potential and acceleration of uniform cubes, exact (Nagy, Papp and Benedek 2000).</td><td><a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.field_at"><code>sbtk.gravity.field_at</code></a></td></tr>
 <tr id="reference-internal--sbtk.internal.random_field_value"><td><code>sbtk.internal.random_field_value</code></td><td>Random-field density perturbation [kg/m^3] at points X (n x 3, km).</td><td><a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.random_field_integrals"><code>sbtk.gravity.random_field_integrals</code></a></td></tr>
 <tr id="reference-internal--sbtk.internal.read_obj"><td><code>sbtk.internal.read_obj</code></td><td>Triangular faces and vertices of a Wavefront OBJ shape model.</td><td><a class="xref xref-fn" href="#reference-api-shape--sbtk.shape.load"><code>sbtk.shape.load</code></a></td></tr>
 <tr id="reference-internal--sbtk.internal.rotate_inertia"><td><code>sbtk.internal.rotate_inertia</code></td><td>Inertia elements [Ixx Iyy Izz Ixy Ixz Iyz] in rotated axes: axes' * I * axes.</td><td><a class="xref xref-fn" href="#reference-api-data--sbtk.data.to_frame"><code>sbtk.data.to_frame</code></a>, <a class="xref xref-fn" href="#reference-api-interior--sbtk.interior.to_frame"><code>sbtk.interior.to_frame</code></a></td></tr>
 <tr id="reference-internal--sbtk.internal.sh_packing"><td><code>sbtk.internal.sh_packing</code></td><td>Ordering of packed spherical-harmonic coefficient vectors.</td><td><a class="xref xref-fn" href="#reference-api-data--sbtk.data.expand_about"><code>sbtk.data.expand_about</code></a>, <a class="xref xref-fn" href="#reference-api-data--sbtk.data.from_coefficients"><code>sbtk.data.from_coefficients</code></a>, <a class="xref xref-fn" href="#reference-api-data--sbtk.data.select_degree"><code>sbtk.data.select_degree</code></a>, <a class="xref xref-fn" href="#reference-api-data--sbtk.data.set_uncertainties"><code>sbtk.data.set_uncertainties</code></a>, <a class="xref xref-fn" href="#reference-api-data--sbtk.data.summary"><code>sbtk.data.summary</code></a>, <a class="xref xref-fn" href="#reference-api-data--sbtk.data.to_frame"><code>sbtk.data.to_frame</code></a>, <a class="xref xref-fn" href="#reference-api-data--sbtk.data.use_uncertainties"><code>sbtk.data.use_uncertainties</code></a>, <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_shadr"><code>sbtk.exchange.read_shadr</code></a>, <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_model"><code>sbtk.exchange.write_model</code></a>, <a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.center_of_mass_frame"><code>sbtk.gravity.center_of_mass_frame</code></a>, <a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.geometry"><code>sbtk.gravity.geometry</code></a>, <a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.labels"><code>sbtk.gravity.labels</code></a>, <a class="xref xref-fn" href="#reference-api-interior--sbtk.interior.to_frame"><code>sbtk.interior.to_frame</code></a>, <a class="xref xref-fn" href="#reference-api-io--sbtk.io.read_jpl_gravity"><code>sbtk.io.read_jpl_gravity</code></a>, <a class="xref xref-fn" href="#reference-api-io--sbtk.io.report_simulation"><code>sbtk.io.report_simulation</code></a>, <a class="xref xref-fn" href="#reference-api-io--sbtk.io.write_measurements"><code>sbtk.io.write_measurements</code></a>, <a class="xref xref-fn" href="#reference-api-plot--sbtk.plot.difference_from_homogeneous"><code>sbtk.plot.difference_from_homogeneous</code></a>, <a class="xref xref-fn" href="#reference-api-plot--sbtk.plot.measurements"><code>sbtk.plot.measurements</code></a></td></tr>
 <tr id="reference-internal--sbtk.internal.sh_rotation"><td><code>sbtk.internal.sh_rotation</code></td><td>Matrix that expresses spherical-harmonic coefficients in rotated axes.</td><td><a class="xref xref-fn" href="#reference-api-data--sbtk.data.to_frame"><code>sbtk.data.to_frame</code></a>, <a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.center_of_mass_frame"><code>sbtk.gravity.center_of_mass_frame</code></a>, <a class="xref xref-fn" href="#reference-api-interior--sbtk.interior.to_frame"><code>sbtk.interior.to_frame</code></a>, <a class="xref xref-fn" href="#reference-api-plot--sbtk.plot.difference_from_homogeneous"><code>sbtk.plot.difference_from_homogeneous</code></a></td></tr>
 <tr id="reference-internal--sbtk.internal.sh_translation"><td><code>sbtk.internal.sh_translation</code></td><td>Matrix that moves spherical-harmonic integrals to a shifted expansion origin.</td><td><a class="xref xref-fn" href="#reference-api-data--sbtk.data.expand_about"><code>sbtk.data.expand_about</code></a>, <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_model"><code>sbtk.exchange.write_model</code></a>, <a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.center_of_mass_frame"><code>sbtk.gravity.center_of_mass_frame</code></a>, <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.run"><code>sbtk.invert.run</code></a></td></tr>
-<tr id="reference-internal--sbtk.internal.shape_file_name"><td><code>sbtk.internal.shape_file_name</code></td><td>File name of a shape model in an exchange package.</td><td>other internal functions</td></tr>
+<tr id="reference-internal--sbtk.internal.shape_file_name"><td><code>sbtk.internal.shape_file_name</code></td><td>File name of a shape model in an exchange package.</td><td><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.write_data"><code>sbtk.exchange.write_data</code></a></td></tr>
 <tr id="reference-internal--sbtk.internal.slice_axes"><td><code>sbtk.internal.slice_axes</code></td><td>Draw one density slice (image + body outline) on axes ax.</td><td><a class="xref xref-fn" href="#reference-api-plot--sbtk.plot.slices"><code>sbtk.plot.slices</code></a>, <a class="xref xref-fn" href="#reference-api-plot--sbtk.plot.truth_vs_estimate"><code>sbtk.plot.truth_vs_estimate</code></a></td></tr>
 <tr id="reference-internal--sbtk.internal.slice_images"><td><code>sbtk.internal.slice_images</code></td><td>Absolute density of each model on the two slice planes.</td><td><a class="xref xref-fn" href="#reference-api-plot--sbtk.plot.slices"><code>sbtk.plot.slices</code></a>, <a class="xref xref-fn" href="#reference-api-plot--sbtk.plot.truth_vs_estimate"><code>sbtk.plot.truth_vs_estimate</code></a></td></tr>
 <tr id="reference-internal--sbtk.internal.slice_planes"><td><code>sbtk.internal.slice_planes</code></td><td>Grid points on the two plotting planes, for density slices.</td><td>other internal functions</td></tr>
 <tr id="reference-internal--sbtk.internal.surface_distance"><td><code>sbtk.internal.surface_distance</code></td><td>Distance from the expansion origin to the surface along unit directions [km].</td><td><a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.density_grid"><code>sbtk.exchange.density_grid</code></a>, <a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.component_integrals"><code>sbtk.gravity.component_integrals</code></a>, <a class="xref xref-fn" href="#reference-api-interior--sbtk.interior.density_at"><code>sbtk.interior.density_at</code></a>, <a class="xref xref-fn" href="#reference-api-invert--sbtk.invert.run"><code>sbtk.invert.run</code></a>, <a class="xref xref-fn" href="#reference-api-plot--sbtk.plot.interior3d"><code>sbtk.plot.interior3d</code></a></td></tr>
 <tr id="reference-internal--sbtk.internal.surface_distance_near"><td><code>sbtk.internal.surface_distance_near</code></td><td>Distance from a nearby origin to the surface through given points [km].</td><td><a class="xref xref-fn" href="#reference-api-compare--sbtk.compare.reference"><code>sbtk.compare.reference</code></a></td></tr>
 </tbody></table></section><section class="printpage" id="validation-tests"><p class="printcat">Validation</p><h1 id="validation-tests--validation-and-tests">Validation and tests<a class="headerlink" href="#validation-tests--validation-and-tests" title="Link to this section">#</a></h1>
-<p>SBTK 1.0.0 has 157 unit and integration tests in MATLAB's unit-test framework. They run with</p>
-<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">run(fullfile(<a class="xref xref-fn" href="#reference-api-sbtk--sbtk.root">sbtk.root</a>, &quot;tests&quot;, &quot;run_tests.m&quot;))      <span class="c">% about 6 minutes; writes tests/reports/test_report.txt</span></code></pre></div>
+<p>SBTK 1.0.0 has 164 unit and integration tests in MATLAB's unit-test framework. They run with</p>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">run(fullfile(<a class="xref xref-fn" href="#reference-api-sbtk--sbtk.root">sbtk.root</a>, &quot;tests&quot;, &quot;run_tests.m&quot;))      <span class="c">% about 40 minutes; writes tests/reports/test_report.txt</span></code></pre></div>
+<p>Most of the time goes to <code>tests/integration/test_maker_scripts.m</code>, which runs three HLP6 maker scripts on the
+full-resolution shape models (3 million facets, degree 10).</p>
 <p>This page states what the tests check and with what tolerance, as written in the test files. It makes no claims
 beyond them. Unit tests use a small ellipsoid body (<code>tests/unit/small_body.m</code>); validation tests use an ellipsoid with
 semi-axes 0.5 × 0.4 × 0.3 km (20,480 facets) and the 9.3 m Didymos model with a bulk density of 2600 kg/m³ and
@@ -7849,6 +8075,21 @@ semi-axes 0.5 × 0.4 × 0.3 km (20,480 facets) and the 9.3 m Didymos model with 
 <td>10⁻¹² km; obj precision for the center of figure</td>
 </tr>
 <tr>
+<td><code>testUnnormalizedCoefficients</code></td>
+<td><code>gravity_field_unnormalized.txt</code> gives the coefficients of <code>gravity_field.txt</code> times <span class="nobr"><math alttext="N_lm" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>N</mi><mrow><mi>l</mi><mi>m</mi></mrow></msub></mrow></math>,</span> and their 1σ for values with uncertainties.</td>
+<td>relative 10⁻¹⁴</td>
+</tr>
+<tr>
+<td><code>testShippedShapeModelNotIncluded</code></td>
+<td>A package made with one of SBTK's shape model files names it with its MD5 checksum but does not include it; <a class="xref xref-fn" href="#reference-api-exchange--sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a> reads it from <code>data/shapes/</code>.</td>
+<td>vertices exact</td>
+</tr>
+<tr>
+<td><code>testWritePotential</code></td>
+<td><code>potential_acceleration.txt</code> gives the positions, potential and acceleration of <a class="xref xref-fn" href="#reference-api-gravity--sbtk.gravity.polyhedron"><code>sbtk.gravity.polyhedron</code></a> in SI units and is listed once in <code>README.txt</code>.</td>
+<td>relative 10⁻¹⁴</td>
+</tr>
+<tr>
 <td><code>testGridDefinition</code></td>
 <td>Density-grid cell centers lie on multiples of the spacing and the cells fill the body; grids of different spacing are rejected.</td>
 <td>volume within 5% at 50 m cells</td>
@@ -7927,7 +8168,7 @@ generalized.</p>
 </tr>
 <tr>
 <td><code>tests/unit/test_gravity.m</code></td>
-<td>Uniform body, mass kept by the background, center-of-mass shift, labels, non-star-shaped meshes rejected, components clipped to the body. <code>testCenterOfMassFrame</code>: about the center of mass degree 1 is 0; in principal axes <span class="nobr"><math alttext="C_21 = S_21 = S_22 = 0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub><mo>&#x0003D;</mo><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub><mo>&#x0003D;</mo><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math>,</span> each degree's power and each degree's total variance are unchanged, and <span class="nobr"><math alttext="C_20" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>20</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="C_22" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub></mrow></math></span> equal the values from the principal moments; a measurement set, the same set without degree 1, and a set lacking a coefficient.</td>
+<td>Uniform body, mass kept by the background, center-of-mass shift, labels, non-star-shaped meshes rejected, components clipped to the body. <code>testPolyhedronAgreesWithCube</code>: the polyhedron formula and the cube formula give the same potential and acceleration of a cube, outside, on a face (on the edge between its triangles) and inside (to 10⁻¹⁰). <code>testPolyhedronField</code>: inside the body the divergence of the acceleration is <span class="nobr"><math alttext="-4π Gρ" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mn>4</mn><mi>&#x003C0;</mi><mi>G</mi><mi>&#x003C1;</mi></mrow></math>,</span> outside the acceleration is the gradient of the potential (to 10⁻⁶), and far away the potential is <span class="nobr"><math alttext="GM/r" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>G</mi><mi>M</mi><mo>&#x0002F;</mo><mi>r</mi></mrow></math>.</span> <code>testFieldAt</code>: a homogeneous model gives the polyhedron (to 10⁻¹²); a sphere of excess density adds the field of its mass (within 2% on a 10 m grid). <code>testSmallOverhangAccepted</code>: seen from a point where one facet of a 0.1 mm dent faces it, the signed cones give the volume (to 10⁻¹²) and the center of figure (to 10⁻¹² km); a point outside the body is rejected. <code>testCenterOfMassFrame</code>: about the center of mass degree 1 is 0; in principal axes <span class="nobr"><math alttext="C_21 = S_21 = S_22 = 0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub><mo>&#x0003D;</mo><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub><mo>&#x0003D;</mo><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math>,</span> each degree's power and each degree's total variance are unchanged, and <span class="nobr"><math alttext="C_20" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>20</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="C_22" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub></mrow></math></span> equal the values from the principal moments; a measurement set, the same set without degree 1, and a set lacking a coefficient.</td>
 </tr>
 <tr>
 <td><code>tests/unit/test_frames.m</code></td>
@@ -7959,7 +8200,7 @@ generalized.</p>
 </tr>
 <tr>
 <td><code>tests/integration/test_maker_scripts.m</code></td>
-<td>The seven HLP6 maker scripts in <code>examples/</code> pass the code analyzer; <code>make_didymos_3</code>, <code>make_dimorphos_3</code> and <code>make_didymos_homogeneous</code> run, and their packages have exact values only, in the frame and about the origin of the original shape model file, which they contain unchanged (degree 1 listed, <span class="nobr"><math alttext="C_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="S_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math></span> not zero), every boulder or void of the model, and no local paths. The homogeneous package's degree 1 gives the center of figure (to 10⁻⁹ km) and it has all six inertia elements.</td>
+<td>The seven HLP6 maker scripts in <code>examples/</code> pass the code analyzer; <code>make_didymos_3</code>, <code>make_dimorphos_3</code> and <code>make_didymos_homogeneous</code> run on the full-resolution models, and their packages have exact values only, to degree 10, normalized and unnormalized, in the frame and about the origin of the shape model file (degree 1 listed, <span class="nobr"><math alttext="C_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="S_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math></span> not zero), which they name with its MD5 checksum and do not include, every boulder or void of the model, and no local paths. The homogeneous package has the agreed GM and reference radius, its degree 1 gives the center of figure (to 10⁻⁹ km), it has all six inertia elements and the potential and acceleration at the 20 points of the makers' cross-validation.</td>
 </tr>
 </tbody>
 </table>

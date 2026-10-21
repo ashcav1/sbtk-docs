@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Didymos and Dimorphos values — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=8de7f0aaef">
-<link rel="stylesheet" href="../assets/pygments.css?v=8de7f0aaef">
-<link rel="stylesheet" href="../assets/print.css?v=8de7f0aaef" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=9c5ac07573">
+<link rel="stylesheet" href="../assets/pygments.css?v=9c5ac07573">
+<link rel="stylesheet" href="../assets/print.css?v=9c5ac07573" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,7 +29,7 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Projects › <span aria-current="page">Didymos and Dimorphos values</span></nav>
 <article>
 <h1 id="didymos-and-dimorphos-values">Didymos and Dimorphos values<a class="headerlink" href="#didymos-and-dimorphos-values" title="Link to this section">#</a></h1>
-<p class="lastedit">Last edited October 20, 2026</p>
+<p class="lastedit">Last edited October 21, 2026</p>
 <p>Every value SBTK uses to model Didymos and Dimorphos, where it comes from and where to find it. Each value is one of:</p>
 <ul>
 <li><strong>agreed</strong>: the value the Hera blind-test group uses;</li>
@@ -38,9 +38,12 @@
 <li><strong>derived</strong>: computed from other values on this page;</li>
 <li><strong>assumed</strong>: an SBTK choice, not a measurement.</li>
 </ul>
+<p>The HLP6 makers agreed on the Didymos values on 21 October 2026 [HLP6 cross-validation 2026]: the 1.165 m shape
+model in its own frame, bulk density 2600 kg/m³, reference radius 410 m, degrees to 10, and the potential and
+acceleration at 20 given points. There are no agreed Dimorphos values yet.</p>
 <p>The values are set in the repository in <code>projects/hera_hlp6/hlp6_didymos.m</code> and <code>projects/hera_hlp6/hlp6_dimorphos.m</code>
-(shape model, mass, reference radius, degree, grid spacing), <code>projects/hera_hlp6/hlp6_uncertainties.m</code> (the
-receiving team's uncertainties) and the maker scripts <code>examples/make_didymos_1.m</code> to <code>make_dimorphos_3.m</code>.</p>
+(shape model, mass or bulk density, reference radius, degree, grid spacing), <code>projects/hera_hlp6/hlp6_uncertainties.m</code>
+(the receiving team's uncertainties) and the maker scripts <code>examples/make_didymos_1.m</code> to <code>make_dimorphos_3.m</code>.</p>
 <h2 id="shape-models">Shape models<a class="headerlink" href="#shape-models" title="Link to this section">#</a></h2>
 <p>The shape models are the DART stereophotoclinometry (SPC) models, Didymos version 3 and Dimorphos version 4, from
 before the DART impact [Daly et al. 2023; Daly et al. 2024]. They are published in two places:</p>
@@ -51,7 +54,8 @@ before the DART impact [Daly et al. 2023; Daly et al. 2024]. They are published 
 <li>Dimorphos: <a href="https://pds-smallbodies.astro.umd.edu/holdings/pds4-dart_shapemodel-v1.0/data_derived_dimorphos_model_v004/">https://pds-smallbodies.astro.umd.edu/holdings/pds4-dart_shapemodel-v1.0/data_derived_dimorphos_model_v004/</a></li>
 <li><strong>ESA SPICE</strong>: the full-resolution models only, as OBJ and digital shape kernel (<code>.bds</code>) files,
   <a href="https://spiftp.esac.esa.int/data/SPICE/HERA/kernels/dsk/">https://spiftp.esac.esa.int/data/SPICE/HERA/kernels/dsk/</a>. The working-group server has the same two files in
-  <code>Hera_WG/End-to-End Test/Shape/</code>.</li>
+  <code>Hera_WG/End-to-End Test/Shape/</code>, and the agreed Didymos file in
+  <code>Hera_WG/End-to-End Test/HLP6G BlindTest/inputs/Reference models/Didymos/</code>.</li>
 </ul>
 <p>The volume and the volume-equivalent diameter <span class="nobr"><math alttext="D = (6V/π)^1/3" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>D</mi><mo>&#x0003D;</mo><mo stretchy="false">&#x00028;</mo><mn>6</mn><mi>V</mi><mo>&#x0002F;</mo><mi>&#x003C0;</mi><msup><mo stretchy="false">&#x00029;</mo><mrow><mn>1</mn><mo>&#x0002F;</mo><mn>3</mn></mrow></msup></mrow></math></span> are <strong>derived</strong> from each file.</p>
 <table>
@@ -74,7 +78,7 @@ before the DART impact [Daly et al. 2023; Daly et al. 2024]. They are published 
 <td>49,152</td>
 <td>0.20336</td>
 <td>729.6</td>
-<td><strong>published</strong>, <strong>agreed</strong>: PDS, Didymos collection (3.4 MB), the file unchanged. The blind-test Didymos model, the one the Hera radio-science (RSE) team uses.</td>
+<td><strong>published</strong>: PDS, Didymos collection (3.4 MB), the file unchanged. The version the Hera radio-science (RSE) team uses; SBTK's blind-test packages until 20 October 2026.</td>
 </tr>
 <tr>
 <td><code>didymos_highres</code></td>
@@ -83,7 +87,7 @@ before the DART impact [Daly et al. 2023; Daly et al. 2024]. They are published 
 <td>3,145,728</td>
 <td>0.20381</td>
 <td>730.1</td>
-<td><strong>published</strong>: ESA SPICE (162 MB; also on the server). PDS has the 1.165 m model as <code>didymos_g_1165mm_spc_obj_0000n00000_v003.obj</code>. Not in git.</td>
+<td><strong>agreed</strong>, <strong>published</strong>: the HLP6 reference model of Didymos. ESA SPICE (162 MB) and the server. PDS has the 1.165 m model as <code>didymos_g_1165mm_spc_obj_0000n00000_v003.obj</code>. MD5 <code>0a585bc46d19f29778d7721970958723</code>. Not in git.</td>
 </tr>
 <tr>
 <td><code>didymos_every8</code></td>
@@ -101,7 +105,7 @@ before the DART impact [Daly et al. 2023; Daly et al. 2024]. They are published 
 <td>49,152</td>
 <td>0.0017597</td>
 <td>149.8</td>
-<td><strong>derived</strong>: every 8th grid point of <code>dimorphos_highres</code>. Used for the blind-test Dimorphos packages so far.</td>
+<td><strong>derived</strong>: every 8th grid point of <code>dimorphos_highres</code>. SBTK's blind-test Dimorphos packages until 20 October 2026.</td>
 </tr>
 <tr>
 <td><code>dimorphos_highres</code></td>
@@ -110,7 +114,7 @@ before the DART impact [Daly et al. 2023; Daly et al. 2024]. They are published 
 <td>3,145,728</td>
 <td>0.0017602</td>
 <td>149.8</td>
-<td><strong>published</strong>: ESA SPICE (162 MB; also on the server). PDS has it as <code>dimorphos_g_0243mm_spc_obj_0000n00000_v004.obj</code>. Not in git.</td>
+<td><strong>published</strong>, <strong>assumed</strong>: ESA SPICE (162 MB) and the server. SBTK's blind-test Dimorphos packages (like the agreed Didymos model, the full resolution). PDS has it as <code>dimorphos_g_0243mm_spc_obj_0000n00000_v004.obj</code>. MD5 <code>d8263a016169434e09fd10f8b065f0a1</code>. Not in git.</td>
 </tr>
 <tr>
 <td>(not in SBTK yet)</td>
@@ -125,15 +129,18 @@ before the DART impact [Daly et al. 2023; Daly et al. 2024]. They are published 
 </table>
 <p>Points to know:</p>
 <ul>
-<li><strong>Use the same file as the other teams.</strong> The 9.3 m Didymos file is a separate product, not a subsample of the
-  1.165 m model: its volume is 0.22% smaller, its center of figure is 0.35 m away, and its degree-2 coefficients differ
-  by up to <span class="nobr"><math alttext="3×10^-4" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>3</mn><mi>&#x000D7;</mi><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>4</mn></mrow></msup></mrow></math>,</span> about the size of the measurement uncertainties. Data made with one file and inverted with
-  another carry that difference as an error. <code>data/shapes/README.md</code> compares all the versions.</li>
-<li><strong>Dimorphos.</strong> SBTK's <code>dimorphos</code> has the sampling of the PDS 1.94 m file but is a plain subsample of the
-  0.243 m model, so it may differ from the PDS file in the same way. The models are from before the DART impact, which
-  may have changed the shape.</li>
-<li><strong>Frame.</strong> Each file has its own body-fixed frame, <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span> along the spin axis. The origin of the Didymos files is 57 m
-  from the center of figure; the HLP6 makers keep it (<a href="../conventions/gravity-frames.html#makers">Frames of a gravity field</a>).</li>
+<li><strong>Use the same file as the other teams.</strong> The agreed Didymos file is the 1.165 m model. The 9.3 m file is a
+  separate product, not a subsample of it: its volume is 0.22% smaller, its center of figure is 0.35 m away, and its
+  degree-2 coefficients differ by up to <span class="nobr"><math alttext="3×10^-4" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>3</mn><mi>&#x000D7;</mi><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>4</mn></mrow></msup></mrow></math>,</span> about the size of the measurement uncertainties. Data made
+  with one file and inverted with another carry that difference as an error. <code>data/shapes/README.md</code> compares all
+  the versions.</li>
+<li><strong>Packages do not include the file.</strong> A package made with one of these files names it with its MD5 checksum
+  (<a href="../files/exchange-packages.html">Exchange packages</a>).</li>
+<li><strong>Dimorphos.</strong> The models are from before the DART impact, which may have changed the shape.</li>
+<li><strong>Frame.</strong> Each file has its own body-fixed frame, <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span> along the spin axis. The HLP6 makers keep it ("native
+  reference frame of the shape model, not barycentric"; <a href="../conventions/gravity-frames.html#makers">Frames of a gravity field</a>).
+  The center of figure is 56.765 m from the origin of the agreed Didymos file, at (+15.723, +42.487, −34.204) m, and
+  0.751 m from that of the Dimorphos file, at (−0.741, −0.117, −0.007) m.</li>
 </ul>
 <h2 id="mass-and-gm">Mass and GM<a class="headerlink" href="#mass-and-gm" title="Link to this section">#</a></h2>
 <table>
@@ -148,11 +155,18 @@ before the DART impact [Daly et al. 2023; Daly et al. 2024]. They are published 
 </thead>
 <tbody>
 <tr>
+<td>Bulk density</td>
+<td>2600 kg/m³</td>
+<td></td>
+<td><strong>agreed</strong> (Didymos)</td>
+<td>[HLP6 cross-validation 2026]</td>
+</tr>
+<tr>
 <td>Mass <span class="nobr"><math alttext="M" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi></mrow></math></span></td>
-<td>5.273 × 10¹¹ kg</td>
+<td>5.299121 × 10¹¹ kg</td>
 <td>2.700 × 10⁹ kg</td>
-<td><strong>agreed</strong></td>
-<td>the masses the RSE end-to-end test uses, from the Didymos Reference Model, issue 6.2 (<strong>server</strong>, <code>Hera_WG/End-to-End Test/Didymos Reference model/Didymos Reference Model issue 6_2_clean.pdf</code>) and [Makadia et al. 2026]. The group's input values are in <code>Hera_WG/End-to-End Test/Endtoendtest_inputs.xlsx</code> (<strong>server</strong>).</td>
+<td><strong>derived</strong> (Didymos: bulk density × volume of the agreed file); <strong>server</strong> (Dimorphos)</td>
+<td>Dimorphos: the mass the RSE end-to-end test uses, from the Didymos Reference Model, issue 6.2 (<code>Hera_WG/End-to-End Test/Didymos Reference model/Didymos Reference Model issue 6_2_clean.pdf</code>) and [Makadia et al. 2026]. The group's end-to-end input values are in <code>Hera_WG/End-to-End Test/Endtoendtest_inputs.xlsx</code>.</td>
 </tr>
 <tr>
 <td>Gravitational constant <span class="nobr"><math alttext="G" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>G</mi></mrow></math></span></td>
@@ -163,10 +177,17 @@ before the DART impact [Daly et al. 2023; Daly et al. 2024]. They are published 
 </tr>
 <tr>
 <td><span class="nobr"><math alttext="GM = G M" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>G</mi><mi>M</mi><mo>&#x0003D;</mo><mi>G</mi><mi>M</mi></mrow></math></span></td>
-<td>3.51935839 × 10⁻⁸ km³/s²</td>
+<td>3.5367926256900638 × 10⁻⁸ km³/s²</td>
 <td>1.802061 × 10⁻¹⁰ km³/s²</td>
-<td><strong>derived</strong></td>
+<td><strong>agreed</strong> (Didymos), <strong>derived</strong></td>
+<td>Didymos: [HLP6 cross-validation 2026]. <span class="nobr"><math alttext="G" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>G</mi></mrow></math></span> × 2600 kg/m³ × the volume of the agreed file gives the same value to 13 digits, so the group uses CODATA 2018 too.</td>
+</tr>
+<tr>
+<td>Mass used until 20 October 2026</td>
+<td>5.273 × 10¹¹ kg</td>
 <td></td>
+<td><strong>server</strong></td>
+<td>the RSE end-to-end test (Reference Model 6.2)</td>
 </tr>
 <tr>
 <td><span class="nobr"><math alttext="GM" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>G</mi><mi>M</mi></mrow></math></span> estimated in the RSE end-to-end test</td>
@@ -187,29 +208,11 @@ before the DART impact [Daly et al. 2023; Daly et al. 2024]. They are published 
 <p>The maker packages give <span class="nobr"><math alttext="GM" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>G</mi><mi>M</mi></mrow></math></span> and the mass (<span class="nobr"><math alttext="GM/G" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>G</mi><mi>M</mi><mo>&#x0002F;</mo><mi>G</mi></mrow></math>)</span>. <a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a> takes the mass from <span class="nobr"><math alttext="GM" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>G</mi><mi>M</mi></mrow></math>,</span> so a
 package from a team that used another <span class="nobr"><math alttext="G" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>G</mi></mrow></math></span> gives that team's mass.</p>
 <h2 id="bulk-density">Bulk density<a class="headerlink" href="#bulk-density" title="Link to this section">#</a></h2>
-<p>The bulk density is <strong>derived</strong>: the mass divided by the volume of the shape model in use. It is not set separately,
-and it is the background density of a homogeneous model (<a href="../models/density-distributions.html">Density distributions</a>).</p>
-<table>
-<thead>
-<tr>
-<th>Shape model</th>
-<th>Didymos</th>
-<th>Dimorphos</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Blind-test files (<code>didymos</code>, <code>dimorphos</code>)</td>
-<td>2593 kg/m³</td>
-<td>1534 kg/m³</td>
-</tr>
-<tr>
-<td>Full resolution (<code>didymos_highres</code>, <code>dimorphos_highres</code>)</td>
-<td>2587 kg/m³</td>
-<td>1534 kg/m³</td>
-</tr>
-</tbody>
-</table>
+<p>The bulk density is the background density of a homogeneous model (<a href="../models/density-distributions.html">Density distributions</a>).
+For Didymos it is <strong>agreed</strong>, 2600 kg/m³, and sets the mass. For Dimorphos it is <strong>derived</strong>: 2.700 × 10⁹ kg over the
+volume of the 0.243 m model, 1534 kg/m³.</p>
+<p>Before the agreement SBTK took the mass of the RSE end-to-end test, 5.273 × 10¹¹ kg, which gives 2593 kg/m³ with
+the 9.3 m file and 2587 kg/m³ with the 1.165 m file.</p>
 <h2 id="gravity-field-settings">Gravity field settings<a class="headerlink" href="#gravity-field-settings" title="Link to this section">#</a></h2>
 <table>
 <thead>
@@ -224,31 +227,31 @@ and it is the background density of a homogeneous model (<a href="../models/dens
 <tbody>
 <tr>
 <td>Reference radius <span class="nobr"><math alttext="R_ref" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>R</mi><mtext>ref</mtext></msub></mrow></math></span></td>
-<td>0.43 km</td>
+<td>0.41 km</td>
 <td>0.10 km</td>
-<td><strong>server</strong>, <strong>agreed</strong></td>
-<td>header lines of the RSE <code>.tab</code> files. The RSE inertia files state "0.4 m" and "0.1 m", a labeling error.</td>
+<td><strong>agreed</strong> (Didymos), <strong>server</strong> (Dimorphos)</td>
+<td>Didymos: [HLP6 cross-validation 2026]. Dimorphos: the RSE <code>.tab</code> file. The RSE Didymos file uses 0.43 km; its coefficients and their 1σ convert to 0.41 km (below). The RSE inertia files state "0.4 m" and "0.1 m", a labeling error.</td>
 </tr>
 <tr>
 <td>Degree of the receiving team's fit</td>
 <td>5</td>
 <td>3</td>
-<td><strong>server</strong>, <strong>agreed</strong></td>
+<td><strong>server</strong></td>
 <td>the degrees of the RSE <code>.tab</code> files; finders truncate to them</td>
 </tr>
 <tr>
 <td>Degree the makers send</td>
-<td>6</td>
-<td>6</td>
-<td><strong>assumed</strong></td>
-<td>finders truncate</td>
+<td>10</td>
+<td>10</td>
+<td><strong>agreed</strong> (Didymos), <strong>assumed</strong> (Dimorphos)</td>
+<td>[HLP6 cross-validation 2026]: <code>max_l</code> 10</td>
 </tr>
 <tr>
 <td>Expansion point and axes</td>
 <td>origin and axes of the shape model file</td>
 <td>same</td>
 <td><strong>agreed</strong></td>
-<td>the HLP6 makers, 20 October 2026 (<a href="../files/exchange-packages.html#expansion-point">Exchange packages</a>)</td>
+<td>the HLP6 makers, 20 and 21 October 2026 (<a href="../files/exchange-packages.html#expansion-point">Exchange packages</a>)</td>
 </tr>
 <tr>
 <td>Inertia data the makers send</td>
@@ -261,6 +264,37 @@ and it is the background density of a homogeneous model (<a href="../models/dens
 </table>
 <p>Coefficients given with another reference radius <span class="nobr"><math alttext="R&#x27;" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mi>&#x02032;</mi></msup></mrow></math></span> convert as <span class="nobr"><math alttext="C&#x27;_lm = C_lm (R/R&#x27;)^l" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msubsup><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mi>l</mi><mi>m</mi></mrow><mi>&#x02032;</mi></msubsup><mo>&#x0003D;</mo><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mi>l</mi><mi>m</mi></mrow></msub><mspace width="0.167em" /><mo stretchy="false">&#x00028;</mo><mi>R</mi><mo>&#x0002F;</mo><msup><mi>R</mi><mi>&#x02032;</mi></msup><msup><mo stretchy="false">&#x00029;</mo><mi>l</mi></msup></mrow></math></span>
 (<a href="../conventions/gravity-coefficients.html">Gravity coefficients</a>).</p>
+<h2 id="potential-and-acceleration-at-the-cross-validation-points">Potential and acceleration at the cross-validation points<a class="headerlink" href="#potential-and-acceleration-at-the-cross-validation-points" title="Link to this section">#</a></h2>
+<p>The makers also give the gravitational potential and acceleration of the homogeneous Didymos at 20 points
+[HLP6 cross-validation 2026], in m in the frame of the agreed file (<code>projects/hera_hlp6/cross_validation/points.csv</code>):</p>
+<table>
+<thead>
+<tr>
+<th>Points</th>
+<th>Distance from the origin of the file</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1: on the surface at latitude 45°, longitude 45°</td>
+<td>332 m</td>
+</tr>
+<tr>
+<td>2: near an equilibrium point of the homogeneous body</td>
+<td>360 m</td>
+</tr>
+<tr>
+<td>3–8, 9–14, 15–20: six points each on spheres of radius 1.2, 1.5 and 2.0 <span class="nobr"><math alttext="R_ref" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>R</mi><mtext>ref</mtext></msub></mrow></math></span> (Fibonacci lattice)</td>
+<td>492, 615, 820 m</td>
+</tr>
+</tbody>
+</table>
+<p>SBTK computes them exactly from the polyhedron of the shape model (<a href="../models/forward-model.html#potential-and-acceleration-at-points">Potential and acceleration at points</a>).
+The sphere about the origin that encloses Didymos has a radius of 449.7 m, so points 1 and 2 are inside it, where
+the spherical-harmonic expansion does not converge. At 1.2 <span class="nobr"><math alttext="R_ref" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>R</mi><mtext>ref</mtext></msub></mrow></math></span> the expansion to degree 10 differs from
+the exact potential by up to 1.5 × 10⁻⁴ of it; a team that evaluates the coefficients there will differ by that much.
+At point 2 the gravitational acceleration, 2.40 × 10⁻⁴ m/s², points to the center of mass and equals the centrifugal
+acceleration of the 2.26 h rotation about an axis through it: the point is an equilibrium point, as stated.</p>
 <h2 id="uncertainties-of-the-receiving-team">Uncertainties of the receiving team<a class="headerlink" href="#uncertainties-of-the-receiving-team" title="Link to this section">#</a></h2>
 <p>The makers send exact values. SBTK's inversion runners give them the precision of the RSE end-to-end test
 (<code>projects/hera_hlp6/hlp6_uncertainties.m</code>), read from the RSE files (<strong>server</strong>, <code>Hera_WG/End-to-End Test/Radio
@@ -303,6 +337,8 @@ only, not for scientific use"). The blind-test group's precision files are in
 </tr>
 </tbody>
 </table>
+<p>The Didymos coefficients and their 1σ are given for <span class="nobr"><math alttext="R_ref" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>R</mi><mtext>ref</mtext></msub></mrow></math></span> = 0.43 km; <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.use_uncertainties"><code>sbtk.data.use_uncertainties</code></a> converts
+the 1σ of degree <span class="nobr"><math alttext="l" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>l</mi></mrow></math></span> to the agreed 0.41 km by the factor <span class="nobr"><math alttext="(0.43/0.41)^l" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mn>0.43</mn><mo>&#x0002F;</mo><mn>0.41</mn><msup><mo stretchy="false">&#x00029;</mo><mi>l</mi></msup></mrow></math>.</span></p>
 <p>The RSE fields are given in principal-axis frames (for the homogeneous body, 33.6° (Didymos) and 7.8° (Dimorphos)
 from the shape-model <span class="nobr"><math alttext="x" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></span>-axis about <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math>,</span> with the axis of the largest moment tilted 3.6° and 0.7° from the
 shape-model <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis). Their 1σ table is applied coefficient by coefficient in the frame of the packages, which is an
@@ -350,6 +386,10 @@ approximation (<a href="../conventions/gravity-frames.html#makers">Frames of a g
   doi:10.26007/bm57-x327. The same authors, "... for dimorphos_model_v004, Version 1.0," NASA Planetary Data System
   (2023). doi:10.26007/0nss-vd15. Bundle <code>urn:nasa:pds:dart_shapemodel</code>,
   <a href="https://pds-smallbodies.astro.umd.edu/holdings/pds4-dart_shapemodel-v1.0/">https://pds-smallbodies.astro.umd.edu/holdings/pds4-dart_shapemodel-v1.0/</a>.</li>
+<li><strong>HLP6 cross-validation 2026.</strong> Hera working group, "Hera Blind-Test interior HLP6: Homogeneous Didymos data for
+  makers cross-validation test" (README of the makers, 21 October 2026). On the server with the agreed shape model
+  (<code>Hera_WG/End-to-End Test/HLP6G BlindTest/inputs/Reference models/Didymos/</code>); copy in
+  <code>projects/hera_hlp6/cross_validation/</code>.</li>
 <li><strong>ESA SPICE kernels for Hera</strong>, shape models (digital shape kernels and OBJ files):
   <a href="https://spiftp.esac.esa.int/data/SPICE/HERA/kernels/dsk/">https://spiftp.esac.esa.int/data/SPICE/HERA/kernels/dsk/</a>.</li>
 <li><strong>Hera working-group server</strong>, folder <code>Hera_WG/End-to-End Test/</code>: <code>Shape/</code> (full-resolution shape models),
@@ -359,11 +399,11 @@ approximation (<a href="../conventions/gravity-frames.html#makers">Frames of a g
 </ul>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../projects/hera-blind-test.html" rel="prev"><span>Previous</span>Hera blind test</a><a class="next" href="../reference/api.html" rel="next"><span>Next</span>API reference</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-20.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-21.</footer>
 </main>
-<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#shape-models">Shape models</a></li><li class="lvl2"><a href="#mass-and-gm">Mass and GM</a></li><li class="lvl2"><a href="#bulk-density">Bulk density</a></li><li class="lvl2"><a href="#gravity-field-settings">Gravity field settings</a></li><li class="lvl2"><a href="#uncertainties-of-the-receiving-team">Uncertainties of the receiving team</a></li><li class="lvl2"><a href="#modeling-choices">Modeling choices</a></li><li class="lvl2"><a href="#references">References</a></li></ul></nav>
+<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#shape-models">Shape models</a></li><li class="lvl2"><a href="#mass-and-gm">Mass and GM</a></li><li class="lvl2"><a href="#bulk-density">Bulk density</a></li><li class="lvl2"><a href="#gravity-field-settings">Gravity field settings</a></li><li class="lvl2"><a href="#potential-and-acceleration-at-the-cross-validation-points">Potential and acceleration at the cross-validation points</a></li><li class="lvl2"><a href="#uncertainties-of-the-receiving-team">Uncertainties of the receiving team</a></li><li class="lvl2"><a href="#modeling-choices">Modeling choices</a></li><li class="lvl2"><a href="#references">References</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=8de7f0aaef"></script>
-<script src="../assets/site.js?v=8de7f0aaef"></script>
+<script src="../assets/search-index.js?v=9c5ac07573"></script>
+<script src="../assets/site.js?v=9c5ac07573"></script>
 </body>
 </html>

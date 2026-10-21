@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Shape models — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=8de7f0aaef">
-<link rel="stylesheet" href="../assets/pygments.css?v=8de7f0aaef">
-<link rel="stylesheet" href="../assets/print.css?v=8de7f0aaef" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=9c5ac07573">
+<link rel="stylesheet" href="../assets/pygments.css?v=9c5ac07573">
+<link rel="stylesheet" href="../assets/print.css?v=9c5ac07573" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,7 +29,7 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Models and calculations › <span aria-current="page">Shape models</span></nav>
 <article>
 <h1 id="shape-models">Shape models<a class="headerlink" href="#shape-models" title="Link to this section">#</a></h1>
-<p class="lastedit">Last edited October 19, 2026</p>
+<p class="lastedit">Last edited October 21, 2026</p>
 <p>A shape model is a closed triangular mesh, stored in SBTK as a <a class="xref xref-st" href="../reference/data-structures.html#shape"><code>shape</code></a> structure with vertices in km.</p>
 <h2 id="reading-and-creating-shape-models">Reading and creating shape models<a class="headerlink" href="#reading-and-creating-shape-models" title="Link to this section">#</a></h2>
 <table>
@@ -72,7 +72,11 @@
   the surface once.</li>
 </ul>
 <p><a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.properties"><code>sbtk.shape.properties</code></a> reports all three, the last about the centroid (<a class="xref xref-st" href="../reference/data-structures.html#props"><code>props</code></a>). <a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.geometry"><code>sbtk.gravity.geometry</code></a> stops
-with <a class="xref xref-err" href="../reference/errors.html#sbtk:gravity:notStarShaped"><code>sbtk:gravity:notStarShaped</code></a> when a facet faces the expansion origin.</p>
+with <a class="xref xref-err" href="../reference/errors.html#sbtk:gravity:notStarShaped"><code>sbtk:gravity:notStarShaped</code></a> when facets face the expansion origin, unless their cones hold less than <span class="nobr"><math alttext="10^-6" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>6</mn></mrow></msup></mrow></math></span>
+of the volume. Such small overhangs occur in high-resolution models: seen from a point 4.6 m from the center of
+figure of the 0.243 m Dimorphos model, two facets of 0.025 m² face it, with <span class="nobr"><math alttext="2.5×10^-9" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>2.5</mn><mi>&#x000D7;</mi><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>9</mn></mrow></msup></mrow></math></span> of the volume. Their
+cones count with their sign, which is exact for the body (the signed cones of any closed mesh add up to its volume
+integrals) and leaves an error of the order of their volume in layers and sectors.</p>
 <div class="codeblock codeblock-code" id="shape-check"><div class="codehead"><span>MATLAB script: Checking a shape model</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><span class="nb">run</span><span class="p">(</span><span class="s">&quot;/path/to/SBTK/sbtk_setup.m&quot;</span><span class="p">)</span>
 shape = <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.bundled">sbtk.shape.bundled</a>(&quot;didymos&quot;);
 p = <a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.properties">sbtk.shape.properties</a>(shape)
@@ -191,8 +195,9 @@ full-resolution models:</p>
 </tbody>
 </table>
 <p>Differences of this size between the shape used to simulate data and the shape used to invert them act as a systematic
-error in the coefficients. Measurement packages therefore include the shape model they were made with
-(<a href="../files/exchange-packages.html">Exchange packages</a>).</p>
+error in the coefficients. Measurement packages therefore name the shape model they were made with, and its MD5
+checksum, and include it unless it is one of SBTK's files as distributed (<a href="../files/exchange-packages.html">Exchange packages</a>).
+The HLP6 makers agreed on <code>didymos_highres</code>, the 1.165 m model (<a href="../projects/didymos-dimorphos-values.html">Didymos and Dimorphos values</a>).</p>
 <h2 id="reducing-high-resolution-models">Reducing high-resolution models<a class="headerlink" href="#reducing-high-resolution-models" title="Link to this section">#</a></h2>
 <p>High-resolution shape models have more facets than coefficients to degree 4 or 5 require. Two functions reduce them:</p>
 <ul>
@@ -217,11 +222,11 @@ volume. The bulk density is <span class="nobr"><math alttext="M/V" xmlns="http:/
 <figure class="figure"><img src="../images/shape.png" alt="Figure produced by   sbtk.plot.shape   for the 9.3 m Didymos model: the mesh with its center of figure and axes." loading="lazy"><figcaption>Figure produced by <a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.shape"><code>sbtk.plot.shape</code></a> for the 9.3 m Didymos model: the mesh with its center of figure and axes.</figcaption></figure>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../conventions/moments-of-inertia.html" rel="prev"><span>Previous</span>Moments of inertia</a><a class="next" href="../models/density-distributions.html" rel="next"><span>Next</span>Density distributions</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-20.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-21.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#reading-and-creating-shape-models">Reading and creating shape models</a></li><li class="lvl2"><a href="#requirements">Requirements</a></li><li class="lvl2"><a href="#shape-models-in-the-repository">Shape models in the repository</a></li><li class="lvl2"><a href="#reducing-high-resolution-models">Reducing high-resolution models</a></li><li class="lvl2"><a href="#bodies">Bodies</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=8de7f0aaef"></script>
-<script src="../assets/site.js?v=8de7f0aaef"></script>
+<script src="../assets/search-index.js?v=9c5ac07573"></script>
+<script src="../assets/site.js?v=9c5ac07573"></script>
 </body>
 </html>

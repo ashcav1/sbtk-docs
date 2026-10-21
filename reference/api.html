@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>API reference — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=8de7f0aaef">
-<link rel="stylesheet" href="../assets/pygments.css?v=8de7f0aaef">
-<link rel="stylesheet" href="../assets/print.css?v=8de7f0aaef" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=9c5ac07573">
+<link rel="stylesheet" href="../assets/pygments.css?v=9c5ac07573">
+<link rel="stylesheet" href="../assets/print.css?v=9c5ac07573" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,7 +29,7 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Reference › <span aria-current="page">API reference</span></nav>
 <article>
 <h1 id="top">API reference</h1>
-<p class="lastedit">Last edited October 20, 2026</p>
+<p class="lastedit">Last edited October 21, 2026</p>
 <p>The supported interface of SBTK: every function in the namespace packages below, generated from the help text and <code>arguments</code> block of its source file. Functions are called by their full name, <code>sbtk.&lt;package&gt;.&lt;function&gt;</code>. Arguments have no default values except where the Default column states one (three functions). Structures passed between functions are described in <a href="../reference/data-structures.html">Data structures</a>; error identifiers in <a href="../reference/errors.html">Error identifiers</a>. Helper functions in <code>sbtk.internal</code> are not part of the supported interface and are listed separately in <a href="../reference/internal.html">Internal functions</a>.</p>
 <table class="overview"><thead><tr><th>Package</th><th>Contents</th><th>Functions</th></tr></thead><tbody>
 <tr><td><a class="xref" href="../reference/api/sbtk.html"><code>sbtk</code></a></td><td>Version and repository folder</td><td>2</td></tr>
@@ -37,11 +37,11 @@
 <tr><td><a class="xref" href="../reference/api/shape.html"><code>sbtk.shape</code></a></td><td>Shape models</td><td>8</td></tr>
 <tr><td><a class="xref" href="../reference/api/body.html"><code>sbtk.body</code></a></td><td>Bodies</td><td>4</td></tr>
 <tr><td><a class="xref" href="../reference/api/interior.html"><code>sbtk.interior</code></a></td><td>Density distributions</td><td>16</td></tr>
-<tr><td><a class="xref" href="../reference/api/gravity.html"><code>sbtk.gravity</code></a></td><td>Gravity and moment calculations</td><td>6</td></tr>
+<tr><td><a class="xref" href="../reference/api/gravity.html"><code>sbtk.gravity</code></a></td><td>Gravity and moment calculations</td><td>8</td></tr>
 <tr><td><a class="xref" href="../reference/api/data.html"><code>sbtk.data</code></a></td><td>Measurement sets</td><td>20</td></tr>
 <tr><td><a class="xref" href="../reference/api/invert.html"><code>sbtk.invert</code></a></td><td>Density estimation</td><td>9</td></tr>
 <tr><td><a class="xref" href="../reference/api/compare.html"><code>sbtk.compare</code></a></td><td>Comparison with a true model</td><td>6</td></tr>
-<tr><td><a class="xref" href="../reference/api/exchange.html"><code>sbtk.exchange</code></a></td><td>Exchange packages</td><td>9</td></tr>
+<tr><td><a class="xref" href="../reference/api/exchange.html"><code>sbtk.exchange</code></a></td><td>Exchange packages</td><td>10</td></tr>
 <tr><td><a class="xref" href="../reference/api/io.html"><code>sbtk.io</code></a></td><td>Results folders and text files</td><td>22</td></tr>
 <tr><td><a class="xref" href="../reference/api/plot.html"><code>sbtk.plot</code></a></td><td>Figures</td><td>9</td></tr>
 </tbody></table>
@@ -85,12 +85,15 @@
 <tr><td><a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.solution_name"><code>sbtk.exchange.solution_name</code></a></td><td>Name of a solution package: &lt;team&gt;-SOL_&lt;data team&gt;&lt;number&gt;.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_data"><code>sbtk.exchange.write_data</code></a></td><td>Write a measurement package to send to other teams (nothing about the interior).</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_model"><code>sbtk.exchange.write_model</code></a></td><td>Write the interior-model package behind a measurement package (released after the solutions).</td></tr>
+<tr><td><a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_potential"><code>sbtk.exchange.write_potential</code></a></td><td>Add the gravitational potential and acceleration at given points to a package.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_solution"><code>sbtk.exchange.write_solution</code></a></td><td>Write an inversion result as a solution package for the other teams.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.center_of_mass_frame"><code>sbtk.gravity.center_of_mass_frame</code></a></td><td>A gravity field about its center of mass, in the shape-model, spin or principal axes.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.component_integrals"><code>sbtk.gravity.component_integrals</code></a></td><td>Integrals over one component per unit density, clipped to the body.</td></tr>
+<tr><td><a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.field_at"><code>sbtk.gravity.field_at</code></a></td><td>Gravitational potential and acceleration of a model of the body at given points.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.forward"><code>sbtk.gravity.forward</code></a></td><td>Forward model: gravity coefficients, center of mass and inertia of an interior.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.geometry"><code>sbtk.gravity.geometry</code></a></td><td>Facet-cone geometry of a body about an expansion origin (the integration workspace).</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.labels"><code>sbtk.gravity.labels</code></a></td><td>Names of the gravity coefficients up to a degree, in SBTK order.</td></tr>
+<tr><td><a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.polyhedron"><code>sbtk.gravity.polyhedron</code></a></td><td>Potential and acceleration of a homogeneous polyhedron, exact (Werner &amp; Scheeres 1997).</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.random_field_integrals"><code>sbtk.gravity.random_field_integrals</code></a></td><td>Density-weighted integrals of the random density field.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.align_with_spin_axis"><code>sbtk.interior.align_with_spin_axis</code></a></td><td>Set the axis of components along the axis of the largest moment of the whole model.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.create"><code>sbtk.interior.create</code></a></td><td>An interior model: components plus an optional random density field.</td></tr>
@@ -167,11 +170,11 @@
 </tbody></table>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../projects/didymos-dimorphos-values.html" rel="prev"><span>Previous</span>Didymos and Dimorphos values</a><a class="next" href="../reference/api/sbtk.html" rel="next"><span>Next</span>sbtk</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-20.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-21.</footer>
 </main>
 
 </div>
-<script src="../assets/search-index.js?v=8de7f0aaef"></script>
-<script src="../assets/site.js?v=8de7f0aaef"></script>
+<script src="../assets/search-index.js?v=9c5ac07573"></script>
+<script src="../assets/site.js?v=9c5ac07573"></script>
 </body>
 </html>
