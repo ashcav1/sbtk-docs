@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Density estimation — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=b9303e9c1c">
-<link rel="stylesheet" href="../assets/pygments.css?v=b9303e9c1c">
-<link rel="stylesheet" href="../assets/print.css?v=b9303e9c1c" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=89d9bd6721">
+<link rel="stylesheet" href="../assets/pygments.css?v=89d9bd6721">
+<link rel="stylesheet" href="../assets/print.css?v=89d9bd6721" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,7 +29,7 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Measurements and inversion › <span aria-current="page">Density estimation</span></nav>
 <article>
 <h1 id="density-estimation">Density estimation<a class="headerlink" href="#density-estimation" title="Link to this section">#</a></h1>
-<p class="lastedit">Last edited October 20, 2026</p>
+<p class="lastedit">Last edited October 21, 2026</p>
 <p>The inversion estimates the background density and the relative densities of a set of components from a measurement
 set, and optionally parts of their geometry: the position of spheres, ellipsoids and tori and the axis of ellipsoids
 and tori (<a href="#estimated-geometry">Estimated geometry</a>).</p>
@@ -162,9 +162,14 @@ bisection with 9 solves; the result is returned, not stored, so set <code>prob.o
 <h2 id="data-about-a-fixed-point-or-about-the-center-of-mass">Data about a fixed point or about the center of mass<a class="headerlink" href="#data-about-a-fixed-point-or-about-the-center-of-mass" title="Link to this section">#</a></h2>
 <p>When <a class="xref xref-field" href="../reference/data-structures.html#obs.coef_about"><code>obs.coef_about</code></a> is <code>'origin'</code>, the coefficients, degree 1 included, and the inertia are about the fixed point
 <a class="xref xref-field" href="../reference/data-structures.html#obs.origin_km"><code>obs.origin_km</code></a>: for a package in the frame and about the origin of its shape model file, as the HLP6 makers send,
-<code>[0 0 0]</code>. The model's coefficients and inertia are computed about the same point, and its geometry is built about
-it, so layers and sectors are measured along rays from that point. Degree 1 then compares the model's center of mass
-with the measured one, and no iteration is needed.</p>
+<code>[0 0 0]</code>. Layers and sectors are measured along rays from the center of mass, as in <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a>, so the
+model's geometry is built about the center of mass the degree-1 coefficients give (<a class="xref xref-field" href="../reference/data-structures.html#fit.origin_km"><code>fit.origin_km</code></a>; if that is
+within 3σ of <a class="xref xref-field" href="../reference/data-structures.html#obs.origin_km"><code>obs.origin_km</code></a>, the data do not tell the two apart and <a class="xref xref-field" href="../reference/data-structures.html#obs.origin_km"><code>obs.origin_km</code></a> is used). Its coefficients,
+degree 1 included, and its inertia are moved to <a class="xref xref-field" href="../reference/data-structures.html#obs.origin_km"><code>obs.origin_km</code></a> exactly (<a class="xref xref-fn" href="../reference/internal.html#sbtk.internal.sh_translation"><code>sbtk.internal.sh_translation</code></a>, the
+parallel-axis theorem; <a class="xref xref-field" href="../reference/data-structures.html#fit.com_shift_km"><code>fit.com_shift_km</code></a> is that point minus <a class="xref xref-field" href="../reference/data-structures.html#fit.origin_km"><code>fit.origin_km</code></a>). Degree 1 then compares the model's
+center of mass with the measured one, and no iteration is needed. Measuring layers and sectors from the origin of the
+file instead, 52 to 57 m from the center of mass of Didymos, changes a sector by about 25% of its volume, and a fit
+with exactly the components of the true model no longer recovers it (<code>testLayersFromMeasuredCenterOfMass</code>).</p>
 <p>When <a class="xref xref-field" href="../reference/data-structures.html#obs.coef_about"><code>obs.coef_about</code></a> is <code>'center_of_mass'</code>, the coefficients of degree 2 and higher are about the body's center of
 mass, which is known only through its measurement (the degree-1 rows). Expanding the model about the <em>measured</em>
 center of mass would carry the error of that measurement into the predictions: a translation of the expansion point
@@ -178,7 +183,7 @@ changes the coefficients of degree <span class="nobr"><math alttext="l" xmlns="h
    center moves by less than 1 mm (<a class="xref xref-field" href="../reference/data-structures.html#fit.frame_iterations"><code>fit.frame_iterations</code></a>, <a class="xref xref-field" href="../reference/data-structures.html#fit.frame_offset_km"><code>fit.frame_offset_km</code></a>);</li>
 <li>compares the model's center of mass with the measured one through the degree-1 rows.</li>
 </ol>
-<p><a class="xref xref-field" href="../reference/data-structures.html#fit.com_shift_km"><code>fit.com_shift_km</code></a> is the model's center of mass minus <a class="xref xref-field" href="../reference/data-structures.html#fit.origin_km"><code>fit.origin_km</code></a>. The tests <code>testCenterOfMassFrameMatchesTheTrueFrame</code>
+<p>Here <a class="xref xref-field" href="../reference/data-structures.html#fit.com_shift_km"><code>fit.com_shift_km</code></a> is the model's center of mass minus <a class="xref xref-field" href="../reference/data-structures.html#fit.origin_km"><code>fit.origin_km</code></a>. The tests <code>testCenterOfMassFrameMatchesTheTrueFrame</code>
 and <code>testPredictionsAboutTheModelCenterOfMass</code> check that the densities agree with an inversion about the true center
 of mass to within 0.2σ and that the predictions equal a forward model computed from scratch about the fitted center
 of mass (<a href="../validation/tests.html">Validation</a>).</p>
@@ -298,7 +303,7 @@ examples: <a href="../examples/calculations.html">Calculations</a>.</p>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#procedure">Procedure</a></li><li class="lvl2"><a href="#estimation-problem">Estimation problem</a></li><li class="lvl2"><a href="#estimated-geometry">Estimated geometry</a></li><li class="lvl2"><a href="#uncertainties">Uncertainties</a></li><li class="lvl2"><a href="#regularization">Regularization</a></li><li class="lvl2"><a href="#data-about-a-fixed-point-or-about-the-center-of-mass">Data about a fixed point or about the center of mass</a></li><li class="lvl2"><a href="#settings">Settings</a></li><li class="lvl2"><a href="#example">Example</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=b9303e9c1c"></script>
-<script src="../assets/site.js?v=b9303e9c1c"></script>
+<script src="../assets/search-index.js?v=89d9bd6721"></script>
+<script src="../assets/site.js?v=89d9bd6721"></script>
 </body>
 </html>

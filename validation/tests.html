@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Validation and tests — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=b9303e9c1c">
-<link rel="stylesheet" href="../assets/pygments.css?v=b9303e9c1c">
-<link rel="stylesheet" href="../assets/print.css?v=b9303e9c1c" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=89d9bd6721">
+<link rel="stylesheet" href="../assets/pygments.css?v=89d9bd6721">
+<link rel="stylesheet" href="../assets/print.css?v=89d9bd6721" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -30,7 +30,7 @@
 <article>
 <h1 id="validation-and-tests">Validation and tests<a class="headerlink" href="#validation-and-tests" title="Link to this section">#</a></h1>
 <p class="lastedit">Last edited October 21, 2026</p>
-<p>SBTK 1.0.0 has 165 unit and integration tests in MATLAB's unit-test framework. They run with</p>
+<p>SBTK 1.0.0 has 168 unit and integration tests in MATLAB's unit-test framework. They run with</p>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">run(fullfile(<a class="xref xref-fn" href="../reference/api/sbtk.html#sbtk.root">sbtk.root</a>, &quot;tests&quot;, &quot;run_tests.m&quot;))      <span class="c">% about 30 minutes; writes tests/reports/test_report.txt</span></code></pre></div>
 <p>Most of the time goes to <code>tests/integration/test_maker_scripts.m</code>, which runs three HLP6 maker scripts on the
 full-resolution shape models (3 million facets, degree 10).</p>
@@ -154,7 +154,12 @@ semi-axes 0.5 × 0.4 × 0.3 km (20,480 facets) and the 9.3 m Didymos model with 
 </tr>
 <tr>
 <td><code>testShTranslation</code></td>
-<td>Integrals moved by the solid-harmonic translation equal integrals computed about the shifted origin, including inertia.</td>
+<td>Integrals moved by the solid-harmonic translation equal integrals computed about the shifted origin, including inertia; the predictions move degree ≥ 2 for data about the center of mass and every degree for data about a fixed point.</td>
+<td>10⁻¹² of the largest value</td>
+</tr>
+<tr>
+<td><code>testUseUncertaintiesAboutAnotherPoint</code></td>
+<td>A reference covariance about another point is moved to the data's point (<span class="nobr"><math alttext="T K T^T" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>T</mi><mi>K</mi><msup><mi>T</mi><mi>&#x1D5B3;</mi></msup></mrow></math>,</span> the same as <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.expand_about"><code>sbtk.data.expand_about</code></a>), with the correlations it brings; a reference without degree 1 is rejected.</td>
 <td>10⁻¹² of the largest value</td>
 </tr>
 <tr>
@@ -285,6 +290,10 @@ generalized.</p>
 <td>Constructors, ellipsoid rotation, layer depths, latitude–longitude, duplicate names, sector grids and ranges, random field reproducible and with standard deviation within 15% of σ. <code>testSetAxis</code>: the axis points along the direction, by the smallest rotation. <code>testAlignWithSpinAxis</code>: a torus aligned with the axis of the largest moment of the model it belongs to (to 0.002°, in fewer than 10 simulations), the other components unchanged, unknown names and non-convergence reported.</td>
 </tr>
 <tr>
+<td><code>tests/unit/test_invert.m</code> (additions)</td>
+<td><code>testLayersFromMeasuredCenterOfMass</code>: data about a point 50 m from the center of mass, inverted with exactly the components of the true model (a core, a layer and a sector), give its densities (to 10⁻⁴ kg/m³), the measured center of mass as origin and residuals below 10⁻³σ. <code>testMassAfterCenterOfMassIterations</code>: data about the center of mass and an estimated component the body clips: after the center-of-mass iterations the fitted model has the measured mass (to 10⁻¹²).</td>
+</tr>
+<tr>
 <td><code>tests/unit/test_gravity.m</code></td>
 <td>Uniform body, mass kept by the background, center-of-mass shift, labels, non-star-shaped meshes rejected, components clipped to the body. <code>testPolyhedronAgreesWithCube</code>: the polyhedron formula and the cube formula give the same potential and acceleration of a cube, outside, on a face (on the edge between its triangles) and inside (to 10⁻¹⁰). <code>testPolyhedronField</code>: inside the body the divergence of the acceleration is <span class="nobr"><math alttext="-4π Gρ" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mn>4</mn><mi>&#x003C0;</mi><mi>G</mi><mi>&#x003C1;</mi></mrow></math>,</span> outside the acceleration is the gradient of the potential (to 10⁻⁶), and far away the potential is <span class="nobr"><math alttext="GM/r" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>G</mi><mi>M</mi><mo>&#x0002F;</mo><mi>r</mi></mrow></math>.</span> <code>testFieldAt</code>: a homogeneous model gives the polyhedron (to 10⁻¹²); a sphere of excess density adds the field of its mass (within 2% on a 10 m grid). <code>testIndexedSurfaceDistance</code>: facets sorted by direction give the surface distance of the search over every facet (to 10⁻¹³ km), about the center of figure and a point off it, also along the edges of the cube map. <code>testSmallOverhangAccepted</code>: seen from a point where one facet of a 0.1 mm dent faces it, the signed cones give the volume (to 10⁻¹²) and the center of figure (to 10⁻¹² km); a point outside the body is rejected. <code>testCenterOfMassFrame</code>: about the center of mass degree 1 is 0; in principal axes <span class="nobr"><math alttext="C_21 = S_21 = S_22 = 0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub><mo>&#x0003D;</mo><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub><mo>&#x0003D;</mo><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math>,</span> each degree's power and each degree's total variance are unchanged, and <span class="nobr"><math alttext="C_20" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>20</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="C_22" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub></mrow></math></span> equal the values from the principal moments; a measurement set, the same set without degree 1, and a set lacking a coefficient.</td>
 </tr>
@@ -330,7 +339,7 @@ brute-force integration, uncertainty calibration) are run separately and are not
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#comparison-with-independent-results">Comparison with independent results</a></li><li class="lvl2"><a href="#conventions-and-frames">Conventions and frames</a></li><li class="lvl2"><a href="#inversion-behavior">Inversion behavior</a></li><li class="lvl2"><a href="#reproduction-of-published-and-earlier-results">Reproduction of published and earlier results</a></li><li class="lvl2"><a href="#other-tests">Other tests</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=b9303e9c1c"></script>
-<script src="../assets/site.js?v=b9303e9c1c"></script>
+<script src="../assets/search-index.js?v=89d9bd6721"></script>
+<script src="../assets/site.js?v=89d9bd6721"></script>
 </body>
 </html>

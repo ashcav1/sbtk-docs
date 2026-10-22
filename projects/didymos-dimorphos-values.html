@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Didymos and Dimorphos values — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=b9303e9c1c">
-<link rel="stylesheet" href="../assets/pygments.css?v=b9303e9c1c">
-<link rel="stylesheet" href="../assets/print.css?v=b9303e9c1c" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=89d9bd6721">
+<link rel="stylesheet" href="../assets/pygments.css?v=89d9bd6721">
+<link rel="stylesheet" href="../assets/print.css?v=89d9bd6721" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -342,8 +342,16 @@ the 1σ of degree <span class="nobr"><math alttext="l" xmlns="http://www.w3.org/
 <p>The RSE fields are given in principal-axis frames (for the homogeneous body, the axis of the smallest moment is
 turned 32.2° (Didymos) and 7.8° (Dimorphos) from the shape-model <span class="nobr"><math alttext="x" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></span>-axis toward <span class="nobr"><math alttext="-y" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mi>y</mi></mrow></math>,</span> with the axis of the largest
 moment tilted 3.8° and 0.7° from the
-shape-model <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis). Their 1σ table is applied coefficient by coefficient in the frame of the packages, which is an
+shape-model <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis). Their 1σ table is applied in the axes of the packages without that rotation, which is an
 approximation (<a href="../conventions/gravity-frames.html#makers">Frames of a gravity field</a>).</p>
+<p>The RSE fields are also about the center of mass, while the packages are about the origin of the shape model file. The
+covariance is therefore moved to that point exactly, <span class="nobr"><math alttext="K&#x27; = T K T^T" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>K</mi><mi>&#x02032;</mi></msup><mo>&#x0003D;</mo><mi>T</mi><mi>K</mi><msup><mi>T</mi><mi>&#x1D5B3;</mi></msup></mrow></math></span> (<a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.use_uncertainties"><code>sbtk.data.use_uncertainties</code></a>):
+moving a field to another point mixes the degrees, so the uncertainty of the center of mass (degree 1) enters the
+other coefficients. About the origin of the file, <span class="nobr"><math alttext="C_20" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>20</mn></mrow></msub></mrow></math></span> of Didymos (UCB-DATA1) has 2.3 times the RSE 1σ and
+some degree-3 coefficients up to 1.8 times; <span class="nobr"><math alttext="C_22" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub></mrow></math></span> of Dimorphos (UCB-DATA4, center of mass 2.5 m from the origin)
+has 27 times the RSE 1σ, which is only <span class="nobr"><math alttext="4×10^-6" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>4</mn><mi>&#x000D7;</mi><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>6</mn></mrow></msup></mrow></math>.</span> The inertia elements, about the same point, get the variance
+the center of mass adds through the parallel-axis theorem: negligible for Didymos, 12 to 19% more 1σ for Dimorphos.
+A team that applies the RSE 1σ unchanged to coefficients about the file origin weights those coefficients too much.</p>
 <h2 id="modeling-choices">Modeling choices<a class="headerlink" href="#modeling-choices" title="Link to this section">#</a></h2>
 <table>
 <thead>
@@ -404,7 +412,7 @@ approximation (<a href="../conventions/gravity-frames.html#makers">Frames of a g
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#shape-models">Shape models</a></li><li class="lvl2"><a href="#mass-and-gm">Mass and GM</a></li><li class="lvl2"><a href="#bulk-density">Bulk density</a></li><li class="lvl2"><a href="#gravity-field-settings">Gravity field settings</a></li><li class="lvl2"><a href="#potential-and-acceleration-at-the-cross-validation-points">Potential and acceleration at the cross-validation points</a></li><li class="lvl2"><a href="#uncertainties-of-the-receiving-team">Uncertainties of the receiving team</a></li><li class="lvl2"><a href="#modeling-choices">Modeling choices</a></li><li class="lvl2"><a href="#references">References</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=b9303e9c1c"></script>
-<script src="../assets/site.js?v=b9303e9c1c"></script>
+<script src="../assets/search-index.js?v=89d9bd6721"></script>
+<script src="../assets/site.js?v=89d9bd6721"></script>
 </body>
 </html>
