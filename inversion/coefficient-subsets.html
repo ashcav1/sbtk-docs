@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en" data-root="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fitting part of the coefficients — SBTK documentation</title>
+<link rel="stylesheet" href="../assets/site.css?v=c9a20089fd">
+<link rel="stylesheet" href="../assets/pygments.css?v=c9a20089fd">
+<link rel="stylesheet" href="../assets/print.css?v=c9a20089fd" media="print">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="topbar">
+  <button class="navtoggle" type="button" aria-controls="sidebar" aria-expanded="false">Contents</button>
+  <a class="sitename" href="../index.html">SBTK documentation</a>
+  <span class="version">version 1.0.0</span>
+  <div class="search" role="search">
+    <label for="search-input" class="visually-hidden">Search the documentation</label>
+    <input id="search-input" type="search" placeholder="Search (press /)" autocomplete="off"
+           aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+    <ul id="search-results" role="listbox" hidden></ul>
+  </div>
+  <a class="toplink" href="../print.html">Single-page version</a>
+  <a class="toplink" href="../SBTK_handbook.pdf">PDF handbook</a>
+</header>
+<div class="frame">
+<nav id="sidebar" class="sidebar" aria-label="Documentation pages"><ul><li class="navcat"><span class="navcat-title">Overview</span><ul><li><a href="../index.html">SBTK: Small Body Toolkit</a></li><li><a href="../overview/limitations.html">Assumptions and limitations</a></li></ul></li><li class="navcat"><span class="navcat-title">Getting started</span><ul><li><a href="../getting-started/installation.html">Installation</a></li><li><a href="../getting-started/first-script.html">First script</a></li></ul></li><li class="navcat"><span class="navcat-title">Conventions</span><ul><li><a href="../conventions/units.html">Units</a></li><li><a href="../conventions/coordinates.html">Coordinate systems and origins</a></li><li><a href="../conventions/gravity-coefficients.html">Gravity coefficients</a></li><li><a href="../conventions/gravity-frames.html">Frames of a gravity field</a></li><li><a href="../conventions/moments-of-inertia.html">Moments of inertia</a></li></ul></li><li class="navcat"><span class="navcat-title">Models and calculations</span><ul><li><a href="../models/shape-models.html">Shape models</a></li><li><a href="../models/density-distributions.html">Density distributions</a></li><li><a href="../models/forward-model.html">Gravity and moment calculations</a></li></ul></li><li class="navcat"><span class="navcat-title">Measurements and inversion</span><ul><li><a href="../inversion/measurements.html">Measurement sets</a></li><li><a href="../inversion/expansion-point-uncertainties.html">Uncertainties and the expansion point</a></li><li><a href="../inversion/reading-coefficients.html">Reading the gravity coefficients</a></li><li><a href="../inversion/density-estimation.html">Density estimation</a></li><li><a href="../inversion/coefficient-subsets.html" aria-current="page" class="current">Fitting part of the coefficients</a></li><li><a href="../inversion/statistics.html">Goodness of fit and model comparison</a></li></ul></li><li class="navcat"><span class="navcat-title">Files</span><ul><li><a href="../files/results-folders.html">Results folders and figures</a></li><li><a href="../files/exchange-packages.html">Exchange packages</a></li></ul></li><li class="navcat"><span class="navcat-title">Examples</span><ul><li><a href="../examples/density-models.html">Density models by component type</a></li><li><a href="../examples/calculations.html">Calculations</a></li><li><a href="../examples/tutorials.html">Tutorial scripts</a></li></ul></li><li class="navcat"><span class="navcat-title">Projects</span><ul><li><a href="../projects/template.html">Project template</a></li><li><a href="../projects/bennu.html">Bennu</a></li><li><a href="../projects/hera-blind-test.html">Hera blind test</a></li><li><a href="../projects/didymos-dimorphos-values.html">Didymos and Dimorphos values</a></li></ul></li><li class="navcat"><span class="navcat-title">Testing with ROB data</span><ul><li><a href="../projects/rob/index.html">Testing with ROB data</a></li><li><a href="../projects/rob/data1.html">ROB-DATA1: Didymos</a></li><li><a href="../projects/rob/data2.html">ROB-DATA2: Didymos</a></li><li><a href="../projects/rob/data3.html">ROB-DATA3: Didymos</a></li><li><a href="../projects/rob/data4.html">ROB-DATA4: Dimorphos</a></li><li><a href="../projects/rob/data5.html">ROB-DATA5: Dimorphos</a></li><li><a href="../projects/rob/data6.html">ROB-DATA6: Dimorphos</a></li></ul></li><li class="navcat"><span class="navcat-title">Reference</span><ul><li><a href="../reference/api.html">API reference</a></li><li><a href="../reference/api/sbtk.html">sbtk</a></li><li><a href="../reference/api/units.html">sbtk.units</a></li><li><a href="../reference/api/shape.html">sbtk.shape</a></li><li><a href="../reference/api/body.html">sbtk.body</a></li><li><a href="../reference/api/interior.html">sbtk.interior</a></li><li><a href="../reference/api/gravity.html">sbtk.gravity</a></li><li><a href="../reference/api/data.html">sbtk.data</a></li><li><a href="../reference/api/interpret.html">sbtk.interpret</a></li><li><a href="../reference/api/invert.html">sbtk.invert</a></li><li><a href="../reference/api/compare.html">sbtk.compare</a></li><li><a href="../reference/api/exchange.html">sbtk.exchange</a></li><li><a href="../reference/api/io.html">sbtk.io</a></li><li><a href="../reference/api/plot.html">sbtk.plot</a></li><li><a href="../reference/data-structures.html">Data structures</a></li><li><a href="../reference/errors.html">Error identifiers</a></li><li><a href="../reference/internal.html">Internal functions</a></li></ul></li><li class="navcat"><span class="navcat-title">Validation</span><ul><li><a href="../validation/tests.html">Validation and tests</a></li></ul></li></ul></nav>
+<main id="content" tabindex="-1">
+<nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Measurements and inversion › <span aria-current="page">Fitting part of the coefficients</span></nav>
+<article>
+<h1 id="fitting-part-of-the-coefficients">Fitting part of the coefficients<a class="headerlink" href="#fitting-part-of-the-coefficients" title="Link to this section">#</a></h1>
+<p class="lastedit">Last edited October 27, 2026</p>
+<p>A model can be fitted to some of the coefficients and tested on the others. This answers two questions: which
+coefficients determine which parts of a model (can degree 1 and <span class="nobr"><math alttext="J_2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mn>2</mn></msub></mrow></math></span> alone place a core?), and whether a model
+fitted to the well-measured low degrees predicts the higher ones, which is a test on data it was not fitted to.</p>
+<h2 id="functions">Functions<a class="headerlink" href="#functions" title="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Keep some coefficients</td>
+<td><a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.select_coefficients"><code>sbtk.data.select_coefficients</code></a><code>(obs, labels)</code>, <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.select_degree"><code>sbtk.data.select_degree</code></a><code>(obs, L)</code></td>
+</tr>
+<tr>
+<td>Fit them</td>
+<td><a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.setup"><code>sbtk.invert.setup</code></a>, <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.run"><code>sbtk.invert.run</code></a> (or <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.solve"><code>sbtk.invert.solve</code></a>)</td>
+</tr>
+<tr>
+<td>Predict every coefficient from the fit</td>
+<td><a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.predict"><code>sbtk.invert.predict</code></a><code>(fit, body, obs)</code> with the full set</td>
+</tr>
+<tr>
+<td>Map the residuals of several fits</td>
+<td><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.coefficient_residuals"><code>sbtk.plot.coefficient_residuals</code></a></td>
+</tr>
+<tr>
+<td>Compare anomalies coefficient by coefficient</td>
+<td><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.anomaly"><code>sbtk.plot.anomaly</code></a> with <a class="xref xref-fn" href="../reference/internal.html#sbtk.interpret.anomaly"><code>sbtk.interpret.anomaly</code></a> of each fit</td>
+</tr>
+</tbody>
+</table>
+<p><a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.predict"><code>sbtk.invert.predict</code></a> evaluates the fitted model (its components with their fitted geometry and densities) for
+every measurement of the full set: for the fitted rows it gives the fit's own predictions, for the others new ones.
+It reports the <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> of each group with its own covariance (<a class="xref xref-field" href="../reference/data-structures.html#pred.chi2_fitted"><code>pred.chi2_fitted</code></a>, <a class="xref xref-field" href="../reference/data-structures.html#pred.chi2_other"><code>pred.chi2_other</code></a>). The fit
+and the full set must give the same measured center of mass, so keep degree 1 in every subset of data about a fixed
+point; otherwise the model's layers and sectors would be measured from another point and
+<a class="xref xref-err" href="../reference/errors.html#sbtk:invert:predictOrigin"><code>sbtk:invert:predictOrigin</code></a> stops the prediction.</p>
+<p>A subset with fewer coefficients than free parameters leaves the fit underdetermined: <a class="xref xref-field" href="../reference/data-structures.html#fit.determined"><code>fit.determined</code></a> is false,
+the solution is one of many, and its <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> is 0 by construction. A core alone has four unknowns (its relative
+density and three coordinates), which degree 1 and <span class="nobr"><math alttext="J_2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mn>2</mn></msub></mrow></math></span> determine exactly; a core, a torus and a layer have six.</p>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment. Requires the variables defined in <a href="../inversion/reading-coefficients.html#reading-example">Reading the coefficients of a hidden interior</a>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">part = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.select_coefficients">sbtk.data.select_coefficients</a>(obs, [&quot;C10&quot; &quot;C11&quot; &quot;S11&quot; &quot;C20&quot;]);   <span class="c">% degree 1 and J2</span>
+core = <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, cm.center_km, 0.15, 0);
+<span class="n">core</span><span class="p">.</span><span class="n">estimate_position</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+fit1 = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.solve">sbtk.invert.solve</a>(body, core, part, opts);
+pred1 = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.predict">sbtk.invert.predict</a>(fit1, body, obs);
+fit3 = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.solve">sbtk.invert.solve</a>(body, model, <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.select_degree">sbtk.data.select_degree</a>(obs, 3), opts);
+pred3 = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.predict">sbtk.invert.predict</a>(fit3, body, obs);
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;degree 1 + J2: chi2 per coefficient of the others %.3g\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">pred1</span><span class="p">.</span><span class="n">chi2_other</span><span class="o">/</span><span class="n">pred1</span><span class="p">.</span><span class="n">n_other</span><span class="p">);</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;degrees 1-3:   chi2 per coefficient of degrees 4-5 %.3g\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">pred3</span><span class="p">.</span><span class="n">chi2_other</span><span class="o">/</span><span class="n">pred3</span><span class="p">.</span><span class="n">n_other</span><span class="p">);</span>
+fig = <a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.coefficient_residuals">sbtk.plot.coefficient_residuals</a>({pred1, pred3}, [&quot;core, degree 1 + J2&quot;, &quot;three components, degrees 1-3&quot;]);</code></pre></div>
+<h2 id="how-well-the-fitted-coefficients-are-matched">How well the fitted coefficients are matched<a class="headerlink" href="#how-well-the-fitted-coefficients-are-matched" title="Link to this section">#</a></h2>
+<p>A fit to part of the coefficients has to be judged on two groups: the coefficients it was fitted to, which it
+matches by construction as well as its parameters allow, and the others, which it predicts.
+<a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.coefficient_residuals"><code>sbtk.plot.coefficient_residuals</code></a> shows both for several fits at once, one row per fit and one column per
+measurement, with the fitted cells outlined; <a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.anomaly"><code>sbtk.plot.anomaly</code></a> shows the anomaly of a few fits against the
+measured one, filled where fitted and open where predicted.</p>
+<p><code>tests/studies/coefficient_reading_figures.m</code> does this for one of the study's true interiors (the first of the
+family "core, torus, layer": a core of +776 kg/m³ and radius 121 m, 54 m from the center of figure, a torus of
+−652 kg/m³ and a layer of −421 kg/m³), with noise at the Hera precision, fitted with the three-component model of
+guessed sizes to each of the eight sets, the core placed by its <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> profile and Gauss–Newton:</p>
+<div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text">truth_051: core +776 kg/m^3, radius 121 m, 53.6 m from the center of figure; torus -652; layer -421
+coefficients               fitted  chi2/n fitted  chi2/n others    core drho core error m
+degree 1 + J2                   4       4.67e-15           34.5         1799         38.6
++ J3                            5       1.84e-14           9.92          883         28.5
++ J4                            6         0.0058           12.2         -121        187.0
+degrees 1-2                     8           1.89           16.8          388         45.7
+degrees 1-2 + J3 + J4          10           3.01            3.3          189         78.1
+degrees 1-3                    15           2.58           5.58          300         34.9
+degrees 1-4                    24           3.32           1.87          560          9.4
+degrees 1-5                    35           2.87              -          433         16.8</code></pre></div>
+<figure class="figure"><img src="../figures/study/example_residuals.png" alt="(model − measured)/σ of every coefficient, for the model fitted to each of the eight sets (rows). Outlined: the coefficients of the fit. Right:   χ^2   per coefficient of the fitted coefficients and of the others." loading="lazy"><figcaption>(model − measured)/σ of every coefficient, for the model fitted to each of the eight sets (rows). Outlined: the coefficients of the fit. Right: <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> per coefficient of the fitted coefficients and of the others.</figcaption></figure>
+<figure class="figure"><img src="../figures/study/example_anomaly.png" alt="The measured anomaly and the anomalies of the fits to degree 1 +   J_2 ,  to degrees 1–2 and to degrees 1–5; filled where fitted, open where predicted." loading="lazy"><figcaption>The measured anomaly and the anomalies of the fits to degree 1 + <span class="nobr"><math alttext="J_2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mn>2</mn></msub></mrow></math>,</span> to degrees 1–2 and to degrees 1–5; filled where fitted, open where predicted.</figcaption></figure>
+<ul>
+<li>With 4, 5 or 6 coefficients for 6 unknowns, the fit matches its coefficients exactly (<span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> per coefficient
+  10⁻¹⁵ to 10⁻²): the row is white where it is outlined. That says nothing about the model; the other
+  coefficients do (34.5, 9.9 and 12.2 per coefficient), and the core ends 29 to 187 m from the true one.</li>
+<li>From degrees 1–2 the fit has more coefficients than unknowns and its own <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> rises (1.9 to 3.3 per
+  coefficient): the model with these sizes cannot match the coefficients to their 1σ. <span class="nobr"><math alttext="J_4" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mn>4</mn></msub></mrow></math></span> brings the prediction of
+  the others from 16.8 to 3.3; degrees 1–4 predict degree 5 at 1.9, and the core is then 9 m from the true one.</li>
+<li><span class="nobr"><math alttext="S_22" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub></mrow></math></span> is several σ off in every fit. The true interior has the same three kinds of component; the model's,
+  of other sizes, do not make its <span class="nobr"><math alttext="S_22" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub></mrow></math></span> at any densities and core position.</li>
+</ul>
+<h2 id="results-of-the-study">Results of the study<a class="headerlink" href="#results-of-the-study" title="Link to this section">#</a></h2>
+<p><a href="../inversion/reading-coefficients.html#what-the-study-found">What the study found</a> reports the 15,840 fits of
+<code>tests/studies/coefficient_reading_study.m</code>. For the choice of coefficients:</p>
+<ul>
+<li><strong>A core that is alone</strong> is determined by degree 1 and <span class="nobr"><math alttext="J_2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mn>2</mn></msub></mrow></math>,</span> and the fit predicts every other coefficient as well
+  as the noise allows (1.0 per coefficient). More coefficients do not improve its position (4–5 m at the Hera
+  precision).</li>
+<li><strong>A core with a torus and a layer</strong> needs <span class="nobr"><math alttext="J_4" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mn>4</mn></msub></mrow></math>:</span> degree 1 + <span class="nobr"><math alttext="J_2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mn>2</mn></msub></mrow></math></span> + <span class="nobr"><math alttext="J_4" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mn>4</mn></msub></mrow></math></span> predicts the others at 3.8 per
+  coefficient against 21.5 without <span class="nobr"><math alttext="J_4" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mn>4</mn></msub></mrow></math>;</span> degrees 1–2 + <span class="nobr"><math alttext="J_3" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mn>3</mn></msub></mrow></math></span> + <span class="nobr"><math alttext="J_4" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mn>4</mn></msub></mrow></math></span> at 3.1; degrees 1–4 predict degree 5 at 1.5.
+  <span class="nobr"><math alttext="J_3" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mn>3</mn></msub></mrow></math></span> adds little and, with noise, moves the core to fit the noise.</li>
+<li><strong>Degrees 1–2 alone are not a test</strong>: 63% of those fits are consistent with their coefficients and still
+  predict the others at 16 per coefficient; for interiors with no core at all, 60% and 45.</li>
+<li>The <strong>fixed-point iteration</strong> that moves the core to match degree 1 (<a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.recenter"><code>sbtk.invert.recenter</code></a>) converges in about
+  3 steps for a core alone, and not at all when other components can match degree 1 themselves.</li>
+</ul>
+<figure class="figure"><img src="../figures/study/prediction_noisy.png" alt="Median   χ^2   per coefficient of the coefficients not fitted, with noise, for each set (rows), model and procedure (columns) and family. Blank: every coefficient fitted." loading="lazy"><figcaption>Median <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> per coefficient of the coefficients not fitted, with noise, for each set (rows), model and procedure (columns) and family. Blank: every coefficient fitted.</figcaption></figure>
+</article>
+<nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../inversion/density-estimation.html" rel="prev"><span>Previous</span>Density estimation</a><a class="next" href="../inversion/statistics.html" rel="next"><span>Next</span>Goodness of fit and model comparison</a></nav>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-27.</footer>
+</main>
+<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#functions">Functions</a></li><li class="lvl2"><a href="#how-well-the-fitted-coefficients-are-matched">How well the fitted coefficients are matched</a></li><li class="lvl2"><a href="#results-of-the-study">Results of the study</a></li></ul></nav>
+</div>
+<script src="../assets/search-index.js?v=c9a20089fd"></script>
+<script src="../assets/site.js?v=c9a20089fd"></script>
+</body>
+</html>
