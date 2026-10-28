@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ROB-DATA2: Didymos — SBTK documentation</title>
-<link rel="stylesheet" href="../../assets/site.css?v=9f2880f680">
-<link rel="stylesheet" href="../../assets/pygments.css?v=9f2880f680">
-<link rel="stylesheet" href="../../assets/print.css?v=9f2880f680" media="print">
+<link rel="stylesheet" href="../../assets/site.css?v=1e2e3a45e3">
+<link rel="stylesheet" href="../../assets/pygments.css?v=1e2e3a45e3">
+<link rel="stylesheet" href="../../assets/print.css?v=1e2e3a45e3" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -35,7 +35,8 @@ tilted 58° from the equator, and degree 3, small in the other Didymos packages,
 a torus and a layer comes near the measurements, not even with the search adding compact masses. Two solutions that
 assume no shapes do fit: a grid of 32 sectors and the point masses. They agree closely with each other, on a dense
 region below the equator toward −x and −y and a light region above it toward +y. Their excess centers are 10 m
-apart and their relative densities correlate 0.78. Both predict most of degree 5, which neither was fitted to.</p>
+apart and their relative densities correlate 0.78. Above the fitted degrees, 1 to 5, both reproduce at most a
+quarter of each degree.</p>
 <table>
 <thead>
 <tr>
@@ -45,8 +46,8 @@ apart and their relative densities correlate 0.78. Both predict most of degree 5
 <th>Reduced χ²</th>
 <th>p</th>
 <th>AIC</th>
-<th>Exact values, degrees 1–4</th>
-<th>Exact values, degrees 5–10</th>
+<th>Exact values, degrees 1–5</th>
+<th>Exact values, degrees 6–10</th>
 </tr>
 </thead>
 <tbody>
@@ -58,7 +59,7 @@ apart and their relative densities correlate 0.78. Both predict most of degree 5
 <td>0.40</td>
 <td>63.8</td>
 <td>1.00</td>
-<td>0.29</td>
+<td>0.05</td>
 </tr>
 <tr>
 <td>Point masses</td>
@@ -68,7 +69,7 @@ apart and their relative densities correlate 0.78. Both predict most of degree 5
 <td>0.80</td>
 <td>65.1</td>
 <td>1.00</td>
-<td>0.40</td>
+<td>0.17</td>
 </tr>
 <tr>
 <td>Search</td>
@@ -77,8 +78,8 @@ apart and their relative densities correlate 0.78. Both predict most of degree 5
 <td>13.43</td>
 <td>&lt; 0.01</td>
 <td>270.2</td>
-<td>0.96</td>
-<td>−0.89</td>
+<td>0.95</td>
+<td>−0.69</td>
 </tr>
 <tr>
 <td>Components</td>
@@ -93,11 +94,11 @@ apart and their relative densities correlate 0.78. Both predict most of degree 5
 </tbody>
 </table>
 <p>The best solution of each kind, by AIC (bold: the lowest). Parameters: the effective number of parameters. Exact
-values: the fraction of ROB's exact coefficients a solution reproduces, over the measured degrees 1–4 and over
-degrees 5–10, which were not fitted (1: all; 0: no better than constant density; negative: worse). See
+values: the fraction of ROB's exact coefficients a solution reproduces, over the fitted degrees 1–5 and over
+degrees 6–10, which were not (1: all; 0: no better than constant density; negative: worse). See
 <a href="../../projects/rob/index.html#how-to-read-these-pages">How to read these pages</a>.</p>
 <h2 id="1.-what-the-measurements-show">1. What the measurements show<a class="headerlink" href="#1.-what-the-measurements-show" title="Link to this section">#</a></h2>
-<figure class="figure"><img src="../../figures/rob/data2/measured.png" alt="The measured coefficients minus those of the same shape at constant density, C − C_CD, with ±1σ of the Hera radio-science solution, degrees 1 to 4, and the three moments of inertia minus those at constant density. Each panel has its own scale; 0 is constant density." loading="lazy"><figcaption>The measured coefficients minus those of the same shape at constant density, C − C_CD, with ±1σ of the Hera radio-science solution, degrees 1 to 4, and the three moments of inertia minus those at constant density. Each panel has its own scale; 0 is constant density.</figcaption></figure>
+<figure class="figure"><img src="../../figures/rob/data2/measured.png" alt="The measured coefficients minus those of the same shape at constant density, C − C_CD, with ±1σ of the Hera radio-science solution, degrees 1 to 5, and the three moments of inertia minus those at constant density. Each panel has its own scale; 0 is constant density." loading="lazy"><figcaption>The measured coefficients minus those of the same shape at constant density, C − C_CD, with ±1σ of the Hera radio-science solution, degrees 1 to 5, and the three moments of inertia minus those at constant density. Each panel has its own scale; 0 is constant density.</figcaption></figure>
 <table>
 <thead>
 <tr>
@@ -221,22 +222,37 @@ degrees 5–10, which were not fitted (1: all; 0: no better than constant densit
 <td>+3</td>
 <td>order 4, strongest at longitudes −170°, −80°, 10°, 100°</td>
 </tr>
+<tr>
+<td><span class="nobr"><math alttext="S_52" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>52</mn></mrow></msub></mrow></math></span></td>
+<td><span class="nobr"><math alttext="-6.88×10^-5" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mn>6.88</mn><mi>&#x000D7;</mi><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>5</mn></mrow></msup></mrow></math></span></td>
+<td><span class="nobr"><math alttext="1.46×10^-5" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>1.46</mn><mi>&#x000D7;</mi><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>5</mn></mrow></msup></mrow></math></span></td>
+<td>−5</td>
+<td>order 2, strongest at longitudes −44°, 136°</td>
+</tr>
+<tr>
+<td><span class="nobr"><math alttext="S_53" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>53</mn></mrow></msub></mrow></math></span></td>
+<td><span class="nobr"><math alttext="-5.81×10^-5" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mn>5.81</mn><mi>&#x000D7;</mi><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>5</mn></mrow></msup></mrow></math></span></td>
+<td><span class="nobr"><math alttext="1.45×10^-5" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>1.45</mn><mi>&#x000D7;</mi><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>5</mn></mrow></msup></mrow></math></span></td>
+<td>−4</td>
+<td>order 3, strongest at longitudes −157°, −37°, 83°</td>
+</tr>
 </tbody>
 </table>
 <p>The measurements more than 3σ from constant density.</p>
 <p>The center of mass is 2.3 m from the center of figure, four times as far as in ROB-DATA1 and ROB-DATA3: toward −y
 (171σ), −x (58σ) and the south (17σ). <span class="nobr"><math alttext="J_2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mn>2</mn></msub></mrow></math></span> is 53σ lower than at constant density: mass has moved toward the poles
 or the center. <span class="nobr"><math alttext="C_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math></span> and <span class="nobr"><math alttext="S_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math></span> are not zero, so the anomaly is not symmetric about the equator, and
-every order of degree 3 is measured.</p>
+every order of degree 3 is measured. Degree 5 is resolved too: <span class="nobr"><math alttext="S_52" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>52</mn></mrow></msub></mrow></math></span> and <span class="nobr"><math alttext="S_53" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>53</mn></mrow></msub></mrow></math></span> are 5σ and 4σ
+from constant density.</p>
 <h2 id="2.-where-the-mass-is">2. Where the mass is<a class="headerlink" href="#2.-where-the-mass-is" title="Link to this section">#</a></h2>
-<figure class="figure"><img src="../../figures/rob/data2/anomaly_map.png" alt="Degrees 2, 3 and 4 of C − C_CD as maps of latitude and longitude from the center of figure. Red where a mass added near the surface in that direction would produce the pattern, blue where a mass taken away would; each map on its own symmetric color scale. +: strongest excess; x: strongest deficit; star: direction of the center-of-mass offset." loading="lazy"><figcaption>Degrees 2, 3 and 4 of C − C_CD as maps of latitude and longitude from the center of figure. Red where a mass added near the surface in that direction would produce the pattern, blue where a mass taken away would; each map on its own symmetric color scale. +: strongest excess; x: strongest deficit; star: direction of the center-of-mass offset.</figcaption></figure>
+<figure class="figure"><img src="../../figures/rob/data2/anomaly_map.png" alt="Degrees 2 to 5 of C − C_CD as maps of latitude and longitude from the center of figure. Red where a mass added near the surface in that direction would produce the pattern, blue where a mass taken away would; each map on its own symmetric color scale. +: strongest excess; x: strongest deficit; star: direction of the center-of-mass offset." loading="lazy"><figcaption>Degrees 2 to 5 of C − C_CD as maps of latitude and longitude from the center of figure. Red where a mass added near the surface in that direction would produce the pattern, blue where a mass taken away would; each map on its own symmetric color scale. +: strongest excess; x: strongest deficit; star: direction of the center-of-mass offset.</figcaption></figure>
 <p>Degree 2 puts the excess at latitude −58°, longitude −176°, and at the opposite point: an axis tilted 58° from the
 equator. The center of mass points to −45°, −108°, the southern side. Degree 3 has its excess at −36°, 162° and its
-deficit at the opposite point. Every degree points to the southern hemisphere, toward longitudes between −110° and
-180°.</p>
+deficit at the opposite point, and degree 5 its excess at −14°, 152°. Degrees 1, 2, 3 and 5 all point to the
+southern hemisphere, between longitudes 150° and −110° across 180°.</p>
 <h2 id="3.-how-well-each-solution-fits">3. How well each solution fits<a class="headerlink" href="#3.-how-well-each-solution-fits" title="Link to this section">#</a></h2>
 <figure class="figure"><img src="../../figures/rob/data2/compare.png" alt="Top: C − C_CD measured (black, ±1σ) and of the best solution of each kind that fits. Bottom: (solution − measured)/σ; the gray band is ±1σ, the dashed lines ±3σ." loading="lazy"><figcaption>Top: C − C_CD measured (black, ±1σ) and of the best solution of each kind that fits. Bottom: (solution − measured)/σ; the gray band is ±1σ, the dashed lines ±3σ.</figcaption></figure>
-<p>The sector grid and the point masses match every measured coefficient within 3σ, with 25 and 30 effective
+<p>The sector grid and the point masses match every fitted coefficient within 3σ, with 25 and 30 effective
 parameters. They are 1.3 apart in AIC, a tie. The models with components do not fit. The best of them, a core
 placed along the center-of-mass offset with a tilted torus and a layer, has a reduced χ² of 20. The search adds three
 compact masses to a core, torus and layer and still has a reduced χ² of 13. A core can move the center of mass and a
@@ -304,17 +320,17 @@ about 115 m toward +y and the north. On the y = 0 plane the point masses gather 
 below the center, where the sector grid has its densest southern sectors.</p>
 <h2 id="6.-against-robs-exact-values">6. Against ROB's exact values<a class="headerlink" href="#6.-against-robs-exact-values" title="Link to this section">#</a></h2>
 <figure class="figure"><img src="../../figures/rob/data2/exact.png" alt="The fraction of each degree of ROB&#x27;s exact C − C_CD that each solution reproduces, 1 − |solution − exact|²/|exact|². 1: all of it; 0: no better than constant density; values below −1 are drawn at −1 as open markers. The gray region was not fitted." loading="lazy"><figcaption>The fraction of each degree of ROB's exact C − C_CD that each solution reproduces, 1 − |solution − exact|²/|exact|². 1: all of it; 0: no better than constant density; values below −1 are drawn at −1 as open markers. The gray region was not fitted.</figcaption></figure>
-<p>Both solutions reproduce degrees 1 to 4 and predict degree 5, which was not fitted (78% for the sector grid, 88% for
-the point masses). From degree 6 on both fall toward zero. Over degrees 5 to 10 the point masses reproduce 40% and
-the sector grid 29%. The large-scale structure the two agree on is real; its
-finer form is beyond what degrees 1 to 4 can show.</p>
+<p>Both solutions reproduce degrees 1 to 3. Of degrees 4 and 5 the point masses reproduce 99% and 88%, the sector grid
+83% and 78%. Above degree 5, which neither was fitted to, both fall toward zero: 22 to 26% of degree 6, less of each
+degree after it. Over degrees 6 to 10 the point masses reproduce 17% and the sector grid 5%. The large-scale
+structure the two agree on is real; its finer form is beyond what degrees 1 to 5 can show.</p>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../../projects/rob/data1.html" rel="prev"><span>Previous</span>ROB-DATA1: Didymos</a><a class="next" href="../../projects/rob/data3.html" rel="next"><span>Next</span>ROB-DATA3: Didymos</a></nav>
 <footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-28.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#1.-what-the-measurements-show">1. What the measurements show</a></li><li class="lvl2"><a href="#2.-where-the-mass-is">2. Where the mass is</a></li><li class="lvl2"><a href="#3.-how-well-each-solution-fits">3. How well each solution fits</a></li><li class="lvl2"><a href="#4.-the-sector-grid">4. The sector grid</a></li><li class="lvl2"><a href="#5.-point-masses-and-the-sector-grid-side-by-side">5. Point masses and the sector grid side by side</a></li><li class="lvl2"><a href="#6.-against-robs-exact-values">6. Against ROB's exact values</a></li></ul></nav>
 </div>
-<script src="../../assets/search-index.js?v=9f2880f680"></script>
-<script src="../../assets/site.js?v=9f2880f680"></script>
+<script src="../../assets/search-index.js?v=1e2e3a45e3"></script>
+<script src="../../assets/site.js?v=1e2e3a45e3"></script>
 </body>
 </html>

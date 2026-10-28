@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ROB-DATA1: Didymos — SBTK documentation</title>
-<link rel="stylesheet" href="../../assets/site.css?v=9f2880f680">
-<link rel="stylesheet" href="../../assets/pygments.css?v=9f2880f680">
-<link rel="stylesheet" href="../../assets/print.css?v=9f2880f680" media="print">
+<link rel="stylesheet" href="../../assets/site.css?v=1e2e3a45e3">
+<link rel="stylesheet" href="../../assets/pygments.css?v=1e2e3a45e3">
+<link rel="stylesheet" href="../../assets/print.css?v=1e2e3a45e3" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -35,8 +35,8 @@ that one end carries more than the other. A model of five components built on th
 sphere at each end, a light core below the center) fits every measured coefficient with 14 parameters. The sector
 grid and the point masses fit as well but need twice as many, and rank 14 behind in AIC. The point masses arrive at
 the same picture without being told any shapes: mass at the two equatorial ends, more at the −x end, and less along
-the spin axis. Beyond the measured degrees ROB's exact values side with the point masses, which spread the dense
-material over a larger volume than two spheres.</p>
+the spin axis. Above the fitted degrees, 1 to 5, no solution reproduces ROB's exact values well. The model with
+components comes closest over degrees 6 to 10 (0.33, against −0.40 for the point masses).</p>
 <table>
 <thead>
 <tr>
@@ -46,8 +46,8 @@ material over a larger volume than two spheres.</p>
 <th>Reduced χ²</th>
 <th>p</th>
 <th>AIC</th>
-<th>Exact values, degrees 1–4</th>
-<th>Exact values, degrees 5–10</th>
+<th>Exact values, degrees 1–5</th>
+<th>Exact values, degrees 6–10</th>
 </tr>
 </thead>
 <tbody>
@@ -59,7 +59,7 @@ material over a larger volume than two spheres.</p>
 <td>0.70</td>
 <td>48.0</td>
 <td>1.00</td>
-<td>−1.49</td>
+<td>0.33</td>
 </tr>
 <tr>
 <td>Sector grid</td>
@@ -69,7 +69,7 @@ material over a larger volume than two spheres.</p>
 <td>0.87</td>
 <td>61.7</td>
 <td>1.00</td>
-<td>−2.89</td>
+<td>−3.82</td>
 </tr>
 <tr>
 <td>Point masses</td>
@@ -79,7 +79,7 @@ material over a larger volume than two spheres.</p>
 <td>0.88</td>
 <td>62.1</td>
 <td>1.00</td>
-<td>−0.03</td>
+<td>−0.40</td>
 </tr>
 <tr>
 <td>Search</td>
@@ -89,16 +89,16 @@ material over a larger volume than two spheres.</p>
 <td>&lt; 0.01</td>
 <td>114.6</td>
 <td>0.99</td>
-<td>−17.79</td>
+<td>−23.66</td>
 </tr>
 </tbody>
 </table>
 <p>The best solution of each kind, by AIC (bold: the lowest). Parameters: the effective number of parameters. Exact
-values: the fraction of ROB's exact coefficients a solution reproduces, over the measured degrees 1–4 and over
-degrees 5–10, which were not fitted (1: all; 0: no better than constant density; negative: worse). See
+values: the fraction of ROB's exact coefficients a solution reproduces, over the fitted degrees 1–5 and over
+degrees 6–10, which were not (1: all; 0: no better than constant density; negative: worse). See
 <a href="../../projects/rob/index.html#how-to-read-these-pages">How to read these pages</a>.</p>
 <h2 id="1.-what-the-measurements-show">1. What the measurements show<a class="headerlink" href="#1.-what-the-measurements-show" title="Link to this section">#</a></h2>
-<figure class="figure"><img src="../../figures/rob/data1/measured.png" alt="The measured coefficients minus those of the same shape at constant density, C − C_CD, with ±1σ of the Hera radio-science solution, degrees 1 to 4, and the three moments of inertia minus those at constant density. Each panel has its own scale; 0 is constant density." loading="lazy"><figcaption>The measured coefficients minus those of the same shape at constant density, C − C_CD, with ±1σ of the Hera radio-science solution, degrees 1 to 4, and the three moments of inertia minus those at constant density. Each panel has its own scale; 0 is constant density.</figcaption></figure>
+<figure class="figure"><img src="../../figures/rob/data1/measured.png" alt="The measured coefficients minus those of the same shape at constant density, C − C_CD, with ±1σ of the Hera radio-science solution, degrees 1 to 5, and the three moments of inertia minus those at constant density. Each panel has its own scale; 0 is constant density." loading="lazy"><figcaption>The measured coefficients minus those of the same shape at constant density, C − C_CD, with ±1σ of the Hera radio-science solution, degrees 1 to 5, and the three moments of inertia minus those at constant density. Each panel has its own scale; 0 is constant density.</figcaption></figure>
 <table>
 <thead>
 <tr>
@@ -179,7 +179,7 @@ degrees 5–10, which were not fitted (1: all; 0: no better than constant densit
 <p>Three things stand out. <span class="nobr"><math alttext="J_2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mn>2</mn></msub></mrow></math></span> is 246σ higher than at constant density: mass has moved from the spin axis toward the
 equator. <span class="nobr"><math alttext="C_22" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub></mrow></math></span> and <span class="nobr"><math alttext="S_22" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub></mrow></math></span> say the move is not even around the equator but toward one axis. And the
 center of mass is 0.59 m from the center of figure toward −x: one end of that axis is heavier. Degrees 3 and 4 are
-small but measured. The moments of inertia are not: for Didymos their 1σ is larger than any interior changes them.</p>
+small but measured. Degree 5 is fitted, but no coefficient of it is more than 1σ from constant density. The moments of inertia are not: for Didymos their 1σ is larger than any interior changes them.</p>
 <h2 id="2.-where-the-mass-is">2. Where the mass is<a class="headerlink" href="#2.-where-the-mass-is" title="Link to this section">#</a></h2>
 <figure class="figure"><img src="../../figures/rob/data1/anomaly_map.png" alt="Degrees 2, 3 and 4 of C − C_CD as maps of latitude and longitude from the center of figure. Red where a mass added near the surface in that direction would produce the pattern, blue where a mass taken away would; each map on its own symmetric color scale. +: strongest excess; x: strongest deficit; star: direction of the center-of-mass offset." loading="lazy"><figcaption>Degrees 2, 3 and 4 of C − C_CD as maps of latitude and longitude from the center of figure. Red where a mass added near the surface in that direction would produce the pattern, blue where a mass taken away would; each map on its own symmetric color scale. +: strongest excess; x: strongest deficit; star: direction of the center-of-mass offset.</figcaption></figure>
 <p>Degree 2 puts the excess on the equator at longitudes −19° and 161° (±2°) and the deficit at both poles. The center
@@ -190,7 +190,7 @@ at −18° and 162°: the same axis, the same heavier end.</p>
 position and density for any remaining deficit near the center.</p>
 <h2 id="3.-how-well-each-solution-fits">3. How well each solution fits<a class="headerlink" href="#3.-how-well-each-solution-fits" title="Link to this section">#</a></h2>
 <figure class="figure"><img src="../../figures/rob/data1/compare.png" alt="Top: C − C_CD measured (black, ±1σ) and of the best solution of each kind. Bottom: (solution − measured)/σ; the gray band is ±1σ, the dashed lines ±3σ." loading="lazy"><figcaption>Top: C − C_CD measured (black, ±1σ) and of the best solution of each kind. Bottom: (solution − measured)/σ; the gray band is ±1σ, the dashed lines ±3σ.</figcaption></figure>
-<p>The model with components, the sector grid and the point masses all match every measured coefficient within 2σ.
+<p>The model with components, the sector grid and the point masses all match every fitted coefficient within 2σ.
 They differ in what it costs: 14 effective parameters for the components, about 28 for the others, which is why
 the components rank first by 14 in AIC, a strong preference. The search of a core, a torus and a layer cannot
 fit (reduced χ² 4.3): a torus about the spin axis cannot put mass at two ends of one equatorial axis.</p>
@@ -331,18 +331,20 @@ equatorial sectors at the longitudes of the axis, but its inner shell is not res
 correlates about 0.27 with each of the others.</p>
 <h2 id="6.-against-robs-exact-values">6. Against ROB's exact values<a class="headerlink" href="#6.-against-robs-exact-values" title="Link to this section">#</a></h2>
 <figure class="figure"><img src="../../figures/rob/data1/exact.png" alt="The fraction of each degree of ROB&#x27;s exact C − C_CD that each solution reproduces, 1 − |solution − exact|²/|exact|². 1: all of it; 0: no better than constant density; values below −1 are drawn at −1 as open markers. The gray region was not fitted." loading="lazy"><figcaption>The fraction of each degree of ROB's exact C − C_CD that each solution reproduces, 1 − |solution − exact|²/|exact|². 1: all of it; 0: no better than constant density; values below −1 are drawn at −1 as open markers. The gray region was not fitted.</figcaption></figure>
-<p>All three reproduce 84 to 100% of each of degrees 1 to 4. Beyond them they part. The point masses reproduce 87% of degree 5, and over
-degrees 5 to 10 they do as well as constant density (−0.03). The two compact spheres overshoot degrees 5, 7 and 9
-(−1.49 over degrees 5 to 10), and the sector grid more so (−2.89). The dense material at the two ends of the axis is
-real, but it is spread over a larger volume than two spheres of 73 m radius. To degree 4 the spheres describe it;
-beyond degree 4, the point masses describe it better.</p>
+<p>All three reproduce 84 to 100% of each of degrees 1 to 4. Degree 5 is fitted, but its 1σ is larger than its
+anomaly, so the fit does not hold it: the point masses reproduce 87% of it, the sector grid does worse than constant
+density, and the two compact spheres overshoot it within its 1σ. No solution was fitted above degree 5, and there no
+solution holds. Over degrees 6 to 10 the model with components reproduces 33%, while the point masses (−0.40) and the
+sector grid (−3.82) do worse than constant density. Degree by degree the components do best at degrees 6, 8 and 10
+(64% of degree 6), the point masses at degree 7, and all fail at degree 9. The dense material at the two ends of
+the axis is real; degrees 1 to 5 do not show how compact it is.</p>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../../projects/rob/index.html" rel="prev"><span>Previous</span>Testing with ROB data</a><a class="next" href="../../projects/rob/data2.html" rel="next"><span>Next</span>ROB-DATA2: Didymos</a></nav>
 <footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-28.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#1.-what-the-measurements-show">1. What the measurements show</a></li><li class="lvl2"><a href="#2.-where-the-mass-is">2. Where the mass is</a></li><li class="lvl2"><a href="#3.-how-well-each-solution-fits">3. How well each solution fits</a></li><li class="lvl2"><a href="#4.-the-model-with-components">4. The model with components</a></li><li class="lvl2"><a href="#5.-point-masses-and-components-side-by-side">5. Point masses and components side by side</a></li><li class="lvl2"><a href="#6.-against-robs-exact-values">6. Against ROB's exact values</a></li></ul></nav>
 </div>
-<script src="../../assets/search-index.js?v=9f2880f680"></script>
-<script src="../../assets/site.js?v=9f2880f680"></script>
+<script src="../../assets/search-index.js?v=1e2e3a45e3"></script>
+<script src="../../assets/site.js?v=1e2e3a45e3"></script>
 </body>
 </html>

@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Testing with ROB data — SBTK documentation</title>
-<link rel="stylesheet" href="../../assets/site.css?v=9f2880f680">
-<link rel="stylesheet" href="../../assets/pygments.css?v=9f2880f680">
-<link rel="stylesheet" href="../../assets/print.css?v=9f2880f680" media="print">
+<link rel="stylesheet" href="../../assets/site.css?v=1e2e3a45e3">
+<link rel="stylesheet" href="../../assets/pygments.css?v=1e2e3a45e3">
+<link rel="stylesheet" href="../../assets/print.css?v=1e2e3a45e3" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -117,8 +117,10 @@ package's mass and reference radius:</p>
 <li>every coefficient's 1σ from the RSE gravity field, with its full covariance moved from the RSE center of mass to
   the origin of the shape-model file (<a href="../../inversion/expansion-point-uncertainties.html">Uncertainties and the expansion point</a>)
   and scaled to the package's reference radius;</li>
-<li>the coefficients truncated to the degrees the RSE field has: <strong>5 for Didymos</strong> (35 coefficients) and <strong>3 for
-  Dimorphos</strong> (15, of which degree 3 has 1σ of about 10⁻², so that Dimorphos is measured to degree 2);</li>
+<li>the coefficients truncated to the degrees the RSE field has, and every one of them fitted: <strong>degrees 1 to 5 for
+  Didymos</strong> (35 coefficients) and <strong>1 to 3 for Dimorphos</strong> (15). The fits do not use <span class="nobr"><math alttext="C_00" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>00</mn></mrow></msub></mrow></math>:</span> the mass is the
+  package's. For Dimorphos the 1σ of degree 3, about 3 × 10⁻², is 20 to 600 times its anomaly, so degree 3 is fitted
+  but constrains nothing. For Didymos degree 5 is resolved on ROB-DATA2 and 3 (up to 6σ) and not on ROB-DATA1;</li>
 <li>each inertia element's 1σ from the RSE inertia solution, with the variance the center of mass adds about the
   origin. For Didymos they are about 2.8 × 10⁻² of <span class="nobr"><math alttext="MR^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi><msup><mi>R</mi><mn>2</mn></msup></mrow></math></span> and carry no information; for Dimorphos about
   5 × 10⁻⁴, and they do.</li>
@@ -129,9 +131,10 @@ package's mass and reference radius:</p>
   first by AIC on ROB-DATA1, 3 and 5: by 7 to 14 on Didymos, by 1.9 on ROB-DATA5, a tie with the point masses. On
   ROB-DATA4 and 6 it ties with the solutions that assume no shapes (all within 3). On ROB-DATA2 no model of a core,
   a torus and a layer fits, and a sector grid ranks first.</li>
-<li><strong>Fitting best is not the same as being right beyond the measured degrees.</strong> ROB's exact values to degree 10 side
-  with the point masses on ROB-DATA1, 2, 3 and 6, and with a compact core on ROB-DATA4 and 5. Degrees 1 to 4 for
-  Didymos and 1 to 2 for Dimorphos fix where the anomaly is; they do not fix how compact it is.</li>
+<li><strong>Fitting best is not the same as being right above the fitted degrees.</strong> There ROB's exact values side with the
+  point masses on ROB-DATA2, 3 and 6, with the model with components on ROB-DATA1, and with a compact core on
+  ROB-DATA4 and 5. The degrees the measurements resolve, to 4 or 5 for Didymos and to 2 for Dimorphos, fix where the
+  anomaly is; they do not fix how compact it is.</li>
 <li><strong>Given no shapes, the point masses often find the geometry of the model with components.</strong> On ROB-DATA1 they take
   mass from along the spin axis and put it at the two ends of one equatorial axis. On ROB-DATA3 they put a dense
   center inside a light equatorial ring. On ROB-DATA4 they put the excess toward −y, where the core is. On ROB-DATA5
@@ -141,7 +144,7 @@ package's mass and reference radius:</p>
   offset to +x, which the point masses leave out because degree 1 is measured at only 1σ, is right. On ROB-DATA6
   the point masses' light region at the center is closer to the truth than the light core to one side.</li>
 <li><strong>Sector grids fit an anomaly spread over a direction and depth (ROB-DATA2), but cannot make a ring
-  (ROB-DATA3).</strong> Beyond the measured degrees they are the least reliable of the kinds.</li>
+  (ROB-DATA3).</strong> Above the fitted degrees they do worse than constant density on ROB-DATA1, 3 and 5.</li>
 <li><strong>For Dimorphos the moments of inertia and one surface point matter.</strong> At the Hera precision the moments carry no
   information for Didymos. For Dimorphos they are as strong as degree 2 (ROB-DATA4 and 6). The GRASS point decides
   where it lies over the anomaly: the core on ROB-DATA4, to 0.2% against 9% for the point masses.</li>
@@ -154,7 +157,7 @@ package's mass and reference radius:</p>
 <th>What the measurements show</th>
 <th>Best by AIC</th>
 <th>Tied (within 3 in AIC)</th>
-<th>Closest to ROB's exact values beyond the measured degrees</th>
+<th>Closest to ROB's exact values above the fitted degrees</th>
 </tr>
 </thead>
 <tbody>
@@ -163,14 +166,14 @@ package's mass and reference radius:</p>
 <td>mass from the spin axis to two ends of an equatorial axis, more at −x</td>
 <td>polar caps, two equatorial spheres, a light core</td>
 <td>none</td>
-<td>point masses (−0.03; components −1.49)</td>
+<td>components (0.33; point masses −0.40)</td>
 </tr>
 <tr>
 <td><a href="../../projects/rob/data2.html">ROB-DATA2</a></td>
 <td>center of mass 2.3 m south, degree 2 tilted 58°, a large degree 3</td>
 <td>sector grid 1 × 4 × 8</td>
 <td>point masses</td>
-<td>point masses (0.40; sector grid 0.29)</td>
+<td>point masses (0.17; sector grid 0.05)</td>
 </tr>
 <tr>
 <td><a href="../../projects/rob/data3.html">ROB-DATA3</a></td>
@@ -184,26 +187,26 @@ package's mass and reference radius:</p>
 <td>mass toward ±y, more at −y; the moments</td>
 <td>sector grid 2 × 4 × 8</td>
 <td>point masses, search, components</td>
-<td>search, a core 46 m toward −y (0.90)</td>
+<td>search, a core 46 m toward −y (0.79)</td>
 </tr>
 <tr>
 <td><a href="../../projects/rob/data5.html">ROB-DATA5</a></td>
 <td>mass toward ±x, close to the x-axis</td>
 <td>one dense sphere 28 m toward +x</td>
 <td>point masses</td>
-<td>the same sphere (search 0.80, components 0.65)</td>
+<td>the same sphere (components 0.91, search 0.90)</td>
 </tr>
 <tr>
 <td><a href="../../projects/rob/data6.html">ROB-DATA6</a></td>
 <td>the moments 30–60σ larger: light inside, dense outside</td>
 <td>point masses</td>
 <td>components, sector grid</td>
-<td>point masses (−0.03; components −1.92)</td>
+<td>sector grid and point masses (0.50 and 0.46; components −0.72)</td>
 </tr>
 </tbody>
 </table>
-<p>The measured degrees are 1 to 4 for Didymos and 1 to 2 for Dimorphos. Beyond them: the fraction of ROB's exact
-coefficients a solution reproduces over the degrees not fitted (1: all; 0: no better than constant density;
+<p>The fitted degrees are 1 to 5 for Didymos and 1 to 3 for Dimorphos. Above them: the fraction of ROB's exact
+coefficients a solution reproduces over the degrees not fitted, 6 to 10 and 4 to 10 (1: all; 0: no better than constant density;
 negative: worse).</p>
 <h2 id="point-masses-sensitivity-or-equal-weighting">Point masses: sensitivity or equal weighting<a class="headerlink" href="#point-masses-sensitivity-or-equal-weighting" title="Link to this section">#</a></h2>
 <p>Point masses can be weighted in two ways (<a href="../../inversion/point-masses.html#weighting">Point masses</a>). Both were fitted
@@ -214,8 +217,8 @@ to every package, each with the regularization parameter of lowest AIC:</p>
 <th>Package</th>
 <th>AIC, sensitivity</th>
 <th>AIC, equal</th>
-<th>Exact values beyond the measured degrees, sensitivity</th>
-<th>Exact values beyond the measured degrees, equal</th>
+<th>Exact values above the fitted degrees, sensitivity</th>
+<th>Exact values above the fitted degrees, equal</th>
 <th>GRASS acceleration, sensitivity</th>
 <th>GRASS acceleration, equal</th>
 </tr>
@@ -225,8 +228,8 @@ to every package, each with the regularization parameter of lowest AIC:</p>
 <td>ROB-DATA1</td>
 <td>62.1</td>
 <td>66.0</td>
-<td>−0.03</td>
-<td>−1.88</td>
+<td>−0.40</td>
+<td>−3.03</td>
 <td></td>
 <td></td>
 </tr>
@@ -234,8 +237,8 @@ to every package, each with the regularization parameter of lowest AIC:</p>
 <td>ROB-DATA2</td>
 <td>65.1</td>
 <td>67.2</td>
-<td>0.40</td>
-<td>0.46</td>
+<td>0.17</td>
+<td>0.24</td>
 <td></td>
 <td></td>
 </tr>
@@ -252,8 +255,8 @@ to every package, each with the regularization parameter of lowest AIC:</p>
 <td>ROB-DATA4</td>
 <td>17.7</td>
 <td>17.3</td>
-<td>−0.43</td>
-<td>0.20</td>
+<td>−0.33</td>
+<td>0.30</td>
 <td>−9.3%</td>
 <td>−6.6%</td>
 </tr>
@@ -261,8 +264,8 @@ to every package, each with the regularization parameter of lowest AIC:</p>
 <td>ROB-DATA5</td>
 <td>10.3</td>
 <td>12.4</td>
-<td>0.44</td>
-<td>0.45</td>
+<td>0.79</td>
+<td>0.64</td>
 <td>−0.6%</td>
 <td>−0.4%</td>
 </tr>
@@ -270,16 +273,16 @@ to every package, each with the regularization parameter of lowest AIC:</p>
 <td>ROB-DATA6</td>
 <td>16.6</td>
 <td>17.4</td>
-<td>−0.03</td>
-<td>−0.05</td>
+<td>0.46</td>
+<td>0.65</td>
 <td>−0.7%</td>
 <td>+1.6%</td>
 </tr>
 </tbody>
 </table>
-<p>Neither weighting is better everywhere. The AIC of the two differs by less than 4 on every package. Beyond the measured
-degrees sensitivity weighting is far better on ROB-DATA1 and equal weighting on ROB-DATA4; on the other four they are
-close. The pages show sensitivity weighting, which spreads the anomaly over depth instead of putting it under the
+<p>Neither weighting is better everywhere. The AIC of the two differs by less than 4 on every package. Above the fitted
+degrees sensitivity weighting is far better on ROB-DATA1 and better on ROB-DATA5, equal weighting far better on
+ROB-DATA4 and better on ROB-DATA6; on ROB-DATA2 and 3 they are close. The pages show sensitivity weighting, which spreads the anomaly over depth instead of putting it under the
 surface; each page's <code>weighting.md</code> table in the results folder has both.</p>
 <h2 id="how-to-read-these-pages">How to read these pages<a class="headerlink" href="#how-to-read-these-pages" title="Link to this section">#</a></h2>
 <p>Every package page has the same six sections: what the measurements show, where the mass is, how well each solution
@@ -292,7 +295,8 @@ is the center-of-mass offset (<span class="nobr"><math alttext="C_11, S_11, C_10
 sign of a coefficient says where mass was added or taken away: <span class="nobr"><math alttext="J_2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mn>2</mn></msub></mrow></math></span> higher, toward the equator; <span class="nobr"><math alttext="C_22 &gt; 0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub><mo>&#x0003E;</mo><mn>0</mn></mrow></math>,</span>
 toward the ends of the x-axis; <span class="nobr"><math alttext="C_21 &gt; 0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub><mo>&#x0003E;</mo><mn>0</mn></mrow></math>,</span> toward +x in the north and −x in the south
 (<a href="../../inversion/reading-coefficients.html#what-each-kind-of-structure-does">Reading the gravity coefficients</a>).</p>
-<p><strong>The maps.</strong> Each degree of C − C_CD drawn as a pattern on the sphere: red where a mass added near the surface in
+<p><strong>The maps.</strong> Each resolved degree of C − C_CD, up to the highest with a measurement more than 3σ from constant
+density, drawn as a pattern on the sphere: red where a mass added near the surface in
 that direction would produce it, blue where a mass taken away would (<a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.anomaly_map"><code>sbtk.plot.anomaly_map</code></a>).</p>
 <p><strong>The kinds of solution.</strong> All are fitted to the same measurements, every coefficient the Hera uncertainties cover and
 <span class="nobr"><math alttext="I_xx, I_yy, I_zz" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>x</mi><mi>x</mi></mrow></msub><mo>&#x0002C;</mo><msub><mi>I</mi><mrow><mi>y</mi><mi>y</mi></mrow></msub><mo>&#x0002C;</mo><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub></mrow></math>:</span></p>
@@ -342,9 +346,11 @@ resolution matrix for the regularized sector grids and point masses. The Akaike 
 effective parameters, ranks solutions of different kinds on the same terms: lower is better, a difference below 2 is a
 tie, above 10 a strong preference (<a href="../../inversion/statistics.html#comparing-models-the-akaike-information-criterion">Goodness of fit</a>).
 Sector grids and point masses are regularized with the parameter of lowest AIC.</p>
-<p><strong>Exact values.</strong> ROB's packages give exact coefficients to degree 10; the measurements are degrees 1 to 4 for
-Didymos and 1 to 2 for Dimorphos. Each solution is tested on all ten: the fraction of each degree it reproduces,
-1 − |solution − exact|²/|exact|². 1 is all of it, 0 no better than constant density, negative worse.</p>
+<p><strong>Exact values.</strong> ROB's packages give exact coefficients to degree 10; the solutions are fitted to degrees 1 to 5
+for Didymos and 1 to 3 for Dimorphos. Each solution is tested on all ten: the fraction of each degree it reproduces,
+1 − |solution − exact|²/|exact|². 1 is all of it, 0 no better than constant density, negative worse. The degrees
+above the fitted ones, 6 to 10 for Didymos and 4 to 10 for Dimorphos, are a test on coefficients no solution was
+fitted to.</p>
 <p><strong>GRASS.</strong> For Dimorphos, ROB gives the acceleration at one point on the surface, as the GRASS gravimeter on a lander
 would measure it. Each solution's prediction is compared in magnitude and direction.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Link to this section">#</a></h2>
@@ -369,7 +375,7 @@ tables of its page:</p>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#the-packages">The packages</a></li><li class="lvl2"><a href="#uncertainties">Uncertainties</a></li><li class="lvl2"><a href="#what-the-six-packages-show">What the six packages show</a></li><li class="lvl2"><a href="#results">Results</a></li><li class="lvl2"><a href="#point-masses-sensitivity-or-equal-weighting">Point masses: sensitivity or equal weighting</a></li><li class="lvl2"><a href="#how-to-read-these-pages">How to read these pages</a></li><li class="lvl2"><a href="#method">Method</a></li></ul></nav>
 </div>
-<script src="../../assets/search-index.js?v=9f2880f680"></script>
-<script src="../../assets/site.js?v=9f2880f680"></script>
+<script src="../../assets/search-index.js?v=1e2e3a45e3"></script>
+<script src="../../assets/site.js?v=1e2e3a45e3"></script>
 </body>
 </html>

@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ROB-DATA4: Dimorphos — SBTK documentation</title>
-<link rel="stylesheet" href="../../assets/site.css?v=9f2880f680">
-<link rel="stylesheet" href="../../assets/pygments.css?v=9f2880f680">
-<link rel="stylesheet" href="../../assets/print.css?v=9f2880f680" media="print">
+<link rel="stylesheet" href="../../assets/site.css?v=1e2e3a45e3">
+<link rel="stylesheet" href="../../assets/pygments.css?v=1e2e3a45e3">
+<link rel="stylesheet" href="../../assets/print.css?v=1e2e3a45e3" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -34,10 +34,10 @@
 inertia say mass has moved toward the two ends of the y-axis, and degree 1 that the −y end is heavier. Four kinds of
 solution fit equally well, within 3 of each other in AIC: a sector grid, the point masses, the search, and a model
 with a dense core placed toward −y. All four put the excess on the −y side. They differ in how compact it is, and
-the gravity coefficients up to degree 2 cannot tell them apart. ROB's exact values and the GRASS surface point can.
-Both favor a compact dense core 30 to 50 m toward −y. The search's core reproduces 90% of degrees 3 to 10, and
-the placed core predicts the GRASS acceleration to 0.2%. The point masses and the sector grid, which spread the
-excess, predict neither.</p>
+the measurements cannot tell them apart. ROB's exact values and the GRASS surface point can. Both favor a compact
+dense core 30 to 50 m toward −y. The search's core reproduces 79% of degrees 4 to 10, which no solution was fitted
+to, and the placed core predicts the GRASS acceleration to 0.2%. The point masses and the sector grid, which spread
+the excess, predict neither as well.</p>
 <table>
 <thead>
 <tr>
@@ -47,8 +47,8 @@ excess, predict neither.</p>
 <th>Reduced χ²</th>
 <th>p</th>
 <th>AIC</th>
-<th>Exact values, degrees 1–2</th>
-<th>Exact values, degrees 3–10</th>
+<th>Exact values, degrees 1–3</th>
+<th>Exact values, degrees 4–10</th>
 <th>GRASS acceleration</th>
 <th>GRASS direction</th>
 </tr>
@@ -61,8 +61,8 @@ excess, predict neither.</p>
 <td>0.10</td>
 <td>1.00</td>
 <td>16.9</td>
-<td>0.93</td>
-<td>0.14</td>
+<td>0.89</td>
+<td>0.25</td>
 <td>−7.3%</td>
 <td>0.7°</td>
 </tr>
@@ -73,8 +73,8 @@ excess, predict neither.</p>
 <td>0.05</td>
 <td>1.00</td>
 <td>17.7</td>
-<td>0.96</td>
-<td>−0.43</td>
+<td>0.88</td>
+<td>−0.33</td>
 <td>−9.3%</td>
 <td>0.8°</td>
 </tr>
@@ -86,7 +86,7 @@ excess, predict neither.</p>
 <td>1.00</td>
 <td>18.7</td>
 <td>0.95</td>
-<td>0.90</td>
+<td>0.79</td>
 <td>+2.0%</td>
 <td>1.4°</td>
 </tr>
@@ -97,8 +97,8 @@ excess, predict neither.</p>
 <td>0.65</td>
 <td>0.80</td>
 <td>19.8</td>
-<td>0.42</td>
-<td>0.69</td>
+<td>0.45</td>
+<td>0.38</td>
 <td>−0.2%</td>
 <td>0.2°</td>
 </tr>
@@ -117,12 +117,12 @@ excess, predict neither.</p>
 </tbody>
 </table>
 <p>The best solution of each kind, by AIC (bold: the lowest). Parameters: the effective number of parameters. Exact
-values: the fraction of ROB's exact coefficients a solution reproduces, over the measured degrees 1–2 and over
-degrees 3–10, which were not fitted (1: all; 0: no better than constant density; negative: worse). GRASS: the
+values: the fraction of ROB's exact coefficients a solution reproduces, over the fitted degrees 1–3 and over
+degrees 4–10, which were not (1: all; 0: no better than constant density; negative: worse). GRASS: the
 predicted acceleration at the surface point minus ROB's, in magnitude (% of ROB's) and direction. See
 <a href="../../projects/rob/index.html#how-to-read-these-pages">How to read these pages</a>.</p>
 <h2 id="1.-what-the-measurements-show">1. What the measurements show<a class="headerlink" href="#1.-what-the-measurements-show" title="Link to this section">#</a></h2>
-<figure class="figure"><img src="../../figures/rob/data4/measured.png" alt="The measured coefficients minus those of the same shape at constant density, C − C_CD, with ±1σ of the Hera radio-science solution, degrees 1 and 2, and the three moments of inertia minus those at constant density. Each panel has its own scale; 0 is constant density." loading="lazy"><figcaption>The measured coefficients minus those of the same shape at constant density, C − C_CD, with ±1σ of the Hera radio-science solution, degrees 1 and 2, and the three moments of inertia minus those at constant density. Each panel has its own scale; 0 is constant density.</figcaption></figure>
+<figure class="figure"><img src="../../figures/rob/data4/measured.png" alt="The measured coefficients minus those of the same shape at constant density, C − C_CD, with ±1σ of the Hera radio-science solution, degrees 1 to 3, and the three moments of inertia minus those at constant density. Each panel has its own scale; 0 is constant density. Degree 3 is fitted, but its 1σ is 20 to 600 times its anomaly." loading="lazy"><figcaption>The measured coefficients minus those of the same shape at constant density, C − C_CD, with ±1σ of the Hera radio-science solution, degrees 1 to 3, and the three moments of inertia minus those at constant density. Each panel has its own scale; 0 is constant density. Degree 3 is fitted, but its 1σ is 20 to 600 times its anomaly.</figcaption></figure>
 <table>
 <thead>
 <tr>
@@ -340,10 +340,11 @@ grid spreads it over the whole −y sector. The coefficients cannot choose betwe
 correlations are 0.21 to 0.44 between any two kinds, except the search and the placed core (0.67).</p>
 <h2 id="6.-against-robs-exact-values-and-the-grass-point">6. Against ROB's exact values and the GRASS point<a class="headerlink" href="#6.-against-robs-exact-values-and-the-grass-point" title="Link to this section">#</a></h2>
 <figure class="figure"><img src="../../figures/rob/data4/exact.png" alt="The fraction of each degree of ROB&#x27;s exact C − C_CD that each solution reproduces, 1 − |solution − exact|²/|exact|². 1: all of it; 0: no better than constant density; values below −1 are drawn at −1 as open markers. The gray region was not fitted." loading="lazy"><figcaption>The fraction of each degree of ROB's exact C − C_CD that each solution reproduces, 1 − |solution − exact|²/|exact|². 1: all of it; 0: no better than constant density; values below −1 are drawn at −1 as open markers. The gray region was not fitted.</figcaption></figure>
-<p>Beyond degree 2 the four separate. The search's core reproduces 94% of degree 3 and 90% of degree 4, and 90% of
-degrees 3 to 10 together. The placed core reproduces 69% of degrees 3 to 10. The sector grid reproduces 14%, and the
-point masses do worse than constant density (−0.43). A compact core makes the odd degrees the hidden interior has;
-a spread excess does not.</p>
+<p>Beyond degree 2 the four separate. Degree 3 is fitted, but its 1σ is so large that the fit does not constrain it:
+the search's core reproduces 94% of it, the placed core 79%, the sector grid 11%, and the point masses do worse than
+constant density. Over degrees 4 to 10, which no solution was fitted to, the search's core reproduces 79% (90% of
+degree 4), the placed core 38%, the sector grid 25%, and the point masses do worse than constant density (−0.33). A
+compact core makes the degrees the hidden interior has; a spread excess does not.</p>
 <p>The GRASS point lies on the surface at the −y end, above the core. There the excess matters
 most: constant density predicts an acceleration 13.3% too small. The placed core predicts it to 0.2% and the search
 to 2.0%. The sector grid and the point masses, whose excess is farther from the surface, are 7.3% and 9.3% low. One
@@ -354,7 +355,7 @@ surface measurement over the anomaly separates solutions that the gravity coeffi
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#1.-what-the-measurements-show">1. What the measurements show</a></li><li class="lvl2"><a href="#2.-where-the-mass-is">2. Where the mass is</a></li><li class="lvl2"><a href="#3.-how-well-each-solution-fits">3. How well each solution fits</a></li><li class="lvl2"><a href="#4.-the-core-model">4. The core model</a></li><li class="lvl2"><a href="#5.-point-masses-and-components-side-by-side">5. Point masses and components side by side</a></li><li class="lvl2"><a href="#6.-against-robs-exact-values-and-the-grass-point">6. Against ROB's exact values and the GRASS point</a></li></ul></nav>
 </div>
-<script src="../../assets/search-index.js?v=9f2880f680"></script>
-<script src="../../assets/site.js?v=9f2880f680"></script>
+<script src="../../assets/search-index.js?v=1e2e3a45e3"></script>
+<script src="../../assets/site.js?v=1e2e3a45e3"></script>
 </body>
 </html>
