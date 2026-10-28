@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en" data-root="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Searching the geometry — SBTK documentation</title>
+<link rel="stylesheet" href="../assets/site.css?v=0adbfe2a7e">
+<link rel="stylesheet" href="../assets/pygments.css?v=0adbfe2a7e">
+<link rel="stylesheet" href="../assets/print.css?v=0adbfe2a7e" media="print">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="topbar">
+  <button class="navtoggle" type="button" aria-controls="sidebar" aria-expanded="false">Contents</button>
+  <a class="sitename" href="../index.html">SBTK documentation</a>
+  <span class="version">version 1.0.0</span>
+  <div class="search" role="search">
+    <label for="search-input" class="visually-hidden">Search the documentation</label>
+    <input id="search-input" type="search" placeholder="Search (press /)" autocomplete="off"
+           aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+    <ul id="search-results" role="listbox" hidden></ul>
+  </div>
+  <a class="toplink" href="../print.html">Single-page version</a>
+  <a class="toplink" href="../SBTK_handbook.pdf">PDF handbook</a>
+</header>
+<div class="frame">
+<nav id="sidebar" class="sidebar" aria-label="Documentation pages"><ul><li class="navcat"><span class="navcat-title">Overview</span><ul><li><a href="../index.html">SBTK: Small Body Toolkit</a></li><li><a href="../overview/limitations.html">Assumptions and limitations</a></li></ul></li><li class="navcat"><span class="navcat-title">Getting started</span><ul><li><a href="../getting-started/installation.html">Installation</a></li><li><a href="../getting-started/first-script.html">First script</a></li></ul></li><li class="navcat"><span class="navcat-title">Conventions</span><ul><li><a href="../conventions/units.html">Units</a></li><li><a href="../conventions/coordinates.html">Coordinate systems and origins</a></li><li><a href="../conventions/gravity-coefficients.html">Gravity coefficients</a></li><li><a href="../conventions/gravity-frames.html">Frames of a gravity field</a></li><li><a href="../conventions/moments-of-inertia.html">Moments of inertia</a></li></ul></li><li class="navcat"><span class="navcat-title">Models and calculations</span><ul><li><a href="../models/shape-models.html">Shape models</a></li><li><a href="../models/density-distributions.html">Density distributions</a></li><li><a href="../models/forward-model.html">Gravity and moment calculations</a></li></ul></li><li class="navcat"><span class="navcat-title">Measurements and inversion</span><ul><li><a href="../inversion/measurements.html">Measurement sets</a></li><li><a href="../inversion/expansion-point-uncertainties.html">Uncertainties and the expansion point</a></li><li><a href="../inversion/reading-coefficients.html">Reading the gravity coefficients</a></li><li><a href="../inversion/density-estimation.html">Density estimation</a></li><li><a href="../inversion/geometry-search.html" aria-current="page" class="current">Searching the geometry</a></li><li><a href="../inversion/coefficient-subsets.html">Fitting part of the coefficients</a></li><li><a href="../inversion/statistics.html">Goodness of fit and model comparison</a></li></ul></li><li class="navcat"><span class="navcat-title">Files</span><ul><li><a href="../files/results-folders.html">Results folders and figures</a></li><li><a href="../files/exchange-packages.html">Exchange packages</a></li></ul></li><li class="navcat"><span class="navcat-title">Examples</span><ul><li><a href="../examples/density-models.html">Density models by component type</a></li><li><a href="../examples/calculations.html">Calculations</a></li><li><a href="../examples/tutorials.html">Tutorial scripts</a></li></ul></li><li class="navcat"><span class="navcat-title">Projects</span><ul><li><a href="../projects/template.html">Project template</a></li><li><a href="../projects/bennu.html">Bennu</a></li><li><a href="../projects/hera-blind-test.html">Hera blind test</a></li><li><a href="../projects/didymos-dimorphos-values.html">Didymos and Dimorphos values</a></li></ul></li><li class="navcat"><span class="navcat-title">Testing with ROB data</span><ul><li><a href="../projects/rob/index.html">Testing with ROB data</a></li><li><a href="../projects/rob/data1.html">ROB-DATA1: Didymos</a></li><li><a href="../projects/rob/data2.html">ROB-DATA2: Didymos</a></li><li><a href="../projects/rob/data3.html">ROB-DATA3: Didymos</a></li><li><a href="../projects/rob/data4.html">ROB-DATA4: Dimorphos</a></li><li><a href="../projects/rob/data5.html">ROB-DATA5: Dimorphos</a></li><li><a href="../projects/rob/data6.html">ROB-DATA6: Dimorphos</a></li></ul></li><li class="navcat"><span class="navcat-title">Reference</span><ul><li><a href="../reference/api.html">API reference</a></li><li><a href="../reference/api/sbtk.html">sbtk</a></li><li><a href="../reference/api/units.html">sbtk.units</a></li><li><a href="../reference/api/shape.html">sbtk.shape</a></li><li><a href="../reference/api/body.html">sbtk.body</a></li><li><a href="../reference/api/interior.html">sbtk.interior</a></li><li><a href="../reference/api/gravity.html">sbtk.gravity</a></li><li><a href="../reference/api/data.html">sbtk.data</a></li><li><a href="../reference/api/interpret.html">sbtk.interpret</a></li><li><a href="../reference/api/invert.html">sbtk.invert</a></li><li><a href="../reference/api/search.html">sbtk.search</a></li><li><a href="../reference/api/compare.html">sbtk.compare</a></li><li><a href="../reference/api/exchange.html">sbtk.exchange</a></li><li><a href="../reference/api/io.html">sbtk.io</a></li><li><a href="../reference/api/plot.html">sbtk.plot</a></li><li><a href="../reference/data-structures.html">Data structures</a></li><li><a href="../reference/errors.html">Error identifiers</a></li><li><a href="../reference/internal.html">Internal functions</a></li></ul></li><li class="navcat"><span class="navcat-title">Validation</span><ul><li><a href="../validation/tests.html">Validation and tests</a></li></ul></li></ul></nav>
+<main id="content" tabindex="-1">
+<nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Measurements and inversion › <span aria-current="page">Searching the geometry</span></nav>
+<article>
+<h1 id="searching-the-geometry">Searching the geometry<a class="headerlink" href="#searching-the-geometry" title="Link to this section">#</a></h1>
+<p class="lastedit">Last edited October 27, 2026</p>
+<p>The densities of a model are linear in the measurements; its geometry is not. <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.run"><code>sbtk.invert.run</code></a> estimates the
+densities, and by Gauss–Newton the centers and axes it is asked to, from where the model starts. It does not estimate
+sizes (the radii of a torus, the thickness of a layer), it finds the minimum of the valley it starts in, and it fits
+only the components it is given. <a href="../inversion/reading-coefficients.html#what-the-study-found">What the study found</a> showed what that
+costs: with guessed sizes a core is placed within 10 m in about a third of the interiors, and with boulders the model
+does not fit at all. <code>sbtk.search</code> searches the geometry systematically, for any model and any set of measurements.</p>
+<h2 id="the-method">The method<a class="headerlink" href="#the-method" title="Link to this section">#</a></h2>
+<p><strong>For fixed geometry, the densities cost one small least-squares solve.</strong> With every center, size and axis fixed,
+the measurements are linear in the densities, and with the mass constraint one density follows from the others. The
+<span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> of a geometry is then the minimum over the densities, from the component integrals alone. The integrals of
+a component depend only on its own geometry: a grid that varies the ring and tube radii and the axis of a torus,
+the thickness of a layer and the position of a core needs integrals for each value of each component's own
+parameters, and then a least-squares solve for every combination. 140 torus shapes, 4 layer thicknesses and 17 core
+positions are 9,520 combinations from 161 integrals; on the 49,152-facet Didymos model a torus integral takes
+0.9 s and a solve a fraction of a millisecond.</p>
+<p>The search goes from the coarse to the fine and adds parameters only where the measurements need them:</p>
+<ol>
+<li><strong>Grid</strong> (<a class="xref xref-fn" href="../reference/internal.html#sbtk.search.grid"><code>sbtk.search.grid</code></a>): every combination of the values of the searched parameters, densities without
+   bounds; the best few fitted again with the bounds of <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.run"><code>sbtk.invert.run</code></a>. The <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> profile of each
+   parameter, the lowest <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> over all others at each of its values, shows which values the measurements allow
+   (<a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.search_profiles"><code>sbtk.plot.search_profiles</code></a>).</li>
+<li><strong>Gauss–Newton from the best points</strong> (<a class="xref xref-fn" href="../reference/internal.html#sbtk.search.refine"><code>sbtk.search.refine</code></a>): the centers and axes with derivatives refined from
+   each of the best combinations, which start in different valleys; the fits ranked by <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math>.</span></li>
+<li><strong>Compact masses</strong> (<a class="xref xref-fn" href="../reference/internal.html#sbtk.search.add_masses"><code>sbtk.search.add_masses</code></a>): the residuals of the model tell where one more mass would lower
+   <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> most. For every position of a grid of candidates inside the body, a point mass (a sphere inside the body
+   is exactly one) is added and the densities fitted again: one solve per position, a map of where and with which sign
+   the measurements ask for mass. The best few positions are refined by Gauss–Newton with the position derivatives,
+   then with all the estimated geometry free, and the mass is kept only if it lowers <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> by at least the
+   <span class="nobr"><math alttext="1-" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>1</mn><mo>&#x02212;</mo><mi>&#x003B1;</mi></mrow></math></span> quantile of <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> with 4 degrees of freedom, the likelihood-ratio test for a model with a center
+   and a density more (9.49 for <span class="nobr"><math alttext="= 0.05" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003B1;</mi><mo>&#x0003D;</mo><mn>0.05</mn></mrow></math>)</span>. The step repeats until the model is consistent with the
+   measurements (<span class="nobr"><math alttext="p ≥ 0.05" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>p</mi><mo>&#x02265;</mo><mn>0.05</mn></mrow></math>)</span>, a mass is not significant, or a largest number is reached
+   (<a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.search_masses"><code>sbtk.plot.search_masses</code></a>).</li>
+</ol>
+<p><a class="xref xref-fn" href="../reference/internal.html#sbtk.search.run"><code>sbtk.search.run</code></a> does the three steps in order, each from the best result of the one before, and logs each.</p>
+<h2 id="what-can-be-searched">What can be searched<a class="headerlink" href="#what-can-be-searched" title="Link to this section">#</a></h2>
+<p>Any component of any model, by name, with <a class="xref xref-fn" href="../reference/internal.html#sbtk.search.parameter"><code>sbtk.search.parameter</code></a>:</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Fields</th>
+<th>Gauss–Newton</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sphere</td>
+<td><code>center_km</code>, <code>radius_km</code></td>
+<td>center</td>
+</tr>
+<tr>
+<td>ellipsoid</td>
+<td><code>center_km</code>, <code>semi_axes_km</code>, <code>axis</code></td>
+<td>center, orientation</td>
+</tr>
+<tr>
+<td>torus</td>
+<td><code>center_km</code>, <code>ring_radius_km</code>, <code>tube_radius_km</code>, <code>height_km</code>, <code>axis</code></td>
+<td>center (height), axis</td>
+</tr>
+<tr>
+<td>layer</td>
+<td><code>depth_km</code> (top and bottom)</td>
+<td>–</td>
+</tr>
+<tr>
+<td>sector</td>
+<td><code>frac</code>, <code>lat_deg</code>, <code>lon_deg</code>, <code>axis</code></td>
+<td>–</td>
+</tr>
+</tbody>
+</table>
+<p>Sizes have no derivatives in SBTK and are searched on the grid; centers and axes are searched coarsely on the grid
+(the side of a core, the tilt of a torus) and refined by Gauss–Newton. <a class="xref xref-fn" href="../reference/internal.html#sbtk.search.directions"><code>sbtk.search.directions</code></a> spreads axis
+directions evenly in a cone. Several parameters of one component vary together. The measurements can be any set:
+all coefficients, a subset (<a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.select_coefficients"><code>sbtk.data.select_coefficients</code></a>), inertia rows; the search targets whatever
+<code>obs</code> contains.</p>
+<p>Two limits hold for any search:</p>
+<ul>
+<li><strong>A sphere inside the body is a point mass.</strong> The coefficients see its mass and position, not its radius: a dense
+  small sphere and a less dense large one give the same coefficients. Its radius matters only through the density
+  bounds (<code>opts.rho_max_kgm3</code> caps its mass).</li>
+<li><strong>A thin layer is seen through its mass per area</strong>, thickness times density, unless the measurements are precise
+  enough to separate them. Its profile is then flat along the thickness.</li>
+</ul>
+<h2 id="functions">Functions<a class="headerlink" href="#functions" title="Link to this section">#</a></h2>
+<table>
+<thead>
+<tr>
+<th>Step</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Parameters and axis directions</td>
+<td><a class="xref xref-fn" href="../reference/internal.html#sbtk.search.parameter"><code>sbtk.search.parameter</code></a>, <a class="xref xref-fn" href="../reference/internal.html#sbtk.search.directions"><code>sbtk.search.directions</code></a></td>
+</tr>
+<tr>
+<td>Grid</td>
+<td><a class="xref xref-fn" href="../reference/internal.html#sbtk.search.grid"><code>sbtk.search.grid</code></a>, <a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.search_profiles"><code>sbtk.plot.search_profiles</code></a></td>
+</tr>
+<tr>
+<td>Gauss–Newton from several starts</td>
+<td><a class="xref xref-fn" href="../reference/internal.html#sbtk.search.refine"><code>sbtk.search.refine</code></a></td>
+</tr>
+<tr>
+<td>Compact masses</td>
+<td><a class="xref xref-fn" href="../reference/internal.html#sbtk.search.add_masses"><code>sbtk.search.add_masses</code></a>, <a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.search_masses"><code>sbtk.plot.search_masses</code></a></td>
+</tr>
+<tr>
+<td>All steps</td>
+<td><a class="xref xref-fn" href="../reference/internal.html#sbtk.search.run"><code>sbtk.search.run</code></a>, <a class="xref xref-fn" href="../reference/internal.html#sbtk.search.settings"><code>sbtk.search.settings</code></a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="what-the-search-finds">What the search finds<a class="headerlink" href="#what-the-search-finds" title="Link to this section">#</a></h2>
+<p><code>tests/studies/geometry_search_study.m</code> searches the 60 interiors of the
+<a href="../inversion/reading-coefficients.html#what-the-study-found">coefficient reading study</a> that have a torus and a layer, exact and with
+the Hera radio-science noise, with a core, a torus and a layer: the core along the center-of-mass offset (−80 to 80 m),
+the ring radius (300 to 400 m) and tube radius (35 to 65 m), 7 axis directions up to 4° from <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span> and 4 layer
+thicknesses on the grid (9,520 combinations from 161 integrals), Gauss–Newton on the core position and the torus
+height and axis from the best three starts, then up to four compact masses. It compares the result with the true
+interior and with the same model of guessed sizes. 120 searches took 2.7 hours on 10 workers, 7 to 17 minutes each.</p>
+<div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text">Geometry search study: medians over the true models of each family (noisy data, degrees 1-5).
+search: sbtk.search.run (grid of sizes, axis and core position; Gauss-Newton; compact masses).
+fixed sizes: the same model with guessed sizes, core placed by its chi-square profile and Gauss-Newton
+(coefficient_reading_study.m). Boulder found: a mass within 40 m of a true boulder.
+
+== core, torus, layer (30 true models)
+                                               search  fixed sizes
+core within 10 m (fraction)                      0.43         0.33
+core error (median, m)                           12.7         15.4
+mass excess error (median, of the true)          0.18         0.46
+consistent (p &gt;= 0.05, fraction)                 1.00         0.33
+density R2 (median)                              0.26         0.23
+ring radius error (median, m)                     7.1
+tube radius error (median, m)                    11.6
+torus height error (median, m)                    2.2
+torus axis error (median, deg)                   0.62
+layer thickness error (median, m)                 7.9
+masses added (mean)                              0.07
+true boulders (mean)                             0.00
+boulders found (fraction of true)                0.00
+time per true model (median, s)                   454
+
+== with unmodeled structure (30 true models)
+                                               search  fixed sizes
+core within 10 m (fraction)                      0.10         0.03
+core error (median, m)                           32.7         36.0
+mass excess error (median, of the true)          0.62         0.55
+consistent (p &gt;= 0.05, fraction)                 0.27         0.00
+density R2 (median)                             -0.21        -0.31
+ring radius error (median, m)                    13.8
+tube radius error (median, m)                     8.1
+torus height error (median, m)                    5.3
+torus axis error (median, deg)                   1.91
+layer thickness error (median, m)                11.2
+masses added (mean)                              3.20
+true boulders (mean)                             1.77
+boulders found (fraction of true)                0.02
+time per true model (median, s)                  1030</code></pre></div>
+<div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text">Geometry search study: medians over the true models of each family (exact data, degrees 1-5).
+search: sbtk.search.run (grid of sizes, axis and core position; Gauss-Newton; compact masses).
+fixed sizes: the same model with guessed sizes, core placed by its chi-square profile and Gauss-Newton
+(coefficient_reading_study.m). Boulder found: a mass within 40 m of a true boulder.
+
+== core, torus, layer (30 true models)
+                                               search  fixed sizes
+core within 10 m (fraction)                      0.83         0.53
+core error (median, m)                            3.5          8.4
+mass excess error (median, of the true)          0.11         0.38
+consistent (p &gt;= 0.05, fraction)                 1.00         0.57
+density R2 (median)                              0.45         0.05
+ring radius error (median, m)                     6.9
+tube radius error (median, m)                     8.9
+torus height error (median, m)                    0.6
+torus axis error (median, deg)                   0.06
+layer thickness error (median, m)                 8.7
+masses added (mean)                              0.00
+true boulders (mean)                             0.00
+boulders found (fraction of true)                0.00
+time per true model (median, s)                   437
+
+== with unmodeled structure (30 true models)
+                                               search  fixed sizes
+core within 10 m (fraction)                      0.13         0.10
+core error (median, m)                           26.7         26.9
+mass excess error (median, of the true)          0.29         0.40
+consistent (p &gt;= 0.05, fraction)                 0.57         0.03
+density R2 (median)                             -0.28        -0.12
+ring radius error (median, m)                    15.7
+tube radius error (median, m)                    10.5
+torus height error (median, m)                    3.1
+torus axis error (median, deg)                   1.65
+layer thickness error (median, m)                 8.6
+masses added (mean)                              2.67
+true boulders (mean)                             1.77
+boulders found (fraction of true)                0.02
+time per true model (median, s)                   948</code></pre></div>
+<figure class="figure"><img src="../figures/search/core_and_consistency_noisy.png" alt="With noise: the core&#x27;s distance from the true core (left) and the p-value of the fit (right), after the search against with guessed sizes, one point per interior." loading="lazy"><figcaption>With noise: the core's distance from the true core (left) and the p-value of the fit (right), after the search against with guessed sizes, one point per interior.</figcaption></figure>
+<p><strong>Interiors of a core, a torus and a layer.</strong> The search fits the coefficients in every interior (<span class="nobr"><math alttext="p ≥ 0.05" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>p</mi><mo>&#x02265;</mo><mn>0.05</mn></mrow></math></span> in
+all 30, against 10 of 30 with guessed sizes), places the core within 10 m in 43% (83% without noise, against 33% and
+53%), and determines the core's mass excess to 18% (11%), against 46% (38%). The torus comes out with its ring
+radius within 7 m, its height within 2 m and its axis within 0.6° (median, with noise). Its tube radius and the
+thickness of the layer are not determined: at degree 5 a thin torus and a thin layer are seen through their mass
+(cross-section or thickness times density), and the grid ends at its first or last value as often as near the true
+one.</p>
+<figure class="figure"><img src="../figures/search/sizes_noisy.png" alt="With noise: the ring radius, tube radius and layer thickness found against the true ones (grid steps of 25 m, 10 m and 7 m)." loading="lazy"><figcaption>With noise: the ring radius, tube radius and layer thickness found against the true ones (grid steps of 25 m, 10 m and 7 m).</figcaption></figure>
+<p><strong>Interiors with boulders and a random field.</strong> The search fits the coefficients in 27% of them with noise (none with
+guessed sizes) and 57% without, but the core is no better placed (within 10 m in 10% and 13%), and <strong>the compact
+masses do not find the boulders</strong>: about three are added per interior, each passing the likelihood-ratio test, at a
+median 230 m from the nearest true boulder (2% within 40 m), with masses up to tens of times the boulders' and of
+either sign. They fit the coefficients, and the density moves further from the true one (median <span class="nobr"><math alttext="R^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow></math></span> of the
+density −0.10 before them, −0.21 after). The boulders are 25 to 50 m across, at most 10⁻³ of the mass, 120 to 260 m
+from the center: to degree 5 their fields are smooth, and other components (the torus's tilt, the random field, a
+mass elsewhere) make the same coefficients. A compact mass that passes the test says that the model lacks something
+the coefficients see, not where a boulder is.</p>
+<figure class="figure"><img src="../figures/search/boulders_exact.png" alt="Without noise: masses added against the number of true boulders (left); the nearest added mass to each true boulder, its distance and its mass over the boulder&#x27;s (right). The dashed line is 40 m." loading="lazy"><figcaption>Without noise: masses added against the number of true boulders (left); the nearest added mass to each true boulder, its distance and its mass over the boulder's (right). The dashed line is 40 m.</figcaption></figure>
+<p>In short: search the sizes and the axis on a grid and refine by Gauss–Newton from each valley; it finds the
+parameters the coefficients determine (the core, the ring radius, the axis) and shows by its profiles which they do
+not (a thin tube or layer). Add compact masses to see whether the model lacks structure, not to locate boulders,
+unless they are large and shallow enough to dominate a degree.</p>
+<h2 id="point-masses-on-the-same-interiors">Point masses on the same interiors<a class="headerlink" href="#point-masses-on-the-same-interiors" title="Link to this section">#</a></h2>
+<p><code>tests/studies/point_mass_study.m</code> fits the same 60 interiors, exact and with noise, with 1,389 point masses every
+40 m (<a class="xref xref-fn" href="../reference/internal.html#sbtk.interpret.point_masses"><code>sbtk.interpret.point_masses</code></a>), smoothed as much as the measurements allow (the largest Tikhonov parameter with
+p ≥ 0.05, as for sector grids; and, for comparison, the discrepancy principle, χ² equal to the number of
+measurements). Every solution, and the true interior, is averaged over the same 40 m cells, the resolution of the
+point masses, and compared by the <span class="nobr"><math alttext="R^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow></math></span> of the cell averages (the fraction of the variance of the true cell averages
+explained):</p>
+<div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text">Point masses and models with components: medians over the true models (degrees 1-5).
+cell R2: R2 of the density averaged over 40 m cells, against the true interior averaged over the same cells.
+
+== core, torus, layer, noisy data (30 true models)
+                                  cell R2      chi2/nu   consistent   parameters
+point masses, sensitivity           -0.06         2.17         0.93         29.7
+point masses, equal                 -0.04         2.21         0.87         29.9
+point masses, discrepancy           -0.05         4.16         0.00         26.6
+search                               0.70         1.03         1.00          9.0
+fixed sizes                          0.60         1.85         0.33          6.0
+
+== with unmodeled structure, noisy data (30 true models)
+                                  cell R2      chi2/nu   consistent   parameters
+point masses, sensitivity            0.08         2.24         0.97         30.2
+point masses, equal                  0.02         2.17         0.93         29.6
+point masses, discrepancy            0.08         4.52         0.00         27.2
+search                               0.02         1.98         0.27         25.0
+fixed sizes                          0.30         9.46         0.00          6.0
+
+== core, torus, layer, exact data (30 true models)
+                                  cell R2      chi2/nu   consistent   parameters
+point masses, sensitivity           -0.06         2.07         0.93         28.7
+point masses, equal                 -0.03         2.12         0.97         29.2
+point masses, discrepancy           -0.05         3.82         0.00         25.8
+search                               0.76       0.0408         1.00          9.0
+fixed sizes                          0.68        0.915         0.57          6.0
+
+== with unmodeled structure, exact data (30 true models)
+                                  cell R2      chi2/nu   consistent   parameters
+point masses, sensitivity            0.09         2.16         0.90         29.6
+point masses, equal                  0.02         2.07         0.97         28.7
+point masses, discrepancy            0.09         4.26         0.00         26.8
+search                               0.11          1.6         0.57         21.0
+fixed sizes                          0.38         9.09         0.03          6.0</code></pre></div>
+<figure class="figure"><img src="../figures/search/point_masses_cell_R2.png" alt="  R^2   of the 40 m cell averages of each kind of solution against the true interior, 60 interiors each (box: the middle half; line: the median)." loading="lazy"><figcaption><span class="nobr"><math alttext="R^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow></math></span> of the 40 m cell averages of each kind of solution against the true interior, 60 interiors each (box: the middle half; line: the median).</figcaption></figure>
+<ul>
+<li><strong>The point masses fit the coefficients</strong> (p ≥ 0.05 in 87–97% of the interiors) <strong>but use about 30 effective
+  parameters for 35 coefficients</strong>, and their cell averages explain none of the true variance (median <span class="nobr"><math alttext="R^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow></math></span> −0.06 to
+  0.09). With few measurements, the smoothest solution that fits puts the mass where the coefficients are most
+  sensitive to it, near the surface, not where it is.</li>
+<li><strong>The models with components</strong> recover 60–76% of the cell variance where their kinds of component are right (the
+  core, torus and layer interiors), with 6 to 9 parameters; with boulders and a random field, which they do not have,
+  30–38% (fixed sizes) and less after the search's compact masses.</li>
+<li>The discrepancy principle leaves χ² at the number of measurements (reduced χ² about 4): not a consistent fit.</li>
+</ul>
+<p>The point masses show the side and the depth range of an anomaly (the <a href="../projects/rob/index.html">ROB pages</a> compare
+them with every other solution), but not its shape; a model whose components are the right kind does far better with
+far fewer parameters.</p>
+</article>
+<nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../inversion/density-estimation.html" rel="prev"><span>Previous</span>Density estimation</a><a class="next" href="../inversion/coefficient-subsets.html" rel="next"><span>Next</span>Fitting part of the coefficients</a></nav>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-27.</footer>
+</main>
+<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#the-method">The method</a></li><li class="lvl2"><a href="#what-can-be-searched">What can be searched</a></li><li class="lvl2"><a href="#functions">Functions</a></li><li class="lvl2"><a href="#what-the-search-finds">What the search finds</a></li><li class="lvl2"><a href="#point-masses-on-the-same-interiors">Point masses on the same interiors</a></li></ul></nav>
+</div>
+<script src="../assets/search-index.js?v=0adbfe2a7e"></script>
+<script src="../assets/site.js?v=0adbfe2a7e"></script>
+</body>
+</html>
