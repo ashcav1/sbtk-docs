@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en" data-root="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Point masses — SBTK documentation</title>
+<link rel="stylesheet" href="../assets/site.css?v=9f2880f680">
+<link rel="stylesheet" href="../assets/pygments.css?v=9f2880f680">
+<link rel="stylesheet" href="../assets/print.css?v=9f2880f680" media="print">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="topbar">
+  <button class="navtoggle" type="button" aria-controls="sidebar" aria-expanded="false">Contents</button>
+  <a class="sitename" href="../index.html">SBTK documentation</a>
+  <span class="version">version 1.0.0</span>
+  <div class="search" role="search">
+    <label for="search-input" class="visually-hidden">Search the documentation</label>
+    <input id="search-input" type="search" placeholder="Search (press /)" autocomplete="off"
+           aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+    <ul id="search-results" role="listbox" hidden></ul>
+  </div>
+  <a class="toplink" href="../print.html">Single-page version</a>
+  <a class="toplink" href="../SBTK_handbook.pdf">PDF handbook</a>
+</header>
+<div class="frame">
+<nav id="sidebar" class="sidebar" aria-label="Documentation pages"><ul><li class="navcat"><span class="navcat-title">Overview</span><ul><li><a href="../index.html">SBTK: Small Body Toolkit</a></li><li><a href="../overview/limitations.html">Assumptions and limitations</a></li></ul></li><li class="navcat"><span class="navcat-title">Getting started</span><ul><li><a href="../getting-started/installation.html">Installation</a></li><li><a href="../getting-started/first-script.html">First script</a></li></ul></li><li class="navcat"><span class="navcat-title">Conventions</span><ul><li><a href="../conventions/units.html">Units</a></li><li><a href="../conventions/coordinates.html">Coordinate systems and origins</a></li><li><a href="../conventions/gravity-coefficients.html">Gravity coefficients</a></li><li><a href="../conventions/gravity-frames.html">Frames of a gravity field</a></li><li><a href="../conventions/moments-of-inertia.html">Moments of inertia</a></li></ul></li><li class="navcat"><span class="navcat-title">Models and calculations</span><ul><li><a href="../models/shape-models.html">Shape models</a></li><li><a href="../models/density-distributions.html">Density distributions</a></li><li><a href="../models/forward-model.html">Gravity and moment calculations</a></li></ul></li><li class="navcat"><span class="navcat-title">Measurements and inversion</span><ul><li><a href="../inversion/measurements.html">Measurement sets</a></li><li><a href="../inversion/expansion-point-uncertainties.html">Uncertainties and the expansion point</a></li><li><a href="../inversion/reading-coefficients.html">Reading the gravity coefficients</a></li><li><a href="../inversion/density-estimation.html">Density estimation</a></li><li><a href="../inversion/coefficient-subsets.html">Fitting part of the coefficients</a></li><li><a href="../inversion/statistics.html">Goodness of fit and model comparison</a></li></ul></li><li class="navcat"><span class="navcat-title">Kinds of solution</span><ul><li><a href="../inversion/component-models.html">Models with components</a></li><li><a href="../inversion/geometry-search.html">Searching the geometry</a></li><li><a href="../inversion/sector-grids.html">Sector grids</a></li><li><a href="../inversion/point-masses.html" aria-current="page" class="current">Point masses</a></li></ul></li><li class="navcat"><span class="navcat-title">Files</span><ul><li><a href="../files/results-folders.html">Results folders and figures</a></li><li><a href="../files/exchange-packages.html">Exchange packages</a></li></ul></li><li class="navcat"><span class="navcat-title">Examples</span><ul><li><a href="../examples/density-models.html">Density models by component type</a></li><li><a href="../examples/calculations.html">Calculations</a></li><li><a href="../examples/tutorials.html">Tutorial scripts</a></li></ul></li><li class="navcat"><span class="navcat-title">Projects</span><ul><li><a href="../projects/template.html">Project template</a></li><li><a href="../projects/bennu.html">Bennu</a></li><li><a href="../projects/hera-blind-test.html">Hera blind test</a></li><li><a href="../projects/didymos-dimorphos-values.html">Didymos and Dimorphos values</a></li></ul></li><li class="navcat"><span class="navcat-title">Testing with ROB data</span><ul><li><a href="../projects/rob/index.html">Testing with ROB data</a></li><li><a href="../projects/rob/data1.html">ROB-DATA1: Didymos</a></li><li><a href="../projects/rob/data2.html">ROB-DATA2: Didymos</a></li><li><a href="../projects/rob/data3.html">ROB-DATA3: Didymos</a></li><li><a href="../projects/rob/data4.html">ROB-DATA4: Dimorphos</a></li><li><a href="../projects/rob/data5.html">ROB-DATA5: Dimorphos</a></li><li><a href="../projects/rob/data6.html">ROB-DATA6: Dimorphos</a></li></ul></li><li class="navcat"><span class="navcat-title">Reference</span><ul><li><a href="../reference/api.html">API reference</a></li><li><a href="../reference/api/sbtk.html">sbtk</a></li><li><a href="../reference/api/units.html">sbtk.units</a></li><li><a href="../reference/api/shape.html">sbtk.shape</a></li><li><a href="../reference/api/body.html">sbtk.body</a></li><li><a href="../reference/api/interior.html">sbtk.interior</a></li><li><a href="../reference/api/gravity.html">sbtk.gravity</a></li><li><a href="../reference/api/data.html">sbtk.data</a></li><li><a href="../reference/api/interpret.html">sbtk.interpret</a></li><li><a href="../reference/api/invert.html">sbtk.invert</a></li><li><a href="../reference/api/search.html">sbtk.search</a></li><li><a href="../reference/api/compare.html">sbtk.compare</a></li><li><a href="../reference/api/exchange.html">sbtk.exchange</a></li><li><a href="../reference/api/io.html">sbtk.io</a></li><li><a href="../reference/api/plot.html">sbtk.plot</a></li><li><a href="../reference/data-structures.html">Data structures</a></li><li><a href="../reference/errors.html">Error identifiers</a></li><li><a href="../reference/internal.html">Internal functions</a></li></ul></li><li class="navcat"><span class="navcat-title">Validation</span><ul><li><a href="../validation/tests.html">Validation and tests</a></li></ul></li></ul></nav>
+<main id="content" tabindex="-1">
+<nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Kinds of solution › <span aria-current="page">Point masses</span></nav>
+<article>
+<h1 id="point-masses">Point masses<a class="headerlink" href="#point-masses" title="Link to this section">#</a></h1>
+<p class="lastedit">Last edited October 28, 2026</p>
+<p>A point-mass solution fills the body with a grid of small masses and fits all of them together to the measurements.
+It assumes no shapes: where the solution puts mass comes from the measurements and the regularization alone. It is
+the mass-concentration (mascon) model of gravity-field work, here solved for the relative density of each point.</p>
+<p>With thousands of points and tens of measurements, the measurements determine only a few combinations of the masses,
+and the regularization chooses the rest. Read the result as where the anomaly is concentrated, not as a density map.</p>
+<h2 id="building-the-grid">Building the grid<a class="headerlink" href="#building-the-grid" title="Link to this section">#</a></h2>
+<p><a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere_grid"><code>sbtk.interior.sphere_grid</code></a><code>(body, spacing_km, radius_km)</code> places one sphere at every point of a cubic grid centered
+on the center of figure whose sphere lies inside the body. A sphere inside the body is integrated exactly as a point
+mass of its volume times its relative density (<a href="../models/density-distributions.html#component-types">Density distributions</a>),
+so with a radius well below the spacing the spheres are point masses and the grid cell around each stands for its mass.</p>
+<table>
+<thead>
+<tr>
+<th>Body</th>
+<th>Spacing</th>
+<th>Points</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Didymos (mean radius 365 m)</td>
+<td>41 m (mean radius / 9)</td>
+<td>2,667</td>
+</tr>
+<tr>
+<td>Dimorphos (mean radius 75 m)</td>
+<td>8.3 m</td>
+<td>2,674</td>
+</tr>
+</tbody>
+</table>
+<p>Finer grids change little: the measurements, not the grid, limit the resolution.</p>
+<h2 id="the-fit">The fit<a class="headerlink" href="#the-fit" title="Link to this section">#</a></h2>
+<p><a class="xref xref-fn" href="../reference/internal.html#sbtk.interpret.point_masses"><code>sbtk.interpret.point_masses</code></a><code>(prob, weighting, rule)</code> solves the linear problem on a problem prepared by
+<a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.setup"><code>sbtk.invert.setup</code></a> with the grid as components. With the mass of the body known, a relative density <span class="nobr"><math alttext="x_k" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>x</mi><mi>k</mi></msub></mrow></math></span> in point
+<span class="nobr"><math alttext="k" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>k</mi></mrow></math></span> lowers the density of the rest of the body by <span class="nobr"><math alttext="x_kV_k/V" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>x</mi><mi>k</mi></msub><msub><mi>V</mi><mi>k</mi></msub><mo>&#x0002F;</mo><mi>V</mi></mrow></math>;</span> the columns <span class="nobr"><math alttext="a_k" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi mathvariant="bold">a</mi><mi>k</mi></msub></mrow></math></span> of <span class="nobr"><math alttext="A" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>A</mi></mrow></math></span> are the measurements of
+a unit relative density in point <span class="nobr"><math alttext="k" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>k</mi></mrow></math></span> with that share of the homogeneous body taken away, whitened by the Cholesky
+factor of the covariance. The relative densities minimize</p>
+<math alttext="‖ A x - r‖^2 + λ ‖ W x‖^2," xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mo>&#x02016;</mo><mi>A</mi><mi mathvariant="bold">x</mi><mo>&#x02212;</mo><mi mathvariant="bold">r</mi><msup><mo>&#x02016;</mo><mn>2</mn></msup><mo>&#x0002B;</mo><mi>&#x003BB;</mi><mspace width="0.167em" /><mo>&#x02016;</mo><mi>W</mi><mi mathvariant="bold">x</mi><msup><mo>&#x02016;</mo><mn>2</mn></msup><mo>&#x0002C;</mo></mrow></math>
+<p>with <span class="nobr"><math alttext="r" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi mathvariant="bold">r</mi></mrow></math></span> the whitened difference between the measurements and the homogeneous body. The solution is
+<span class="nobr"><math alttext="x = W^-1A_w^T(K + λ I)^-1 r" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi mathvariant="bold">x</mi><mo>&#x0003D;</mo><msup><mi>W</mi><mrow><mo>&#x02212;</mo><mn>1</mn></mrow></msup><msubsup><mi>A</mi><mi>w</mi><mi>&#x1D5B3;</mi></msubsup><mo stretchy="false">&#x00028;</mo><mi>K</mi><mo>&#x0002B;</mo><mi>&#x003BB;</mi><mi>I</mi><msup><mo stretchy="false">&#x00029;</mo><mrow><mo>&#x02212;</mo><mn>1</mn></mrow></msup><mi mathvariant="bold">r</mi></mrow></math></span> with <span class="nobr"><math alttext="A_w = AW^-1" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>A</mi><mi>w</mi></msub><mo>&#x0003D;</mo><mi>A</mi><msup><mi>W</mi><mrow><mo>&#x02212;</mo><mn>1</mn></mrow></msup></mrow></math></span> and <span class="nobr"><math alttext="K = A_wA_w^T" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>K</mi><mo>&#x0003D;</mo><msub><mi>A</mi><mi>w</mi></msub><msubsup><mi>A</mi><mi>w</mi><mi>&#x1D5B3;</mi></msubsup></mrow></math>,</span> an
+<span class="nobr"><math alttext="n× n" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>n</mi><mi>&#x000D7;</mi><mi>n</mi></mrow></math></span> system for <span class="nobr"><math alttext="n" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>n</mi></mrow></math></span> measurements however many points there are. There are no bounds: a point can be lighter than
+empty space or denser than rock, because each stands for the mass of its cell. The effective number of parameters
+is <span class="nobr"><math alttext="p_eff = tr K(K + λ I)^-1" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>p</mi><mtext>eff</mtext></msub><mo>&#x0003D;</mo><mo>tr</mo><mspace width="0.167em" /><mi>K</mi><mo stretchy="false">&#x00028;</mo><mi>K</mi><mo>&#x0002B;</mo><mi>&#x003BB;</mi><mi>I</mi><msup><mo stretchy="false">&#x00029;</mo><mrow><mo>&#x02212;</mo><mn>1</mn></mrow></msup></mrow></math>.</span></p>
+<h2 id="weighting">Weighting<a class="headerlink" href="#weighting" title="Link to this section">#</a></h2>
+<p><span class="nobr"><math alttext="W" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>W</mi></mrow></math></span> sets which solutions the regularization prefers among the many that fit.</p>
+<table>
+<thead>
+<tr>
+<th>Weighting</th>
+<th><span class="nobr"><math alttext="W" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>W</mi></mrow></math></span></th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>"equal"</code></td>
+<td><span class="nobr"><math alttext="I" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>I</mi></mrow></math></span></td>
+<td>the minimum-norm solution: the smallest relative densities that fit. Points near the surface change the coefficients most per unit density, so the anomaly is put there, more so at higher degree</td>
+</tr>
+<tr>
+<td><code>"sensitivity"</code></td>
+<td><span class="nobr"><math alttext="diag(‖ a_k‖)" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>diag</mo><mo stretchy="false">&#x00028;</mo><mo>&#x02016;</mo><msub><mi mathvariant="bold">a</mi><mi>k</mi></msub><mo>&#x02016;</mo><mo stretchy="false">&#x00029;</mo></mrow></math></span></td>
+<td>each point's penalty in proportion to its sensitivity, so deep points are not suppressed for being less visible; the anomaly is spread over depth (a form of the depth weighting of potential-field inversion)</td>
+</tr>
+</tbody>
+</table>
+<p>On the six ROB packages neither weighting is better everywhere. Their AIC differs by less than 4. Beyond the
+measured degrees sensitivity weighting reproduces ROB's exact values far better on ROB-DATA1, equal weighting on
+ROB-DATA4, and the two are close on the other four
+(<a href="../projects/rob/index.html#point-masses-sensitivity-or-equal-weighting">Testing with ROB data</a>). The ROB pages show
+sensitivity weighting.</p>
+<h2 id="choosing-the-regularization-parameter">Choosing the regularization parameter<a class="headerlink" href="#choosing-the-regularization-parameter" title="Link to this section">#</a></h2>
+<p>The rule sets <span class="nobr"><math alttext="λ" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BB;</mi></mrow></math>,</span> and with it how much structure the solution has:</p>
+<table>
+<thead>
+<tr>
+<th>Rule</th>
+<th><span class="nobr"><math alttext="λ" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BB;</mi></mrow></math></span></th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>"aic"</code></td>
+<td>the lowest AIC, <span class="nobr"><math alttext="χ^2 + 2p_eff" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup><mo>&#x0002B;</mo><mn>2</mn><msub><mi>p</mi><mtext>eff</mtext></msub></mrow></math></span> (a scan of <span class="nobr"><math alttext="_10λ" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>log</mi><mrow><mn>10</mn></mrow></msub><mi>&#x003BB;</mi></mrow></math></span> from −12 to 12, then golden-section search)</td>
+<td>comparing point masses with other kinds of model on equal terms (<a href="../inversion/statistics.html#comparing-models-the-akaike-information-criterion">Goodness of fit</a>)</td>
+</tr>
+<tr>
+<td><code>"consistent"</code></td>
+<td>the largest with <span class="nobr"><math alttext="p ≥ 0.05" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>p</mi><mo>&#x02265;</mo><mn>0.05</mn></mrow></math></span> and at least one degree of freedom left (scan, then bisection)</td>
+<td>the smoothest solution the measurements allow: the least structure they require</td>
+</tr>
+<tr>
+<td><code>"discrepancy"</code></td>
+<td>the largest with <span class="nobr"><math alttext="χ^2 ≤ n" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup><mo>&#x02264;</mo><mi>n</mi></mrow></math></span> (bisection)</td>
+<td>the discrepancy principle; with few measurements it leaves <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> near <span class="nobr"><math alttext="n" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>n</mi></mrow></math>,</span> not consistent</td>
+</tr>
+</tbody>
+</table>
+<p>If no <span class="nobr"><math alttext="λ" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BB;</mi></mrow></math></span> is consistent, <code>"consistent"</code> takes the one with the largest p-value and sets <code>pm.consistent</code> false.
+With measurements that are nearly exact (or as precise as Hera's for Dimorphos), the AIC rule fits far more closely
+than the consistent one: on the ROB Dimorphos packages it lowers the AIC of the point masses by 14 to 21.</p>
+<h2 id="reading-the-result">Reading the result<a class="headerlink" href="#reading-the-result" title="Link to this section">#</a></h2>
+<p><code>pm</code> (<a class="xref xref-st" href="../reference/data-structures.html#pm"><code>pm</code></a>) holds the relative density and the mass anomaly of every point (the masses sum to zero), the totals and
+mass-weighted centroids of the positive and negative parts, <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math>,</span> <span class="nobr"><math alttext="p_eff" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>p</mi><mtext>eff</mtext></msub></mrow></math></span> and the p-value, and the
+normalized residual of every measurement. <code>pm.model</code> is the solution as a model: <a class="xref xref-fn" href="../reference/internal.html#sbtk.interpret.anomaly"><code>sbtk.interpret.anomaly</code></a>,
+<a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.forward"><code>sbtk.gravity.forward</code></a> and <a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.field_at"><code>sbtk.gravity.field_at</code></a> evaluate it like any fit, so its coefficients of any degree and
+its field at a point can be compared with other solutions. <a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.point_masses"><code>sbtk.plot.point_masses</code></a> draws it averaged over cells of
+the grid spacing; <a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.solution_cuts"><code>sbtk.plot.solution_cuts</code></a> draws it beside other solutions on the same color scale.</p>
+<ul>
+<li><strong>Where, not what.</strong> The positive and negative parts show the side and the depth range of an anomaly. They do not
+  show its shape: a dense sphere comes out as a smooth lobe, a ring as a band.</li>
+<li><strong>Point masses against components.</strong> Where the point masses put mass where a model of a few components does, the
+  measurements, not the choice of components, place it. Where they differ, the measurements allow both.</li>
+<li><strong>Not a density map.</strong> On 60 synthetic interiors whose truth is known, the cell averages of the point masses explain
+  little of the true density at their own resolution, much less than a model of the right components
+  (<a href="#point-masses-on-known-interiors">Point masses on known interiors</a>).</li>
+</ul>
+<h2 id="point-masses-on-known-interiors">Point masses on known interiors<a class="headerlink" href="#point-masses-on-known-interiors" title="Link to this section">#</a></h2>
+<p><code>tests/studies/point_mass_study.m</code> fits the 60 interiors of the geometry search study (core, torus and layer, with
+and without boulders and a random density field), exact and with noise, with 1,389 point masses every 40 m, each
+weighting and rule. Every solution and the true interior are averaged over the same 40 m cells, the resolution of the
+point masses, and compared by the <span class="nobr"><math alttext="R^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow></math></span> of the cell averages (the fraction of the variance of the true cell averages
+explained):</p>
+<div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text">Point masses and models with components: medians over the true models (degrees 1-5).
+cell R2: R2 of the density averaged over 40 m cells, against the true interior averaged over the same cells.
+
+== core, torus, layer, noisy data (30 true models)
+                                          cell R2      chi2/nu   consistent   parameters
+point masses, sensitivity, AIC              -0.08        0.911         1.00         32.2
+point masses, equal, AIC                    -0.04        0.916         1.00         32.5
+point masses, sensitivity, p = 0.05         -0.06         2.17         0.93         29.7
+point masses, equal, p = 0.05               -0.04         2.21         0.87         29.9
+point masses, discrepancy                   -0.05         4.16         0.00         26.6
+search                                       0.70         1.03         1.00          9.0
+fixed sizes                                  0.60         1.85         0.33          6.0
+
+== with unmodeled structure, noisy data (30 true models)
+                                          cell R2      chi2/nu   consistent   parameters
+point masses, sensitivity, AIC               0.07        0.942         1.00         32.6
+point masses, equal, AIC                     0.01        0.951         1.00         32.4
+point masses, sensitivity, p = 0.05          0.08         2.24         0.97         30.2
+point masses, equal, p = 0.05                0.02         2.17         0.93         29.6
+point masses, discrepancy                    0.08         4.52         0.00         27.2
+search                                       0.02         1.98         0.27         25.0
+fixed sizes                                  0.30         9.46         0.00          6.0
+
+== core, torus, layer, exact data (30 true models)
+                                          cell R2      chi2/nu   consistent   parameters
+point masses, sensitivity, AIC              -0.06        0.854         1.00         31.6
+point masses, equal, AIC                    -0.03        0.851         1.00         32.0
+point masses, sensitivity, p = 0.05         -0.06         2.07         0.93         28.7
+point masses, equal, p = 0.05               -0.03         2.12         0.97         29.2
+point masses, discrepancy                   -0.05         3.82         0.00         25.8
+search                                       0.76       0.0408         1.00          9.0
+fixed sizes                                  0.68        0.915         0.57          6.0
+
+== with unmodeled structure, exact data (30 true models)
+                                          cell R2      chi2/nu   consistent   parameters
+point masses, sensitivity, AIC               0.09        0.866         1.00         32.2
+point masses, equal, AIC                     0.02        0.888         1.00         31.6
+point masses, sensitivity, p = 0.05          0.09         2.16         0.90         29.6
+point masses, equal, p = 0.05                0.02         2.07         0.97         28.7
+point masses, discrepancy                    0.09         4.26         0.00         26.8
+search                                       0.11          1.6         0.57         21.0
+fixed sizes                                  0.38         9.09         0.03          6.0</code></pre></div>
+<figure class="figure"><img src="../figures/search/point_masses_cell_R2.png" alt="  R^2   of the 40 m cell averages of each solution against the true interior, 60 interiors each (box: the middle half; line: the median)." loading="lazy"><figcaption><span class="nobr"><math alttext="R^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow></math></span> of the 40 m cell averages of each solution against the true interior, 60 interiors each (box: the middle half; line: the median).</figcaption></figure>
+<p>The rule changes how closely the point masses fit, not what they find. With the AIC rule they fit every interior
+(median reduced <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> 0.85 to 0.95) with about 32 effective parameters of the 38 measurements; with the
+consistent rule they fit almost every interior with about 29. Either way their median <span class="nobr"><math alttext="R^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow></math></span> stays between −0.08 and
+0.09. On the interiors of a core, a torus and a layer the search and the model of fixed sizes reach 0.60 to 0.76.
+With boulders and a random density field every kind falls to 0.38 or below.</p>
+<h2 id="example">Example<a class="headerlink" href="#example" title="Link to this section">#</a></h2>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">grid = <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere_grid">sbtk.interior.sphere_grid</a>(body, 0.041, 0.008);                  <span class="c">% Didymos: 2,667 points</span>
+prob = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.setup">sbtk.invert.setup</a>(body, grid, obs, <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.options">sbtk.invert.options</a>(moi_labels={&#39;Ixx&#39;, &#39;Iyy&#39;, &#39;Izz&#39;}));
+pm   = <a class="xref xref-fn" href="../reference/internal.html#sbtk.interpret.point_masses">sbtk.interpret.point_masses</a>(prob, &quot;sensitivity&quot;, &quot;aic&quot;);
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&quot;%.1f effective parameters, reduced chi-square %.2f, AIC %.1f\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pm</span><span class="p">.</span><span class="n">p_eff</span><span class="p">,</span><span class="w"> </span><span class="n">pm</span><span class="p">.</span><span class="n">chi2_reduced</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">        </span><span class="n">pm</span><span class="p">.</span><span class="n">chi2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="n">pm</span><span class="p">.</span><span class="n">p_eff</span><span class="p">)</span>
+fig  = <a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.point_masses">sbtk.plot.point_masses</a>(body, pm, 0.041);</code></pre></div>
+</article>
+<nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../inversion/sector-grids.html" rel="prev"><span>Previous</span>Sector grids</a><a class="next" href="../files/results-folders.html" rel="next"><span>Next</span>Results folders and figures</a></nav>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-28.</footer>
+</main>
+<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#building-the-grid">Building the grid</a></li><li class="lvl2"><a href="#the-fit">The fit</a></li><li class="lvl2"><a href="#weighting">Weighting</a></li><li class="lvl2"><a href="#choosing-the-regularization-parameter">Choosing the regularization parameter</a></li><li class="lvl2"><a href="#reading-the-result">Reading the result</a></li><li class="lvl2"><a href="#point-masses-on-known-interiors">Point masses on known interiors</a></li><li class="lvl2"><a href="#example">Example</a></li></ul></nav>
+</div>
+<script src="../assets/search-index.js?v=9f2880f680"></script>
+<script src="../assets/site.js?v=9f2880f680"></script>
+</body>
+</html>

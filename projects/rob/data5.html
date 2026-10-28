@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ROB-DATA5: Dimorphos — SBTK documentation</title>
-<link rel="stylesheet" href="../../assets/site.css?v=0adbfe2a7e">
-<link rel="stylesheet" href="../../assets/pygments.css?v=0adbfe2a7e">
-<link rel="stylesheet" href="../../assets/print.css?v=0adbfe2a7e" media="print">
+<link rel="stylesheet" href="../../assets/site.css?v=9f2880f680">
+<link rel="stylesheet" href="../../assets/pygments.css?v=9f2880f680">
+<link rel="stylesheet" href="../../assets/print.css?v=9f2880f680" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -24,218 +24,289 @@
   <a class="toplink" href="../../SBTK_handbook.pdf">PDF handbook</a>
 </header>
 <div class="frame">
-<nav id="sidebar" class="sidebar" aria-label="Documentation pages"><ul><li class="navcat"><span class="navcat-title">Overview</span><ul><li><a href="../../index.html">SBTK: Small Body Toolkit</a></li><li><a href="../../overview/limitations.html">Assumptions and limitations</a></li></ul></li><li class="navcat"><span class="navcat-title">Getting started</span><ul><li><a href="../../getting-started/installation.html">Installation</a></li><li><a href="../../getting-started/first-script.html">First script</a></li></ul></li><li class="navcat"><span class="navcat-title">Conventions</span><ul><li><a href="../../conventions/units.html">Units</a></li><li><a href="../../conventions/coordinates.html">Coordinate systems and origins</a></li><li><a href="../../conventions/gravity-coefficients.html">Gravity coefficients</a></li><li><a href="../../conventions/gravity-frames.html">Frames of a gravity field</a></li><li><a href="../../conventions/moments-of-inertia.html">Moments of inertia</a></li></ul></li><li class="navcat"><span class="navcat-title">Models and calculations</span><ul><li><a href="../../models/shape-models.html">Shape models</a></li><li><a href="../../models/density-distributions.html">Density distributions</a></li><li><a href="../../models/forward-model.html">Gravity and moment calculations</a></li></ul></li><li class="navcat"><span class="navcat-title">Measurements and inversion</span><ul><li><a href="../../inversion/measurements.html">Measurement sets</a></li><li><a href="../../inversion/expansion-point-uncertainties.html">Uncertainties and the expansion point</a></li><li><a href="../../inversion/reading-coefficients.html">Reading the gravity coefficients</a></li><li><a href="../../inversion/density-estimation.html">Density estimation</a></li><li><a href="../../inversion/geometry-search.html">Searching the geometry</a></li><li><a href="../../inversion/coefficient-subsets.html">Fitting part of the coefficients</a></li><li><a href="../../inversion/statistics.html">Goodness of fit and model comparison</a></li></ul></li><li class="navcat"><span class="navcat-title">Files</span><ul><li><a href="../../files/results-folders.html">Results folders and figures</a></li><li><a href="../../files/exchange-packages.html">Exchange packages</a></li></ul></li><li class="navcat"><span class="navcat-title">Examples</span><ul><li><a href="../../examples/density-models.html">Density models by component type</a></li><li><a href="../../examples/calculations.html">Calculations</a></li><li><a href="../../examples/tutorials.html">Tutorial scripts</a></li></ul></li><li class="navcat"><span class="navcat-title">Projects</span><ul><li><a href="../../projects/template.html">Project template</a></li><li><a href="../../projects/bennu.html">Bennu</a></li><li><a href="../../projects/hera-blind-test.html">Hera blind test</a></li><li><a href="../../projects/didymos-dimorphos-values.html">Didymos and Dimorphos values</a></li></ul></li><li class="navcat"><span class="navcat-title">Testing with ROB data</span><ul><li><a href="../../projects/rob/index.html">Testing with ROB data</a></li><li><a href="../../projects/rob/data1.html">ROB-DATA1: Didymos</a></li><li><a href="../../projects/rob/data2.html">ROB-DATA2: Didymos</a></li><li><a href="../../projects/rob/data3.html">ROB-DATA3: Didymos</a></li><li><a href="../../projects/rob/data4.html">ROB-DATA4: Dimorphos</a></li><li><a href="../../projects/rob/data5.html" aria-current="page" class="current">ROB-DATA5: Dimorphos</a></li><li><a href="../../projects/rob/data6.html">ROB-DATA6: Dimorphos</a></li></ul></li><li class="navcat"><span class="navcat-title">Reference</span><ul><li><a href="../../reference/api.html">API reference</a></li><li><a href="../../reference/api/sbtk.html">sbtk</a></li><li><a href="../../reference/api/units.html">sbtk.units</a></li><li><a href="../../reference/api/shape.html">sbtk.shape</a></li><li><a href="../../reference/api/body.html">sbtk.body</a></li><li><a href="../../reference/api/interior.html">sbtk.interior</a></li><li><a href="../../reference/api/gravity.html">sbtk.gravity</a></li><li><a href="../../reference/api/data.html">sbtk.data</a></li><li><a href="../../reference/api/interpret.html">sbtk.interpret</a></li><li><a href="../../reference/api/invert.html">sbtk.invert</a></li><li><a href="../../reference/api/search.html">sbtk.search</a></li><li><a href="../../reference/api/compare.html">sbtk.compare</a></li><li><a href="../../reference/api/exchange.html">sbtk.exchange</a></li><li><a href="../../reference/api/io.html">sbtk.io</a></li><li><a href="../../reference/api/plot.html">sbtk.plot</a></li><li><a href="../../reference/data-structures.html">Data structures</a></li><li><a href="../../reference/errors.html">Error identifiers</a></li><li><a href="../../reference/internal.html">Internal functions</a></li></ul></li><li class="navcat"><span class="navcat-title">Validation</span><ul><li><a href="../../validation/tests.html">Validation and tests</a></li></ul></li></ul></nav>
+<nav id="sidebar" class="sidebar" aria-label="Documentation pages"><ul><li class="navcat"><span class="navcat-title">Overview</span><ul><li><a href="../../index.html">SBTK: Small Body Toolkit</a></li><li><a href="../../overview/limitations.html">Assumptions and limitations</a></li></ul></li><li class="navcat"><span class="navcat-title">Getting started</span><ul><li><a href="../../getting-started/installation.html">Installation</a></li><li><a href="../../getting-started/first-script.html">First script</a></li></ul></li><li class="navcat"><span class="navcat-title">Conventions</span><ul><li><a href="../../conventions/units.html">Units</a></li><li><a href="../../conventions/coordinates.html">Coordinate systems and origins</a></li><li><a href="../../conventions/gravity-coefficients.html">Gravity coefficients</a></li><li><a href="../../conventions/gravity-frames.html">Frames of a gravity field</a></li><li><a href="../../conventions/moments-of-inertia.html">Moments of inertia</a></li></ul></li><li class="navcat"><span class="navcat-title">Models and calculations</span><ul><li><a href="../../models/shape-models.html">Shape models</a></li><li><a href="../../models/density-distributions.html">Density distributions</a></li><li><a href="../../models/forward-model.html">Gravity and moment calculations</a></li></ul></li><li class="navcat"><span class="navcat-title">Measurements and inversion</span><ul><li><a href="../../inversion/measurements.html">Measurement sets</a></li><li><a href="../../inversion/expansion-point-uncertainties.html">Uncertainties and the expansion point</a></li><li><a href="../../inversion/reading-coefficients.html">Reading the gravity coefficients</a></li><li><a href="../../inversion/density-estimation.html">Density estimation</a></li><li><a href="../../inversion/coefficient-subsets.html">Fitting part of the coefficients</a></li><li><a href="../../inversion/statistics.html">Goodness of fit and model comparison</a></li></ul></li><li class="navcat"><span class="navcat-title">Kinds of solution</span><ul><li><a href="../../inversion/component-models.html">Models with components</a></li><li><a href="../../inversion/geometry-search.html">Searching the geometry</a></li><li><a href="../../inversion/sector-grids.html">Sector grids</a></li><li><a href="../../inversion/point-masses.html">Point masses</a></li></ul></li><li class="navcat"><span class="navcat-title">Files</span><ul><li><a href="../../files/results-folders.html">Results folders and figures</a></li><li><a href="../../files/exchange-packages.html">Exchange packages</a></li></ul></li><li class="navcat"><span class="navcat-title">Examples</span><ul><li><a href="../../examples/density-models.html">Density models by component type</a></li><li><a href="../../examples/calculations.html">Calculations</a></li><li><a href="../../examples/tutorials.html">Tutorial scripts</a></li></ul></li><li class="navcat"><span class="navcat-title">Projects</span><ul><li><a href="../../projects/template.html">Project template</a></li><li><a href="../../projects/bennu.html">Bennu</a></li><li><a href="../../projects/hera-blind-test.html">Hera blind test</a></li><li><a href="../../projects/didymos-dimorphos-values.html">Didymos and Dimorphos values</a></li></ul></li><li class="navcat"><span class="navcat-title">Testing with ROB data</span><ul><li><a href="../../projects/rob/index.html">Testing with ROB data</a></li><li><a href="../../projects/rob/data1.html">ROB-DATA1: Didymos</a></li><li><a href="../../projects/rob/data2.html">ROB-DATA2: Didymos</a></li><li><a href="../../projects/rob/data3.html">ROB-DATA3: Didymos</a></li><li><a href="../../projects/rob/data4.html">ROB-DATA4: Dimorphos</a></li><li><a href="../../projects/rob/data5.html" aria-current="page" class="current">ROB-DATA5: Dimorphos</a></li><li><a href="../../projects/rob/data6.html">ROB-DATA6: Dimorphos</a></li></ul></li><li class="navcat"><span class="navcat-title">Reference</span><ul><li><a href="../../reference/api.html">API reference</a></li><li><a href="../../reference/api/sbtk.html">sbtk</a></li><li><a href="../../reference/api/units.html">sbtk.units</a></li><li><a href="../../reference/api/shape.html">sbtk.shape</a></li><li><a href="../../reference/api/body.html">sbtk.body</a></li><li><a href="../../reference/api/interior.html">sbtk.interior</a></li><li><a href="../../reference/api/gravity.html">sbtk.gravity</a></li><li><a href="../../reference/api/data.html">sbtk.data</a></li><li><a href="../../reference/api/interpret.html">sbtk.interpret</a></li><li><a href="../../reference/api/invert.html">sbtk.invert</a></li><li><a href="../../reference/api/search.html">sbtk.search</a></li><li><a href="../../reference/api/compare.html">sbtk.compare</a></li><li><a href="../../reference/api/exchange.html">sbtk.exchange</a></li><li><a href="../../reference/api/io.html">sbtk.io</a></li><li><a href="../../reference/api/plot.html">sbtk.plot</a></li><li><a href="../../reference/data-structures.html">Data structures</a></li><li><a href="../../reference/errors.html">Error identifiers</a></li><li><a href="../../reference/internal.html">Internal functions</a></li></ul></li><li class="navcat"><span class="navcat-title">Validation</span><ul><li><a href="../../validation/tests.html">Validation and tests</a></li></ul></li></ul></nav>
 <main id="content" tabindex="-1">
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../../index.html">Documentation</a> › Testing with ROB data › <span aria-current="page">ROB-DATA5: Dimorphos</span></nav>
 <article>
 <h1 id="rob-data5-dimorphos">ROB-DATA5: Dimorphos<a class="headerlink" href="#rob-data5-dimorphos" title="Link to this section">#</a></h1>
-<p class="lastedit">Last edited October 27, 2026</p>
-<p><strong>In short.</strong> The smallest anomaly of the six: degree 2 differs from constant density mainly in <span class="nobr"><math alttext="C_22" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub></mrow></math></span> (+27σ),
-two moments are 4 to 5σ lower, and the center of mass is not measurably off. A single dense sphere, +293 kg/m³ placed
-27 m from the center toward +x, explains all of it with 4 parameters (reduced χ² 0.03), and it reproduces ROB's exact
-values to degree 10 better than any other solution: the hidden interior is close to one dense body on the +x side. The
-sector grids and point masses fit with 3 to 8 effective parameters but reproduce little beyond degree 2. At the GRASS
-surface point every solution is within 2%, as constant density nearly is: the anomaly is too small for one point to
-choose between them.</p>
+<p class="lastedit">Last edited October 28, 2026</p>
+<p>ROB-DATA5 has the smallest anomaly of the six packages. Only <span class="nobr"><math alttext="J_2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mn>2</mn></msub></mrow></math>,</span> <span class="nobr"><math alttext="C_22" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub></mrow></math></span> and two moments of inertia differ
+from constant density by more than 3σ. A single dense sphere 28 m from the center toward +x explains them with 4 parameters
+and ranks first. The point masses tie with it in AIC. They put the same mass at the center, elongated along x like
+the sphere, but not to one side: the center-of-mass offset the sphere makes is only 1σ in the measurements, and the
+point masses do not pay for it. ROB's exact values show the offset is real. The sphere reproduces 91% of degrees 1 and
+2 and 87 to 98% of each degree from 6 to 10. It is the only solution in the six packages that reproduces degree 10.</p>
 <table>
 <thead>
 <tr>
 <th>Kind</th>
-<th>Best solution of the kind</th>
+<th>Model</th>
 <th>Parameters</th>
 <th>Reduced χ²</th>
 <th>p</th>
 <th>AIC</th>
-<th>Mean squared residual, degrees 1–3</th>
+<th>Exact values, degrees 1–2</th>
+<th>Exact values, degrees 3–10</th>
 <th>GRASS acceleration</th>
+<th>GRASS direction</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>components</strong></td>
-<td><strong>one dense sphere, placed</strong></td>
-<td><strong>4.0</strong></td>
-<td><strong>0.03</strong></td>
-<td><strong>1.00</strong></td>
-<td><strong>8.4</strong></td>
-<td><strong>0.02</strong></td>
-<td><strong>+0.2%</strong></td>
+<td><strong>Components</strong></td>
+<td><strong>core</strong></td>
+<td>4.0</td>
+<td>0.03</td>
+<td>1.00</td>
+<td>8.4</td>
+<td>0.91</td>
+<td>0.65</td>
+<td>+0.2%</td>
+<td>0.1°</td>
 </tr>
 <tr>
-<td>search</td>
+<td>Point masses</td>
+<td>2674 points</td>
+<td>4.5</td>
+<td>0.10</td>
+<td>1.00</td>
+<td>10.3</td>
+<td>0.15</td>
+<td>0.44</td>
+<td>−0.6%</td>
+<td>0.1°</td>
+</tr>
+<tr>
+<td>Sector grid</td>
+<td>2 × 4 × 8</td>
+<td>7.8</td>
+<td>0.10</td>
+<td>1.00</td>
+<td>16.6</td>
+<td>1.00</td>
+<td>−2.57</td>
+<td>+0.2%</td>
+<td>0.1°</td>
+</tr>
+<tr>
+<td>Search</td>
 <td>core, torus, layer</td>
 <td>9.0</td>
-<td>0.000002</td>
+<td>&lt; 0.01</td>
 <td>1.00</td>
 <td>18.0</td>
-<td>0.000001</td>
+<td>1.00</td>
+<td>0.80</td>
+<td>+0.1%</td>
+<td>0.0°</td>
+</tr>
+<tr>
+<td>Constant density</td>
 <td></td>
-</tr>
-<tr>
-<td>point masses</td>
-<td>2,674, sensitivity weighting</td>
-<td>2.8</td>
-<td>1.66</td>
-<td>0.05</td>
-<td>30.8</td>
-<td>0.28</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 <td>−0.6%</td>
-</tr>
-<tr>
-<td>sectors</td>
-<td>2 × 4 × 8</td>
-<td>4.3</td>
-<td>1.70</td>
-<td>0.05</td>
-<td>31.9</td>
-<td>0.04</td>
-<td>−0.3%</td>
+<td>0.1°</td>
 </tr>
 </tbody>
 </table>
-<p>Constant density gives −0.6% at the surface point. (<a href="../../projects/rob/index.html#how-to-read-these-pages">How to read these pages</a>.)</p>
-<h2 id="1.-what-the-measurements-say">1. What the measurements say<a class="headerlink" href="#1.-what-the-measurements-say" title="Link to this section">#</a></h2>
-<figure class="figure"><img src="../../figures/rob/data5/measured.png" alt="The measured coefficients minus those of constant density, C − C_CD, with ±1σ, degrees 1 to 3, and the moments of inertia." loading="lazy"><figcaption>The measured coefficients minus those of constant density, C − C_CD, with ±1σ, degrees 1 to 3, and the moments of inertia.</figcaption></figure>
-<div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text">           C - C_CD      1-sigma    sigma  what it says
-C20       3.744e-04    6.327e-05      5.9  J2 lower: mass toward the poles or the center, away from the equator
-C22       3.752e-04    1.375e-05     27.3  mass toward the +-x ends more than +-y (elongation along x)
-Ixx      -2.453e-03    5.053e-04     -4.9  Ixx: mass closer to the x-axis
-Izz      -2.863e-03    6.527e-04     -4.4  Izz: mass closer to the z-axis</code></pre></div>
-<ul>
-<li><strong><span class="nobr"><math alttext="C_22" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub></mrow></math></span> +27σ</strong>: more mass toward the ends of the x-axis than the shape gives; <strong>J2 6σ lower</strong>: a little
-  toward the poles or the center.</li>
-<li><strong>Ixx and Izz 5σ and 4σ lower</strong>: mass closer to the x-axis and to the spin axis, that is, along x.</li>
-<li><strong>The center of mass</strong>: 0.31 m toward +x, below its 1σ (0.4–0.6 m): no measurable offset.</li>
-</ul>
+<p>The best solution of each kind, by AIC (bold: the lowest). Parameters: the effective number of parameters. Exact
+values: the fraction of ROB's exact coefficients a solution reproduces, over the measured degrees 1–2 and over
+degrees 3–10, which were not fitted (1: all; 0: no better than constant density; negative: worse). GRASS: the
+predicted acceleration at the surface point minus ROB's, in magnitude (% of ROB's) and direction. See
+<a href="../../projects/rob/index.html#how-to-read-these-pages">How to read these pages</a>.</p>
+<h2 id="1.-what-the-measurements-show">1. What the measurements show<a class="headerlink" href="#1.-what-the-measurements-show" title="Link to this section">#</a></h2>
+<figure class="figure"><img src="../../figures/rob/data5/measured.png" alt="The measured coefficients minus those of the same shape at constant density, C − C_CD, with ±1σ of the Hera radio-science solution, degrees 1 and 2, and the three moments of inertia minus those at constant density. Each panel has its own scale; 0 is constant density." loading="lazy"><figcaption>The measured coefficients minus those of the same shape at constant density, C − C_CD, with ±1σ of the Hera radio-science solution, degrees 1 and 2, and the three moments of inertia minus those at constant density. Each panel has its own scale; 0 is constant density.</figcaption></figure>
+<table>
+<thead>
+<tr>
+<th>Measurement</th>
+<th>C − C_CD</th>
+<th>1σ</th>
+<th>In σ</th>
+<th>What it says</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="nobr"><math alttext="C_20" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>20</mn></mrow></msub></mrow></math></span></td>
+<td><span class="nobr"><math alttext="3.74×10^-4" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>3.74</mn><mi>&#x000D7;</mi><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>4</mn></mrow></msup></mrow></math></span></td>
+<td><span class="nobr"><math alttext="6.33×10^-5" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>6.33</mn><mi>&#x000D7;</mi><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>5</mn></mrow></msup></mrow></math></span></td>
+<td>+6</td>
+<td><span class="nobr"><math alttext="J_2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mn>2</mn></msub></mrow></math></span> lower: mass toward the poles or the center</td>
+</tr>
+<tr>
+<td><span class="nobr"><math alttext="C_22" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub></mrow></math></span></td>
+<td><span class="nobr"><math alttext="3.75×10^-4" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>3.75</mn><mi>&#x000D7;</mi><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>4</mn></mrow></msup></mrow></math></span></td>
+<td><span class="nobr"><math alttext="1.38×10^-5" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>1.38</mn><mi>&#x000D7;</mi><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>5</mn></mrow></msup></mrow></math></span></td>
+<td>+27</td>
+<td>mass toward ±x more than ±y</td>
+</tr>
+<tr>
+<td><span class="nobr"><math alttext="I_xx/MR^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>x</mi><mi>x</mi></mrow></msub><mo>&#x0002F;</mo><mi>M</mi><msup><mi>R</mi><mn>2</mn></msup></mrow></math></span></td>
+<td><span class="nobr"><math alttext="-2.45×10^-3" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mn>2.45</mn><mi>&#x000D7;</mi><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>3</mn></mrow></msup></mrow></math></span></td>
+<td><span class="nobr"><math alttext="5.05×10^-4" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>5.05</mn><mi>&#x000D7;</mi><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>4</mn></mrow></msup></mrow></math></span></td>
+<td>−5</td>
+<td>mass closer to the x-axis</td>
+</tr>
+<tr>
+<td><span class="nobr"><math alttext="I_zz/MR^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub><mo>&#x0002F;</mo><mi>M</mi><msup><mi>R</mi><mn>2</mn></msup></mrow></math></span></td>
+<td><span class="nobr"><math alttext="-2.86×10^-3" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mn>2.86</mn><mi>&#x000D7;</mi><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>3</mn></mrow></msup></mrow></math></span></td>
+<td><span class="nobr"><math alttext="6.53×10^-4" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>6.53</mn><mi>&#x000D7;</mi><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>4</mn></mrow></msup></mrow></math></span></td>
+<td>−4</td>
+<td>mass closer to the z-axis</td>
+</tr>
+</tbody>
+</table>
+<p>The measurements more than 3σ from constant density.</p>
+<p><span class="nobr"><math alttext="C_22" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub></mrow></math></span> is 27σ higher than at constant density: mass has moved toward the ends of the x-axis. <span class="nobr"><math alttext="I_xx" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>x</mi><mi>x</mi></mrow></msub></mrow></math></span> is 5σ
+smaller (mass closer to the x-axis) and <span class="nobr"><math alttext="I_zz" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub></mrow></math></span> 4σ smaller (mass closer to the spin axis). <span class="nobr"><math alttext="J_2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mn>2</mn></msub></mrow></math></span> is 6σ lower. The
+center of mass is 0.31 m toward +x, 1σ: by itself, not a detection.</p>
 <h2 id="2.-where-the-mass-is">2. Where the mass is<a class="headerlink" href="#2.-where-the-mass-is" title="Link to this section">#</a></h2>
-<figure class="figure"><img src="../../figures/rob/data5/anomaly_map_to_3.png" alt="Each degree of C − C_CD as a map; +: strongest excess, x: strongest deficit, star: the center-of-mass offset. Degree 3 is not measured at this precision." loading="lazy"><figcaption>Each degree of C − C_CD as a map; +: strongest excess, x: strongest deficit, star: the center-of-mass offset. Degree 3 is not measured at this precision.</figcaption></figure>
-<div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text">Center of mass 0.31 m from the center of figure toward lat 0, lon -0 (1 sigma): the anomalous mass is on that side (or a deficit on the other).
-Degree 2 (chi-square 824 for 5): second moment of the anomaly triaxial, values 0.42, 0.16, -0.58 of their spread.
-  axis toward (largest): lat +89 lon -137 and lat -89 lon 43, +-32 deg
-  axis middle: lat +1 lon 1 and lat -1 lon -179, +-34 deg
-  axis away from (smallest): lat +1 lon 91 and lat -1 lon -89, +-25 deg
-  mass moved toward the axis through lat +89 lon -137 and lat -89 lon 43 and away from the axis through lat +1 lon 91 and lat -1 lon -89.
-Rest of degree 2 (without the scaled homogeneous field): triaxial, values 0.48, 0.05, -0.52.
-  mass moved toward the axis through lat +0 lon -180 and lat -0 lon 0 and away from the axis through lat +0 lon 90 and lat -0 lon -90.
-Each degree on the sphere (strongest excess / strongest deficit; rest after the scaled homogeneous field):
-  degree 2 chi2    824 for  5: excess lat -90 lon -180, deficit lat  +0 lon  -90;  rest: excess lat  +0 lon -180, deficit lat  +0 lon  -90</code></pre></div>
-<ul>
-<li>The rest of degree 2 (without the scaled field of constant density) moves mass toward the x-axis (longitudes 0° and
-  180°) and away from the y-axis: more mass along x.</li>
-<li>With a center-of-mass offset this small, the mass along x is either on both sides, or one compact body near the
-  center: a core placed by its χ² profile along the (insignificant) offset went 27 m toward +x.</li>
-</ul>
-<h2 id="3.-the-solutions-compared">3. The solutions compared<a class="headerlink" href="#3.-the-solutions-compared" title="Link to this section">#</a></h2>
-<figure class="figure"><img src="../../figures/rob/data5/compare.png" alt="Top: the measured C − C_CD (black, ±1σ) and the best solution of each kind. Bottom: (solution − measured)/σ." loading="lazy"><figcaption>Top: the measured C − C_CD (black, ±1σ) and the best solution of each kind. Bottom: (solution − measured)/σ.</figcaption></figure>
-<ul>
-<li>The models with a core match every coefficient and moment within 0.5σ. The point masses and the sector grids match
-  the coefficients within 1.6σ but leave all three moments 2 to 3σ off: smoothed as much as the measurements allow,
-  they do not reach the moments.</li>
-<li>The one sphere does it with the fewest parameters that fit closely: AIC 8.4, against 18 for a core with a torus and
-  a layer, which add parameters the measurements do not need, and 31 to 35 for the smoothed solutions.</li>
-</ul>
-<div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text">AIC  solution                                                   kind          params  chi2/nu         p      AIC    res^2 1-3 largest  exact2-4 exact5-10
-1    core, placed                                               components       4.0   0.0257         1      8.4       0.0224 C21          0.70     0.87
-2    core, placed; layer                                        components       5.0  0.00115         1     10.0      0.00187 C11          0.91     0.73
-3    core, placed; torus; layer                                 components       6.0 1.63e-06         1     12.0     1.31e-06 C31          0.89     0.38
-4    ellipsoidal core from yaw 0; layer                         components       8.0    0.187         1     17.9        0.235 C11         -0.71     0.05
-5    core, placed; torus (height, axis); layer                  components       9.0 1.44e-06         1     18.0     8.66e-07 C31          0.89     0.36
-6    search: core, torus (radii, axis), layer; 0 masses         search           9.0 1.51e-06         1     18.0     9.06e-07 C31          0.88     0.64
-7    ellipsoidal core (position, axes); torus; layer            components       9.0   0.0118         1     18.1        0.013 C11         -1.61   -48.68
-8    ellipsoidal core from yaw 90; layer                        components       8.0    0.212         1     18.1        0.136 C20         -1.13   -15.62
-9    point masses (2674, sensitivity weighting)                 point masses     2.8     1.66      0.05     30.8        0.282 C22          0.60     0.05
-10   point masses (2674, equal weighting)                       point masses     3.0     1.67      0.05     31.0        0.113 C20          0.58     0.32
-11   sectors 2 x 4 x 8                                          sectors          4.3      1.7      0.05     31.9       0.0357 C11          0.53    -1.63
-12   sectors 1 x 4 x 8                                          sectors          8.3     1.84      0.05     34.5       0.0515 C11      -1002.92 -4991.20
-13   core at the center of figure                               components       1.0      246         0   4189.2           70 C20         -5.97    -8.25
-
-Ordered by AIC = chi2 + 2 x params (Akaike information criterion: the fit with a penalty for every parameter; lower is better).</code></pre></div>
-<h2 id="4.-the-best-solution-one-dense-sphere-toward-x">4. The best solution: one dense sphere toward +x<a class="headerlink" href="#4.-the-best-solution-one-dense-sphere-toward-x" title="Link to this section">#</a></h2>
-<figure class="figure"><img src="../../figures/rob/data5/view_components.png" alt="See-through views: the dense sphere 27 m toward +x." loading="lazy"><figcaption>See-through views: the dense sphere 27 m toward +x.</figcaption></figure>
-<div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text">component  type          center - cof (m)   dist m      lat      lon    drho kg/m^3        rho      mass kg  makes most of (sigma)
-core       sphere     [   27    -0     7]       28       15       -0      293 +-  25       1813      3.3e+07  C22 +27, C20 +6, C11 +1
-background 1521 kg/m^3 (bulk 1539); makes most of: the component's share of each coefficient in units of its 1-sigma</code></pre></div>
-<figure class="figure"><img src="../../figures/rob/data5/contributions_1.png" alt="How much of each coefficient the sphere makes, against the measured value ±1σ and the model." loading="lazy"><figcaption>How much of each coefficient the sphere makes, against the measured value ±1σ and the model.</figcaption></figure>
-<ul>
-<li><strong>The sphere</strong> (+293 ± 25 kg/m³, 3.3 × 10⁷ kg above the background, 1.2% of the mass) on the x-axis makes
-  <span class="nobr"><math alttext="C_22" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub></mrow></math></span> (+27σ) and the lower J2 (+6σ in <span class="nobr"><math alttext="C_20" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>20</mn></mrow></msub></mrow></math>)</span> at once: a mass on the x-axis lengthens the body along x.
-  Its offset of 27 m with this mass moves the center of mass by 0.33 m, within the measured 0.31 ± 0.4 m.</li>
-</ul>
-<figure class="figure"><img src="../../figures/rob/data5/cuts_components.png" alt="The sphere on the planes z = 0 and y = 0." loading="lazy"><figcaption>The sphere on the planes z = 0 and y = 0.</figcaption></figure>
-<h2 id="5.-the-solutions-side-by-side">5. The solutions side by side<a class="headerlink" href="#5.-the-solutions-side-by-side" title="Link to this section">#</a></h2>
-<figure class="figure"><img src="../../figures/rob/data5/solutions.png" alt="The best solution of each kind among those consistent with the measurements (numbered by AIC rank), on the planes z = 0 and y = 0 through the center of figure, on one color scale: density minus the bulk density. Components and sectors are drawn with their own boundaries; point masses have no shape at their own resolution and are drawn as the mean density of 8 m cells." loading="lazy"><figcaption>The best solution of each kind among those consistent with the measurements (numbered by AIC rank), on the planes z = 0 and y = 0 through the center of figure, on one color scale: density minus the bulk density. Components and sectors are drawn with their own boundaries; point masses have no shape at their own resolution and are drawn as the mean density of 8 m cells.</figcaption></figure>
-<div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text">solution (AIC rank)                                         moved (% M)          excess at (m)         deficit at (m)
-1. core, placed                                                    1.11              [27 -0 7]             [-3 -0 -1]
-6. search: core, torus (radii, axis), layer; 0 masses              1.01               [29 0 0]              [-3 -0 0]
-9. point masses (2674, sensitivity weighting)                      0.55              [0 -0 -0]               [1 -0 0]
-11. sectors 2 x 4 x 8                                              0.38              [10 1 -0]              [-11 1 1]
-
-correlation of the cells of each pair:
-           1     6     9    11
-     1  1.00  0.88  0.35  0.37
-     6  0.88  1.00  0.36  0.37
-     9  0.35  0.36  1.00  0.44
-    11  0.37  0.37  0.44  1.00
-
-moved: the mass above the bulk density M/V (equal to the mass below it), in 8 m cells; excess at, deficit at: where that mass is centered, from the center of figure.</code></pre></div>
-<p>The model of one sphere and the search's model are nearly the same (correlation 0.88): one dense body of about 30 m
-radius, 27 to 29 m toward +x; the search's torus and layer are nearly empty. The point masses and the sector grid move
-half as much mass or less (0.4–0.6% of M against 1.0–1.1%) and keep it near the center: the point masses in two lobes
-10 to 15 m on either side of the center along x, the sector grid in the inner sectors, a little more toward +x (its
-excess centered 10 m toward +x). All four put the extra mass along the x-axis, which is what <span class="nobr"><math alttext="C_22" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub></mrow></math></span> says;
-whether it is one body off center or spread about the center, the measurements leave open (the center-of-mass offset
-is below its 1σ). ROB's exact values to degree 10 favor the one sphere (section 7).</p>
-<h2 id="6.-independent-check-the-grass-surface-point">6. Independent check: the GRASS surface point<a class="headerlink" href="#6.-independent-check-the-grass-surface-point" title="Link to this section">#</a></h2>
-<div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text">surface point [85.4 7.5 12.0] m; every model consistent with the coefficients and inertia, and the best of each kind
-                                                                  U (m^2/s^2)    |a| (m/s^2)   |a| vs %  angle deg
-given                                                            2.232206e-03   3.031167e-05      0.000      0.000
-homogeneous                                                      2.223924e-03   3.011989e-05     -0.633      0.099
-1. point masses (2674, sensitivity weighting)                    2.225167e-03   3.014253e-05     -0.558      0.079
-2. point masses (2674, equal weighting)                          2.225634e-03   3.016461e-05     -0.485      0.076
-3. core, placed                                                  2.234324e-03   3.036783e-05      0.185      0.127
-4. sectors 2 x 4 x 8                                             2.227757e-03   3.021568e-05     -0.317      0.109
-5. core, placed; layer                                           2.234525e-03   3.036208e-05      0.166      0.021
-6. core, placed; torus; layer                                    2.233207e-03   3.034004e-05      0.094      0.013
-7. ellipsoidal core from yaw 90; layer                           2.224372e-03   3.014670e-05     -0.544      0.015
-8. ellipsoidal core from yaw 0; layer                            2.218248e-03   2.994379e-05     -1.214      0.076
-9. sectors 1 x 4 x 8                                             2.253347e-03   3.090452e-05      1.956      2.076
-10. core, placed; torus (height, axis); layer                    2.233182e-03   3.033726e-05      0.084      0.013
-11. ellipsoidal core (position, axes); torus; layer              2.227058e-03   3.023473e-05     -0.254      0.183</code></pre></div>
-<p>The surface point is 86 m toward +x, near the sphere's side, but the anomaly changes the acceleration there by only
-0.6% (constant density). The models with a core give +0.1% to +0.2%, the point masses −0.5% to −0.6%, the sector grids
-−0.3% and +2.0%: all close, as the coefficients already were.</p>
-<h2 id="7.-beyond-the-fitted-coefficients">7. Beyond the fitted coefficients<a class="headerlink" href="#7.-beyond-the-fitted-coefficients" title="Link to this section">#</a></h2>
-<div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text">model                                                      fitted to       chi2/nu    chi2/n fitted    chi2/n others
-core, placed                                               degrees 1-2      0.0514           0.0327         1.64e-06
-core, placed                                               degrees 1-3      0.0257             0.02                -
-sectors 2 x 4 x 8                                          degrees 1-2        2.17             1.06         1.15e-05
-sectors 2 x 4 x 8                                          degrees 1-3         1.7             1.29                -
-point masses (2674, sensitivity weighting)                 degrees 1-2        1.94              1.4          2.3e-06
-point masses (2674, sensitivity weighting)                 degrees 1-3        1.66             1.41                -
-point masses (2674, equal weighting)                       degrees 1-2        1.98             1.34         2.09e-06
-point masses (2674, equal weighting)                       degrees 1-3        1.67             1.39                -
-
-Fraction of each degree's anomaly (exact values) reproduced by the fit to every degree, 1 - |model - given|^2/|given|^2:
-model                                                            1       2       3       4       5       6       7       8       9      10
-core, placed                                                  0.92    0.81    0.38    0.92    0.45    0.97    0.87    0.98    0.96    0.99
-sectors 2 x 4 x 8                                             0.48    1.00    0.31    0.29   -3.03   -0.83   -2.04   -0.07   -2.38   -1.39
-point masses (2674, sensitivity weighting)                   -0.01    0.98    0.19    0.63    0.37   -0.44    0.36    0.41    0.47   -0.88
-point masses (2674, equal weighting)                          0.03    0.99    0.22    0.52    0.24    0.45    0.42    0.52   -0.16    0.46</code></pre></div>
-<figure class="figure"><img src="../../figures/rob/data5/degree_fraction.png" alt="The fraction of each degree of ROB&#x27;s exact values each solution reproduces. Only degree 2 is measured at this precision." loading="lazy"><figcaption>The fraction of each degree of ROB's exact values each solution reproduces. Only degree 2 is measured at this precision.</figcaption></figure>
-<p><strong>The one sphere reproduces ROB's exact values to degree 10</strong> (81–99% of degrees 2, 4 and 6 to 10; 38–45% of degrees
-3 and 5), although it was fitted to degree 2 and the moments only. No other solution comes close beyond degree 2: the
-sector grids and point masses reproduce 98–100% of degree 2 and at most two thirds of any higher degree. The hidden
-interior is, to this precision, one dense compact body.</p>
-<h2 id="8.-details">8. Details<a class="headerlink" href="#8.-details" title="Link to this section">#</a></h2>
-<figure class="figure"><img src="../../figures/rob/data5/residuals_all.png" alt="(solution − measured)/σ of every solution (rows) for every measurement (columns)." loading="lazy"><figcaption>(solution − measured)/σ of every solution (rows) for every measurement (columns).</figcaption></figure>
-<figure class="figure"><img src="../../figures/rob/data5/point_masses_sensitivity.png" alt="The point masses with sensitivity weighting." loading="lazy"><figcaption>The point masses with sensitivity weighting.</figcaption></figure>
+<figure class="figure"><img src="../../figures/rob/data5/anomaly_map.png" alt="Degree 2 of C − C_CD as a map of latitude and longitude from the center of figure. Red where a mass added near the surface in that direction would produce the pattern, blue where a mass taken away would. +: strongest excess; x: strongest deficit; star: direction of the center-of-mass offset." loading="lazy"><figcaption>Degree 2 of C − C_CD as a map of latitude and longitude from the center of figure. Red where a mass added near the surface in that direction would produce the pattern, blue where a mass taken away would. +: strongest excess; x: strongest deficit; star: direction of the center-of-mass offset.</figcaption></figure>
+<p>Degree 2 takes mass from the ends of the y-axis and puts it at the poles and the ends of the x-axis. The smaller
+<span class="nobr"><math alttext="I_xx" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>x</mi><mi>x</mi></mrow></msub></mrow></math></span> and <span class="nobr"><math alttext="I_zz" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub></mrow></math></span> say the added mass is close to the x-axis and to the center, not near the surface. Mass
+gathered on the x-axis inside the body makes this, and the 1σ offset toward +x suggests it is on the +x side. The
+model built for this package places a dense core along that offset by its χ² profile.</p>
+<h2 id="3.-how-well-each-solution-fits">3. How well each solution fits<a class="headerlink" href="#3.-how-well-each-solution-fits" title="Link to this section">#</a></h2>
+<figure class="figure"><img src="../../figures/rob/data5/compare.png" alt="Top: C − C_CD measured (black, ±1σ) and of the best solution of each kind. Bottom: (solution − measured)/σ; the gray band is ±1σ, the dashed lines ±3σ." loading="lazy"><figcaption>Top: C − C_CD measured (black, ±1σ) and of the best solution of each kind. Bottom: (solution − measured)/σ; the gray band is ±1σ, the dashed lines ±3σ.</figcaption></figure>
+<p>Every kind fits within 1σ. The single sphere needs 4 parameters and the point masses 4.5; they are 1.9 apart in
+AIC, a tie. The sector grid and the search fit as closely with 8 to 9 parameters, and rank 8 to 10 behind. Adding a
+torus or a layer to the sphere lowers χ² by less than the 2 per parameter AIC asks.</p>
+<h2 id="4.-the-model-with-components">4. The model with components<a class="headerlink" href="#4.-the-model-with-components" title="Link to this section">#</a></h2>
+<figure class="figure"><img src="../../figures/rob/data5/view_components.png" alt="The model with components, seen obliquely (left) and down the spin axis (right), colored by the core&#x27;s density relative to the background density." loading="lazy"><figcaption>The model with components, seen obliquely (left) and down the spin axis (right), colored by the core's density relative to the background density.</figcaption></figure>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Shape and place</th>
+<th>Relative density (kg/m³)</th>
+<th>Density (kg/m³)</th>
+<th>Mass anomaly (kg); makes most of</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>core</td>
+<td>sphere, radius 30 m, 28 m from the center toward lat 15°, lon −0°</td>
+<td>+293 ± 25</td>
+<td>1813</td>
+<td><span class="nobr"><math alttext="3.30×10^7" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>3.30</mn><mi>&#x000D7;</mi><msup><mn>10</mn><mrow><mn>7</mn></mrow></msup></mrow></math>;</span> <span class="nobr"><math alttext="C_22" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub></mrow></math></span> +27σ, <span class="nobr"><math alttext="C_20" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>20</mn></mrow></msub></mrow></math></span> +6σ</td>
+</tr>
+</tbody>
+</table>
+<p>Background density 1521 kg/m³ (bulk density 1539 kg/m³). Makes most of: the component's part of each coefficient in units of its 1σ.</p>
+<figure class="figure"><img src="../../figures/rob/data5/contributions.png" alt="The part of each measured coefficient the core makes, the measured value with ±1σ (black) and the model&#x27;s sum (white diamond)." loading="lazy"><figcaption>The part of each measured coefficient the core makes, the measured value with ±1σ (black) and the model's sum (white diamond).</figcaption></figure>
+<p>The core is a sphere of 30 m radius, 28 m from the center toward +x and 15° above the equator, 293 ± 25 kg/m³ denser
+than the background. Its mass anomaly of 3.3 × 10⁷ kg is 1.2% of the mass of the body. It makes
+<span class="nobr"><math alttext="C_22" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="J_2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mn>2</mn></msub></mrow></math></span> and the center-of-mass offset.</p>
+<h2 id="5.-point-masses-and-components-side-by-side">5. Point masses and components side by side<a class="headerlink" href="#5.-point-masses-and-components-side-by-side" title="Link to this section">#</a></h2>
+<figure class="figure"><img src="../../figures/rob/data5/solutions.png" alt="The best solution of each kind on the planes z = 0 (left) and y = 0 (right) through the center of figure, colored by relative density on one scale. Components and sectors are drawn with their own boundaries; the point masses are drawn as the mean relative density of 8.3 m cells." loading="lazy"><figcaption>The best solution of each kind on the planes z = 0 (left) and y = 0 (right) through the center of figure, colored by relative density on one scale. Components and sectors are drawn with their own boundaries; the point masses are drawn as the mean relative density of 8.3 m cells.</figcaption></figure>
+<table>
+<thead>
+<tr>
+<th>Solution</th>
+<th>Mass moved (% of M)</th>
+<th>Excess centered at (m)</th>
+<th>Deficit centered at (m)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Components</td>
+<td>1.1</td>
+<td>(27, −0, 7)</td>
+<td>(−3, −0, −1)</td>
+</tr>
+<tr>
+<td>Search</td>
+<td>1.0</td>
+<td>(29, 0, 0)</td>
+<td>(−3, −0, 0)</td>
+</tr>
+<tr>
+<td>Sector grid</td>
+<td>0.9</td>
+<td>(11, 2, −0)</td>
+<td>(−21, 0, 0)</td>
+</tr>
+<tr>
+<td>Point masses</td>
+<td>0.8</td>
+<td>(1, 0, −0)</td>
+<td>(−1, −0, 0)</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Correlation</th>
+<th>Components</th>
+<th>Search</th>
+<th>Sector grid</th>
+<th>Point masses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Components</td>
+<td>1.00</td>
+<td>0.88</td>
+<td>0.46</td>
+<td>0.41</td>
+</tr>
+<tr>
+<td>Search</td>
+<td>0.88</td>
+<td>1.00</td>
+<td>0.48</td>
+<td>0.42</td>
+</tr>
+<tr>
+<td>Sector grid</td>
+<td>0.46</td>
+<td>0.48</td>
+<td>1.00</td>
+<td>0.47</td>
+</tr>
+<tr>
+<td>Point masses</td>
+<td>0.41</td>
+<td>0.42</td>
+<td>0.47</td>
+<td>1.00</td>
+</tr>
+</tbody>
+</table>
+<p>Mass moved: the mass above the bulk density, as a percentage of the mass of the body. Excess and deficit centers are
+from the center of figure. Correlation: of the relative densities of the solutions, 8.3 m cell by 8.3 m cell.</p>
+<p>The point masses find the core's size and elongation but not its place. They gather a dense column about 50 m across
+along x at the center, nearly the extent of the sphere along x, symmetric about the center instead of on the +x side.
+The excess of the sphere is centered 27 m toward +x, that of the point masses 1 m. Degree 2 is the same for mass at
++x and at −x. Only degree 1 tells them apart, and at 1σ it is too weak for the point-mass regularization to follow.
+The search finds the same sphere as the model with components (correlation 0.88). The sector grid puts the excess
+in its inner shell, 11 m toward +x.</p>
+<h2 id="6.-against-robs-exact-values-and-the-grass-point">6. Against ROB's exact values and the GRASS point<a class="headerlink" href="#6.-against-robs-exact-values-and-the-grass-point" title="Link to this section">#</a></h2>
+<figure class="figure"><img src="../../figures/rob/data5/exact.png" alt="The fraction of each degree of ROB&#x27;s exact C − C_CD that each solution reproduces, 1 − |solution − exact|²/|exact|². 1: all of it; 0: no better than constant density; values below −1 are drawn at −1 as open markers. The gray region was not fitted." loading="lazy"><figcaption>The fraction of each degree of ROB's exact C − C_CD that each solution reproduces, 1 − |solution − exact|²/|exact|². 1: all of it; 0: no better than constant density; values below −1 are drawn at −1 as open markers. The gray region was not fitted.</figcaption></figure>
+<p>The exact values settle it. The sphere reproduces 91% of degree 1, the center-of-mass offset the measurements barely
+saw; the point masses 10%. Beyond degree 2 the sphere reproduces 87 to 98% of each degree from 6 to 10, and 65% of
+degrees 3 to 10 together. The point masses reproduce 44% and the sector grid does worse than constant density. A
+compact sphere on the +x side is what the hidden interior has.</p>
+<p>The GRASS point lies at the +x end of the body, above the sphere, but the anomaly is too small there to decide.
+Constant density is off by only 0.6%. The sphere, the search and the sector grid predict the acceleration to 0.1 to
+0.2%, the point masses to 0.6%, all within 0.2° in direction.</p>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../../projects/rob/data4.html" rel="prev"><span>Previous</span>ROB-DATA4: Dimorphos</a><a class="next" href="../../projects/rob/data6.html" rel="next"><span>Next</span>ROB-DATA6: Dimorphos</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-27.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-28.</footer>
 </main>
-<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#1.-what-the-measurements-say">1. What the measurements say</a></li><li class="lvl2"><a href="#2.-where-the-mass-is">2. Where the mass is</a></li><li class="lvl2"><a href="#3.-the-solutions-compared">3. The solutions compared</a></li><li class="lvl2"><a href="#4.-the-best-solution-one-dense-sphere-toward-x">4. The best solution: one dense sphere toward +x</a></li><li class="lvl2"><a href="#5.-the-solutions-side-by-side">5. The solutions side by side</a></li><li class="lvl2"><a href="#6.-independent-check-the-grass-surface-point">6. Independent check: the GRASS surface point</a></li><li class="lvl2"><a href="#7.-beyond-the-fitted-coefficients">7. Beyond the fitted coefficients</a></li><li class="lvl2"><a href="#8.-details">8. Details</a></li></ul></nav>
+<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#1.-what-the-measurements-show">1. What the measurements show</a></li><li class="lvl2"><a href="#2.-where-the-mass-is">2. Where the mass is</a></li><li class="lvl2"><a href="#3.-how-well-each-solution-fits">3. How well each solution fits</a></li><li class="lvl2"><a href="#4.-the-model-with-components">4. The model with components</a></li><li class="lvl2"><a href="#5.-point-masses-and-components-side-by-side">5. Point masses and components side by side</a></li><li class="lvl2"><a href="#6.-against-robs-exact-values-and-the-grass-point">6. Against ROB's exact values and the GRASS point</a></li></ul></nav>
 </div>
-<script src="../../assets/search-index.js?v=0adbfe2a7e"></script>
-<script src="../../assets/site.js?v=0adbfe2a7e"></script>
+<script src="../../assets/search-index.js?v=9f2880f680"></script>
+<script src="../../assets/site.js?v=9f2880f680"></script>
 </body>
 </html>
