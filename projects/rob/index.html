@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Testing with ROB data — SBTK documentation</title>
-<link rel="stylesheet" href="../../assets/site.css?v=1e2e3a45e3">
-<link rel="stylesheet" href="../../assets/pygments.css?v=1e2e3a45e3">
-<link rel="stylesheet" href="../../assets/print.css?v=1e2e3a45e3" media="print">
+<link rel="stylesheet" href="../../assets/site.css?v=784437df24">
+<link rel="stylesheet" href="../../assets/pygments.css?v=784437df24">
+<link rel="stylesheet" href="../../assets/print.css?v=784437df24" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -24,17 +24,17 @@
   <a class="toplink" href="../../SBTK_handbook.pdf">PDF handbook</a>
 </header>
 <div class="frame">
-<nav id="sidebar" class="sidebar" aria-label="Documentation pages"><ul><li class="navcat"><span class="navcat-title">Overview</span><ul><li><a href="../../index.html">SBTK: Small Body Toolkit</a></li><li><a href="../../overview/limitations.html">Assumptions and limitations</a></li></ul></li><li class="navcat"><span class="navcat-title">Getting started</span><ul><li><a href="../../getting-started/installation.html">Installation</a></li><li><a href="../../getting-started/first-script.html">First script</a></li></ul></li><li class="navcat"><span class="navcat-title">Conventions</span><ul><li><a href="../../conventions/units.html">Units</a></li><li><a href="../../conventions/coordinates.html">Coordinate systems and origins</a></li><li><a href="../../conventions/gravity-coefficients.html">Gravity coefficients</a></li><li><a href="../../conventions/gravity-frames.html">Frames of a gravity field</a></li><li><a href="../../conventions/moments-of-inertia.html">Moments of inertia</a></li></ul></li><li class="navcat"><span class="navcat-title">Models and calculations</span><ul><li><a href="../../models/shape-models.html">Shape models</a></li><li><a href="../../models/density-distributions.html">Density distributions</a></li><li><a href="../../models/forward-model.html">Gravity and moment calculations</a></li></ul></li><li class="navcat"><span class="navcat-title">Measurements and inversion</span><ul><li><a href="../../inversion/measurements.html">Measurement sets</a></li><li><a href="../../inversion/expansion-point-uncertainties.html">Uncertainties and the expansion point</a></li><li><a href="../../inversion/reading-coefficients.html">Reading the gravity coefficients</a></li><li><a href="../../inversion/density-estimation.html">Density estimation</a></li><li><a href="../../inversion/coefficient-subsets.html">Fitting part of the coefficients</a></li><li><a href="../../inversion/statistics.html">Goodness of fit and model comparison</a></li></ul></li><li class="navcat"><span class="navcat-title">Kinds of solution</span><ul><li><a href="../../inversion/component-models.html">Models with components</a></li><li><a href="../../inversion/geometry-search.html">Searching the geometry</a></li><li><a href="../../inversion/sector-grids.html">Sector grids</a></li><li><a href="../../inversion/point-masses.html">Point masses</a></li></ul></li><li class="navcat"><span class="navcat-title">Files</span><ul><li><a href="../../files/results-folders.html">Results folders and figures</a></li><li><a href="../../files/exchange-packages.html">Exchange packages</a></li></ul></li><li class="navcat"><span class="navcat-title">Examples</span><ul><li><a href="../../examples/density-models.html">Density models by component type</a></li><li><a href="../../examples/calculations.html">Calculations</a></li><li><a href="../../examples/tutorials.html">Tutorial scripts</a></li></ul></li><li class="navcat"><span class="navcat-title">Projects</span><ul><li><a href="../../projects/template.html">Project template</a></li><li><a href="../../projects/bennu.html">Bennu</a></li><li><a href="../../projects/hera-blind-test.html">Hera blind test</a></li><li><a href="../../projects/didymos-dimorphos-values.html">Didymos and Dimorphos values</a></li></ul></li><li class="navcat"><span class="navcat-title">Testing with ROB data</span><ul><li><a href="../../projects/rob/index.html" aria-current="page" class="current">Testing with ROB data</a></li><li><a href="../../projects/rob/data1.html">ROB-DATA1: Didymos</a></li><li><a href="../../projects/rob/data2.html">ROB-DATA2: Didymos</a></li><li><a href="../../projects/rob/data3.html">ROB-DATA3: Didymos</a></li><li><a href="../../projects/rob/data4.html">ROB-DATA4: Dimorphos</a></li><li><a href="../../projects/rob/data5.html">ROB-DATA5: Dimorphos</a></li><li><a href="../../projects/rob/data6.html">ROB-DATA6: Dimorphos</a></li></ul></li><li class="navcat"><span class="navcat-title">Reference</span><ul><li><a href="../../reference/api.html">API reference</a></li><li><a href="../../reference/api/sbtk.html">sbtk</a></li><li><a href="../../reference/api/units.html">sbtk.units</a></li><li><a href="../../reference/api/shape.html">sbtk.shape</a></li><li><a href="../../reference/api/body.html">sbtk.body</a></li><li><a href="../../reference/api/interior.html">sbtk.interior</a></li><li><a href="../../reference/api/gravity.html">sbtk.gravity</a></li><li><a href="../../reference/api/data.html">sbtk.data</a></li><li><a href="../../reference/api/interpret.html">sbtk.interpret</a></li><li><a href="../../reference/api/invert.html">sbtk.invert</a></li><li><a href="../../reference/api/search.html">sbtk.search</a></li><li><a href="../../reference/api/compare.html">sbtk.compare</a></li><li><a href="../../reference/api/exchange.html">sbtk.exchange</a></li><li><a href="../../reference/api/io.html">sbtk.io</a></li><li><a href="../../reference/api/plot.html">sbtk.plot</a></li><li><a href="../../reference/data-structures.html">Data structures</a></li><li><a href="../../reference/errors.html">Error identifiers</a></li><li><a href="../../reference/internal.html">Internal functions</a></li></ul></li><li class="navcat"><span class="navcat-title">Validation</span><ul><li><a href="../../validation/tests.html">Validation and tests</a></li></ul></li></ul></nav>
+<nav id="sidebar" class="sidebar" aria-label="Documentation pages"><ul><li class="navcat"><span class="navcat-title">Overview</span><ul><li><a href="../../index.html">SBTK: Small Body Toolkit</a></li><li><a href="../../overview/limitations.html">Assumptions and limitations</a></li></ul></li><li class="navcat"><span class="navcat-title">Getting started</span><ul><li><a href="../../getting-started/installation.html">Installation</a></li><li><a href="../../getting-started/first-script.html">First script</a></li></ul></li><li class="navcat"><span class="navcat-title">Conventions</span><ul><li><a href="../../conventions/units.html">Units</a></li><li><a href="../../conventions/coordinates.html">Coordinate systems and origins</a></li><li><a href="../../conventions/gravity-coefficients.html">Gravity coefficients</a></li><li><a href="../../conventions/gravity-frames.html">Frames of a gravity field</a></li><li><a href="../../conventions/moments-of-inertia.html">Moments of inertia</a></li></ul></li><li class="navcat"><span class="navcat-title">Models and calculations</span><ul><li><a href="../../models/shape-models.html">Shape models</a></li><li><a href="../../models/density-distributions.html">Density distributions</a></li><li><a href="../../models/forward-model.html">Gravity and moment calculations</a></li></ul></li><li class="navcat"><span class="navcat-title">Measurements and inversion</span><ul><li><a href="../../inversion/measurements.html">Measurement sets</a></li><li><a href="../../inversion/expansion-point-uncertainties.html">Uncertainties and the expansion point</a></li><li><a href="../../inversion/reading-coefficients.html">Reading the gravity coefficients</a></li><li><a href="../../inversion/density-estimation.html">Density estimation</a></li><li><a href="../../inversion/coefficient-subsets.html">Fitting part of the coefficients</a></li><li><a href="../../inversion/statistics.html">Goodness of fit and model comparison</a></li></ul></li><li class="navcat"><span class="navcat-title">Kinds of solution</span><ul><li><a href="../../inversion/component-models.html">Models with components</a></li><li><a href="../../inversion/geometry-search.html">Searching the geometry</a></li><li><a href="../../inversion/sector-grids.html">Sector grids</a></li><li><a href="../../inversion/point-masses.html">Point masses</a></li></ul></li><li class="navcat"><span class="navcat-title">Files</span><ul><li><a href="../../files/results-folders.html">Results folders and figures</a></li><li><a href="../../files/exchange-packages.html">Exchange packages</a></li></ul></li><li class="navcat"><span class="navcat-title">Examples</span><ul><li><a href="../../examples/density-models.html">Density models by component type</a></li><li><a href="../../examples/calculations.html">Calculations</a></li><li><a href="../../examples/tutorials.html">Tutorial scripts</a></li></ul></li><li class="navcat"><span class="navcat-title">Projects</span><ul><li><a href="../../projects/template.html">Project template</a></li><li><a href="../../projects/bennu.html">Bennu</a></li><li><a href="../../projects/hera-blind-test.html">Hera blind test</a></li><li><a href="../../projects/didymos-dimorphos-values.html">Didymos and Dimorphos values</a></li></ul></li><li class="navcat"><span class="navcat-title">Testing with ROB data</span><ul><li><a href="../../projects/rob/index.html" aria-current="page" class="current">Testing with ROB data</a></li><li><a href="../../projects/rob/code.html">Code of the ROB solutions</a></li><li><a href="../../projects/rob/data1.html">ROB-DATA1: Didymos</a></li><li><a href="../../projects/rob/data2.html">ROB-DATA2: Didymos</a></li><li><a href="../../projects/rob/data3.html">ROB-DATA3: Didymos</a></li><li><a href="../../projects/rob/data4.html">ROB-DATA4: Dimorphos</a></li><li><a href="../../projects/rob/data5.html">ROB-DATA5: Dimorphos</a></li><li><a href="../../projects/rob/data6.html">ROB-DATA6: Dimorphos</a></li></ul></li><li class="navcat"><span class="navcat-title">Reference</span><ul><li><a href="../../reference/api.html">API reference</a></li><li><a href="../../reference/api/sbtk.html">sbtk</a></li><li><a href="../../reference/api/units.html">sbtk.units</a></li><li><a href="../../reference/api/shape.html">sbtk.shape</a></li><li><a href="../../reference/api/body.html">sbtk.body</a></li><li><a href="../../reference/api/interior.html">sbtk.interior</a></li><li><a href="../../reference/api/gravity.html">sbtk.gravity</a></li><li><a href="../../reference/api/data.html">sbtk.data</a></li><li><a href="../../reference/api/interpret.html">sbtk.interpret</a></li><li><a href="../../reference/api/invert.html">sbtk.invert</a></li><li><a href="../../reference/api/search.html">sbtk.search</a></li><li><a href="../../reference/api/compare.html">sbtk.compare</a></li><li><a href="../../reference/api/exchange.html">sbtk.exchange</a></li><li><a href="../../reference/api/io.html">sbtk.io</a></li><li><a href="../../reference/api/plot.html">sbtk.plot</a></li><li><a href="../../reference/data-structures.html">Data structures</a></li><li><a href="../../reference/errors.html">Error identifiers</a></li><li><a href="../../reference/internal.html">Internal functions</a></li></ul></li><li class="navcat"><span class="navcat-title">Validation</span><ul><li><a href="../../validation/tests.html">Validation and tests</a></li></ul></li></ul></nav>
 <main id="content" tabindex="-1">
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../../index.html">Documentation</a> › Testing with ROB data › <span aria-current="page">Testing with ROB data</span></nav>
 <article>
 <h1 id="testing-with-rob-data">Testing with ROB data<a class="headerlink" href="#testing-with-rob-data" title="Link to this section">#</a></h1>
-<p class="lastedit">Last edited October 28, 2026</p>
+<p class="lastedit">Last edited October 29, 2026</p>
 <p>The Royal Observatory of Belgium (ROB), one of the teams that make interiors for the HLP6 blind test, distributed
 six measurement packages of hidden interiors: three of Didymos (ROB-DATA1 to 3) and three of Dimorphos (ROB-DATA4
 to 6). This section reads each package with the procedure of <a href="../../inversion/reading-coefficients.html">Reading the gravity coefficients</a>
-and fits four kinds of solution to the same measurements: a model with components chosen from that reading, a search
-of the geometry, a sector grid and point masses. It then tests every solution on what it was not fitted to: ROB's
+and fits three kinds of solution to the same measurements: a model with components chosen from that reading, a sector
+grid and point masses. Each is made by its own script (<a href="../../projects/rob/code.html">Code of the ROB solutions</a>). It then tests every solution on what it was not fitted to: ROB's
 exact coefficients to degree 10 and, for Dimorphos, the gravity at one point on the surface. The hidden interiors
 are not known to us.</p>
 <h2 id="the-packages">The packages<a class="headerlink" href="#the-packages" title="Link to this section">#</a></h2>
@@ -128,18 +128,19 @@ package's mass and reference radius:</p>
 <h2 id="what-the-six-packages-show">What the six packages show<a class="headerlink" href="#what-the-six-packages-show" title="Link to this section">#</a></h2>
 <ul>
 <li><strong>A model with a few components, chosen by reading the coefficients, fits with the fewest parameters.</strong> It ranks
-  first by AIC on ROB-DATA1, 3 and 5: by 7 to 14 on Didymos, by 1.9 on ROB-DATA5, a tie with the point masses. On
-  ROB-DATA4 and 6 it ties with the solutions that assume no shapes (all within 3). On ROB-DATA2 no model of a core,
-  a torus and a layer fits, and a sector grid ranks first.</li>
+  first by AIC on ROB-DATA1, 3, 4 and 5: by 37 and 18 on Didymos, by 4.6 on ROB-DATA4, and by 1.9 on ROB-DATA5, a
+  tie with the point masses. On ROB-DATA6 it ties with the point masses and the sector grid (all within 3). On
+  ROB-DATA2 no model of a core, a torus and a layer fits; a dense and a light sphere with four compact masses does,
+  and ties with the sector grid and the point masses.</li>
 <li><strong>Fitting best is not the same as being right above the fitted degrees.</strong> There ROB's exact values side with the
-  point masses on ROB-DATA2, 3 and 6, with the model with components on ROB-DATA1, and with a compact core on
-  ROB-DATA4 and 5. The degrees the measurements resolve, to 4 or 5 for Didymos and to 2 for Dimorphos, fix where the
-  anomaly is; they do not fix how compact it is.</li>
-<li><strong>Given no shapes, the point masses often find the geometry of the model with components.</strong> On ROB-DATA1 they take
-  mass from along the spin axis and put it at the two ends of one equatorial axis. On ROB-DATA3 they put a dense
-  center inside a light equatorial ring. On ROB-DATA4 they put the excess toward −y, where the core is. On ROB-DATA5
-  they find the core's size and elongation but not its side. Where they agree with the model with components, the
-  measurements, not the choice of shapes, placed the anomaly.</li>
+  point masses on ROB-DATA2, 3 and 6, and with the model with components on ROB-DATA1, 4 and 5. The degrees the
+  measurements resolve, to 4 or 5 for Didymos and to 2 for Dimorphos, fix where the anomaly is; they do not fix how
+  compact it is.</li>
+<li><strong>Given no shapes, the point masses often find the geometry of the model with components.</strong> On ROB-DATA1 they find
+  its light column along the spin axis and put the mass at the two ends of one equatorial axis. On ROB-DATA3 they put
+  a dense center inside a light equatorial ring. On ROB-DATA4 they put the excess toward −y, where the core is. On
+  ROB-DATA5 they find the core's size and elongation but not its side. Where they agree with the model with
+  components, the measurements, not the choice of shapes, placed the anomaly.</li>
 <li><strong>Where the two differ, the measurements allow both, and the truth goes either way.</strong> On ROB-DATA5 the core's
   offset to +x, which the point masses leave out because degree 1 is measured at only 1σ, is right. On ROB-DATA6
   the point masses' light region at the center is closer to the truth than the light core to one side.</li>
@@ -147,7 +148,8 @@ package's mass and reference radius:</p>
   (ROB-DATA3).</strong> Above the fitted degrees they do worse than constant density on ROB-DATA1, 3 and 5.</li>
 <li><strong>For Dimorphos the moments of inertia and one surface point matter.</strong> At the Hera precision the moments carry no
   information for Didymos. For Dimorphos they are as strong as degree 2 (ROB-DATA4 and 6). The GRASS point decides
-  where it lies over the anomaly: the core on ROB-DATA4, to 0.2% against 9% for the point masses.</li>
+  where it lies over the anomaly: on ROB-DATA4 the compact core predicts it 3.7% too high and the point masses 9.3%
+  too low, where constant density is 13.3% low.</li>
 </ul>
 <h2 id="results">Results<a class="headerlink" href="#results" title="Link to this section">#</a></h2>
 <table>
@@ -164,16 +166,16 @@ package's mass and reference radius:</p>
 <tr>
 <td><a href="../../projects/rob/data1.html">ROB-DATA1</a></td>
 <td>mass from the spin axis to two ends of an equatorial axis, more at −x</td>
-<td>polar caps, two equatorial spheres, a light core</td>
+<td>a light column along the spin axis, two dense equatorial ellipsoids</td>
 <td>none</td>
-<td>components (0.33; point masses −0.40)</td>
+<td>components (0.92; point masses −0.40)</td>
 </tr>
 <tr>
 <td><a href="../../projects/rob/data2.html">ROB-DATA2</a></td>
 <td>center of mass 2.3 m south, degree 2 tilted 58°, a large degree 3</td>
 <td>sector grid 1 × 4 × 8</td>
-<td>point masses</td>
-<td>point masses (0.17; sector grid 0.05)</td>
+<td>components, point masses</td>
+<td>point masses (0.17; sector grid 0.05, components −0.27)</td>
 </tr>
 <tr>
 <td><a href="../../projects/rob/data3.html">ROB-DATA3</a></td>
@@ -185,16 +187,16 @@ package's mass and reference radius:</p>
 <tr>
 <td><a href="../../projects/rob/data4.html">ROB-DATA4</a></td>
 <td>mass toward ±y, more at −y; the moments</td>
-<td>sector grid 2 × 4 × 8</td>
-<td>point masses, search, components</td>
-<td>search, a core 46 m toward −y (0.79)</td>
+<td>a dense core 50 m toward −y, a torus, a layer</td>
+<td>none</td>
+<td>components (0.81; sector grid 0.25)</td>
 </tr>
 <tr>
 <td><a href="../../projects/rob/data5.html">ROB-DATA5</a></td>
 <td>mass toward ±x, close to the x-axis</td>
 <td>one dense sphere 28 m toward +x</td>
 <td>point masses</td>
-<td>the same sphere (components 0.91, search 0.90)</td>
+<td>components, the same sphere (0.91; point masses 0.79)</td>
 </tr>
 <tr>
 <td><a href="../../projects/rob/data6.html">ROB-DATA6</a></td>
@@ -286,8 +288,8 @@ ROB-DATA4 and better on ROB-DATA6; on ROB-DATA2 and 3 they are close. The pages 
 surface; each page's <code>weighting.md</code> table in the results folder has both.</p>
 <h2 id="how-to-read-these-pages">How to read these pages<a class="headerlink" href="#how-to-read-these-pages" title="Link to this section">#</a></h2>
 <p>Every package page has the same six sections: what the measurements show, where the mass is, how well each solution
-fits, the model with components, the point masses and the components side by side, and the test against ROB's exact
-values.</p>
+fits, the model with components, the solutions side by side, and the test against ROB's exact values (for Dimorphos
+also against the GRASS point).</p>
 <p><strong>C − C_CD.</strong> Each measured coefficient minus the coefficient of the same shape at constant density (CD), both about
 the center of figure: what the interior adds to the gravity field. 0 is constant density. The bars are ±1σ of the
 Hera radio-science solution (<a href="#uncertainties">Uncertainties</a>). Zonal terms are shown as <span class="nobr"><math alttext="J_l = - C_l0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mi>l</mi></msub><mo>&#x0003D;</mo><mo>&#x02212;</mo><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mi>l</mi><mn>0</mn></mrow></msub></mrow></math>;</span> degree 1
@@ -311,13 +313,8 @@ that direction would produce it, blue where a mass taken away would (<a class="x
 <tbody>
 <tr>
 <td>Components</td>
-<td>a few shapes placed by reading the coefficients: a core, a torus, layers, spheres, polar caps</td>
-<td><a href="../../inversion/component-models.html">Models with components</a></td>
-</tr>
-<tr>
-<td>Search</td>
-<td>a core, a torus and a layer with their sizes, axis and the core's position searched, and compact masses where they pass the likelihood-ratio test</td>
-<td><a href="../../inversion/geometry-search.html">Searching the geometry</a></td>
+<td>a few shapes chosen by reading the coefficients: a core, a torus, layers, spheres, ellipsoids, polar caps; their densities and some positions fitted, sizes fixed or searched on a grid, compact masses added where they pass the likelihood-ratio test</td>
+<td><a href="../../inversion/component-models.html">Models with components</a>, <a href="../../inversion/geometry-search.html">Searching the geometry</a></td>
 </tr>
 <tr>
 <td>Sector grid</td>
@@ -340,9 +337,9 @@ the probability that noise alone gives a χ² this large; p ≥ 0.05 is consiste
 measurements are ROB's exact values weighted with the Hera uncertainties, without noise added, so a reduced χ² well
 below 1, as for every solution on Dimorphos, means a solution matches them more closely than the uncertainties
 require.</p>
-<p><strong>Effective parameters and AIC.</strong> The effective number of parameters is how many independent quantities the
-measurements determine in a solution: one per density or coordinate of a model with components, the trace of the data
-resolution matrix for the regularized sector grids and point masses. The Akaike information criterion, AIC = χ² + 2 ×
+<p><strong>Parameters and AIC.</strong> The number of parameters is how many independent quantities a solution takes from the
+measurements: one per density or coordinate of a model with components, and one per size chosen on a grid; for the
+regularized sector grids and point masses, the effective number, the trace of the data resolution matrix. The Akaike information criterion, AIC = χ² + 2 ×
 effective parameters, ranks solutions of different kinds on the same terms: lower is better, a difference below 2 is a
 tie, above 10 a strong preference (<a href="../../inversion/statistics.html#comparing-models-the-akaike-information-criterion">Goodness of fit</a>).
 Sector grids and point masses are regularized with the parameter of lowest AIC.</p>
@@ -354,28 +351,30 @@ fitted to.</p>
 <p><strong>GRASS.</strong> For Dimorphos, ROB gives the acceleration at one point on the surface, as the GRASS gravimeter on a lander
 would measure it. Each solution's prediction is compared in magnitude and direction.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Link to this section">#</a></h2>
-<p>For every package <code>projects/hera_hlp6/analyze_rob.m</code> fits the solutions and <code>rob_figures.m</code> makes the figures and
-tables of its page:</p>
+<p>For every package the runners in <code>projects/hera_hlp6/rob/</code> fit the three solutions and make the figures and tables of
+its page (<a href="../../projects/rob/code.html">Code of the ROB solutions</a>); <code>projects/hera_hlp6/analyze_rob.m</code> chose their models:</p>
 <ol>
 <li><strong>Reading</strong> (<a class="xref xref-fn" href="../../reference/internal.html#sbtk.interpret.anomaly"><code>sbtk.interpret.anomaly</code></a>, <a class="xref xref-fn" href="../../reference/internal.html#sbtk.interpret.geometry"><code>sbtk.interpret.geometry</code></a>): C − C_CD coefficient by coefficient, the
    center-of-mass offset, the axes of degree 2, each degree as a map.</li>
 <li><strong>Models with components</strong> chosen from the reading (<code>rob_candidates.m</code>): a core placed by its χ² profile along
-   the center-of-mass offset and then by Gauss–Newton, layers, tori, ellipsoids, and polar caps and spheres where the
-   reading put mass. The fits run on the 49,152-facet versions of the shape models with the measurements moved to
-   them (<a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.to_reduced_shape"><code>sbtk.data.to_reduced_shape</code></a>).</li>
-<li><strong>The search</strong> (<a class="xref xref-fn" href="../../reference/internal.html#sbtk.search.run"><code>sbtk.search.run</code></a>) of a core, a torus and a layer, and compact masses.</li>
-<li><strong>Sector grids</strong> (1 × 4 × 8 and 2 × 4 × 8) and <strong>point masses</strong> (both weightings), each with the regularization
-   parameter of lowest AIC.</li>
-<li><strong>Comparison</strong> of the best solution of each kind by AIC, coefficient by coefficient, on two planes through the
-   body, against ROB's exact values to degree 10, and for Dimorphos at the GRASS surface point.</li>
+   the center-of-mass offset and then by Gauss–Newton, layers, tori, ellipsoids, a light column along the spin axis,
+   and polar caps and spheres where the reading put mass; and two searches (<a class="xref xref-fn" href="../../reference/internal.html#sbtk.search.run"><code>sbtk.search.run</code></a>): a core, a torus and
+   a layer with their sizes on a grid, and a dense and a light sphere started where the point masses put the mass;
+   both with compact masses added while they pass the likelihood-ratio test. The model of lowest AIC is the
+   package's model with components. The fits run on the 49,152-facet versions of the shape models with the
+   measurements moved to them (<a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.to_reduced_shape"><code>sbtk.data.to_reduced_shape</code></a>).</li>
+<li><strong>Sector grids</strong> (1 × 4 × 8 and 2 × 4 × 8; the one of lower AIC) and <strong>point masses</strong> (both weightings), each with
+   the regularization parameter of lowest AIC.</li>
+<li><strong>Comparison</strong> of the three solutions, coefficient by coefficient, on two planes through the body, against ROB's
+   exact values to degree 10, and for Dimorphos at the GRASS surface point.</li>
 </ol>
 </article>
-<nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../../projects/didymos-dimorphos-values.html" rel="prev"><span>Previous</span>Didymos and Dimorphos values</a><a class="next" href="../../projects/rob/data1.html" rel="next"><span>Next</span>ROB-DATA1: Didymos</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-28.</footer>
+<nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../../projects/didymos-dimorphos-values.html" rel="prev"><span>Previous</span>Didymos and Dimorphos values</a><a class="next" href="../../projects/rob/code.html" rel="next"><span>Next</span>Code of the ROB solutions</a></nav>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-29.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#the-packages">The packages</a></li><li class="lvl2"><a href="#uncertainties">Uncertainties</a></li><li class="lvl2"><a href="#what-the-six-packages-show">What the six packages show</a></li><li class="lvl2"><a href="#results">Results</a></li><li class="lvl2"><a href="#point-masses-sensitivity-or-equal-weighting">Point masses: sensitivity or equal weighting</a></li><li class="lvl2"><a href="#how-to-read-these-pages">How to read these pages</a></li><li class="lvl2"><a href="#method">Method</a></li></ul></nav>
 </div>
-<script src="../../assets/search-index.js?v=1e2e3a45e3"></script>
-<script src="../../assets/site.js?v=1e2e3a45e3"></script>
+<script src="../../assets/search-index.js?v=784437df24"></script>
+<script src="../../assets/site.js?v=784437df24"></script>
 </body>
 </html>

@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="en" data-root="../../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Code of the ROB solutions — SBTK documentation</title>
+<link rel="stylesheet" href="../../assets/site.css?v=784437df24">
+<link rel="stylesheet" href="../../assets/pygments.css?v=784437df24">
+<link rel="stylesheet" href="../../assets/print.css?v=784437df24" media="print">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="topbar">
+  <button class="navtoggle" type="button" aria-controls="sidebar" aria-expanded="false">Contents</button>
+  <a class="sitename" href="../../index.html">SBTK documentation</a>
+  <span class="version">version 1.0.0</span>
+  <div class="search" role="search">
+    <label for="search-input" class="visually-hidden">Search the documentation</label>
+    <input id="search-input" type="search" placeholder="Search (press /)" autocomplete="off"
+           aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+    <ul id="search-results" role="listbox" hidden></ul>
+  </div>
+  <a class="toplink" href="../../print.html">Single-page version</a>
+  <a class="toplink" href="../../SBTK_handbook.pdf">PDF handbook</a>
+</header>
+<div class="frame">
+<nav id="sidebar" class="sidebar" aria-label="Documentation pages"><ul><li class="navcat"><span class="navcat-title">Overview</span><ul><li><a href="../../index.html">SBTK: Small Body Toolkit</a></li><li><a href="../../overview/limitations.html">Assumptions and limitations</a></li></ul></li><li class="navcat"><span class="navcat-title">Getting started</span><ul><li><a href="../../getting-started/installation.html">Installation</a></li><li><a href="../../getting-started/first-script.html">First script</a></li></ul></li><li class="navcat"><span class="navcat-title">Conventions</span><ul><li><a href="../../conventions/units.html">Units</a></li><li><a href="../../conventions/coordinates.html">Coordinate systems and origins</a></li><li><a href="../../conventions/gravity-coefficients.html">Gravity coefficients</a></li><li><a href="../../conventions/gravity-frames.html">Frames of a gravity field</a></li><li><a href="../../conventions/moments-of-inertia.html">Moments of inertia</a></li></ul></li><li class="navcat"><span class="navcat-title">Models and calculations</span><ul><li><a href="../../models/shape-models.html">Shape models</a></li><li><a href="../../models/density-distributions.html">Density distributions</a></li><li><a href="../../models/forward-model.html">Gravity and moment calculations</a></li></ul></li><li class="navcat"><span class="navcat-title">Measurements and inversion</span><ul><li><a href="../../inversion/measurements.html">Measurement sets</a></li><li><a href="../../inversion/expansion-point-uncertainties.html">Uncertainties and the expansion point</a></li><li><a href="../../inversion/reading-coefficients.html">Reading the gravity coefficients</a></li><li><a href="../../inversion/density-estimation.html">Density estimation</a></li><li><a href="../../inversion/coefficient-subsets.html">Fitting part of the coefficients</a></li><li><a href="../../inversion/statistics.html">Goodness of fit and model comparison</a></li></ul></li><li class="navcat"><span class="navcat-title">Kinds of solution</span><ul><li><a href="../../inversion/component-models.html">Models with components</a></li><li><a href="../../inversion/geometry-search.html">Searching the geometry</a></li><li><a href="../../inversion/sector-grids.html">Sector grids</a></li><li><a href="../../inversion/point-masses.html">Point masses</a></li></ul></li><li class="navcat"><span class="navcat-title">Files</span><ul><li><a href="../../files/results-folders.html">Results folders and figures</a></li><li><a href="../../files/exchange-packages.html">Exchange packages</a></li></ul></li><li class="navcat"><span class="navcat-title">Examples</span><ul><li><a href="../../examples/density-models.html">Density models by component type</a></li><li><a href="../../examples/calculations.html">Calculations</a></li><li><a href="../../examples/tutorials.html">Tutorial scripts</a></li></ul></li><li class="navcat"><span class="navcat-title">Projects</span><ul><li><a href="../../projects/template.html">Project template</a></li><li><a href="../../projects/bennu.html">Bennu</a></li><li><a href="../../projects/hera-blind-test.html">Hera blind test</a></li><li><a href="../../projects/didymos-dimorphos-values.html">Didymos and Dimorphos values</a></li></ul></li><li class="navcat"><span class="navcat-title">Testing with ROB data</span><ul><li><a href="../../projects/rob/index.html">Testing with ROB data</a></li><li><a href="../../projects/rob/code.html" aria-current="page" class="current">Code of the ROB solutions</a></li><li><a href="../../projects/rob/data1.html">ROB-DATA1: Didymos</a></li><li><a href="../../projects/rob/data2.html">ROB-DATA2: Didymos</a></li><li><a href="../../projects/rob/data3.html">ROB-DATA3: Didymos</a></li><li><a href="../../projects/rob/data4.html">ROB-DATA4: Dimorphos</a></li><li><a href="../../projects/rob/data5.html">ROB-DATA5: Dimorphos</a></li><li><a href="../../projects/rob/data6.html">ROB-DATA6: Dimorphos</a></li></ul></li><li class="navcat"><span class="navcat-title">Reference</span><ul><li><a href="../../reference/api.html">API reference</a></li><li><a href="../../reference/api/sbtk.html">sbtk</a></li><li><a href="../../reference/api/units.html">sbtk.units</a></li><li><a href="../../reference/api/shape.html">sbtk.shape</a></li><li><a href="../../reference/api/body.html">sbtk.body</a></li><li><a href="../../reference/api/interior.html">sbtk.interior</a></li><li><a href="../../reference/api/gravity.html">sbtk.gravity</a></li><li><a href="../../reference/api/data.html">sbtk.data</a></li><li><a href="../../reference/api/interpret.html">sbtk.interpret</a></li><li><a href="../../reference/api/invert.html">sbtk.invert</a></li><li><a href="../../reference/api/search.html">sbtk.search</a></li><li><a href="../../reference/api/compare.html">sbtk.compare</a></li><li><a href="../../reference/api/exchange.html">sbtk.exchange</a></li><li><a href="../../reference/api/io.html">sbtk.io</a></li><li><a href="../../reference/api/plot.html">sbtk.plot</a></li><li><a href="../../reference/data-structures.html">Data structures</a></li><li><a href="../../reference/errors.html">Error identifiers</a></li><li><a href="../../reference/internal.html">Internal functions</a></li></ul></li><li class="navcat"><span class="navcat-title">Validation</span><ul><li><a href="../../validation/tests.html">Validation and tests</a></li></ul></li></ul></nav>
+<main id="content" tabindex="-1">
+<nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../../index.html">Documentation</a> › Testing with ROB data › <span aria-current="page">Code of the ROB solutions</span></nav>
+<article>
+<h1 id="code-of-the-rob-solutions">Code of the ROB solutions<a class="headerlink" href="#code-of-the-rob-solutions" title="Link to this section">#</a></h1>
+<p class="lastedit">Last edited October 29, 2026</p>
+<p>Every solution on these pages is made by its own script in <code>projects/hera_hlp6/rob/</code>: for each
+package, one runner per kind of solution and one script for the figures and tables of its page.
+Change a model or an option in a runner and run it again; the figure script reads the newest run of
+each runner.</p>
+<table>
+<thead>
+<tr>
+<th>Script</th>
+<th>What it does</th>
+<th>Run folder in <code>results/hera_hlp6/</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rob&lt;n&gt;_components.m</code></td>
+<td>fits the model with components chosen for the package; the header says why</td>
+<td><code>&lt;date_time&gt;_ROB-DATA&lt;n&gt;_components</code></td>
+</tr>
+<tr>
+<td><code>rob&lt;n&gt;_sectors.m</code></td>
+<td>fits a sector grid with the Tikhonov parameter of the lowest AIC</td>
+<td><code>&lt;date_time&gt;_ROB-DATA&lt;n&gt;_sectors</code></td>
+</tr>
+<tr>
+<td><code>rob&lt;n&gt;_point_masses.m</code></td>
+<td>fits about 2,700 point masses with the Tikhonov parameter of the lowest AIC; <code>weighting</code> is <code>"sensitivity"</code> or <code>"equal"</code></td>
+<td><code>&lt;date_time&gt;_ROB-DATA&lt;n&gt;_point_masses_&lt;weighting&gt;</code></td>
+</tr>
+<tr>
+<td><code>rob&lt;n&gt;_figures.m</code></td>
+<td>the figures and tables of the page, one section per figure</td>
+<td><code>&lt;date_time&gt;_ROB-DATA&lt;n&gt;_figures</code></td>
+</tr>
+</tbody>
+</table>
+<p>Run them in this order: the point masses (once with each weighting), the sector grid, the model with
+components (<code>rob2_components.m</code> starts from the point masses), the figures. The Didymos runners take
+seconds to a few minutes; each Dimorphos runner adds several minutes for the GRASS surface point.</p>
+<p>The runners share a few functions in the same folder:</p>
+<table>
+<thead>
+<tr>
+<th>Function</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rob_package(number)</code></td>
+<td>reads ROB-DATA&lt;number&gt; with the Hera radio-science uncertainties: degrees 1 to 5 for Didymos, 1 to 3 for Dimorphos, and <span class="nobr"><math alttext="I_xx, I_yy, I_zz" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>x</mi><mi>x</mi></mrow></msub><mo>&#x0002C;</mo><msub><mi>I</mi><mrow><mi>y</mi><mi>y</mi></mrow></msub><mo>&#x0002C;</mo><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub></mrow></math>,</span> on the 49,152-facet shape model; and ROB's exact values to degree 10</td>
+</tr>
+<tr>
+<td><code>rob_solution(name, kind, result)</code></td>
+<td>a fit or point masses in the form the figures read: the model, χ², the number of parameters, AIC, p</td>
+</tr>
+<tr>
+<td><code>rob_load(number, run)</code></td>
+<td>the solution of the newest run of a runner</td>
+</tr>
+<tr>
+<td><code>rob_grass(number, body_full, model)</code></td>
+<td>the acceleration a model predicts at the GRASS surface point, against ROB's</td>
+</tr>
+<tr>
+<td><code>rob_reproduced(a, exact, degrees)</code></td>
+<td>the fraction of ROB's exact anomaly a solution reproduces</td>
+</tr>
+<tr>
+<td><code>rob_tables(...)</code>, <code>rob_grass_table(...)</code></td>
+<td>the Markdown tables of a page</td>
+</tr>
+</tbody>
+</table>
+<p>Every runner has the same sections. DATA reads the package. MODEL is the interior that is fitted.
+OPTIONS are those of <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.options"><code>sbtk.invert.options</code></a>. RUN fits, reports in a new run folder and saves
+<code>solution.mat</code>. For Dimorphos, SURFACE POINT predicts the GRASS acceleration.</p>
+<h2 id="the-models-with-components">The models with components<a class="headerlink" href="#the-models-with-components" title="Link to this section">#</a></h2>
+<p>Each package has its own model, chosen by reading the coefficients and ranked against the other
+candidates by AIC (see <a href="#how-the-models-were-chosen">How the models were chosen</a>).</p>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB script: projects/hera_hlp6/rob/data1/rob1_components.m</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><span class="c">%% ROB1_COMPONENTS  ROB-DATA1 (Didymos): a light column along the spin axis and two dense equatorial ellipsoids.</span>
+<span class="c">%</span>
+<span class="c">% The reading of the coefficients (documentation: Testing with ROB data &gt; ROB-DATA1): J2 is</span>
+<span class="c">% higher and C22, S22 say mass has moved from the spin axis toward the two ends of one</span>
+<span class="c">% equatorial axis, at longitudes about -20 and 160 deg; degree 1 says the 160 deg end is</span>
+<span class="c">% heavier. A light column (a prolate ellipsoid about the spin axis through the center of figure)</span>
+<span class="c">% takes mass from along the axis; a dense ellipsoid at each end of the equatorial axis puts it</span>
+<span class="c">% there. Of the models tried (rob_candidates.m, ranked by analyze_rob.m) this one has the</span>
+<span class="c">% lowest AIC. Fits the background density, the three relative densities and the centers of</span>
+<span class="c">% the two ellipsoids to the coefficients of degrees 1-5 and Ixx, Iyy, Izz.</span>
+<span class="c">% Writes results/hera_hlp6/&lt;date_time&gt;_ROB-DATA1_components/: solution.mat (read by</span>
+<span class="c">% rob1_figures.m), fit.txt/.mat, homogeneous.txt, settings.json, log.txt, figures/.</span>
+
+<span class="nb">clear</span><span class="p">;</span><span class="w"> </span><span class="n">close</span><span class="w"> </span><span class="s">all</span><span class="p">;</span>
+<span class="n">here</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">mfilename</span><span class="p">(</span><span class="s">&#39;fullpath&#39;</span><span class="p">));</span><span class="w">                   </span><span class="c">% this package&#39;s folder</span>
+<span class="n">rob</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="nb">fileparts</span><span class="p">(</span><span class="n">here</span><span class="p">);</span><span class="w">                                    </span><span class="c">% rob/: the functions the runners share</span>
+<span class="n">hlp6</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">fileparts</span><span class="p">(</span><span class="n">rob</span><span class="p">);</span><span class="w">                                     </span><span class="c">% hera_hlp6/: rob_data.m, hlp6_uncertainties.m</span>
+<span class="nb">addpath</span><span class="p">(</span><span class="n">rob</span><span class="p">,</span><span class="w"> </span><span class="n">hlp6</span><span class="p">,</span><span class="w"> </span><span class="nb">fullfile</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="n">hlp6</span><span class="p">)),</span><span class="w"> </span><span class="s">&#39;toolbox&#39;</span><span class="p">));</span>
+
+<span class="c">%% DATA</span>
+<span class="n">number</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w">                                                </span><span class="c">% ROB-DATA1</span>
+<span class="p">[</span><span class="n">obs</span><span class="p">,</span><span class="w"> </span><span class="n">body</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">rob_package</span><span class="p">(</span><span class="n">number</span><span class="p">);</span><span class="w">                         </span><span class="c">% degrees 1-5 and Ixx, Iyy, Izz, Hera uncertainties</span>
+
+<span class="c">%% MODEL</span>
+<span class="n">cof</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">body</span><span class="p">.</span><span class="n">centroid_km</span><span class="p">;</span><span class="w">                                    </span><span class="c">% positions are from the center of figure</span>
+<span class="n">rm</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">body</span><span class="p">.</span><span class="n">volume_km3</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="nb">pi</span><span class="p">))</span><span class="o">^</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">);</span><span class="w">                    </span><span class="c">% mean radius [km]</span>
+<span class="n">u</span><span class="w">   </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="nb">cosd</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="nb">sind</span><span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="mi">0</span><span class="p">];</span><span class="w">                             </span><span class="c">% the equatorial axis of degree 2</span>
+column = <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.ellipsoid">sbtk.interior.ellipsoid</a>(&quot;column&quot;, cof, [0.25 0.25 0.70]*rm, [0 0 0], 0);
+east   = <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.ellipsoid">sbtk.interior.ellipsoid</a>(&quot;east&quot;, cof + 0.6*rm*u, [0.35 0.20 0.20]*rm, [-20 0 0], 0);
+west   = <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.ellipsoid">sbtk.interior.ellipsoid</a>(&quot;west&quot;, cof - 0.6*rm*u, [0.35 0.20 0.20]*rm, [160 0 0], 0);
+<span class="n">east</span><span class="p">.</span><span class="n">estimate_position</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="n">west</span><span class="p">.</span><span class="n">estimate_position</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="n">components</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="n">column</span><span class="w"> </span><span class="n">east</span><span class="w"> </span><span class="n">west</span><span class="p">];</span>
+
+<span class="c">%% OPTIONS</span>
+opts = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.options">sbtk.invert.options</a>(moi_labels={&#39;Ixx&#39;, &#39;Iyy&#39;, &#39;Izz&#39;});
+<span class="n">opts</span><span class="p">.</span><span class="n">background</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;estimate&quot;</span><span class="p">;</span><span class="w">                              </span><span class="c">% the background density is fitted too</span>
+
+<span class="c">%% RUN</span>
+out  = <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.new_run">sbtk.io.new_run</a>(&quot;hera_hlp6&quot;, sprintf(&quot;ROB-DATA%d_components&quot;, number));
+prob = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.setup">sbtk.invert.setup</a>(body, components, obs, opts);
+fit  = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.run">sbtk.invert.run</a>(prob);
+<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.report_inversion">sbtk.io.report_inversion</a>(out, body, fit, <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.homogeneous">sbtk.invert.homogeneous</a>(prob));
+<span class="n">solution</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">rob_solution</span><span class="p">(</span><span class="s">&quot;light column along the spin axis, two equatorial ellipsoids&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;components&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fit</span><span class="p">);</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;AIC %.1f with %.0f parameters, reduced chi-square %.2f, p = %.2g\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">solution</span><span class="p">.</span><span class="n">aic</span><span class="p">,</span><span class="w"> </span><span class="n">solution</span><span class="p">.</span><span class="n">parameters</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">        </span><span class="n">solution</span><span class="p">.</span><span class="n">chi2_reduced</span><span class="p">,</span><span class="w"> </span><span class="n">solution</span><span class="p">.</span><span class="n">p_value</span><span class="p">);</span>
+
+<span class="nb">save</span><span class="p">(</span><span class="nb">fullfile</span><span class="p">(</span><span class="n">out</span><span class="p">.</span><span class="n">folder</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;solution.mat&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&#39;solution&#39;</span><span class="p">);</span>
+<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.finish_run">sbtk.io.finish_run</a>(out);</code></pre></div>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB script: projects/hera_hlp6/rob/data2/rob2_components.m</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><span class="c">%% ROB2_COMPONENTS  ROB-DATA2 (Didymos): a dense and a light sphere, and compact masses where the measurements ask for them.</span>
+<span class="c">%</span>
+<span class="c">% The reading of the coefficients (documentation: Testing with ROB data &gt; ROB-DATA2): the center</span>
+<span class="c">% of mass is 2.3 m off center toward the south, degree 2 is tilted 58 deg from the equator and</span>
+<span class="c">% degree 3 is large. No model of a core, a torus and a layer fits (rob_candidates.m,</span>
+<span class="c">% analyze_rob.m). The point masses (rob2_point_masses.m: run it first) put the excess below the</span>
+<span class="c">% equator toward -x and -y and the deficit toward +y and the north. This model starts a dense</span>
+<span class="c">% and a light sphere at the centroids of the point masses&#39; positive and negative mass and fits</span>
+<span class="c">% their densities and centers; then compact masses (spheres of a quarter of the mean radius,</span>
+<span class="c">% from a grid of candidate positions) are added one at a time while each passes the</span>
+<span class="c">% likelihood-ratio test at the 5% level, every position refitted each time (sbtk.search.run).</span>
+<span class="c">% Of the models tried this one has the lowest AIC. Fitted to the coefficients of degrees 1-5</span>
+<span class="c">% and Ixx, Iyy, Izz. A few minutes.</span>
+<span class="c">% Writes results/hera_hlp6/&lt;date_time&gt;_ROB-DATA2_components/: solution.mat (read by</span>
+<span class="c">% rob2_figures.m), search.txt, fit.txt/.mat, homogeneous.txt, settings.json, log.txt, figures/.</span>
+
+<span class="nb">clear</span><span class="p">;</span><span class="w"> </span><span class="n">close</span><span class="w"> </span><span class="s">all</span><span class="p">;</span>
+<span class="n">here</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">mfilename</span><span class="p">(</span><span class="s">&#39;fullpath&#39;</span><span class="p">));</span><span class="w">                   </span><span class="c">% this package&#39;s folder</span>
+<span class="n">rob</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="nb">fileparts</span><span class="p">(</span><span class="n">here</span><span class="p">);</span><span class="w">                                    </span><span class="c">% rob/: the functions the runners share</span>
+<span class="n">hlp6</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">fileparts</span><span class="p">(</span><span class="n">rob</span><span class="p">);</span><span class="w">                                     </span><span class="c">% hera_hlp6/: rob_data.m, hlp6_uncertainties.m</span>
+<span class="nb">addpath</span><span class="p">(</span><span class="n">rob</span><span class="p">,</span><span class="w"> </span><span class="n">hlp6</span><span class="p">,</span><span class="w"> </span><span class="nb">fullfile</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="n">hlp6</span><span class="p">)),</span><span class="w"> </span><span class="s">&#39;toolbox&#39;</span><span class="p">));</span>
+
+<span class="c">%% DATA</span>
+<span class="n">number</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w">                                                </span><span class="c">% ROB-DATA2</span>
+<span class="p">[</span><span class="n">obs</span><span class="p">,</span><span class="w"> </span><span class="n">body</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">rob_package</span><span class="p">(</span><span class="n">number</span><span class="p">);</span><span class="w">                         </span><span class="c">% degrees 1-5 and Ixx, Iyy, Izz, Hera uncertainties</span>
+
+<span class="c">%% MODEL</span>
+<span class="n">rm</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">body</span><span class="p">.</span><span class="n">volume_km3</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="nb">pi</span><span class="p">))</span><span class="o">^</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">);</span><span class="w">                     </span><span class="c">% mean radius [km]</span>
+r  = load(fullfile(<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.latest_run">sbtk.io.latest_run</a>(&quot;hera_hlp6&quot;, sprintf(&quot;ROB-DATA%d_point_masses_sensitivity&quot;, number)), ...
+<span class="w">                   </span><span class="s">&quot;point_masses.mat&quot;</span><span class="p">));</span><span class="w">                   </span><span class="c">% where the point masses put the mass</span>
+dense = <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;dense&quot;, r.pm.positive_centroid_km, 0.30*rm, 0);
+light = <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;light&quot;, r.pm.negative_centroid_km, 0.30*rm, 0);
+<span class="n">dense</span><span class="p">.</span><span class="n">estimate_position</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="nb">light</span><span class="p">.</span><span class="n">estimate_position</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="n">components</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="n">dense</span><span class="w"> </span><span class="nb">light</span><span class="p">];</span>
+candidates = <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.sphere_grid">sbtk.interior.sphere_grid</a>(body, rm/4, rm/4);  <span class="c">% compact masses: every quarter of the radius</span>
+
+<span class="c">%% OPTIONS</span>
+opts = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.options">sbtk.invert.options</a>(moi_labels={&#39;Ixx&#39;, &#39;Iyy&#39;, &#39;Izz&#39;});
+<span class="n">opts</span><span class="p">.</span><span class="n">background</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;estimate&quot;</span><span class="p">;</span><span class="w">                              </span><span class="c">% the background density is fitted too</span>
+settings = <a class="xref xref-fn" href="../../reference/internal.html#sbtk.search.settings">sbtk.search.settings</a>(keep=1, max_masses=6, mass_starts=3);
+<span class="n">params</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">struct</span><span class="p">([]);</span><span class="w">                                       </span><span class="c">% no geometry searched on a grid</span>
+
+<span class="c">%% RUN</span>
+out = <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.new_run">sbtk.io.new_run</a>(&quot;hera_hlp6&quot;, sprintf(&quot;ROB-DATA%d_components&quot;, number));
+sr  = <a class="xref xref-fn" href="../../reference/internal.html#sbtk.search.run">sbtk.search.run</a>(body, components, obs, opts, params, candidates, settings);
+<span class="n">fit</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">sr</span><span class="p">.</span><span class="n">best_fit</span><span class="p">;</span>
+<span class="n">writelines</span><span class="p">(</span><span class="n">formattedDisplayText</span><span class="p">(</span><span class="n">sr</span><span class="p">.</span><span class="n">log</span><span class="p">,</span><span class="w"> </span><span class="s">&#39;SuppressMarkup&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">),</span><span class="w"> </span><span class="nb">fullfile</span><span class="p">(</span><span class="n">out</span><span class="p">.</span><span class="n">folder</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;search.txt&quot;</span><span class="p">));</span>
+<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.report_inversion">sbtk.io.report_inversion</a>(out, body, fit, <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.homogeneous">sbtk.invert.homogeneous</a>(<a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.setup">sbtk.invert.setup</a>(body, components, obs, opts)));
+<span class="n">solution</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">rob_solution</span><span class="p">(</span><span class="nb">sprintf</span><span class="p">(</span><span class="s">&quot;dense and light spheres, %d compact masses&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sr</span><span class="p">.</span><span class="n">masses</span><span class="p">.</span><span class="n">n_masses</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;components&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fit</span><span class="p">);</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;AIC %.1f with %.0f parameters, reduced chi-square %.2f, p = %.2g\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">solution</span><span class="p">.</span><span class="n">aic</span><span class="p">,</span><span class="w"> </span><span class="n">solution</span><span class="p">.</span><span class="n">parameters</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">        </span><span class="n">solution</span><span class="p">.</span><span class="n">chi2_reduced</span><span class="p">,</span><span class="w"> </span><span class="n">solution</span><span class="p">.</span><span class="n">p_value</span><span class="p">);</span>
+<span class="nb">save</span><span class="p">(</span><span class="nb">fullfile</span><span class="p">(</span><span class="n">out</span><span class="p">.</span><span class="n">folder</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;solution.mat&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&#39;solution&#39;</span><span class="p">);</span>
+<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.finish_run">sbtk.io.finish_run</a>(out);</code></pre></div>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB script: projects/hera_hlp6/rob/data3/rob3_components.m</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><span class="c">%% ROB3_COMPONENTS  ROB-DATA3 (Didymos): a dense core, a light thick torus about the spin axis and a dense surface layer.</span>
+<span class="c">%</span>
+<span class="c">% The reading of the coefficients (documentation: Testing with ROB data &gt; ROB-DATA3): J2 is 570</span>
+<span class="c">% sigma lower and J4 95 sigma higher than at constant density, and little else changes: a light</span>
+<span class="c">% ring about the spin axis, mass moved out of the equatorial plane. The torus is large and</span>
+<span class="c">% thick: of the four ring and tube radii tried (1.00 or 1.05, 0.25 or 0.30 of the mean radius;</span>
+<span class="c">% rob_candidates.m, ranked by analyze_rob.m) this one has the lowest AIC. The core is placed</span>
+<span class="c">% by its chi-square profile along the center-of-mass offset, then fitted with the densities.</span>
+<span class="c">% Fits the background density, the three relative densities and the core&#39;s center to the</span>
+<span class="c">% coefficients of degrees 1-5 and Ixx, Iyy, Izz.</span>
+<span class="c">% Writes results/hera_hlp6/&lt;date_time&gt;_ROB-DATA3_components/: solution.mat (read by</span>
+<span class="c">% rob3_figures.m), fit.txt/.mat, homogeneous.txt, settings.json, log.txt, figures/.</span>
+
+<span class="nb">clear</span><span class="p">;</span><span class="w"> </span><span class="n">close</span><span class="w"> </span><span class="s">all</span><span class="p">;</span>
+<span class="n">here</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">mfilename</span><span class="p">(</span><span class="s">&#39;fullpath&#39;</span><span class="p">));</span><span class="w">                   </span><span class="c">% this package&#39;s folder</span>
+<span class="n">rob</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="nb">fileparts</span><span class="p">(</span><span class="n">here</span><span class="p">);</span><span class="w">                                    </span><span class="c">% rob/: the functions the runners share</span>
+<span class="n">hlp6</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">fileparts</span><span class="p">(</span><span class="n">rob</span><span class="p">);</span><span class="w">                                     </span><span class="c">% hera_hlp6/: rob_data.m, hlp6_uncertainties.m</span>
+<span class="nb">addpath</span><span class="p">(</span><span class="n">rob</span><span class="p">,</span><span class="w"> </span><span class="n">hlp6</span><span class="p">,</span><span class="w"> </span><span class="nb">fullfile</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="n">hlp6</span><span class="p">)),</span><span class="w"> </span><span class="s">&#39;toolbox&#39;</span><span class="p">));</span>
+
+<span class="c">%% DATA</span>
+<span class="n">number</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span><span class="w">                                                </span><span class="c">% ROB-DATA3</span>
+<span class="p">[</span><span class="n">obs</span><span class="p">,</span><span class="w"> </span><span class="n">body</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">rob_package</span><span class="p">(</span><span class="n">number</span><span class="p">);</span><span class="w">                         </span><span class="c">% degrees 1-5 and Ixx, Iyy, Izz, Hera uncertainties</span>
+
+<span class="c">%% MODEL</span>
+<span class="n">cof</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">body</span><span class="p">.</span><span class="n">centroid_km</span><span class="p">;</span><span class="w">                                    </span><span class="c">% positions are from the center of figure</span>
+<span class="n">rm</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">body</span><span class="p">.</span><span class="n">volume_km3</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="nb">pi</span><span class="p">))</span><span class="o">^</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">);</span><span class="w">                    </span><span class="c">% mean radius [km]</span>
+core  = <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, cof, 0.40*rm, 0);
+<span class="n">core</span><span class="p">.</span><span class="n">estimate_position</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+torus = <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.torus">sbtk.interior.torus</a>(&quot;torus&quot;, 1.05*rm, 0.30*rm, 0, 0);   <span class="c">% about the z-axis</span>
+<span class="n">torus</span><span class="p">.</span><span class="n">center_km</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">cof</span><span class="p">;</span>
+layer = <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;, 0, 0.03*rm, 0);        <span class="c">% from the surface to 3% of the radius deep</span>
+<span class="n">components</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="n">core</span><span class="w"> </span><span class="n">torus</span><span class="w"> </span><span class="n">layer</span><span class="p">];</span>
+
+<span class="c">%% OPTIONS</span>
+opts = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.options">sbtk.invert.options</a>(moi_labels={&#39;Ixx&#39;, &#39;Iyy&#39;, &#39;Izz&#39;});
+<span class="n">opts</span><span class="p">.</span><span class="n">background</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;estimate&quot;</span><span class="p">;</span><span class="w">                              </span><span class="c">% the background density is fitted too</span>
+
+<span class="c">%% RUN</span>
+out  = <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.new_run">sbtk.io.new_run</a>(&quot;hera_hlp6&quot;, sprintf(&quot;ROB-DATA%d_components&quot;, number));
+<span class="c">% 1. Place the core: chi-square along the measured center-of-mass offset, the rest of the</span>
+<span class="c">%    geometry fixed (sbtk.invert.scan_position), from -0.4 to 0.4 mean radii of the center.</span>
+an = <a class="xref xref-fn" href="../../reference/internal.html#sbtk.interpret.anomaly">sbtk.interpret.anomaly</a>(obs, body, obs.degree);
+<span class="n">u</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="n">an</span><span class="p">.</span><span class="n">com_offset_km</span><span class="o">/</span><span class="nb">norm</span><span class="p">(</span><span class="n">an</span><span class="p">.</span><span class="n">com_offset_km</span><span class="p">);</span>
+<span class="n">fixed</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">components</span><span class="p">;</span>
+<span class="p">[</span><span class="n">fixed</span><span class="p">.</span><span class="n">estimate_position</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">deal</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+scan = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.scan_position">sbtk.invert.scan_position</a>(<a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.setup">sbtk.invert.setup</a>(body, fixed, obs, opts), &quot;core&quot;, cof + (-0.40:0.025:0.40)&#39;*rm*u);
+<span class="n">components</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">center_km</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">scan</span><span class="p">.</span><span class="n">centers_km</span><span class="p">(</span><span class="n">scan</span><span class="p">.</span><span class="n">best</span><span class="p">,</span><span class="w"> </span><span class="p">:);</span>
+<span class="c">% 2. Fit the densities and the core&#39;s position from there (Gauss-Newton).</span>
+prob = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.setup">sbtk.invert.setup</a>(body, components, obs, opts);
+fit  = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.run">sbtk.invert.run</a>(prob);
+<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.report_inversion">sbtk.io.report_inversion</a>(out, body, fit, <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.homogeneous">sbtk.invert.homogeneous</a>(prob));
+<span class="n">solution</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">rob_solution</span><span class="p">(</span><span class="s">&quot;core, torus, layer&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;components&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fit</span><span class="p">);</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;AIC %.1f with %.0f parameters, reduced chi-square %.2f, p = %.2g\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">solution</span><span class="p">.</span><span class="n">aic</span><span class="p">,</span><span class="w"> </span><span class="n">solution</span><span class="p">.</span><span class="n">parameters</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">        </span><span class="n">solution</span><span class="p">.</span><span class="n">chi2_reduced</span><span class="p">,</span><span class="w"> </span><span class="n">solution</span><span class="p">.</span><span class="n">p_value</span><span class="p">);</span>
+
+<span class="nb">save</span><span class="p">(</span><span class="nb">fullfile</span><span class="p">(</span><span class="n">out</span><span class="p">.</span><span class="n">folder</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;solution.mat&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&#39;solution&#39;</span><span class="p">);</span>
+<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.finish_run">sbtk.io.finish_run</a>(out);</code></pre></div>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB script: projects/hera_hlp6/rob/data4/rob4_components.m</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><span class="c">%% ROB4_COMPONENTS  ROB-DATA4 (Dimorphos): a core, a torus about the spin axis and a surface layer.</span>
+<span class="c">%</span>
+<span class="c">% The reading of the coefficients (documentation: Testing with ROB data &gt; ROB-DATA4): C22 is 50</span>
+<span class="c">% sigma lower (mass toward the ends of the y-axis) and the center of mass is 1.8 m toward -y,</span>
+<span class="c">% so the -y end carries more; J2 is 21 sigma higher. A dense core on the -y side makes C22 and</span>
+<span class="c">% the offset; a torus about the spin axis and a surface layer the part of J2 the core does not.</span>
+<span class="c">% Of the models tried (rob_candidates.m and two searches of the geometry, ranked by</span>
+<span class="c">% analyze_rob.m) this one has the lowest AIC. The core is placed by its chi-square profile</span>
+<span class="c">% along the center-of-mass offset, then fitted with the densities; Gauss-Newton moves it</span>
+<span class="c">% outward and lowers its density (degree 2 trades one against the other). Fits the background</span>
+<span class="c">% density, the three relative densities and the core&#39;s center to the coefficients of degrees</span>
+<span class="c">% 1-3 and Ixx, Iyy, Izz; then predicts the acceleration at the GRASS surface point (several</span>
+<span class="c">% minutes).</span>
+<span class="c">% Writes results/hera_hlp6/&lt;date_time&gt;_ROB-DATA4_components/: solution.mat (read by</span>
+<span class="c">% rob4_figures.m), fit.txt/.mat, homogeneous.txt, settings.json, log.txt, figures/.</span>
+
+<span class="nb">clear</span><span class="p">;</span><span class="w"> </span><span class="n">close</span><span class="w"> </span><span class="s">all</span><span class="p">;</span>
+<span class="n">here</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">mfilename</span><span class="p">(</span><span class="s">&#39;fullpath&#39;</span><span class="p">));</span><span class="w">                   </span><span class="c">% this package&#39;s folder</span>
+<span class="n">rob</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="nb">fileparts</span><span class="p">(</span><span class="n">here</span><span class="p">);</span><span class="w">                                    </span><span class="c">% rob/: the functions the runners share</span>
+<span class="n">hlp6</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">fileparts</span><span class="p">(</span><span class="n">rob</span><span class="p">);</span><span class="w">                                     </span><span class="c">% hera_hlp6/: rob_data.m, hlp6_uncertainties.m</span>
+<span class="nb">addpath</span><span class="p">(</span><span class="n">rob</span><span class="p">,</span><span class="w"> </span><span class="n">hlp6</span><span class="p">,</span><span class="w"> </span><span class="nb">fullfile</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="n">hlp6</span><span class="p">)),</span><span class="w"> </span><span class="s">&#39;toolbox&#39;</span><span class="p">));</span>
+
+<span class="c">%% DATA</span>
+<span class="n">number</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w">                                                </span><span class="c">% ROB-DATA4</span>
+<span class="p">[</span><span class="n">obs</span><span class="p">,</span><span class="w"> </span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="o">~</span><span class="p">,</span><span class="w"> </span><span class="o">~</span><span class="p">,</span><span class="w"> </span><span class="n">body_full</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">rob_package</span><span class="p">(</span><span class="n">number</span><span class="p">);</span><span class="w">        </span><span class="c">% degrees 1-3 and Ixx, Iyy, Izz, Hera uncertainties</span>
+
+<span class="c">%% MODEL</span>
+<span class="n">cof</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">body</span><span class="p">.</span><span class="n">centroid_km</span><span class="p">;</span><span class="w">                                    </span><span class="c">% positions are from the center of figure</span>
+<span class="n">rm</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">body</span><span class="p">.</span><span class="n">volume_km3</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="nb">pi</span><span class="p">))</span><span class="o">^</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">);</span><span class="w">                    </span><span class="c">% mean radius [km]</span>
+core  = <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, cof, 0.40*rm, 0);
+<span class="n">core</span><span class="p">.</span><span class="n">estimate_position</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+torus = <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.torus">sbtk.interior.torus</a>(&quot;torus&quot;, 0.95*rm, 0.15*rm, 0, 0);   <span class="c">% about the z-axis</span>
+<span class="n">torus</span><span class="p">.</span><span class="n">center_km</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">cof</span><span class="p">;</span>
+layer = <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;, 0, 0.03*rm, 0);        <span class="c">% from the surface to 3% of the radius deep</span>
+<span class="n">components</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="n">core</span><span class="w"> </span><span class="n">torus</span><span class="w"> </span><span class="n">layer</span><span class="p">];</span>
+
+<span class="c">%% OPTIONS</span>
+opts = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.options">sbtk.invert.options</a>(moi_labels={&#39;Ixx&#39;, &#39;Iyy&#39;, &#39;Izz&#39;});
+<span class="n">opts</span><span class="p">.</span><span class="n">background</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;estimate&quot;</span><span class="p">;</span><span class="w">                              </span><span class="c">% the background density is fitted too</span>
+
+<span class="c">%% RUN</span>
+out  = <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.new_run">sbtk.io.new_run</a>(&quot;hera_hlp6&quot;, sprintf(&quot;ROB-DATA%d_components&quot;, number));
+<span class="c">% 1. Place the core: chi-square along the measured center-of-mass offset, the rest of the</span>
+<span class="c">%    geometry fixed (sbtk.invert.scan_position), from -0.4 to 0.4 mean radii of the center.</span>
+an = <a class="xref xref-fn" href="../../reference/internal.html#sbtk.interpret.anomaly">sbtk.interpret.anomaly</a>(obs, body, obs.degree);
+<span class="n">u</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="n">an</span><span class="p">.</span><span class="n">com_offset_km</span><span class="o">/</span><span class="nb">norm</span><span class="p">(</span><span class="n">an</span><span class="p">.</span><span class="n">com_offset_km</span><span class="p">);</span>
+<span class="n">fixed</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">components</span><span class="p">;</span>
+<span class="p">[</span><span class="n">fixed</span><span class="p">.</span><span class="n">estimate_position</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">deal</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+scan = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.scan_position">sbtk.invert.scan_position</a>(<a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.setup">sbtk.invert.setup</a>(body, fixed, obs, opts), &quot;core&quot;, cof + (-0.40:0.025:0.40)&#39;*rm*u);
+<span class="n">components</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">center_km</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">scan</span><span class="p">.</span><span class="n">centers_km</span><span class="p">(</span><span class="n">scan</span><span class="p">.</span><span class="n">best</span><span class="p">,</span><span class="w"> </span><span class="p">:);</span>
+<span class="c">% 2. Fit the densities and the core&#39;s position from there (Gauss-Newton).</span>
+prob = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.setup">sbtk.invert.setup</a>(body, components, obs, opts);
+fit  = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.run">sbtk.invert.run</a>(prob);
+<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.report_inversion">sbtk.io.report_inversion</a>(out, body, fit, <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.homogeneous">sbtk.invert.homogeneous</a>(prob));
+<span class="n">solution</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">rob_solution</span><span class="p">(</span><span class="s">&quot;core, torus, layer&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;components&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fit</span><span class="p">);</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;AIC %.1f with %.0f parameters, reduced chi-square %.2f, p = %.2g\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">solution</span><span class="p">.</span><span class="n">aic</span><span class="p">,</span><span class="w"> </span><span class="n">solution</span><span class="p">.</span><span class="n">parameters</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">        </span><span class="n">solution</span><span class="p">.</span><span class="n">chi2_reduced</span><span class="p">,</span><span class="w"> </span><span class="n">solution</span><span class="p">.</span><span class="n">p_value</span><span class="p">);</span>
+
+<span class="c">%% SURFACE POINT</span>
+<span class="c">% The acceleration the model predicts at the GRASS point, on the full-resolution shape model.</span>
+<span class="n">solution</span><span class="p">.</span><span class="n">grass</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">rob_grass</span><span class="p">(</span><span class="n">number</span><span class="p">,</span><span class="w"> </span><span class="n">body_full</span><span class="p">,</span><span class="w"> </span><span class="n">fit</span><span class="p">);</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;GRASS: acceleration %+.1f%% of ROB&#39;&#39;s, %.1f deg from it\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">solution</span><span class="p">.</span><span class="n">grass</span><span class="p">.</span><span class="n">error_percent</span><span class="p">,</span><span class="w"> </span><span class="n">solution</span><span class="p">.</span><span class="n">grass</span><span class="p">.</span><span class="n">angle_deg</span><span class="p">);</span>
+
+<span class="nb">save</span><span class="p">(</span><span class="nb">fullfile</span><span class="p">(</span><span class="n">out</span><span class="p">.</span><span class="n">folder</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;solution.mat&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&#39;solution&#39;</span><span class="p">);</span>
+<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.finish_run">sbtk.io.finish_run</a>(out);</code></pre></div>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB script: projects/hera_hlp6/rob/data5/rob5_components.m</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><span class="c">%% ROB5_COMPONENTS  ROB-DATA5 (Dimorphos): one dense core.</span>
+<span class="c">%</span>
+<span class="c">% The reading of the coefficients (documentation: Testing with ROB data &gt; ROB-DATA5): C22 is 27</span>
+<span class="c">% sigma higher (mass toward the ends of the x-axis), Ixx and Izz smaller (mass close to the</span>
+<span class="c">% x-axis and to the spin axis), and the center of mass 0.3 m toward +x (1 sigma): mass gathered</span>
+<span class="c">% on the x-axis inside the body, on the +x side. A dense core placed by its chi-square profile</span>
+<span class="c">% along the center-of-mass offset, then fitted with its density. Adding a torus or a layer</span>
+<span class="c">% lowers chi-square by less than AIC asks; of the models tried (rob_candidates.m and two</span>
+<span class="c">% searches of the geometry, ranked by analyze_rob.m) this one has the lowest AIC. Fits the background density, the</span>
+<span class="c">% core&#39;s relative density and its center to the coefficients of degrees 1-3 and Ixx, Iyy,</span>
+<span class="c">% Izz; then predicts the acceleration at the GRASS surface point (several minutes).</span>
+<span class="c">% Writes results/hera_hlp6/&lt;date_time&gt;_ROB-DATA5_components/: solution.mat (read by</span>
+<span class="c">% rob5_figures.m), fit.txt/.mat, homogeneous.txt, settings.json, log.txt, figures/.</span>
+
+<span class="nb">clear</span><span class="p">;</span><span class="w"> </span><span class="n">close</span><span class="w"> </span><span class="s">all</span><span class="p">;</span>
+<span class="n">here</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">mfilename</span><span class="p">(</span><span class="s">&#39;fullpath&#39;</span><span class="p">));</span><span class="w">                   </span><span class="c">% this package&#39;s folder</span>
+<span class="n">rob</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="nb">fileparts</span><span class="p">(</span><span class="n">here</span><span class="p">);</span><span class="w">                                    </span><span class="c">% rob/: the functions the runners share</span>
+<span class="n">hlp6</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">fileparts</span><span class="p">(</span><span class="n">rob</span><span class="p">);</span><span class="w">                                     </span><span class="c">% hera_hlp6/: rob_data.m, hlp6_uncertainties.m</span>
+<span class="nb">addpath</span><span class="p">(</span><span class="n">rob</span><span class="p">,</span><span class="w"> </span><span class="n">hlp6</span><span class="p">,</span><span class="w"> </span><span class="nb">fullfile</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="n">hlp6</span><span class="p">)),</span><span class="w"> </span><span class="s">&#39;toolbox&#39;</span><span class="p">));</span>
+
+<span class="c">%% DATA</span>
+<span class="n">number</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w">                                                </span><span class="c">% ROB-DATA5</span>
+<span class="p">[</span><span class="n">obs</span><span class="p">,</span><span class="w"> </span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="o">~</span><span class="p">,</span><span class="w"> </span><span class="o">~</span><span class="p">,</span><span class="w"> </span><span class="n">body_full</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">rob_package</span><span class="p">(</span><span class="n">number</span><span class="p">);</span><span class="w">        </span><span class="c">% degrees 1-3 and Ixx, Iyy, Izz, Hera uncertainties</span>
+
+<span class="c">%% MODEL</span>
+<span class="n">cof</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">body</span><span class="p">.</span><span class="n">centroid_km</span><span class="p">;</span><span class="w">                                    </span><span class="c">% positions are from the center of figure</span>
+<span class="n">rm</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">body</span><span class="p">.</span><span class="n">volume_km3</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="nb">pi</span><span class="p">))</span><span class="o">^</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">);</span><span class="w">                    </span><span class="c">% mean radius [km]</span>
+core = <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, cof, 0.40*rm, 0);
+<span class="n">core</span><span class="p">.</span><span class="n">estimate_position</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="n">components</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">core</span><span class="p">;</span>
+
+<span class="c">%% OPTIONS</span>
+opts = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.options">sbtk.invert.options</a>(moi_labels={&#39;Ixx&#39;, &#39;Iyy&#39;, &#39;Izz&#39;});
+<span class="n">opts</span><span class="p">.</span><span class="n">background</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;estimate&quot;</span><span class="p">;</span><span class="w">                              </span><span class="c">% the background density is fitted too</span>
+
+<span class="c">%% RUN</span>
+out  = <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.new_run">sbtk.io.new_run</a>(&quot;hera_hlp6&quot;, sprintf(&quot;ROB-DATA%d_components&quot;, number));
+<span class="c">% 1. Place the core: chi-square along the measured center-of-mass offset, the rest of the</span>
+<span class="c">%    geometry fixed (sbtk.invert.scan_position), from -0.4 to 0.4 mean radii of the center.</span>
+an = <a class="xref xref-fn" href="../../reference/internal.html#sbtk.interpret.anomaly">sbtk.interpret.anomaly</a>(obs, body, obs.degree);
+<span class="n">u</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="n">an</span><span class="p">.</span><span class="n">com_offset_km</span><span class="o">/</span><span class="nb">norm</span><span class="p">(</span><span class="n">an</span><span class="p">.</span><span class="n">com_offset_km</span><span class="p">);</span>
+<span class="n">fixed</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">components</span><span class="p">;</span>
+<span class="p">[</span><span class="n">fixed</span><span class="p">.</span><span class="n">estimate_position</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">deal</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+scan = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.scan_position">sbtk.invert.scan_position</a>(<a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.setup">sbtk.invert.setup</a>(body, fixed, obs, opts), &quot;core&quot;, cof + (-0.40:0.025:0.40)&#39;*rm*u);
+<span class="n">components</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">center_km</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">scan</span><span class="p">.</span><span class="n">centers_km</span><span class="p">(</span><span class="n">scan</span><span class="p">.</span><span class="n">best</span><span class="p">,</span><span class="w"> </span><span class="p">:);</span>
+<span class="c">% 2. Fit the densities and the core&#39;s position from there (Gauss-Newton).</span>
+prob = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.setup">sbtk.invert.setup</a>(body, components, obs, opts);
+fit  = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.run">sbtk.invert.run</a>(prob);
+<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.report_inversion">sbtk.io.report_inversion</a>(out, body, fit, <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.homogeneous">sbtk.invert.homogeneous</a>(prob));
+<span class="n">solution</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">rob_solution</span><span class="p">(</span><span class="s">&quot;core&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;components&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fit</span><span class="p">);</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;AIC %.1f with %.0f parameters, reduced chi-square %.2f, p = %.2g\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">solution</span><span class="p">.</span><span class="n">aic</span><span class="p">,</span><span class="w"> </span><span class="n">solution</span><span class="p">.</span><span class="n">parameters</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">        </span><span class="n">solution</span><span class="p">.</span><span class="n">chi2_reduced</span><span class="p">,</span><span class="w"> </span><span class="n">solution</span><span class="p">.</span><span class="n">p_value</span><span class="p">);</span>
+
+<span class="c">%% SURFACE POINT</span>
+<span class="c">% The acceleration the model predicts at the GRASS point, on the full-resolution shape model.</span>
+<span class="n">solution</span><span class="p">.</span><span class="n">grass</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">rob_grass</span><span class="p">(</span><span class="n">number</span><span class="p">,</span><span class="w"> </span><span class="n">body_full</span><span class="p">,</span><span class="w"> </span><span class="n">fit</span><span class="p">);</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;GRASS: acceleration %+.1f%% of ROB&#39;&#39;s, %.1f deg from it\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">solution</span><span class="p">.</span><span class="n">grass</span><span class="p">.</span><span class="n">error_percent</span><span class="p">,</span><span class="w"> </span><span class="n">solution</span><span class="p">.</span><span class="n">grass</span><span class="p">.</span><span class="n">angle_deg</span><span class="p">);</span>
+
+<span class="nb">save</span><span class="p">(</span><span class="nb">fullfile</span><span class="p">(</span><span class="n">out</span><span class="p">.</span><span class="n">folder</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;solution.mat&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&#39;solution&#39;</span><span class="p">);</span>
+<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.finish_run">sbtk.io.finish_run</a>(out);</code></pre></div>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB script: projects/hera_hlp6/rob/data6/rob6_components.m</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><span class="c">%% ROB6_COMPONENTS  ROB-DATA6 (Dimorphos): a core, a torus about the spin axis and a surface layer.</span>
+<span class="c">%</span>
+<span class="c">% The reading of the coefficients (documentation: Testing with ROB data &gt; ROB-DATA6): all three</span>
+<span class="c">% moments of inertia are 30 to 60 sigma larger than at constant density (light inside, dense</span>
+<span class="c">% outside), C22 is 97 sigma lower (mass toward the ends of the y-axis), J2 79 sigma higher, and</span>
+<span class="c">% the center of mass is 1.3 m toward +x. A light core on the x-axis takes mass from along x and</span>
+<span class="c">% moves the center of mass; a dense torus in the equatorial plane raises J2; a dense surface</span>
+<span class="c">% layer raises the moments. Of the models tried (rob_candidates.m and two searches of the</span>
+<span class="c">% geometry, ranked by analyze_rob.m) this one has the lowest AIC. The core is placed by its chi-square profile</span>
+<span class="c">% along the center-of-mass offset, then fitted with the densities. Fits the background density,</span>
+<span class="c">% the three relative densities and the core&#39;s center to the coefficients of degrees 1-3 and Ixx,</span>
+<span class="c">% Iyy, Izz; then predicts the acceleration at the GRASS surface point (several minutes).</span>
+<span class="c">% Writes results/hera_hlp6/&lt;date_time&gt;_ROB-DATA6_components/: solution.mat (read by</span>
+<span class="c">% rob6_figures.m), fit.txt/.mat, homogeneous.txt, settings.json, log.txt, figures/.</span>
+
+<span class="nb">clear</span><span class="p">;</span><span class="w"> </span><span class="n">close</span><span class="w"> </span><span class="s">all</span><span class="p">;</span>
+<span class="n">here</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">mfilename</span><span class="p">(</span><span class="s">&#39;fullpath&#39;</span><span class="p">));</span><span class="w">                   </span><span class="c">% this package&#39;s folder</span>
+<span class="n">rob</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="nb">fileparts</span><span class="p">(</span><span class="n">here</span><span class="p">);</span><span class="w">                                    </span><span class="c">% rob/: the functions the runners share</span>
+<span class="n">hlp6</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">fileparts</span><span class="p">(</span><span class="n">rob</span><span class="p">);</span><span class="w">                                     </span><span class="c">% hera_hlp6/: rob_data.m, hlp6_uncertainties.m</span>
+<span class="nb">addpath</span><span class="p">(</span><span class="n">rob</span><span class="p">,</span><span class="w"> </span><span class="n">hlp6</span><span class="p">,</span><span class="w"> </span><span class="nb">fullfile</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="n">hlp6</span><span class="p">)),</span><span class="w"> </span><span class="s">&#39;toolbox&#39;</span><span class="p">));</span>
+
+<span class="c">%% DATA</span>
+<span class="n">number</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">6</span><span class="p">;</span><span class="w">                                                </span><span class="c">% ROB-DATA6</span>
+<span class="p">[</span><span class="n">obs</span><span class="p">,</span><span class="w"> </span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="o">~</span><span class="p">,</span><span class="w"> </span><span class="o">~</span><span class="p">,</span><span class="w"> </span><span class="n">body_full</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">rob_package</span><span class="p">(</span><span class="n">number</span><span class="p">);</span><span class="w">        </span><span class="c">% degrees 1-3 and Ixx, Iyy, Izz, Hera uncertainties</span>
+
+<span class="c">%% MODEL</span>
+<span class="n">cof</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">body</span><span class="p">.</span><span class="n">centroid_km</span><span class="p">;</span><span class="w">                                    </span><span class="c">% positions are from the center of figure</span>
+<span class="n">rm</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">body</span><span class="p">.</span><span class="n">volume_km3</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="nb">pi</span><span class="p">))</span><span class="o">^</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">);</span><span class="w">                    </span><span class="c">% mean radius [km]</span>
+core  = <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.sphere">sbtk.interior.sphere</a>(&quot;core&quot;, cof, 0.40*rm, 0);
+<span class="n">core</span><span class="p">.</span><span class="n">estimate_position</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+torus = <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.torus">sbtk.interior.torus</a>(&quot;torus&quot;, 0.95*rm, 0.15*rm, 0, 0);   <span class="c">% about the z-axis</span>
+<span class="n">torus</span><span class="p">.</span><span class="n">center_km</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">cof</span><span class="p">;</span>
+layer = <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.layer">sbtk.interior.layer</a>(&quot;regolith&quot;, 0, 0.03*rm, 0);        <span class="c">% from the surface to 3% of the radius deep</span>
+<span class="n">components</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="n">core</span><span class="w"> </span><span class="n">torus</span><span class="w"> </span><span class="n">layer</span><span class="p">];</span>
+
+<span class="c">%% OPTIONS</span>
+opts = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.options">sbtk.invert.options</a>(moi_labels={&#39;Ixx&#39;, &#39;Iyy&#39;, &#39;Izz&#39;});
+<span class="n">opts</span><span class="p">.</span><span class="n">background</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;estimate&quot;</span><span class="p">;</span><span class="w">                              </span><span class="c">% the background density is fitted too</span>
+
+<span class="c">%% RUN</span>
+out  = <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.new_run">sbtk.io.new_run</a>(&quot;hera_hlp6&quot;, sprintf(&quot;ROB-DATA%d_components&quot;, number));
+<span class="c">% 1. Place the core: chi-square along the measured center-of-mass offset, the rest of the</span>
+<span class="c">%    geometry fixed (sbtk.invert.scan_position), from -0.4 to 0.4 mean radii of the center.</span>
+an = <a class="xref xref-fn" href="../../reference/internal.html#sbtk.interpret.anomaly">sbtk.interpret.anomaly</a>(obs, body, obs.degree);
+<span class="n">u</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="n">an</span><span class="p">.</span><span class="n">com_offset_km</span><span class="o">/</span><span class="nb">norm</span><span class="p">(</span><span class="n">an</span><span class="p">.</span><span class="n">com_offset_km</span><span class="p">);</span>
+<span class="n">fixed</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">components</span><span class="p">;</span>
+<span class="p">[</span><span class="n">fixed</span><span class="p">.</span><span class="n">estimate_position</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">deal</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+scan = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.scan_position">sbtk.invert.scan_position</a>(<a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.setup">sbtk.invert.setup</a>(body, fixed, obs, opts), &quot;core&quot;, cof + (-0.40:0.025:0.40)&#39;*rm*u);
+<span class="n">components</span><span class="p">(</span><span class="mi">1</span><span class="p">).</span><span class="n">center_km</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">scan</span><span class="p">.</span><span class="n">centers_km</span><span class="p">(</span><span class="n">scan</span><span class="p">.</span><span class="n">best</span><span class="p">,</span><span class="w"> </span><span class="p">:);</span>
+<span class="c">% 2. Fit the densities and the core&#39;s position from there (Gauss-Newton).</span>
+prob = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.setup">sbtk.invert.setup</a>(body, components, obs, opts);
+fit  = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.run">sbtk.invert.run</a>(prob);
+<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.report_inversion">sbtk.io.report_inversion</a>(out, body, fit, <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.homogeneous">sbtk.invert.homogeneous</a>(prob));
+<span class="n">solution</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">rob_solution</span><span class="p">(</span><span class="s">&quot;core, torus, layer&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;components&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fit</span><span class="p">);</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;AIC %.1f with %.0f parameters, reduced chi-square %.2f, p = %.2g\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">solution</span><span class="p">.</span><span class="n">aic</span><span class="p">,</span><span class="w"> </span><span class="n">solution</span><span class="p">.</span><span class="n">parameters</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">        </span><span class="n">solution</span><span class="p">.</span><span class="n">chi2_reduced</span><span class="p">,</span><span class="w"> </span><span class="n">solution</span><span class="p">.</span><span class="n">p_value</span><span class="p">);</span>
+
+<span class="c">%% SURFACE POINT</span>
+<span class="c">% The acceleration the model predicts at the GRASS point, on the full-resolution shape model.</span>
+<span class="n">solution</span><span class="p">.</span><span class="n">grass</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">rob_grass</span><span class="p">(</span><span class="n">number</span><span class="p">,</span><span class="w"> </span><span class="n">body_full</span><span class="p">,</span><span class="w"> </span><span class="n">fit</span><span class="p">);</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;GRASS: acceleration %+.1f%% of ROB&#39;&#39;s, %.1f deg from it\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">solution</span><span class="p">.</span><span class="n">grass</span><span class="p">.</span><span class="n">error_percent</span><span class="p">,</span><span class="w"> </span><span class="n">solution</span><span class="p">.</span><span class="n">grass</span><span class="p">.</span><span class="n">angle_deg</span><span class="p">);</span>
+
+<span class="nb">save</span><span class="p">(</span><span class="nb">fullfile</span><span class="p">(</span><span class="n">out</span><span class="p">.</span><span class="n">folder</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;solution.mat&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&#39;solution&#39;</span><span class="p">);</span>
+<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.finish_run">sbtk.io.finish_run</a>(out);</code></pre></div>
+<h2 id="the-sector-grids-and-the-point-masses">The sector grids and the point masses<a class="headerlink" href="#the-sector-grids-and-the-point-masses" title="Link to this section">#</a></h2>
+<p>These differ between packages only in the package number, the grid of ROB-DATA2 (one shell, the
+others two), and the GRASS section of the Dimorphos packages.</p>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB script: projects/hera_hlp6/rob/data4/rob4_sectors.m</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><span class="c">%% ROB4_SECTORS  ROB-DATA4 (Dimorphos): a sector grid, 2 × 4 × 8.</span>
+<span class="c">%</span>
+<span class="c">% Fits a density to each of 64 sectors (the inner and the outer half of the radius, 4 latitude bands,</span>
+<span class="c">% 8 longitude bands) with the background at the bulk density and the Tikhonov parameter of the lowest AIC</span>
+<span class="c">% (sbtk.invert.choose_regularization), to the coefficients of degrees 1-3 and Ixx, Iyy, Izz</span>
+<span class="c">% with the Hera radio-science uncertainties. Of the two grids tried (analyze_rob.m: 1 x 4 x 8</span>
+<span class="c">% and 2 x 4 x 8), this one has the lower AIC.</span>
+<span class="c">% Then the acceleration the solution predicts at the GRASS surface point (rob_grass.m, several minutes).</span>
+<span class="c">% Writes results/hera_hlp6/&lt;date_time&gt;_ROB-DATA4_sectors/: solution.mat (read by</span>
+<span class="c">% rob4_figures.m), fit.txt/.mat, homogeneous.txt, settings.json, log.txt, figures/.</span>
+
+<span class="nb">clear</span><span class="p">;</span><span class="w"> </span><span class="n">close</span><span class="w"> </span><span class="s">all</span><span class="p">;</span>
+<span class="n">here</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">mfilename</span><span class="p">(</span><span class="s">&#39;fullpath&#39;</span><span class="p">));</span><span class="w">                   </span><span class="c">% this package&#39;s folder</span>
+<span class="n">rob</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="nb">fileparts</span><span class="p">(</span><span class="n">here</span><span class="p">);</span><span class="w">                                    </span><span class="c">% rob/: the functions the runners share</span>
+<span class="n">hlp6</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">fileparts</span><span class="p">(</span><span class="n">rob</span><span class="p">);</span><span class="w">                                     </span><span class="c">% hera_hlp6/: rob_data.m, hlp6_uncertainties.m</span>
+<span class="nb">addpath</span><span class="p">(</span><span class="n">rob</span><span class="p">,</span><span class="w"> </span><span class="n">hlp6</span><span class="p">,</span><span class="w"> </span><span class="nb">fullfile</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="n">hlp6</span><span class="p">)),</span><span class="w"> </span><span class="s">&#39;toolbox&#39;</span><span class="p">));</span>
+
+<span class="c">%% DATA</span>
+<span class="n">number</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w">                                                </span><span class="c">% ROB-DATA4</span>
+<span class="p">[</span><span class="n">obs</span><span class="p">,</span><span class="w"> </span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="o">~</span><span class="p">,</span><span class="w"> </span><span class="o">~</span><span class="p">,</span><span class="w"> </span><span class="n">body_full</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">rob_package</span><span class="p">(</span><span class="n">number</span><span class="p">);</span><span class="w">        </span><span class="c">% degrees 1-3 and Ixx, Iyy, Izz, Hera uncertainties</span>
+
+<span class="c">%% MODEL</span>
+<span class="n">lat</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="o">-</span><span class="mi">90</span><span class="w"> </span><span class="o">-</span><span class="mi">45</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">45</span><span class="w"> </span><span class="mi">90</span><span class="p">];</span><span class="w">                                   </span><span class="c">% 4 latitude bands [deg]</span>
+<span class="n">lon</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="o">-</span><span class="mi">180</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mi">180</span><span class="p">;</span><span class="w">                                         </span><span class="c">% 8 longitude bands [deg]</span>
+sectors = <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.sector_grid">sbtk.interior.sector_grid</a>([0 0.5 1], lat, lon);   <span class="c">% shells: fractions of the radius</span>
+
+<span class="c">%% OPTIONS</span>
+opts = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.options">sbtk.invert.options</a>(moi_labels={&#39;Ixx&#39;, &#39;Iyy&#39;, &#39;Izz&#39;});
+<span class="n">opts</span><span class="p">.</span><span class="n">background</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;bulk&quot;</span><span class="p">;</span><span class="w">                                  </span><span class="c">% the sectors fill the body</span>
+
+<span class="c">%% RUN</span>
+out  = <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.new_run">sbtk.io.new_run</a>(&quot;hera_hlp6&quot;, sprintf(&quot;ROB-DATA%d_sectors&quot;, number));
+prob = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.setup">sbtk.invert.setup</a>(body, sectors, obs, opts);
+prob.opts.regularization = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.choose_regularization">sbtk.invert.choose_regularization</a>(prob, &quot;aic&quot;);
+fit  = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.run">sbtk.invert.run</a>(prob);
+<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.report_inversion">sbtk.io.report_inversion</a>(out, body, fit, <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.homogeneous">sbtk.invert.homogeneous</a>(prob));
+<span class="n">solution</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">rob_solution</span><span class="p">(</span><span class="s">&quot;2 × 4 × 8&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sectors&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fit</span><span class="p">);</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;lambda %.3g; AIC %.1f with %.1f parameters, reduced chi-square %.2f, p = %.2g\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">fit</span><span class="p">.</span><span class="n">regularization</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">        </span><span class="n">solution</span><span class="p">.</span><span class="n">aic</span><span class="p">,</span><span class="w"> </span><span class="n">solution</span><span class="p">.</span><span class="n">parameters</span><span class="p">,</span><span class="w"> </span><span class="n">solution</span><span class="p">.</span><span class="n">chi2_reduced</span><span class="p">,</span><span class="w"> </span><span class="n">solution</span><span class="p">.</span><span class="n">p_value</span><span class="p">);</span>
+
+<span class="c">%% SURFACE POINT</span>
+<span class="c">% The acceleration the solution predicts at the GRASS point, on the full-resolution shape model.</span>
+<span class="n">solution</span><span class="p">.</span><span class="n">grass</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">rob_grass</span><span class="p">(</span><span class="n">number</span><span class="p">,</span><span class="w"> </span><span class="n">body_full</span><span class="p">,</span><span class="w"> </span><span class="n">fit</span><span class="p">);</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;GRASS: acceleration %+.1f%% of ROB&#39;&#39;s, %.1f deg from it\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">solution</span><span class="p">.</span><span class="n">grass</span><span class="p">.</span><span class="n">error_percent</span><span class="p">,</span><span class="w"> </span><span class="n">solution</span><span class="p">.</span><span class="n">grass</span><span class="p">.</span><span class="n">angle_deg</span><span class="p">);</span>
+
+<span class="nb">save</span><span class="p">(</span><span class="nb">fullfile</span><span class="p">(</span><span class="n">out</span><span class="p">.</span><span class="n">folder</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;solution.mat&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&#39;solution&#39;</span><span class="p">);</span>
+<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.finish_run">sbtk.io.finish_run</a>(out);</code></pre></div>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB script: projects/hera_hlp6/rob/data4/rob4_point_masses.m</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><span class="c">%% ROB4_POINT_MASSES  ROB-DATA4 (Dimorphos): point masses on a grid filling the body.</span>
+<span class="c">%</span>
+<span class="c">% About 2,700 small spheres, one every 8.3 m (a ninth of the mean radius), fitted together to the</span>
+<span class="c">% coefficients of degrees 1-3 and Ixx, Iyy, Izz with the Hera radio-science uncertainties,</span>
+<span class="c">% with the Tikhonov parameter of the lowest AIC (sbtk.interpret.point_masses). No shapes are</span>
+<span class="c">% assumed: where the measurements put the mass. Run it once with each weighting; the pages show</span>
+<span class="c">% &quot;sensitivity&quot; and compare it with &quot;equal&quot;.</span>
+<span class="c">% Then the acceleration the solution predicts at the GRASS surface point (rob_grass.m, several minutes).</span>
+<span class="c">% Writes results/hera_hlp6/&lt;date_time&gt;_ROB-DATA4_point_masses_&lt;weighting&gt;/: solution.mat</span>
+<span class="c">% (read by rob4_figures.m), point_masses.mat, log.txt, figures/point_masses.png.</span>
+
+<span class="nb">clear</span><span class="p">;</span><span class="w"> </span><span class="n">close</span><span class="w"> </span><span class="s">all</span><span class="p">;</span>
+<span class="n">here</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">mfilename</span><span class="p">(</span><span class="s">&#39;fullpath&#39;</span><span class="p">));</span><span class="w">                   </span><span class="c">% this package&#39;s folder</span>
+<span class="n">rob</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="nb">fileparts</span><span class="p">(</span><span class="n">here</span><span class="p">);</span><span class="w">                                    </span><span class="c">% rob/: the functions the runners share</span>
+<span class="n">hlp6</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">fileparts</span><span class="p">(</span><span class="n">rob</span><span class="p">);</span><span class="w">                                     </span><span class="c">% hera_hlp6/: rob_data.m, hlp6_uncertainties.m</span>
+<span class="nb">addpath</span><span class="p">(</span><span class="n">rob</span><span class="p">,</span><span class="w"> </span><span class="n">hlp6</span><span class="p">,</span><span class="w"> </span><span class="nb">fullfile</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="n">hlp6</span><span class="p">)),</span><span class="w"> </span><span class="s">&#39;toolbox&#39;</span><span class="p">));</span>
+
+<span class="c">%% DATA</span>
+<span class="n">number</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w">                                                </span><span class="c">% ROB-DATA4</span>
+<span class="p">[</span><span class="n">obs</span><span class="p">,</span><span class="w"> </span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="o">~</span><span class="p">,</span><span class="w"> </span><span class="o">~</span><span class="p">,</span><span class="w"> </span><span class="n">body_full</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">rob_package</span><span class="p">(</span><span class="n">number</span><span class="p">);</span><span class="w">        </span><span class="c">% degrees 1-3 and Ixx, Iyy, Izz, Hera uncertainties</span>
+<span class="n">weighting</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot;sensitivity&quot;</span><span class="p">;</span><span class="w">                                 </span><span class="c">% &quot;sensitivity&quot; or &quot;equal&quot;</span>
+
+<span class="c">%% MODEL</span>
+<span class="n">rm</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">body</span><span class="p">.</span><span class="n">volume_km3</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="nb">pi</span><span class="p">))</span><span class="o">^</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">);</span><span class="w">                     </span><span class="c">% mean radius [km]</span>
+<span class="n">spacing</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">rm</span><span class="o">/</span><span class="mi">9</span><span class="p">;</span><span class="w">                                            </span><span class="c">% [km]</span>
+grid = <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.sphere_grid">sbtk.interior.sphere_grid</a>(body, spacing, spacing/5);
+
+<span class="c">%% OPTIONS</span>
+opts = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.options">sbtk.invert.options</a>(moi_labels={&#39;Ixx&#39;, &#39;Iyy&#39;, &#39;Izz&#39;});
+
+<span class="c">%% RUN</span>
+out  = <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.new_run">sbtk.io.new_run</a>(&quot;hera_hlp6&quot;, sprintf(&quot;ROB-DATA%d_point_masses_%s&quot;, number, weighting));
+prob = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.setup">sbtk.invert.setup</a>(body, grid, obs, opts);
+pm   = <a class="xref xref-fn" href="../../reference/internal.html#sbtk.interpret.point_masses">sbtk.interpret.point_masses</a>(prob, weighting, &quot;aic&quot;);
+<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.save_figure">sbtk.io.save_figure</a>(out, <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.point_masses">sbtk.plot.point_masses</a>(body, pm, spacing), &quot;point_masses&quot;);
+<span class="n">solution</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">rob_solution</span><span class="p">(</span><span class="nb">sprintf</span><span class="p">(</span><span class="s">&quot;%d points&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">numel</span><span class="p">(</span><span class="nb">grid</span><span class="p">)),</span><span class="w"> </span><span class="s">&quot;point masses&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pm</span><span class="p">);</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;lambda %.3g; AIC %.1f with %.1f effective parameters, reduced chi-square %.2f, p = %.2g\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">pm</span><span class="p">.</span><span class="n">lambda</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
+<span class="w">        </span><span class="n">solution</span><span class="p">.</span><span class="n">aic</span><span class="p">,</span><span class="w"> </span><span class="n">solution</span><span class="p">.</span><span class="n">parameters</span><span class="p">,</span><span class="w"> </span><span class="n">solution</span><span class="p">.</span><span class="n">chi2_reduced</span><span class="p">,</span><span class="w"> </span><span class="n">solution</span><span class="p">.</span><span class="n">p_value</span><span class="p">);</span>
+
+<span class="c">%% SURFACE POINT</span>
+<span class="c">% The acceleration the solution predicts at the GRASS point, on the full-resolution shape model.</span>
+<span class="n">solution</span><span class="p">.</span><span class="n">grass</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">rob_grass</span><span class="p">(</span><span class="n">number</span><span class="p">,</span><span class="w"> </span><span class="n">body_full</span><span class="p">,</span><span class="w"> </span><span class="n">pm</span><span class="p">.</span><span class="n">model</span><span class="p">);</span>
+<span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;GRASS: acceleration %+.1f%% of ROB&#39;&#39;s, %.1f deg from it\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">solution</span><span class="p">.</span><span class="n">grass</span><span class="p">.</span><span class="n">error_percent</span><span class="p">,</span><span class="w"> </span><span class="n">solution</span><span class="p">.</span><span class="n">grass</span><span class="p">.</span><span class="n">angle_deg</span><span class="p">);</span>
+
+<span class="nb">save</span><span class="p">(</span><span class="nb">fullfile</span><span class="p">(</span><span class="n">out</span><span class="p">.</span><span class="n">folder</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;solution.mat&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&#39;solution&#39;</span><span class="p">);</span>
+<span class="nb">save</span><span class="p">(</span><span class="nb">fullfile</span><span class="p">(</span><span class="n">out</span><span class="p">.</span><span class="n">folder</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;point_masses.mat&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&#39;pm&#39;</span><span class="p">);</span>
+<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.finish_run">sbtk.io.finish_run</a>(out);</code></pre></div>
+<h2 id="the-figures-and-tables">The figures and tables<a class="headerlink" href="#the-figures-and-tables" title="Link to this section">#</a></h2>
+<p>Each section makes one figure of the page; the last writes its tables. The Didymos scripts have
+no GRASS section.</p>
+<div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB script: projects/hera_hlp6/rob/data4/rob4_figures.m</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><span class="c">%% ROB4_FIGURES  The figures and tables of the ROB-DATA4 page, from the newest run of each solution.</span>
+<span class="c">%</span>
+<span class="c">% Run first: rob4_components.m, rob4_sectors.m and rob4_point_masses.m (once with weighting</span>
+<span class="c">% &quot;sensitivity&quot;, once with &quot;equal&quot;). Run DATA AND SOLUTIONS, then any section: each makes one</span>
+<span class="c">% figure (SOLUTIONS SIDE BY SIDE before TABLES, which uses its cuts). Writes</span>
+<span class="c">% results/hera_hlp6/&lt;date_time&gt;_ROB-DATA4_figures/: figures/&lt;name&gt;.png and tables/&lt;name&gt;.md, as</span>
+<span class="c">% the documentation page (Testing with ROB data &gt; ROB-DATA4) shows them. A few minutes, most of</span>
+<span class="c">% them for the GRASS point of constant density.</span>
+
+<span class="nb">clear</span><span class="p">;</span><span class="w"> </span><span class="n">close</span><span class="w"> </span><span class="s">all</span><span class="p">;</span>
+<span class="n">here</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">mfilename</span><span class="p">(</span><span class="s">&#39;fullpath&#39;</span><span class="p">));</span><span class="w">                   </span><span class="c">% this package&#39;s folder</span>
+<span class="n">rob</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="nb">fileparts</span><span class="p">(</span><span class="n">here</span><span class="p">);</span><span class="w">                                    </span><span class="c">% rob/: the functions the runners share</span>
+<span class="n">hlp6</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">fileparts</span><span class="p">(</span><span class="n">rob</span><span class="p">);</span><span class="w">                                     </span><span class="c">% hera_hlp6/: rob_data.m, hlp6_uncertainties.m</span>
+<span class="nb">addpath</span><span class="p">(</span><span class="n">rob</span><span class="p">,</span><span class="w"> </span><span class="n">hlp6</span><span class="p">,</span><span class="w"> </span><span class="nb">fullfile</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="nb">fileparts</span><span class="p">(</span><span class="n">hlp6</span><span class="p">)),</span><span class="w"> </span><span class="s">&#39;toolbox&#39;</span><span class="p">));</span>
+
+<span class="c">%% DATA AND SOLUTIONS</span>
+<span class="n">number</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w">                                                </span><span class="c">% ROB-DATA4 (Dimorphos)</span>
+<span class="p">[</span><span class="n">obs</span><span class="p">,</span><span class="w"> </span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="n">given</span><span class="p">,</span><span class="w"> </span><span class="nb">full</span><span class="p">,</span><span class="w"> </span><span class="n">body_full</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">rob_package</span><span class="p">(</span><span class="n">number</span><span class="p">);</span>
+<span class="n">S</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="n">rob_load</span><span class="p">(</span><span class="n">number</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;components&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">rob_load</span><span class="p">(</span><span class="n">number</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sectors&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">rob_load</span><span class="p">(</span><span class="n">number</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;point_masses_sensitivity&quot;</span><span class="p">)];</span>
+<span class="n">W</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="n">S</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="n">rob_load</span><span class="p">(</span><span class="n">number</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;point_masses_equal&quot;</span><span class="p">)];</span><span class="w">        </span><span class="c">% the two weightings of the point masses</span>
+<span class="n">names</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="s">&quot;Components&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Sector grid&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Point masses&quot;</span><span class="p">];</span>
+<span class="n">style</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="p">];</span><span class="w">                                           </span><span class="c">% orange circle, green diamond, purple triangle</span>
+<span class="n">shown</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">];</span><span class="w">                                           </span><span class="c">% in the figures: those consistent with the measurements</span>
+<span class="n">L</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">obs</span><span class="p">.</span><span class="n">degree</span><span class="p">;</span><span class="w">                                            </span><span class="c">% the fitted degree</span>
+an = <a class="xref xref-fn" href="../../reference/internal.html#sbtk.interpret.anomaly">sbtk.interpret.anomaly</a>(obs, body, L);                 <span class="c">% the measurements minus constant density</span>
+an_full = <a class="xref xref-fn" href="../../reference/internal.html#sbtk.interpret.anomaly">sbtk.interpret.anomaly</a>(full, body_full, L);      <span class="c">% the same on the full-resolution shape</span>
+exact = <a class="xref xref-fn" href="../../reference/internal.html#sbtk.interpret.anomaly">sbtk.interpret.anomaly</a>(given, body, 10);           <span class="c">% ROB&#39;s exact values to degree 10</span>
+<span class="n">M</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">max</span><span class="p">(</span><span class="n">an_full</span><span class="p">.</span><span class="n">deg</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">an_full</span><span class="p">.</span><span class="n">value</span><span class="o">./</span><span class="n">an_full</span><span class="p">.</span><span class="n">sigma</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">3</span><span class="p">));</span><span class="w"> </span><span class="c">% the highest degree resolved at 3 sigma</span>
+<span class="n">rm</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">body</span><span class="p">.</span><span class="n">volume_km3</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="nb">pi</span><span class="p">))</span><span class="o">^</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">);</span><span class="w">                     </span><span class="c">% mean radius [km]</span>
+out = <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.new_run">sbtk.io.new_run</a>(&quot;hera_hlp6&quot;, sprintf(&quot;ROB-DATA%d_figures&quot;, number));
+
+<span class="c">%% MEASURED COEFFICIENTS</span>
+<span class="c">% C - C_CD of every fitted coefficient with its 1-sigma, and the moments of inertia.</span>
+fig = <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.coefficient_comparison">sbtk.plot.coefficient_comparison</a>(an, {}, zeros(0, 3), strings(1, 0), L, zeros(1, 0));
+<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.save_figure">sbtk.io.save_figure</a>(out, fig, &quot;measured&quot;);
+
+<span class="c">%% ANOMALY MAPS</span>
+<span class="c">% Each resolved degree from 2 as a map of where a mass near the surface would make it.</span>
+fig = <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.anomaly_map">sbtk.plot.anomaly_map</a>(<a class="xref xref-fn" href="../../reference/internal.html#sbtk.interpret.geometry">sbtk.interpret.geometry</a>(<a class="xref xref-fn" href="../../reference/internal.html#sbtk.interpret.anomaly">sbtk.interpret.anomaly</a>(full, body_full, M)));
+<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.save_figure">sbtk.io.save_figure</a>(out, fig, &quot;anomaly_map&quot;);
+
+<span class="c">%% SOLUTIONS AGAINST THE MEASUREMENTS</span>
+<span class="c">% Each solution&#39;s C - C_CD with the measured values, and (solution - measured)/sigma.</span>
+models = arrayfun(@(s) <a class="xref xref-fn" href="../../reference/internal.html#sbtk.interpret.anomaly">sbtk.interpret.anomaly</a>(s.model, body, L), S(shown), &#39;UniformOutput&#39;, false);
+<span class="n">moi</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">zeros</span><span class="p">(</span><span class="nb">numel</span><span class="p">(</span><span class="n">shown</span><span class="p">),</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
+<span class="k">for</span><span class="w"> </span><span class="nb">i</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="nb">numel</span><span class="p">(</span><span class="n">shown</span><span class="p">)</span>
+<span class="w">    </span><span class="p">[</span><span class="o">~</span><span class="p">,</span><span class="w"> </span><span class="nb">j</span><span class="p">]</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">ismember</span><span class="p">(</span><span class="n">an</span><span class="p">.</span><span class="n">moi_labels</span><span class="p">,</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">shown</span><span class="p">(</span><span class="nb">i</span><span class="p">)).</span><span class="n">labels</span><span class="p">);</span>
+<span class="w">    </span><span class="n">moi</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="w"> </span><span class="p">:)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="n">shown</span><span class="p">(</span><span class="nb">i</span><span class="p">)).</span><span class="n">normalized_residual</span><span class="p">(</span><span class="nb">j</span><span class="p">);</span>
+<span class="k">end</span>
+fig = <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.coefficient_comparison">sbtk.plot.coefficient_comparison</a>(an, models, moi, names(shown), L, style(shown));
+<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.save_figure">sbtk.io.save_figure</a>(out, fig, &quot;compare&quot;);
+
+<span class="c">%% THE MODEL WITH COMPONENTS</span>
+<span class="c">% Seen obliquely and down the spin axis; the part of each coefficient each component makes.</span>
+fig = <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.interior3d">sbtk.plot.interior3d</a>(body, S(1).model, &quot;&quot;);
+<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.save_figure">sbtk.io.save_figure</a>(out, fig, &quot;view_components&quot;);
+fig = <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.contributions">sbtk.plot.contributions</a>(an, S(1).model, body, M);
+<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.save_figure">sbtk.io.save_figure</a>(out, fig, &quot;contributions&quot;);
+
+<span class="c">%% THE SECTOR GRID</span>
+fig = <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.interior3d">sbtk.plot.interior3d</a>(body, S(2).model, &quot;&quot;);
+<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.save_figure">sbtk.io.save_figure</a>(out, fig, &quot;view_sectors&quot;);
+
+<span class="c">%% SOLUTIONS SIDE BY SIDE</span>
+<span class="c">% Relative density on the planes z = 0 and y = 0 through the center of figure; the point</span>
+<span class="c">% masses as the mean of cells a ninth of the mean radius across.</span>
+[fig, cs] = <a class="xref xref-fn" href="../../reference/api/plot.html#sbtk.plot.solution_cuts">sbtk.plot.solution_cuts</a>(body, {S(shown).model}, names(shown), rm/9);
+<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.save_figure">sbtk.io.save_figure</a>(out, fig, &quot;solutions&quot;);
+
+<span class="c">%% ROB&#39;S EXACT VALUES</span>
+<span class="c">% The fraction of each degree of ROB&#39;s exact C - C_CD each solution reproduces (rob_reproduced.m).</span>
+<span class="n">F</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">zeros</span><span class="p">(</span><span class="nb">numel</span><span class="p">(</span><span class="n">shown</span><span class="p">),</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
+<span class="k">for</span><span class="w"> </span><span class="nb">i</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="nb">numel</span><span class="p">(</span><span class="n">shown</span><span class="p">)</span>
+    a = <a class="xref xref-fn" href="../../reference/internal.html#sbtk.interpret.anomaly">sbtk.interpret.anomaly</a>(S(shown(i)).model, body, 10);
+<span class="w">    </span><span class="n">F</span><span class="p">(</span><span class="nb">i</span><span class="p">,</span><span class="w"> </span><span class="p">:)</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">arrayfun</span><span class="p">(@(</span><span class="n">l</span><span class="p">)</span><span class="w"> </span><span class="n">rob_reproduced</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">exact</span><span class="p">,</span><span class="w"> </span><span class="n">l</span><span class="p">),</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="mi">10</span><span class="p">);</span>
+<span class="k">end</span>
+<span class="n">fig</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">rob_plot_reproduced</span><span class="p">(</span><span class="n">F</span><span class="p">,</span><span class="w"> </span><span class="n">names</span><span class="p">(</span><span class="n">shown</span><span class="p">),</span><span class="w"> </span><span class="n">L</span><span class="p">,</span><span class="w"> </span><span class="n">style</span><span class="p">(</span><span class="n">shown</span><span class="p">));</span>
+<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.save_figure">sbtk.io.save_figure</a>(out, fig, &quot;exact&quot;);
+
+<span class="c">%% THE GRASS POINT</span>
+<span class="c">% The acceleration each solution predicts at the GRASS surface point (computed by its runner)</span>
+<span class="c">% and that of constant density, against ROB&#39;s.</span>
+homogeneous = struct(&#39;rho_bg_kgm3&#39;, body_full.bulk_density_kgm3, &#39;components&#39;, <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.no_components">sbtk.interior.no_components</a>(), ...
+                     &#39;random_field&#39;, <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.no_random_field">sbtk.interior.no_random_field</a>(), &#39;origin_km&#39;, body_full.centroid_km);
+<span class="n">rob_grass_table</span><span class="p">(</span><span class="nb">fullfile</span><span class="p">(</span><span class="n">out</span><span class="p">.</span><span class="n">folder</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;tables&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">S</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="n">W</span><span class="p">,</span><span class="w"> </span><span class="n">rob_grass</span><span class="p">(</span><span class="n">number</span><span class="p">,</span><span class="w"> </span><span class="n">body_full</span><span class="p">,</span><span class="w"> </span><span class="n">homogeneous</span><span class="p">));</span>
+
+<span class="c">%% TABLES</span>
+<span class="n">rob_tables</span><span class="p">(</span><span class="nb">fullfile</span><span class="p">(</span><span class="n">out</span><span class="p">.</span><span class="n">folder</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;tables&quot;</span><span class="p">),</span><span class="w"> </span><span class="n">S</span><span class="p">,</span><span class="w"> </span><span class="n">W</span><span class="p">,</span><span class="w"> </span><span class="n">an</span><span class="p">,</span><span class="w"> </span><span class="n">an_full</span><span class="p">,</span><span class="w"> </span><span class="n">exact</span><span class="p">,</span><span class="w"> </span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="n">cs</span><span class="p">,</span><span class="w"> </span><span class="n">names</span><span class="p">(</span><span class="n">shown</span><span class="p">));</span>
+<span class="n">close</span><span class="w"> </span><span class="s">all</span>
+<a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.finish_run">sbtk.io.finish_run</a>(out);</code></pre></div>
+<h2 id="how-the-models-were-chosen">How the models were chosen<a class="headerlink" href="#how-the-models-were-chosen" title="Link to this section">#</a></h2>
+<p><code>projects/hera_hlp6/analyze_rob.m</code> fits every candidate of <code>rob_candidates.m</code> to a package, two
+searches of the geometry (<a class="xref xref-fn" href="../../reference/internal.html#sbtk.search.run"><code>sbtk.search.run</code></a>) and the point masses, and ranks them all by the Akaike
+information criterion, AIC = χ² + 2 × the number of parameters. A regularized fit counts its effective
+number of parameters; a search counts each size it chose on its grid as well as the densities and
+positions it estimated. The model of each kind with the lowest AIC is the one its runner fits. To
+try another model, copy a component runner, change MODEL, and compare the AIC it prints with the
+others (<a href="../../projects/rob/index.html#results">Testing with ROB data</a>).</p>
+</article>
+<nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../../projects/rob/index.html" rel="prev"><span>Previous</span>Testing with ROB data</a><a class="next" href="../../projects/rob/data1.html" rel="next"><span>Next</span>ROB-DATA1: Didymos</a></nav>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-29.</footer>
+</main>
+<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#the-models-with-components">The models with components</a></li><li class="lvl2"><a href="#the-sector-grids-and-the-point-masses">The sector grids and the point masses</a></li><li class="lvl2"><a href="#the-figures-and-tables">The figures and tables</a></li><li class="lvl2"><a href="#how-the-models-were-chosen">How the models were chosen</a></li></ul></nav>
+</div>
+<script src="../../assets/search-index.js?v=784437df24"></script>
+<script src="../../assets/site.js?v=784437df24"></script>
+</body>
+</html>
