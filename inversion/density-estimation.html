@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Density estimation — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=784437df24">
-<link rel="stylesheet" href="../assets/pygments.css?v=784437df24">
-<link rel="stylesheet" href="../assets/print.css?v=784437df24" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=54bef2a613">
+<link rel="stylesheet" href="../assets/pygments.css?v=54bef2a613">
+<link rel="stylesheet" href="../assets/print.css?v=54bef2a613" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,13 +29,14 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Measurements and inversion › <span aria-current="page">Density estimation</span></nav>
 <article>
 <h1 id="density-estimation">Density estimation<a class="headerlink" href="#density-estimation" title="Link to this section">#</a></h1>
-<p class="lastedit">Last edited October 29, 2026</p>
+<p class="lastedit">Last edited October 30, 2026</p>
 <p>The inversion estimates the background density and the relative densities of a set of components from a measurement
 set, and optionally parts of their geometry: the position of spheres, ellipsoids and tori and the axis of ellipsoids
 and tori (<a href="#estimated-geometry">Estimated geometry</a>).</p>
 <h2 id="procedure">Procedure<a class="headerlink" href="#procedure" title="Link to this section">#</a></h2>
-<p><a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.setup"><code>sbtk.invert.setup</code></a><code>(body, components, obs, opts)</code> builds the geometry about <a class="xref xref-field" href="../reference/data-structures.html#obs.origin_km"><code>obs.origin_km</code></a> and the design matrix
-once (<a class="xref xref-st" href="../reference/data-structures.html#prob"><code>prob</code></a>); <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.run"><code>sbtk.invert.run</code></a><code>(prob)</code> solves. <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.solve"><code>sbtk.invert.solve</code></a> does both. Reusing <code>prob</code> is faster when the
+<p><a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.setup"><code>sbtk.invert.setup</code></a><code>(body, components, obs, opts)</code> builds the geometry about the measured center of mass
+(<a class="xref xref-field" href="../reference/data-structures.html#fit.origin_km"><code>fit.origin_km</code></a>; <a href="#data-about-a-fixed-point-or-about-the-center-of-mass">below</a>) and the design matrix once
+(<a class="xref xref-st" href="../reference/data-structures.html#prob"><code>prob</code></a>); <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.run"><code>sbtk.invert.run</code></a><code>(prob)</code> solves. <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.solve"><code>sbtk.invert.solve</code></a> does both. Reusing <code>prob</code> is faster when the
 same problem is solved more than once:</p>
 <ul>
 <li>with other settings that do not select measurements (<code>prob.opts.regularization</code>, bounds, positions);</li>
@@ -126,10 +127,10 @@ priors and limits always refer to the geometry the components were given.</p>
 while moving the component away from the truth. Example: a Didymos true model has a torus about its spin axis at the
 center of figure, plus a boulder and a random density field. The data are its exact values weighted by the Hera
 radio-science precision, in the frame and about the origin of the DART file. An inversion model with a core, the torus
-(about the <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis through the center of figure, 3.7° from the true torus axis) and the regolith has a reduced
+(about the <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis through the center of figure, 3.9° from the true torus axis) and the regolith has a reduced
 <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> of 157 (<span class="nobr"><math alttext="R^2 = 0.49" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mn>0.49</mn></mrow></math>)</span> with fixed geometry. With the torus axis and height estimated (a priori 1σ of 1° and
-10 m, limits of 10° and 50 m), <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> drops to 49 while <span class="nobr"><math alttext="R^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow></math></span> falls to <span class="nobr"><math alttext="-1.95" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mn>1.95</mn></mrow></math>:</span> the torus moves 50 m up, to its
-limit, and tilts 6.9° from <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span> to stand in for the boulder, and the regolith density falls to its lower bound. At this
+10 m, limits of 10° and 50 m), <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> drops to 49 while <span class="nobr"><math alttext="R^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow></math></span> falls to <span class="nobr"><math alttext="-1.92" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mn>1.92</mn></mrow></math>:</span> the torus moves 50 m up, to its
+limit, and tilts 6.8° from <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span> to stand in for the boulder, and the regolith density falls to 19 ± 176 kg/m³. At this
 precision such priors are weak. Priors, or limits tight enough to bind, must express how well the geometry is actually
 known.</p>
 <p><strong>Local minima.</strong> A fit whose geometry absorbs structure can have more than one local minimum. The same Didymos fit,
@@ -306,11 +307,11 @@ fit places both at the center of figure. More
 examples: <a href="../examples/calculations.html">Calculations</a>.</p>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../inversion/reading-coefficients.html" rel="prev"><span>Previous</span>Reading the gravity coefficients</a><a class="next" href="../inversion/coefficient-subsets.html" rel="next"><span>Next</span>Fitting part of the coefficients</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-29.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-30.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#procedure">Procedure</a></li><li class="lvl2"><a href="#estimation-problem">Estimation problem</a></li><li class="lvl2"><a href="#estimated-geometry">Estimated geometry</a></li><li class="lvl2"><a href="#uncertainties">Uncertainties</a></li><li class="lvl2"><a href="#regularization">Regularization</a></li><li class="lvl2"><a href="#data-about-a-fixed-point-or-about-the-center-of-mass">Data about a fixed point or about the center of mass</a></li><li class="lvl2"><a href="#settings">Settings</a></li><li class="lvl2"><a href="#example">Example</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=784437df24"></script>
-<script src="../assets/site.js?v=784437df24"></script>
+<script src="../assets/search-index.js?v=54bef2a613"></script>
+<script src="../assets/site.js?v=54bef2a613"></script>
 </body>
 </html>

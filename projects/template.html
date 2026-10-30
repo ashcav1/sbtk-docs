@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Project template — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=784437df24">
-<link rel="stylesheet" href="../assets/pygments.css?v=784437df24">
-<link rel="stylesheet" href="../assets/print.css?v=784437df24" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=54bef2a613">
+<link rel="stylesheet" href="../assets/pygments.css?v=54bef2a613">
+<link rel="stylesheet" href="../assets/print.css?v=54bef2a613" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,7 +29,7 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Projects › <span aria-current="page">Project template</span></nav>
 <article>
 <h1 id="project-template">Project template<a class="headerlink" href="#project-template" title="Link to this section">#</a></h1>
-<p class="lastedit">Last edited October 29, 2026</p>
+<p class="lastedit">Last edited October 30, 2026</p>
 <p>A project is a folder of runner scripts for one body that write to <code>results/&lt;project&gt;/</code>. The folder
 <code>projects/template/</code> is the starting point for a new body. Body-specific numbers are kept in one settings function,
 <code>my_body.m</code>; nothing body-specific is in the toolbox.</p>
@@ -71,8 +71,8 @@
 <li>Set <code>project</code> at the top of each script.</li>
 <li>In <code>simulate_measurements.m</code>, edit the sections PROJECT, NAME AND DELIVERY and INTERIOR. The simulation writes exact
    values, without uncertainties or noise.</li>
-<li>In <code>invert_measurements.m</code>, edit UNCERTAINTIES (the 1σ the receiving team gives the exact values), MODEL and
-   OPTIONS.</li>
+<li>In <code>invert_measurements.m</code>, edit DATA (the package to invert), UNCERTAINTIES (the 1σ the receiving team gives the
+   exact values), MODEL and OPTIONS.</li>
 <li>Run the scripts in order. Each run writes its own folder (<a href="../files/results-folders.html">Results folders</a>); the
    inversion finds the newest simulation of the given name with <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.latest_run"><code>sbtk.io.latest_run</code></a>.</li>
 </ol>
@@ -226,11 +226,11 @@ writelines(<a class="xref xref-fn" href="../reference/api/compare.html#sbtk.comp
 <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.finish_run">sbtk.io.finish_run</a>(out);</code></pre></div>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../examples/tutorials.html" rel="prev"><span>Previous</span>Tutorial scripts</a><a class="next" href="../projects/bennu.html" rel="next"><span>Next</span>Bennu</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-29.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-30.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#files">Files</a></li><li class="lvl2"><a href="#use">Use</a></li><li class="lvl2"><a href="#code">Code</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=784437df24"></script>
-<script src="../assets/site.js?v=784437df24"></script>
+<script src="../assets/search-index.js?v=54bef2a613"></script>
+<script src="../assets/site.js?v=54bef2a613"></script>
 </body>
 </html>

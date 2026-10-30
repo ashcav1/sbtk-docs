@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Installation — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=784437df24">
-<link rel="stylesheet" href="../assets/pygments.css?v=784437df24">
-<link rel="stylesheet" href="../assets/print.css?v=784437df24" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=54bef2a613">
+<link rel="stylesheet" href="../assets/pygments.css?v=54bef2a613">
+<link rel="stylesheet" href="../assets/print.css?v=54bef2a613" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,11 +29,11 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Getting started › <span aria-current="page">Installation</span></nav>
 <article>
 <h1 id="installation">Installation<a class="headerlink" href="#installation" title="Link to this section">#</a></h1>
-<p class="lastedit">Last edited October 19, 2026</p>
+<p class="lastedit">Last edited October 30, 2026</p>
 <h2 id="requirements">Requirements<a class="headerlink" href="#requirements" title="Link to this section">#</a></h2>
 <ul>
 <li>MATLAB R2024b or newer. SBTK 1.0.0 is tested with R2025a.</li>
-<li>Optimization Toolbox, for <code>lsqlin</code> in the inversion.</li>
+<li>Optimization Toolbox, for <code>lsqlin</code> in the inversion. No other toolbox is needed.</li>
 <li>A compiled copy of the polyhedral gravity kernel <code>ComputePolyhedralCSBar_mex</code> for the platform. Binaries for macOS on
   Apple silicon (<code>.mexmaca64</code>) and Intel (<code>.mexmaci64</code>) are included; on other platforms it must be compiled once
   (<a href="#compiling-the-gravity-kernel">below</a>).</li>
@@ -65,12 +65,16 @@
 <td>The OSIRIS-REx gravity field of Bennu (JPL, 2019).</td>
 </tr>
 <tr>
+<td><code>data/hera_rse/</code></td>
+<td>A README; the radio-science files of the Hera end-to-end test are copied here (<a href="#files-that-are-not-in-the-repository">below</a>).</td>
+</tr>
+<tr>
 <td><code>examples/</code></td>
-<td>Eight tutorial scripts, <code>ex01_quick_start.m</code> … <code>ex08_moments_of_inertia.m</code> (<a href="../examples/tutorials.html">Tutorial scripts</a>).</td>
+<td>Eleven tutorial scripts, <code>ex01_quick_start.m</code> … <code>ex11_geometry_search.m</code> (<a href="../examples/tutorials.html">Tutorial scripts</a>), and the maker models of the Hera blind test (<code>make_didymos_*.m</code>, <code>make_dimorphos_*.m</code>).</td>
 </tr>
 <tr>
 <td><code>projects/</code></td>
-<td>Runner scripts for the project template, Bennu and the Hera blind test (<a href="../projects/template.html">Projects</a>).</td>
+<td>Runner scripts for the project template, Bennu and the Hera blind test, with the ROB solutions in <code>projects/hera_hlp6/rob/</code> (<a href="../projects/template.html">Projects</a>).</td>
 </tr>
 <tr>
 <td><code>results/</code></td>
@@ -87,6 +91,10 @@
 <tr>
 <td><code>docs/</code></td>
 <td>Notes in Markdown and earlier documents.</td>
+</tr>
+<tr>
+<td><code>documentation/</code></td>
+<td>Sources and tools of this documentation.</td>
 </tr>
 </tbody>
 </table>
@@ -115,33 +123,33 @@ to its own file name.</p>
 <tbody>
 <tr>
 <td><code>data/shapes/g_01165mm_spc_obj_didy_0000n00000_v003.obj</code> (Didymos, 1.165 m sampling, about 160 MB)</td>
-<td><code>sbtk.shape.bundled("didymos_highres")</code>, <code>tools/make_reduced_shapes.m</code>, <code>examples/ex01_quick_start.m</code></td>
+<td><code>sbtk.shape.bundled("didymos_highres")</code>, <code>tools/make_reduced_shapes.m</code>, <code>examples/ex01_quick_start.m</code>, the Didymos maker models and runners of <code>projects/hera_hlp6</code></td>
 <td>DART shape models on ESA's SPICE server, <code>spiftp.esac.esa.int/data/SPICE/HERA/kernels/dsk/</code></td>
 </tr>
 <tr>
 <td><code>data/shapes/g_00243mm_spc_obj_dimo_0000n00000_v004.obj</code> (Dimorphos, 0.243 m, about 160 MB)</td>
-<td><code>sbtk.shape.bundled("dimorphos_highres")</code>, <code>tools/make_reduced_shapes.m</code></td>
+<td><code>sbtk.shape.bundled("dimorphos_highres")</code>, <code>tools/make_reduced_shapes.m</code>, the Dimorphos maker models and runners of <code>projects/hera_hlp6</code></td>
 <td>same</td>
 </tr>
 <tr>
-<td>Uncertainty files of the Hera end-to-end test</td>
-<td>the simulation runners of <code>projects/hera_hlp6</code></td>
-<td>Hera working group; not distributed (<a href="../projects/hera-blind-test.html">Hera blind test</a>)</td>
+<td>Radio-science files of the Hera end-to-end test, in <code>data/hera_rse/</code></td>
+<td><code>projects/hera_hlp6/hlp6_uncertainties.m</code>: the simulation, inversion and ROB runners of <code>projects/hera_hlp6</code> and the studies in <code>tests/studies</code></td>
+<td>Hera working group; not distributed (<code>data/hera_rse/README.md</code>, <a href="../projects/hera-blind-test.html">Hera blind test</a>)</td>
 </tr>
 </tbody>
 </table>
 <p>All other shape models used in the examples and tests are in <code>data/shapes/</code>.</p>
 <h2 id="checking-the-installation">Checking the installation<a class="headerlink" href="#checking-the-installation" title="Link to this section">#</a></h2>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">run(fullfile(<a class="xref xref-fn" href="../reference/api/sbtk.html#sbtk.root">sbtk.root</a>, &quot;tests&quot;, &quot;run_tests.m&quot;))</code></pre></div>
-<p>This runs 129 unit and integration tests in about three minutes and writes <code>tests/reports/test_report.txt</code>. Every test
-should pass (<a href="../validation/tests.html">Validation</a>).</p>
+<p>This runs 195 unit and integration tests in about 35 minutes, most of it the HLP6 maker models on the full-resolution
+shape models, and writes <code>tests/reports/test_report.txt</code>. Every test should pass (<a href="../validation/tests.html">Validation</a>).</p>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../overview/limitations.html" rel="prev"><span>Previous</span>Assumptions and limitations</a><a class="next" href="../getting-started/first-script.html" rel="next"><span>Next</span>First script</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-29.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-30.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#requirements">Requirements</a></li><li class="lvl2"><a href="#repository-layout">Repository layout</a></li><li class="lvl2"><a href="#setting-the-path">Setting the path</a></li><li class="lvl2"><a href="#compiling-the-gravity-kernel">Compiling the gravity kernel</a></li><li class="lvl2"><a href="#files-that-are-not-in-the-repository">Files that are not in the repository</a></li><li class="lvl2"><a href="#checking-the-installation">Checking the installation</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=784437df24"></script>
-<script src="../assets/site.js?v=784437df24"></script>
+<script src="../assets/search-index.js?v=54bef2a613"></script>
+<script src="../assets/site.js?v=54bef2a613"></script>
 </body>
 </html>

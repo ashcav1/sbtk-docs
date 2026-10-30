@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>sbtk.data — SBTK documentation</title>
-<link rel="stylesheet" href="../../assets/site.css?v=784437df24">
-<link rel="stylesheet" href="../../assets/pygments.css?v=784437df24">
-<link rel="stylesheet" href="../../assets/print.css?v=784437df24" media="print">
+<link rel="stylesheet" href="../../assets/site.css?v=54bef2a613">
+<link rel="stylesheet" href="../../assets/pygments.css?v=54bef2a613">
+<link rel="stylesheet" href="../../assets/print.css?v=54bef2a613" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,7 +29,7 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../../index.html">Documentation</a> › Reference › <span aria-current="page">sbtk.data</span></nav>
 <article>
 <h1 id="top"><code>sbtk.data</code>: Measurement sets</h1>
-<p class="lastedit">Last edited October 29, 2026</p>
+<p class="lastedit">Last edited October 30, 2026</p>
 <table class="overview"><thead><tr><th>Function</th><th>Purpose</th></tr></thead><tbody>
 <tr><td><a class="xref xref-fn" href="#sbtk.data.add_center_of_mass"><code>add_center_of_mass</code></a></td><td>Add degree-1 coefficients that place the center of mass at a given point.</td></tr>
 <tr><td><a class="xref xref-fn" href="#sbtk.data.add_libration"><code>add_libration</code></a></td><td>Add a measured libration ratio (B - A)/C.</td></tr>
@@ -91,8 +91,8 @@ obs = <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.add_
 </tbody></table>
 <h3 class="api-sub">Description</h3>
 <p>The principal axes need not be the shape-model axes: their direction in the xy-plane comes from the measured C22 and S22 of obs (which must have them), and the measurement is stored as the linear row</p>
-<pre class="helppre">    cos(2a) (Iyy - Ixx) + sin(2a) 2 Ixy - ratio Izz = 0 +- ratio_sigma Izz_norm,</pre>
-<p>(B - A) written with the principal-axis angle a (<a class="xref xref-fn" href="../../reference/internal.html#sbtk.internal.libration_weights">sbtk.internal.libration_weights</a>). Together with C22 and S22, which give B - A, the ratio measures C to a relative precision of about ratio_sigma/ratio.</p>
+<pre class="helppre">    cos(2a) (Iyy - Ixx) - sin(2a) 2 Ixy - ratio Izz = 0 +- ratio_sigma Izz_norm,</pre>
+<p>(B - A) written with the angle a of the A axis from the x axis (<a class="xref xref-fn" href="../../reference/internal.html#sbtk.internal.libration_weights">sbtk.internal.libration_weights</a>). Together with C22 and S22, which give B - A, the ratio measures C to a relative precision of about ratio_sigma/ratio.</p>
 <h3 class="api-sub">Example</h3>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>obs</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><span class="c">% (B - A)/C = 0.20 +- 0.03, with Izz/(M R_ref^2) about 0.39</span>
 obs = <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.add_libration">sbtk.data.add_libration</a>(obs, 0.20, 0.03, 0.39);</code></pre></div>
@@ -504,11 +504,11 @@ obs = <a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.add_
 </section>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../../reference/api/gravity.html" rel="prev"><span>Previous</span>sbtk.gravity</a><a class="next" href="../../reference/api/interpret.html" rel="next"><span>Next</span>sbtk.interpret</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-29.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-30.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#sbtk.data.add_center_of_mass">sbtk.data.add_center_of_mass</a></li><li class="lvl2"><a href="#sbtk.data.add_libration">sbtk.data.add_libration</a></li><li class="lvl2"><a href="#sbtk.data.add_moi">sbtk.data.add_moi</a></li><li class="lvl2"><a href="#sbtk.data.add_moi_row">sbtk.data.add_moi_row</a></li><li class="lvl2"><a href="#sbtk.data.add_noise">sbtk.data.add_noise</a></li><li class="lvl2"><a href="#sbtk.data.expand_about">sbtk.data.expand_about</a></li><li class="lvl2"><a href="#sbtk.data.from_coefficients">sbtk.data.from_coefficients</a></li><li class="lvl2"><a href="#sbtk.data.libration_ratio_from_amplitude">sbtk.data.libration_ratio_from_amplitude</a></li><li class="lvl2"><a href="#sbtk.data.move_origin">sbtk.data.move_origin</a></li><li class="lvl2"><a href="#sbtk.data.select_coefficients">sbtk.data.select_coefficients</a></li><li class="lvl2"><a href="#sbtk.data.select_degree">sbtk.data.select_degree</a></li><li class="lvl2"><a href="#sbtk.data.select_moi">sbtk.data.select_moi</a></li><li class="lvl2"><a href="#sbtk.data.set_covariance">sbtk.data.set_covariance</a></li><li class="lvl2"><a href="#sbtk.data.set_moi_sigma">sbtk.data.set_moi_sigma</a></li><li class="lvl2"><a href="#sbtk.data.set_uncertainties">sbtk.data.set_uncertainties</a></li><li class="lvl2"><a href="#sbtk.data.simulate">sbtk.data.simulate</a></li><li class="lvl2"><a href="#sbtk.data.summary">sbtk.data.summary</a></li><li class="lvl2"><a href="#sbtk.data.to_frame">sbtk.data.to_frame</a></li><li class="lvl2"><a href="#sbtk.data.to_reduced_shape">sbtk.data.to_reduced_shape</a></li><li class="lvl2"><a href="#sbtk.data.uncertainties">sbtk.data.uncertainties</a></li><li class="lvl2"><a href="#sbtk.data.use_uncertainties">sbtk.data.use_uncertainties</a></li></ul></nav>
 </div>
-<script src="../../assets/search-index.js?v=784437df24"></script>
-<script src="../../assets/site.js?v=784437df24"></script>
+<script src="../../assets/search-index.js?v=54bef2a613"></script>
+<script src="../../assets/site.js?v=54bef2a613"></script>
 </body>
 </html>

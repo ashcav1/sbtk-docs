@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Reading the gravity coefficients — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=784437df24">
-<link rel="stylesheet" href="../assets/pygments.css?v=784437df24">
-<link rel="stylesheet" href="../assets/print.css?v=784437df24" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=54bef2a613">
+<link rel="stylesheet" href="../assets/pygments.css?v=54bef2a613">
+<link rel="stylesheet" href="../assets/print.css?v=54bef2a613" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,7 +29,7 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Measurements and inversion › <span aria-current="page">Reading the gravity coefficients</span></nav>
 <article>
 <h1 id="reading-the-gravity-coefficients">Reading the gravity coefficients<a class="headerlink" href="#reading-the-gravity-coefficients" title="Link to this section">#</a></h1>
-<p class="lastedit">Last edited October 27, 2026</p>
+<p class="lastedit">Last edited October 30, 2026</p>
 <p>An inversion estimates the densities of the components it is given; it does not say which components to give it.
 This page is the step before: how to read the gravity coefficients of an unknown body to decide which components
 to model, and where to start them. It derives what each kind of structure does to the coefficients, gives a
@@ -56,9 +56,9 @@ it, for measurements or for a model:</p>
   is not well above its 1σ carries no information about the interior;</li>
 <li>the inertia rows of the measurements with the homogeneous body's values about the same point.</li>
 </ul>
-<p><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.significance"><code>sbtk.plot.significance</code></a> draws every measurement with its ±1σ interval against the constant-density value, and
-counts those that differ from it by more than 1σ and 3σ. <a class="xref xref-fn" href="../reference/internal.html#sbtk.interpret.summary"><code>sbtk.interpret.summary</code></a> prints the rest of this page's
-quantities.</p>
+<p><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.significance"><code>sbtk.plot.significance</code></a> draws every measurement with its ±1σ interval against the constant-density value, colored
+by whether it differs from it by less than 1σ, 1 to 3σ or more than 3σ. <a class="xref xref-fn" href="../reference/internal.html#sbtk.interpret.summary"><code>sbtk.interpret.summary</code></a> prints the rest of
+this page's quantities.</p>
 <h3 id="signatures-of-components">Signatures of components<a class="headerlink" href="#signatures-of-components" title="Link to this section">#</a></h3>
 <p>A relative density <span class="nobr"><math alttext="Δρ_c" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x00394;</mi><msub><mi>&#x003C1;</mi><mi>c</mi></msub></mrow></math></span> in a component of volume <span class="nobr"><math alttext="V_c" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>V</mi><mi>c</mi></msub></mrow></math></span> lowers the density of the rest of the body by
 <span class="nobr"><math alttext="Δρ_c V_c/V" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x00394;</mi><msub><mi>&#x003C1;</mi><mi>c</mi></msub><msub><mi>V</mi><mi>c</mi></msub><mo>&#x0002F;</mo><mi>V</mi></mrow></math>,</span> because the mass is fixed. The anomaly it makes is <span class="nobr"><math alttext="Δρ_c" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x00394;</mi><msub><mi>&#x003C1;</mi><mi>c</mi></msub></mrow></math></span> times the component's
@@ -72,10 +72,12 @@ homogeneous body, and the correlation of its signature with the anomaly.</p>
 <h2 id="what-each-kind-of-structure-does">What each kind of structure does<a class="headerlink" href="#what-each-kind-of-structure-does" title="Link to this section">#</a></h2>
 <p>The homogeneous body's own coefficients set the scale. Each degree <span class="nobr"><math alttext="l≥2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>l</mi><mo>&#x02265;</mo><mn>2</mn></mrow></math></span> of a field can be split into a scaled
 homogeneous field and the rest:</p>
-<math alttext="C_l· = k_l C^hom_l· + rest_l, k_l = ( h_l· c_l)/( h_l· h_l)," xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mi>l</mi><mi>&#x000B7;</mi></mrow></msub><mo>&#x0003D;</mo><msub><mi>k</mi><mi>l</mi></msub><mspace width="0.167em" /><msubsup><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mi>l</mi><mi>&#x000B7;</mi></mrow><mtext>hom</mtext></msubsup><mo>&#x0002B;</mo><msub><mtext>rest</mtext><mi>l</mi></msub><mo>&#x0002C;</mo><mspace width="2em" /><msub><mi>k</mi><mi>l</mi></msub><mo>&#x0003D;</mo><mfrac><mrow><msub><mi mathvariant="bold">h</mi><mi>l</mi></msub><mi>&#x000B7;</mi><msub><mi mathvariant="bold">c</mi><mi>l</mi></msub></mrow><mrow><msub><mi mathvariant="bold">h</mi><mi>l</mi></msub><mi>&#x000B7;</mi><msub><mi mathvariant="bold">h</mi><mi>l</mi></msub></mrow></mfrac><mo>&#x0002C;</mo></mrow></math>
-<p>with <span class="nobr"><math alttext="h_l" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi mathvariant="bold">h</mi><mi>l</mi></msub></mrow></math></span> and <span class="nobr"><math alttext="c_l" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi mathvariant="bold">c</mi><mi>l</mi></msub></mrow></math></span> the <span class="nobr"><math alttext="2l+1" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>2</mn><mi>l</mi><mo>&#x0002B;</mo><mn>1</mn></mrow></math></span> coefficients of degree <span class="nobr"><math alttext="l" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>l</mi></mrow></math></span> of the homogeneous body and of the field
-(<a class="xref xref-field" href="../reference/data-structures.html#an.ratio"><code>an.ratio</code></a>, <a class="xref xref-field" href="../reference/data-structures.html#an.residual"><code>an.residual</code></a>). Structure that is symmetric about the center of figure changes only <span class="nobr"><math alttext="k_l" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>k</mi><mi>l</mi></msub></mrow></math>;</span>
-everything else shows in the rest.</p>
+<math alttext="C_l· = k_l C^hom_l· + rest_l, k_l = h_l^TK_l^-1 c_l h_l^TK_l^-1 h_l," xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mi>l</mi><mi>&#x000B7;</mi></mrow></msub><mo>&#x0003D;</mo><msub><mi>k</mi><mi>l</mi></msub><mspace width="0.167em" /><msubsup><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mi>l</mi><mi>&#x000B7;</mi></mrow><mtext>hom</mtext></msubsup><mo>&#x0002B;</mo><msub><mtext>rest</mtext><mi>l</mi></msub><mo>&#x0002C;</mo><mspace width="2em" /><msub><mi>k</mi><mi>l</mi></msub><mo>&#x0003D;</mo><mfrac><mrow><msubsup><mi mathvariant="bold">h</mi><mi>l</mi><mi>&#x1D5B3;</mi></msubsup><msubsup><mi>K</mi><mi>l</mi><mrow><mo>&#x02212;</mo><mn>1</mn></mrow></msubsup><msub><mi mathvariant="bold">c</mi><mi>l</mi></msub></mrow><mrow><msubsup><mi mathvariant="bold">h</mi><mi>l</mi><mi>&#x1D5B3;</mi></msubsup><msubsup><mi>K</mi><mi>l</mi><mrow><mo>&#x02212;</mo><mn>1</mn></mrow></msubsup><msub><mi mathvariant="bold">h</mi><mi>l</mi></msub></mrow></mfrac><mo>&#x0002C;</mo></mrow></math>
+<p>with <span class="nobr"><math alttext="h_l" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi mathvariant="bold">h</mi><mi>l</mi></msub></mrow></math></span> and <span class="nobr"><math alttext="c_l" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi mathvariant="bold">c</mi><mi>l</mi></msub></mrow></math></span> the <span class="nobr"><math alttext="2l+1" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>2</mn><mi>l</mi><mo>&#x0002B;</mo><mn>1</mn></mrow></math></span> coefficients of degree <span class="nobr"><math alttext="l" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>l</mi></mrow></math></span> of the homogeneous body and of the field, and
+<span class="nobr"><math alttext="K_l" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>K</mi><mi>l</mi></msub></mrow></math></span> the covariance of <span class="nobr"><math alttext="c_l" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi mathvariant="bold">c</mi><mi>l</mi></msub></mrow></math>:</span> <span class="nobr"><math alttext="k_l" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>k</mi><mi>l</mi></msub></mrow></math></span> is the scale of the homogeneous field fitted to degree <span class="nobr"><math alttext="l" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>l</mi></mrow></math></span> by weighted
+least squares (<a class="xref xref-field" href="../reference/data-structures.html#an.ratio"><code>an.ratio</code></a>, <a class="xref xref-field" href="../reference/data-structures.html#an.residual"><code>an.residual</code></a>). For a model, which has no uncertainties, <span class="nobr"><math alttext="K_l" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>K</mi><mi>l</mi></msub></mrow></math></span> is the identity. The
+<span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> of the rest with <span class="nobr"><math alttext="K_l" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>K</mi><mi>l</mi></msub></mrow></math></span> has <span class="nobr"><math alttext="2l" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>2</mn><mi>l</mi></mrow></math></span> degrees of freedom (<a class="xref xref-field" href="../reference/data-structures.html#an.residual_chi2"><code>an.residual_chi2</code></a>). Structure that is symmetric about
+the center of figure changes only <span class="nobr"><math alttext="k_l" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>k</mi><mi>l</mi></msub></mrow></math>;</span> everything else shows in the rest.</p>
 <table>
 <thead>
 <tr>
@@ -252,29 +254,29 @@ fit = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.sol
   chi-square of the offset: 1096 for 3 degrees of freedom
   degree  RMS anomaly  RMS 1-sigma     ratio k_l +- 1-sigma      residual chi2 / dof
   1         2.485e-04    1.300e-05
-  2         1.079e-03    2.010e-05       0.94114 +- 0.00050                348.8 / 4
-  3         6.282e-05    3.045e-05       0.98676 +- 0.00670                25.95 / 6
-  4         3.283e-04    3.202e-05       0.81902 +- 0.00607                58.65 / 8
-  5         3.766e-05    3.345e-05       0.97409 +- 0.02249               12.97 / 10
+  2         1.079e-03    2.010e-05       0.94115 +- 0.00050                348.8 / 4
+  3         6.282e-05    3.045e-05       0.98683 +- 0.00670                25.95 / 6
+  4         3.283e-04    3.202e-05       0.81849 +- 0.00607                58.64 / 8
+  5         3.766e-05    3.345e-05       0.97082 +- 0.02231               12.95 / 10
   one compact mass with the same degrees 1 and 2: 5.893% +- 0.050% of the mass (3.12e+10 kg) at [4.4 -2.5 -1.1] m +- [0.2 0.2 0.2] m from the center of figure</code></pre></div>
 <p><strong>1. Read.</strong> 15 of the 35 coefficients differ from constant density by more than 1σ and 9 by more than 3σ. The center
 of mass is 0.31 m from the center of figure, measured to 1 cm: something is off center. <span class="nobr"><math alttext="J_2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mn>2</mn></msub></mrow></math></span> is 120σ below the
 homogeneous value and <span class="nobr"><math alttext="J_4" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mn>4</mn></msub></mrow></math></span> 30σ above it.</p>
 <figure class="figure"><img src="../figures/reading/significance.png" alt="  sbtk.plot.significance  : each coefficient&#x27;s anomaly with its ±1σ interval against the constant-density value (the line at 0), on a symmetric logarithmic axis. Gray: within 1σ; amber: 1 to 3σ; red: beyond 3σ." loading="lazy"><figcaption><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.significance"><code>sbtk.plot.significance</code></a>: each coefficient's anomaly with its ±1σ interval against the constant-density value (the line at 0), on a symmetric logarithmic axis. Gray: within 1σ; amber: 1 to 3σ; red: beyond 3σ.</figcaption></figure>
-<p><strong>2. Scaling and rest.</strong> Degree 2 is scaled down by 5.9%, degree 4 by 18%, degrees 3 and 5 by about 1–3%: the
-even degrees much more than the odd ones. A central mass alone would scale every degree alike and a surface layer
-would scale degree 4 more than degree 2 but degree 3 in between; the even–odd alternation is the signature of a ring
-about the <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis. The rest confirms it: <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> of 349 for the 4 degrees of freedom of degree 2 and 59 for the 8 of
+<p><strong>2. Scaling and rest.</strong> The homogeneous field is scaled down by 5.9% in degree 2, 18% in degree 4 and about 1–3% in
+degrees 3 and 5: the even degrees much more than the odd ones. A central mass alone would scale every degree alike
+and a surface layer would scale degree 4 more than degree 2 but degree 3 in between; the even–odd alternation is the
+signature of a ring about the <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis. The rest confirms it: <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> of 349 for the 4 degrees of freedom of degree 2 and 59 for the 8 of
 degree 4, against 26 and 13 for degrees 3 and 5, and in degree 2 most of it is <span class="nobr"><math alttext="J_2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mn>2</mn></msub></mrow></math>.</span> <span class="nobr"><math alttext="J_3" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mn>3</mn></msub></mrow></math></span> (−4σ) and <span class="nobr"><math alttext="J_5" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mn>5</mn></msub></mrow></math></span> (+3σ)
 point to a ring that is not in the equatorial plane.</p>
-<figure class="figure"><img src="../figures/reading/degree_ratio.png" alt="  sbtk.plot.degree_ratio  : left, the scaling of each degree in % of the homogeneous field; right, the RMS of the rest of each degree and the RMS 1σ of the measurements (dashed)." loading="lazy"><figcaption><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.degree_ratio"><code>sbtk.plot.degree_ratio</code></a>: left, the scaling of each degree in % of the homogeneous field; right, the RMS of the rest of each degree and the RMS 1σ of the measurements (dashed).</figcaption></figure>
-<p><strong>3. One compact mass.</strong> Degrees 1 and 2 as one mass give 5.9% of the mass, 4.4 m from the center of figure. The
+<figure class="figure"><img src="../figures/reading/degree_ratio.png" alt="  sbtk.plot.degree_ratio  : left,   100 (k_l - 1) ,  the change of each degree as a scaled homogeneous field, in % of the homogeneous field; right, the RMS of the rest of each degree and the RMS 1σ of the measurements (dashed)." loading="lazy"><figcaption><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.degree_ratio"><code>sbtk.plot.degree_ratio</code></a>: left, <span class="nobr"><math alttext="100 (k_l - 1)" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mn>100</mn><mspace width="0.167em" /><mo stretchy="false">&#x00028;</mo><msub><mi>k</mi><mi>l</mi></msub><mo>&#x02212;</mo><mn>1</mn><mo stretchy="false">&#x00029;</mo></mrow></math>,</span> the change of each degree as a scaled homogeneous field, in % of the homogeneous field; right, the RMS of the rest of each degree and the RMS 1σ of the measurements (dashed).</figcaption></figure>
+<p><strong>3. One compact mass.</strong> Degrees 1 and 2 as one mass give 5.9% of the mass, 5.2 m from the center of figure. The
 hidden core is 1.1% of the mass 30 m from it: the 5.9% is the net central condensation of the core, the light torus
 and the light surface layer together, and the offset divided by it comes out about 6 times too short (5 m instead of 30 m). On its own, a compact
 mass is the wrong reading here, as step 2 already said.</p>
 <p><strong>5. Model and core position.</strong> The model has the three components step 2 points to, with the sizes a receiving
 team would guess (core radius 150 m, torus radii 370 and 55 m about the <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis, a 12 m layer). The <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> profile
-of the core along the center-of-mass offset has two valleys: a light core 45 m on the negative side (<span class="nobr"><math alttext="χ^2 160" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup><mo>&#x02248;</mo><mn>160</mn></mrow></math>)</span>
+of the core along the center-of-mass offset has two valleys: a light core 45 m on the negative side (<span class="nobr"><math alttext="χ^2 145" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup><mo>&#x02248;</mo><mn>145</mn></mrow></math>)</span>
 and a dense core on the positive side, flat from 40 to 100 m (<span class="nobr"><math alttext="χ^2 93" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup><mo>&#x02248;</mo><mn>93</mn></mrow></math>)</span>. The hidden core is at 27 m along
 this line.</p>
 <figure class="figure"><img src="../figures/reading/scan.png" alt="  sbtk.invert.scan_position  :   χ^2   of the densities fitted with the core at each point along the measured center-of-mass offset. The dotted line is the hidden core." loading="lazy"><figcaption><a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.scan_position"><code>sbtk.invert.scan_position</code></a>: <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> of the densities fitted with the core at each point along the measured center-of-mass offset. The dotted line is the hidden core.</figcaption></figure>
@@ -283,11 +285,11 @@ model is consistent with the measurements. It puts the torus 12.2 m above the eq
 relative density of −359 ± 15 kg/m³ (hidden: −400). The core, however, has +122 ± 22 kg/m³ at 127 m from the center
 of figure, and the layer −1418 ± 184 kg/m³: a weak core far out and a very light surface explain the measurements as
 well as the hidden dense core and lighter surface, within the 1σ of the measurements and with this model's slightly
-wrong sizes. With the hidden sizes the fit recovers every density exactly (<span class="nobr"><math alttext="χ^2 = 6×10^-12" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mn>6</mn><mi>&#x000D7;</mi><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>12</mn></mrow></msup></mrow></math>)</span>. Degree 1 fixes
+wrong sizes. With the hidden sizes the fit recovers every density exactly (<span class="nobr"><math alttext="χ^2 10^-9" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup><mo>&#x02248;</mo><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>9</mn></mrow></msup></mrow></math>)</span>. Degree 1 fixes
 the core's first moment; how it splits into mass and offset depends on the degree-2 scaling, which the layer shares.
 The position 1σ of Gauss–Newton (18 m) describes the valley near the solution, not the length of the valley: read the
 <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> profile.</p>
-<p><strong>6. Test.</strong> Fitted to degrees 1–3 only, the same model predicts the 16 coefficients of degrees 4 and 5 with a
+<p><strong>6. Test.</strong> Fitted to degrees 1–3 only, the same model predicts the 20 coefficients of degrees 4 and 5 with a
 <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> of 1.2 per coefficient: the model passes a test on coefficients it was not fitted to. The test does not
 separate the core from the layer either: at this precision degrees 4 and 5 do not tell the two explanations apart.</p>
 <figure class="figure"><img src="../figures/reading/anomaly.png" alt="  sbtk.plot.anomaly  : the measured anomaly (black, ±1σ) and those of the model fitted to degrees 1–3 (squares) and to degrees 1–5 (diamonds); filled: fitted, open: predicted. Below, (model − measured)/σ." loading="lazy"><figcaption><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.anomaly"><code>sbtk.plot.anomaly</code></a>: the measured anomaly (black, ±1σ) and those of the model fitted to degrees 1–3 (squares) and to degrees 1–5 (diamonds); filled: fitted, open: predicted. Below, (model − measured)/σ.</figcaption></figure>
@@ -506,11 +508,11 @@ three-component model of guessed sizes, placed by the profile and Gauss–Newton
 </ol>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../inversion/expansion-point-uncertainties.html" rel="prev"><span>Previous</span>Uncertainties and the expansion point</a><a class="next" href="../inversion/density-estimation.html" rel="next"><span>Next</span>Density estimation</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-29.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-30.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#the-anomaly-what-the-interior-adds">The anomaly: what the interior adds</a></li><li class="lvl3"><a href="#signatures-of-components">Signatures of components</a></li><li class="lvl2"><a href="#what-each-kind-of-structure-does">What each kind of structure does</a></li><li class="lvl2"><a href="#degree-1-and-the-core">Degree 1 and the core</a></li><li class="lvl2"><a href="#procedure">Procedure</a></li><li class="lvl2"><a href="#example">Example</a></li><li class="lvl2"><a href="#what-the-study-found">What the study found</a></li><li class="lvl3"><a href="#reading-without-a-fit">Reading without a fit</a></li><li class="lvl3"><a href="#degree-1-and-the-core_1">Degree 1 and the core</a></li><li class="lvl3"><a href="#which-coefficients">Which coefficients</a></li><li class="lvl3"><a href="#what-limits-the-finding">What limits the finding</a></li><li class="lvl3"><a href="#in-practice">In practice</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=784437df24"></script>
-<script src="../assets/site.js?v=784437df24"></script>
+<script src="../assets/search-index.js?v=54bef2a613"></script>
+<script src="../assets/site.js?v=54bef2a613"></script>
 </body>
 </html>

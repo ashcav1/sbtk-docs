@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sector grids — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=784437df24">
-<link rel="stylesheet" href="../assets/pygments.css?v=784437df24">
-<link rel="stylesheet" href="../assets/print.css?v=784437df24" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=54bef2a613">
+<link rel="stylesheet" href="../assets/pygments.css?v=54bef2a613">
+<link rel="stylesheet" href="../assets/print.css?v=54bef2a613" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,7 +29,7 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Kinds of solution › <span aria-current="page">Sector grids</span></nav>
 <article>
 <h1 id="sector-grids">Sector grids<a class="headerlink" href="#sector-grids" title="Link to this section">#</a></h1>
-<p class="lastedit">Last edited October 29, 2026</p>
+<p class="lastedit">Last edited October 30, 2026</p>
 <p>A sector grid divides the whole body into blocks bounded by latitude, longitude and depth, each with its own density.
 Like point masses it assumes no shapes, but its blocks are large: tens of them instead of thousands of points, each
 reaching from one radial fraction of the way to the surface to another. It shows in which directions and at which
@@ -96,7 +96,7 @@ differences:</p>
 </tr>
 <tr>
 <td>smoothest consistent</td>
-<td>the largest with <span class="nobr"><math alttext="p ≥ 0.05" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>p</mi><mo>&#x02265;</mo><mn>0.05</mn></mrow></math></span> (bisection on <span class="nobr"><math alttext="_10λ" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>log</mi><mrow><mn>10</mn></mrow></msub><mi>&#x003BB;</mi></mrow></math>)</span></td>
+<td>the largest with <span class="nobr"><math alttext="p ≥ 0.05" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>p</mi><mo>&#x02265;</mo><mn>0.05</mn></mrow></math>;</span> not a rule of <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.choose_regularization"><code>sbtk.invert.choose_regularization</code></a>: a bisection on <span class="nobr"><math alttext="_10λ" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>log</mi><mrow><mn>10</mn></mrow></msub><mi>&#x003BB;</mi></mrow></math></span> with <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.run"><code>sbtk.invert.run</code></a> at each step</td>
 <td>the least structure the measurements require</td>
 </tr>
 <tr>
@@ -125,11 +125,11 @@ fit = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.run
 </ul>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../inversion/geometry-search.html" rel="prev"><span>Previous</span>Searching the geometry</a><a class="next" href="../inversion/point-masses.html" rel="next"><span>Next</span>Point masses</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-29.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-30.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#building-a-grid">Building a grid</a></li><li class="lvl2"><a href="#the-fit">The fit</a></li><li class="lvl2"><a href="#choosing-the-regularization-parameter">Choosing the regularization parameter</a></li><li class="lvl2"><a href="#reading-the-result">Reading the result</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=784437df24"></script>
-<script src="../assets/site.js?v=784437df24"></script>
+<script src="../assets/search-index.js?v=54bef2a613"></script>
+<script src="../assets/site.js?v=54bef2a613"></script>
 </body>
 </html>

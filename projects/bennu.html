@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Bennu — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=784437df24">
-<link rel="stylesheet" href="../assets/pygments.css?v=784437df24">
-<link rel="stylesheet" href="../assets/print.css?v=784437df24" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=54bef2a613">
+<link rel="stylesheet" href="../assets/pygments.css?v=54bef2a613">
+<link rel="stylesheet" href="../assets/print.css?v=54bef2a613" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,7 +29,7 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Projects › <span aria-current="page">Bennu</span></nav>
 <article>
 <h1 id="bennu">Bennu<a class="headerlink" href="#bennu" title="Link to this section">#</a></h1>
-<p class="lastedit">Last edited October 19, 2026</p>
+<p class="lastedit">Last edited October 30, 2026</p>
 <p><code>projects/bennu/</code> estimates the interior of the asteroid Bennu from the OSIRIS-REx gravity field (JPL, 2019; degree 10,
 <span class="nobr"><math alttext="R_ref" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>R</mi><mtext>ref</mtext></msub></mrow></math></span> = 0.290 km) following Cavale et al., "Constraints on the Internal Density Distribution of Bennu Using
 OSIRIS-REx Mission Data" (Icarus), and reproduces that paper's inversion.</p>
@@ -73,7 +73,7 @@ OSIRIS-REx Mission Data" (Icarus), and reproduces that paper's inversion.</p>
 </tbody>
 </table>
 <h2 id="reproduction-of-the-paper">Reproduction of the paper<a class="headerlink" href="#reproduction-of-the-paper" title="Link to this section">#</a></h2>
-<p>Relative densities from <code>tools/make_readme_examples.m</code>, which runs the paper configuration:</p>
+<p>Relative densities from <code>invert_bennu_paper.m</code> (<code>comparison_with_paper.txt</code> in its run folder):</p>
 <table>
 <thead>
 <tr>
@@ -122,17 +122,18 @@ OSIRIS-REx Mission Data" (Icarus), and reproduces that paper's inversion.</p>
 </table>
 <p>The paper's code counted a surface facet as part of the torus only when all three of its vertices were inside the tube;
 SBTK integrates the exact intersection, whose volume is 2.4% larger, which accounts for most of the torus difference.
-<code>tests/integration/test_bennu_paper.m</code> checks the reproduction: the core relative density within 1 kg/m³, the boulders
-within 2%, the torus mass contrast within 1%, the core center within 0.5 m, and the coefficients the paper did not fit
-(C31 … S44) within 0.15 of the JPL 1σ (<a href="../validation/tests.html">Validation</a>).</p>
-<figure class="figure"><img src="../images/bennu_interior.png" alt="Estimated interior of Bennu in the paper configuration (  sbtk.plot.interior3d  )." loading="lazy"><figcaption>Estimated interior of Bennu in the paper configuration (<a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.interior3d"><code>sbtk.plot.interior3d</code></a>).</figcaption></figure>
+<code>tests/integration/test_bennu_paper.m</code> checks the reproduction against the paper's values: the core relative density
+within 1 kg/m³, the boulders within 2% of the paper's relative densities, the torus mass contrast within 1% of the
+paper's, the core center within 0.5 m, and the predicted coefficients the paper did not fit (C31 … S44) within 0.15 of
+the JPL 1σ of those the paper's code predicts (<a href="../validation/tests.html">Validation</a>).</p>
+<figure class="figure"><img src="../images/bennu_interior.png" alt="Estimated interior of Bennu in the paper configuration, from  invert_bennu_paper.m  (  sbtk.plot.interior3d  ): oblique view and view down the   z  -axis, components labeled and colored by relative density." loading="lazy"><figcaption>Estimated interior of Bennu in the paper configuration, from <code>invert_bennu_paper.m</code> (<a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.interior3d"><code>sbtk.plot.interior3d</code></a>): oblique view and view down the <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis, components labeled and colored by relative density.</figcaption></figure>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../projects/template.html" rel="prev"><span>Previous</span>Project template</a><a class="next" href="../projects/hera-blind-test.html" rel="next"><span>Next</span>Hera blind test</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-29.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-30.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#files">Files</a></li><li class="lvl2"><a href="#reproduction-of-the-paper">Reproduction of the paper</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=784437df24"></script>
-<script src="../assets/site.js?v=784437df24"></script>
+<script src="../assets/search-index.js?v=54bef2a613"></script>
+<script src="../assets/site.js?v=54bef2a613"></script>
 </body>
 </html>

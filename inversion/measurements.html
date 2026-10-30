@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Measurement sets — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=784437df24">
-<link rel="stylesheet" href="../assets/pygments.css?v=784437df24">
-<link rel="stylesheet" href="../assets/print.css?v=784437df24" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=54bef2a613">
+<link rel="stylesheet" href="../assets/pygments.css?v=54bef2a613">
+<link rel="stylesheet" href="../assets/print.css?v=54bef2a613" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,7 +29,7 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Measurements and inversion › <span aria-current="page">Measurement sets</span></nav>
 <article>
 <h1 id="measurement-sets">Measurement sets<a class="headerlink" href="#measurement-sets" title="Link to this section">#</a></h1>
-<p class="lastedit">Last edited October 29, 2026</p>
+<p class="lastedit">Last edited October 30, 2026</p>
 <p>A measurement set (<a class="xref xref-st" href="../reference/data-structures.html#obs"><code>obs</code></a>) holds fully normalized gravity coefficients with their covariance, moment-of-inertia
 measurement rows, the total mass, the reference radius and the expansion origin.</p>
 <h2 id="sources">Sources<a class="headerlink" href="#sources" title="Link to this section">#</a></h2>
@@ -84,7 +84,10 @@ measurement rows, the total mass, the reference radius and the expansion origin.
   <span class="nobr"><math alttext="M R_ref^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi><msubsup><mi>R</mi><mtext>ref</mtext><mn>2</mn></msubsup></mrow></math>)</span>, and the libration row the 1σ of the ratio times <span class="nobr"><math alttext="I_zz/(M R_ref^2)" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub><mo>&#x0002F;</mo><mo stretchy="false">&#x00028;</mo><mi>M</mi><msubsup><mi>R</mi><mtext>ref</mtext><mn>2</mn></msubsup><mo stretchy="false">&#x00029;</mo></mrow></math>.</span></li>
 <li><strong>From another data set.</strong> <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.use_uncertainties"><code>sbtk.data.use_uncertainties</code></a> gives every coefficient that a reference data set also
   contains the reference's variances and covariances, converted to the reference radius of the target by
-  <span class="nobr"><math alttext="(R/R&#x27;)^l" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>R</mi><mo>&#x0002F;</mo><msup><mi>R</mi><mi>&#x02032;</mi></msup><msup><mo stretchy="false">&#x00029;</mo><mi>l</mi></msup></mrow></math>.</span> Coefficients the reference lacks keep their variances and become uncorrelated with the others.</li>
+  <span class="nobr"><math alttext="(R&#x27;/R)^l" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><msup><mi>R</mi><mi>&#x02032;</mi></msup><mo>&#x0002F;</mo><mi>R</mi><msup><mo stretchy="false">&#x00029;</mo><mi>l</mi></msup></mrow></math>,</span> with <span class="nobr"><math alttext="R&#x27;" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mi>&#x02032;</mi></msup></mrow></math></span> the reference's radius and <span class="nobr"><math alttext="R" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>R</mi></mrow></math></span> the target's. If the reference is about another point, its
+  covariance is first moved to the point of the target, <span class="nobr"><math alttext="K&#x27; = TKT^T" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>K</mi><mi>&#x02032;</mi></msup><mo>&#x0003D;</mo><mi>T</mi><mi>K</mi><msup><mi>T</mi><mi>&#x1D5B3;</mi></msup></mrow></math></span>
+  (<a href="../inversion/expansion-point-uncertainties.html">Uncertainties and the expansion point</a>). Coefficients the reference lacks keep
+  their variances and become uncorrelated with the others.</li>
 <li><strong>Full covariance.</strong> <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_covariance"><code>sbtk.data.set_covariance</code></a> replaces the coefficient covariance with any symmetric positive
   definite matrix in the order of <a class="xref xref-field" href="../reference/data-structures.html#obs.coef_labels"><code>obs.coef_labels</code></a>.</li>
 <li><strong>Inertia rows.</strong> <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_moi_sigma"><code>sbtk.data.set_moi_sigma</code></a> sets the σ of named rows; the field <code>libration</code> gives the 1σ of the ratio.</li>
@@ -153,11 +156,11 @@ obs = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.set_cov
 set, selection of inertia rows, and reading files.</p>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../models/forward-model.html" rel="prev"><span>Previous</span>Gravity and moment calculations</a><a class="next" href="../inversion/expansion-point-uncertainties.html" rel="next"><span>Next</span>Uncertainties and the expansion point</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-29.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-30.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#sources">Sources</a></li><li class="lvl2"><a href="#uncertainties-and-covariance">Uncertainties and covariance</a></li><li class="lvl2"><a href="#noise">Noise</a></li><li class="lvl2"><a href="#inertia-measurements-and-the-center-of-mass">Inertia measurements and the center of mass</a></li><li class="lvl2"><a href="#selecting-measurements">Selecting measurements</a></li><li class="lvl2"><a href="#example">Example</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=784437df24"></script>
-<script src="../assets/site.js?v=784437df24"></script>
+<script src="../assets/search-index.js?v=54bef2a613"></script>
+<script src="../assets/site.js?v=54bef2a613"></script>
 </body>
 </html>

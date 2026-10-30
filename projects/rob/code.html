@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Code of the ROB solutions — SBTK documentation</title>
-<link rel="stylesheet" href="../../assets/site.css?v=784437df24">
-<link rel="stylesheet" href="../../assets/pygments.css?v=784437df24">
-<link rel="stylesheet" href="../../assets/print.css?v=784437df24" media="print">
+<link rel="stylesheet" href="../../assets/site.css?v=54bef2a613">
+<link rel="stylesheet" href="../../assets/pygments.css?v=54bef2a613">
+<link rel="stylesheet" href="../../assets/print.css?v=54bef2a613" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,7 +29,7 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../../index.html">Documentation</a> › Testing with ROB data › <span aria-current="page">Code of the ROB solutions</span></nav>
 <article>
 <h1 id="code-of-the-rob-solutions">Code of the ROB solutions<a class="headerlink" href="#code-of-the-rob-solutions" title="Link to this section">#</a></h1>
-<p class="lastedit">Last edited October 29, 2026</p>
+<p class="lastedit">Last edited October 30, 2026</p>
 <p>Every solution on these pages is made by its own script in <code>projects/hera_hlp6/rob/</code>: for each
 package, one runner per kind of solution and one script for the figures and tables of its page.
 Change a model or an option in a runner and run it again; the figure script reads the newest run of
@@ -67,7 +67,8 @@ each runner.</p>
 </table>
 <p>Run them in this order: the point masses (once with each weighting), the sector grid, the model with
 components (<code>rob2_components.m</code> starts from the point masses), the figures. The Didymos runners take
-seconds to a few minutes; each Dimorphos runner adds several minutes for the GRASS surface point.</p>
+seconds to a few minutes. Each Dimorphos runner adds the GRASS surface point: about a minute for the
+model with components and the sector grid, up to half an hour for the point masses.</p>
 <p>The runners share a few functions in the same folder:</p>
 <table>
 <thead>
@@ -556,8 +557,9 @@ pm   = <a class="xref xref-fn" href="../../reference/internal.html#sbtk.interpre
 <span class="nb">save</span><span class="p">(</span><span class="nb">fullfile</span><span class="p">(</span><span class="n">out</span><span class="p">.</span><span class="n">folder</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;point_masses.mat&quot;</span><span class="p">),</span><span class="w"> </span><span class="s">&#39;pm&#39;</span><span class="p">);</span>
 <a class="xref xref-fn" href="../../reference/api/io.html#sbtk.io.finish_run">sbtk.io.finish_run</a>(out);</code></pre></div>
 <h2 id="the-figures-and-tables">The figures and tables<a class="headerlink" href="#the-figures-and-tables" title="Link to this section">#</a></h2>
-<p>Each section makes one figure of the page; the last writes its tables. The Didymos scripts have
-no GRASS section.</p>
+<p>After DATA AND SOLUTIONS, each section makes the figures of one part of the page (only the ROB-DATA2
+page shows that of THE SECTOR GRID); THE GRASS POINT and TABLES write its tables. The Didymos scripts
+have no GRASS section.</p>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB script: projects/hera_hlp6/rob/data4/rob4_figures.m</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab"><span class="c">%% ROB4_FIGURES  The figures and tables of the ROB-DATA4 page, from the newest run of each solution.</span>
 <span class="c">%</span>
 <span class="c">% Run first: rob4_components.m, rob4_sectors.m and rob4_point_masses.m (once with weighting</span>
@@ -658,11 +660,11 @@ try another model, copy a component runner, change MODEL, and compare the AIC it
 others (<a href="../../projects/rob/index.html#results">Testing with ROB data</a>).</p>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../../projects/rob/index.html" rel="prev"><span>Previous</span>Testing with ROB data</a><a class="next" href="../../projects/rob/data1.html" rel="next"><span>Next</span>ROB-DATA1: Didymos</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-29.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-30.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#the-models-with-components">The models with components</a></li><li class="lvl2"><a href="#the-sector-grids-and-the-point-masses">The sector grids and the point masses</a></li><li class="lvl2"><a href="#the-figures-and-tables">The figures and tables</a></li><li class="lvl2"><a href="#how-the-models-were-chosen">How the models were chosen</a></li></ul></nav>
 </div>
-<script src="../../assets/search-index.js?v=784437df24"></script>
-<script src="../../assets/site.js?v=784437df24"></script>
+<script src="../../assets/search-index.js?v=54bef2a613"></script>
+<script src="../../assets/site.js?v=54bef2a613"></script>
 </body>
 </html>

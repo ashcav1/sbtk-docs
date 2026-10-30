@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Frames of a gravity field — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=784437df24">
-<link rel="stylesheet" href="../assets/pygments.css?v=784437df24">
-<link rel="stylesheet" href="../assets/print.css?v=784437df24" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=54bef2a613">
+<link rel="stylesheet" href="../assets/pygments.css?v=54bef2a613">
+<link rel="stylesheet" href="../assets/print.css?v=54bef2a613" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,7 +29,7 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Conventions › <span aria-current="page">Frames of a gravity field</span></nav>
 <article>
 <h1 id="frames-of-a-gravity-field">Frames of a gravity field<a class="headerlink" href="#frames-of-a-gravity-field" title="Link to this section">#</a></h1>
-<p class="lastedit">Last edited October 21, 2026</p>
+<p class="lastedit">Last edited October 30, 2026</p>
 <p>A set of gravity coefficients means nothing without the point it is expanded about and the axes its latitude and
 longitude are measured in. Changing the point or the axes changes every coefficient but not the potential outside the
 body. This page covers:</p>
@@ -78,8 +78,8 @@ body. This page covers:</p>
 </tr>
 </tbody>
 </table>
-<p>In SBTK, coefficients are always expanded about the center of mass, in the axes of the shape model in use. The
-functions that work with frames are:</p>
+<p>In SBTK, <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a> expands coefficients about the center of mass, in the axes of the shape model in use;
+<a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.expand_about"><code>sbtk.data.expand_about</code></a> expands them about another point. The functions that work with frames are:</p>
 <ul>
 <li><a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.center_of_mass_frame"><code>sbtk.gravity.center_of_mass_frame</code></a> gives any field in the shape-model, spin or principal axes, with its principal
   axes and moments.</li>
@@ -223,7 +223,7 @@ cp = <a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.ce
 <p><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.difference_from_homogeneous"><code>sbtk.plot.difference_from_homogeneous</code></a> subtracts the field of the homogeneous body (density <span class="nobr"><math alttext="M/V" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>M</mi><mo>&#x0002F;</mo><mi>V</mi></mrow></math>)</span> from a field.
 Both are taken about their own center of mass and expressed in the same axes, which belong to the field (<code>frame</code>
 argument). Degree 1 shows the center of mass minus the center of figure in those axes.</p>
-<figure class="figure"><img src="../images/difference_frames.png" alt="The example true model minus the homogeneous body, degrees 1 and 2, in the shape-model axes, in the spin axes of the true model and in its principal axes." loading="lazy"><figcaption>The example true model minus the homogeneous body, degrees 1 and 2, in the shape-model axes, in the spin axes of the true model and in its principal axes.</figcaption></figure>
+<figure class="figure"><img src="../images/difference_frames.png" alt="The example true model minus the homogeneous body, degrees 1 and 2, in units of 10⁻³, in the shape-model axes (blue), in the spin axes of the true model (green) and in its principal axes (red). Degree 1 is the center of mass minus the center of figure; the zonal term is shown as   J_2 = - C_20 . " loading="lazy"><figcaption>The example true model minus the homogeneous body, degrees 1 and 2, in units of 10⁻³, in the shape-model axes (blue), in the spin axes of the true model (green) and in its principal axes (red). Degree 1 is the center of mass minus the center of figure; the zonal term is shown as <span class="nobr"><math alttext="J_2 = - C_20" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mn>2</mn></msub><mo>&#x0003D;</mo><mo>&#x02212;</mo><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>20</mn></mrow></msub></mrow></math>.</span></figcaption></figure>
 <div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text">True model minus the homogeneous body (both about their own center of mass)
 coef   shape-model axes         spin axes    principal axes
 J2        -3.231612e-03     -3.202163e-03     -3.202163e-03
@@ -262,7 +262,7 @@ the principal axes): several times the 1σ of <span class="nobr"><math alttext="
 power of each degree, do not depend on the frame. Which frame to plot in depends on what the plot is for: the spin
 axes show the tilt directly in <span class="nobr"><math alttext="C_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="S_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math>,</span> as a mission field would; the principal axes isolate all
 orientation differences in the homogeneous body's terms.</p>
-<figure class="figure"><img src="../images/difference_from_homogeneous_principal.png" alt="The example true model minus the homogeneous body, degrees 1 to 4, in the principal axes of the true model." loading="lazy"><figcaption>The example true model minus the homogeneous body, degrees 1 to 4, in the principal axes of the true model.</figcaption></figure>
+<figure class="figure"><img src="../images/difference_from_homogeneous_principal.png" alt="The example true model minus the homogeneous body, degrees 1 to 4, in the principal axes of the true model. Degree 1 is the center of mass minus the center of figure; zonal terms are shown as   J_l = - C_l0 . " loading="lazy"><figcaption>The example true model minus the homogeneous body, degrees 1 to 4, in the principal axes of the true model. Degree 1 is the center of mass minus the center of figure; zonal terms are shown as <span class="nobr"><math alttext="J_l = - C_l0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mi>l</mi></msub><mo>&#x0003D;</mo><mo>&#x02212;</mo><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mi>l</mi><mn>0</mn></mrow></msub></mrow></math>.</span></figcaption></figure>
 <h2 id="frames-used-for-measured-and-modeled-fields">Frames used for measured and modeled fields<a class="headerlink" href="#frames-used-for-measured-and-modeled-fields" title="Link to this section">#</a></h2>
 <h3 id="body-fixed-frames-of-measured-fields">Body-fixed frames of measured fields<a class="headerlink" href="#body-fixed-frames-of-measured-fields" title="Link to this section">#</a></h3>
 <p>Gravity fields from radio science, and the shape models made with them, are given in a body-fixed (cartographic)
@@ -322,7 +322,8 @@ given by <span class="nobr"><math alttext="S_22/ C_22" xmlns="http://www.w3.org/
 <li><strong>The frame and origin of the shape model file, as distributed</strong> (the HLP6 choice). The package names the
    shape model file, which every team has. The gravity field is expanded about its origin, so degree 1 gives the center of mass and
    is not zero, and <span class="nobr"><math alttext="C_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math>,</span> <span class="nobr"><math alttext="S_21" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub></mrow></math></span> are those of the whole body in the shape-model axes (the homogeneous
-   Didymos v003 alone has <span class="nobr"><math alttext="C_21 = 3.7×10^-3" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub><mo>&#x0003D;</mo><mn>3.7</mn><mi>&#x000D7;</mi><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>3</mn></mrow></msup></mrow></math>)</span>. The moments of inertia are about the same origin. Make the
+   1.165 m Didymos v003 model alone has <span class="nobr"><math alttext="C_21 = 4.4×10^-3" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub><mo>&#x0003D;</mo><mn>4.4</mn><mi>&#x000D7;</mi><msup><mn>10</mn><mrow><mo>&#x02212;</mo><mn>3</mn></mrow></msup></mrow></math></span> about its center of mass with
+   <span class="nobr"><math alttext="R_ref" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>R</mi><mtext>ref</mtext></msub></mrow></math></span> = 410 m). The moments of inertia are about the same origin. Make the
    exact values with <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a> and expand them about <code>[0 0 0]</code> with <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.expand_about"><code>sbtk.data.expand_about</code></a>. Nothing
    is moved or rotated, so every team can compare with its own computation on the file as it is; a package of the
    homogeneous body lets the makers check that they compute the same field
@@ -331,8 +332,8 @@ given by <span class="nobr"><math alttext="S_22/ C_22" xmlns="http://www.w3.org/
    <a href="../examples/tutorials.html#ex09-moved-and-rotated-package">ex09</a>). The origin is the center of mass of the true
    model, and the axes are
    - the <strong>spin axes</strong> for a body observed to rotate about one axis (Didymos): <span class="nobr"><math alttext="C_21 = S_21 = 0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub><mo>&#x0003D;</mo><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>21</mn></mrow></msub><mo>&#x0003D;</mo><mn>0</mn></mrow></math></span> and
-     <span class="nobr"><math alttext="S_22 0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub><mo>&#x02260;</mo><mn>0</mn></mrow></math>,</span> as a mission field would look. The homogeneous Didymos v003 is already 3.8° off the
-     shape-model <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis, and the example true model 4.0°;
+     <span class="nobr"><math alttext="S_22 0" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub><mo>&#x02260;</mo><mn>0</mn></mrow></math>,</span> as a mission field would look. The homogeneous 9.3 m Didymos v003 model is already 3.6° off the
+     shape-model <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis (3.8° at 1.165 m), and the example true model 4.0°;
    - the <strong>principal axes</strong> for a body that may be tumbling, or a synchronous satellite (Dimorphos;
      <a href="#tumbling-bodies-and-dimorphos">Tumbling bodies</a>).</li>
 </ol>
@@ -470,11 +471,11 @@ obs = <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.add_moi
 <span class="nb">fprintf</span><span class="p">(</span><span class="s">&quot;A/C = %.4f, B/C = %.4f; off-diagonal elements in principal axes: %.1e\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">rA</span><span class="p">,</span><span class="w"> </span><span class="n">rB</span><span class="p">,</span><span class="w"> </span><span class="nb">max</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">I</span><span class="p">(</span><span class="o">~</span><span class="nb">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)))))</span></code></pre></div>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../conventions/gravity-coefficients.html" rel="prev"><span>Previous</span>Gravity coefficients</a><a class="next" href="../conventions/moments-of-inertia.html" rel="next"><span>Next</span>Moments of inertia</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-29.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-30.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#summary">Summary</a></li><li class="lvl2"><a href="#moving-the-expansion-point-to-the-center-of-mass">Moving the expansion point to the center of mass</a></li><li class="lvl3"><a href="#degree-1">Degree 1</a></li><li class="lvl3"><a href="#higher-degrees">Higher degrees</a></li><li class="lvl2"><a href="#rotating-the-axes">Rotating the axes</a></li><li class="lvl3"><a href="#principal-axes-from-the-degree-2-coefficients">Principal axes from the degree-2 coefficients</a></li><li class="lvl3"><a href="#what-a-rotation-changes">What a rotation changes</a></li><li class="lvl3"><a href="#principal-axes">Principal axes</a></li><li class="lvl3"><a href="#spin-axes">Spin axes</a></li><li class="lvl2"><a href="#one-field-in-four-frames">One field in four frames</a></li><li class="lvl2"><a href="#comparison-with-the-homogeneous-body">Comparison with the homogeneous body</a></li><li class="lvl2"><a href="#frames-used-for-measured-and-modeled-fields">Frames used for measured and modeled fields</a></li><li class="lvl3"><a href="#body-fixed-frames-of-measured-fields">Body-fixed frames of measured fields</a></li><li class="lvl3"><a href="#example-bennu">Example: Bennu</a></li><li class="lvl3"><a href="#principal-axis-frames">Principal-axis frames</a></li><li class="lvl2"><a href="#which-frame-to-use">Which frame to use</a></li><li class="lvl3"><a href="#makers">Makers</a></li><li class="lvl3"><a href="#finders">Finders</a></li><li class="lvl3"><a href="#packages-moved-to-the-center-of-mass-and-rotated">Packages moved to the center of mass and rotated</a></li><li class="lvl2"><a href="#tumbling-bodies-and-dimorphos">Tumbling bodies and Dimorphos</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=784437df24"></script>
-<script src="../assets/site.js?v=784437df24"></script>
+<script src="../assets/search-index.js?v=54bef2a613"></script>
+<script src="../assets/site.js?v=54bef2a613"></script>
 </body>
 </html>

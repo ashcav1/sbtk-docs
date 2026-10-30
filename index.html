@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SBTK: Small Body Toolkit — SBTK documentation</title>
-<link rel="stylesheet" href="./assets/site.css?v=784437df24">
-<link rel="stylesheet" href="./assets/pygments.css?v=784437df24">
-<link rel="stylesheet" href="./assets/print.css?v=784437df24" media="print">
+<link rel="stylesheet" href="./assets/site.css?v=54bef2a613">
+<link rel="stylesheet" href="./assets/pygments.css?v=54bef2a613">
+<link rel="stylesheet" href="./assets/print.css?v=54bef2a613" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,7 +29,7 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="./index.html">Documentation</a> › Overview</nav>
 <article>
 <h1 id="sbtk-small-body-toolkit">SBTK: Small Body Toolkit<a class="headerlink" href="#sbtk-small-body-toolkit" title="Link to this section">#</a></h1>
-<p class="lastedit">Last edited October 20, 2026</p>
+<p class="lastedit">Last edited October 30, 2026</p>
 <p>SBTK is a MATLAB toolkit for the interior density distribution of asteroids and other small bodies. It computes the
 gravity coefficients, center of mass and moments of inertia of a density model inside a polyhedral shape model, and it
 estimates the densities of such a model from measured gravity coefficients and moments of inertia. This site documents
@@ -46,6 +46,10 @@ polyhedral shape model that is star-shaped about the expansion origin
 <dd>Fully normalized spherical-harmonic coefficients to any degree, the center of mass and the inertia tensor of such a
 model, from exact polyhedral integrals over the cones between the expansion origin and each surface facet
 (<a href="./models/forward-model.html">Gravity and moment calculations</a>).</dd>
+<dt>Potential and acceleration at points</dt>
+<dd>The gravitational potential and acceleration outside, on or inside the body: exact for a homogeneous polyhedron
+and for spheres inside the body, and for the other departures from the background density on a grid of uniform
+cubes (<a href="./models/forward-model.html#potential-and-acceleration-at-points">Potential and acceleration at points</a>).</dd>
 <dt>Frames</dt>
 <dd>Coefficients about the center of mass in the shape-model axes, the spin axes or the principal axes of inertia, and
 bodies, measurements and models carried into another frame
@@ -55,12 +59,24 @@ bodies, measurements and models carried into another frame
 ratio <span class="nobr"><math alttext="(B-A)/C" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo stretchy="false">&#x00028;</mo><mi>B</mi><mo>&#x02212;</mo><mi>A</mi><mo stretchy="false">&#x00029;</mo><mo>&#x0002F;</mo><mi>C</mi></mrow></math></span> and the center of mass, simulated (exact values, or with uncertainties and Gaussian noise) or read
 from files
 (<a href="./inversion/measurements.html">Measurement sets</a>).</dd>
+<dt>Reading the coefficients</dt>
+<dd>The measured coefficients minus those of the homogeneous body, about the center of figure, read as the
+center-of-mass offset, the principal axes of degree 2 and each degree's directions of excess and deficit; the
+anomaly each candidate component makes, and a forward stepwise selection of candidates
+(<a href="./inversion/reading-coefficients.html">Reading the gravity coefficients</a>).</dd>
 <dt>Density estimation</dt>
 <dd>Weighted least squares for the background density and the relative density of each component, with the total mass
-as an equality constraint, bounds on the densities, optional Tikhonov regularization, optional estimation of the
+as an equality constraint, bounds on the densities, optional Tikhonov regularization (its parameter by the
+discrepancy principle or the lowest Akaike information criterion), optional estimation of the
 position of spheres, ellipsoids and tori and of the axis of ellipsoids and tori, linearized 1σ uncertainties, and a
 <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> test of the fit
 (<a href="./inversion/density-estimation.html">Density estimation</a>).</dd>
+<dt>Kinds of solution</dt>
+<dd>Models with components; a search of their geometry (every combination of given sizes, positions and axes, then
+Gauss–Newton, then compact masses kept by the likelihood-ratio test); sector grids that fill the body; and
+regularized point masses (<a href="./inversion/component-models.html">Models with components</a>,
+<a href="./inversion/geometry-search.html">Searching the geometry</a>, <a href="./inversion/sector-grids.html">Sector grids</a>,
+<a href="./inversion/point-masses.html">Point masses</a>).</dd>
 <dt>Comparison with a true model</dt>
 <dd>For synthetic tests: the fraction of the variance of the true density explained by the estimate (<span class="nobr"><math alttext="R^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow></math>)</span>, the
 largest value the chosen components allow, and a cell-by-cell comparison of density grids
@@ -73,8 +89,8 @@ comparisons between teams (<a href="./files/exchange-packages.html">Exchange pac
 <a href="./overview/limitations.html">Assumptions and limitations</a>.</p>
 <h2 id="status-and-requirements">Status and requirements<a class="headerlink" href="#status-and-requirements" title="Link to this section">#</a></h2>
 <p>SBTK 1.0.0 has not been publicly released; its source repository is private. It requires MATLAB R2024b or newer with
-the Optimization Toolbox. The polyhedral gravity kernel is a compiled C function, provided for macOS and buildable on
-other platforms (<a href="./getting-started/installation.html">Installation</a>).</p>
+the Optimization Toolbox and no other. The polyhedral gravity kernel is a compiled C function, provided for macOS and
+buildable on other platforms (<a href="./getting-started/installation.html">Installation</a>).</p>
 <h2 id="organization-of-this-documentation">Organization of this documentation<a class="headerlink" href="#organization-of-this-documentation" title="Link to this section">#</a></h2>
 <table>
 <thead>
@@ -94,11 +110,15 @@ other platforms (<a href="./getting-started/installation.html">Installation</a>)
 </tr>
 <tr>
 <td>Models and calculations</td>
-<td>Shape models, density distributions, the forward model.</td>
+<td>Shape models, density distributions, the forward model, the potential at points.</td>
 </tr>
 <tr>
 <td>Measurements and inversion</td>
-<td>Measurement sets, the estimation problem, <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> testing and comparison statistics.</td>
+<td>Measurement sets, uncertainties and the expansion point, reading the coefficients, the estimation problem, fitting part of the coefficients, <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> testing and comparison statistics.</td>
+</tr>
+<tr>
+<td>Kinds of solution</td>
+<td>Models with components, the search of their geometry, sector grids and point masses.</td>
 </tr>
 <tr>
 <td>Files</td>
@@ -106,11 +126,15 @@ other platforms (<a href="./getting-started/installation.html">Installation</a>)
 </tr>
 <tr>
 <td>Examples</td>
-<td>One example per component type and per calculation; the nine tutorial scripts and the maker models of the Hera blind test.</td>
+<td>One example per component type and per calculation; the eleven tutorial scripts and the maker models of the Hera blind test.</td>
 </tr>
 <tr>
 <td>Projects</td>
-<td>The project template and the Bennu and Hera blind-test projects.</td>
+<td>The project template, the Bennu and Hera blind-test projects, and the Didymos and Dimorphos values.</td>
+</tr>
+<tr>
+<td>Testing with ROB data</td>
+<td>The six ROB packages of the Hera blind test, solved with each kind of solution.</td>
 </tr>
 <tr>
 <td>Reference</td>
@@ -131,11 +155,11 @@ Data" (Icarus). Shape models: DART stereophotoclinometry models of Didymos (v003
 shape model of Bennu.</p>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><span></span><a class="next" href="./overview/limitations.html" rel="next"><span>Next</span>Assumptions and limitations</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-29.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-30.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#capabilities">Capabilities</a></li><li class="lvl2"><a href="#status-and-requirements">Status and requirements</a></li><li class="lvl2"><a href="#organization-of-this-documentation">Organization of this documentation</a></li><li class="lvl2"><a href="#credits">Credits</a></li></ul></nav>
 </div>
-<script src="./assets/search-index.js?v=784437df24"></script>
-<script src="./assets/site.js?v=784437df24"></script>
+<script src="./assets/search-index.js?v=54bef2a613"></script>
+<script src="./assets/site.js?v=54bef2a613"></script>
 </body>
 </html>

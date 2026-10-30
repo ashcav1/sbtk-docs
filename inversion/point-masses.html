@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Point masses — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=784437df24">
-<link rel="stylesheet" href="../assets/pygments.css?v=784437df24">
-<link rel="stylesheet" href="../assets/print.css?v=784437df24" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=54bef2a613">
+<link rel="stylesheet" href="../assets/pygments.css?v=54bef2a613">
+<link rel="stylesheet" href="../assets/print.css?v=54bef2a613" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,7 +29,7 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Kinds of solution › <span aria-current="page">Point masses</span></nav>
 <article>
 <h1 id="point-masses">Point masses<a class="headerlink" href="#point-masses" title="Link to this section">#</a></h1>
-<p class="lastedit">Last edited October 28, 2026</p>
+<p class="lastedit">Last edited October 30, 2026</p>
 <p>A point-mass solution fills the body with a grid of small masses and fits all of them together to the measurements.
 It assumes no shapes: where the solution puts mass comes from the measurements and the regularization alone. It is
 the mass-concentration (mascon) model of gravity-field work, here solved for the relative density of each point.</p>
@@ -197,9 +197,9 @@ point masses, equal, p = 0.05                0.02         2.07         0.97     
 point masses, discrepancy                    0.09         4.26         0.00         26.8
 search                                       0.11          1.6         0.57         21.0
 fixed sizes                                  0.38         9.09         0.03          6.0</code></pre></div>
-<figure class="figure"><img src="../figures/search/point_masses_cell_R2.png" alt="  R^2   of the 40 m cell averages of each solution against the true interior, 60 interiors each (box: the middle half; line: the median)." loading="lazy"><figcaption><span class="nobr"><math alttext="R^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow></math></span> of the 40 m cell averages of each solution against the true interior, 60 interiors each (box: the middle half; line: the median).</figcaption></figure>
+<figure class="figure"><img src="../figures/search/point_masses_cell_R2.png" alt="  R^2   of the 40 m cell averages of each solution against the true interior, with noise (left) and without (right), 60 interiors each (box: the middle half; line: the median)." loading="lazy"><figcaption><span class="nobr"><math alttext="R^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow></math></span> of the 40 m cell averages of each solution against the true interior, with noise (left) and without (right), 60 interiors each (box: the middle half; line: the median).</figcaption></figure>
 <p>The rule changes how closely the point masses fit, not what they find. With the AIC rule they fit every interior
-(median reduced <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> 0.85 to 0.95) with about 32 effective parameters of the 38 measurements; with the
+(median reduced <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> 0.85 to 0.95) with about 32 effective parameters of the 35 coefficients; with the
 consistent rule they fit almost every interior with about 29. Either way their median <span class="nobr"><math alttext="R^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow></math></span> stays between −0.08 and
 0.09. On the interiors of a core, a torus and a layer the search and the model of fixed sizes reach 0.60 to 0.76.
 With boulders and a random density field every kind falls to 0.38 or below.</p>
@@ -212,11 +212,11 @@ pm   = <a class="xref xref-fn" href="../reference/internal.html#sbtk.interpret.p
 fig  = <a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.point_masses">sbtk.plot.point_masses</a>(body, pm, 0.041);</code></pre></div>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../inversion/sector-grids.html" rel="prev"><span>Previous</span>Sector grids</a><a class="next" href="../files/results-folders.html" rel="next"><span>Next</span>Results folders and figures</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-29.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-30.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#building-the-grid">Building the grid</a></li><li class="lvl2"><a href="#the-fit">The fit</a></li><li class="lvl2"><a href="#weighting">Weighting</a></li><li class="lvl2"><a href="#choosing-the-regularization-parameter">Choosing the regularization parameter</a></li><li class="lvl2"><a href="#reading-the-result">Reading the result</a></li><li class="lvl2"><a href="#point-masses-on-known-interiors">Point masses on known interiors</a></li><li class="lvl2"><a href="#example">Example</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=784437df24"></script>
-<script src="../assets/site.js?v=784437df24"></script>
+<script src="../assets/search-index.js?v=54bef2a613"></script>
+<script src="../assets/site.js?v=54bef2a613"></script>
 </body>
 </html>

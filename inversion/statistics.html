@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Goodness of fit and model comparison — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=784437df24">
-<link rel="stylesheet" href="../assets/pygments.css?v=784437df24">
-<link rel="stylesheet" href="../assets/print.css?v=784437df24" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=54bef2a613">
+<link rel="stylesheet" href="../assets/pygments.css?v=54bef2a613">
+<link rel="stylesheet" href="../assets/print.css?v=54bef2a613" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,7 +29,7 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Measurements and inversion › <span aria-current="page">Goodness of fit and model comparison</span></nav>
 <article>
 <h1 id="goodness-of-fit-and-model-comparison">Goodness of fit and model comparison<a class="headerlink" href="#goodness-of-fit-and-model-comparison" title="Link to this section">#</a></h1>
-<p class="lastedit">Last edited October 28, 2026</p>
+<p class="lastedit">Last edited October 30, 2026</p>
 <h2 id="chi-square-test">Chi-square test<a class="headerlink" href="#chi-square-test" title="Link to this section">#</a></h2>
 <p>For a fit with residuals <span class="nobr"><math alttext="r = y_pred - y" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x1D42B;</mi><mo>&#x0003D;</mo><msub><mi>&#x1D432;</mi><mtext>pred</mtext></msub><mo>&#x02212;</mo><mi>&#x1D432;</mi></mrow></math></span> and measurement covariance <span class="nobr"><math alttext="" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003A3;</mi></mrow></math>:</span></p>
 <table>
@@ -104,6 +104,9 @@ difference below 2 gives no preference, 4 to 7 a clear one, and above 10 a stron
   (<a href="../inversion/sector-grids.html#choosing-the-regularization-parameter">Sector grids</a>, <a href="../inversion/point-masses.html#choosing-the-regularization-parameter">Point masses</a>).
   The smoothest consistent solution (the largest <span class="nobr"><math alttext="λ" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BB;</mi></mrow></math></span> with <span class="nobr"><math alttext="p ≥ 0.05" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>p</mi><mo>&#x02265;</mo><mn>0.05</mn></mrow></math>)</span> shows the least structure the
   measurements require, but its AIC is higher by design.</li>
+<li><strong>Sizes chosen by a search.</strong> A size that <a class="xref xref-fn" href="../reference/internal.html#sbtk.search.run"><code>sbtk.search.run</code></a> chose on its grid was fitted to the measurements too:
+  it counts as one parameter in <span class="nobr"><math alttext="ν" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>&#x003BD;</mi></mrow></math>,</span> <span class="nobr"><math alttext="p" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>p</mi></mrow></math></span> and AIC, besides the densities and the centers and axes Gauss–Newton
+  refined (<a href="../inversion/geometry-search.html">Searching the geometry</a>).</li>
 <li><strong>What AIC does not say.</strong> AIC ranks how well each model accounts for the measurements it was fitted to, for its
   number of parameters. It does not say which is closest to the true interior: several models can fit equally well and
   differ inside. Test the candidates on data they were not fitted to, such as higher degrees, other coefficients
@@ -114,9 +117,9 @@ difference below 2 gives no preference, 4 to 7 a clear one, and above 10 a stron
 <p>In synthetic tests the true model is known. <a class="xref xref-fn" href="../reference/api/compare.html#sbtk.compare.with_truth"><code>sbtk.compare.with_truth</code></a><code>(body, truth, fit)</code> evaluates both densities at
 the centroids of 24 radial shells of every facet cone (1,179,648 points for the 49,152-facet Didymos model), each
 weighted by the shell volume <span class="nobr"><math alttext="w_i" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>w</mi><mi>i</mi></msub></mrow></math>,</span> with each model's layers and sectors measured from its own origin. A model with
-more than 50,000 facets is sampled in the cones of every <span class="nobr"><math alttext="k" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>k</mi></mrow></math></span>-th facet, <span class="nobr"><math alttext="k = n_f/50,000" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>k</mi><mo>&#x0003D;</mo><mi>&#x02308;</mi><msub><mi>n</mi><mi>f</mi></msub><mo>&#x0002F;</mo><mn>50</mn><mrow><mo>&#x0002C;</mo></mrow><mn>000</mn><mi>&#x02309;</mi></mrow></math>,</span> which fills
-the volume as evenly (1.2 million points for the 3,145,728-facet model instead of 75 million). It returns
-(<a class="xref xref-st" href="../reference/data-structures.html#cmp"><code>cmp</code></a>):</p>
+more than 50,000 facets is sampled in the cones of 50,000 of them, chosen at random with a fixed seed: 1.2 million
+points for the 3,145,728-facet model instead of 75 million, with <span class="nobr"><math alttext="R^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow></math></span> within 0.002 of the value from 9.4 million
+points. It returns (<a class="xref xref-st" href="../reference/data-structures.html#cmp"><code>cmp</code></a>):</p>
 <math alttext="R^2 = 1 - Σ_i w_i(ρ_est,i - ρ_true,i)^2Σ_i w_i(ρ_true,i - ρ_true)^2," xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><msup><mi>R</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mn>1</mn><mo>&#x02212;</mo><mfrac><mrow><munder><mo>&#x02211;</mo><mi>i</mi></munder><msub><mi>w</mi><mi>i</mi></msub><mo stretchy="false">&#x00028;</mo><msub><mi>&#x003C1;</mi><mrow><mtext>est</mtext><mo>&#x0002C;</mo><mi>i</mi></mrow></msub><mo>&#x02212;</mo><msub><mi>&#x003C1;</mi><mrow><mtext>true</mtext><mo>&#x0002C;</mo><mi>i</mi></mrow></msub><msup><mo stretchy="false">&#x00029;</mo><mn>2</mn></msup></mrow><mrow><munder><mo>&#x02211;</mo><mi>i</mi></munder><msub><mi>w</mi><mi>i</mi></msub><mo stretchy="false">&#x00028;</mo><msub><mi>&#x003C1;</mi><mrow><mtext>true</mtext><mo>&#x0002C;</mo><mi>i</mi></mrow></msub><mo>&#x02212;</mo><msub><mover><mi>&#x003C1;</mi><mo stretchy="true">&#x000AF;</mo></mover><mtext>true</mtext></msub><msup><mo stretchy="false">&#x00029;</mo><mn>2</mn></msup></mrow></mfrac><mo>&#x0002C;</mo></mrow></math>
 <p>the fraction of the volume-weighted variance of the true density about its mean that the estimate explains: 1 for an
 exact estimate, 0 for one no better than a uniform density, negative for a worse one.</p>
@@ -159,11 +162,11 @@ prob = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.se
 <span class="nb">fprintf</span><span class="p">(</span><span class="s">&quot;standard deviation of (estimate - truth)/sigma: %.2f\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">std</span><span class="p">(</span><span class="n">z</span><span class="p">(:)))</span></code></pre></div>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../inversion/coefficient-subsets.html" rel="prev"><span>Previous</span>Fitting part of the coefficients</a><a class="next" href="../inversion/component-models.html" rel="next"><span>Next</span>Models with components</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-29.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-30.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#chi-square-test">Chi-square test</a></li><li class="lvl2"><a href="#homogeneous-body">Homogeneous body</a></li><li class="lvl2"><a href="#normalized-residuals">Normalized residuals</a></li><li class="lvl2"><a href="#comparing-models-the-akaike-information-criterion">Comparing models: the Akaike information criterion</a></li><li class="lvl2"><a href="#comparison-with-a-true-model">Comparison with a true model</a></li><li class="lvl2"><a href="#comparison-of-density-grids">Comparison of density grids</a></li><li class="lvl2"><a href="#calibration-of-the-uncertainties">Calibration of the uncertainties</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=784437df24"></script>
-<script src="../assets/site.js?v=784437df24"></script>
+<script src="../assets/search-index.js?v=54bef2a613"></script>
+<script src="../assets/site.js?v=54bef2a613"></script>
 </body>
 </html>

@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ROB-DATA4: Dimorphos — SBTK documentation</title>
-<link rel="stylesheet" href="../../assets/site.css?v=784437df24">
-<link rel="stylesheet" href="../../assets/pygments.css?v=784437df24">
-<link rel="stylesheet" href="../../assets/print.css?v=784437df24" media="print">
+<link rel="stylesheet" href="../../assets/site.css?v=54bef2a613">
+<link rel="stylesheet" href="../../assets/pygments.css?v=54bef2a613">
+<link rel="stylesheet" href="../../assets/print.css?v=54bef2a613" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,7 +29,7 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../../index.html">Documentation</a> › Testing with ROB data › <span aria-current="page">ROB-DATA4: Dimorphos</span></nav>
 <article>
 <h1 id="rob-data4-dimorphos">ROB-DATA4: Dimorphos<a class="headerlink" href="#rob-data4-dimorphos" title="Link to this section">#</a></h1>
-<p class="lastedit">Last edited October 29, 2026</p>
+<p class="lastedit">Last edited October 30, 2026</p>
 <p>ROB-DATA4 is the package where the measurements barely decide and the truth does. Degree 2 and the moments of
 inertia say mass has moved toward the two ends of the y-axis, and degree 1 that the −y end is heavier. A dense core
 placed along the center-of-mass offset, with a torus and a surface layer, fits with 6 parameters and ranks first by
@@ -89,7 +89,7 @@ values: the fraction of ROB's exact coefficients a solution reproduces, over the
 degrees 4–10, which were not (1: all; 0: no better than constant density; negative: worse). See
 <a href="../../projects/rob/index.html#how-to-read-these-pages">How to read these pages</a>.</p>
 <h2 id="1.-what-the-measurements-show">1. What the measurements show<a class="headerlink" href="#1.-what-the-measurements-show" title="Link to this section">#</a></h2>
-<figure class="figure"><img src="../../figures/rob/data4/measured.png" alt="The measured coefficients minus those of the same shape at constant density, C − C_CD, with ±1σ of the Hera radio-science solution, degrees 1 to 3, and the three moments of inertia minus those at constant density. Each panel has its own scale; 0 is constant density. Degree 3 is fitted, but its 1σ is 20 to 600 times its anomaly." loading="lazy"><figcaption>The measured coefficients minus those of the same shape at constant density, C − C_CD, with ±1σ of the Hera radio-science solution, degrees 1 to 3, and the three moments of inertia minus those at constant density. Each panel has its own scale; 0 is constant density. Degree 3 is fitted, but its 1σ is 20 to 600 times its anomaly.</figcaption></figure>
+<figure class="figure"><img src="../../figures/rob/data4/measured.png" alt="The measured coefficients minus those of the same shape at constant density, C − C_CD, with ±1σ of the Hera radio-science solution, degrees 1 to 3, and the three moments of inertia minus those at constant density. Each panel has its own scale; 0 is constant density. Degree 3 is fitted, but its 1σ is about 20 times its anomaly." loading="lazy"><figcaption>The measured coefficients minus those of the same shape at constant density, C − C_CD, with ±1σ of the Hera radio-science solution, degrees 1 to 3, and the three moments of inertia minus those at constant density. Each panel has its own scale; 0 is constant density. Degree 3 is fitted, but its 1σ is about 20 times its anomaly.</figcaption></figure>
 <table>
 <thead>
 <tr>
@@ -213,8 +213,8 @@ strong one. With 18 measurements, degree 2 and the moments determine where the e
 <p>Background density 1436 kg/m³ (bulk density 1540 kg/m³). Makes most of: the component's part of each coefficient in units of its 1σ.</p>
 <figure class="figure"><img src="../../figures/rob/data4/contributions.png" alt="The part of each measured coefficient each component makes (stacked bars), the measured value with ±1σ (black) and the model&#x27;s sum (white diamond)." loading="lazy"><figcaption>The part of each measured coefficient each component makes (stacked bars), the measured value with ±1σ (black) and the model's sum (white diamond).</figcaption></figure>
 <p>The core alone makes <span class="nobr"><math alttext="C_22" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub></mrow></math></span> and <span class="nobr"><math alttext="S_22" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub></mrow></math></span> and the center-of-mass offset. It is a sphere of 30 m radius,
-50 m from the center toward −y, 984 ± 514 kg/m³ denser than the background. The torus and the layer share <span class="nobr"><math alttext="J_2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mn>2</mn></msub></mrow></math>,</span>
-and neither is resolved. Degree 2 and the moments allow a denser core closer in or a lighter one farther out: from
+50 m from the center toward −y, 984 ± 514 kg/m³ denser than the background. The torus and the layer make the rest of
+<span class="nobr"><math alttext="J_2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mn>2</mn></msub></mrow></math>,</span> and neither is resolved. Degree 2 and the moments allow a denser core closer in or a lighter one farther out: from
 where its χ² profile placed it, Gauss–Newton moves the core outward and lowers its density, and the wide 1σ of its
 density says how loosely the two are held apart.</p>
 <h2 id="5.-point-masses-and-components-side-by-side">5. Point masses and components side by side<a class="headerlink" href="#5.-point-masses-and-components-side-by-side" title="Link to this section">#</a></h2>
@@ -339,11 +339,11 @@ measurement over the anomaly separates solutions that the gravity coefficients c
 them: the core puts too much mass close to the point, the spread solutions too little.</p>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../../projects/rob/data3.html" rel="prev"><span>Previous</span>ROB-DATA3: Didymos</a><a class="next" href="../../projects/rob/data5.html" rel="next"><span>Next</span>ROB-DATA5: Dimorphos</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-29.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-30.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#1.-what-the-measurements-show">1. What the measurements show</a></li><li class="lvl2"><a href="#2.-where-the-mass-is">2. Where the mass is</a></li><li class="lvl2"><a href="#3.-how-well-each-solution-fits">3. How well each solution fits</a></li><li class="lvl2"><a href="#4.-the-model-with-components">4. The model with components</a></li><li class="lvl2"><a href="#5.-point-masses-and-components-side-by-side">5. Point masses and components side by side</a></li><li class="lvl2"><a href="#6.-against-robs-exact-values-and-the-grass-point">6. Against ROB's exact values and the GRASS point</a></li></ul></nav>
 </div>
-<script src="../../assets/search-index.js?v=784437df24"></script>
-<script src="../../assets/site.js?v=784437df24"></script>
+<script src="../../assets/search-index.js?v=54bef2a613"></script>
+<script src="../../assets/site.js?v=54bef2a613"></script>
 </body>
 </html>

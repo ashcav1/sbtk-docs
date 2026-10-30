@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Shape models — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=784437df24">
-<link rel="stylesheet" href="../assets/pygments.css?v=784437df24">
-<link rel="stylesheet" href="../assets/print.css?v=784437df24" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=54bef2a613">
+<link rel="stylesheet" href="../assets/pygments.css?v=54bef2a613">
+<link rel="stylesheet" href="../assets/print.css?v=54bef2a613" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,7 +29,7 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Models and calculations › <span aria-current="page">Shape models</span></nav>
 <article>
 <h1 id="shape-models">Shape models<a class="headerlink" href="#shape-models" title="Link to this section">#</a></h1>
-<p class="lastedit">Last edited October 21, 2026</p>
+<p class="lastedit">Last edited October 30, 2026</p>
 <p>A shape model is a closed triangular mesh, stored in SBTK as a <a class="xref xref-st" href="../reference/data-structures.html#shape"><code>shape</code></a> structure with vertices in km.</p>
 <h2 id="reading-and-creating-shape-models">Reading and creating shape models<a class="headerlink" href="#reading-and-creating-shape-models" title="Link to this section">#</a></h2>
 <table>
@@ -67,7 +67,8 @@
 (<a href="../models/forward-model.html">Gravity and moment calculations</a>). The mesh must therefore be</p>
 <ul>
 <li><strong>closed</strong>: every edge is shared by exactly two facets that traverse it in opposite directions;</li>
-<li><strong>ordered outward</strong>: the enclosed volume computed from the facets is positive;</li>
+<li><strong>ordered outward</strong>: the enclosed volume computed from the facets is positive. A mesh ordered inward is reversed by
+  <a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.polyhedron"><code>sbtk.gravity.polyhedron</code></a>, and by <a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.geometry"><code>sbtk.gravity.geometry</code></a> when every facet faces the expansion origin;</li>
 <li><strong>star-shaped about the expansion origin</strong>: every facet faces away from it, so that each ray from the origin crosses
   the surface once.</li>
 </ul>
@@ -219,14 +220,14 @@ volume. The bulk density is <span class="nobr"><math alttext="M/V" xmlns="http:/
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment. Requires the variables defined in <a href="../models/shape-models.html#shape-check">Checking a shape model</a>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">body = <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.from_mass">sbtk.body.from_mass</a>(&quot;Didymos&quot;, shape, 5.273e11, 0.43);    <span class="c">% mass [kg], reference radius [km]</span>
 <a class="xref xref-fn" href="../reference/api/body.html#sbtk.body.summary">sbtk.body.summary</a>(body)
 <a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.shape">sbtk.plot.shape</a>(body);</code></pre></div>
-<figure class="figure"><img src="../images/shape.png" alt="Figure produced by   sbtk.plot.shape   for the 9.3 m Didymos model: the mesh with its center of figure and axes." loading="lazy"><figcaption>Figure produced by <a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.shape"><code>sbtk.plot.shape</code></a> for the 9.3 m Didymos model: the mesh with its center of figure and axes.</figcaption></figure>
+<figure class="figure"><img src="../images/shape.png" alt="Figure produced by   sbtk.plot.shape   for the 9.3 m Didymos model: the surface, with the shape-model axes drawn from the center of figure (  x   red,   z   blue; in this view the   y  -axis is behind the body)." loading="lazy"><figcaption>Figure produced by <a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.shape"><code>sbtk.plot.shape</code></a> for the 9.3 m Didymos model: the surface, with the shape-model axes drawn from the center of figure (<span class="nobr"><math alttext="x" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>x</mi></mrow></math></span> red, <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span> blue; in this view the <span class="nobr"><math alttext="y" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>y</mi></mrow></math></span>-axis is behind the body).</figcaption></figure>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../conventions/moments-of-inertia.html" rel="prev"><span>Previous</span>Moments of inertia</a><a class="next" href="../models/density-distributions.html" rel="next"><span>Next</span>Density distributions</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-29.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-30.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#reading-and-creating-shape-models">Reading and creating shape models</a></li><li class="lvl2"><a href="#requirements">Requirements</a></li><li class="lvl2"><a href="#shape-models-in-the-repository">Shape models in the repository</a></li><li class="lvl2"><a href="#reducing-high-resolution-models">Reducing high-resolution models</a></li><li class="lvl2"><a href="#bodies">Bodies</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=784437df24"></script>
-<script src="../assets/site.js?v=784437df24"></script>
+<script src="../assets/search-index.js?v=54bef2a613"></script>
+<script src="../assets/site.js?v=54bef2a613"></script>
 </body>
 </html>

@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tutorial scripts — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=784437df24">
-<link rel="stylesheet" href="../assets/pygments.css?v=784437df24">
-<link rel="stylesheet" href="../assets/print.css?v=784437df24" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=54bef2a613">
+<link rel="stylesheet" href="../assets/pygments.css?v=54bef2a613">
+<link rel="stylesheet" href="../assets/print.css?v=54bef2a613" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,7 +29,7 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Examples › <span aria-current="page">Tutorial scripts</span></nav>
 <article>
 <h1 id="tutorial-scripts">Tutorial scripts<a class="headerlink" href="#tutorial-scripts" title="Link to this section">#</a></h1>
-<p class="lastedit">Last edited October 29, 2026</p>
+<p class="lastedit">Last edited October 30, 2026</p>
 <p>The repository folder <code>examples/</code> contains eleven tutorial scripts with sections. Each adds <code>toolbox/</code> to the path
 itself and can be run whole or section by section. All eleven run in the test suite
 (<code>tests/integration/test_examples.m</code>, also section by section for ex01). The code below is included from the
@@ -714,7 +714,8 @@ rf = <a class="xref xref-fn" href="../reference/internal.html#sbtk.search.refine
 
 <span class="c">%% 4. Compact masses</span>
 cand = <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere_grid">sbtk.interior.sphere_grid</a>(body, 0.040, 0.045);     <span class="c">% candidate positions every 40 m</span>
-ms = <a class="xref xref-fn" href="../reference/internal.html#sbtk.search.add_masses">sbtk.search.add_masses</a>(prob, rf.best_fit, cand, 4, 0.05, 3, 0);
+ms = <a class="xref xref-fn" href="../reference/internal.html#sbtk.search.add_masses">sbtk.search.add_masses</a>(prob, rf.best_fit, cand, 4, 0.05, 3, 3);   <span class="c">% 3: the ring and tube radii and the</span>
+<span class="w">                                                           </span><span class="c">% layer thickness, chosen on the grid</span>
 <span class="nb">fprintf</span><span class="p">(</span><span class="s">&#39;masses: %d kept (%s); chi2 %s\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">ms</span><span class="p">.</span><span class="n">n_masses</span><span class="p">,</span><span class="w"> </span><span class="n">ms</span><span class="p">.</span><span class="n">stop_reason</span><span class="p">,</span><span class="w"> </span><span class="nb">mat2str</span><span class="p">(</span><span class="n">ms</span><span class="p">.</span><span class="n">chi2</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">));</span>
 <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.save_figure">sbtk.io.save_figure</a>(out, <a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.search_masses">sbtk.plot.search_masses</a>(ms, body), &quot;masses&quot;);
 
@@ -733,11 +734,11 @@ cmp0 = <a class="xref xref-fn" href="../reference/api/compare.html#sbtk.compare.
 <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.finish_run">sbtk.io.finish_run</a>(out);</code></pre></div>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../examples/calculations.html" rel="prev"><span>Previous</span>Calculations</a><a class="next" href="../projects/template.html" rel="next"><span>Next</span>Project template</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-29.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-30.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#ex01-quick-start">ex01: quick start</a></li><li class="lvl2"><a href="#ex02-shapes-and-bodies">ex02: shapes and bodies</a></li><li class="lvl2"><a href="#ex03-forward-model">ex03: forward model</a></li><li class="lvl2"><a href="#ex04-inversion-options">ex04: inversion options</a></li><li class="lvl2"><a href="#ex05-importing-data">ex05: importing data</a></li><li class="lvl2"><a href="#ex06-results-folders">ex06: results folders</a></li><li class="lvl2"><a href="#ex07-exchange-packages">ex07: exchange packages</a></li><li class="lvl2"><a href="#ex08-moments-of-inertia-and-the-libration-ratio">ex08: moments of inertia and the libration ratio</a></li><li class="lvl2"><a href="#ex09-moved-and-rotated-package">ex09: moved and rotated package</a></li><li class="lvl2"><a href="#ex10-reading-the-coefficients">ex10: reading the coefficients</a></li><li class="lvl2"><a href="#ex11-searching-the-geometry">ex11: searching the geometry</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=784437df24"></script>
-<script src="../assets/site.js?v=784437df24"></script>
+<script src="../assets/search-index.js?v=54bef2a613"></script>
+<script src="../assets/site.js?v=54bef2a613"></script>
 </body>
 </html>

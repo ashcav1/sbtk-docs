@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Models with components — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=784437df24">
-<link rel="stylesheet" href="../assets/pygments.css?v=784437df24">
-<link rel="stylesheet" href="../assets/print.css?v=784437df24" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=54bef2a613">
+<link rel="stylesheet" href="../assets/pygments.css?v=54bef2a613">
+<link rel="stylesheet" href="../assets/print.css?v=54bef2a613" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,7 +29,7 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Kinds of solution › <span aria-current="page">Models with components</span></nav>
 <article>
 <h1 id="models-with-components">Models with components<a class="headerlink" href="#models-with-components" title="Link to this section">#</a></h1>
-<p class="lastedit">Last edited October 28, 2026</p>
+<p class="lastedit">Last edited October 30, 2026</p>
 <p>A model with components describes the interior as a background density and a few bodies of uniform relative
 density: a core, a surface layer, a torus, spheres, ellipsoids, sectors
 (<a href="../models/density-distributions.html#component-types">Density distributions</a>). Each is chosen to account for part of
@@ -64,6 +64,11 @@ is the choice of shapes, which the measurements test only through the fit.</p>
 <td>A component's place along a line, such as the center-of-mass offset</td>
 <td>the <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> profile, then Gauss–Newton from its lowest point</td>
 <td><a href="../inversion/reading-coefficients.html#degree-1-and-the-core">Degree 1 and the core</a></td>
+</tr>
+<tr>
+<td>Compact masses where the residuals ask for them</td>
+<td>added one at a time, each kept if it passes the likelihood-ratio test</td>
+<td><a href="../inversion/geometry-search.html#the-method">Searching the geometry</a></td>
 </tr>
 </tbody>
 </table>
@@ -126,17 +131,24 @@ sc = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.scan
 <span class="n">core</span><span class="p">.</span><span class="n">estimate_position</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w">                             </span><span class="c">% then Gauss-Newton from there</span>
 fit = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.solve">sbtk.invert.solve</a>(body, [core, torus, layer], obs, opts);
 <span class="nb">fprintf</span><span class="p">(</span><span class="s">&quot;reduced chi-square %.2f, AIC %.1f\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">fit</span><span class="p">.</span><span class="n">chi2_reduced</span><span class="p">,</span><span class="w"> </span><span class="n">fit</span><span class="p">.</span><span class="n">chi2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">fit</span><span class="p">.</span><span class="n">n_obs</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">fit</span><span class="p">.</span><span class="n">dof</span><span class="p">))</span></code></pre></div>
-<p><code>projects/hera_hlp6/rob_candidates.m</code> lists the models fitted to every ROB package in this way, from a core at the
-center of figure to models with four or five components.</p>
+<p><code>projects/hera_hlp6/analyze_rob.m</code> fits the models of <code>rob_candidates.m</code> to every ROB package in this way, from a
+core at the center of figure to models with four or five components, runs two searches of the geometry
+(<a href="../inversion/geometry-search.html">Searching the geometry</a>), and ranks them all by AIC. The runner <code>rob&lt;n&gt;_components.m</code> of each
+package fits the model of lowest AIC (<a href="../projects/rob/code.html">Code of the ROB solutions</a>).</p>
 <h2 id="rules">Rules<a class="headerlink" href="#rules" title="Link to this section">#</a></h2>
 <ul>
 <li><strong>Start simple, add one component at a time</strong>, and keep it only if it lowers the AIC: it must lower <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> by
-  more than 2 for each parameter it adds (<a href="../inversion/statistics.html#comparing-models-the-akaike-information-criterion">Goodness of fit</a>).</li>
+  more than 2 for each parameter it adds, a size chosen on a grid included
+  (<a href="../inversion/statistics.html#comparing-models-the-akaike-information-criterion">Goodness of fit</a>).</li>
 <li><strong>Place before refining.</strong> Degree 1 fixes only the product of a core's mass excess and its offset: a dense core on
   one side and a light core on the other give the same degree 1. Gauss–Newton started at the center of figure can end
   on the wrong side. On synthetic interiors with a lone core, a core, torus and layer model started from the lowest
   point of the <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> profile found the core within 10 m in 83% of them, started from the center in 17%
   (<a href="../inversion/reading-coefficients.html#what-the-study-found">What the study found</a>).</li>
+<li><strong>Check that the geometry converged.</strong> Where a density and a position trade against each other, as a dense core's
+  density and its offset do, Gauss–Newton can need more than a hundred steps, as for the core of ROB-DATA4.
+  <a class="xref xref-field" href="../reference/data-structures.html#fit.geometry_converged"><code>fit.geometry_converged</code></a> false means the <a class="xref xref-field" href="../reference/data-structures.html#opts.max_iter"><code>opts.max_iter</code></a> steps (200 by default) ran out first, and
+  <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.summary"><code>sbtk.invert.summary</code></a> says so: raise it and fit again.</li>
 <li><strong>A density at a bound</strong> (<a class="xref xref-field" href="../reference/data-structures.html#fit.at_bound"><code>fit.at_bound</code></a>) means the shape or place is wrong, or the component too small for the
   mass the measurements want there.</li>
 <li><strong>A density within 1σ of zero</strong> (<a class="xref xref-field" href="../reference/data-structures.html#fit.resolved"><code>fit.resolved</code></a> false) is not resolved: the component can be dropped.</li>
@@ -149,11 +161,11 @@ center of figure to models with four or five components.</p>
 </ul>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../inversion/statistics.html" rel="prev"><span>Previous</span>Goodness of fit and model comparison</a><a class="next" href="../inversion/geometry-search.html" rel="next"><span>Next</span>Searching the geometry</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-29.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-30.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#what-is-estimated">What is estimated</a></li><li class="lvl2"><a href="#choosing-the-components">Choosing the components</a></li><li class="lvl2"><a href="#fitting-a-model">Fitting a model</a></li><li class="lvl2"><a href="#rules">Rules</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=784437df24"></script>
-<script src="../assets/site.js?v=784437df24"></script>
+<script src="../assets/search-index.js?v=54bef2a613"></script>
+<script src="../assets/site.js?v=54bef2a613"></script>
 </body>
 </html>

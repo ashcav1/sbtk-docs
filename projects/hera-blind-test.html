@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hera blind test — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=784437df24">
-<link rel="stylesheet" href="../assets/pygments.css?v=784437df24">
-<link rel="stylesheet" href="../assets/print.css?v=784437df24" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=54bef2a613">
+<link rel="stylesheet" href="../assets/pygments.css?v=54bef2a613">
+<link rel="stylesheet" href="../assets/print.css?v=54bef2a613" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,7 +29,7 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Projects › <span aria-current="page">Hera blind test</span></nav>
 <article>
 <h1 id="hera-blind-test">Hera blind test<a class="headerlink" href="#hera-blind-test" title="Link to this section">#</a></h1>
-<p class="lastedit">Last edited October 29, 2026</p>
+<p class="lastedit">Last edited October 30, 2026</p>
 <p><code>projects/hera_hlp6/</code> contains the runner scripts SBTK uses in a blind test of interior-modeling methods for the binary
 asteroid Didymos–Dimorphos, the target of ESA's Hera mission. In such a test one team simulates measurements of an
 interior it keeps hidden and shares only the measurements; other teams estimate the interior; the hidden models are
@@ -150,7 +150,7 @@ copies in <code>data/hera_rse/</code>.</p>
 </tbody>
 </table>
 <p>Where each of these values comes from, and the alternatives: <a href="../projects/didymos-dimorphos-values.html">Didymos and Dimorphos values</a>.
-A run on the full-resolution models takes minutes: the geometry of 3 million facets to degree 10 takes about a minute
+A simulation on the full-resolution models takes 10 to 25 minutes: the geometry of 3 million facets to degree 10 takes about a minute
 and 4.5 GB, and a simulation repeats it until the center of mass settles.</p>
 <h2 id="simulation-runs">Simulation runs<a class="headerlink" href="#simulation-runs" title="Link to this section">#</a></h2>
 <p>A simulation runner has four sections:</p>
@@ -225,19 +225,20 @@ measurement package (so that all three are in the frame of the packages), compar
 not contain. Weighted by the uncertainties of the end-to-end simulation, the <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> test rejects the inversion models
 of both bodies, and the estimated densities are biased accordingly. At this precision an inversion model has to
 include structure down to the scale of such features to pass the test (<a href="../inversion/statistics.html">Goodness of fit</a>).
-For Didymos T1, whose torus is aligned with the spin axis of the true model (3.7° from the <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis of the DART
+For Didymos T1, whose torus is aligned with the spin axis of the true model (3.9° from the <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis of the DART
 file), the model with the torus about the <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis and fixed geometry has a reduced <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> of 157 and <span class="nobr"><math alttext="R^2 = 0.49" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mn>0.49</mn></mrow></math>.</span>
-Estimating the torus axis and height lowers <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> to 49 but <span class="nobr"><math alttext="R^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow></math></span> to <span class="nobr"><math alttext="-1.95" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mn>1.95</mn></mrow></math>:</span> the torus moves 50 m, to its limit,
-and tilts 6.9° to take up the signal of the boulder, which the model lacks
-(<a href="../inversion/density-estimation.html#estimated-geometry">Estimated geometry</a>). The run takes about a minute. For
-Dimorphos, an ellipsoidal core and the regolith give a reduced <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> of 47 and <span class="nobr"><math alttext="R^2 = 0.04" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mn>0.04</mn></mrow></math>.</span></p>
+Estimating the torus axis and height lowers <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> to 49 but <span class="nobr"><math alttext="R^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup></mrow></math></span> to <span class="nobr"><math alttext="-1.92" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mo>&#x02212;</mo><mn>1.92</mn></mrow></math>:</span> the torus moves 50 m, to its limit,
+and tilts 6.8° to take up the signal of the boulder, which the model lacks
+(<a href="../inversion/density-estimation.html#estimated-geometry">Estimated geometry</a>). On the full-resolution shape model the
+run takes about 25 minutes. For Dimorphos, an ellipsoidal core and the regolith give a reduced <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math></span> of 47 and <span class="nobr"><math alttext="R^2 = 0.04" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>R</mi><mn>2</mn></msup><mo>&#x0003D;</mo><mn>0.04</mn></mrow></math></span> (on the 49,152-facet
+version of the shape model).</p>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../projects/bennu.html" rel="prev"><span>Previous</span>Bennu</a><a class="next" href="../projects/didymos-dimorphos-values.html" rel="next"><span>Next</span>Didymos and Dimorphos values</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-29.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-30.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#files">Files</a></li><li class="lvl2"><a href="#settings">Settings</a></li><li class="lvl2"><a href="#simulation-runs">Simulation runs</a></li><li class="lvl3"><a href="#maker-models">Maker models</a></li><li class="lvl2"><a href="#inversion-runs">Inversion runs</a></li><li class="lvl2"><a href="#comparison-runs">Comparison runs</a></li><li class="lvl2"><a href="#example-runs">Example runs</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=784437df24"></script>
-<script src="../assets/site.js?v=784437df24"></script>
+<script src="../assets/search-index.js?v=54bef2a613"></script>
+<script src="../assets/site.js?v=54bef2a613"></script>
 </body>
 </html>

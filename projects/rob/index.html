@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Testing with ROB data — SBTK documentation</title>
-<link rel="stylesheet" href="../../assets/site.css?v=784437df24">
-<link rel="stylesheet" href="../../assets/pygments.css?v=784437df24">
-<link rel="stylesheet" href="../../assets/print.css?v=784437df24" media="print">
+<link rel="stylesheet" href="../../assets/site.css?v=54bef2a613">
+<link rel="stylesheet" href="../../assets/pygments.css?v=54bef2a613">
+<link rel="stylesheet" href="../../assets/print.css?v=54bef2a613" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,7 +29,7 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../../index.html">Documentation</a> › Testing with ROB data › <span aria-current="page">Testing with ROB data</span></nav>
 <article>
 <h1 id="testing-with-rob-data">Testing with ROB data<a class="headerlink" href="#testing-with-rob-data" title="Link to this section">#</a></h1>
-<p class="lastedit">Last edited October 29, 2026</p>
+<p class="lastedit">Last edited October 30, 2026</p>
 <p>The Royal Observatory of Belgium (ROB), one of the teams that make interiors for the HLP6 blind test, distributed
 six measurement packages of hidden interiors: three of Didymos (ROB-DATA1 to 3) and three of Dimorphos (ROB-DATA4
 to 6). This section reads each package with the procedure of <a href="../../inversion/reading-coefficients.html">Reading the gravity coefficients</a>
@@ -46,8 +46,9 @@ are not known to us.</p>
 <li>for Dimorphos also the gravitational potential and acceleration at one point on the surface, as the GRASS
   gravimeter on a lander would measure them.</li>
 </ul>
-<p>The values are exact (ROB's 1σ columns are 10⁻⁸ to 10⁻⁶, far below what a mission measures). The headers give each
-package's mass and reference radius:</p>
+<p>The values are exact (the 1σ columns of ROB's coefficients are 10⁻⁸ to 10⁻⁵, far below what a mission measures;
+those of the inertia elements are 10% of each value). The pages weight them with the Hera uncertainties instead
+(<a href="#uncertainties">Uncertainties</a>). The headers give each package's mass and reference radius:</p>
 <table>
 <thead>
 <tr>
@@ -129,7 +130,7 @@ package's mass and reference radius:</p>
 <ul>
 <li><strong>A model with a few components, chosen by reading the coefficients, fits with the fewest parameters.</strong> It ranks
   first by AIC on ROB-DATA1, 3, 4 and 5: by 37 and 18 on Didymos, by 4.6 on ROB-DATA4, and by 1.9 on ROB-DATA5, a
-  tie with the point masses. On ROB-DATA6 it ties with the point masses and the sector grid (all within 3). On
+  tie with the point masses. On ROB-DATA6 it ties with the point masses (0.1 apart); the sector grid is 2.1 behind. On
   ROB-DATA2 no model of a core, a torus and a layer fits; a dense and a light sphere with four compact masses does,
   and ties with the sector grid and the point masses.</li>
 <li><strong>Fitting best is not the same as being right above the fitted degrees.</strong> There ROB's exact values side with the
@@ -142,7 +143,7 @@ package's mass and reference radius:</p>
   ROB-DATA5 they find the core's size and elongation but not its side. Where they agree with the model with
   components, the measurements, not the choice of shapes, placed the anomaly.</li>
 <li><strong>Where the two differ, the measurements allow both, and the truth goes either way.</strong> On ROB-DATA5 the core's
-  offset to +x, which the point masses leave out because degree 1 is measured at only 1σ, is right. On ROB-DATA6
+  offset to +x, which the point masses leave out because degree 1 is measured at only 0.7σ, is right. On ROB-DATA6
   the point masses' light region at the center is closer to the truth than the light core to one side.</li>
 <li><strong>Sector grids fit an anomaly spread over a direction and depth (ROB-DATA2), but cannot make a ring
   (ROB-DATA3).</strong> Above the fitted degrees they do worse than constant density on ROB-DATA1, 3 and 5.</li>
@@ -158,7 +159,7 @@ package's mass and reference radius:</p>
 <th>Package</th>
 <th>What the measurements show</th>
 <th>Best by AIC</th>
-<th>Tied (within 3 in AIC)</th>
+<th>Tied (within 2 in AIC)</th>
 <th>Closest to ROB's exact values above the fitted degrees</th>
 </tr>
 </thead>
@@ -175,7 +176,7 @@ package's mass and reference radius:</p>
 <td>center of mass 2.3 m south, degree 2 tilted 58°, a large degree 3</td>
 <td>sector grid 1 × 4 × 8</td>
 <td>components, point masses</td>
-<td>point masses (0.17; sector grid 0.05, components −0.27)</td>
+<td>point masses (0.17; sector grid 0.05, components −0.20)</td>
 </tr>
 <tr>
 <td><a href="../../projects/rob/data3.html">ROB-DATA3</a></td>
@@ -200,9 +201,9 @@ package's mass and reference radius:</p>
 </tr>
 <tr>
 <td><a href="../../projects/rob/data6.html">ROB-DATA6</a></td>
-<td>the moments 30–60σ larger: light inside, dense outside</td>
+<td>the moments 32–62σ larger: light inside, dense outside</td>
 <td>point masses</td>
-<td>components, sector grid</td>
+<td>components</td>
 <td>sector grid and point masses (0.50 and 0.46; components −0.72)</td>
 </tr>
 </tbody>
@@ -370,11 +371,11 @@ its page (<a href="../../projects/rob/code.html">Code of the ROB solutions</a>);
 </ol>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../../projects/didymos-dimorphos-values.html" rel="prev"><span>Previous</span>Didymos and Dimorphos values</a><a class="next" href="../../projects/rob/code.html" rel="next"><span>Next</span>Code of the ROB solutions</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-29.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-30.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#the-packages">The packages</a></li><li class="lvl2"><a href="#uncertainties">Uncertainties</a></li><li class="lvl2"><a href="#what-the-six-packages-show">What the six packages show</a></li><li class="lvl2"><a href="#results">Results</a></li><li class="lvl2"><a href="#point-masses-sensitivity-or-equal-weighting">Point masses: sensitivity or equal weighting</a></li><li class="lvl2"><a href="#how-to-read-these-pages">How to read these pages</a></li><li class="lvl2"><a href="#method">Method</a></li></ul></nav>
 </div>
-<script src="../../assets/search-index.js?v=784437df24"></script>
-<script src="../../assets/site.js?v=784437df24"></script>
+<script src="../../assets/search-index.js?v=54bef2a613"></script>
+<script src="../../assets/site.js?v=54bef2a613"></script>
 </body>
 </html>

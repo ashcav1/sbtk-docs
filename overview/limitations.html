@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Assumptions and limitations — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=784437df24">
-<link rel="stylesheet" href="../assets/pygments.css?v=784437df24">
-<link rel="stylesheet" href="../assets/print.css?v=784437df24" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=54bef2a613">
+<link rel="stylesheet" href="../assets/pygments.css?v=54bef2a613">
+<link rel="stylesheet" href="../assets/print.css?v=54bef2a613" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,13 +29,16 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Overview › <span aria-current="page">Assumptions and limitations</span></nav>
 <article>
 <h1 id="assumptions-and-limitations">Assumptions and limitations<a class="headerlink" href="#assumptions-and-limitations" title="Link to this section">#</a></h1>
-<p class="lastedit">Last edited October 21, 2026</p>
+<p class="lastedit">Last edited October 30, 2026</p>
 <p>This page lists the physical and numerical assumptions of SBTK 1.0.0 and the calculations it does not perform. Each
 item links to the page where the behavior is described.</p>
 <h2 id="physical-model">Physical model<a class="headerlink" href="#physical-model" title="Link to this section">#</a></h2>
 <ul>
 <li>The body is rigid and its density does not change with time. The gravity field is described by spherical-harmonic
-  coefficients only; SBTK does not evaluate the potential or the gravitational acceleration at field points.</li>
+  coefficients; SBTK does not evaluate their series. The potential and the acceleration at points are computed from the
+  shape model: exactly for the background density and for spheres inside the body, and for the other departures from
+  the background density on a grid of uniform cubes, which follows their boundaries to within a cell
+  (<a href="../models/forward-model.html#potential-and-acceleration-at-points">Potential and acceleration at points</a>).</li>
 <li>The density is a background density plus uniform components plus an optional Gaussian random field
   (<a href="../models/density-distributions.html">Density distributions</a>). Gradients within a component, other than through the
   random field, are not modeled.</li>
@@ -45,9 +48,9 @@ item links to the page where the behavior is described.</p>
 </ul>
 <h2 id="geometry">Geometry<a class="headerlink" href="#geometry" title="Link to this section">#</a></h2>
 <ul>
-<li>The shape model must be closed, ordered outward and star-shaped about the expansion origin: every facet must face
+<li>The shape model must be closed, consistently ordered and star-shaped about the expansion origin: every facet must face
   away from it, except small overhangs holding less than 10⁻⁶ of the volume (<a href="../models/shape-models.html">Shape models</a>).
-  Bodies with larger overhangs cannot be integrated.</li>
+  Bodies with larger overhangs cannot be integrated. A mesh ordered inward is reversed.</li>
 <li>Layers and sectors are defined along rays from the expansion origin (the center of mass), not along the local surface
   normal (<a href="../conventions/coordinates.html">Coordinate systems</a>).</li>
 <li>The <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis of the shape-model frame is taken as the spin axis and as a principal axis in the definition of the
@@ -82,7 +85,9 @@ item links to the page where the behavior is described.</p>
 <ul>
 <li>The measurements are linear in the densities. Positions and axes of components, when estimated, are found by
   Gauss–Newton iteration with a trust region and optional a priori constraints and limits; the geometry of layers and
-  sectors, and of every component not marked for estimation, is fixed. An estimated geometry can absorb signal from
+  sectors, and of every component not marked for estimation, is fixed in a fit. Sizes, depths and sector bounds have no
+  Gauss–Newton derivatives; they can only be searched over given values
+  (<a href="../inversion/geometry-search.html">Searching the geometry</a>). An estimated geometry can absorb signal from
   structure the model lacks (<a href="../inversion/density-estimation.html#estimated-geometry">Estimated geometry</a>).</li>
 <li>The uncertainties are the linearized covariance with the mass constraint and fixed parameters eliminated. The
   inequality bounds on the densities are not reflected in the covariance; <code>fit.at_bound</code> flags densities at a bound.</li>
@@ -111,11 +116,11 @@ item links to the page where the behavior is described.</p>
 </ul>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../index.html" rel="prev"><span>Previous</span>SBTK: Small Body Toolkit</a><a class="next" href="../getting-started/installation.html" rel="next"><span>Next</span>Installation</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-29.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-30.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#physical-model">Physical model</a></li><li class="lvl2"><a href="#geometry">Geometry</a></li><li class="lvl2"><a href="#numerical-integration">Numerical integration</a></li><li class="lvl2"><a href="#estimation">Estimation</a></li><li class="lvl2"><a href="#data-formats">Data formats</a></li><li class="lvl2"><a href="#software">Software</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=784437df24"></script>
-<script src="../assets/site.js?v=784437df24"></script>
+<script src="../assets/search-index.js?v=54bef2a613"></script>
+<script src="../assets/site.js?v=54bef2a613"></script>
 </body>
 </html>

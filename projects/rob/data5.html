@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ROB-DATA5: Dimorphos — SBTK documentation</title>
-<link rel="stylesheet" href="../../assets/site.css?v=784437df24">
-<link rel="stylesheet" href="../../assets/pygments.css?v=784437df24">
-<link rel="stylesheet" href="../../assets/print.css?v=784437df24" media="print">
+<link rel="stylesheet" href="../../assets/site.css?v=54bef2a613">
+<link rel="stylesheet" href="../../assets/pygments.css?v=54bef2a613">
+<link rel="stylesheet" href="../../assets/print.css?v=54bef2a613" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,13 +29,13 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../../index.html">Documentation</a> › Testing with ROB data › <span aria-current="page">ROB-DATA5: Dimorphos</span></nav>
 <article>
 <h1 id="rob-data5-dimorphos">ROB-DATA5: Dimorphos<a class="headerlink" href="#rob-data5-dimorphos" title="Link to this section">#</a></h1>
-<p class="lastedit">Last edited October 29, 2026</p>
+<p class="lastedit">Last edited October 30, 2026</p>
 <p>ROB-DATA5 has the smallest anomaly of the six packages. Only <span class="nobr"><math alttext="J_2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mn>2</mn></msub></mrow></math>,</span> <span class="nobr"><math alttext="C_22" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub></mrow></math></span> and two moments of inertia differ
 from constant density by more than 3σ. A single dense sphere 28 m from the center toward +x explains them with 4 parameters
 and ranks first. The point masses tie with it in AIC. They put the same mass at the center, elongated along x like
-the sphere, but not to one side: the center-of-mass offset the sphere makes is only 1σ in the measurements, and the
+the sphere, but not to one side: the center-of-mass offset the sphere makes is only 0.7σ in the measurements, and the
 point masses do not pay for it. ROB's exact values show the offset is real. The sphere reproduces 91% of degrees 1 to
-3 and 87 to 99% of each degree from 6 to 10. It reproduces 99% of degree 10; no solution in the other five packages reproduces more than 9% of that degree.</p>
+3 and 87 to 99% of each degree from 6 to 10. It reproduces 99% of degree 10, more than any solution of the other five packages (at most 76%, on ROB-DATA1).</p>
 <table>
 <thead>
 <tr>
@@ -87,7 +87,7 @@ values: the fraction of ROB's exact coefficients a solution reproduces, over the
 degrees 4–10, which were not (1: all; 0: no better than constant density; negative: worse). See
 <a href="../../projects/rob/index.html#how-to-read-these-pages">How to read these pages</a>.</p>
 <h2 id="1.-what-the-measurements-show">1. What the measurements show<a class="headerlink" href="#1.-what-the-measurements-show" title="Link to this section">#</a></h2>
-<figure class="figure"><img src="../../figures/rob/data5/measured.png" alt="The measured coefficients minus those of the same shape at constant density, C − C_CD, with ±1σ of the Hera radio-science solution, degrees 1 to 3, and the three moments of inertia minus those at constant density. Each panel has its own scale; 0 is constant density. Degree 3 is fitted, but its 1σ is 20 to 600 times its anomaly." loading="lazy"><figcaption>The measured coefficients minus those of the same shape at constant density, C − C_CD, with ±1σ of the Hera radio-science solution, degrees 1 to 3, and the three moments of inertia minus those at constant density. Each panel has its own scale; 0 is constant density. Degree 3 is fitted, but its 1σ is 20 to 600 times its anomaly.</figcaption></figure>
+<figure class="figure"><img src="../../figures/rob/data5/measured.png" alt="The measured coefficients minus those of the same shape at constant density, C − C_CD, with ±1σ of the Hera radio-science solution, degrees 1 to 3, and the three moments of inertia minus those at constant density. Each panel has its own scale; 0 is constant density. Degree 3 is fitted, but its 1σ is about 600 times its anomaly." loading="lazy"><figcaption>The measured coefficients minus those of the same shape at constant density, C − C_CD, with ±1σ of the Hera radio-science solution, degrees 1 to 3, and the three moments of inertia minus those at constant density. Each panel has its own scale; 0 is constant density. Degree 3 is fitted, but its 1σ is about 600 times its anomaly.</figcaption></figure>
 <table>
 <thead>
 <tr>
@@ -132,12 +132,12 @@ degrees 4–10, which were not (1: all; 0: no better than constant density; nega
 <p>The measurements more than 3σ from constant density.</p>
 <p><span class="nobr"><math alttext="C_22" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>22</mn></mrow></msub></mrow></math></span> is 27σ higher than at constant density: mass has moved toward the ends of the x-axis. <span class="nobr"><math alttext="I_xx" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>x</mi><mi>x</mi></mrow></msub></mrow></math></span> is 5σ
 smaller (mass closer to the x-axis) and <span class="nobr"><math alttext="I_zz" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub></mrow></math></span> 4σ smaller (mass closer to the spin axis). <span class="nobr"><math alttext="J_2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mn>2</mn></msub></mrow></math></span> is 6σ lower. The
-center of mass is 0.31 m toward +x, 1σ: by itself, not a detection.</p>
+center of mass is 0.31 m toward +x, 0.7σ: by itself, not a detection.</p>
 <h2 id="2.-where-the-mass-is">2. Where the mass is<a class="headerlink" href="#2.-where-the-mass-is" title="Link to this section">#</a></h2>
 <figure class="figure"><img src="../../figures/rob/data5/anomaly_map.png" alt="Degree 2 of C − C_CD as a map of latitude and longitude from the center of figure. Red where a mass added near the surface in that direction would produce the pattern, blue where a mass taken away would. +: strongest excess; x: strongest deficit; star: direction of the center-of-mass offset." loading="lazy"><figcaption>Degree 2 of C − C_CD as a map of latitude and longitude from the center of figure. Red where a mass added near the surface in that direction would produce the pattern, blue where a mass taken away would. +: strongest excess; x: strongest deficit; star: direction of the center-of-mass offset.</figcaption></figure>
 <p>Degree 2 takes mass from the ends of the y-axis and puts it at the poles and the ends of the x-axis. The smaller
 <span class="nobr"><math alttext="I_xx" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>x</mi><mi>x</mi></mrow></msub></mrow></math></span> and <span class="nobr"><math alttext="I_zz" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>I</mi><mrow><mi>z</mi><mi>z</mi></mrow></msub></mrow></math></span> say the added mass is close to the x-axis and to the center, not near the surface. Mass
-gathered on the x-axis inside the body makes this, and the 1σ offset toward +x suggests it is on the +x side. The
+gathered on the x-axis inside the body makes this, and the 0.7σ offset toward +x suggests it is on the +x side. The
 model built for this package places a dense core along that offset by its χ² profile.</p>
 <h2 id="3.-how-well-each-solution-fits">3. How well each solution fits<a class="headerlink" href="#3.-how-well-each-solution-fits" title="Link to this section">#</a></h2>
 <figure class="figure"><img src="../../figures/rob/data5/compare.png" alt="Top: C − C_CD measured (black, ±1σ) and of the best solution of each kind. Bottom: (solution − measured)/σ; the gray band is ±1σ, the dashed lines ±3σ." loading="lazy"><figcaption>Top: C − C_CD measured (black, ±1σ) and of the best solution of each kind. Bottom: (solution − measured)/σ; the gray band is ±1σ, the dashed lines ±3σ.</figcaption></figure>
@@ -239,7 +239,7 @@ from the center of figure. Correlation: of the relative densities of the solutio
 along x at the center, nearly the extent of the sphere along x, symmetric about the center instead of on the +x side.
 The excess of the sphere is centered 27 m toward +x, that of the point masses 1 m. Degree 2 is the same for mass at
 +x and at −x. Only the odd degrees tell them apart: degree 3 is fitted but its 1σ is far larger than its anomaly, and degree 1,
-at 1σ, is too weak for the point-mass regularization to follow. The sector grid puts the excess in its inner
+at 0.7σ, is too weak for the point-mass regularization to follow. The sector grid puts the excess in its inner
 shell, 11 m toward +x.</p>
 <h2 id="6.-against-robs-exact-values-and-the-grass-point">6. Against ROB's exact values and the GRASS point<a class="headerlink" href="#6.-against-robs-exact-values-and-the-grass-point" title="Link to this section">#</a></h2>
 <figure class="figure"><img src="../../figures/rob/data5/exact.png" alt="The fraction of each degree of ROB&#x27;s exact C − C_CD that each solution reproduces, 1 − |solution − exact|²/|exact|². 1: all of it; 0: no better than constant density; values below −1 are drawn at −1 as open markers. The gray region was not fitted." loading="lazy"><figcaption>The fraction of each degree of ROB's exact C − C_CD that each solution reproduces, 1 − |solution − exact|²/|exact|². 1: all of it; 0: no better than constant density; values below −1 are drawn at −1 as open markers. The gray region was not fitted.</figcaption></figure>
@@ -291,11 +291,11 @@ Constant density is off by only 0.6%. The sphere and the sector grid predict the
 masses to 0.6%, all within 0.2° in direction.</p>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../../projects/rob/data4.html" rel="prev"><span>Previous</span>ROB-DATA4: Dimorphos</a><a class="next" href="../../projects/rob/data6.html" rel="next"><span>Next</span>ROB-DATA6: Dimorphos</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-29.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-30.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#1.-what-the-measurements-show">1. What the measurements show</a></li><li class="lvl2"><a href="#2.-where-the-mass-is">2. Where the mass is</a></li><li class="lvl2"><a href="#3.-how-well-each-solution-fits">3. How well each solution fits</a></li><li class="lvl2"><a href="#4.-the-model-with-components">4. The model with components</a></li><li class="lvl2"><a href="#5.-point-masses-and-components-side-by-side">5. Point masses and components side by side</a></li><li class="lvl2"><a href="#6.-against-robs-exact-values-and-the-grass-point">6. Against ROB's exact values and the GRASS point</a></li></ul></nav>
 </div>
-<script src="../../assets/search-index.js?v=784437df24"></script>
-<script src="../../assets/site.js?v=784437df24"></script>
+<script src="../../assets/search-index.js?v=54bef2a613"></script>
+<script src="../../assets/site.js?v=54bef2a613"></script>
 </body>
 </html>

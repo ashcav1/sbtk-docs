@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>sbtk.invert — SBTK documentation</title>
-<link rel="stylesheet" href="../../assets/site.css?v=784437df24">
-<link rel="stylesheet" href="../../assets/pygments.css?v=784437df24">
-<link rel="stylesheet" href="../../assets/print.css?v=784437df24" media="print">
+<link rel="stylesheet" href="../../assets/site.css?v=54bef2a613">
+<link rel="stylesheet" href="../../assets/pygments.css?v=54bef2a613">
+<link rel="stylesheet" href="../../assets/print.css?v=54bef2a613" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,7 +29,7 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../../index.html">Documentation</a> › Reference › <span aria-current="page">sbtk.invert</span></nav>
 <article>
 <h1 id="top"><code>sbtk.invert</code>: Density estimation</h1>
-<p class="lastedit">Last edited October 29, 2026</p>
+<p class="lastedit">Last edited October 30, 2026</p>
 <table class="overview"><thead><tr><th>Function</th><th>Purpose</th></tr></thead><tbody>
 <tr><td><a class="xref xref-fn" href="#sbtk.invert.choose_regularization"><code>choose_regularization</code></a></td><td>Tikhonov regularization parameter by the discrepancy principle or the lowest AIC.</td></tr>
 <tr><td><a class="xref xref-fn" href="#sbtk.invert.goodness_of_fit"><code>goodness_of_fit</code></a></td><td>Reduced chi-square and chi-square test of a fit.</td></tr>
@@ -82,7 +82,7 @@ fit = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.
 <tr id="sbtk.invert.goodness_of_fit.out.consistent"><td data-label="Name"><code>consistent</code></td><td data-label="Description"><code>p_value</code> &gt;= 0.05: the model is consistent with the measurements at the 5% significance level</td></tr>
 </tbody></table>
 <h3 class="api-sub">Description</h3>
-<p>With dof &lt;= 0 (at least as many parameters as measurements) the test is undefined: <code>chi2_reduced</code> and <code>p_value</code> are NaN and consistent is false.</p>
+<p>With dof &lt;= 1e-6 (at least as many parameters as measurements) the test is undefined: <code>chi2_reduced</code> and <code>p_value</code> are NaN and consistent is false.</p>
 <h3 class="api-sub">Example</h3>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB, from the help text</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">[chi2_reduced, p, consistent] = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.goodness_of_fit">sbtk.invert.goodness_of_fit</a>(30.2, 24);   <span class="c">% 1.26, 0.18, true</span></code></pre></div>
 <h3 class="api-sub">Related functions</h3><dl class="related"><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.run"><code>sbtk.invert.run</code></a></dd></dl>
@@ -241,7 +241,7 @@ fit = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.
 <tr id="sbtk.invert.run.out.fit"><td data-label="Name"><code>fit</code></td><td data-label="Description">Inversion result. Fields: <a class="xref xref-st" href="../../reference/data-structures.html#fit"><code>fit</code></a>.</td></tr>
 </tbody></table>
 <h3 class="api-sub">Description</h3>
-<p>Unknowns: the background density, the relative density of each component, and the geometry asked for: the center of spheres, ellipsoids and tori with <code>estimate_position</code> (all coordinates, or those of a mask [x y z]) and the axis of ellipsoids and tori with <code>estimate_axis</code> = true. The total mass is an equality constraint and every component's density is bounded to [0, <code>opts.rho_max_kgm3</code>]. Measurements are whitened by the Cholesky factor of their covariance and the columns scaled to unit norm; the problem is solved with lsqlin (active set, or interior point if the active set does not converge). The geometry is refined by Gauss-Newton (at most <code>opts.max_iter</code> steps) with a trust region (<code>opts.step_km</code> for center coordinates, <code>opts.step_deg</code> for axis tilts): a step that does not lower the objective is undone and the trust region halved, and a step that does doubles it up to those limits; it has converged when the objective changes by less than 1e-10 relative or a step changes every parameter by less than <code>opts.geometry_tol</code> of its step limit. Optional a priori constraints keep the geometry near its start (<code>opts.position_sigma_km</code>, <code>opts.axis_sigma_deg</code>), hard limits bound how far it may go (<code>opts.max_shift_km</code>, <code>opts.max_tilt_deg</code>), and spheres are kept inside the body. The parameters are listed by <a class="xref xref-fn" href="../../reference/internal.html#sbtk.internal.geometry_parameters">sbtk.internal.geometry_parameters</a>. Optional Tikhonov regularization (<code>opts.regularization</code>) penalizes the relative densities. The covariance is the linearized one with the mass constraint eliminated (inequality bounds are not included; see <code>fit.at_bound</code>).</p>
+<p>Unknowns: the background density, the relative density of each component, and the geometry asked for: the center of spheres, ellipsoids and tori with <code>estimate_position</code> (all coordinates, or those of a mask [x y z]) and the axis of ellipsoids and tori with <code>estimate_axis</code> = true. The total mass is an equality constraint and every component's density is bounded to [0, <code>opts.rho_max_kgm3</code>]. Measurements are whitened by the Cholesky factor of their covariance and the columns scaled to unit norm; the problem is solved with lsqlin (active set, or interior point if the active set does not converge). The geometry is refined by Gauss-Newton (at most <code>opts.max_iter</code> steps) with a trust region (<code>opts.step_km</code> for center coordinates, <code>opts.step_deg</code> for axis tilts): a step that does not lower the objective is undone and the trust region halved, and a step that does doubles it up to those limits; it has converged when the objective changes by less than 1e-10 relative or a step changes every parameter by less than <code>opts.geometry_tol</code> of its step limit. Optional a priori constraints keep the geometry near its start (<code>opts.position_sigma_km</code>, <code>opts.axis_sigma_deg</code>), hard limits bound how far it may go (<code>opts.max_shift_km</code>, <code>opts.max_tilt_deg</code>, <code>opts.max_turn_deg</code>), and spheres are kept inside the body. The parameters are listed by <a class="xref xref-fn" href="../../reference/internal.html#sbtk.internal.geometry_parameters">sbtk.internal.geometry_parameters</a>. Optional Tikhonov regularization (<code>opts.regularization</code>) penalizes the relative densities. The covariance is the linearized one with the mass constraint eliminated (inequality bounds are not included; see <code>fit.at_bound</code>).</p>
 <p>fit (a model: <code>rho_bg_kgm3</code>, components, <code>random_field</code>, <code>origin_km</code>, plus)</p>
 <table class="defs"><tbody>
 <tr><td><code>rho_bg_kgm3, rho_bg_sigma_kgm3</code></td><td>background density and its 1-sigma [kg/m^3]</td></tr>
@@ -376,11 +376,11 @@ fit = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.
 </section>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../../reference/api/interpret.html" rel="prev"><span>Previous</span>sbtk.interpret</a><a class="next" href="../../reference/api/search.html" rel="next"><span>Next</span>sbtk.search</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-29.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-30.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#sbtk.invert.choose_regularization">sbtk.invert.choose_regularization</a></li><li class="lvl2"><a href="#sbtk.invert.goodness_of_fit">sbtk.invert.goodness_of_fit</a></li><li class="lvl2"><a href="#sbtk.invert.homogeneous">sbtk.invert.homogeneous</a></li><li class="lvl2"><a href="#sbtk.invert.options">sbtk.invert.options</a></li><li class="lvl2"><a href="#sbtk.invert.predict">sbtk.invert.predict</a></li><li class="lvl2"><a href="#sbtk.invert.recenter">sbtk.invert.recenter</a></li><li class="lvl2"><a href="#sbtk.invert.replace_data">sbtk.invert.replace_data</a></li><li class="lvl2"><a href="#sbtk.invert.run">sbtk.invert.run</a></li><li class="lvl2"><a href="#sbtk.invert.scan_position">sbtk.invert.scan_position</a></li><li class="lvl2"><a href="#sbtk.invert.setup">sbtk.invert.setup</a></li><li class="lvl2"><a href="#sbtk.invert.solve">sbtk.invert.solve</a></li><li class="lvl2"><a href="#sbtk.invert.summary">sbtk.invert.summary</a></li></ul></nav>
 </div>
-<script src="../../assets/search-index.js?v=784437df24"></script>
-<script src="../../assets/site.js?v=784437df24"></script>
+<script src="../../assets/search-index.js?v=54bef2a613"></script>
+<script src="../../assets/site.js?v=54bef2a613"></script>
 </body>
 </html>
