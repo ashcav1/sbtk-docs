@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>sbtk.invert — SBTK documentation</title>
-<link rel="stylesheet" href="../../assets/site.css?v=54bef2a613">
-<link rel="stylesheet" href="../../assets/pygments.css?v=54bef2a613">
-<link rel="stylesheet" href="../../assets/print.css?v=54bef2a613" media="print">
+<link rel="stylesheet" href="../../assets/site.css?v=9b8ac1e80d">
+<link rel="stylesheet" href="../../assets/pygments.css?v=9b8ac1e80d">
+<link rel="stylesheet" href="../../assets/print.css?v=9b8ac1e80d" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,7 +29,7 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../../index.html">Documentation</a> › Reference › <span aria-current="page">sbtk.invert</span></nav>
 <article>
 <h1 id="top"><code>sbtk.invert</code>: Density estimation</h1>
-<p class="lastedit">Last edited October 30, 2026</p>
+<p class="lastedit">Last edited November 2, 2026</p>
 <table class="overview"><thead><tr><th>Function</th><th>Purpose</th></tr></thead><tbody>
 <tr><td><a class="xref xref-fn" href="#sbtk.invert.choose_regularization"><code>choose_regularization</code></a></td><td>Tikhonov regularization parameter by the discrepancy principle or the lowest AIC.</td></tr>
 <tr><td><a class="xref xref-fn" href="#sbtk.invert.goodness_of_fit"><code>goodness_of_fit</code></a></td><td>Reduced chi-square and chi-square test of a fit.</td></tr>
@@ -249,7 +249,7 @@ fit = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.
 <tr><td><code>drho_sigma_kgm3</code></td><td>1-sigma of each relative density</td></tr>
 <tr><td><code>rho_kgm3, rho_sigma_kgm3</code></td><td>density of each component (background + relative) and its 1-sigma</td></tr>
 <tr><td><code>center_sigma_km</code></td><td>n x 3 1-sigma of the center coordinates (NaN unless estimated)</td></tr>
-<tr><td><code>axis_sigma_deg</code></td><td>n x 3 1-sigma of the rotations about the component's first, second and third axes [deg]: the tilts of its axis and, for an ellipsoid, its turn about it (NaN unless estimated)</td></tr>
+<tr><td><code>axis_sigma_deg</code></td><td>n x 3 1-sigma of the rotations about the component's first, second and third axes [deg] (NaN unless estimated; a rotation about an axis of symmetry never is, <a class="xref xref-fn" href="../../reference/internal.html#sbtk.internal.free_rotations">sbtk.internal.free_rotations</a>)</td></tr>
 <tr><td><code>at_bound</code></td><td>density at 0 or <code>rho_max</code></td></tr>
 <tr><td><code>resolved</code></td><td>|relative density| &gt; its 1-sigma</td></tr>
 <tr><td><code>determined</code></td><td>false if the measurements (with any prior or regularization) do not determine all free parameters; cov is then a pseudo-inverse and the solution is not unique</td></tr>
@@ -272,7 +272,7 @@ fit = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB fragment from the help text. Uses variables defined by earlier calls: <code>body</code>, <code>components</code>, <code>obs</code>.</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">prob = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.setup">sbtk.invert.setup</a>(body, components, obs, <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.options">sbtk.invert.options</a>());
 fit  = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.run">sbtk.invert.run</a>(prob);
 <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.summary">sbtk.invert.summary</a>(fit)</code></pre></div>
-<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.add_center_of_mass"><code>sbtk.data.add_center_of_mass</code></a>, <a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a>, <a class="xref xref-fn" href="../../reference/internal.html#sbtk.internal.geometry_parameters"><code>sbtk.internal.geometry_parameters</code></a>, <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.options"><code>sbtk.invert.options</code></a>, <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.setup"><code>sbtk.invert.setup</code></a>, <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.summary"><code>sbtk.invert.summary</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.component_integrals"><code>sbtk.gravity.component_integrals</code></a>, <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.no_random_field"><code>sbtk.interior.no_random_field</code></a>, <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.set_axis"><code>sbtk.interior.set_axis</code></a>, <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.goodness_of_fit"><code>sbtk.invert.goodness_of_fit</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.choose_regularization"><code>sbtk.invert.choose_regularization</code></a>, <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.homogeneous"><code>sbtk.invert.homogeneous</code></a>, <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.scan_position"><code>sbtk.invert.scan_position</code></a>, <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.solve"><code>sbtk.invert.solve</code></a></dd></dl>
+<h3 class="api-sub">Related functions</h3><dl class="related"><dt>Mentioned in the help text</dt><dd><a class="xref xref-fn" href="../../reference/api/data.html#sbtk.data.add_center_of_mass"><code>sbtk.data.add_center_of_mass</code></a>, <a class="xref xref-fn" href="../../reference/api/exchange.html#sbtk.exchange.read_data"><code>sbtk.exchange.read_data</code></a>, <a class="xref xref-fn" href="../../reference/internal.html#sbtk.internal.free_rotations"><code>sbtk.internal.free_rotations</code></a>, <a class="xref xref-fn" href="../../reference/internal.html#sbtk.internal.geometry_parameters"><code>sbtk.internal.geometry_parameters</code></a>, <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.options"><code>sbtk.invert.options</code></a>, <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.setup"><code>sbtk.invert.setup</code></a>, <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.summary"><code>sbtk.invert.summary</code></a></dd><dt>Calls</dt><dd><a class="xref xref-fn" href="../../reference/api/gravity.html#sbtk.gravity.component_integrals"><code>sbtk.gravity.component_integrals</code></a>, <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.no_random_field"><code>sbtk.interior.no_random_field</code></a>, <a class="xref xref-fn" href="../../reference/api/interior.html#sbtk.interior.set_axis"><code>sbtk.interior.set_axis</code></a>, <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.goodness_of_fit"><code>sbtk.invert.goodness_of_fit</code></a></dd><dt>Called by</dt><dd><a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.choose_regularization"><code>sbtk.invert.choose_regularization</code></a>, <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.homogeneous"><code>sbtk.invert.homogeneous</code></a>, <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.scan_position"><code>sbtk.invert.scan_position</code></a>, <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.solve"><code>sbtk.invert.solve</code></a></dd></dl>
 <p class="impl">Implementation: <code>toolbox/+sbtk/+invert/run.m</code>, line 1.</p>
 </section>
 <section class="api-entry" id="sbtk.invert.scan_position">
@@ -376,11 +376,11 @@ fit = <a class="xref xref-fn" href="../../reference/api/invert.html#sbtk.invert.
 </section>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../../reference/api/interpret.html" rel="prev"><span>Previous</span>sbtk.interpret</a><a class="next" href="../../reference/api/search.html" rel="next"><span>Next</span>sbtk.search</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-10-30.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-11-02.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#sbtk.invert.choose_regularization">sbtk.invert.choose_regularization</a></li><li class="lvl2"><a href="#sbtk.invert.goodness_of_fit">sbtk.invert.goodness_of_fit</a></li><li class="lvl2"><a href="#sbtk.invert.homogeneous">sbtk.invert.homogeneous</a></li><li class="lvl2"><a href="#sbtk.invert.options">sbtk.invert.options</a></li><li class="lvl2"><a href="#sbtk.invert.predict">sbtk.invert.predict</a></li><li class="lvl2"><a href="#sbtk.invert.recenter">sbtk.invert.recenter</a></li><li class="lvl2"><a href="#sbtk.invert.replace_data">sbtk.invert.replace_data</a></li><li class="lvl2"><a href="#sbtk.invert.run">sbtk.invert.run</a></li><li class="lvl2"><a href="#sbtk.invert.scan_position">sbtk.invert.scan_position</a></li><li class="lvl2"><a href="#sbtk.invert.setup">sbtk.invert.setup</a></li><li class="lvl2"><a href="#sbtk.invert.solve">sbtk.invert.solve</a></li><li class="lvl2"><a href="#sbtk.invert.summary">sbtk.invert.summary</a></li></ul></nav>
 </div>
-<script src="../../assets/search-index.js?v=54bef2a613"></script>
-<script src="../../assets/site.js?v=54bef2a613"></script>
+<script src="../../assets/search-index.js?v=9b8ac1e80d"></script>
+<script src="../../assets/site.js?v=9b8ac1e80d"></script>
 </body>
 </html>
