@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Results folders and figures — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=9b8ac1e80d">
-<link rel="stylesheet" href="../assets/pygments.css?v=9b8ac1e80d">
-<link rel="stylesheet" href="../assets/print.css?v=9b8ac1e80d" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=5474b2e943">
+<link rel="stylesheet" href="../assets/pygments.css?v=5474b2e943">
+<link rel="stylesheet" href="../assets/print.css?v=5474b2e943" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,7 +29,7 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Files › <span aria-current="page">Results folders and figures</span></nav>
 <article>
 <h1 id="results-folders-and-figures">Results folders and figures<a class="headerlink" href="#results-folders-and-figures" title="Link to this section">#</a></h1>
-<p class="lastedit">Last edited October 30, 2026</p>
+<p class="lastedit">Last edited November 2, 2026</p>
 <h2 id="run-folders">Run folders<a class="headerlink" href="#run-folders" title="Link to this section">#</a></h2>
 <p><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.new_run"><code>sbtk.io.new_run</code></a><code>(project, name)</code> creates the folder <code>results/&lt;project&gt;/&lt;yyyy-mm-dd_HHMMSS&gt;_&lt;name&gt;/</code> in the
 repository and starts recording everything printed in the Command Window to <code>log.txt</code> in it, until
@@ -47,7 +47,7 @@ second.</p>
 </ul>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">out = <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.new_run">sbtk.io.new_run</a>(&quot;my_project&quot;, &quot;T1_inversion&quot;);     <span class="c">% results/my_project/&lt;date_time&gt;_T1_inversion/</span>
 prob = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.setup">sbtk.invert.setup</a>(body, components, obs, <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.options">sbtk.invert.options</a>());
-<a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.report_inversion">sbtk.io.report_inversion</a>(out, body, <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.run">sbtk.invert.run</a>(prob), <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.homogeneous">sbtk.invert.homogeneous</a>(prob));
+<a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.report_inversion">sbtk.io.report_inversion</a>(out, body, obs, <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.run">sbtk.invert.run</a>(prob), <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.homogeneous">sbtk.invert.homogeneous</a>(prob));
 <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.finish_run">sbtk.io.finish_run</a>(out);</code></pre></div>
 <p>This fragment requires <code>body</code>, <code>components</code> and <code>obs</code> as defined in the <a href="../getting-started/first-script.html">first script</a>.</p>
 <h2 id="files">Files<a class="headerlink" href="#files" title="Link to this section">#</a></h2>
@@ -125,8 +125,16 @@ prob = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.se
 <td><code>measurements.*</code>, <code>truth.*</code>, <code>settings.json</code>, <code>figures/truth_3d.png</code>, <code>truth_slices.png</code>, <code>measurements.png</code></td>
 </tr>
 <tr>
-<td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.report_inversion"><code>sbtk.io.report_inversion</code></a><code>(out, body, fit, homogeneous)</code></td>
-<td><code>fit.*</code>, <code>homogeneous.txt</code>, <code>settings.json</code>, <code>figures/residuals.png</code>, <code>densities.png</code>, <code>estimate_3d.png</code>, <code>estimate_slices.png</code></td>
+<td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.report_inversion"><code>sbtk.io.report_inversion</code></a><code>(out, body, obs, fit, homogeneous)</code></td>
+<td><code>fit.*</code>, <code>homogeneous.txt</code>, <code>settings.json</code>, <code>figures/residuals.png</code>, <code>against_measurements.png</code>, <code>densities.png</code>, <code>estimate_3d.png</code>, <code>estimate_slices.png</code></td>
+</tr>
+<tr>
+<td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.report_point_masses"><code>sbtk.io.report_point_masses</code></a><code>(out, body, obs, pm, spacing_km)</code></td>
+<td><code>point_masses.mat</code>, <code>settings.json</code>, <code>figures/point_masses.png</code>, <code>residuals.png</code>, <code>against_measurements.png</code></td>
+</tr>
+<tr>
+<td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.save_fit_figures"><code>sbtk.io.save_fit_figures</code></a><code>(out, body, obs, solution)</code></td>
+<td><code>figures/residuals.png</code>, <code>against_measurements.png</code>: the figures of how a solution fits its measurements, which the two reports above make for every inversion</td>
 </tr>
 <tr>
 <td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.report_comparison"><code>sbtk.io.report_comparison</code></a><code>(out, body, truth, fit, cmp)</code></td>
@@ -225,9 +233,18 @@ through the first model's origin, one row per model with a common color scale. S
 is close to zero about the center of mass. Right, each inertia measurement with its 1σ. Saved as <code>measurements.png</code>.</p>
 <figure class="figure"><img src="../images/measurements.png" alt="Coefficients of degrees 1 to 4 and the seven inertia rows of the example." loading="lazy"><figcaption>Coefficients of degrees 1 to 4 and the seven inertia rows of the example.</figcaption></figure>
 <h3 id="normalized-residuals">Normalized residuals<a class="headerlink" href="#normalized-residuals" title="Link to this section">#</a></h3>
-<p><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.residuals"><code>sbtk.plot.residuals</code></a><code>(fit)</code>: (predicted − measured)/σ for every measurement; gray band ±1σ, dashed lines ±2σ. Saved as
-<code>residuals.png</code>.</p>
+<p><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.residuals"><code>sbtk.plot.residuals</code></a><code>(fit)</code>: (predicted − measured)/σ for every measurement; gray band ±1σ, dashed lines ±2σ. It also
+takes point masses. Saved as <code>residuals.png</code>.</p>
 <figure class="figure"><img src="../images/residuals.png" alt="Residuals of the three-component fit." loading="lazy"><figcaption>Residuals of the three-component fit.</figcaption></figure>
+<h3 id="a-solution-against-the-measurements">A solution against the measurements<a class="headerlink" href="#a-solution-against-the-measurements" title="Link to this section">#</a></h3>
+<p><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.against_measurements"><code>sbtk.plot.against_measurements</code></a><code>(obs, body, solution)</code>: for a fit or point masses, the measured coefficients minus those
+of the homogeneous body with their ±1σ, about the center of figure, and the same for the solution (top), and
+(solution − measured)/σ (bottom; gray band ±1σ, dashed lines ±3σ). It shows every degree up to the highest with all its
+coefficients measured, and the inertia rows the solution was fitted to. Its residuals are about the center of figure and
+those of <code>residuals.png</code> about the point the data are about, so the two can differ slightly. A measurement set without every
+coefficient of degree 1 cannot be moved to the center of figure: <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.save_fit_figures"><code>sbtk.io.save_fit_figures</code></a> then prints a note and writes
+only <code>residuals.png</code>. Saved as <code>against_measurements.png</code>.</p>
+<figure class="figure"><img src="../images/against_measurements.png" alt="The three-component fit against the measurements of the example: degrees 1 to 4 and the three inertia rows it was fitted to." loading="lazy"><figcaption>The three-component fit against the measurements of the example: degrees 1 to 4 and the three inertia rows it was fitted to.</figcaption></figure>
 <h3 id="estimated-densities">Estimated densities<a class="headerlink" href="#estimated-densities" title="Link to this section">#</a></h3>
 <p><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.densities"><code>sbtk.plot.densities</code></a><code>(fit)</code>: the density of the background and each component with its ±1σ interval; the dashed line is
 the background. Components whose relative density is smaller than its 1σ are drawn in gray. Saved as <code>densities.png</code>.</p>
@@ -260,9 +277,9 @@ Not saved by the report functions; save it with <a class="xref xref-fn" href="..
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../inversion/point-masses.html" rel="prev"><span>Previous</span>Point masses</a><a class="next" href="../files/exchange-packages.html" rel="next"><span>Next</span>Exchange packages</a></nav>
 <footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-11-02.</footer>
 </main>
-<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#run-folders">Run folders</a></li><li class="lvl2"><a href="#files">Files</a></li><li class="lvl2"><a href="#text-formats">Text formats</a></li><li class="lvl2"><a href="#figures">Figures</a></li><li class="lvl3"><a href="#shape-model">Shape model</a></li><li class="lvl3"><a href="#interior-in-three-dimensions">Interior in three dimensions</a></li><li class="lvl3"><a href="#density-slices">Density slices</a></li><li class="lvl3"><a href="#measurements">Measurements</a></li><li class="lvl3"><a href="#normalized-residuals">Normalized residuals</a></li><li class="lvl3"><a href="#estimated-densities">Estimated densities</a></li><li class="lvl3"><a href="#comparison-with-the-true-model">Comparison with the true model</a></li><li class="lvl3"><a href="#difference-from-the-homogeneous-body">Difference from the homogeneous body</a></li></ul></nav>
+<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#run-folders">Run folders</a></li><li class="lvl2"><a href="#files">Files</a></li><li class="lvl2"><a href="#text-formats">Text formats</a></li><li class="lvl2"><a href="#figures">Figures</a></li><li class="lvl3"><a href="#shape-model">Shape model</a></li><li class="lvl3"><a href="#interior-in-three-dimensions">Interior in three dimensions</a></li><li class="lvl3"><a href="#density-slices">Density slices</a></li><li class="lvl3"><a href="#measurements">Measurements</a></li><li class="lvl3"><a href="#normalized-residuals">Normalized residuals</a></li><li class="lvl3"><a href="#a-solution-against-the-measurements">A solution against the measurements</a></li><li class="lvl3"><a href="#estimated-densities">Estimated densities</a></li><li class="lvl3"><a href="#comparison-with-the-true-model">Comparison with the true model</a></li><li class="lvl3"><a href="#difference-from-the-homogeneous-body">Difference from the homogeneous body</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=9b8ac1e80d"></script>
-<script src="../assets/site.js?v=9b8ac1e80d"></script>
+<script src="../assets/search-index.js?v=5474b2e943"></script>
+<script src="../assets/site.js?v=5474b2e943"></script>
 </body>
 </html>

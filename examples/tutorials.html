@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tutorial scripts — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=9b8ac1e80d">
-<link rel="stylesheet" href="../assets/pygments.css?v=9b8ac1e80d">
-<link rel="stylesheet" href="../assets/print.css?v=9b8ac1e80d" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=5474b2e943">
+<link rel="stylesheet" href="../assets/pygments.css?v=5474b2e943">
+<link rel="stylesheet" href="../assets/print.css?v=5474b2e943" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,7 +29,7 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Examples › <span aria-current="page">Tutorial scripts</span></nav>
 <article>
 <h1 id="tutorial-scripts">Tutorial scripts<a class="headerlink" href="#tutorial-scripts" title="Link to this section">#</a></h1>
-<p class="lastedit">Last edited October 30, 2026</p>
+<p class="lastedit">Last edited November 2, 2026</p>
 <p>The repository folder <code>examples/</code> contains eleven tutorial scripts with sections. Each adds <code>toolbox/</code> to the path
 itself and can be run whole or section by section. All eleven run in the test suite
 (<code>tests/integration/test_examples.m</code>, also section by section for ex01). The code below is included from the
@@ -362,7 +362,7 @@ obs = <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.load_measur
 out = <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.new_run">sbtk.io.new_run</a>(&quot;examples&quot;, &quot;ellipsoid_T1_inversion&quot;);
 prob = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.setup">sbtk.invert.setup</a>(body, components, obs, <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.options">sbtk.invert.options</a>());
 fit = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.run">sbtk.invert.run</a>(prob);
-<a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.report_inversion">sbtk.io.report_inversion</a>(out, body, fit, <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.homogeneous">sbtk.invert.homogeneous</a>(prob));
+<a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.report_inversion">sbtk.io.report_inversion</a>(out, body, obs, fit, <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.homogeneous">sbtk.invert.homogeneous</a>(prob));
 <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.finish_run">sbtk.io.finish_run</a>(out);
 
 <span class="c">%% Comparison with the true model</span>
@@ -738,7 +738,7 @@ cmp0 = <a class="xref xref-fn" href="../reference/api/compare.html#sbtk.compare.
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#ex01-quick-start">ex01: quick start</a></li><li class="lvl2"><a href="#ex02-shapes-and-bodies">ex02: shapes and bodies</a></li><li class="lvl2"><a href="#ex03-forward-model">ex03: forward model</a></li><li class="lvl2"><a href="#ex04-inversion-options">ex04: inversion options</a></li><li class="lvl2"><a href="#ex05-importing-data">ex05: importing data</a></li><li class="lvl2"><a href="#ex06-results-folders">ex06: results folders</a></li><li class="lvl2"><a href="#ex07-exchange-packages">ex07: exchange packages</a></li><li class="lvl2"><a href="#ex08-moments-of-inertia-and-the-libration-ratio">ex08: moments of inertia and the libration ratio</a></li><li class="lvl2"><a href="#ex09-moved-and-rotated-package">ex09: moved and rotated package</a></li><li class="lvl2"><a href="#ex10-reading-the-coefficients">ex10: reading the coefficients</a></li><li class="lvl2"><a href="#ex11-searching-the-geometry">ex11: searching the geometry</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=9b8ac1e80d"></script>
-<script src="../assets/site.js?v=9b8ac1e80d"></script>
+<script src="../assets/search-index.js?v=5474b2e943"></script>
+<script src="../assets/site.js?v=5474b2e943"></script>
 </body>
 </html>

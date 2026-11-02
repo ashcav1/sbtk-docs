@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Point masses — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=9b8ac1e80d">
-<link rel="stylesheet" href="../assets/pygments.css?v=9b8ac1e80d">
-<link rel="stylesheet" href="../assets/print.css?v=9b8ac1e80d" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=5474b2e943">
+<link rel="stylesheet" href="../assets/pygments.css?v=5474b2e943">
+<link rel="stylesheet" href="../assets/print.css?v=5474b2e943" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,7 +29,7 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Kinds of solution › <span aria-current="page">Point masses</span></nav>
 <article>
 <h1 id="point-masses">Point masses<a class="headerlink" href="#point-masses" title="Link to this section">#</a></h1>
-<p class="lastedit">Last edited October 30, 2026</p>
+<p class="lastedit">Last edited November 2, 2026</p>
 <p>A point-mass solution fills the body with a grid of small masses and fits all of them together to the measurements.
 It assumes no shapes: where the solution puts mass comes from the measurements and the regularization alone. It is
 the mass-concentration (mascon) model of gravity-field work, here solved for the relative density of each point.</p>
@@ -210,13 +210,15 @@ pm   = <a class="xref xref-fn" href="../reference/internal.html#sbtk.interpret.p
 <span class="nb">fprintf</span><span class="p">(</span><span class="s">&quot;%.1f effective parameters, reduced chi-square %.2f, AIC %.1f\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">pm</span><span class="p">.</span><span class="n">p_eff</span><span class="p">,</span><span class="w"> </span><span class="n">pm</span><span class="p">.</span><span class="n">chi2_reduced</span><span class="p">,</span><span class="w"> </span><span class="k">...</span>
 <span class="w">        </span><span class="n">pm</span><span class="p">.</span><span class="n">chi2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="n">pm</span><span class="p">.</span><span class="n">p_eff</span><span class="p">)</span>
 fig  = <a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.point_masses">sbtk.plot.point_masses</a>(body, pm, 0.041);</code></pre></div>
+<p>In a run, <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.report_point_masses"><code>sbtk.io.report_point_masses</code></a><code>(out, body, obs, pm, spacing_km)</code> saves the solution and this figure, with the
+solution against the measured values and their ±1σ (<a href="../files/results-folders.html#a-solution-against-the-measurements">Results folders and figures</a>).</p>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../inversion/sector-grids.html" rel="prev"><span>Previous</span>Sector grids</a><a class="next" href="../files/results-folders.html" rel="next"><span>Next</span>Results folders and figures</a></nav>
 <footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-11-02.</footer>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#building-the-grid">Building the grid</a></li><li class="lvl2"><a href="#the-fit">The fit</a></li><li class="lvl2"><a href="#weighting">Weighting</a></li><li class="lvl2"><a href="#choosing-the-regularization-parameter">Choosing the regularization parameter</a></li><li class="lvl2"><a href="#reading-the-result">Reading the result</a></li><li class="lvl2"><a href="#point-masses-on-known-interiors">Point masses on known interiors</a></li><li class="lvl2"><a href="#example">Example</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=9b8ac1e80d"></script>
-<script src="../assets/site.js?v=9b8ac1e80d"></script>
+<script src="../assets/search-index.js?v=5474b2e943"></script>
+<script src="../assets/site.js?v=5474b2e943"></script>
 </body>
 </html>
