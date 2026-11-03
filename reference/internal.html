@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Internal functions — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=5474b2e943">
-<link rel="stylesheet" href="../assets/pygments.css?v=5474b2e943">
-<link rel="stylesheet" href="../assets/print.css?v=5474b2e943" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=f846d9d222">
+<link rel="stylesheet" href="../assets/pygments.css?v=f846d9d222">
+<link rel="stylesheet" href="../assets/print.css?v=f846d9d222" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,7 +29,7 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Reference › <span aria-current="page">Internal functions</span></nav>
 <article>
 <h1 id="top">Internal functions</h1>
-<p class="lastedit">Last edited November 2, 2026</p>
+<p class="lastedit">Last edited November 3, 2026</p>
 <p>Functions in <code>sbtk.internal</code> implement the supported functions. They are not part of the supported interface: their arguments and behavior may change without notice, and scripts should not call them. They are listed here because the methods pages refer to some of them. The toolbox contains no deprecated or legacy functions.</p>
 <table class="overview"><thead><tr><th>Function</th><th>Purpose</th><th>Used by (supported functions)</th></tr></thead><tbody>
 <tr id="sbtk.internal.body_samples"><td><code>sbtk.internal.body_samples</code></td><td>Points that fill the body, with the volume each one represents.</td><td><a class="xref xref-fn" href="../reference/api/compare.html#sbtk.compare.reference"><code>sbtk.compare.reference</code></a>, <a class="xref xref-fn" href="../reference/api/data.html#sbtk.data.simulate"><code>sbtk.data.simulate</code></a>, <a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.random_field_integrals"><code>sbtk.gravity.random_field_integrals</code></a></td></tr>
@@ -66,6 +66,7 @@
 <tr id="sbtk.internal.new_component"><td><code>sbtk.internal.new_component</code></td><td>Fields shared by every component (use the sbtk.interior constructors).</td><td><a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.ellipsoid"><code>sbtk.interior.ellipsoid</code></a>, <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.layer"><code>sbtk.interior.layer</code></a>, <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.no_components"><code>sbtk.interior.no_components</code></a>, <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sector"><code>sbtk.interior.sector</code></a>, <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.sphere"><code>sbtk.interior.sphere</code></a>, <a class="xref xref-fn" href="../reference/api/interior.html#sbtk.interior.torus"><code>sbtk.interior.torus</code></a></td></tr>
 <tr id="sbtk.internal.observe"><td><code>sbtk.internal.observe</code></td><td>Predicted measurements from per-unit-density integrals I (struct with U and Q).</td><td><a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.predict"><code>sbtk.invert.predict</code></a>, <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.run"><code>sbtk.invert.run</code></a>, <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.setup"><code>sbtk.invert.setup</code></a></td></tr>
 <tr id="sbtk.internal.point_mass_sh"><td><code>sbtk.internal.point_mass_sh</code></td><td>Normalized spherical harmonics of unit point masses.</td><td><a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.component_integrals"><code>sbtk.gravity.component_integrals</code></a></td></tr>
+<tr id="sbtk.internal.polyhedron_centroid"><td><code>sbtk.internal.polyhedron_centroid</code></td><td>Signed volume and centroid of a shape model.</td><td><a class="xref xref-fn" href="../reference/api/shape.html#sbtk.shape.properties"><code>sbtk.shape.properties</code></a></td></tr>
 <tr id="sbtk.internal.prepare_components"><td><code>sbtk.internal.prepare_components</code></td><td>Put components into a prepared inversion: their integrals, design-matrix columns and estimated geometry.</td><td><a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.setup"><code>sbtk.invert.setup</code></a></td></tr>
 <tr id="sbtk.internal.principal_axes"><td><code>sbtk.internal.principal_axes</code></td><td>Principal axes of inertia from the degree-2 gravity coefficients.</td><td><a class="xref xref-fn" href="../reference/api/exchange.html#sbtk.exchange.write_model"><code>sbtk.exchange.write_model</code></a>, <a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.center_of_mass_frame"><code>sbtk.gravity.center_of_mass_frame</code></a>, <a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.difference_from_homogeneous"><code>sbtk.plot.difference_from_homogeneous</code></a></td></tr>
 <tr id="sbtk.internal.prism_field"><td><code>sbtk.internal.prism_field</code></td><td>Potential and acceleration of uniform cubes, exact (Nagy, Papp and Benedek 2000).</td><td><a class="xref xref-fn" href="../reference/api/gravity.html#sbtk.gravity.field_at"><code>sbtk.gravity.field_at</code></a></td></tr>
@@ -100,11 +101,11 @@
 </tbody></table>
 </article>
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../reference/errors.html" rel="prev"><span>Previous</span>Error identifiers</a><a class="next" href="../validation/tests.html" rel="next"><span>Next</span>Validation and tests</a></nav>
-<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-11-02.</footer>
+<footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-11-03.</footer>
 </main>
 
 </div>
-<script src="../assets/search-index.js?v=5474b2e943"></script>
-<script src="../assets/site.js?v=5474b2e943"></script>
+<script src="../assets/search-index.js?v=f846d9d222"></script>
+<script src="../assets/site.js?v=f846d9d222"></script>
 </body>
 </html>
