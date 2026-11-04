@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Results folders and figures — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=f846d9d222">
-<link rel="stylesheet" href="../assets/pygments.css?v=f846d9d222">
-<link rel="stylesheet" href="../assets/print.css?v=f846d9d222" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=49836ca523">
+<link rel="stylesheet" href="../assets/pygments.css?v=49836ca523">
+<link rel="stylesheet" href="../assets/print.css?v=49836ca523" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,7 +29,7 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Files › <span aria-current="page">Results folders and figures</span></nav>
 <article>
 <h1 id="results-folders-and-figures">Results folders and figures<a class="headerlink" href="#results-folders-and-figures" title="Link to this section">#</a></h1>
-<p class="lastedit">Last edited November 2, 2026</p>
+<p class="lastedit">Last edited November 3, 2026</p>
 <h2 id="run-folders">Run folders<a class="headerlink" href="#run-folders" title="Link to this section">#</a></h2>
 <p><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.new_run"><code>sbtk.io.new_run</code></a><code>(project, name)</code> creates the folder <code>results/&lt;project&gt;/&lt;yyyy-mm-dd_HHMMSS&gt;_&lt;name&gt;/</code> in the
 repository and starts recording everything printed in the Command Window to <code>log.txt</code> in it, until
@@ -39,8 +39,7 @@ second.</p>
 <ul>
 <li><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.latest_run"><code>sbtk.io.latest_run</code></a><code>(project, name)</code> returns the newest folder whose name after the time stamp equals <code>name</code>
   exactly: <code>"didymos_T1"</code> does not match <code>didymos_T1_inversion</code>. Inversion scripts use it to find the newest
-  simulation, and the figure scripts of <code>projects/hera_hlp6/rob/</code> the <code>solution.mat</code> of the newest run of each
-  solution.</li>
+  simulation.</li>
 <li><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.subfolder"><code>sbtk.io.subfolder</code></a><code>(out, name)</code> makes the save and report functions write into a subfolder while the log stays in
   the run folder. The Hera simulation runners use it to keep the true model apart from the data package
   (<a href="../projects/hera-blind-test.html">Hera blind test</a>).</li>
@@ -50,6 +49,33 @@ prob = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.se
 <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.report_inversion">sbtk.io.report_inversion</a>(out, body, obs, <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.run">sbtk.invert.run</a>(prob), <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.homogeneous">sbtk.invert.homogeneous</a>(prob));
 <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.finish_run">sbtk.io.finish_run</a>(out);</code></pre></div>
 <p>This fragment requires <code>body</code>, <code>components</code> and <code>obs</code> as defined in the <a href="../getting-started/first-script.html">first script</a>.</p>
+<h2 id="solutions-of-a-measurement-package">Solutions of a measurement package<a class="headerlink" href="#solutions-of-a-measurement-package" title="Link to this section">#</a></h2>
+<p>A finder fits several kinds of solution to the same package and changes them often. <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.solution_run"><code>sbtk.io.solution_run</code></a><code>(project,
+data_name, kind)</code> keeps the newest result of each kind in one fixed place, with the same layout for every package:</p>
+<div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text">results/&lt;project&gt;/finder/
+  summary.txt              every package's summary
+  &lt;data_name&gt;/             for example ROB-DATA2
+    summary.txt            its solutions side by side: parameters, reduced chi-square, p, AIC, tests
+    data/                  what the measurements show, before any solution
+    components/            one kind of solution
+      solution.txt         the fit, the interior and the residuals
+      solution.mat, fit.txt, fit.mat, homogeneous.txt, settings.json, log.txt
+      figures/             against_measurements.png, residuals.png, densities.png,
+                           estimate_3d.png, estimate_slices.png, ...
+    sectors/               the same files
+    point_masses_&lt;weighting&gt;/   the same, with point_masses.mat and figures/point_masses.png
+    compared/              the solutions in one figure: figures/, tables/
+    analysis/              the ranking of every candidate model
+    history/               &lt;yyyy-mm-dd_HHMMSS&gt;_&lt;kind&gt;/: the runs before</code></pre></div>
+<p>Running a solution again replaces its folder and moves the run before it to <code>history/</code>, so nothing is lost and the
+figures of the newest run are always at the same path. <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.solution_folder"><code>sbtk.io.solution_folder</code></a><code>(project, data_name, kind)</code> gives that
+path.</p>
+<p>Every kind of solution has the same <code>solution.txt</code> (<a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.write_solution_text"><code>sbtk.io.write_solution_text</code></a>), with the same three sections
+in the same order: FIT (the measurements, the parameters, <span class="nobr"><math alttext="χ^2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msup><mi>&#x003C7;</mi><mn>2</mn></msup></mrow></math>,</span> <span class="nobr"><math alttext="p" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>p</mi></mrow></math>,</span> AIC), INTERIOR (each component's relative
+density with 1σ, density, mass anomaly and geometry; for point masses the grid, the Tikhonov parameter and where the
+mass moves) and RESIDUALS. The report functions write it and the standard figures for any run
+(<a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.save_solution_figures"><code>sbtk.io.save_solution_figures</code></a>). The solutions of the ROB packages are organized this way
+(<a href="../projects/rob/code.html">Code of the ROB solutions</a>).</p>
 <h2 id="files">Files<a class="headerlink" href="#files" title="Link to this section">#</a></h2>
 <table>
 <thead>
@@ -84,6 +110,12 @@ prob = <a class="xref xref-fn" href="../reference/api/invert.html#sbtk.invert.se
 <td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.save_truth"><code>sbtk.io.save_truth</code></a></td>
 <td>The true model of a simulation (<a class="xref xref-st" href="../reference/data-structures.html#truth"><code>truth</code></a>).</td>
 <td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.load_truth"><code>sbtk.io.load_truth</code></a></td>
+</tr>
+<tr>
+<td><code>solution.txt</code></td>
+<td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.write_solution_text"><code>sbtk.io.write_solution_text</code></a>, called by the report functions</td>
+<td>The same three sections for every kind of solution: the fit, the interior and the residuals.</td>
+<td>a text editor</td>
 </tr>
 <tr>
 <td><code>fit.txt</code>, <code>.mat</code></td>
@@ -200,6 +232,31 @@ component regolith layer 0.0 to 12.0 m below the surface
 # residual &lt;label&gt; &lt;measured&gt; &lt;predicted&gt; &lt;sigma&gt; &lt;(predicted - measured)/sigma&gt;
 residual C10 -1.743147996447e-03  8.859490892470e-05 2.685350e-03  0.682
 residual C11  3.171855274043e-03  7.515844247840e-04 2.685350e-03 -0.901</code></pre></div>
+<p><strong>Solutions</strong> (<a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.write_solution_text"><code>sbtk.io.write_solution_text</code></a>): the file to read first, the same for every kind of solution.</p>
+<div class="codeblock codeblock-output"><div class="codehead"><span>Output</span></div><pre><code class="language-text">Synthetic Didymos
+SBTK 1.0.0, 2026-11-03
+Center of figure  [15.9 42.3 -34.0] m from the origin of the shape model
+
+FIT
+  measurements        27: C, S of degrees 1-4; Ixx Iyy Izz
+  parameters          3.0
+  chi-square          25.94
+  reduced chi-square  1.08
+  p-value             0.356 (consistent with the measurements at the 5% level)
+  AIC                 31.9
+
+INTERIOR
+  bulk density        2593.0 kg/m^3
+  background density  2666.9 +- 129.3 kg/m^3
+
+  component      relative density [kg/m^3]  density [kg/m^3]  mass anomaly [kg] (% of M)  geometry
+  core              +642.3 +- 533.0          3309.3            +1.322e+10 ( +2.51%)      sphere: center [15.9 42.3 -34.0] m, radius 170.0 m
+  torus             -414.3 +- 108.9          2252.6            -7.437e+09 ( -1.41%)      torus: ring 370.0 m, tube 55.0 m, ring center [15.9 42.3 -34.0] m, axis [0.0000 0.0000 1.0000]
+  regolith         -1082.0 +- 716.4          1584.9            -2.082e+10 ( -3.95%)      layer: 0.0 to 12.0 m below the surface
+
+RESIDUALS
+  measurement  (computed - measured)/sigma
+  C10          +0.68</code></pre></div>
 <p><strong>True models</strong> (<a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.write_truth"><code>sbtk.io.write_truth</code></a>) and <strong>comparisons</strong> (<a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.write_comparison"><code>sbtk.io.write_comparison</code></a>) use the same layout.</p>
 <h2 id="figures">Figures<a class="headerlink" href="#figures" title="Link to this section">#</a></h2>
 <p>Every plot function returns a figure handle. <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.save_figure"><code>sbtk.io.save_figure</code></a><code>(out, fig, name)</code> saves it as
@@ -216,9 +273,8 @@ are not in the inversion model). The fit has <span class="nobr"><math alttext="�
 <p><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.shape"><code>sbtk.plot.shape</code></a><code>(body)</code>: the mesh with its center of figure and axes.</p>
 <figure class="figure"><img src="../images/shape.png" alt="Didymos shape model (DART v003, 9.3 m sampling)." loading="lazy"><figcaption>Didymos shape model (DART v003, 9.3 m sampling).</figcaption></figure>
 <h3 id="interior-in-three-dimensions">Interior in three dimensions<a class="headerlink" href="#interior-in-three-dimensions" title="Link to this section">#</a></h3>
-<p><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.interior3d"><code>sbtk.plot.interior3d</code></a><code>(body, model, title)</code>: two views, oblique and down the <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis. The surface is drawn
-translucent; spheres, ellipsoids and tori where they lie inside the body, with their names; layers by their lower
-boundary; sectors as solids. Color is the relative density; sectors and layers are the more opaque the larger their
+<p><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.interior3d"><code>sbtk.plot.interior3d</code></a><code>(body, model, title)</code>: two views, oblique and down the <span class="nobr"><math alttext="z" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><mi>z</mi></mrow></math></span>-axis, in meters from the center of
+figure. The surface is drawn translucent; spheres, ellipsoids and tori where they lie inside the body; layers by their lower boundary; sectors by their outer faces. Color is the relative density; sectors and layers are the more opaque the larger their
 relative density. Saved as <code>truth_3d.png</code> and <code>estimate_3d.png</code> by the report functions.</p>
 <figure class="figure"><img src="../images/truth_3d.png" alt="True model: core, torus, lower boundary of the regolith layer, boulder." loading="lazy"><figcaption>True model: core, torus, lower boundary of the regolith layer, boulder.</figcaption></figure>
 <h3 id="density-slices">Density slices<a class="headerlink" href="#density-slices" title="Link to this section">#</a></h3>
@@ -233,13 +289,13 @@ through the first model's origin, one row per model with a common color scale. S
 is close to zero about the center of mass. Right, each inertia measurement with its 1σ. Saved as <code>measurements.png</code>.</p>
 <figure class="figure"><img src="../images/measurements.png" alt="Coefficients of degrees 1 to 4 and the seven inertia rows of the example." loading="lazy"><figcaption>Coefficients of degrees 1 to 4 and the seven inertia rows of the example.</figcaption></figure>
 <h3 id="normalized-residuals">Normalized residuals<a class="headerlink" href="#normalized-residuals" title="Link to this section">#</a></h3>
-<p><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.residuals"><code>sbtk.plot.residuals</code></a><code>(fit)</code>: (predicted − measured)/σ for every measurement; gray band ±1σ, dashed lines ±2σ. It also
+<p><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.residuals"><code>sbtk.plot.residuals</code></a><code>(fit)</code>: (CS_computed − CS_measured)/σ for every measurement. It also
 takes point masses. Saved as <code>residuals.png</code>.</p>
 <figure class="figure"><img src="../images/residuals.png" alt="Residuals of the three-component fit." loading="lazy"><figcaption>Residuals of the three-component fit.</figcaption></figure>
 <h3 id="a-solution-against-the-measurements">A solution against the measurements<a class="headerlink" href="#a-solution-against-the-measurements" title="Link to this section">#</a></h3>
 <p><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.against_measurements"><code>sbtk.plot.against_measurements</code></a><code>(obs, body, solution)</code>: for a fit or point masses, the measured coefficients minus those
 of the homogeneous body with their ±1σ, about the center of figure, and the same for the solution (top), and
-(solution − measured)/σ (bottom; gray band ±1σ, dashed lines ±3σ). It shows every degree up to the highest with all its
+(CS_computed − CS_measured)/σ (bottom), with the name of the data team in place of "measured" for a package named <code>&lt;team&gt;-DATA&lt;n&gt;</code>. It shows every degree up to the highest with all its
 coefficients measured, and the inertia rows the solution was fitted to. Its residuals are about the center of figure and
 those of <code>residuals.png</code> about the point the data are about, so the two can differ slightly. A measurement set without every
 coefficient of degree 1 cannot be moved to the center of figure: <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.save_fit_figures"><code>sbtk.io.save_fit_figures</code></a> then prints a note and writes
@@ -277,9 +333,9 @@ Not saved by the report functions; save it with <a class="xref xref-fn" href="..
 <nav class="prevnext" aria-label="Previous and next page"><a class="prev" href="../inversion/point-masses.html" rel="prev"><span>Previous</span>Point masses</a><a class="next" href="../files/exchange-packages.html" rel="next"><span>Next</span>Exchange packages</a></nav>
 <footer class="pagefoot">SBTK 1.0.0. Generated from the SBTK source on 2026-11-03.</footer>
 </main>
-<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#run-folders">Run folders</a></li><li class="lvl2"><a href="#files">Files</a></li><li class="lvl2"><a href="#text-formats">Text formats</a></li><li class="lvl2"><a href="#figures">Figures</a></li><li class="lvl3"><a href="#shape-model">Shape model</a></li><li class="lvl3"><a href="#interior-in-three-dimensions">Interior in three dimensions</a></li><li class="lvl3"><a href="#density-slices">Density slices</a></li><li class="lvl3"><a href="#measurements">Measurements</a></li><li class="lvl3"><a href="#normalized-residuals">Normalized residuals</a></li><li class="lvl3"><a href="#a-solution-against-the-measurements">A solution against the measurements</a></li><li class="lvl3"><a href="#estimated-densities">Estimated densities</a></li><li class="lvl3"><a href="#comparison-with-the-true-model">Comparison with the true model</a></li><li class="lvl3"><a href="#difference-from-the-homogeneous-body">Difference from the homogeneous body</a></li></ul></nav>
+<nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#run-folders">Run folders</a></li><li class="lvl2"><a href="#solutions-of-a-measurement-package">Solutions of a measurement package</a></li><li class="lvl2"><a href="#files">Files</a></li><li class="lvl2"><a href="#text-formats">Text formats</a></li><li class="lvl2"><a href="#figures">Figures</a></li><li class="lvl3"><a href="#shape-model">Shape model</a></li><li class="lvl3"><a href="#interior-in-three-dimensions">Interior in three dimensions</a></li><li class="lvl3"><a href="#density-slices">Density slices</a></li><li class="lvl3"><a href="#measurements">Measurements</a></li><li class="lvl3"><a href="#normalized-residuals">Normalized residuals</a></li><li class="lvl3"><a href="#a-solution-against-the-measurements">A solution against the measurements</a></li><li class="lvl3"><a href="#estimated-densities">Estimated densities</a></li><li class="lvl3"><a href="#comparison-with-the-true-model">Comparison with the true model</a></li><li class="lvl3"><a href="#difference-from-the-homogeneous-body">Difference from the homogeneous body</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=f846d9d222"></script>
-<script src="../assets/site.js?v=f846d9d222"></script>
+<script src="../assets/search-index.js?v=49836ca523"></script>
+<script src="../assets/site.js?v=49836ca523"></script>
 </body>
 </html>

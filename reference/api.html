@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>API reference — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=f846d9d222">
-<link rel="stylesheet" href="../assets/pygments.css?v=f846d9d222">
-<link rel="stylesheet" href="../assets/print.css?v=f846d9d222" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=49836ca523">
+<link rel="stylesheet" href="../assets/pygments.css?v=49836ca523">
+<link rel="stylesheet" href="../assets/print.css?v=49836ca523" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -44,7 +44,7 @@
 <tr><td><a class="xref" href="../reference/api/search.html"><code>sbtk.search</code></a></td><td>Searching the geometry</td><td>7</td></tr>
 <tr><td><a class="xref" href="../reference/api/compare.html"><code>sbtk.compare</code></a></td><td>Comparison with a true model</td><td>6</td></tr>
 <tr><td><a class="xref" href="../reference/api/exchange.html"><code>sbtk.exchange</code></a></td><td>Exchange packages</td><td>10</td></tr>
-<tr><td><a class="xref" href="../reference/api/io.html"><code>sbtk.io</code></a></td><td>Results folders and text files</td><td>24</td></tr>
+<tr><td><a class="xref" href="../reference/api/io.html"><code>sbtk.io</code></a></td><td>Results folders and text files</td><td>28</td></tr>
 <tr><td><a class="xref" href="../reference/api/plot.html"><code>sbtk.plot</code></a></td><td>Figures</td><td>21</td></tr>
 </tbody></table>
 <h2 id="all-functions">All supported functions<a class="headerlink" href="#all-functions" title="Link to this section">#</a></h2>
@@ -145,16 +145,20 @@
 <tr><td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.save_fit_figures"><code>sbtk.io.save_fit_figures</code></a></td><td>The figures every inversion gets: how a solution fits its measurements.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.save_measurements"><code>sbtk.io.save_measurements</code></a></td><td>measurements.mat and measurements.txt in the run folder.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.save_settings"><code>sbtk.io.save_settings</code></a></td><td>Write the settings of a run to <code>settings.json</code> (readable, reproducible).</td></tr>
+<tr><td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.save_solution_figures"><code>sbtk.io.save_solution_figures</code></a></td><td>The standard figures of a solution, from a fit or from point masses.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.save_truth"><code>sbtk.io.save_truth</code></a></td><td><code>truth.mat</code> and <code>truth.txt</code> in the run folder.</td></tr>
+<tr><td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.solution_folder"><code>sbtk.io.solution_folder</code></a></td><td>Where the newest result of one kind of solution of a measurement package is.</td></tr>
+<tr><td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.solution_run"><code>sbtk.io.solution_run</code></a></td><td>Start a run that writes one kind of solution of a measurement package to its fixed folder.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.subfolder"><code>sbtk.io.subfolder</code></a></td><td>A subfolder of a run folder that the save and report functions write to.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.write_comparison"><code>sbtk.io.write_comparison</code></a></td><td>Plain-text copy of a comparison with the true model.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.write_fit"><code>sbtk.io.write_fit</code></a></td><td>Plain-text summary of an inversion result.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.write_measurements"><code>sbtk.io.write_measurements</code></a></td><td>Plain-text copy of a measurement set (read back by <a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.read_measurements">sbtk.io.read_measurements</a>).</td></tr>
+<tr><td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.write_solution_text"><code>sbtk.io.write_solution_text</code></a></td><td>The text file of a solution, the same for every kind.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/io.html#sbtk.io.write_truth"><code>sbtk.io.write_truth</code></a></td><td>Plain-text description of a true model (keep private in blind tests).</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.against_measurements"><code>sbtk.plot.against_measurements</code></a></td><td>A solution against the measurements, coefficient by coefficient with +-1 sigma.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.anomaly"><code>sbtk.plot.anomaly</code></a></td><td>The measured anomaly coefficient by coefficient, with the anomalies of models and how well they match it.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.anomaly_map"><code>sbtk.plot.anomaly_map</code></a></td><td>Each degree of the anomaly as a map: where mass is added and where it is taken away.</td></tr>
-<tr><td><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.coefficient_comparison"><code>sbtk.plot.coefficient_comparison</code></a></td><td>The measured anomaly C - <code>C_CD</code> coefficient by coefficient with +-1 sigma, the solutions' anomalies, and their residuals.</td></tr>
+<tr><td><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.coefficient_comparison"><code>sbtk.plot.coefficient_comparison</code></a></td><td>The measured anomaly CS - <code>CS_CD</code> coefficient by coefficient with +-1 sigma, the solutions' anomalies, and their residuals.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.coefficient_residuals"><code>sbtk.plot.coefficient_residuals</code></a></td><td>Map of normalized residuals: one row per fit, one column per measurement, fitted ones outlined.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.comparison"><code>sbtk.plot.comparison</code></a></td><td>Estimate compared with the true model: R2 and each component's density.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.contributions"><code>sbtk.plot.contributions</code></a></td><td>How much of each coefficient's anomaly each component of a model makes.</td></tr>
@@ -164,10 +168,10 @@
 <tr><td><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.interior3d"><code>sbtk.plot.interior3d</code></a></td><td>See-through 3D view of the body and every component of a model.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.measurements"><code>sbtk.plot.measurements</code></a></td><td>What the data contain: gravity signal and noise per degree, and the inertia rows.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.point_masses"><code>sbtk.plot.point_masses</code></a></td><td>The mass anomalies of a point-mass solution on two cuts through the center of figure.</td></tr>
-<tr><td><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.residuals"><code>sbtk.plot.residuals</code></a></td><td>Normalized residuals of a fit, (predicted - measured)/sigma, per measurement.</td></tr>
+<tr><td><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.residuals"><code>sbtk.plot.residuals</code></a></td><td>Normalized residuals of a fit, (computed - measured)/sigma, per measurement.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.search_masses"><code>sbtk.plot.search_masses</code></a></td><td>Where the measurements ask for compact masses, and the chi-square as masses are added.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.search_profiles"><code>sbtk.plot.search_profiles</code></a></td><td>The chi-square profile of each searched geometry parameter.</td></tr>
-<tr><td><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.shape"><code>sbtk.plot.shape</code></a></td><td>The body's shape model with its center of figure and axes.</td></tr>
+<tr><td><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.shape"><code>sbtk.plot.shape</code></a></td><td>The body's shape model with its center of figure and axes, in meters.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.significance"><code>sbtk.plot.significance</code></a></td><td>Each measurement with its +-1 sigma interval against the constant-density (homogeneous) value.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.slices"><code>sbtk.plot.slices</code></a></td><td>Absolute density on the equatorial plane and a meridional plane.</td></tr>
 <tr><td><a class="xref xref-fn" href="../reference/api/plot.html#sbtk.plot.solution_cuts"><code>sbtk.plot.solution_cuts</code></a></td><td>Several solutions side by side on the same cuts and color scale, and their density in the same cells.</td></tr>
@@ -195,7 +199,7 @@
 </main>
 
 </div>
-<script src="../assets/search-index.js?v=f846d9d222"></script>
-<script src="../assets/site.js?v=f846d9d222"></script>
+<script src="../assets/search-index.js?v=49836ca523"></script>
+<script src="../assets/site.js?v=49836ca523"></script>
 </body>
 </html>

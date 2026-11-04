@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ROB-DATA3: Didymos — SBTK documentation</title>
-<link rel="stylesheet" href="../../assets/site.css?v=f846d9d222">
-<link rel="stylesheet" href="../../assets/pygments.css?v=f846d9d222">
-<link rel="stylesheet" href="../../assets/print.css?v=f846d9d222" media="print">
+<link rel="stylesheet" href="../../assets/site.css?v=49836ca523">
+<link rel="stylesheet" href="../../assets/pygments.css?v=49836ca523">
+<link rel="stylesheet" href="../../assets/print.css?v=49836ca523" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,12 +29,12 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../../index.html">Documentation</a> › Testing with ROB data › <span aria-current="page">ROB-DATA3: Didymos</span></nav>
 <article>
 <h1 id="rob-data3-didymos">ROB-DATA3: Didymos<a class="headerlink" href="#rob-data3-didymos" title="Link to this section">#</a></h1>
-<p class="lastedit">Last edited October 30, 2026</p>
+<p class="lastedit">Last edited November 3, 2026</p>
 <p>In ROB-DATA3 the even zonal coefficients change far more than anything else: <span class="nobr"><math alttext="J_2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mn>2</mn></msub></mrow></math></span> is 570σ lower and <span class="nobr"><math alttext="J_4" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mn>4</mn></msub></mrow></math></span> 95σ higher
 than at constant density. Only something symmetric about the spin axis does that, and <span class="nobr"><math alttext="J_2" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mi>J</mi><mn>2</mn></msub></mrow></math></span> lower means less mass in
 the equatorial plane. A model of three components built on that reading fits with 6 parameters: a dense core, a light
 thick torus about the spin axis and a dense surface layer. The point masses, given no shapes, find a dense center
-inside a light equatorial ring and correlate 0.68 with it cell by cell. The sector grids, whose sectors run from the
+inside a light equatorial ring and correlate 0.68 with it cell by cell. The sectors, which run from the
 center to the surface, cannot make a ring and fail. Against ROB's exact values the torus model holds to degree 7,
 and the point masses to degree 9.</p>
 <table>
@@ -46,8 +46,8 @@ and the point masses to degree 9.</p>
 <th>Reduced χ²</th>
 <th>p</th>
 <th>AIC</th>
-<th>Exact values, degrees 1–5</th>
-<th>Exact values, degrees 6–10</th>
+<th>Fraction reproduced, degrees 1–5</th>
+<th>Fraction reproduced, degrees 6–10</th>
 </tr>
 </thead>
 <tbody>
@@ -72,7 +72,7 @@ and the point masses to degree 9.</p>
 <td>0.92</td>
 </tr>
 <tr>
-<td>Sector grid</td>
+<td>Sectors</td>
 <td>2 × 4 × 8</td>
 <td>28.8</td>
 <td>411.15</td>
@@ -83,17 +83,17 @@ and the point masses to degree 9.</p>
 </tr>
 </tbody>
 </table>
-<p>The best solution of each kind, by AIC (bold: the lowest). Parameters: the effective number of parameters. Exact
-values: the fraction of ROB's exact coefficients a solution reproduces, over the fitted degrees 1–5 and over
+<p>The best solution of each kind, by AIC (bold: the lowest). Parameters: the effective number of parameters. Fraction
+reproduced: the fraction of ROB's exact coefficients a solution reproduces, over the fitted degrees 1–5 and over
 degrees 6–10, which were not (1: all; 0: no better than constant density; negative: worse). See
 <a href="../../projects/rob/index.html#how-to-read-these-pages">How to read these pages</a>.</p>
 <h2 id="1.-what-the-measurements-show">1. What the measurements show<a class="headerlink" href="#1.-what-the-measurements-show" title="Link to this section">#</a></h2>
-<figure class="figure"><img src="../../figures/rob/data3/measured.png" alt="The measured coefficients minus those of the same shape at constant density, C − C_CD, with ±1σ of the Hera radio-science solution, degrees 1 to 5, and the three moments of inertia minus those at constant density. Each panel has its own scale; 0 is constant density." loading="lazy"><figcaption>The measured coefficients minus those of the same shape at constant density, C − C_CD, with ±1σ of the Hera radio-science solution, degrees 1 to 5, and the three moments of inertia minus those at constant density. Each panel has its own scale; 0 is constant density.</figcaption></figure>
+<figure class="figure"><img src="../../figures/rob/data3/measured.png" alt="The measured coefficients minus those of the same shape at constant density, CS − CS_CD, with ±1σ of the Hera radio-science solution, degrees 1 to 5, and the three moments of inertia minus those at constant density. Each panel has its own scale; 0 is constant density." loading="lazy"><figcaption>The measured coefficients minus those of the same shape at constant density, CS − CS_CD, with ±1σ of the Hera radio-science solution, degrees 1 to 5, and the three moments of inertia minus those at constant density. Each panel has its own scale; 0 is constant density.</figcaption></figure>
 <table>
 <thead>
 <tr>
 <th>Measurement</th>
-<th>C − C_CD</th>
+<th>CS − CS_CD</th>
 <th>1σ</th>
 <th>In σ</th>
 <th>What it says</th>
@@ -215,7 +215,7 @@ center of mass is 0.56 m off center, toward −x and +y, and <span class="nobr">
 9 to 17σ: there is something off center as well, but it is small. Degree 5 is resolved, but only just:
 <span class="nobr"><math alttext="S_53" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>S</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>53</mn></mrow></msub></mrow></math></span> is 6σ and <span class="nobr"><math alttext="C_53" xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow><msub><mover><mi>C</mi><mo stretchy="true">&#x000AF;</mo></mover><mrow><mn>53</mn></mrow></msub></mrow></math></span> 3σ from constant density.</p>
 <h2 id="2.-where-the-mass-is">2. Where the mass is<a class="headerlink" href="#2.-where-the-mass-is" title="Link to this section">#</a></h2>
-<figure class="figure"><img src="../../figures/rob/data3/anomaly_map.png" alt="Degrees 2 to 5 of C − C_CD as maps of latitude and longitude from the center of figure. Red where a mass added near the surface in that direction would produce the pattern, blue where a mass taken away would; each map on its own symmetric color scale. +: strongest excess; x: strongest deficit; star: direction of the center-of-mass offset." loading="lazy"><figcaption>Degrees 2 to 5 of C − C_CD as maps of latitude and longitude from the center of figure. Red where a mass added near the surface in that direction would produce the pattern, blue where a mass taken away would; each map on its own symmetric color scale. +: strongest excess; x: strongest deficit; star: direction of the center-of-mass offset.</figcaption></figure>
+<figure class="figure"><img src="../../figures/rob/data3/anomaly_map.png" alt="Degrees 2 to 5 of CS − CS_CD as maps of latitude and longitude from the center of figure. Red where a mass added near the surface in that direction would produce the pattern, blue where a mass taken away would; each map on its own symmetric color scale. +: highest; x: lowest; star: direction of the center-of-mass offset." loading="lazy"><figcaption>Degrees 2 to 5 of CS − CS_CD as maps of latitude and longitude from the center of figure. Red where a mass added near the surface in that direction would produce the pattern, blue where a mass taken away would; each map on its own symmetric color scale. +: highest; x: lowest; star: direction of the center-of-mass offset.</figcaption></figure>
 <p>Degree 2 is nearly a band: excess at both poles, deficit all around the equator. Degree 4 puts its excess at
 mid-latitudes and its deficit at the poles and the equator. Together they describe mass taken from an equatorial
 ring and put either nearer the center or at mid-latitudes. The model built for this package therefore has a light
@@ -223,10 +223,10 @@ torus about the spin axis, a dense core at the center, and a surface layer whose
 and tube radii were chosen by the χ² of each pair (ring radius 1.00 or 1.05, tube radius 0.25 or 0.30 of the mean
 radius); the best is a ring of 383 m and a tube of 110 m.</p>
 <h2 id="3.-how-well-each-solution-fits">3. How well each solution fits<a class="headerlink" href="#3.-how-well-each-solution-fits" title="Link to this section">#</a></h2>
-<figure class="figure"><img src="../../figures/rob/data3/compare.png" alt="Top: C − C_CD measured (black, ±1σ) and of the best solution of each kind that fits. Bottom: (solution − measured)/σ; the gray band is ±1σ, the dashed lines ±3σ." loading="lazy"><figcaption>Top: C − C_CD measured (black, ±1σ) and of the best solution of each kind that fits. Bottom: (solution − measured)/σ; the gray band is ±1σ, the dashed lines ±3σ.</figcaption></figure>
+<figure class="figure"><img src="../../figures/rob/data3/compare.png" alt="Top: CS − CS_CD measured (black, ±1σ) and of the best solution of each kind that fits. Bottom: (CS_computed − CS_ROB)/σ." loading="lazy"><figcaption>Top: CS − CS_CD measured (black, ±1σ) and of the best solution of each kind that fits. Bottom: (CS_computed − CS_ROB)/σ.</figcaption></figure>
 <p>Two kinds fit: the model with components and the point masses. The model with components needs 6 parameters, the
-point masses 34 effective parameters; by AIC the components rank first, 18 ahead. The sector grids cannot fit (reduced χ² above 400). Each sector runs from the center
-to the surface, so a sector grid can make the equator lighter only along the whole radius, which also takes mass from
+point masses 34 effective parameters; by AIC the components rank first, 18 ahead. The sectors cannot fit (reduced χ² above 400). Each sector runs from the center
+to the surface, so sectors can make the equator lighter only along the whole radius, which also takes mass from
 the center.</p>
 <h2 id="4.-the-model-with-components">4. The model with components<a class="headerlink" href="#4.-the-model-with-components" title="Link to this section">#</a></h2>
 <figure class="figure"><img src="../../figures/rob/data3/view_components.png" alt="The model with components, seen obliquely (left) and down the spin axis (right), colored by relative density." loading="lazy"><figcaption>The model with components, seen obliquely (left) and down the spin axis (right), colored by relative density.</figcaption></figure>
@@ -281,8 +281,8 @@ the center.</p>
 <tr>
 <th>Solution</th>
 <th>Mass moved (% of M)</th>
-<th>Excess centered at (m)</th>
-<th>Deficit centered at (m)</th>
+<th>Denser toward (m)</th>
+<th>Lighter toward (m)</th>
 </tr>
 </thead>
 <tbody>
@@ -321,14 +321,14 @@ the center.</p>
 </tr>
 </tbody>
 </table>
-<p>Mass moved: the mass above the bulk density, as a percentage of the mass of the body. Excess and deficit centers are
-from the center of figure. Correlation: of the relative densities of the solutions, 41 m cell by 41 m cell.</p>
+<p>Mass moved: the mass above the bulk density, as a percentage of the mass of the body. Denser and lighter toward:
+the center of the mass above and below the bulk density, from the center of figure. Correlation: of the relative densities of the solutions, 41 m cell by 41 m cell.</p>
 <p>The point masses come close to the model with components. On both planes they put a dense block at the center, about
 the size of the core, inside a light equatorial region that reaches the surface where the torus does. On the
 y = 0 plane they also put dense material at mid-latitudes near the surface, which the model with components gives
 to its dense surface layer. The two correlate 0.68 cell by cell, as on ROB-DATA1.</p>
 <h2 id="6.-against-robs-exact-values">6. Against ROB's exact values<a class="headerlink" href="#6.-against-robs-exact-values" title="Link to this section">#</a></h2>
-<figure class="figure"><img src="../../figures/rob/data3/exact.png" alt="The fraction of each degree of ROB&#x27;s exact C − C_CD that each solution reproduces, 1 − |solution − exact|²/|exact|². 1: all of it; 0: no better than constant density; values below −1 are drawn at −1 as open markers. The gray region was not fitted." loading="lazy"><figcaption>The fraction of each degree of ROB's exact C − C_CD that each solution reproduces, 1 − |solution − exact|²/|exact|². 1: all of it; 0: no better than constant density; values below −1 are drawn at −1 as open markers. The gray region was not fitted.</figcaption></figure>
+<figure class="figure"><img src="../../figures/rob/data3/exact.png" alt="The fraction of each degree of ROB&#x27;s exact values each solution reproduces (defined in How to read these pages). 1: all of it; 0: no better than constant density; values below −1 are drawn at −1 as open markers. Degrees 1 to 5 were fitted." loading="lazy"><figcaption>The fraction of each degree of ROB's exact values each solution reproduces (defined in How to read these pages). 1: all of it; 0: no better than constant density; values below −1 are drawn at −1 as open markers. Degrees 1 to 5 were fitted.</figcaption></figure>
 <p>Both reproduce 85 to 100% of each fitted degree, 1 to 5, and predict 90 to 93% of degree 6. The model with
 components holds to degree 7 (70%), fails at degree 8 and reproduces 55% of degree 9. The point masses hold to
 degree 9 (79 to 93%). Over degrees 6 to 10 the point masses reproduce 92% and the model with components 79%. The light equatorial ring and the dense
@@ -340,7 +340,7 @@ density, describe its finer form better than the torus does.</p>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#1.-what-the-measurements-show">1. What the measurements show</a></li><li class="lvl2"><a href="#2.-where-the-mass-is">2. Where the mass is</a></li><li class="lvl2"><a href="#3.-how-well-each-solution-fits">3. How well each solution fits</a></li><li class="lvl2"><a href="#4.-the-model-with-components">4. The model with components</a></li><li class="lvl2"><a href="#5.-point-masses-and-components-side-by-side">5. Point masses and components side by side</a></li><li class="lvl2"><a href="#6.-against-robs-exact-values">6. Against ROB's exact values</a></li></ul></nav>
 </div>
-<script src="../../assets/search-index.js?v=f846d9d222"></script>
-<script src="../../assets/site.js?v=f846d9d222"></script>
+<script src="../../assets/search-index.js?v=49836ca523"></script>
+<script src="../../assets/site.js?v=49836ca523"></script>
 </body>
 </html>

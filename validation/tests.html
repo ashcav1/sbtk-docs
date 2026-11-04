@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Validation and tests — SBTK documentation</title>
-<link rel="stylesheet" href="../assets/site.css?v=f846d9d222">
-<link rel="stylesheet" href="../assets/pygments.css?v=f846d9d222">
-<link rel="stylesheet" href="../assets/print.css?v=f846d9d222" media="print">
+<link rel="stylesheet" href="../assets/site.css?v=49836ca523">
+<link rel="stylesheet" href="../assets/pygments.css?v=49836ca523">
+<link rel="stylesheet" href="../assets/print.css?v=49836ca523" media="print">
 </head>
 <body>
 <a class="skip" href="#content">Skip to content</a>
@@ -29,8 +29,8 @@
 <nav class="breadcrumbs" aria-label="Breadcrumbs"><a href="../index.html">Documentation</a> › Validation › <span aria-current="page">Validation and tests</span></nav>
 <article>
 <h1 id="validation-and-tests">Validation and tests<a class="headerlink" href="#validation-and-tests" title="Link to this section">#</a></h1>
-<p class="lastedit">Last edited November 2, 2026</p>
-<p>SBTK 1.0.0 has 198 unit and integration tests in MATLAB's unit-test framework. They run with</p>
+<p class="lastedit">Last edited November 3, 2026</p>
+<p>SBTK 1.0.0 has 200 unit and integration tests in MATLAB's unit-test framework. They run with</p>
 <div class="codeblock codeblock-code"><div class="codehead"><span>MATLAB</span><button type="button" class="copy" aria-label="Copy code to clipboard">Copy</button></div><pre><code class="language-matlab">run(fullfile(<a class="xref xref-fn" href="../reference/api/sbtk.html#sbtk.root">sbtk.root</a>, &quot;tests&quot;, &quot;run_tests.m&quot;))      <span class="c">% about 35 minutes; writes tests/reports/test_report.txt</span></code></pre></div>
 <p>Most of the time goes to <code>tests/integration/test_maker_scripts.m</code>, which runs three HLP6 maker scripts on the
 full-resolution shape models (3 million facets, degree 10).</p>
@@ -324,7 +324,7 @@ generalized.</p>
 </tr>
 <tr>
 <td><code>tests/unit/test_io.m</code></td>
-<td>Run folders, missing runs, report functions, among them the report of point masses; <code>testFitFigures</code>: the figures against the measurements for a fit with every inertia row, with three and with none, and for a set that lacks a coefficient of degree 3 or of degree 1; a run that only makes a true model (simulation without uncertainties, the comparison with the homogeneous body in principal axes, the interior-model package with the principal axes and moments of the true model).</td>
+<td>Run folders, missing runs, report functions, among them the report of point masses; <code>testFitFigures</code>: the figures against the measurements for a fit with every inertia row, with three and with none, and for a set that lacks a coefficient of degree 3 or of degree 1; a run that only makes a true model (simulation without uncertainties, the comparison with the homogeneous body in principal axes, the interior-model package with the principal axes and moments of the true model).; <code>testSolutionRun</code>: one fixed folder per kind of solution, the run before kept in <code>history/</code>; <code>testSolutionText</code>: the same sections for every solution</td>
 </tr>
 <tr>
 <td><code>tests/unit/test_plot.m</code></td>
@@ -353,7 +353,7 @@ separately and are not part of the test suite.</p>
 </main>
 <nav class="pagetoc" aria-label="On this page"><p class="pagetoc-title">On this page</p><ul><li class="lvl2"><a href="#comparison-with-independent-results">Comparison with independent results</a></li><li class="lvl2"><a href="#conventions-and-frames">Conventions and frames</a></li><li class="lvl2"><a href="#inversion-behavior">Inversion behavior</a></li><li class="lvl2"><a href="#reproduction-of-published-and-earlier-results">Reproduction of published and earlier results</a></li><li class="lvl2"><a href="#other-tests">Other tests</a></li></ul></nav>
 </div>
-<script src="../assets/search-index.js?v=f846d9d222"></script>
-<script src="../assets/site.js?v=f846d9d222"></script>
+<script src="../assets/search-index.js?v=49836ca523"></script>
+<script src="../assets/site.js?v=49836ca523"></script>
 </body>
 </html>
